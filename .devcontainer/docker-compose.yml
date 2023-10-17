@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  app:
+    profiles: ['devcontainer']
+    container_name: kafa-dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace:cached
+    depends_on:
+      - database
+      - minio
+    stdin_open: true
+    tty: true
+    env_file: ../.env.development
+    environment:
+      DEVCONTAINER: 1
+    network_mode: host
+
+  minio:
+    container_name: kafa-minio
+    image: minio/minio
+    ports:
+      - 9000:9000
+      - 9001:9001
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: kafa
+      MINIO_ROOT_PASSWORD: kafa1234
+
+  database:
+    container_name: kafa-database
+    image: postgres:16-alpine
+    ports:
+      - 5441:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: kafa
+
+  cache:
+    container_name: kafa-cache
+    image: redis:7-alpine
+    ports:
+      - 6382:6379

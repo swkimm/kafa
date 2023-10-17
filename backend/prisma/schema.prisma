@@ -1,0 +1,344 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum AccountStatus {
+  Verifying
+  Enable
+  Disable
+}
+
+enum OAuthProvider {
+  Google
+}
+
+enum RefereeClass {
+  A
+  B
+  C
+}
+
+enum RosterStatus {
+  Enable
+  Graduate
+  Disable
+}
+
+enum RosterType {
+  Athlete
+  Staff
+  Coach
+  HeadCoach
+}
+
+enum GameResult {
+  HomeWin
+  AwayWin
+  Draw
+  NotFinished
+}
+
+enum RefereePosition {
+  Referee
+  SideJudge
+  LineJudge
+  BackJudge
+  FieldJudge
+  Umpire
+  DownJudge
+}
+
+enum Role {
+  Admin
+  Manager
+  User
+}
+
+// Account Module
+model Account {
+  id                  Int                @id @default(autoincrement())
+  name                String             @db.VarChar(128)
+  email               String             @unique @db.VarChar(128)
+  username            String             @unique @db.VarChar(128)
+  password            String             @db.VarChar(128) // hashed password
+  status              AccountStatus      @default(Verifying)
+  createdAt           DateTime           @default(now()) @map("created_at")
+  deletedAt           DateTime?
+  role                Role
+  profileImgUrl       String?            @map("profile_img_url") @db.Text
+  lastPasswordChanged DateTime           @default(now()) @map("last_password_changed")
+  lastLogin           DateTime           @default(now()) @map("last_login")
+  oAuths              OAuth[]
+  referee             Referee?
+  press               Press?
+  notifications       Notification[]
+  notificationAllow   NotificationAllow?
+  posts               Post[]
+  comments            Comment[]
+  rosters             Roster[]
+}
+
+model OAuth {
+  accountId    Int           @id @map("account_id")
+  providerId   String        @map("provider_id") @db.VarChar(256)
+  providerType OAuthProvider @map("provider_type")
+  Account      Account       @relation(fields: [accountId], references: [id])
+
+  @@unique([providerId, providerType])
+}
+
+model Referee {
+  accountId    Int           @id @map("account_id")
+  registeredAt DateTime      @default(now()) @map("registered_at")
+  refereeGames RefereeGame[]
+  class        RefereeClass  @default(C)
+  Account      Account       @relation(fields: [accountId], references: [id])
+}
+
+model Press {
+  accountId       Int         @id @map("account_id")
+  association     String      @db.VarChar(128)
+  cellPhoneNumber String      @map("cell_phone_number") @db.VarChar(64)
+  pressGames      PressGame[]
+  Account         Account     @relation(fields: [accountId], references: [id])
+}
+
+// Notification Module
+model Notification {
+  id        Int      @id @default(autoincrement())
+  accountId Int      @map("account_id")
+  content   String   @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  read      Boolean  @default(false)
+  Account   Account  @relation(fields: [accountId], references: [id])
+}
+
+model NotificationAllow {
+  accountId Int      @id @map("account_id")
+  agree     Boolean
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  Account   Account  @relation(fields: [accountId], references: [id])
+}
+
+// Post Module
+model Post {
+  id          Int          @id @default(autoincrement())
+  title       String       @db.VarChar(256)
+  content     String       @db.Text
+  accountId   Int          @map("account_id")
+  postTypeId  Int          @map("post_type_id")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @default(now()) @updatedAt @map("updated_at")
+  Account     Account      @relation(fields: [accountId], references: [id])
+  PostType    PostType     @relation(fields: [postTypeId], references: [id])
+  attachments Attachment[]
+  comments    Comment[]
+}
+
+model PostType {
+  id    Int    @id @default(autoincrement())
+  name  String @db.VarChar(64)
+  posts Post[]
+}
+
+model Attachment {
+  id       Int    @id @default(autoincrement())
+  postId   Int    @map("post_id")
+  fileUrl  String @map("file_url") @db.Text
+  fileName String @map("file_name") @db.VarChar(256)
+  fileType String @map("file_type") @db.VarChar(64)
+  Post     Post   @relation(fields: [postId], references: [id])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  accountId Int      @map("account_id")
+  postId    Int      @map("post_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  Post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  Account   Account  @relation(fields: [accountId], references: [id])
+}
+
+// Association Module
+model Association {
+  id                 Int                 @id @default(autoincrement())
+  name               String              @db.VarChar(128)
+  globalName         String              @map("global_name") @db.VarChar(128)
+  initial            String              @db.VarChar(32)
+  profileImgUrl      String?             @map("profile_img_url") @db.Text
+  parentId           Int?                @map("parent_id")
+  Parent             Association?        @relation("AssociationToAssociation", fields: [parentId], references: [id])
+  children           Association[]       @relation("AssociationToAssociation")
+  associationLeagues AssociationLeague[]
+  Team               Team[]
+
+  @@index([parentId], name: "parent_id_idx")
+}
+
+model AssociationLeague {
+  Association   Association @relation(fields: [associationId], references: [id])
+  associationId Int         @map("association_id")
+  League        League      @relation(fields: [leagueId], references: [id])
+  leagueId      Int         @map("league_id")
+
+  @@unique([associationId, leagueId])
+}
+
+model League {
+  id                 Int                 @id @default(autoincrement())
+  name               String              @db.VarChar(256)
+  startedAt          DateTime            @map("started_at")
+  endedAt            DateTime            @map("ended_at")
+  associationLeagues AssociationLeague[]
+  leagueSponsers     LeagueSponser[]
+  teamLeagues        TeamLeague[]
+  games              Game[]
+}
+
+model LeagueSponser {
+  League    League  @relation(fields: [leagueId], references: [id])
+  leagueId  Int     @map("league_id")
+  Sponser   Sponser @relation(fields: [sponserId], references: [id])
+  sponserId Int     @map("sponser_id")
+
+  @@unique([leagueId, sponserId])
+}
+
+model Sponser {
+  id             Int             @id @default(autoincrement())
+  name           String          @db.VarChar(128)
+  websiteUrl     String          @map("website_url") @db.Text
+  profileImgUrl  String?         @map("profile_img_url") @db.Text
+  leagueSponsers LeagueSponser[]
+}
+
+// Team module
+model Team {
+  id               Int          @id @default(autoincrement())
+  associationId    Int          @map("association_id")
+  name             String       @db.VarChar(128)
+  globalName       String       @map("global_name") @db.VarChar(128)
+  hometown         String       @db.VarChar(128)
+  initial          String       @db.VarChar(16)
+  establishedAt    DateTime     @map("established_at")
+  color            String       @db.VarChar(16)
+  subColor         String?      @db.VarChar(16)
+  profileImgUrl    String?      @map("profile_img_url") @db.Text
+  backgroundImgUrl String?      @map("background_img_url") @db.Text
+  Association      Association  @relation(fields: [associationId], references: [id])
+  Roster           Roster[]
+  TeamLeague       TeamLeague[]
+  homeGames        Game[]       @relation("homeTeam")
+  awayGames        Game[]       @relation("awayTeam")
+}
+
+model TeamLeague {
+  teamId   Int    @map("team_id")
+  leagueId Int    @map("league_id")
+  rank     Int?   @db.SmallInt
+  Team     Team   @relation(fields: [teamId], references: [id])
+  League   League @relation(fields: [leagueId], references: [id])
+
+  @@unique([teamId, leagueId])
+}
+
+model Roster {
+  id            Int          @id @default(autoincrement())
+  name          String       @db.VarChar(64)
+  globalName    String       @map("global_name") @db.VarChar(64)
+  rosterType    RosterType   @map("roster_type")
+  teamId        Int          @map("team_id")
+  accountId     Int?         @map("account_id")
+  registerYear  DateTime     @map("register_year")
+  profileImgUrl String       @map("profile_img_url") @db.Text
+  status        RosterStatus @default(Enable)
+  Account       Account?     @relation(fields: [accountId], references: [id])
+  Team          Team         @relation(fields: [teamId], references: [id])
+  Athlete       Athlete?
+}
+
+model Athlete {
+  rosterId Int      @id @map("roster_id")
+  position String[]
+  height   Int
+  weight   Int
+  records  Record[]
+  Roster   Roster   @relation(fields: [rosterId], references: [id])
+}
+
+// Game Module
+model Game {
+  id          Int           @id @default(autoincrement())
+  leagueId    Int           @map("league_id")
+  startedAt   DateTime      @map("started_at")
+  homeTeamId  Int           @map("home_team_id")
+  awayTeamId  Int           @map("away_team_id")
+  homeTeam    Team          @relation("homeTeam", fields: [homeTeamId], references: [id])
+  awayTeam    Team          @relation("awayTeam", fields: [awayTeamId], references: [id])
+  result      GameResult
+  stadium     String        @db.VarChar(256)
+  League      League        @relation(fields: [leagueId], references: [id])
+  score       Score?
+  RefereeGame RefereeGame[]
+  PressGame   PressGame[]
+  Record      Record[]
+}
+
+model RefereeGame {
+  refereeId Int             @map("referee_id")
+  gameId    Int             @map("game_id")
+  position  RefereePosition
+  Referee   Referee         @relation(fields: [refereeId], references: [accountId])
+  Game      Game            @relation(fields: [gameId], references: [id])
+
+  @@unique([refereeId, gameId])
+}
+
+model PressGame {
+  pressId  Int     @map("press_id")
+  gameId   Int     @map("game_id")
+  Game     Game    @relation(fields: [gameId], references: [id])
+  Press    Press   @relation(fields: [pressId], references: [accountId])
+  approved Boolean
+
+  @@unique([pressId, gameId])
+}
+
+model Score {
+  gameId                Int      @id @map("game_id")
+  homeTeamScore         Int?     @map("home_team_score")
+  homeTeamQuarterScores Int[]    @map("home_team_quarter_scores")
+  awayTeamScore         Int?     @map("away_team_score")
+  awayTeamQuarterScores Int[]    @map("away_team_quarter_scores")
+  overtime              Boolean?
+  Game                  Game     @relation(fields: [gameId], references: [id])
+}
+
+// Record module
+model Record {
+  id               Int            @id @default(autoincrement())
+  athleteId        Int            @map("athlete_id")
+  recordArgumentId Int            @map("record_argument_id")
+  gameId           Int            @map("game_id")
+  score            Int
+  game             Game           @relation(fields: [gameId], references: [id])
+  Athlete          Athlete        @relation(fields: [athleteId], references: [rosterId])
+  RecordArgument   RecordArgument @relation(fields: [recordArgumentId], references: [id])
+}
+
+model RecordArgument {
+  id      Int      @id @default(autoincrement())
+  name    String   @db.VarChar(64)
+  unit    String   @db.VarChar(32)
+  version Int      @db.SmallInt
+  records Record[]
+}
