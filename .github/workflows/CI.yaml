@@ -121,8 +121,11 @@ jobs:
       - name: Migrate Prisma
         run: pnpm --filter backend exec prisma migrate reset --force
 
-      - name: Check types in Typescript
+      - name: Check types in Typescript (Backend)
         run: pnpm --filter backend exec tsc --noEmit
+
+      - name: Check types in Typescript (Frontend)
+        run: pnpm --filter frontend exec tsc --noEmit
 
       - name: Test
         run: pnpm -r test
