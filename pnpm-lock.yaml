@@ -222,6 +222,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      redux:
+        specifier: ^4.2.1
+        version: 4.2.1
     devDependencies:
       '@types/react':
         specifier: ^18.2.15
@@ -8216,6 +8219,12 @@ packages:
       '@redis/json': 1.0.6(@redis/client@1.5.11)
       '@redis/search': 1.1.5(@redis/client@1.5.11)
       '@redis/time-series': 1.0.5(@redis/client@1.5.11)
+    dev: false
+
+  /redux@4.2.1:
+    resolution: {integrity: sha512-LAUYz4lc+Do8/g7aeRa8JkyDErK6ekstQaqWQrNRW//MY1TvCEpMtpTWvlQ+FPbWCx+Xixu/6SHt5N0HR+SB4w==}
+    dependencies:
+      '@babel/runtime': 7.23.2
     dev: false
 
   /reflect-metadata@0.1.13:
