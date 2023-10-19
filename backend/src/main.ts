@@ -8,6 +8,7 @@ const bootstrap = async () => {
   const app = await NestFactory.create(AppModule, {
     logger: ['error', 'warn', 'log']
   })
+
   const configService = app.get(ConfigService)
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
@@ -17,6 +18,13 @@ const bootstrap = async () => {
     exposedHeaders: ['authorization'],
     credentials: true
   })
+
+  if (
+    process.env.NODE_ENV === 'production' ||
+    process.env.NODE_ENV === 'staging'
+  ) {
+    app.setGlobalPrefix('api')
+  }
 
   await app.listen(configService.get<number>('PORT') || 4000)
 }

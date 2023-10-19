@@ -16,7 +16,7 @@ RUN npm run build client
 ### PRODUCTION ###
 FROM node:20-alpine
 
-ENV NODE_ENV=production
+ENV NODE_ENV=staging
 COPY --from=builder /build/out .
 COPY ./docker/entrypoint.sh .
 
