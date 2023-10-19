@@ -1,0 +1,11 @@
+*
+
+!backend
+!package.json
+!pnpm-lock.yaml
+!pnpm-workspace.yaml
+!docker/entrypoint.sh
+
+**/dist
+**/.env
+**/.env.*

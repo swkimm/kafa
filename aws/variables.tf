@@ -1,0 +1,10 @@
+variable "postgres_username" {}
+variable "postgres_password" {}
+variable "jwt_secret" {}
+variable "postgres_port" {}
+variable "elasticache_port" {}
+variable "port" {}
+variable "aws_cdn_bucket_name" {}
+variable "aws_cdn_origin_bucket_name" {}
+variable "cdn_server_domain" {}
+variable "aws_cdn_bucket_region" {}

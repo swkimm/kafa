@@ -32,7 +32,7 @@ services:
 
   database:
     container_name: kafa-database
-    image: postgres:16-alpine
+    image: postgres:15-alpine
     ports:
       - 5441:5432
     environment:

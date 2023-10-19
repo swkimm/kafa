@@ -7,7 +7,8 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/apps/backend/main",
-    "lint": "eslint \"src/**/*.ts\" --fix",
+    "lint": "eslint . --ext .js,.ts",
+    "format:check": "prettier --check .",
     "test": "mocha \"*/**/*.spec.ts\"",
     "test:debug": "mocha --inspect \"*/**/*.spec.ts\""
   },

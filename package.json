@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "lint": "eslint . --ext .js,.ts,.vue",
+    "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "init:minio": "ts-node scripts/setup-minio.ts"

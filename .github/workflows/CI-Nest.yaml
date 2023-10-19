@@ -1,10 +1,16 @@
-name: CI
+name: CI-Nest
 
 on:
-  push:
-    branches: [main]
   pull_request:
     types: [opened, edited, synchronize, reopened]
+    paths:
+      - 'backend/**'
+
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
 
 jobs:
   build:
@@ -30,9 +36,6 @@ jobs:
 
       - name: Generate Prisma Client
         run: pnpm --filter backend exec prisma generate
-
-      - name: Build Frontend
-        run: pnpm --filter frontend build
 
       - name: Build Backend
         run: |
@@ -69,11 +72,11 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         run: echo "${{ github.event.pull_request.title }}" | pnpm commitlint --verbose
 
-      - name: Check style (Node.js)
-        run: pnpm format:check
+      - name: Check style
+        run: pnpm --filter backend format:check
 
-      - name: Lint (Node.js)
-        run: pnpm lint
+      - name: Lint
+        run: pnpm --filter backend lint
 
   test:
     runs-on: ${{ matrix.os }}
@@ -88,7 +91,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:16-alpine
+        image: postgres:15-alpine
         ports:
           - 5432:5432
         env:
@@ -124,8 +127,5 @@ jobs:
       - name: Check types in Typescript (Backend)
         run: pnpm --filter backend exec tsc --noEmit
 
-      - name: Check types in Typescript (Frontend)
-        run: pnpm --filter frontend exec tsc --noEmit
-
       - name: Test
-        run: pnpm -r test
+        run: pnpm --filter backend test
