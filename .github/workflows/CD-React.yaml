@@ -62,14 +62,20 @@ jobs:
           name: frontend-bundle
           path: ./frontend/dist
 
+      - name: Create Terraform variable file
+        working-directory: ./aws/
+        run: echo "$TFVARS" > terraform.tfvars
+        env:
+          TFVARS: ${{ secrets.TF_VARS }}
+
       - name: Terraform Init
-        working-directory: ./terraform
+        working-directory: ./aws/
         run: terraform init
 
       - name: Terraform Plan
-        working-directory: ./terraform
+        working-directory: ./aws/
         run: terraform plan -input=false
 
       - name: Terraform Apply
-        working-directory: ./terraform
+        working-directory: ./aws/
         run: terraform apply -auto-approve -input=false
