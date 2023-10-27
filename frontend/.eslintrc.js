@@ -4,7 +4,8 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'plugin:prettier/recommended',
-    'plugin:react/jsx-runtime'
+    'plugin:react/jsx-runtime',
+    'plugin:storybook/recommended'
   ],
   plugins: ['react', 'react-hooks', 'react-refresh'],
   rules: {
