@@ -17,23 +17,20 @@ module.exports = {
       'error',
       {
         selector: 'default',
-        format: ['camelCase'],
+        format: ['camelCase', 'PascalCase'],
         leadingUnderscore: 'allow',
         trailingUnderscore: 'allow'
       },
-
       {
         selector: 'variable',
         format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
         leadingUnderscore: 'allow',
         trailingUnderscore: 'allow'
       },
-
       {
         selector: 'typeLike',
         format: ['PascalCase']
       },
-
       {
         selector: ['objectLiteralProperty', 'classProperty'],
         format: ['camelCase', 'PascalCase']
