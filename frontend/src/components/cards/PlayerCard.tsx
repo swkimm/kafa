@@ -2,11 +2,13 @@ import type React from 'react'
 
 interface PlayerCardProps {
   id: number
+  category: string
   profile: string
   name: string
   backNumber: number
   offPosition: string
   defPosition: string
+  onClick?: (id: number) => void
 }
 
 const PlayerCard: React.FC<PlayerCardProps> = ({
@@ -21,8 +23,8 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
   const positionText = `${offPosition}/${defPosition}`
 
   return (
-    <div style={{ width: '250px', height: '500px' }}>
-      <div className="h-2/3 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-80">
+    <div className="my-10" style={{ width: '250px', height: '350px' }}>
+      <div className="h-full w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-80">
         <img
           src={profileImage}
           alt={name}
@@ -31,13 +33,13 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
       </div>
 
       <div className="h-15 flex w-full flex-col justify-center rounded-b-md bg-gray-50">
-        <div className="flex justify-between text-sm font-semibold text-gray-700">
+        <div className="mx-5 flex justify-between text-sm font-semibold text-gray-700">
           <div className="text-xl">{name}</div>
           <div className="text-lg">{backNumber}</div>
         </div>
-        <p className="mb-2 mt-2 text-xs font-normal text-gray-500">
+        <div className="mx-5 mb-2 mt-2 text-xs font-normal text-gray-500">
           {positionText}
-        </p>
+        </div>
       </div>
     </div>
   )

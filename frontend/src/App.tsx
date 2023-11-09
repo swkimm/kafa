@@ -1,34 +1,36 @@
-import { useState } from 'react'
-import './App.css'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// App.tsx
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Footer from './components/footer/Footer'
+import Header from './components/header/Header.tsx'
+import Home from './pages/home/Home.tsx'
+import League from './pages/league/League.tsx'
+import LeagueDetail from './pages/league/[id]/LeagueDetail.tsx'
+import TeamDetail from './pages/league/[id]/team/[id]/TeamDetail.tsx'
+import MemberDetail from './pages/league/[id]/team/[id]/member/[id]/MemberDetail.tsx'
 
 const App = () => {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <BrowserRouter>
+      <div className="flex min-h-screen flex-col bg-gray-100">
+        <Header />
+        <div className="pt-15 flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/league" element={<League />} />
+            <Route path="/league/:leagueId" element={<LeagueDetail />} />
+            <Route
+              path="/league/:leagueId/team/:teamId"
+              element={<TeamDetail />}
+            />
+            <Route
+              path="/league/:leagueId/team/:teamId/member/:memberId"
+              element={<MemberDetail />}
+            />
+          </Routes>
+        </div>
+        <Footer />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs text-yellow-500">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </BrowserRouter>
   )
 }
 

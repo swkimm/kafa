@@ -7,6 +7,7 @@ interface ButtonProps {
     | 'roundLg'
     | 'roundFull'
     | 'outlineWithDarkHover'
+    | 'outlineWhiteText'
     | 'outlineWithLightHover'
     | 'reverse'
     | 'prevNext'
@@ -60,6 +61,10 @@ const Button: React.FC<ButtonProps> = ({
       case 'outlineWithDarkHover':
         classes +=
           ' border rounded-lg border-black hover:bg-gray-700 hover:text-white'
+        break
+      case 'outlineWhiteText':
+        classes +=
+          ' border rounded-lg border-white text-white hover:bg-gray-700 hover:text-white'
         break
       case 'outlineWithLightHover':
         classes += ' border rounded-lg border-gray-400 hover:bg-gray-100'

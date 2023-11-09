@@ -17,7 +17,6 @@ const NoticeList: React.FC<NoticeListProps> = ({
   onClick
 }) => {
   const handleOnClick = () => {
-    console.log(id)
     onClick(id) // 필수 프로퍼티이므로 바로 호출
   }
   return (
@@ -35,7 +34,6 @@ const NoticeList: React.FC<NoticeListProps> = ({
           viewBox="0 0 24 24"
           fill="currentColor"
           className="h-6 w-6 cursor-pointer"
-          onClick={() => handleOnClick?.()}
         >
           <path
             fillRule="evenodd"

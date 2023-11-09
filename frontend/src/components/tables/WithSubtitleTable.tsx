@@ -1,8 +1,9 @@
-// DefaultTable.tsx
+// WithSubtitleTable.tsx
 import type React from 'react'
 
-interface DefaultTableProps {
+interface WithSubtitleTableProps {
   title: string
+  subtitle: string
   data: Person[]
 }
 
@@ -13,19 +14,24 @@ interface Person {
   role: string
 }
 
-const DefaultTable: React.FC<DefaultTableProps> = ({ title, data }) => {
+const WithSubtitleTable: React.FC<WithSubtitleTableProps> = ({
+  title,
+  subtitle,
+  data
+}) => {
   return (
-    <div className="border bg-white">
-      <div className=" sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <div className="mt-5 border-l-8 border-black  text-base font-semibold leading-6 text-gray-900">
-            <div className="ml-5">{title}</div>
+    <div className="border ">
+      <div className="sm:flex sm:items-center">
+        <div className="border-b border-l-8 border-l-black p-5 sm:flex-auto">
+          <div className="flex items-center border-black text-base font-semibold leading-6 text-gray-900">
+            <div className="">{title}</div>
+            <div className="ml-3 text-sm text-gray-500">{subtitle}</div>
           </div>
         </div>
       </div>
-      <div className="mt-4 flow-root px-2 sm:px-2 lg:px-4">
+      <div className=" flow-root px-2 sm:px-2 lg:px-4">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full overflow-auto py-2 align-middle sm:px-6 lg:px-8">
+          <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <table className="min-w-full divide-y divide-gray-300">
               <thead>
                 <tr>
@@ -33,25 +39,31 @@ const DefaultTable: React.FC<DefaultTableProps> = ({ title, data }) => {
                     scope="col"
                     className="border-b py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
                   >
-                    Name
+                    #
                   </th>
                   <th
                     scope="col"
                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                   >
-                    Title
+                    Column1
                   </th>
                   <th
                     scope="col"
                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                   >
-                    Email
+                    Column2
                   </th>
                   <th
                     scope="col"
                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                   >
-                    Role
+                    Column3
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  >
+                    Column4
                   </th>
                 </tr>
               </thead>
@@ -83,4 +95,5 @@ const DefaultTable: React.FC<DefaultTableProps> = ({ title, data }) => {
     </div>
   )
 }
-export default DefaultTable
+
+export default WithSubtitleTable

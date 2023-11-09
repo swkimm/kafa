@@ -1,5 +1,6 @@
 // LeagueList.tsx
 import type React from 'react'
+import Button from '../buttons/Button'
 
 interface LeagueListProps {
   leagueId: number
@@ -21,7 +22,6 @@ const LeagueList: React.FC<LeagueListProps> = ({
   onClick
 }) => {
   const handleOnClick = () => {
-    console.log(leagueId)
     onClick(leagueId) // 필수 프로퍼티이므로 바로 호출
   }
 
@@ -35,37 +35,41 @@ const LeagueList: React.FC<LeagueListProps> = ({
   }
 
   return (
-    <div className="border-b">
-      <div
-        className="flex items-center justify-between"
-        onClick={handleOnClick}
-      >
-        <div className="flex">
-          <div className="font-bold">{leagueName}</div>
-          <div className="pl-3">
-            {isLeagueInProgress() ? (
-              <button
-                type="button"
-                className="rounded-md border border-green-500 bg-green-200 px-4 text-sm font-semibold text-green-700 shadow-sm hover:bg-green-300"
-              >
-                진행중
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="rounded-md border border-red-500 bg-red-200 px-4 text-sm font-semibold text-red-600 shadow-sm hover:bg-red-300"
-              >
-                종료됨
-              </button>
-            )}
+    <div className="border-b px-3">
+      <div className="py-1">
+        <div
+          className="flex items-center justify-between"
+          onClick={handleOnClick}
+        >
+          <div className="flex">
+            <div className="font-bold">{leagueName}</div>
+            <div className="pl-1">
+              {isLeagueInProgress() ? (
+                <button
+                  type="button"
+                  className="rounded-md border border-green-500 bg-green-200 px-2 text-sm font-semibold text-green-700 shadow-sm hover:bg-green-300"
+                >
+                  진행중
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="rounded-md border border-red-500 bg-red-200 px-2 text-sm font-semibold text-red-600 shadow-sm hover:bg-red-300"
+                >
+                  종료됨
+                </button>
+              )}
+            </div>
           </div>
+          <Button
+            variant="outlineWithDarkHover"
+            label="바로가기"
+            onClick={handleOnClick}
+          />
         </div>
-        <button className="rounded-md border border-gray-400 px-4 py-2 hover:bg-gray-200">
-          바로가기
-        </button>
-      </div>
-      <div className="mb-2 pb-2">
-        {period} {conference}
+        <div className="mb-2">
+          {period} {conference}
+        </div>
       </div>
     </div>
   )

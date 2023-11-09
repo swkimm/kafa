@@ -5,7 +5,7 @@ import Header from './Header'
 const meta = {
   title: 'Components/Header',
   component: Header,
-  parameters: {},
+  decorators: [],
   argTypes: {},
   tags: ['autodocs']
 } satisfies Meta<typeof Header>

@@ -11,6 +11,7 @@ interface Option {
 interface SimpleProps {
   optionName?: string
   optionList?: Option[]
+  onSelect?: (selected: string) => void
 }
 
 const classNames = (...classes: unknown[]): string => {
@@ -19,12 +20,8 @@ const classNames = (...classes: unknown[]): string => {
 
 const DropdownSimple: React.FC<SimpleProps> = ({
   optionName = 'Options',
-  optionList = [
-    { id: '1', name: 'Account settings' },
-    { id: '2', name: 'Support' },
-    { id: '3', name: 'License' },
-    { id: '4', name: 'Sign out' }
-  ]
+  optionList = [],
+  onSelect = () => {}
 }) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -49,21 +46,26 @@ const DropdownSimple: React.FC<SimpleProps> = ({
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            {optionList.map((option) => (
-              <Menu.Item key={option.id}>
-                {({ active }) => (
-                  <a
-                    href="#"
-                    className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block px-4 py-2 text-sm'
-                    )}
-                  >
-                    {option.name}
-                  </a>
-                )}
-              </Menu.Item>
-            ))}
+            {optionList?.length > 0 ? (
+              optionList.map((option) => (
+                <Menu.Item key={option.id}>
+                  {({ active }) => (
+                    <a
+                      href="#"
+                      onClick={() => onSelect(option.name)} // 옵션이 선택되었을 때 콜백 함수 호출
+                      className={classNames(
+                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                        'block px-4 py-2 text-sm'
+                      )}
+                    >
+                      {option.name}
+                    </a>
+                  )}
+                </Menu.Item>
+              ))
+            ) : (
+              <p>No options available</p>
+            )}
           </div>
         </Menu.Items>
       </Transition>

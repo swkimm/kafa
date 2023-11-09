@@ -1,27 +1,30 @@
-// DefaultTable.stories.ts
+// WithSubtitleTable.stories.ts
 import type { Meta, StoryObj } from '@storybook/react'
-import DefaultTable from './DefaultTable'
+import WithSubtitleTable from './WithSubtitleTable'
 
 const meta = {
-  title: 'Components/DefaultTable',
-  component: DefaultTable,
+  title: 'Components/WithSubtitleTable',
+  component: WithSubtitleTable,
   parameters: {},
   argTypes: {
     title: { control: 'text' },
+    subtitle: { control: 'text' },
     data: {
-      description: 'Array of person objects to be displayed in the table',
+      description:
+        'Array of person objects to be displayed in the table With subtitle',
       control: false
     }
   },
   tags: ['autodocs']
-} satisfies Meta<typeof DefaultTable>
+} satisfies Meta<typeof WithSubtitleTable>
 
 export default meta
-type Story = StoryObj<typeof DefaultTable>
+type Story = StoryObj<typeof WithSubtitleTable>
 
 export const Default: Story = {
   args: {
     title: '테이블',
+    subtitle: '부제목',
     data: [
       {
         name: 'Jane Cooper',

@@ -16,7 +16,8 @@ const meta = {
   },
   argTypes: {
     optionName: { control: 'text' }, // optionName은 text 타입의 컨트롤로 조정
-    optionList: { control: 'object' } // optionList는 object 타입의 컨트롤로 조정
+    optionList: { control: 'object' }, // optionList는 object 타입의 컨트롤로 조정
+    onSelect: { action: 'selected' } // onSelect는 액션 타입의 컨트롤로 조정
   },
   tags: ['autodocs']
 } satisfies Meta<typeof DropdownSimple>

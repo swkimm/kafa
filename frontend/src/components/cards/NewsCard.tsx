@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types'
 import type React from 'react'
 
-interface NewsCardProps {
+export interface NewsCardProps {
   imageSrc: string
   title: string
   description: string
@@ -21,7 +21,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 
   return (
     <div
-      className={`rounded-xs mx-auto max-w-md overflow-hidden bg-white shadow-md ${
+      className={`rounded-xs mx-auto max-w-md overflow-hidden bg-white px-5 shadow-md ${
         isWide ? '' : 'max-w-xs'
       }`}
       onClick={onClick}

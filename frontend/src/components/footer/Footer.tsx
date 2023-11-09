@@ -1,5 +1,7 @@
 import type React from 'react'
-import logo from '/public/logo/logo.png'
+import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import logo from '/logo/logo.png'
 
 interface IconProps {
   className?: string
@@ -45,30 +47,30 @@ const YouTubeIcon: React.FC<IconProps> = (props) => {
 
 const navigation = {
   main: [
-    { name: 'KAFA MEDIA', href: '#' },
-    { name: 'AFKN', href: '#' },
-    { name: 'REFEREE', href: '#' },
-    { name: 'KAFAS', href: '#' }
+    { name: 'KAFA MEDIA', to: '#' },
+    { name: 'AFKN', to: '#' },
+    { name: 'REFEREE', to: '#' },
+    { name: 'KAFAS', to: '#' }
   ],
   sub: [
-    { name: '이용약관', href: '#' },
-    { name: '개인정보 처리방침', href: '#' },
-    { name: '파트너', href: '#' }
+    { name: '이용약관', to: '#' },
+    { name: '개인정보 처리방침', to: '#' },
+    { name: '파트너', to: '#' }
   ],
   social: [
     {
       name: 'Instagram',
-      href: '#',
+      to: '#',
       icon: InstagramIcon
     },
     {
       name: 'Facebook',
-      href: '#',
+      to: '#',
       icon: FacebookIcon
     },
     {
       name: 'YouTube',
-      href: '#',
+      to: '#',
       icon: YouTubeIcon
     }
   ]
@@ -78,49 +80,63 @@ const halfLength = Math.ceil(navigation.main.length / 2)
 const firstHalf = navigation.main.slice(0, halfLength)
 const secondHalf = navigation.main.slice(halfLength)
 
-interface FooterProps {
-  // 추후 필요한 props를 여기에 정의
-}
+const Footer: React.FC = () => {
+  const location = useLocation()
+  const isHome = location.pathname === '/'
+  const footerHeight = '' // Set this to the height of your footer
 
-const Footer: React.FC<FooterProps> = () => {
+  const mainContentStyle = {
+    paddingBottom: isHome ? '0px' : footerHeight
+  }
   return (
-    <footer className="fixed bottom-0 w-full bg-gray-900 p-8">
+    <footer
+      className={`inset-x-0 bottom-0 z-50 bg-gray-800 p-4 text-center text-white`}
+      style={mainContentStyle}
+    >
       <nav>
-        <div className="flex justify-center font-semibold text-white">
-          {firstHalf.map((item, index) => (
-            <a key={index} href={item.href} className="mx-10 items-center">
-              {item.name}
-            </a>
-          ))}
-          <div className="mx-10">
+        <div className="flex items-center font-semibold text-white lg:justify-between">
+          <div className="mr-3 flex flex-1 justify-between md:justify-end">
+            {firstHalf.map((item, index) => (
+              <Link key={index} to={item.to} className="ml-2 md:ml-10">
+                {item.name}
+              </Link>
+            ))}
+          </div>
+
+          {/* Logo container; hidden on mobile, displayed on medium screens and up */}
+          <div className="hidden flex-initial justify-center md:flex lg:mx-10">
             <img src={logo} alt="KAFA Logo" className="h-15 w-28" />
           </div>
-          {secondHalf.map((item, index) => (
-            <a key={index} href={item.href} className="mx-10 items-center">
-              {item.name}
-            </a>
-          ))}
+
+          {/* Container for the second half of the nav items */}
+          <div className="ml-3 flex flex-1 justify-between md:justify-start ">
+            {secondHalf.map((item, index) => (
+              <Link key={index} to={item.to} className="mr-2 md:mr-10">
+                {item.name}
+              </Link>
+            ))}
+          </div>
         </div>
       </nav>
 
       <div className="mt-8 flex justify-center space-x-5">
         {navigation.social.map((item) => (
-          <a
+          <Link
             key={item.name}
-            href={item.href}
+            to={item.to}
             className="text-gray-400 hover:text-gray-500"
           >
             <span className="sr-only">{item.name}</span>
             <item.icon className="h-6 w-6" aria-hidden="true" />
-          </a>
+          </Link>
         ))}
       </div>
 
       <div className="mt-8 flex justify-center space-x-10 text-sm text-white">
         {navigation.sub.map((item) => (
-          <a key={item.name} href={item.href}>
+          <Link key={item.name} to={item.to}>
             {item.name}
-          </a>
+          </Link>
         ))}
       </div>
 

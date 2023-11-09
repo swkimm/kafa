@@ -1,20 +1,22 @@
 // NoticeWideCard.tsx
 import type React from 'react'
-import NewsCard from './NewsCard'
+import NewsCard, { type NewsCardProps } from './NewsCard'
 
 interface NoticeWideCardProps {
   id: number
   cardName: string
   onClick?: (id: number) => void
+  newsCardPropsArray: NewsCardProps[]
 }
 
 const NoticeWideCard: React.FC<NoticeWideCardProps> = ({
   id,
   cardName,
-  onClick
+  onClick,
+  newsCardPropsArray
 }) => {
   return (
-    <div className="border border-black">
+    <div className="border border-black bg-white">
       <div className="mb-3 border-b border-l-8 border-gray-800 bg-white px-4 py-5 sm:px-6">
         <div className="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
           <div className="ml-4 mt-2">
@@ -39,25 +41,12 @@ const NoticeWideCard: React.FC<NoticeWideCardProps> = ({
           </div>
         </div>
       </div>
-      <div className="mb-3 flex">
-        <NewsCard
-          imageSrc=""
-          title="title 111111"
-          description="description 1111111111111"
-          variant="wide"
-        />
-        <NewsCard
-          imageSrc=""
-          title="title 222222"
-          description="description 22222222222"
-          variant="wide"
-        />
-        <NewsCard
-          imageSrc=""
-          title="title 333333"
-          description="description 33333333333"
-          variant="wide"
-        />
+      <div className="mb-3 flex w-full snap-x snap-mandatory overflow-x-auto">
+        {newsCardPropsArray?.map((newsCardProps, index) => (
+          <div key={index} className="min-w-0 flex-shrink-0 snap-center pr-3">
+            <NewsCard {...newsCardProps} />
+          </div>
+        ))}
       </div>
     </div>
   )

@@ -1,30 +1,63 @@
 // Header.tsx
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import logo from '/public/logo/logo.png'
-
-// const classNames = (...classes: unknown[]): string => {
-//   return classes.filter(Boolean).map(String).join(' ')
-// }
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import logo from '/logo/logo.png'
 
 const Header = () => {
+  const location = useLocation()
+  const [isScrolled, setIsScrolled] = useState(false)
+  const headerHeight = '' // The height of your header
+
+  const mainContentStyle = {
+    paddingTop: headerHeight
+  }
+
+  const handleScroll = () => {
+    const offset = window.pageYOffset
+    setIsScrolled(offset > 0)
+  }
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setIsScrolled(false)
+      window.addEventListener('scroll', handleScroll)
+    } else {
+      setIsScrolled(true)
+    }
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [location.pathname])
   return (
-    <Disclosure as="nav" className="bg-red-600">
+    <Disclosure
+      as="nav"
+      className={`fixed left-0 top-0 z-10 w-full ${
+        isScrolled || location.pathname !== '/'
+          ? 'bg-red-600'
+          : 'bg-transparent'
+      }`}
+      style={mainContentStyle}
+    >
       {({ open }) => (
         <>
-          <div className="max-w-8xl mx-auto sm:px-2 lg:px-4">
+          <div className="mx-auto sm:px-2 lg:px-4">
             <div className="flex h-16 justify-between px-2">
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
-                  <img src={logo} alt="KAFA Logo" className="h-15 w-20" />
+                  <Link to="/">
+                    <img src={logo} alt="KAFA Logo" className="h-15 w-20" />
+                  </Link>
                 </div>
                 <div className="hidden sm:ml-2 sm:flex sm:space-x-4">
-                  <a
-                    href="#"
+                  <Link
+                    to="/league"
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     대회정보
-                  </a>
+                  </Link>
                   <a
                     href="#"
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
@@ -35,7 +68,7 @@ const Header = () => {
                     href="#"
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
-                    KAFA LIVE
+                    HUDDLE
                   </a>
                   <a
                     href="#"

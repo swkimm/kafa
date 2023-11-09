@@ -14,6 +14,7 @@ const meta = {
         'default',
         'roundLg',
         'roundFull',
+        'outlineWhiteText',
         'outlineWithDarkHover',
         'outlineWithLightHover',
         'reverse',
@@ -66,6 +67,13 @@ export const OutlineWithDarkHover: Story = {
 export const OutlineWithLightHover: Story = {
   args: {
     variant: 'outlineWithLightHover',
+    label: 'Button'
+  }
+}
+
+export const OutlineWhiteText: Story = {
+  args: {
+    variant: 'outlineWhiteText',
     label: 'Button'
   }
 }

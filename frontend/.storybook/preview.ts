@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/react'
+import { withRouter } from 'storybook-addon-react-router-v6'
 import '../src/styles/main.css'
 
 const preview: Preview = {
@@ -10,7 +11,8 @@ const preview: Preview = {
         date: /Date$/i
       }
     }
-  }
+  },
+  decorators: [withRouter]
 }
 
 export default preview
