@@ -4,8 +4,8 @@ import {
   Injectable
 } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
+import { AuthService } from '@/auth/auth.service'
 import { Role } from '@prisma/client'
-import { AuthService } from 'src/auth/auth.service'
 import type { AuthenticatedRequest } from '../class/authenticated-request.interface'
 import type { AuthenticatedUser } from '../class/authenticated-user.class'
 import { PUBLIC } from '../decorator/guard.decorator'
