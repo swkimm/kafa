@@ -2,11 +2,11 @@ import { CACHE_MANAGER } from '@nestjs/cache-manager'
 import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 import { Test, type TestingModule } from '@nestjs/testing'
-import { AccountService } from '@/account/account.service'
+import { AccountServiceImpl } from '@/account/account.service'
 import { PrismaService } from '@/prisma/prisma.service'
 import { expect } from 'chai'
 import { AuthController } from './auth.controller'
-import { AuthService } from './auth.service'
+import { JwtAuthService } from './auth.service'
 
 describe('AuthController', () => {
   let controller: AuthController
@@ -15,11 +15,11 @@ describe('AuthController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
       providers: [
-        AuthService,
+        { provide: 'AuthService', useClass: JwtAuthService },
         ConfigService,
         { provide: PrismaService, useValue: {} },
         { provide: JwtService, useValue: {} },
-        { provide: AccountService, useValue: {} },
+        { provide: 'AccountService', useValue: AccountServiceImpl },
         {
           provide: CACHE_MANAGER,
           useFactory: () => ({

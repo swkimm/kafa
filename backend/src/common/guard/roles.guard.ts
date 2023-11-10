@@ -1,10 +1,11 @@
 import {
   type CanActivate,
   type ExecutionContext,
-  Injectable
+  Injectable,
+  Inject
 } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
-import { AuthService } from '@/auth/auth.service'
+import { AuthService } from '@/auth/auth.service.interface'
 import { Role } from '@prisma/client'
 import type { AuthenticatedRequest } from '../class/authenticated-request.interface'
 import type { AuthenticatedUser } from '../class/authenticated-user.class'
@@ -17,7 +18,7 @@ export class RolesGuard implements CanActivate {
 
   constructor(
     private readonly reflector: Reflector,
-    private readonly service: AuthService
+    @Inject('AuthService') private readonly service: AuthService
   ) {
     Object.keys(Role).forEach((key, index) => {
       this.#rolesHierarchy[key] = index

@@ -1,7 +1,9 @@
-import { Controller } from '@nestjs/common'
-import { AccountService } from './account.service'
+import { Controller, Inject } from '@nestjs/common'
+import { AccountService } from './account.service.interface'
 
 @Controller('account')
 export class AccountController {
-  constructor(private readonly accountService: AccountService) {}
+  constructor(
+    @Inject('AccountService') private readonly accountService: AccountService
+  ) {}
 }

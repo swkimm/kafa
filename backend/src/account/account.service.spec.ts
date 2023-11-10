@@ -3,7 +3,8 @@ import { type Account, Role, AccountStatus } from '@prisma/client'
 import { expect } from 'chai'
 import { stub } from 'sinon'
 import { PrismaService } from 'src/prisma/prisma.service'
-import { AccountService } from './account.service'
+import { AccountServiceImpl } from './account.service'
+import type { AccountService } from './account.service.interface'
 
 describe('AccountService', () => {
   let service: AccountService
@@ -34,10 +35,13 @@ describe('AccountService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AccountService, { provide: PrismaService, useValue: db }]
+      providers: [
+        { provide: 'AccountService', useClass: AccountServiceImpl },
+        { provide: PrismaService, useValue: db }
+      ]
     }).compile()
 
-    service = module.get<AccountService>(AccountService)
+    service = module.get<AccountService>('AccountService')
   })
 
   it('should be defined', () => {

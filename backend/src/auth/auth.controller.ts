@@ -3,6 +3,7 @@ import {
   Body,
   Controller,
   Get,
+  Inject,
   InternalServerErrorException,
   Logger,
   Post,
@@ -17,7 +18,7 @@ import {
   UnidentifiedException
 } from '@/common/exception/business.exception'
 import { Request, Response } from 'express'
-import { AuthService } from './auth.service'
+import { AuthService } from './auth.service.interface'
 import { LoginUserDto } from './dto/login-user.dto'
 import type { JwtTokens } from './interface/jwt.interface'
 
@@ -25,7 +26,9 @@ import type { JwtTokens } from './interface/jwt.interface'
 export class AuthController {
   private readonly logger = new Logger(AuthController.name)
 
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    @Inject('AuthService') private readonly authService: AuthService
+  ) {}
 
   setJwtResponse = (res: Response, jwtTokens: JwtTokens) => {
     res.setHeader('authorization', `Bearer ${jwtTokens.accessToken}`)

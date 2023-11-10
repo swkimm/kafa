@@ -3,7 +3,6 @@ import { NotFoundException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 import { Test, type TestingModule } from '@nestjs/testing'
-import { AccountService } from '@/account/account.service'
 import { refreshTokenCacheKey } from '@/common/cache/cache-keys'
 import { REFRESH_TOKEN_EXPIRE_TIME } from '@/common/constant/time.constants'
 import {
@@ -17,7 +16,8 @@ import type { Cache } from 'cache-manager'
 import { expect } from 'chai'
 import type Sinon from 'sinon'
 import { stub } from 'sinon'
-import { AuthService } from './auth.service'
+import { JwtAuthService } from './auth.service'
+import type { AuthService } from './auth.service.interface'
 import type { LoginUserDto } from './dto/login-user.dto'
 import type { JwtObject } from './interface/jwt.interface'
 
@@ -60,7 +60,7 @@ describe('AuthService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        AuthService,
+        { provide: 'AuthService', useClass: JwtAuthService },
         ConfigService,
         { provide: PrismaService, useValue: db },
         {
@@ -70,7 +70,7 @@ describe('AuthService', () => {
             verifyAsync: () => []
           })
         },
-        { provide: AccountService, useValue: accountServiceMock },
+        { provide: 'AccountService', useValue: accountServiceMock },
         {
           provide: CACHE_MANAGER,
           useFactory: () => ({
@@ -82,7 +82,7 @@ describe('AuthService', () => {
       ]
     }).compile()
 
-    service = module.get<AuthService>(AuthService)
+    service = module.get<AuthService>('AuthService')
     jwtService = module.get<JwtService>(JwtService)
     cache = module.get<Cache>(CACHE_MANAGER)
   })

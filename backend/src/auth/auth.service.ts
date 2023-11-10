@@ -2,7 +2,7 @@ import { CACHE_MANAGER } from '@nestjs/cache-manager'
 import { Inject, Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtService, type JwtVerifyOptions } from '@nestjs/jwt'
-import { AccountService } from '@/account/account.service'
+import { AccountService } from '@/account/account.service.interface'
 import { refreshTokenCacheKey } from '@/common/cache/cache-keys'
 import {
   ACCESS_TOKEN_EXPIRE_TIME,
@@ -16,6 +16,7 @@ import { PrismaService } from '@/prisma/prisma.service'
 import type { Account, Role } from '@prisma/client'
 import { verify } from 'argon2'
 import { Cache } from 'cache-manager'
+import type { AuthService } from './auth.service.interface'
 import type { LoginUserDto } from './dto/login-user.dto'
 import type {
   JwtObject,
@@ -24,12 +25,12 @@ import type {
 } from './interface/jwt.interface'
 
 @Injectable()
-export class AuthService {
+export class JwtAuthService implements AuthService {
   constructor(
     private readonly config: ConfigService,
     private readonly prismaService: PrismaService,
     private readonly jwtService: JwtService,
-    private readonly accountService: AccountService,
+    @Inject('AccountService') private readonly accountService: AccountService,
     @Inject(CACHE_MANAGER) private readonly cacheManager: Cache
   ) {}
 
