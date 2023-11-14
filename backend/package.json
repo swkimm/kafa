@@ -13,9 +13,9 @@
     "test:debug": "mocha --inspect \"*/**/*.spec.ts\""
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.449.0",
-    "@aws-sdk/client-ses": "^3.449.0",
-    "@aws-sdk/credential-provider-node": "^3.449.0",
+    "@aws-sdk/client-s3": "^3.450.0",
+    "@aws-sdk/client-ses": "^3.450.0",
+    "@aws-sdk/credential-provider-node": "^3.450.0",
     "@nestjs-modules/mailer": "^1.9.1",
     "@nestjs/cache-manager": "^2.1.1",
     "@nestjs/common": "^10.2.8",
