@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap'
+      rel='stylesheet'
+    />
+    <style>
+      * { margin: 0; padding: 0; font-family: 'Nanum Gothic', Helvetica, Arial,
+      sans-serif; } .header { background-color: #DC2626; text-align: left;
+      padding: 15px; } .body { background-color: white; padding: 20px;
+      text-align: center; color: black;} .footer { background-color: #312E81;
+      text-align: center; color: white; padding: 10px; } #pin { text-align:
+      center; padding-top: 40px; padding-bottom: 40px; font-weight: 800;
+      font-size: 50px } p { font-weight: 400; }
+    </style>
+  </head>
+
+  <body style='width: 600px'>
+    <div class='header'>
+      <img src='cid:logo' alt='KAFA' style='width: 120px;' />
+    </div>
+    <div class='body'>
+      <h2>
+        아래 핀 코드를 입력하여 이메일 인증을 완료해주세요
+      </h2>
+      <p id='pin'>
+        {{pin}}
+      </p>
+      <p style='font-size: 10px;'>
+        만약 이메일 주소 인증 요청을 보낸적이 없으시다면, 해당 메일은
+        무시해주세요.
+      </p>
+      <p style='padding-top: 10px; font-weight: 700;'>
+        대한미식축구협회 KAFA
+      </p>
+    </div>
+    <div class='footer'>
+      ⓒ 2023 KAFA CO.,LTD All Rights Reserved
+    </div>
+  </body>
+</html>
