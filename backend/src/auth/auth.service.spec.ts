@@ -1,5 +1,4 @@
 import { CACHE_MANAGER } from '@nestjs/cache-manager'
-import { NotFoundException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 import { Test, type TestingModule } from '@nestjs/testing'
@@ -37,6 +36,7 @@ describe('AuthService', () => {
     createdAt: new Date(),
     lastLogin: new Date(),
     password: VALID_PASSWORD,
+    birthday: new Date('2023-01-01'),
     role: Role.User,
     username: 'user01',
     email: 'example@example.com',
@@ -48,13 +48,10 @@ describe('AuthService', () => {
 
   const db = {
     account: {
-      findUniqueOrThrow: stub()
+      findUniqueOrThrow: stub(),
+      findUnique: stub(),
+      update: stub()
     }
-  }
-
-  const accountServiceMock = {
-    getUserCredential: stub().resolves(user),
-    updateLastLogin: stub().resolves()
   }
 
   beforeEach(async () => {
@@ -70,7 +67,6 @@ describe('AuthService', () => {
             verifyAsync: () => []
           })
         },
-        { provide: 'AccountService', useValue: accountServiceMock },
         {
           provide: CACHE_MANAGER,
           useFactory: () => ({
@@ -89,37 +85,6 @@ describe('AuthService', () => {
 
   it('should be defined', () => {
     expect(service).to.be.ok
-  })
-
-  describe('getUserRole', () => {
-    it('should return users role', async () => {
-      //given
-      const userId = user.id
-      db.account.findUniqueOrThrow.resolves({
-        role: user.role
-      })
-
-      //when
-      const result = await service.getUserRole(userId)
-
-      //then
-      expect(result).to.deep.equal({
-        role: user.role
-      })
-    })
-
-    it('should throw exception when invalid userId passed', async () => {
-      //given
-      const userId = 0
-      db.account.findUniqueOrThrow.rejects(
-        new NotFoundException('no account matches userId')
-      )
-
-      //then
-      await expect(service.getUserRole(userId)).to.be.rejectedWith(
-        NotFoundException
-      )
-    })
   })
 
   describe('isValidUser', () => {
@@ -188,7 +153,7 @@ describe('AuthService', () => {
       }
 
       user.password = validPassword
-      accountServiceMock.getUserCredential.resolves(user)
+      db.account.findUnique.resolves(user)
 
       createJwtTokenSpy = stub(service, 'createJwtTokens').resolves({
         accessToken: ACCESS_TOKEN,
@@ -217,7 +182,7 @@ describe('AuthService', () => {
       password: INVALID_PASSWORD
     }
     user.password = validPassword
-    accountServiceMock.getUserCredential.resolves(user)
+    db.account.findUnique.resolves(user)
 
     //then
     await expect(service.issueJwtTokens(loginUserDTO)).to.be.rejectedWith(
@@ -231,7 +196,8 @@ describe('AuthService', () => {
       username: user.username,
       password: VALID_PASSWORD
     }
-    accountServiceMock.getUserCredential.resolves(undefined)
+
+    db.account.findUnique.resolves(undefined)
 
     //then
     await expect(service.issueJwtTokens(loginUserDTO)).to.be.rejectedWith(

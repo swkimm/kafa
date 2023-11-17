@@ -1,4 +1,6 @@
+import { CACHE_MANAGER } from '@nestjs/cache-manager'
 import { Test, type TestingModule } from '@nestjs/testing'
+import { EmailAuthServiceImpl } from '@/auth/email-auth.service'
 import { expect } from 'chai'
 import { PrismaService } from 'src/prisma/prisma.service'
 import { AccountController } from './account.controller'
@@ -12,7 +14,18 @@ describe('AccountController', () => {
       controllers: [AccountController],
       providers: [
         { provide: 'AccountService', useClass: AccountServiceImpl },
-        { provide: PrismaService, useValue: {} }
+        { provide: 'EmailAuthService', useClass: EmailAuthServiceImpl },
+        { provide: PrismaService, useValue: {} },
+        {
+          provide: CACHE_MANAGER,
+          useFactory: () => ({
+            set: () => [],
+            get: () => [],
+            del: () => []
+          })
+        },
+        { provide: 'EmailService', useValue: {} },
+        { provide: 'AuthService', useValue: {} }
       ]
     }).compile()
 

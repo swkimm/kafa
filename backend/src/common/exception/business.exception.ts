@@ -7,6 +7,13 @@ export class BusinessException extends Error {
   }
 }
 
+/** [400] Throw when a user does not pass the essential parameter. */
+export class EmptyParameterException extends BusinessException {
+  constructor(credential) {
+    super(`${credential} is empty`)
+  }
+}
+
 /** [401] Throw when a user cannot be identified with given credential. */
 export class UnidentifiedException extends BusinessException {
   constructor(credential) {
@@ -21,6 +28,9 @@ export class InvalidJwtTokenException extends BusinessException {
   }
 }
 
+/** [403] Throw when request cannot be carried due to lack of permission. */
+export class ForbiddenAccessException extends BusinessException {}
+
 /** [404] Throw when requested entity is not found. */
 export class EntityNotExistException extends BusinessException {
   constructor(entity) {
@@ -29,12 +39,10 @@ export class EntityNotExistException extends BusinessException {
 }
 
 /** [409] Throw when the request has a conflict with relevant entities.
- * e.g., participation is not allowed to ended contest.
  */
 export class ConflictFoundException extends BusinessException {}
 
 /** [409] Throw when the request has a conflict with relevant entities.
- * e.g., participation is not allowed to ended contest.
  */
 export class DuplicateFoundException extends ConflictFoundException {
   constructor(entity) {
@@ -52,11 +60,9 @@ export class UnprocessableFileDataException extends UnprocessableDataException {
   }
 }
 
-/** [403] Throw when request cannot be carried due to lack of permission. */
-export class ForbiddenAccessException extends BusinessException {}
-
-export class MessageFormatError extends BusinessException {
+/** [500] Internal Cache Exception */
+export class CacheException extends BusinessException {
   constructor(error) {
-    super(`Invalid message format: ${JSON.stringify(error)}`)
+    super(error)
   }
 }

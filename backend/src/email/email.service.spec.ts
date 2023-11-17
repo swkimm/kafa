@@ -53,7 +53,7 @@ describe('EmailService', () => {
     expect(service).to.be.ok
   })
 
-  it('Email transmission success', async () => {
+  it('email transmission success', async () => {
     MailerMock.sendMail.resolves(expectedEmailInfo)
     await service.sendVerificationEmail(recipient, 'PIN')
 

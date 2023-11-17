@@ -15,3 +15,5 @@ if ! pnpm --filter backend --silent exec prisma migrate diff \
 then
   pnpm --filter backend exec prisma migrate reset -f
 fi
+
+pnpm prisma db seed

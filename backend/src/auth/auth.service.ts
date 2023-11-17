@@ -2,7 +2,6 @@ import { CACHE_MANAGER } from '@nestjs/cache-manager'
 import { Inject, Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtService, type JwtVerifyOptions } from '@nestjs/jwt'
-import { AccountService } from '@/account/account.service.interface'
 import { refreshTokenCacheKey } from '@/common/cache/cache-keys'
 import {
   ACCESS_TOKEN_EXPIRE_TIME,
@@ -13,7 +12,7 @@ import {
   UnidentifiedException
 } from '@/common/exception/business.exception'
 import { PrismaService } from '@/prisma/prisma.service'
-import type { Account, Role } from '@prisma/client'
+import type { Account } from '@prisma/client'
 import { verify } from 'argon2'
 import { Cache } from 'cache-manager'
 import type { AuthService } from './auth.service.interface'
@@ -28,24 +27,14 @@ import type {
 export class JwtAuthService implements AuthService {
   constructor(
     private readonly config: ConfigService,
-    private readonly prismaService: PrismaService,
     private readonly jwtService: JwtService,
-    @Inject('AccountService') private readonly accountService: AccountService,
+    private readonly prismaService: PrismaService,
     @Inject(CACHE_MANAGER) private readonly cacheManager: Cache
   ) {}
 
-  async getUserRole(userId: number): Promise<{
-    role: Role
-  }> {
-    return await this.prismaService.account.findUniqueOrThrow({
-      where: {
-        id: userId
-      },
-      select: {
-        role: true
-      }
-    })
-  }
+  /**
+   * Public Methods
+   */
 
   async isValidUser(user: Account, password: string): Promise<boolean> {
     if (!user || !(await verify(user.password, password))) {
@@ -55,15 +44,13 @@ export class JwtAuthService implements AuthService {
   }
 
   async issueJwtTokens(loginUserDto: LoginUserDto): Promise<JwtTokens> {
-    const user = await this.accountService.getUserCredential(
-      loginUserDto.username
-    )
-    if (!(await this.isValidUser(user, loginUserDto.password))) {
+    const account = await this.getAccountCredential(loginUserDto.username)
+    if (!(await this.isValidUser(account, loginUserDto.password))) {
       throw new UnidentifiedException('username or password')
     }
-    await this.accountService.updateLastLogin(user.username)
+    await this.updateLastLogin(account.id)
 
-    return await this.createJwtTokens(user.id, user.username)
+    return await this.createJwtTokens(account.id, account.username)
   }
 
   async updateJwtTokens(refreshToken: string): Promise<JwtTokens> {
@@ -122,5 +109,28 @@ export class JwtAuthService implements AuthService {
 
   async deleteRefreshToken(userId: number): Promise<void> {
     return await this.cacheManager.del(refreshTokenCacheKey(userId))
+  }
+
+  /**
+   * Private Methods
+   */
+
+  private async getAccountCredential(username: string): Promise<Account> {
+    return await this.prismaService.account.findUnique({
+      where: {
+        username
+      }
+    })
+  }
+
+  private async updateLastLogin(accountId: number): Promise<void> {
+    await this.prismaService.account.update({
+      where: {
+        id: accountId
+      },
+      data: {
+        lastLogin: new Date()
+      }
+    })
   }
 }

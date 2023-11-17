@@ -68,6 +68,7 @@ model Account {
   name                String             @db.VarChar(128)
   email               String             @unique @db.VarChar(128)
   username            String             @unique @db.VarChar(128)
+  birthday            DateTime?
   password            String             @db.VarChar(128) // hashed password
   status              AccountStatus      @default(Verifying)
   createdAt           DateTime           @default(now()) @map("created_at")

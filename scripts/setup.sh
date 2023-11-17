@@ -47,5 +47,8 @@ do
   sleep 5
 done
 
+# Seeding Database
+pnpm prisma db seed
+
 # Setup Minio
 pnpm exec ts-node scripts/setup-minio.ts

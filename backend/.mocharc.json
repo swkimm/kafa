@@ -7,5 +7,5 @@
     "./mocha-fixture.ts",
     "@swc/register"
   ],
-  "reporter": "dot"
+  "reporter": "spec"
 }

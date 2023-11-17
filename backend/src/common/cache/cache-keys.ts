@@ -1,2 +1,8 @@
-export const refreshTokenCacheKey = (userId: number) =>
-  `user:${userId}:refresh_token`
+export const refreshTokenCacheKey = (accountId: number) =>
+  `account:${accountId}:refresh_token`
+
+export const emailVerificationCacheKey = (accountId: number) =>
+  `account:${accountId}:email_verification`
+
+export const emailUpdateVerificationCacheKey = (accountId: number) =>
+  `account:${accountId}:email_update_verification`
