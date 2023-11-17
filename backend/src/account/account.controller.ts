@@ -14,7 +14,7 @@ import {
   Query,
   Req
 } from '@nestjs/common'
-import { AuthenticatedUser } from '@/common/class/authenticated-user.class'
+import { AuthenticatedRequest } from '@/common/class/authenticated-request.interface'
 import { Public } from '@/common/decorator/guard.decorator'
 import {
   CacheException,
@@ -40,10 +40,10 @@ export class AccountController {
 
   @Get('role')
   async getAccountRole(
-    @Req() account: AuthenticatedUser
+    @Req() req: AuthenticatedRequest
   ): Promise<{ role: Role }> {
     try {
-      return await this.accountService.getAccountRole(account.id)
+      return await this.accountService.getAccountRole(req.user.id)
     } catch (error) {
       if (error instanceof EntityNotExistException) {
         throw new NotFoundException('account does not exists')
@@ -56,10 +56,10 @@ export class AccountController {
 
   @Get('profile')
   async getAccountProfile(
-    @Req() account: AuthenticatedUser
+    @Req() req: AuthenticatedRequest
   ): Promise<AccountDTO> {
     try {
-      return await this.accountService.getAccountProfile(account.id)
+      return await this.accountService.getAccountProfile(req.user.id)
     } catch (error) {
       if (error instanceof EntityNotExistException) {
         throw new NotFoundException('account does not exists')
@@ -94,11 +94,11 @@ export class AccountController {
 
   @Post('email/verify')
   async verifyEmail(
-    @Req() account: AuthenticatedUser,
+    @Req() req: AuthenticatedRequest,
     @Query() pin: string
   ): Promise<{ result: string }> {
     try {
-      return await this.accountService.verifyEmail(account.id, pin)
+      return await this.accountService.verifyEmail(req.user.id, pin)
     } catch (error) {
       if (error instanceof EntityNotExistException) {
         throw new NotFoundException('account does not exists')
@@ -116,11 +116,11 @@ export class AccountController {
 
   @Post('email/update/verify')
   async verifyUpdateEmail(
-    @Req() account: AuthenticatedUser,
+    @Req() req: AuthenticatedRequest,
     @Query() pin: string
   ): Promise<{ result: string }> {
     try {
-      return await this.accountService.verifyUpdateEmail(account.id, pin)
+      return await this.accountService.verifyUpdateEmail(req.user.id, pin)
     } catch (error) {
       if (error instanceof EntityNotExistException) {
         throw new NotFoundException('account does not exists')
@@ -139,10 +139,10 @@ export class AccountController {
   @Put('email')
   async updateEmail(
     @Body() accountDTO: UpdateEmailDTO,
-    @Req() account: AuthenticatedUser
+    @Req() req: AuthenticatedRequest
   ): Promise<{ result: string }> {
     try {
-      return await this.accountService.updateEmail(accountDTO, account.id)
+      return await this.accountService.updateEmail(accountDTO, req.user.id)
     } catch (error) {
       if (error instanceof EntityNotExistException) {
         throw new NotFoundException('account does not exists')
@@ -159,12 +159,12 @@ export class AccountController {
   @Put('profile')
   async updateAccountProfile(
     @Body() accountDTO: UpdateAccountProfileDTO,
-    @Req() account: AuthenticatedUser
+    @Req() req: AuthenticatedRequest
   ): Promise<AccountDTO> {
     try {
       return await this.accountService.updateAccountProfile(
         accountDTO,
-        account.id
+        req.user.id
       )
     } catch (error) {
       if (error instanceof EntityNotExistException) {
@@ -179,10 +179,10 @@ export class AccountController {
   @Put('password')
   async updatePassword(
     @Body() accountDTO: UpdatePasswordDTO,
-    @Req() account: AuthenticatedUser
+    @Req() req: AuthenticatedRequest
   ): Promise<{ result: string }> {
     try {
-      return await this.accountService.updatePassword(accountDTO, account.id)
+      return await this.accountService.updatePassword(accountDTO, req.user.id)
     } catch (error) {
       if (error instanceof EntityNotExistException) {
         throw new NotFoundException('account does not exists')
@@ -196,11 +196,9 @@ export class AccountController {
   }
 
   @Delete()
-  async withdrawAccount(
-    @Req() account: AuthenticatedUser
-  ): Promise<AccountDTO> {
+  async withdrawAccount(@Req() req: AuthenticatedRequest): Promise<AccountDTO> {
     try {
-      return await this.accountService.withdrawAccount(account.id)
+      return await this.accountService.withdrawAccount(req.user.id)
     } catch (error) {
       if (error instanceof EntityNotExistException) {
         throw new NotFoundException('account does not exists')
