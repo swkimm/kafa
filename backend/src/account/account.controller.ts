@@ -95,7 +95,7 @@ export class AccountController {
   @Post('email/verify')
   async verifyEmail(
     @Req() req: AuthenticatedRequest,
-    @Query() pin: string
+    @Query('pin') pin: string
   ): Promise<{ result: string }> {
     try {
       return await this.accountService.verifyEmail(req.user.id, pin)
@@ -117,7 +117,7 @@ export class AccountController {
   @Post('email/update/verify')
   async verifyUpdateEmail(
     @Req() req: AuthenticatedRequest,
-    @Query() pin: string
+    @Query('pin') pin: string
   ): Promise<{ result: string }> {
     try {
       return await this.accountService.verifyUpdateEmail(req.user.id, pin)
