@@ -2,14 +2,15 @@
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import logo from '/logo/logo.png'
 
 const Header = () => {
+  const navigate = useNavigate()
   const location = useLocation()
   const [isScrolled, setIsScrolled] = useState(false)
-  const headerHeight = '' // The height of your header
+  const headerHeight = ''
 
   const mainContentStyle = {
     paddingTop: headerHeight
@@ -18,6 +19,14 @@ const Header = () => {
   const handleScroll = () => {
     const offset = window.pageYOffset
     setIsScrolled(offset > 0)
+  }
+
+  const goToLeaguePage = () => {
+    navigate('/league')
+  }
+
+  const goToHomePage = () => {
+    navigate('/')
   }
 
   useEffect(() => {
@@ -47,17 +56,21 @@ const Header = () => {
             <div className="flex h-16 justify-between px-2">
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
-                  <Link to="/">
-                    <img src={logo} alt="KAFA Logo" className="h-15 w-20" />
-                  </Link>
+                  <img
+                    onClick={goToHomePage}
+                    src={logo}
+                    alt="KAFA Logo"
+                    className="h-15 w-20"
+                  />
                 </div>
                 <div className="hidden sm:ml-2 sm:flex sm:space-x-4">
-                  <Link
-                    to="/league"
+                  <Disclosure.Button
+                    as="button"
+                    onClick={goToLeaguePage}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     대회정보
-                  </Link>
+                  </Disclosure.Button>
                   <a
                     href="#"
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
@@ -145,12 +158,11 @@ const Header = () => {
               </div>
             </div>
           </div>
-
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 pb-3 pt-2">
               <Disclosure.Button
-                as="a"
-                href="#"
+                as="button"
+                onClick={goToLeaguePage}
                 className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
               >
                 대회정보

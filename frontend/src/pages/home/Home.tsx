@@ -61,7 +61,8 @@ const Home = () => {
                     HUDDLE
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <button
+                    <Disclosure.Button
+                      as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'HOME'
                           ? 'border-b-2 border-white'
@@ -70,8 +71,9 @@ const Home = () => {
                       onClick={() => setCurrentComponent('HOME')}
                     >
                       HOME
-                    </button>
-                    <button
+                    </Disclosure.Button>
+                    <Disclosure.Button
+                      as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
                         currentComponent === 'SCHEDULE'
                           ? 'border-b-2 border-white text-white'
@@ -80,7 +82,7 @@ const Home = () => {
                       onClick={() => setCurrentComponent('SCHEDULE')}
                     >
                       SCHEDULE
-                    </button>
+                    </Disclosure.Button>
                     <a
                       href="#"
                       className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-white hover:text-gray-700"

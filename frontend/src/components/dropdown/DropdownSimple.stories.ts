@@ -1,4 +1,4 @@
-// src/components/Example.stories.js
+// DropdownSimple.stories.ts
 import type { Meta, StoryObj } from '@storybook/react'
 import DropdownSimple from './DropdownSimple'
 

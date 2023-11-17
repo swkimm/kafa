@@ -40,7 +40,7 @@ const teamList = [
     teamLogo: '/logo/KAFA_OG.png',
     teamName: '골든이글스',
     nickName: 'GOLDEN EAGLES',
-    teamColor: '#ffffff',
+    teamColor: '#000000',
     createdAt: '1998'
   }
 ]
@@ -50,7 +50,7 @@ const TeamItem = () => {
   const navigate = useNavigate()
   return (
     <div className="container mx-auto max-w-screen-2xl px-5">
-      <div className="grid grid-cols-2 text-center">
+      <div className="grid grid-cols-1 text-center sm:grid-cols-2">
         {teamList.map((team) => (
           <div className="my-5 flex justify-center" key={team.id}>
             <TeamCard

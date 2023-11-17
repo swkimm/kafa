@@ -1,8 +1,9 @@
 // Stats.tsx
 import DropdownSimple from '@/components/dropdown/DropdownSimple'
-import DefaultTable from '@/components/tables/DefaultTable'
+import WithSubtitleTable from '@/components/tables/WithSubtitleTable'
 
 interface Person {
+  id: number
   name: string
   title: string
   email: string
@@ -16,18 +17,21 @@ interface Option {
 
 const people: Person[] = [
   {
+    id: 1,
     name: 'Lindsay Walton',
     title: 'Front-end Developer',
     email: 'lindsay.walton@example.com',
     role: 'Member'
   },
   {
+    id: 2,
     name: 'Lindsay Walton',
     title: 'Front-end Developer',
     email: 'lindsay.walton@example.com',
     role: 'Member'
   },
   {
+    id: 3,
     name: 'Lindsay Walton',
     title: 'Front-end Developer',
     email: 'lindsay.walton@example.com',
@@ -47,21 +51,23 @@ const Stats = () => {
     console.log('Selected option:', selected)
   }
   return (
-    <div className="container mx-auto">
-      <div className="container mx-auto grid max-w-screen-2xl px-5 sm:grid-cols-1 md:grid-cols-3">
-        <div className="col-span-2">
-          <div className="my-5">
-            <DefaultTable title="경기일정" data={people} />
-          </div>
+    <div className="container mx-auto my-5 grid max-w-screen-2xl grid-cols-1 px-5 sm:grid-cols-3">
+      <div className="col-span-2">
+        <div className="my-5">
+          <WithSubtitleTable
+            title="경기일정"
+            subtitle="vs Phoenix"
+            data={people}
+          />
         </div>
-        <div className="col-span-1">
-          <div className="my-5 ml-5">
-            <DropdownSimple
-              optionName="My Options"
-              optionList={options}
-              onSelect={handleSelect}
-            />{' '}
-          </div>
+      </div>
+      <div className="col-span-1">
+        <div className="my-5 ml-5">
+          <DropdownSimple
+            optionName="My Options"
+            optionList={options}
+            onSelect={handleSelect}
+          />{' '}
         </div>
       </div>
     </div>

@@ -36,14 +36,21 @@ const RosterItem = () => {
     )
   }
   return (
-    <div className="container mx-auto mb-10 grid grid-cols-4">
+    <div className="container mx-auto mb-10 grid max-w-screen-2xl grid-cols-2 sm:grid-cols-4">
       {members.map((member) => (
         <div
           key={member.id}
           className="col-span-1 my-5"
           onClick={() => goToMemberInfo(member.id)}
         >
-          <PlayerCard {...member} />
+          <PlayerCard
+            id={member.id}
+            name={member.name}
+            profileImgUrl={member.profile}
+            backNumber={member.backNumber}
+            position={[member.offPosition, member.defPosition]}
+            onClick={goToMemberInfo}
+          />
         </div>
       ))}
     </div>

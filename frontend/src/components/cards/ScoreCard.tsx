@@ -26,26 +26,21 @@ const ScoreCard: React.FC<ScoreCardProps> = ({
   awayTeam
 }) => {
   return (
-    <div className="flex items-center justify-between">
-      {/* Home Team Section */}
-      <div
-        className="flex items-center space-x-4"
-        onClick={() => homeTeam.onClick?.(homeTeam.id)}
-      >
-        <img
-          className="sm:w-18 w-10 md:w-24"
-          src={homeTeam.logo}
-          alt={`${homeTeam.name} Logo`}
-        />
-        <div className="flex flex-col">
-          <p>HOME</p>
-          <p className="font-bold">{homeTeam.name}</p>
-        </div>
+    <div className="grid grid-cols-10 items-center justify-between p-2 sm:p-8">
+      <img
+        className="sm:w-18 col-span-1 w-10 md:w-24"
+        src={homeTeam.logo}
+        alt={`${homeTeam.name} Logo`}
+      />
+      <div className="col-span-1">
+        <p className="hidden sm:block">HOME</p>
+        <p className="hidden font-bold sm:block">{homeTeam.name}</p>
       </div>
 
-      {/* Score Section */}
-      <div className="flex items-center space-x-3">
-        <div className="text-3xl font-extrabold">{homeTeam.score}</div>
+      <div className="col-span-1 text-xl font-extrabold sm:text-3xl">
+        {homeTeam.score}
+      </div>
+      <div className="col-span-1 flex justify-end">
         {homeTeam.score > awayTeam.score && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -60,17 +55,19 @@ const ScoreCard: React.FC<ScoreCardProps> = ({
             />
           </svg>
         )}
-        <div className="flex flex-col items-center">
-          <p>{gameId}경기</p>
-          <p>{matchDay}</p>
-          <p>{stadium}</p>
-        </div>
+      </div>
+      <div className="col-span-2 flex flex-col items-center">
+        <p>{gameId}경기</p>
+        <p>{matchDay}</p>
+        <p className="hidden sm:block">{stadium}</p>
+      </div>
+      <div className="col-span-1 flex justify-start">
         {awayTeam.score > homeTeam.score && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="h-6 w-6"
+            className=" h-6 w-6"
           >
             <path
               fillRule="evenodd"
@@ -79,24 +76,20 @@ const ScoreCard: React.FC<ScoreCardProps> = ({
             />
           </svg>
         )}
-        <div className="text-3xl font-extrabold">{awayTeam.score}</div>
+      </div>
+      <div className="col-span-1 text-xl font-extrabold sm:text-3xl">
+        {awayTeam.score}
       </div>
 
-      {/* Away Team Section */}
-      <div
-        className="flex items-center space-x-4"
-        onClick={() => awayTeam.onClick?.(awayTeam.id)}
-      >
-        <div className="flex flex-col">
-          <p>AWAY</p>
-          <p className="font-bold">{awayTeam.name}</p>
-        </div>
-        <img
-          className="sm:w-18 w-10 md:w-24"
-          src={awayTeam.logo}
-          alt={`${awayTeam.name} Logo`}
-        />
+      <div className="col-span-1 flex flex-col">
+        <p className="hidden sm:block">AWAY</p>
+        <p className="hidden font-bold sm:block">{awayTeam.name}</p>
       </div>
+      <img
+        className="sm:w-18 col-span-1 w-10 md:w-24"
+        src={awayTeam.logo}
+        alt={`${awayTeam.name} Logo`}
+      />
     </div>
   )
 }

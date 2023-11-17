@@ -4,8 +4,9 @@ import TeamBanner from '@/components/cards/TeamBanner'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
+import BoardItem from './items/BoardItem'
 import RosterItem from './items/RosterItem'
-import Stats from './items/Stats'
+import StatsItem from './items/StatsItem'
 import TeamHomeItem from './items/TeamHomeItem'
 
 const team = {
@@ -29,7 +30,9 @@ const TeamDetail = () => {
     } else if (currentComponent === 'ROSTER') {
       return <RosterItem />
     } else if (currentComponent === 'STATS') {
-      return <Stats />
+      return <StatsItem />
+    } else if (currentComponent === 'BOARD') {
+      return <BoardItem />
     }
   }
 
@@ -43,7 +46,8 @@ const TeamDetail = () => {
               <div className="flex h-20 justify-between">
                 <div className="flex">
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <button
+                    <Disclosure.Button
+                      as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'HOME'
                           ? 'border-b-2 border-white'
@@ -52,8 +56,9 @@ const TeamDetail = () => {
                       onClick={() => setCurrentComponent('HOME')}
                     >
                       HOME
-                    </button>
-                    <button
+                    </Disclosure.Button>
+                    <Disclosure.Button
+                      as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'ROSTER'
                           ? 'border-b-2 border-white'
@@ -62,8 +67,9 @@ const TeamDetail = () => {
                       onClick={() => setCurrentComponent('ROSTER')}
                     >
                       ROSTER
-                    </button>
-                    <button
+                    </Disclosure.Button>
+                    <Disclosure.Button
+                      as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'STATS'
                           ? 'border-b-2 border-white'
@@ -72,7 +78,18 @@ const TeamDetail = () => {
                       onClick={() => setCurrentComponent('STATS')}
                     >
                       STATS
-                    </button>
+                    </Disclosure.Button>
+                    <Disclosure.Button
+                      as="button"
+                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
+                        currentComponent === 'BOARD'
+                          ? 'border-b-2 border-white'
+                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                      }`}
+                      onClick={() => setCurrentComponent('BOARD')}
+                    >
+                      BOARD
+                    </Disclosure.Button>
                   </div>
                 </div>
                 <div className="-mr-2 flex items-center sm:hidden">
@@ -93,25 +110,32 @@ const TeamDetail = () => {
               <div className="space-y-1 pb-3 pt-2">
                 {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
                 <Disclosure.Button
-                  as="a"
-                  href="#"
-                  className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700"
+                  as="button"
+                  onClick={() => setCurrentComponent('HOME')}
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
                   HOME
                 </Disclosure.Button>
                 <Disclosure.Button
-                  as="a"
-                  href="#"
+                  as="button"
+                  onClick={() => setCurrentComponent('ROSTER')}
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
                   ROSTER
                 </Disclosure.Button>
                 <Disclosure.Button
-                  as="a"
-                  href="#"
+                  as="button"
+                  onClick={() => setCurrentComponent('STATS')}
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
                   STATS
+                </Disclosure.Button>
+                <Disclosure.Button
+                  as="button"
+                  onClick={() => setCurrentComponent('BOARD')}
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                >
+                  BOARD
                 </Disclosure.Button>
               </div>
             </Disclosure.Panel>

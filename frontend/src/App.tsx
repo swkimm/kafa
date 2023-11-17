@@ -5,6 +5,7 @@ import Header from './components/header/Header.tsx'
 import Home from './pages/home/Home.tsx'
 import League from './pages/league/League.tsx'
 import LeagueDetail from './pages/league/[id]/LeagueDetail.tsx'
+import ScheduleDetail from './pages/league/[id]/schedule/[id]/ScheduleDetail.tsx'
 import TeamDetail from './pages/league/[id]/team/[id]/TeamDetail.tsx'
 import MemberDetail from './pages/league/[id]/team/[id]/member/[id]/MemberDetail.tsx'
 
@@ -25,6 +26,10 @@ const App = () => {
             <Route
               path="/league/:leagueId/team/:teamId/member/:memberId"
               element={<MemberDetail />}
+            />
+            <Route
+              path="/league/:leagueId/schedule/:gameid"
+              element={<ScheduleDetail />}
             />
           </Routes>
         </div>

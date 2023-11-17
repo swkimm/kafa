@@ -1,5 +1,4 @@
 // Button.tsx
-import React from 'react'
 
 interface ButtonProps {
   variant?:
@@ -17,6 +16,7 @@ interface ButtonProps {
   onClick?: () => void
   onClickPrev?: () => void
   onClickNext?: () => void
+  isActive?: boolean
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -25,27 +25,27 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   onClick,
   onClickPrev,
-  onClickNext
+  onClickNext,
+  isActive = false
 }) => {
-  let classes = 'px-4 py-2 transition duration-200 ease-in-out transform'
+  let baseClasses = 'px-4 py-2 transition duration-200 ease-in-out transform'
 
-  let content = (
-    <>
-      {icon && <span>{React.isValidElement(icon) ? icon : null}</span>}
-      {label && <span>{label}</span>}
-      {/* {icon && <span>{icon}</span>}
-      {label && <span>{label}</span>} */}
-    </>
-  )
-
+  let activeClasses = ''
+  if (isActive) {
+    activeClasses = 'bg-white text-black'
+  } else {
+    activeClasses = 'bg-black text-white'
+  }
+  let content
   if (variant === 'prevNext') {
-    classes += ' bg-gray-300 text-white hover:bg-gray-400'
+    // 'prevNext' 버튼 스타일
+    const buttonClass = `${baseClasses} ${activeClasses} rounded-lg`
     content = (
       <div className="flex">
-        <button className={`${classes} rounded-l-lg`} onClick={onClickPrev}>
+        <button className={`${buttonClass} rounded-l-lg`} onClick={onClickPrev}>
           Prev
         </button>
-        <button className={`${classes} rounded-r-lg`} onClick={onClickNext}>
+        <button className={`${buttonClass} rounded-r-lg`} onClick={onClickNext}>
           Next
         </button>
       </div>
@@ -53,35 +53,38 @@ const Button: React.FC<ButtonProps> = ({
   } else {
     switch (variant) {
       case 'roundFull':
-        classes += ' rounded-full text-white bg-gray-600 hover:bg-gray-700'
+        baseClasses += ' rounded-full text-white bg-gray-600 hover:bg-gray-700'
         break
       case 'roundLg':
-        classes += ' rounded-lg text-white bg-gray-600 hover:bg-gray-700'
+        baseClasses += ' rounded-lg text-white bg-gray-600 hover:bg-gray-700'
         break
       case 'outlineWithDarkHover':
-        classes +=
+        baseClasses +=
           ' border rounded-lg border-black hover:bg-gray-700 hover:text-white'
         break
       case 'outlineWhiteText':
-        classes +=
-          ' border rounded-lg border-white text-white hover:bg-gray-700 hover:text-white'
+        baseClasses +=
+          ' border rounded-lg border-white hover:bg-gray-700 hover:text-white'
         break
       case 'outlineWithLightHover':
-        classes += ' border rounded-lg border-gray-400 hover:bg-gray-100'
+        baseClasses +=
+          ' border rounded-lg text-black border-gray-400 hover:bg-gray-100'
         break
       case 'reverse':
-        classes += ' rounded-lg text-white bg-gray-600 hover:bg-gray-400'
+        baseClasses +=
+          ' rounded-lg border hover:bg-white hover:text-black hover:border-black'
         break
       case 'icon':
-        classes +=
+        baseClasses +=
           ' flex rounded-lg items-center font-medium space-x-2 bg-gray-200 hover:bg-gray-300'
         break
       default:
-        classes += ' text-white bg-gray-600 hover:bg-gray-700'
+        baseClasses += ' text-white bg-gray-600 hover:bg-gray-700'
         break
     }
+    const buttonClass = `${baseClasses} ${activeClasses}`
     content = (
-      <button className={classes} onClick={onClick}>
+      <button className={buttonClass} onClick={onClick}>
         {icon && <span>{icon}</span>}
         {label && <span>{label}</span>}
       </button>

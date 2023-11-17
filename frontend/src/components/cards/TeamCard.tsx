@@ -26,7 +26,7 @@ const TeamCard: React.FC<TeamCardProps> = ({
 }) => {
   return (
     <div
-      className={`flex flex-col rounded-lg font-sans text-white drop-shadow-xl sm:flex-row ${teamColor}`}
+      className={`flex rounded-lg font-sans text-white drop-shadow-xl sm:flex-row ${teamColor}`}
       style={{ backgroundColor: teamColor, width: '500px', height: '200px' }} // 너비 설정
       onClick={() => onClick?.(id)}
     >
@@ -37,9 +37,17 @@ const TeamCard: React.FC<TeamCardProps> = ({
           alt={`${teamName} Logo`}
         />
       </div>
-      <div className="flex flex-auto flex-col items-center justify-center p-5 text-black">
-        <div className="mb-1 text-lg font-extrabold">{teamName}</div>
-        <div className="text-m mb-3 font-normal">{nickName}</div>
+      <div className="flex flex-auto flex-col items-center justify-center p-5 text-white">
+        <div
+          className={`mt-1 text-lg ${isWhite(teamColor) ? 'text-black' : ''}`}
+        >
+          {teamName}
+        </div>
+        <div
+          className={`mb-3 text-lg ${isWhite(teamColor) ? 'text-black' : ''}`}
+        >
+          {nickName}
+        </div>
         <Button
           variant="outlineWithLightHover"
           label="팀 페이지"

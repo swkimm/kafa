@@ -5,8 +5,11 @@ import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import LeagueHomeItem from './items/LeagueHomeItem'
-import TeamItem from './items/TeamItem'
+import LeagueHomeItem from './items/HomeItem'
+import TeamItem from './items/LeagueTeamItem'
+import MediaItem from './items/MediaItem'
+import ScheduleItem from './items/ScheduleItem'
+import StatsItem from './items/StatsItem'
 
 const league = {
   id: 1,
@@ -38,6 +41,12 @@ const LeagueDetail = () => {
       return <LeagueHomeItem />
     } else if (currentComponent === 'TEAMS') {
       return <TeamItem />
+    } else if (currentComponent === 'SCHEDULE') {
+      return <ScheduleItem />
+    } else if (currentComponent === 'STATS') {
+      return <StatsItem />
+    } else if (currentComponent === 'MEDIA') {
+      return <MediaItem />
     }
   }
 
@@ -52,13 +61,13 @@ const LeagueDetail = () => {
             <img
               src={league.logo}
               alt="KAFA Logo"
-              className="h-40 w-20 lg:w-32"
+              className="h-auto w-16 sm:w-32"
             />
             <div className="ml-3 flex flex-col justify-center gap-4 lg:ml-10">
               <div className="text-gray-250 text-xl font-semibold">
                 {league.assosiation}
               </div>
-              <div className="text-white-900 text-lg font-bold lg:text-2xl">
+              <div className="text-white-900 text-md font-bold sm:text-2xl">
                 {league.leagueName}
               </div>
             </div>
@@ -90,7 +99,8 @@ const LeagueDetail = () => {
               <div className="flex h-20 justify-between">
                 <div className="flex">
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <button
+                    <Disclosure.Button
+                      as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'HOME'
                           ? 'border-b-2 border-white'
@@ -99,8 +109,9 @@ const LeagueDetail = () => {
                       onClick={() => setCurrentComponent('HOME')}
                     >
                       HOME
-                    </button>
-                    <button
+                    </Disclosure.Button>
+                    <Disclosure.Button
+                      as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'TEAMS'
                           ? 'border-b-2 border-white'
@@ -109,31 +120,40 @@ const LeagueDetail = () => {
                       onClick={() => setCurrentComponent('TEAMS')}
                     >
                       TEAMS
-                    </button>
-                    <a
-                      href="#"
-                      className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-white hover:text-gray-700"
+                    </Disclosure.Button>
+                    <Disclosure.Button
+                      as="button"
+                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
+                        currentComponent === 'SCHEDULE'
+                          ? 'border-b-2 border-white'
+                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                      }`}
+                      onClick={() => setCurrentComponent('SCHEDULE')}
                     >
                       SCHEDULE
-                    </a>
-                    <a
-                      href="#"
-                      className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-white hover:text-gray-700"
+                    </Disclosure.Button>
+                    <Disclosure.Button
+                      as="button"
+                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
+                        currentComponent === 'STATS'
+                          ? 'border-b-2 border-white'
+                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                      }`}
+                      onClick={() => setCurrentComponent('STATS')}
                     >
                       STATS
-                    </a>
-                    <a
-                      href="#"
-                      className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-white hover:text-gray-700"
+                    </Disclosure.Button>
+                    <Disclosure.Button
+                      as="button"
+                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
+                        currentComponent === 'MEDIA'
+                          ? 'border-b-2 border-white'
+                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                      }`}
+                      onClick={() => setCurrentComponent('MEDIA')}
                     >
                       MEDIA
-                    </a>
-                    <a
-                      href="#"
-                      className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-white hover:text-gray-700"
-                    >
-                      PHOTO
-                    </a>
+                    </Disclosure.Button>
                   </div>
                 </div>
                 <div className="-mr-2 flex items-center sm:hidden">
@@ -154,39 +174,39 @@ const LeagueDetail = () => {
               <div className="space-y-1 pb-3 pt-2">
                 {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
                 <Disclosure.Button
-                  as="a"
-                  href="#"
-                  className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700"
+                  as="button"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  onClick={() => setCurrentComponent('HOME')}
                 >
                   HOME
                 </Disclosure.Button>
                 <Disclosure.Button
-                  as="a"
-                  href="#"
+                  as="button"
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  onClick={() => setCurrentComponent('TEAMS')}
+                >
+                  TEAMS
+                </Disclosure.Button>
+                <Disclosure.Button
+                  as="button"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  onClick={() => setCurrentComponent('SCHEDULE')}
                 >
                   SCHEDULE
                 </Disclosure.Button>
                 <Disclosure.Button
-                  as="a"
-                  href="#"
+                  as="button"
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  onClick={() => setCurrentComponent('STATS')}
                 >
-                  NOTICE
+                  STATS
                 </Disclosure.Button>
                 <Disclosure.Button
-                  as="a"
-                  href="#"
+                  as="button"
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  onClick={() => setCurrentComponent('MEDIA')}
                 >
                   MEDIA
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="a"
-                  href="#"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  PHOTO
                 </Disclosure.Button>
               </div>
             </Disclosure.Panel>

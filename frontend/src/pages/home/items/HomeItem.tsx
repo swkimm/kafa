@@ -138,7 +138,7 @@ const HomeItem = () => {
 
   return (
     <div className="mx-auto grid max-w-screen-2xl gap-4 px-5 sm:grid-cols-1 md:grid-cols-3">
-      <div className="overflow-x-auto  md:col-span-2">
+      <div className="overflow-x-auto md:col-span-2">
         {' '}
         <div className="md:flex md:flex-row">
           <div className="flex-grow overflow-x-auto p-3">

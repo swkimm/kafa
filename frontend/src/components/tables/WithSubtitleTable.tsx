@@ -22,15 +22,15 @@ const WithSubtitleTable: React.FC<WithSubtitleTableProps> = ({
   return (
     <div className="border ">
       <div className="sm:flex sm:items-center">
-        <div className="border-b border-l-8 border-l-black p-5 sm:flex-auto">
+        <div className="border-b border-l-8 border-l-black bg-white p-5 sm:flex-auto">
           <div className="flex items-center border-black text-base font-semibold leading-6 text-gray-900">
             <div className="">{title}</div>
             <div className="ml-3 text-sm text-gray-500">{subtitle}</div>
           </div>
         </div>
       </div>
-      <div className=" flow-root px-2 sm:px-2 lg:px-4">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div className="flow-root overflow-x-auto bg-white px-2 sm:px-2 lg:px-4">
+        <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <table className="min-w-full divide-y divide-gray-300">
               <thead>

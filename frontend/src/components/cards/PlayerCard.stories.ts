@@ -15,11 +15,10 @@ const meta = {
   },
   argTypes: {
     id: { control: 'number' },
-    profile: { control: 'text' },
+    profileImgUrl: { control: 'text' },
     name: { control: 'text' },
     backNumber: { control: 'number' },
-    offPosition: { control: 'text' },
-    defPosition: { control: 'text' }
+    position: { control: 'text' }
   },
   tags: ['autodocs']
 } satisfies Meta<typeof PlayerCard>
@@ -30,10 +29,9 @@ type Story = StoryObj<typeof PlayerCard>
 export const Default: Story = {
   args: {
     id: 1,
-    profile: '/people_alt.webp',
+    profileImgUrl: '/people_alt.webp',
     name: '홍길동',
     backNumber: 0,
-    offPosition: 'OL',
-    defPosition: 'DL'
+    position: []
   }
 }
