@@ -6,14 +6,14 @@
     "init:minio": "ts-node scripts/setup-minio.ts"
   },
   "devDependencies": {
-    "@aws-sdk/client-s3": "^3.450.0",
-    "@commitlint/cli": "^18.4.1",
-    "@commitlint/config-conventional": "^18.4.0",
+    "@aws-sdk/client-s3": "^3.454.0",
+    "@commitlint/cli": "^18.4.2",
+    "@commitlint/config-conventional": "^18.4.2",
     "@commitlint/types": "^18.4.0",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
-    "eslint": "^8.53.0",
+    "eslint": "^8.54.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.33.2",
@@ -26,5 +26,5 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
-  "packageManager": "pnpm@8.10.4"
+  "packageManager": "pnpm@8.10.5"
 }
