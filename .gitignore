@@ -125,3 +125,6 @@ terraform.rc
 
 # Docker Mount
 /mnt
+
+# Nyc Report files
+/backend/.nyc_output

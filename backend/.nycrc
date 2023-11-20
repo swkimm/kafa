@@ -1,0 +1,11 @@
+{
+  "extends": "@istanbuljs/nyc-config-typescript",
+  "all": true,
+  "include": ["src/**/*.service.ts"],
+  "exclude": ["src/**/*.spec.ts", "src/main.ts"],
+  "extension": [".ts"],
+  "report-dir": "./.nyc_output/report",
+  "temp-dir": "./.nyc_output/temp",
+  "cache": true,
+  "require": ["@swc/register"]
+}

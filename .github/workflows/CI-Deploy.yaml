@@ -11,10 +11,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'aws/**'
-      - 'docker/**'
-      - 'backend/**'
 
 permissions:
   id-token: write

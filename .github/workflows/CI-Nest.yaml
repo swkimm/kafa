@@ -9,8 +9,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'backend/**'
 
 jobs:
   build:
@@ -128,4 +126,4 @@ jobs:
         run: pnpm --filter backend exec tsc --noEmit
 
       - name: Test
-        run: pnpm --filter backend test
+        run: pnpm --filter backend test:coverage

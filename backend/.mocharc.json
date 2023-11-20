@@ -1,11 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/mocharc",
   "extension": "spec.ts",
-  "require": [
-    "ts-node/register/transpile-only",
-    "tsconfig-paths/register",
-    "./mocha-fixture.ts",
-    "@swc/register"
-  ],
+  "require": ["@swc/register", "tsconfig-paths/register", "./mocha-fixture.ts"],
   "reporter": "spec"
 }
