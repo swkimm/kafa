@@ -58,7 +58,9 @@ const League = () => {
 
   return (
     <div className="pt-16">
-      <div className="bg-indigo-800 p-6 text-xl text-white">Leagues</div>
+      <div className="bg-indigo-800 p-6 text-xl font-bold text-white">
+        LEAGUES
+      </div>
       <div className="mb-5">
         {leagueList.map((league) => (
           <div

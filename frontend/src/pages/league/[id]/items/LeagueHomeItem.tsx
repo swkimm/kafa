@@ -12,6 +12,17 @@ interface Game {
   location: string
 }
 
+interface Standing {
+  id: number
+  rank: number
+  teamId: number
+  teamLogo: string
+  teamName: string
+  win: number
+  lose: number
+  draw: number
+}
+
 const upComingGame: Game[] = [
   {
     id: 1,
@@ -59,7 +70,104 @@ const upComingGame: Game[] = [
   }
 ]
 
+const finalStanding: Standing[] = [
+  {
+    id: 1,
+    rank: 1,
+    teamId: 1,
+    teamLogo: '/logo/KAFA_OG.png',
+    teamName: '골든이글스',
+    win: 5,
+    lose: 0,
+    draw: 0
+  },
+  {
+    id: 2,
+    rank: 2,
+    teamId: 2,
+    teamLogo: '/logo/KAFA_OG.png',
+    teamName: '골든이글스',
+    win: 4,
+    lose: 1,
+    draw: 0
+  },
+  {
+    id: 3,
+    rank: 3,
+    teamId: 3,
+    teamLogo: '/logo/KAFA_OG.png',
+    teamName: '골든이글스',
+    win: 3,
+    lose: 2,
+    draw: 0
+  },
+  {
+    id: 4,
+    rank: 4,
+    teamId: 4,
+    teamLogo: '/logo/KAFA_OG.png',
+    teamName: '골든이글스',
+    win: 2,
+    lose: 3,
+    draw: 0
+  },
+  {
+    id: 5,
+    rank: 5,
+    teamId: 5,
+    teamLogo: '/logo/KAFA_OG.png',
+    teamName: '골든이글스',
+    win: 1,
+    lose: 4,
+    draw: 0
+  },
+  {
+    id: 6,
+    rank: 6,
+    teamId: 6,
+    teamLogo: '/logo/KAFA_OG.png',
+    teamName: '골든이글스',
+    win: 0,
+    lose: 5,
+    draw: 0
+  }
+]
+
 const LeagueHomeItem = () => {
+  const finalStandingColumns = [
+    {
+      title: 'RANK',
+      render: (finalStanding: Standing) => <span>{finalStanding.rank}</span>
+    },
+    {
+      title: 'TEAM',
+      render: (finalStanding: Standing) => (
+        <div className="flex">
+          <img src={finalStanding.teamLogo} alt="" className="mr-2 w-8" />
+          {finalStanding.teamName}
+        </div>
+      )
+    },
+    {
+      title: 'WIN',
+      render: (finalStanding: Standing) => (
+        <div className="">{finalStanding.win}</div>
+      )
+    },
+    {
+      title: 'LOSE',
+      render: (finalStanding: Standing) => (
+        <div className="">{finalStanding.lose}</div>
+      )
+    },
+    {
+      title: 'DRAW',
+      render: (finalStanding: Standing) => (
+        <div className="">{finalStanding.draw}</div>
+      )
+    }
+  ]
+
   const upcomingGamesColumns = [
     {
       title: 'HOME',
@@ -118,16 +226,16 @@ const LeagueHomeItem = () => {
       <div className="col-span-2">
         <div className="mb-5">
           <DefaultTable
-            title="다가오는 경기일정"
+            title="경기 결과"
             data={upComingGame}
             columns={upcomingGamesColumns}
           />
         </div>
         <div className="mb-5">
           <DefaultTable
-            title="최근경기 결과"
-            data={upComingGame}
-            columns={upcomingGamesColumns}
+            title="최종 순위"
+            data={finalStanding}
+            columns={finalStandingColumns}
           />
         </div>
       </div>

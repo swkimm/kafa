@@ -1,7 +1,7 @@
-// MemberDetail.tsx
+// PastMemberDetail.tsx
 import DropdownSimple from '@/components/dropdown/DropdownSimple'
 import WithSubtitleTable from '@/components/tables/WithSubtitleTable'
-import MemberBanner from './items/MemberBanner'
+import MemberBanner from '@/pages/league/[id]/team/[id]/member/[id]/items/MemberBanner'
 
 const member = {
   teamLogo: '/logo/KAFA_OG.png',
@@ -46,7 +46,7 @@ const options = [
   { id: '4', name: 'Sign out' }
 ]
 
-const MemberDetail = () => {
+const PastMemberDetail = () => {
   const handleSelect = (selected: string) => {
     console.log('Selected option:', selected)
   }
@@ -87,4 +87,4 @@ const MemberDetail = () => {
   )
 }
 
-export default MemberDetail
+export default PastMemberDetail

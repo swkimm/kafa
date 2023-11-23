@@ -181,15 +181,15 @@ const ScheduleItem = () => {
     }
   ]
   return (
-    <div className="container mx-auto my-5 grid max-w-screen-2xl grid-cols-1 px-5 sm:grid-cols-3">
-      <div className="col-span-2">
+    <div className="container mx-auto my-5 grid max-w-screen-2xl grid-cols-1 sm:grid-cols-3">
+      <div className="order-2 col-span-1 mx-5 sm:order-1 sm:col-span-2">
         <DefaultTable
           title={tableTitle}
           data={currentGamesData}
           columns={gameColumns}
         />
       </div>
-      <div className="col-span-1">
+      <div className="order-1 col-span-1 mx-5 mb-5 sm:order-2">
         <DropdownSimple
           optionName="Week"
           optionList={options}

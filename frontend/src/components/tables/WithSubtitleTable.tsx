@@ -20,7 +20,7 @@ const WithSubtitleTable: React.FC<WithSubtitleTableProps> = ({
   data
 }) => {
   return (
-    <div className="border ">
+    <div className="w-full border">
       <div className="sm:flex sm:items-center">
         <div className="border-b border-l-8 border-l-black bg-white p-5 sm:flex-auto">
           <div className="flex items-center border-black text-base font-semibold leading-6 text-gray-900">

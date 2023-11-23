@@ -4,8 +4,10 @@ import NoticeWideCard from '@/components/cards/NoticeWideCard'
 import LeagueList from '@/components/stackedList/LeagueList'
 import NoticeList from '@/components/stackedList/NoticeList'
 import GameTable from '@/components/tables/GameTable'
+import { useNavigate } from 'react-router-dom'
 
 const HomeItem = () => {
+  const navigate = useNavigate()
   const goToNews = (id: number) => {
     console.log('Card clicked:', id)
   }
@@ -18,12 +20,12 @@ const HomeItem = () => {
     console.log(id)
   }
 
-  const goToNotice = (id: number) => {
-    console.log('Card clicked:', id)
+  const goToNotice = () => {
+    navigate('/notice')
   }
 
-  const goToLeague = (id: number) => {
-    console.log(id)
+  const goToLeague = () => {
+    navigate('/league')
   }
 
   const goToPartners = (id: number) => {
@@ -198,7 +200,7 @@ const HomeItem = () => {
           </NoticeNarrow>{' '}
         </div>
         <div className="p-3 sm:w-full">
-          <NoticeNarrow id={2} cardName="LEAGUES" onClick={() => goToNotice(2)}>
+          <NoticeNarrow id={2} cardName="LEAGUES" onClick={goToLeague}>
             {leagues.map((league) => (
               <LeagueList
                 key={league.leagueId}
@@ -207,7 +209,7 @@ const HomeItem = () => {
                 status={league.status}
                 conference={league.conference}
                 period={league.period}
-                onClick={() => goToLeague(league.leagueId)}
+                onClick={goToLeague}
               />
             ))}
           </NoticeNarrow>

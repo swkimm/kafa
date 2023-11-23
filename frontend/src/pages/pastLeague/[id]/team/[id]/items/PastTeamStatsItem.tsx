@@ -1,4 +1,4 @@
-// Stats.tsx
+// PastTeamStatsItem.tsx
 import DropdownSimple from '@/components/dropdown/DropdownSimple'
 import WithSubtitleTable from '@/components/tables/WithSubtitleTable'
 
@@ -46,14 +46,14 @@ const options: Option[] = [
   { id: '4', name: 'Sign out' }
 ]
 
-const Stats = () => {
+const PastTeamStatsItem = () => {
   const handleSelect = (selected: string) => {
     console.log('Selected option:', selected)
   }
   return (
-    <div className="container mx-auto my-5 grid max-w-screen-2xl grid-cols-1 px-5 sm:grid-cols-3">
-      <div className="order-2 col-span-1 sm:order-1 sm:col-span-2">
-        <div className="">
+    <div className="container mx-auto grid grid-cols-1 sm:grid-cols-3">
+      <div className="order-2 col-span-1 mx-5 sm:order-1 sm:col-span-2">
+        <div className="my-5">
           <WithSubtitleTable
             title="경기일정"
             subtitle="vs Phoenix"
@@ -62,7 +62,7 @@ const Stats = () => {
         </div>
       </div>
       <div className="order-1 col-span-1 sm:order-2">
-        <div className="mb-5 sm:ml-5">
+        <div className="ml-5 mt-5 sm:mb-5">
           <DropdownSimple
             optionName="My Options"
             optionList={options}
@@ -74,4 +74,4 @@ const Stats = () => {
   )
 }
 
-export default Stats
+export default PastTeamStatsItem

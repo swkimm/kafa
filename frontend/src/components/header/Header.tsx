@@ -25,8 +25,20 @@ const Header = () => {
     navigate('/league')
   }
 
+  const gotoPastLeaguePage = () => {
+    navigate('/pastLeague')
+  }
+
+  const gotoHuddlePage = () => {
+    navigate('/')
+  }
+
   const goToHomePage = () => {
     navigate('/')
+  }
+
+  const goToNoticePage = () => {
+    navigate('/notice')
   }
 
   useEffect(() => {
@@ -71,18 +83,20 @@ const Header = () => {
                   >
                     대회정보
                   </Disclosure.Button>
-                  <a
-                    href="#"
+                  <Disclosure.Button
+                    as="button"
+                    onClick={gotoPastLeaguePage}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     기록실
-                  </a>
-                  <a
-                    href="#"
+                  </Disclosure.Button>
+                  <Disclosure.Button
+                    as="button"
+                    onClick={gotoHuddlePage}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     HUDDLE
-                  </a>
+                  </Disclosure.Button>
                   <a
                     href="#"
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
@@ -111,12 +125,13 @@ const Header = () => {
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center ">
                 <div className="flex space-x-4">
-                  <a
-                    href="#"
-                    className="px-1 pt-1 text-sm text-white hover:text-gray-700"
+                  <Disclosure.Button
+                    as="button"
+                    onClick={goToNoticePage}
+                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     NOTICE
-                  </a>
+                  </Disclosure.Button>
                   <a
                     href="#"
                     className="px-1 pt-1 text-sm text-white hover:text-gray-700"
@@ -168,18 +183,18 @@ const Header = () => {
                 대회정보
               </Disclosure.Button>
               <Disclosure.Button
-                as="a"
-                href="#"
+                as="button"
+                onClick={gotoPastLeaguePage}
                 className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
               >
                 기록실
               </Disclosure.Button>
               <Disclosure.Button
-                as="a"
-                href="#"
+                as="button"
+                onClick={gotoHuddlePage}
                 className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
               >
-                KAFA LIVE
+                HUDDLE
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
