@@ -22,4 +22,24 @@ export class EmailServiceImpl implements EmailService {
       ]
     })
   }
+
+  async sendTeamRegisterMail(
+    to: string,
+    username: string,
+    password: string
+  ): Promise<void> {
+    await this.mailerService.sendMail({
+      to,
+      subject: '[대한미식축구협회(KAFA)] 팀 등록 승인 및 팀 계정 안내',
+      template: path.join(__dirname, 'templates/register-team'),
+      context: { username, password },
+      attachments: [
+        {
+          filename: 'logo.png',
+          path: path.join(__dirname, 'templates/logo.png'),
+          cid: 'logo'
+        }
+      ]
+    })
+  }
 }

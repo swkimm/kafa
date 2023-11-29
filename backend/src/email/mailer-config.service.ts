@@ -33,7 +33,10 @@ export class MailerConfigService implements MailerOptionsFactory {
             }
           },
       defaults: {
-        from: this.config.get('NODEMAILER_FROM')
+        from:
+          this.config.get('NODEMAILER_USER_NAME') +
+          ' ' +
+          this.config.get('NODEMAILER_FROM')
       },
       template: {
         adapter: new HandlebarsAdapter(),

@@ -62,29 +62,51 @@ enum Role {
   User
 }
 
+enum TeamStatus {
+  Enabled
+  Disabled
+}
+
+enum TeamEnrollStatus {
+  Received
+  Approved
+  Rejected
+}
+
+enum LeagueApplyStatus {
+  Received
+  Approved
+  Rejected
+}
+
 // Account Module
 model Account {
-  id                  Int                @id @default(autoincrement())
-  name                String             @db.VarChar(128)
-  email               String             @unique @db.VarChar(128)
-  username            String             @unique @db.VarChar(128)
+  id                  Int                   @id @default(autoincrement())
+  name                String                @db.VarChar(128)
+  email               String                @db.VarChar(128)
+  username            String                @unique @db.VarChar(128)
+  teamId              Int?                  @map("team_id")
   birthday            DateTime?
-  password            String             @db.VarChar(128) // hashed password
-  status              AccountStatus      @default(Verifying)
-  createdAt           DateTime           @default(now()) @map("created_at")
+  password            String                @db.VarChar(128) // hashed password
+  status              AccountStatus         @default(Verifying)
+  createdAt           DateTime              @default(now()) @map("created_at")
   deletedAt           DateTime?
   role                Role
-  profileImgUrl       String?            @map("profile_img_url") @db.Text
-  lastPasswordChanged DateTime           @default(now()) @map("last_password_changed")
-  lastLogin           DateTime           @default(now()) @map("last_login")
-  oAuths              OAuth[]
-  referee             Referee?
-  press               Press?
-  notifications       Notification[]
-  notificationAllow   NotificationAllow?
-  posts               Post[]
-  comments            Comment[]
-  rosters             Roster[]
+  profileImgUrl       String?               @map("profile_img_url") @db.Text
+  lastPasswordChanged DateTime              @default(now()) @map("last_password_changed")
+  lastLogin           DateTime              @default(now()) @map("last_login")
+  OAuths              OAuth[]
+  Referee             Referee?
+  Press               Press?
+  Notifications       Notification[]
+  NotificationAllow   NotificationAllow?
+  Posts               Post[]
+  Comments            Comment[]
+  Rosters             Roster[]
+  RegisterTeamRequest RegisterTeamRequest[]
+  Team                Team?                 @relation(fields: [teamId], references: [id])
+
+  @@unique([email, role])
 }
 
 model OAuth {
@@ -99,7 +121,7 @@ model OAuth {
 model Referee {
   accountId    Int           @id @map("account_id")
   registeredAt DateTime      @default(now()) @map("registered_at")
-  refereeGames RefereeGame[]
+  RefereeGames RefereeGame[]
   class        RefereeClass  @default(C)
   Account      Account       @relation(fields: [accountId], references: [id])
 }
@@ -108,7 +130,7 @@ model Press {
   accountId       Int         @id @map("account_id")
   association     String      @db.VarChar(128)
   cellPhoneNumber String      @map("cell_phone_number") @db.VarChar(64)
-  pressGames      PressGame[]
+  PressGames      PressGame[]
   Account         Account     @relation(fields: [accountId], references: [id])
 }
 
@@ -140,14 +162,14 @@ model Post {
   updatedAt   DateTime     @default(now()) @updatedAt @map("updated_at")
   Account     Account      @relation(fields: [accountId], references: [id])
   PostType    PostType     @relation(fields: [postTypeId], references: [id])
-  attachments Attachment[]
-  comments    Comment[]
+  Attachments Attachment[]
+  Comments    Comment[]
 }
 
 model PostType {
   id    Int    @id @default(autoincrement())
   name  String @db.VarChar(64)
-  posts Post[]
+  Posts Post[]
 }
 
 model Attachment {
@@ -178,8 +200,8 @@ model Association {
   profileImgUrl      String?             @map("profile_img_url") @db.Text
   parentId           Int?                @map("parent_id")
   Parent             Association?        @relation("AssociationToAssociation", fields: [parentId], references: [id])
-  children           Association[]       @relation("AssociationToAssociation")
-  associationLeagues AssociationLeague[]
+  Children           Association[]       @relation("AssociationToAssociation")
+  AssociationLeagues AssociationLeague[]
   Team               Team[]
 
   @@index([parentId], name: "parent_id_idx")
@@ -199,10 +221,10 @@ model League {
   name               String              @db.VarChar(256)
   startedAt          DateTime            @map("started_at")
   endedAt            DateTime            @map("ended_at")
-  associationLeagues AssociationLeague[]
-  leagueSponsers     LeagueSponser[]
-  teamLeagues        TeamLeague[]
-  games              Game[]
+  AssociationLeagues AssociationLeague[]
+  LeagueSponsers     LeagueSponser[]
+  TeamLeagues        TeamLeague[]
+  Games              Game[]
 }
 
 model LeagueSponser {
@@ -219,7 +241,7 @@ model Sponser {
   name           String          @db.VarChar(128)
   websiteUrl     String          @map("website_url") @db.Text
   profileImgUrl  String?         @map("profile_img_url") @db.Text
-  leagueSponsers LeagueSponser[]
+  LeagueSponsers LeagueSponser[]
 }
 
 // Team module
@@ -235,19 +257,37 @@ model Team {
   subColor         String?      @db.VarChar(16)
   profileImgUrl    String?      @map("profile_img_url") @db.Text
   backgroundImgUrl String?      @map("background_img_url") @db.Text
+  deletedAt        DateTime?    @map("deleted_at")
+  status           TeamStatus   @default(Enabled)
+  rejectReason     String?      @map("reject_reason") @db.Text
+  createdAt        DateTime     @default(now()) @map("created_at")
   Association      Association  @relation(fields: [associationId], references: [id])
-  Roster           Roster[]
-  TeamLeague       TeamLeague[]
-  homeGames        Game[]       @relation("homeTeam")
-  awayGames        Game[]       @relation("awayTeam")
+  Rosters          Roster[]
+  TeamLeagues      TeamLeague[]
+  HomeGames        Game[]       @relation("homeTeam")
+  AwayGames        Game[]       @relation("awayTeam")
+  Account          Account[]
+}
+
+model RegisterTeamRequest {
+  id           Int              @id @default(autoincrement())
+  accountId    Int              @map("account_id")
+  username     String
+  data         Json
+  createdAt    DateTime         @default(now()) @map("created_at")
+  rejectReason String?          @map("reject_reason") @db.Text
+  status       TeamEnrollStatus @default(Received)
+  Account      Account          @relation(fields: [accountId], references: [id])
 }
 
 model TeamLeague {
-  teamId   Int    @map("team_id")
-  leagueId Int    @map("league_id")
-  rank     Int?   @db.SmallInt
-  Team     Team   @relation(fields: [teamId], references: [id])
-  League   League @relation(fields: [leagueId], references: [id])
+  teamId       Int               @map("team_id")
+  leagueId     Int               @map("league_id")
+  rank         Int?              @db.SmallInt
+  applyStatus  LeagueApplyStatus @default(Received)
+  rejectReason String?           @map("reject_reason") @db.Text
+  Team         Team              @relation(fields: [teamId], references: [id])
+  League       League            @relation(fields: [leagueId], references: [id])
 
   @@unique([teamId, leagueId])
 }
@@ -272,26 +312,26 @@ model Athlete {
   position String[]
   height   Int
   weight   Int
-  records  Record[]
+  Records  Record[]
   Roster   Roster   @relation(fields: [rosterId], references: [id])
 }
 
 // Game Module
 model Game {
-  id          Int           @id @default(autoincrement())
-  leagueId    Int           @map("league_id")
-  startedAt   DateTime      @map("started_at")
-  homeTeamId  Int           @map("home_team_id")
-  awayTeamId  Int           @map("away_team_id")
-  homeTeam    Team          @relation("homeTeam", fields: [homeTeamId], references: [id])
-  awayTeam    Team          @relation("awayTeam", fields: [awayTeamId], references: [id])
-  result      GameResult
-  stadium     String        @db.VarChar(256)
-  League      League        @relation(fields: [leagueId], references: [id])
-  score       Score?
-  RefereeGame RefereeGame[]
-  PressGame   PressGame[]
-  Record      Record[]
+  id           Int           @id @default(autoincrement())
+  leagueId     Int           @map("league_id")
+  startedAt    DateTime      @map("started_at")
+  homeTeamId   Int           @map("home_team_id")
+  awayTeamId   Int           @map("away_team_id")
+  homeTeam     Team          @relation("homeTeam", fields: [homeTeamId], references: [id])
+  awayTeam     Team          @relation("awayTeam", fields: [awayTeamId], references: [id])
+  result       GameResult
+  stadium      String        @db.VarChar(256)
+  League       League        @relation(fields: [leagueId], references: [id])
+  score        Score?
+  RefereeGames RefereeGame[]
+  PressGames   PressGame[]
+  Records      Record[]
 }
 
 model RefereeGame {
@@ -331,7 +371,7 @@ model Record {
   recordArgumentId Int            @map("record_argument_id")
   gameId           Int            @map("game_id")
   score            Int
-  game             Game           @relation(fields: [gameId], references: [id])
+  Game             Game           @relation(fields: [gameId], references: [id])
   Athlete          Athlete        @relation(fields: [athleteId], references: [rosterId])
   RecordArgument   RecordArgument @relation(fields: [recordArgumentId], references: [id])
 }
@@ -341,5 +381,5 @@ model RecordArgument {
   name    String   @db.VarChar(64)
   unit    String   @db.VarChar(32)
   version Int      @db.SmallInt
-  records Record[]
+  Records Record[]
 }

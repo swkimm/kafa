@@ -8,10 +8,12 @@ import {
   CacheException,
   ConflictFoundException,
   EntityNotExistException,
-  UnidentifiedException
+  UnexpectedException,
+  UnidentifiedException,
+  UnverifiedException
 } from '@/common/exception/business.exception'
 import { PrismaService } from '@/prisma/prisma.service'
-import { type Account, Role, AccountStatus } from '@prisma/client'
+import { type Account, Role, AccountStatus, Prisma } from '@prisma/client'
 import { hash } from 'argon2'
 import { Cache } from 'cache-manager'
 import { plainToClass } from 'class-transformer'
@@ -64,11 +66,11 @@ export class AccountServiceImpl implements AccountService {
     })
   }
 
-  async registerAccount(accountDTO: RegisterAccountDTO): Promise<AccountDTO> {
-    const isDuplicateEmail = await this.isAccountExist(
-      'email',
-      accountDTO.email
-    )
+  async registerAccount(
+    accountDTO: RegisterAccountDTO,
+    role: Role
+  ): Promise<AccountDTO> {
+    const isDuplicateEmail = await this.isEmailExist(accountDTO.email, role)
     if (isDuplicateEmail) {
       throw new ConflictFoundException('email already exists')
     }
@@ -81,24 +83,44 @@ export class AccountServiceImpl implements AccountService {
       throw new ConflictFoundException('username already exists')
     }
 
-    const now = new Date()
+    const status =
+      role === Role.User ? AccountStatus.Verifying : AccountStatus.Enable
 
-    accountDTO.password = await this.hashPassword(accountDTO.password)
+    const account = await this.createAccount(accountDTO, role, status)
 
-    const account = await this.prismaService.account.create({
-      data: {
-        role: Role.User,
-        createdAt: now,
-        lastLogin: now,
-        lastPasswordChanged: now,
-        status: AccountStatus.Verifying,
-        ...accountDTO
-      }
-    })
-
-    await this.emailAuthService.registerPin(account.id, account.email)
+    if (role === Role.User) {
+      await this.emailAuthService.registerPin(account.id, account.email)
+    }
 
     return this.accountDTOSerializer(account)
+  }
+
+  async mappingManagerAccount(
+    accountId: number,
+    teamId: number
+  ): Promise<AccountDTO> {
+    try {
+      const account = await this.prismaService.account.update({
+        where: {
+          id: accountId
+        },
+        data: {
+          teamId
+        }
+      })
+
+      return this.accountDTOSerializer(account)
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          throw new EntityNotExistException('accountId')
+        }
+        if (error.code === 'P2003') {
+          throw new EntityNotExistException('teamId')
+        }
+      }
+      throw new UnexpectedException(error)
+    }
   }
 
   async verifyEmail(
@@ -300,6 +322,46 @@ export class AccountServiceImpl implements AccountService {
     return { result: 'ok' }
   }
 
+  async isVerifiedAccount(accountId: number): Promise<void> {
+    const account = await this.prismaService.account.findUnique({
+      where: {
+        id: accountId
+      }
+    })
+
+    if (!account || account.status !== AccountStatus.Enable) {
+      throw new UnverifiedException(accountId)
+    }
+  }
+
+  async isAccountExist(
+    key: 'id' | 'username',
+    value: string | number
+  ): Promise<boolean> {
+    const account = await this.prismaService.account.findUnique({
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      where: {
+        [key]: value
+      }
+    })
+    return account !== null
+  }
+
+  async isEmailExist(email: string, role: Role): Promise<boolean> {
+    const account = await this.prismaService.account.findUnique({
+      where: {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        email_role: {
+          email,
+          role
+        }
+      }
+    })
+
+    return account !== null
+  }
+
   // async updatePassword(
   //   accountDTO: UpdatePasswordDTO,
   //   accountId: number
@@ -346,17 +408,23 @@ export class AccountServiceImpl implements AccountService {
     return await hash(password)
   }
 
-  private async isAccountExist(
-    key: 'id' | 'email' | 'username',
-    value: string | number
-  ): Promise<boolean> {
-    const account = await this.prismaService.account.findUnique({
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      where: {
-        [key]: value
+  private async createAccount(
+    accountDTO: RegisterAccountDTO,
+    role: Role,
+    status: AccountStatus
+  ): Promise<Account> {
+    const now = new Date()
+    accountDTO.password = await this.hashPassword(accountDTO.password)
+
+    return await this.prismaService.account.create({
+      data: {
+        role,
+        createdAt: now,
+        lastLogin: now,
+        lastPasswordChanged: now,
+        status,
+        ...accountDTO
       }
     })
-    return account !== null
   }
 }

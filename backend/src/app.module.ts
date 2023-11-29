@@ -6,6 +6,7 @@ import { APP_FILTER, APP_GUARD } from '@nestjs/core'
 import { AccountModule } from './account/account.module'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
+import { AssociationModule } from './association/association.module'
 import { AuthModule } from './auth/auth.module'
 import { JwtAuthGuard } from './auth/guard/jwt-auth.guard'
 import { CacheConfigService } from './common/cache/cache-config.service'
@@ -14,6 +15,8 @@ import { RolesGuard } from './common/guard/roles.guard'
 import { EmailModule } from './email/email.module'
 import { MailerConfigService } from './email/mailer-config.service'
 import { PrismaModule } from './prisma/prisma.module'
+import { TeamLeagueModule } from './team-league/team-league.module'
+import { TeamModule } from './team/team.module'
 
 @Module({
   providers: [
@@ -35,7 +38,10 @@ import { PrismaModule } from './prisma/prisma.module'
     EmailModule,
     MailerModule.forRootAsync({
       useClass: MailerConfigService
-    })
+    }),
+    TeamModule,
+    TeamLeagueModule,
+    AssociationModule
   ]
 })
 export class AppModule {}

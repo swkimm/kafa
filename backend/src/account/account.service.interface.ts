@@ -12,7 +12,12 @@ export interface AccountService {
 
   updateLastPasswordChanged(accountId: number): Promise<void>
 
-  registerAccount(accountDTO: RegisterAccountDTO): Promise<AccountDTO>
+  registerAccount(
+    accountDTO: RegisterAccountDTO,
+    role: Role
+  ): Promise<AccountDTO>
+
+  mappingManagerAccount(accountId: number, teamId: number): Promise<AccountDTO>
 
   verifyEmail(
     identifier: string | number,
@@ -44,4 +49,13 @@ export interface AccountService {
   ): Promise<{ result: string }>
 
   withdrawAccount(accountId: number): Promise<AccountDTO>
+
+  isVerifiedAccount(accountId: number): Promise<void>
+
+  isAccountExist(
+    key: 'id' | 'email' | 'username',
+    value: string | number
+  ): Promise<boolean>
+
+  isEmailExist(email: string, role: Role): Promise<boolean>
 }

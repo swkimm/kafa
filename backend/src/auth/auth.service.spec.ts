@@ -43,7 +43,8 @@ describe('AuthService', () => {
     lastPasswordChanged: new Date(),
     name: 'user01',
     profileImgUrl: undefined,
-    deletedAt: undefined
+    deletedAt: undefined,
+    teamId: 1
   }
 
   const db = {

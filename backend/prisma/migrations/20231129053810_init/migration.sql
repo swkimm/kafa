@@ -22,12 +22,23 @@ CREATE TYPE "RefereePosition" AS ENUM ('Referee', 'SideJudge', 'LineJudge', 'Bac
 -- CreateEnum
 CREATE TYPE "Role" AS ENUM ('Admin', 'Manager', 'User');
 
+-- CreateEnum
+CREATE TYPE "TeamStatus" AS ENUM ('Enabled', 'Disabled');
+
+-- CreateEnum
+CREATE TYPE "TeamEnrollStatus" AS ENUM ('Received', 'Approved', 'Rejected');
+
+-- CreateEnum
+CREATE TYPE "LeagueApplyStatus" AS ENUM ('Received', 'Approved', 'Rejected');
+
 -- CreateTable
 CREATE TABLE "Account" (
     "id" SERIAL NOT NULL,
     "name" VARCHAR(128) NOT NULL,
     "email" VARCHAR(128) NOT NULL,
     "username" VARCHAR(128) NOT NULL,
+    "team_id" INTEGER,
+    "birthday" TIMESTAMP(3),
     "password" VARCHAR(128) NOT NULL,
     "status" "AccountStatus" NOT NULL DEFAULT 'Verifying',
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -187,15 +198,34 @@ CREATE TABLE "Team" (
     "subColor" VARCHAR(16),
     "profile_img_url" TEXT,
     "background_img_url" TEXT,
+    "deleted_at" TIMESTAMP(3),
+    "status" "TeamStatus" NOT NULL DEFAULT 'Enabled',
+    "reject_reason" TEXT,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Team_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "RegisterTeamRequest" (
+    "id" SERIAL NOT NULL,
+    "account_id" INTEGER NOT NULL,
+    "username" TEXT NOT NULL,
+    "data" JSONB NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "reject_reason" TEXT,
+    "status" "TeamEnrollStatus" NOT NULL DEFAULT 'Received',
+
+    CONSTRAINT "RegisterTeamRequest_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "TeamLeague" (
     "team_id" INTEGER NOT NULL,
     "league_id" INTEGER NOT NULL,
-    "rank" SMALLINT
+    "rank" SMALLINT,
+    "applyStatus" "LeagueApplyStatus" NOT NULL DEFAULT 'Received',
+    "reject_reason" TEXT
 );
 
 -- CreateTable
@@ -284,10 +314,10 @@ CREATE TABLE "RecordArgument" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Account_email_key" ON "Account"("email");
+CREATE UNIQUE INDEX "Account_username_key" ON "Account"("username");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Account_username_key" ON "Account"("username");
+CREATE UNIQUE INDEX "Account_email_role_key" ON "Account"("email", "role");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "OAuth_provider_id_provider_type_key" ON "OAuth"("provider_id", "provider_type");
@@ -309,6 +339,9 @@ CREATE UNIQUE INDEX "RefereeGame_referee_id_game_id_key" ON "RefereeGame"("refer
 
 -- CreateIndex
 CREATE UNIQUE INDEX "PressGame_press_id_game_id_key" ON "PressGame"("press_id", "game_id");
+
+-- AddForeignKey
+ALTER TABLE "Account" ADD CONSTRAINT "Account_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "Team"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "OAuth" ADD CONSTRAINT "OAuth_account_id_fkey" FOREIGN KEY ("account_id") REFERENCES "Account"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -357,6 +390,9 @@ ALTER TABLE "LeagueSponser" ADD CONSTRAINT "LeagueSponser_sponser_id_fkey" FOREI
 
 -- AddForeignKey
 ALTER TABLE "Team" ADD CONSTRAINT "Team_association_id_fkey" FOREIGN KEY ("association_id") REFERENCES "Association"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "RegisterTeamRequest" ADD CONSTRAINT "RegisterTeamRequest_account_id_fkey" FOREIGN KEY ("account_id") REFERENCES "Account"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "TeamLeague" ADD CONSTRAINT "TeamLeague_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "Team"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

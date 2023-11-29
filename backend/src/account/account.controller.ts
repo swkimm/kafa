@@ -22,7 +22,7 @@ import {
   EntityNotExistException,
   UnidentifiedException
 } from '@/common/exception/business.exception'
-import type { Role } from '@prisma/client'
+import { Role } from '@prisma/client'
 import { AccountService } from './account.service.interface'
 import type { AccountDTO } from './dto/account.dto'
 import { RegisterAccountDTO } from './dto/registerAccount.dto'
@@ -76,7 +76,10 @@ export class AccountController {
     @Body() accountDTO: RegisterAccountDTO
   ): Promise<AccountDTO> {
     try {
-      const result = await this.accountService.registerAccount(accountDTO)
+      const result = await this.accountService.registerAccount(
+        accountDTO,
+        Role.User
+      )
       return result
     } catch (error) {
       if (error instanceof ConflictFoundException) {

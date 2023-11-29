@@ -2,7 +2,13 @@
   "extends": "@istanbuljs/nyc-config-typescript",
   "all": true,
   "include": ["src/**/*.service.ts"],
-  "exclude": ["src/**/*.spec.ts", "src/main.ts"],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/cache-config.service.ts",
+    "src/**/mailer-config.service.ts",
+    "src/**/prisma.service.ts",
+    "src/**/abstract/**"
+  ],
   "extension": [".ts"],
   "report-dir": "./.nyc_output/report",
   "temp-dir": "./.nyc_output/temp",

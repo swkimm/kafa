@@ -1,7 +1,7 @@
 import { MailerService } from '@nestjs-modules/mailer'
 import { Test, type TestingModule } from '@nestjs/testing'
 import { expect } from 'chai'
-import { stub } from 'sinon'
+import * as sinon from 'sinon'
 import { EmailServiceImpl } from './email.service'
 import type { EmailService } from './email.service.interface'
 
@@ -9,6 +9,7 @@ describe('EmailService', () => {
   let service: EmailService
 
   let recipient: string
+
   let expectedEmailInfo: {
     accepted: string[]
     rejected: string[]
@@ -21,7 +22,7 @@ describe('EmailService', () => {
   }
 
   const MailerMock = {
-    sendMail: stub()
+    sendMail: sinon.stub()
   }
 
   beforeEach(async () => {
@@ -47,6 +48,12 @@ describe('EmailService', () => {
       envelope: { from: 'sender@gmail.com', to: [recipient] },
       messageId: '6bd7-3d62-c84b-61865f06534b@gmail.com'
     }
+
+    sinon.reset()
+  })
+
+  afterEach(() => {
+    sinon.reset()
   })
 
   it('should be defined', () => {
@@ -54,9 +61,32 @@ describe('EmailService', () => {
   })
 
   it('email transmission success', async () => {
+    // given
     MailerMock.sendMail.resolves(expectedEmailInfo)
+
+    // when
     await service.sendVerificationEmail(recipient, 'PIN')
 
+    // then
     expect(MailerMock.sendMail.calledOnce).to.be.true
+  })
+
+  it('email transmission success', async () => {
+    // given
+    const username = 'username'
+    const password = 'password'
+    MailerMock.sendMail.resolves(expectedEmailInfo)
+
+    // when
+    await service.sendTeamRegisterMail(recipient, username, password)
+
+    // then
+    expect(MailerMock.sendMail.calledOnce).to.be.true
+    expect(
+      MailerMock.sendMail.calledWithMatch({
+        to: recipient,
+        context: { username, password }
+      })
+    ).to.be.true
   })
 })

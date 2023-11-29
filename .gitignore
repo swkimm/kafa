@@ -128,3 +128,6 @@ terraform.rc
 
 # Nyc Report files
 /backend/.nyc_output
+
+# swc file
+/backend/.swc

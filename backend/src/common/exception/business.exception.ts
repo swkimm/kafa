@@ -14,10 +14,23 @@ export class EmptyParameterException extends BusinessException {
   }
 }
 
+/** [400] Throw when a user pass the invalid parameter. */
+export class ParameterValidationException extends BusinessException {
+  constructor(entity) {
+    super(entity)
+  }
+}
+
 /** [401] Throw when a user cannot be identified with given credential. */
 export class UnidentifiedException extends BusinessException {
   constructor(credential) {
     super(`Incorrect ${credential}`)
+  }
+}
+
+export class UnverifiedException extends BusinessException {
+  constructor(credential) {
+    super(`Unverified account ${credential}`)
   }
 }
 
@@ -40,7 +53,11 @@ export class EntityNotExistException extends BusinessException {
 
 /** [409] Throw when the request has a conflict with relevant entities.
  */
-export class ConflictFoundException extends BusinessException {}
+export class ConflictFoundException extends BusinessException {
+  constructor(entity) {
+    super(`${entity} is already exists`)
+  }
+}
 
 /** [409] Throw when the request has a conflict with relevant entities.
  */
@@ -60,8 +77,22 @@ export class UnprocessableFileDataException extends UnprocessableDataException {
   }
 }
 
-/** [500] Internal Cache Exception */
+/** [500] Cache Exception */
 export class CacheException extends BusinessException {
+  constructor(error) {
+    super(error)
+  }
+}
+
+/** [500] Database Exception */
+export class DatabaseException extends BusinessException {
+  constructor(error) {
+    super(error)
+  }
+}
+
+/** [500] Unexpected Exception */
+export class UnexpectedException extends BusinessException {
   constructor(error) {
     super(error)
   }

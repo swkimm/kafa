@@ -6,7 +6,8 @@ import {
   CacheException,
   ConflictFoundException,
   EntityNotExistException,
-  UnidentifiedException
+  UnidentifiedException,
+  UnverifiedException
 } from '@/common/exception/business.exception'
 import type { EmailService } from '@/email/email.service.interface'
 import { PrismaService } from '@/prisma/prisma.service'
@@ -57,11 +58,30 @@ describe('AccountService', () => {
     lastPasswordChanged: new Date('2023-01-01'),
     name: 'user01',
     profileImgUrl: undefined,
-    deletedAt: undefined
+    deletedAt: undefined,
+    teamId: undefined
+  }
+
+  const unverifiedAccount: Account = {
+    id: 2,
+    status: AccountStatus.Verifying,
+    createdAt: new Date('2023-01-01'),
+    lastLogin: new Date('2023-01-01'),
+    password: VALID_PASSWORD,
+    birthday: new Date('2023-01-01'),
+    role: Role.User,
+    username: 'user02',
+    email: 'example2@example.com',
+    lastPasswordChanged: new Date('2023-01-01'),
+    name: 'user02',
+    profileImgUrl: undefined,
+    deletedAt: undefined,
+    teamId: undefined
   }
 
   const mockEmailService: EmailService = {
-    sendVerificationEmail: sinon.stub()
+    sendVerificationEmail: sinon.stub(),
+    sendTeamRegisterMail: sinon.stub()
   }
 
   const mockAuthService = {
@@ -169,7 +189,7 @@ describe('AccountService', () => {
       }
 
       //when
-      const result = await service.registerAccount(accountDTO)
+      const result = await service.registerAccount(accountDTO, Role.User)
 
       //then
       expect(result).to.be.deep.equal({
@@ -178,13 +198,14 @@ describe('AccountService', () => {
         birthday: account.birthday,
         email: account.email,
         profileImgUrl: account.profileImgUrl,
-        role: account.role
+        role: Role.User
       })
       expect(
         db.account.create.calledWithMatch({
           email: account.email,
           password: await hash(VALID_PASSWORD),
-          name: account.name
+          name: account.name,
+          role: Role.User
         })
       )
       expect(db.account.create.calledOnce).to.be.true
@@ -202,9 +223,9 @@ describe('AccountService', () => {
       }
 
       //then
-      await expect(service.registerAccount(accountDTO)).to.be.rejectedWith(
-        ConflictFoundException
-      )
+      await expect(
+        service.registerAccount(accountDTO, Role.User)
+      ).to.be.rejectedWith(ConflictFoundException)
     })
 
     it('should throw ConflictFoundException when duplicate username', async () => {
@@ -221,9 +242,9 @@ describe('AccountService', () => {
       }
 
       //then
-      await expect(service.registerAccount(accountDTO)).to.be.rejectedWith(
-        ConflictFoundException
-      )
+      await expect(
+        service.registerAccount(accountDTO, Role.User)
+      ).to.be.rejectedWith(ConflictFoundException)
     })
   })
 
@@ -593,6 +614,40 @@ describe('AccountService', () => {
       await expect(
         service.updatePassword(accountDTO, account.id)
       ).to.be.rejectedWith(UnidentifiedException)
+    })
+  })
+
+  describe('isVerifiedAccount', () => {
+    it('should not throw exception when account is verified', async () => {
+      // given
+      db.account.findUnique.resolves(account)
+
+      // then
+      try {
+        expect(service.isVerifiedAccount(account.id))
+      } catch (error) {
+        expect.fail()
+      }
+    })
+
+    it('should throw UnverifiedException when invalid accountId passed', async () => {
+      // given
+      db.account.findUnique.resolves(null)
+
+      // then
+      await expect(service.isVerifiedAccount(account.id)).to.be.rejectedWith(
+        UnverifiedException
+      )
+    })
+
+    it('should throw UnverifiedException when account is unverified', async () => {
+      // given
+      db.account.findUnique.resolves(unverifiedAccount)
+
+      // then
+      await expect(service.isVerifiedAccount(account.id)).to.be.rejectedWith(
+        UnverifiedException
+      )
     })
   })
 
