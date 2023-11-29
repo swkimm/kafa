@@ -15,6 +15,7 @@ import { RolesGuard } from './common/guard/roles.guard'
 import { EmailModule } from './email/email.module'
 import { MailerConfigService } from './email/mailer-config.service'
 import { PrismaModule } from './prisma/prisma.module'
+import { StorageModule } from './storage/storage.module'
 import { TeamLeagueModule } from './team-league/team-league.module'
 import { TeamModule } from './team/team.module'
 
@@ -41,7 +42,8 @@ import { TeamModule } from './team/team.module'
     }),
     TeamModule,
     TeamLeagueModule,
-    AssociationModule
+    AssociationModule,
+    StorageModule
   ]
 })
 export class AppModule {}
