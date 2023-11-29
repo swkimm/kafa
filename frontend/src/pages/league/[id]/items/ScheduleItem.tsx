@@ -1,5 +1,5 @@
 // ScheduleItem.tsx
-import DropdownSimple from '@/components/dropdown/DropdownSimple'
+import DropdownSimple from '@/components/dropdown/DropdownLeft'
 import DefaultTable from '@/components/tables/DefaultTable'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'

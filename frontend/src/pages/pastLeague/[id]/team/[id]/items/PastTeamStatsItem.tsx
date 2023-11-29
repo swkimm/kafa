@@ -1,5 +1,5 @@
 // PastTeamStatsItem.tsx
-import DropdownSimple from '@/components/dropdown/DropdownSimple'
+import DropdownSimple from '@/components/dropdown/DropdownLeft'
 import WithSubtitleTable from '@/components/tables/WithSubtitleTable'
 
 interface Person {

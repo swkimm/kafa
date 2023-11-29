@@ -1,10 +1,10 @@
-// DropdownSimple.stories.ts
+// DropdownLeft.stories.ts
 import type { Meta, StoryObj } from '@storybook/react'
-import DropdownSimple from './DropdownSimple'
+import DropdownLeft from './DropdownLeft'
 
 const meta = {
   title: 'Components/Dropbox',
-  component: DropdownSimple,
+  component: DropdownLeft,
   parameters: {
     layout: 'centered',
     docs: {
@@ -20,7 +20,7 @@ const meta = {
     onSelect: { action: 'selected' } // onSelect는 액션 타입의 컨트롤로 조정
   },
   tags: ['autodocs']
-} satisfies Meta<typeof DropdownSimple>
+} satisfies Meta<typeof DropdownLeft>
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -12,7 +12,11 @@ interface ColumnProps<T> {
   render: (item: T) => React.ReactNode
 }
 
-const DefaultTable = <T,>({ title, data, columns }: DefaultTableProps<T>) => {
+const DefaultTable = <T,>({
+  title,
+  data = [],
+  columns = []
+}: DefaultTableProps<T>) => {
   return (
     <div className="border bg-white">
       <div className="flex flex-col sm:flex-row sm:items-center">

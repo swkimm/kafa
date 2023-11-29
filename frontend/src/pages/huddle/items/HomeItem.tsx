@@ -139,98 +139,135 @@ const HomeItem = () => {
   ]
 
   return (
-    <div className="mx-auto grid max-w-screen-2xl gap-4 px-5 sm:grid-cols-1 md:grid-cols-3">
-      <div className="overflow-x-auto md:col-span-2">
-        {' '}
-        <div className="md:flex md:flex-row">
-          <div className="flex-grow overflow-x-auto p-3">
-            <GameTable title="대진표1" games={gamesData} />
+    <div className="mx-auto">
+      <div className="grid max-w-screen-2xl gap-4 px-5 sm:grid-cols-1 md:grid-cols-3">
+        <div className="overflow-x-auto md:col-span-2">
+          <div className="md:flex md:flex-row">
+            <div className="flex-grow overflow-x-auto p-3">
+              <GameTable title="대진표1" games={gamesData} />
+            </div>
+            <div className="flex-grow overflow-x-auto p-3">
+              <GameTable title="대진표2" games={gamesData} />
+            </div>
           </div>
-          <div className="flex-grow overflow-x-auto p-3">
-            <GameTable title="대진표2" games={gamesData} />
-          </div>
-        </div>
-        <div className="p-3 sm:w-full ">
-          <NoticeWideCard
-            id={1}
-            cardName="NEWS"
-            onClick={goToNews}
-            newsCardPropsArray={newsData}
-          />
-        </div>
-        <div className="p-3 sm:w-full">
-          <NoticeWideCard
-            id={2}
-            cardName="GALLERY"
-            onClick={goToGallery}
-            newsCardPropsArray={galleryData}
-          />
-        </div>
-      </div>
-      <div className="overflow-x-auto md:col-span-1">
-        <div className="w-full p-3">
-          <div className="mb-3 bg-blue-950 p-8">1</div>
-          <div className="mb-3 bg-blue-950 p-8">1</div>
-          <div className="mb-3 bg-blue-950 p-8">1</div>
-        </div>
-        <div className="p-3 sm:w-full">
-          <NoticeNarrow id={123} cardName="NOTICE" onClick={goToNotice}>
-            <NoticeList
+          <div className="p-3 sm:w-full ">
+            <NoticeWideCard
               id={1}
-              noticeName="공지사항 1"
-              writer="관리자"
-              period="2023/01/01 13:00"
-              onClick={() => goToNoticeById(1)}
+              cardName="NEWS"
+              onClick={goToNews}
+              newsCardPropsArray={newsData}
             />
-            <NoticeList
+          </div>
+          <div className="p-3 sm:w-full">
+            <NoticeWideCard
               id={2}
-              noticeName="공지사항 2"
-              writer="관리자"
-              period="2023/01/02 13:00"
-              onClick={() => goToNoticeById(2)}
+              cardName="GALLERY"
+              onClick={goToGallery}
+              newsCardPropsArray={galleryData}
             />
-            <NoticeList
-              id={3}
-              noticeName="공지사항 3"
-              writer="관리자"
-              period="2023/01/03 13:00"
-              onClick={() => goToNoticeById(3)}
-            />
-            {/* 추가 NoticeList 컴포넌트들을 넣을 수 있습니다. */}
-          </NoticeNarrow>{' '}
+          </div>
         </div>
-        <div className="p-3 sm:w-full">
-          <NoticeNarrow id={2} cardName="LEAGUES" onClick={goToLeague}>
-            {leagues.map((league) => (
-              <LeagueList
-                key={league.leagueId}
-                leagueId={league.leagueId}
-                leagueName={league.leagueName}
-                status={league.status}
-                conference={league.conference}
-                period={league.period}
-                onClick={goToLeague}
+        <div className="overflow-x-auto md:col-span-1">
+          <div className="w-full p-3">
+            <div className="mb-3 flex items-center justify-center bg-blue-950 p-5">
+              <img
+                src="/logo/KAFA_OG.png"
+                alt=""
+                className="w-16 justify-center"
               />
-            ))}
-          </NoticeNarrow>
-        </div>
-        <div className="p-3">
-          <NoticeNarrow id={123} cardName="PARTNERS" onClick={goToPartners}>
-            {Array.from({ length: 3 }, (_, index) => (
-              <div key={index} className="border-b p-3">
-                <div className="flex justify-between">
-                  {partnerLogos.map((logo, logoIndex) => (
-                    <img
-                      key={logoIndex}
-                      className={`h-12 ${logoIndex > 0 ? 'ml-5' : ''}`} // Add margin-left if it's not the first logo
-                      src={logo.src}
-                      alt={logo.alt}
-                    />
-                  ))}
+              <div className="ml-5 items-center text-white">
+                <div className="text-xl font-bold text-gray-500">
+                  대한미식축구협회
                 </div>
+                <div>제00회 타이거볼</div>
               </div>
-            ))}
-          </NoticeNarrow>
+            </div>
+            <div className="mb-3 flex items-center justify-center bg-blue-950 p-5">
+              <img
+                src="/logo/KAFA_OG.png"
+                alt=""
+                className="w-16 justify-center"
+              />
+              <div className="ml-5 items-center text-white">
+                <div className="text-xl font-bold text-gray-500">
+                  대한미식축구협회
+                </div>
+                <div>제00회 타이거볼</div>
+              </div>
+            </div>
+            <div className="mb-3 flex items-center justify-center bg-blue-950 p-5">
+              <img
+                src="/logo/KAFA_OG.png"
+                alt=""
+                className="w-16 justify-center"
+              />
+              <div className="ml-5 items-center text-white">
+                <div className="text-xl font-bold text-gray-500">
+                  대한미식축구협회
+                </div>
+                <div>제00회 타이거볼</div>
+              </div>
+            </div>
+          </div>
+          <div className="p-3 sm:w-full">
+            <NoticeNarrow id={123} cardName="NOTICE" onClick={goToNotice}>
+              <NoticeList
+                id={1}
+                noticeName="공지사항 1"
+                writer="관리자"
+                period="2023/01/01 13:00"
+                onClick={() => goToNoticeById(1)}
+              />
+              <NoticeList
+                id={2}
+                noticeName="공지사항 2"
+                writer="관리자"
+                period="2023/01/02 13:00"
+                onClick={() => goToNoticeById(2)}
+              />
+              <NoticeList
+                id={3}
+                noticeName="공지사항 3"
+                writer="관리자"
+                period="2023/01/03 13:00"
+                onClick={() => goToNoticeById(3)}
+              />
+              {/* 추가 NoticeList 컴포넌트들을 넣을 수 있습니다. */}
+            </NoticeNarrow>{' '}
+          </div>
+          <div className="p-3 sm:w-full">
+            <NoticeNarrow id={2} cardName="LEAGUES" onClick={goToLeague}>
+              {leagues.map((league) => (
+                <LeagueList
+                  key={league.leagueId}
+                  leagueId={league.leagueId}
+                  leagueName={league.leagueName}
+                  status={league.status}
+                  conference={league.conference}
+                  period={league.period}
+                  onClick={goToLeague}
+                />
+              ))}
+            </NoticeNarrow>
+          </div>
+          <div className="p-3">
+            <NoticeNarrow id={123} cardName="PARTNERS" onClick={goToPartners}>
+              {Array.from({ length: 3 }, (_, index) => (
+                <div key={index} className="border-b p-3">
+                  <div className="flex justify-between">
+                    {partnerLogos.map((logo, logoIndex) => (
+                      <img
+                        key={logoIndex}
+                        className={`h-12 ${logoIndex > 0 ? 'ml-5' : ''}`} // Add margin-left if it's not the first logo
+                        src={logo.src}
+                        alt={logo.alt}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </NoticeNarrow>
+          </div>
         </div>
       </div>
     </div>

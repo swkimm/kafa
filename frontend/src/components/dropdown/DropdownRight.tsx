@@ -1,4 +1,4 @@
-// DropdownSimple.tsx
+// DropdownLeft.tsx
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import type React from 'react'
@@ -19,7 +19,7 @@ const classNames = (...classes: unknown[]): string => {
   return classes.filter(Boolean).map(String).join(' ')
 }
 
-const DropdownSimple: React.FC<SimpleProps> = ({
+const DropdownLeft: React.FC<SimpleProps> = ({
   optionName = 'Options',
   optionList = [],
   onSelect = () => {}
@@ -51,7 +51,7 @@ const DropdownSimple: React.FC<SimpleProps> = ({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {optionList?.length > 0 ? (
               optionList.map((option) => (
@@ -79,4 +79,4 @@ const DropdownSimple: React.FC<SimpleProps> = ({
   )
 }
 
-export default DropdownSimple
+export default DropdownLeft

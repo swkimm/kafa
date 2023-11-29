@@ -1,5 +1,5 @@
 // PastMemberDetail.tsx
-import DropdownSimple from '@/components/dropdown/DropdownSimple'
+import DropdownSimple from '@/components/dropdown/DropdownLeft'
 import WithSubtitleTable from '@/components/tables/WithSubtitleTable'
 import MemberBanner from '@/pages/league/[id]/team/[id]/member/[id]/items/MemberBanner'
 

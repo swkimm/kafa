@@ -1,7 +1,7 @@
 // GameTable.tsx
 import type React from 'react'
 import { useState } from 'react'
-import DropdownSimple from '../dropdown/DropdownSimple'
+import DropdownSimple from '../dropdown/DropdownLeft'
 
 interface GameTableProps {
   title: string

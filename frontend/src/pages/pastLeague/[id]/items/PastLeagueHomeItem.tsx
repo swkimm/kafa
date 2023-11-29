@@ -1,4 +1,4 @@
-import DropdownSimple from '@/components/dropdown/DropdownSimple'
+import DropdownSimple from '@/components/dropdown/DropdownLeft'
 import DefaultTable from '@/components/tables/DefaultTable'
 import { useState } from 'react'
 
@@ -274,7 +274,7 @@ const PastLeagueHomeItem = () => {
       </div>
       <div className="order-1 col-span-1 mb-5 ml-5 sm:order-2 sm:ml-10">
         <DropdownSimple
-          optionName="Week"
+          optionName={options[0].name}
           optionList={options}
           onSelect={handleSelect}
         />{' '}

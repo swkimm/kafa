@@ -1,6 +1,6 @@
 // PastLeagueList.tsx
 import Button from '@/components/buttons/Button'
-import DropdownSimple from '@/components/dropdown/DropdownSimple'
+import DropdownRight from '@/components/dropdown/DropdownRight'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -133,7 +133,7 @@ const PastLeague = () => {
       <div className="flex justify-between bg-indigo-800 p-6">
         <div className="text-xl font-bold text-white">PAST LEAGUES</div>
         <div className="text-white">
-          <DropdownSimple
+          <DropdownRight
             optionName={options[0].name}
             optionList={options}
             onSelect={handleSelect}

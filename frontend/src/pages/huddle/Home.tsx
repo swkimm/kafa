@@ -3,6 +3,9 @@ import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
 import HomeItem from './items/HomeItem'
+import MediaItem from './items/MediaItem'
+import NoticeItem from './items/NoticeItem'
+import PhotoItem from './items/PhotoItem'
 import ScheduleItem from './items/ScheduleItem'
 
 const Home = () => {
@@ -34,6 +37,12 @@ const Home = () => {
       return <HomeItem />
     } else if (currentComponent === 'SCHEDULE') {
       return <ScheduleItem />
+    } else if (currentComponent === 'NOTICE') {
+      return <NoticeItem />
+    } else if (currentComponent === 'MEDIA') {
+      return <MediaItem />
+    } else if (currentComponent === 'PHOTO') {
+      return <PhotoItem />
     }
   }
 
@@ -83,24 +92,39 @@ const Home = () => {
                     >
                       SCHEDULE
                     </Disclosure.Button>
-                    <a
-                      href="#"
-                      className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-white hover:text-gray-700"
+                    <Disclosure.Button
+                      as="button"
+                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
+                        currentComponent === 'NOTICE'
+                          ? 'border-b-2 border-white text-white'
+                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-gray-700'
+                      }`}
+                      onClick={() => setCurrentComponent('NOTICE')}
                     >
                       NOTICE
-                    </a>
-                    <a
-                      href="#"
-                      className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-white hover:text-gray-700"
+                    </Disclosure.Button>
+                    <Disclosure.Button
+                      as="button"
+                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
+                        currentComponent === 'MEDIA'
+                          ? 'border-b-2 border-white text-white'
+                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-gray-700'
+                      }`}
+                      onClick={() => setCurrentComponent('MEDIA')}
                     >
                       MEDIA
-                    </a>
-                    <a
-                      href="#"
-                      className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-white hover:text-gray-700"
+                    </Disclosure.Button>
+                    <Disclosure.Button
+                      as="button"
+                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
+                        currentComponent === 'PHOTO'
+                          ? 'border-b-2 border-white text-white'
+                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-gray-700'
+                      }`}
+                      onClick={() => setCurrentComponent('PHOTO')}
                     >
                       PHOTO
-                    </a>
+                    </Disclosure.Button>
                   </div>
                 </div>
                 <div className="-mr-2 flex items-center sm:hidden">
@@ -121,36 +145,36 @@ const Home = () => {
               <div className="space-y-1 pb-3 pt-2">
                 {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
                 <Disclosure.Button
-                  as="a"
-                  href="#"
+                  as="button"
+                  onClick={() => setCurrentComponent('NOTICE')}
                   className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700"
                 >
                   HOME
                 </Disclosure.Button>
                 <Disclosure.Button
-                  as="a"
-                  href="#"
+                  as="button"
+                  onClick={() => setCurrentComponent('SCHEDULE')}
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
                   SCHEDULE
                 </Disclosure.Button>
                 <Disclosure.Button
-                  as="a"
-                  href="#"
+                  as="button"
+                  onClick={() => setCurrentComponent('NOTICE')}
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
                   NOTICE
                 </Disclosure.Button>
                 <Disclosure.Button
-                  as="a"
-                  href="#"
+                  as="button"
+                  onClick={() => setCurrentComponent('MEDIA')}
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
                   MEDIA
                 </Disclosure.Button>
                 <Disclosure.Button
-                  as="a"
-                  href="#"
+                  as="button"
+                  onClick={() => setCurrentComponent('PHOTO')}
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
                   PHOTO
