@@ -87,6 +87,8 @@ resource "aws_ecs_task_definition" "api" {
     aws_cdn_origin_bucket_name = var.aws_cdn_origin_bucket_name,
     cdn_server_domain          = var.cdn_server_domain,
     aws_cdn_bucket_region      = var.aws_cdn_bucket_region
+    nodemailer_from            = var.nodemailer_from
+    nodemailer_user_name       = var.nodemailer_user_name
   })
 
   execution_role_arn = aws_iam_role.ecs_task_execution_role.arn

@@ -62,3 +62,27 @@ resource "aws_iam_role_policy_attachment" "s3_full_access_role" {
   role       = aws_iam_role.ecs_task_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 }
+
+resource "aws_iam_policy" "ses_access_policy" {
+  name        = "kafa_staging_ses_access_policy"
+  description = "Policy for ECS Tasks to access SES"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Action = [
+          "ses:SendEmail",
+          "ses:SendRawEmail"
+        ],
+        Effect   = "Allow",
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "ses_access_role" {
+  role       = aws_iam_role.ecs_task_role.name
+  policy_arn = aws_iam_policy.ses_access_policy.arn
+}

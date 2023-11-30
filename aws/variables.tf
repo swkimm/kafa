@@ -8,3 +8,5 @@ variable "aws_cdn_bucket_name" {}
 variable "aws_cdn_origin_bucket_name" {}
 variable "cdn_server_domain" {}
 variable "aws_cdn_bucket_region" {}
+variable "nodemailer_from" {}
+variable "nodemailer_user_name" {}

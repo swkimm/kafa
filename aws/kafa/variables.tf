@@ -64,3 +64,12 @@ variable "aws_cdn_bucket_region" {
   type    = string
   default = "abcd"
 }
+
+variable "nodemailer_from" {
+  type    = string
+  default = "abcd"
+}
+variable "nodemailer_user_name" {
+  type    = string
+  default = "abcd"
+}

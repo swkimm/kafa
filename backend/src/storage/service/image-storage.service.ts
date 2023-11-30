@@ -14,7 +14,10 @@ export class ImageStorageServiceImpl implements ImageStorageService {
   private readonly s3: S3Client
 
   constructor(private readonly configService: ConfigService) {
-    if (this.configService.get('NODE_ENV') === 'production') {
+    if (
+      this.configService.get('NODE_ENV') === 'production' ||
+      this.configService.get('NODE_ENV') === 'staging'
+    ) {
       this.s3 = new S3Client()
     } else {
       this.s3 = new S3Client({
