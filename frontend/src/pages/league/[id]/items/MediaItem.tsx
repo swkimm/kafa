@@ -1,7 +1,95 @@
+import MultipleLineCard from '@/components/cards/MultipleLineCard'
 import type { NewsCardProps } from '@/components/cards/NewsCard'
 import NoticeWideCard from '@/components/cards/NoticeWideCard'
 
 const galleryData: NewsCardProps[] = [
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 1',
+    description: 'Gallery Description 1',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 2',
+    description: 'Gallery Description 2',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 1',
+    description: 'Gallery Description 1',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 2',
+    description: 'Gallery Description 2',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 1',
+    description: 'Gallery Description 1',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 2',
+    description: 'Gallery Description 2',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 1',
+    description: 'Gallery Description 1',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 2',
+    description: 'Gallery Description 2',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 1',
+    description: 'Gallery Description 1',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 2',
+    description: 'Gallery Description 2',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 1',
+    description: 'Gallery Description 1',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 2',
+    description: 'Gallery Description 2',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 1',
+    description: 'Gallery Description 1',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 2',
+    description: 'Gallery Description 2',
+    variant: 'wide'
+  }
+]
+
+const newsData: NewsCardProps[] = [
   {
     imageSrc: '/logo/KAFA_OG.png',
     title: 'Gallery Title 1',
@@ -27,6 +115,11 @@ const MediaItem = () => {
   const goToGallery = (id: number) => {
     console.log(id)
   }
+
+  const goToNews = (id: number) => {
+    console.log(id)
+  }
+
   return (
     <div>
       <div className="bg-gray-700 text-white">
@@ -114,12 +207,12 @@ const MediaItem = () => {
           <NoticeWideCard
             id={2}
             cardName="NEWS"
-            onClick={goToGallery}
-            newsCardPropsArray={galleryData}
+            onClick={goToNews}
+            newsCardPropsArray={newsData}
           />
         </div>
         <div className="mx-5 my-5">
-          <NoticeWideCard
+          <MultipleLineCard
             id={2}
             cardName="GALLERY"
             onClick={goToGallery}

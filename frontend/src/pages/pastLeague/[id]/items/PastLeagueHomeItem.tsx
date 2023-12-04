@@ -38,48 +38,48 @@ const result: GamesData = {
   Week1: [
     {
       id: 1,
-      homeTeam: 'ROYALS',
+      homeTeam: 'TBD',
       homeTeamLogo: '/logo/KAFA_OG.png',
-      homeScore: 20,
-      awayTeam: 'EAGLES',
+      homeScore: 0,
+      awayTeam: 'TBD',
       awayTeamLogo: '/logo/KAFA_OG.png',
-      awayScore: 7,
-      date: '09/02 AM 10:00',
+      awayScore: 0,
+      date: '00/00 PM 12:00',
       location: '홈 스타디움'
     },
     {
       id: 2,
-      homeTeam: 'GREEN TERRORS',
+      homeTeam: 'TBD',
       homeTeamLogo: '/logo/KAFA_OG.png',
-      homeScore: 42,
-      awayTeam: 'LIONS',
+      homeScore: 0,
+      awayTeam: 'TBD',
       awayTeamLogo: '/logo/KAFA_OG.png',
-      awayScore: 20,
-      date: '09/02 PM 1:00',
+      awayScore: 0,
+      date: '00/00 PM 12:00',
       location: '홈 스타디움'
     }
   ],
   Week2: [
     {
       id: 3,
-      homeTeam: 'ROYALS',
+      homeTeam: 'TBD',
       homeTeamLogo: '/logo/KAFA_OG.png',
       homeScore: 20,
-      awayTeam: 'EAGLES',
+      awayTeam: 'TBD',
       awayTeamLogo: '/logo/KAFA_OG.png',
       awayScore: 7,
-      date: '09/02 AM 10:00',
+      date: '00/00 PM 12:00',
       location: '홈 스타디움'
     },
     {
       id: 4,
-      homeTeam: 'GREEN TERRORS',
+      homeTeam: 'TBD',
       homeTeamLogo: '/logo/KAFA_OG.png',
-      homeScore: 42,
-      awayTeam: 'LIONS',
+      homeScore: 20,
+      awayTeam: 'TBD',
       awayTeamLogo: '/logo/KAFA_OG.png',
-      awayScore: 20,
-      date: '09/02 PM 1:00',
+      awayScore: 7,
+      date: '00/00 PM 12:00',
       location: '홈 스타디움'
     }
   ]
@@ -91,8 +91,8 @@ const finalStanding: Standing[] = [
     rank: 1,
     teamId: 1,
     teamLogo: '/logo/KAFA_OG.png',
-    teamName: '골든이글스',
-    win: 5,
+    teamName: 'TBD',
+    win: 0,
     lose: 0,
     draw: 0
   },
@@ -101,9 +101,9 @@ const finalStanding: Standing[] = [
     rank: 2,
     teamId: 2,
     teamLogo: '/logo/KAFA_OG.png',
-    teamName: '골든이글스',
-    win: 4,
-    lose: 1,
+    teamName: 'TBD',
+    win: 0,
+    lose: 0,
     draw: 0
   },
   {
@@ -111,9 +111,9 @@ const finalStanding: Standing[] = [
     rank: 3,
     teamId: 3,
     teamLogo: '/logo/KAFA_OG.png',
-    teamName: '골든이글스',
-    win: 3,
-    lose: 2,
+    teamName: 'TBD',
+    win: 0,
+    lose: 0,
     draw: 0
   },
   {
@@ -121,9 +121,9 @@ const finalStanding: Standing[] = [
     rank: 4,
     teamId: 4,
     teamLogo: '/logo/KAFA_OG.png',
-    teamName: '골든이글스',
-    win: 2,
-    lose: 3,
+    teamName: 'TBD',
+    win: 0,
+    lose: 0,
     draw: 0
   },
   {
@@ -131,9 +131,9 @@ const finalStanding: Standing[] = [
     rank: 5,
     teamId: 5,
     teamLogo: '/logo/KAFA_OG.png',
-    teamName: '골든이글스',
-    win: 1,
-    lose: 4,
+    teamName: 'TBD',
+    win: 0,
+    lose: 0,
     draw: 0
   },
   {
@@ -141,9 +141,9 @@ const finalStanding: Standing[] = [
     rank: 6,
     teamId: 6,
     teamLogo: '/logo/KAFA_OG.png',
-    teamName: '골든이글스',
+    teamName: 'TBD',
     win: 0,
-    lose: 5,
+    lose: 0,
     draw: 0
   }
 ]

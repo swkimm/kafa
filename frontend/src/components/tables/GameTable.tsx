@@ -1,7 +1,7 @@
 // GameTable.tsx
 import type React from 'react'
 import { useState } from 'react'
-import DropdownSimple from '../dropdown/DropdownLeft'
+import DropdownRight from '../dropdown/DropdownRight'
 
 interface GameTableProps {
   title: string
@@ -34,7 +34,7 @@ const GameTable: React.FC<GameTableProps> = ({ title, games }) => {
         <div className="border-b border-l-8 border-l-black p-5 sm:flex-auto">
           <div className="flex items-center justify-between border-black text-base font-semibold leading-6 text-gray-900">
             <div className="">{title}</div>
-            <DropdownSimple
+            <DropdownRight
               optionName={selectedLeague}
               optionList={[
                 { id: 1, name: '대학연맹' },

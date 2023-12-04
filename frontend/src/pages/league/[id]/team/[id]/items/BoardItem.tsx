@@ -56,7 +56,7 @@ const BoardItem = () => {
   return (
     <div className="container mx-auto my-5 max-w-screen-2xl">
       <div className="mx-5">
-        <WithSubtitleTable title={'게임별 기록'} subtitle="123" data={people} />
+        <WithSubtitleTable title={'게임별 기록'} subtitle="TBD" data={people} />
       </div>
     </div>
   )

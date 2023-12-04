@@ -1,6 +1,6 @@
-// MultipleLineCard.storeis.ts
+// MultipleLineNarrowCard.storeis.ts
 import type { Meta, StoryObj } from '@storybook/react'
-import MultipleLineCard from './MultipleLineCard'
+import MultipleLineNarrowCard from './MultipleLineNarrowCard'
 
 export interface NewsCardProps {
   imageSrc: string
@@ -10,9 +10,9 @@ export interface NewsCardProps {
   onClick?: () => void
 }
 
-const meta: Meta<typeof MultipleLineCard> = {
-  title: 'Components/MultipleLineCard',
-  component: MultipleLineCard,
+const meta: Meta<typeof MultipleLineNarrowCard> = {
+  title: 'Components/MultipleLineNarrowCard',
+  component: MultipleLineNarrowCard,
   parameters: {},
   argTypes: {
     id: { control: 'number' },
@@ -23,7 +23,7 @@ const meta: Meta<typeof MultipleLineCard> = {
 }
 
 export default meta
-type Story = StoryObj<typeof MultipleLineCard>
+type Story = StoryObj<typeof MultipleLineNarrowCard>
 
 const exampleNewsCardProps: NewsCardProps[] = [
   {
@@ -44,33 +44,27 @@ const exampleNewsCardProps: NewsCardProps[] = [
     imageSrc: 'path/to/image3.jpg',
     title: 'News Title 3',
     description: 'Description of the third news item.'
-    // variant 및 onClick는 선택적이므로 여기서는 생략했습니다.
   },
   {
     imageSrc: 'path/to/image3.jpg',
     title: 'News Title 3',
     description: 'Description of the third news item.'
-    // variant 및 onClick는 선택적이므로 여기서는 생략했습니다.
   },
   {
     imageSrc: 'path/to/image3.jpg',
     title: 'News Title 3',
     description: 'Description of the third news item.'
-    // variant 및 onClick는 선택적이므로 여기서는 생략했습니다.
   },
   {
     imageSrc: 'path/to/image3.jpg',
     title: 'News Title 3',
     description: 'Description of the third news item.'
-    // variant 및 onClick는 선택적이므로 여기서는 생략했습니다.
   },
   {
     imageSrc: 'path/to/image3.jpg',
     title: 'News Title 3',
     description: 'Description of the third news item.'
-    // variant 및 onClick는 선택적이므로 여기서는 생략했습니다.
   }
-  // 필요에 따라 더 많은 뉴스 카드 데이터를 추가할 수 있습니다.
 ]
 
 export const Default: Story = {

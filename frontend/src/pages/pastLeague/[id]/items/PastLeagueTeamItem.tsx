@@ -6,42 +6,42 @@ const teamList = [
   {
     id: 1,
     teamLogo: '/logo/KAFA_OG.png',
-    teamName: '골든이글스',
-    nickName: 'GOLDEN EAGLES',
+    teamName: 'TBD',
+    nickName: 'To Be Determined',
     teamColor: '#888888',
-    createdAt: '1998'
+    createdAt: '2000'
   },
   {
     id: 2,
     teamLogo: '/logo/KAFA_OG.png',
-    teamName: '골든이글스',
-    nickName: 'GOLDEN EAGLES',
-    teamColor: '#777777',
-    createdAt: '1998'
+    teamName: 'TBD',
+    nickName: 'To Be Determined',
+    teamColor: '#888888',
+    createdAt: '2000'
   },
   {
     id: 3,
     teamLogo: '/logo/KAFA_OG.png',
-    teamName: '골든이글스',
-    nickName: 'GOLDEN EAGLES',
-    teamColor: '#ffffff',
-    createdAt: '1998'
+    teamName: 'TBD',
+    nickName: 'To Be Determined',
+    teamColor: '#888888',
+    createdAt: '2000'
   },
   {
     id: 4,
     teamLogo: '/logo/KAFA_OG.png',
-    teamName: '골든이글스',
-    nickName: 'GOLDEN EAGLES',
-    teamColor: '#444444',
-    createdAt: '1998'
+    teamName: 'TBD',
+    nickName: 'To Be Determined',
+    teamColor: '#888888',
+    createdAt: '2000'
   },
   {
     id: 5,
     teamLogo: '/logo/KAFA_OG.png',
-    teamName: '골든이글스',
-    nickName: 'GOLDEN EAGLES',
-    teamColor: '#000000',
-    createdAt: '1998'
+    teamName: 'TBD',
+    nickName: 'To Be Determined',
+    teamColor: '#888888',
+    createdAt: '2000'
   }
 ]
 

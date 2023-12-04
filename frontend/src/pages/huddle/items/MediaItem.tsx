@@ -1,7 +1,43 @@
+import MultipleLineCard from '@/components/cards/MultipleLineCard'
 import type { NewsCardProps } from '@/components/cards/NewsCard'
-import NoticeWideCard from '@/components/cards/NoticeWideCard'
 
 const galleryData: NewsCardProps[] = [
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 1',
+    description: 'Gallery Description 1',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 2',
+    description: 'Gallery Description 2',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 1',
+    description: 'Gallery Description 1',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 2',
+    description: 'Gallery Description 2',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 1',
+    description: 'Gallery Description 1',
+    variant: 'wide'
+  },
+  {
+    imageSrc: '/logo/KAFA_OG.png',
+    title: 'Gallery Title 2',
+    description: 'Gallery Description 2',
+    variant: 'wide'
+  },
   {
     imageSrc: '/logo/KAFA_OG.png',
     title: 'Gallery Title 1',
@@ -111,7 +147,7 @@ const MediaItem = () => {
       </div>
       <div className="container mx-auto">
         <div className="mx-5 my-5">
-          <NoticeWideCard
+          <MultipleLineCard
             id={2}
             cardName="NEWS"
             onClick={goToGallery}
@@ -119,7 +155,7 @@ const MediaItem = () => {
           />
         </div>
         <div className="mx-5 my-5">
-          <NoticeWideCard
+          <MultipleLineCard
             id={2}
             cardName="GALLERY"
             onClick={goToGallery}

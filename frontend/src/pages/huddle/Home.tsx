@@ -75,7 +75,7 @@ const Home = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'HOME'
                           ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent hover:border-white hover:text-black'
                       }`}
                       onClick={() => setCurrentComponent('HOME')}
                     >
@@ -86,7 +86,7 @@ const Home = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
                         currentComponent === 'SCHEDULE'
                           ? 'border-b-2 border-white text-white'
-                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-black'
                       }`}
                       onClick={() => setCurrentComponent('SCHEDULE')}
                     >
@@ -97,7 +97,7 @@ const Home = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
                         currentComponent === 'NOTICE'
                           ? 'border-b-2 border-white text-white'
-                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-black'
                       }`}
                       onClick={() => setCurrentComponent('NOTICE')}
                     >
@@ -108,7 +108,7 @@ const Home = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
                         currentComponent === 'MEDIA'
                           ? 'border-b-2 border-white text-white'
-                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-black'
                       }`}
                       onClick={() => setCurrentComponent('MEDIA')}
                     >
@@ -119,7 +119,7 @@ const Home = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
                         currentComponent === 'PHOTO'
                           ? 'border-b-2 border-white text-white'
-                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-black'
                       }`}
                       onClick={() => setCurrentComponent('PHOTO')}
                     >

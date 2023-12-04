@@ -5,7 +5,7 @@ import MemberBanner from '@/pages/league/[id]/team/[id]/member/[id]/items/Member
 
 const member = {
   teamLogo: '/logo/KAFA_OG.png',
-  teamName: 'SEOUL GOLDEN EAGLES',
+  teamName: 'TBD',
   name: '홍길동',
   profile: '/logo/KAFA_OG.png',
   age: 30,

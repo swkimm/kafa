@@ -1,6 +1,6 @@
 // PastTeamPhotoItem.tsx
+import MultipleLineNarrowCard from '@/components/cards/MultipleLineNarrowCard'
 import type { NewsCardProps } from '@/components/cards/NewsCard'
-import NoticeWideCard from '@/components/cards/NoticeWideCard'
 
 const galleryData: NewsCardProps[] = [
   {
@@ -48,7 +48,7 @@ const PastTeamPhotoItem = () => {
   return (
     <div className="container mx-auto my-5">
       <div className="mx-5 my-5">
-        <NoticeWideCard
+        <MultipleLineNarrowCard
           id={2}
           cardName="GALLERY"
           onClick={goToGallery}

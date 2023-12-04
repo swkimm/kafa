@@ -36,7 +36,7 @@ const NoticeNarrow: React.FC<NoticeNarrowProps> = ({
           </div>
         </div>
       </div>
-      <div className="mb-3">
+      <div className="mb-3 overflow-auto">
         {children} {/* children을 렌더링합니다. */}
       </div>
     </div>

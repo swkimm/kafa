@@ -11,12 +11,12 @@ import TeamHomeItem from './items/TeamHomeItem'
 
 const team = {
   teamId: 1,
-  teamName: '서울골든이글스',
+  teamName: 'TBD',
   teamLogo: '/logo/KAFA_OG.png',
-  nickName: 'GOLDEN EAGLES',
+  nickName: 'To be determined',
   teamColor: '#000000',
-  createdAt: '1998',
-  conference: '사회인연맹'
+  createdAt: '2000',
+  conference: 'OO연맹'
 }
 
 const TeamDetail = () => {

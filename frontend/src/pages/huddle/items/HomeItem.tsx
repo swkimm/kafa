@@ -38,13 +38,13 @@ const HomeItem = () => {
       date: '2023-11-03',
       homeTeam: {
         id: 1,
-        logo: 'HomeTeamLogo',
+        logo: 'HomeLogo',
         name: 'Home Team',
         score: 12
       },
       awayTeam: {
         id: 2,
-        logo: 'AwayTeamLogo',
+        logo: 'AwayLogo',
         name: 'Away Team',
         score: 8
       }
@@ -258,7 +258,7 @@ const HomeItem = () => {
                     {partnerLogos.map((logo, logoIndex) => (
                       <img
                         key={logoIndex}
-                        className={`h-12 ${logoIndex > 0 ? 'ml-5' : ''}`} // Add margin-left if it's not the first logo
+                        className={`h-10 ${logoIndex > 0 ? 'ml-5' : ''}`} // Add margin-left if it's not the first logo
                         src={logo.src}
                         alt={logo.alt}
                       />

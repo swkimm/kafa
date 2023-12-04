@@ -1,4 +1,4 @@
-// DropdownLeft.tsx
+// DropdownRight.tsx
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import type React from 'react'
@@ -19,7 +19,7 @@ const classNames = (...classes: unknown[]): string => {
   return classes.filter(Boolean).map(String).join(' ')
 }
 
-const DropdownLeft: React.FC<SimpleProps> = ({
+const DropdownRight: React.FC<SimpleProps> = ({
   optionName = 'Options',
   optionList = [],
   onSelect = () => {}
@@ -79,4 +79,4 @@ const DropdownLeft: React.FC<SimpleProps> = ({
   )
 }
 
-export default DropdownLeft
+export default DropdownRight

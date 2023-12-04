@@ -1,5 +1,5 @@
+import MultipleLineNarrowCard from '@/components/cards/MultipleLineNarrowCard'
 import type { NewsCardProps } from '@/components/cards/NewsCard'
-import NoticeWideCard from '@/components/cards/NoticeWideCard'
 import DropdownTransparent from '@/components/dropdown/DropdownTransparent'
 import { useState } from 'react'
 
@@ -8,37 +8,37 @@ const galleryData: NewsCardProps[] = [
     imageSrc: '/logo/KAFA_OG.png',
     title: 'Gallery Title 1',
     description: 'Gallery Description 1',
-    variant: 'wide'
+    variant: 'narrow'
   },
   {
     imageSrc: '/logo/KAFA_OG.png',
     title: 'Gallery Title 2',
     description: 'Gallery Description 2',
-    variant: 'wide'
+    variant: 'narrow'
   },
   {
     imageSrc: '/logo/KAFA_OG.png',
     title: 'Gallery Title 2',
     description: 'Gallery Description 2',
-    variant: 'wide'
+    variant: 'narrow'
   },
   {
     imageSrc: '/logo/KAFA_OG.png',
     title: 'Gallery Title 2',
     description: 'Gallery Description 2',
-    variant: 'wide'
+    variant: 'narrow'
   },
   {
     imageSrc: '/logo/KAFA_OG.png',
     title: 'Gallery Title 2',
     description: 'Gallery Description 2',
-    variant: 'wide'
+    variant: 'narrow'
   },
   {
     imageSrc: '/logo/KAFA_OG.png',
     title: 'Gallery Title 2',
     description: 'Gallery Description 2',
-    variant: 'wide'
+    variant: 'narrow'
   }
 ]
 
@@ -94,7 +94,7 @@ const PhotoItem = () => {
         </div>
       </div>
       <div className="container mx-auto my-5">
-        <NoticeWideCard
+        <MultipleLineNarrowCard
           id={2}
           cardName={tableTitle}
           onClick={goToGallery}

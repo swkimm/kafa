@@ -29,48 +29,48 @@ const gamesData: GamesData = {
   Week1: [
     {
       id: 1,
-      homeTeam: 'ROYALS',
+      homeTeam: 'TBD',
       homeTeamLogo: '/logo/KAFA_OG.png',
-      homeScore: 20,
-      awayTeam: 'EAGLES',
+      homeScore: 0,
+      awayTeam: 'TBD',
       awayTeamLogo: '/logo/KAFA_OG.png',
-      awayScore: 7,
-      date: '09/02 AM 10:00',
+      awayScore: 0,
+      date: '00/00 PM 12:00',
       location: '홈 스타디움'
     },
     {
       id: 2,
-      homeTeam: 'GREEN TERRORS',
+      homeTeam: 'TBD',
       homeTeamLogo: '/logo/KAFA_OG.png',
-      homeScore: 42,
-      awayTeam: 'LIONS',
+      homeScore: 0,
+      awayTeam: 'TBD',
       awayTeamLogo: '/logo/KAFA_OG.png',
-      awayScore: 20,
-      date: '09/02 PM 1:00',
+      awayScore: 0,
+      date: '00/00 PM 12:00',
       location: '홈 스타디움'
     }
   ],
   Week2: [
     {
       id: 3,
-      homeTeam: 'ROYALS',
+      homeTeam: 'TBD',
       homeTeamLogo: '/logo/KAFA_OG.png',
-      homeScore: 20,
-      awayTeam: 'EAGLES',
+      homeScore: 0,
+      awayTeam: 'TBD',
       awayTeamLogo: '/logo/KAFA_OG.png',
-      awayScore: 7,
-      date: '09/02 AM 10:00',
+      awayScore: 0,
+      date: '00/00 PM 12:00',
       location: '홈 스타디움'
     },
     {
       id: 4,
-      homeTeam: 'GREEN TERRORS',
+      homeTeam: 'TBD',
       homeTeamLogo: '/logo/KAFA_OG.png',
-      homeScore: 42,
-      awayTeam: 'LIONS',
+      homeScore: 0,
+      awayTeam: 'TBD',
       awayTeamLogo: '/logo/KAFA_OG.png',
-      awayScore: 20,
-      date: '09/02 PM 1:00',
+      awayScore: 0,
+      date: '00/00 PM 12:00',
       location: '홈 스타디움'
     }
   ]

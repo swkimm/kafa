@@ -33,7 +33,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
       >
         {imageSrc ? (
           <img
-            className="h-full w-full object-cover"
+            className="m-7 h-full w-full object-contain"
             src={imageSrc}
             alt="News Image"
           />
@@ -42,8 +42,10 @@ const NewsCard: React.FC<NewsCardProps> = ({
         )}
       </div>
       <div className={`p-4 ${isWide ? 'p-8' : ''}`}>
-        <h2 className="w-full break-words text-xl font-semibold">{title}</h2>
-        <p className="w-full break-words">{description}</p>
+        <h2 className="w-full truncate break-words text-xl font-semibold">
+          {title}
+        </h2>
+        <p className="w-full truncate break-words">{description}</p>
       </div>
     </div>
   )

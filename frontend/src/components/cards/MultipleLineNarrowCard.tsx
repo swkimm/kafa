@@ -1,16 +1,16 @@
-// MultipleLineCard.tsx
+// MultipleLineNarrowCard.tsx
 import type React from 'react'
 import { useEffect, useState } from 'react'
 import NewsCard, { type NewsCardProps } from './NewsCard'
 
-interface MultipleLineCardProps {
+interface MultipleLineNarrowCardProps {
   id: number
   cardName: string
   onClick?: (id: number) => void
   newsCardPropsArray: NewsCardProps[]
 }
 
-const MultipleLineCard: React.FC<MultipleLineCardProps> = ({
+const MultipleLineNarrowCard: React.FC<MultipleLineNarrowCardProps> = ({
   id,
   cardName,
   onClick,
@@ -62,10 +62,7 @@ const MultipleLineCard: React.FC<MultipleLineCardProps> = ({
           </div>
         </div>
       </div>
-      <div
-        className="grid grid-cols-1 gap-4 overflow-y-auto p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-        style={{ maxHeight: '500px' }}
-      >
+      <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {visibleCards.map((newsCardProps, index) => (
           <div key={index} className="flex-shrink-0">
             <NewsCard {...newsCardProps} />
@@ -76,4 +73,4 @@ const MultipleLineCard: React.FC<MultipleLineCardProps> = ({
   )
 }
 
-export default MultipleLineCard
+export default MultipleLineNarrowCard
