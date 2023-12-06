@@ -1,8 +1,10 @@
 import { Test, type TestingModule } from '@nestjs/testing'
 import {
   EntityNotExistException,
+  ParameterValidationException,
   UnexpectedException
 } from '@/common/exception/business.exception'
+import { calculateOffset } from '@/common/pagination/calculate-offset'
 import { PrismaService } from '@/prisma/prisma.service'
 import { Prisma, type Association } from '@prisma/client'
 import { expect } from 'chai'
@@ -14,7 +16,8 @@ import { GetAssociationServiceImpl } from '../service/get-association.service'
 describe('GetAssociationService', () => {
   const db = {
     association: {
-      findUniqueOrThrow: sinon.stub()
+      findUniqueOrThrow: sinon.stub(),
+      findMany: sinon.stub()
     }
   }
 
@@ -28,7 +31,7 @@ describe('GetAssociationService', () => {
       profileImgUrl: null
     },
     {
-      id: 1,
+      id: 2,
       name: 'association02',
       globalName: 'association02',
       initial: 'ATWO',
@@ -109,6 +112,54 @@ describe('GetAssociationService', () => {
 
       // then
       await expect(service.getAssociation(associationId)).to.be.rejectedWith(
+        UnexpectedException
+      )
+    })
+  })
+
+  describe('getAssociations', () => {
+    it('should return associations', async () => {
+      // given
+      const page = 1
+      const limit = 10
+      db.association.findMany.resolves(associations)
+
+      // when
+      const result = await service.getAssociations(page, limit)
+
+      // then
+      expect(result).to.be.deep.equal(associations)
+      expect(
+        db.association.findMany.calledOnceWith({
+          take: limit,
+          skip: calculateOffset(page, limit),
+          orderBy: {
+            name: 'asc'
+          }
+        })
+      ).to.be.true
+    })
+
+    it('should pass BusinessException when instance of BusinessException occurs', async () => {
+      // given
+      const page = -1
+      const limit = 10
+      db.association.findMany.resolves
+
+      // then
+      await expect(service.getAssociations(page, limit)).to.be.rejectedWith(
+        ParameterValidationException
+      )
+    })
+
+    it('should throw Unexpected Exception when unexpected error occurs', async () => {
+      // given
+      const page = 1
+      const limit = 10
+      db.association.findMany.rejects(new Error('test'))
+
+      // then
+      await expect(service.getAssociations(page, limit)).to.be.rejectedWith(
         UnexpectedException
       )
     })

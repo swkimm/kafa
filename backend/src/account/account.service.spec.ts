@@ -51,7 +51,6 @@ describe('AccountService', () => {
     createdAt: new Date('2023-01-01'),
     lastLogin: new Date('2023-01-01'),
     password: VALID_PASSWORD,
-    birthday: new Date('2023-01-01'),
     role: Role.User,
     username: 'user01',
     email: 'example@example.com',
@@ -68,7 +67,6 @@ describe('AccountService', () => {
     createdAt: new Date('2023-01-01'),
     lastLogin: new Date('2023-01-01'),
     password: VALID_PASSWORD,
-    birthday: new Date('2023-01-01'),
     role: Role.User,
     username: 'user02',
     email: 'example2@example.com',
@@ -182,7 +180,6 @@ describe('AccountService', () => {
 
       const accountDTO: RegisterAccountDTO = {
         username: account.username,
-        birthday: account.birthday,
         email: account.email,
         name: account.name,
         password: account.password
@@ -195,7 +192,6 @@ describe('AccountService', () => {
       expect(result).to.be.deep.equal({
         id: account.id,
         name: account.name,
-        birthday: account.birthday,
         email: account.email,
         profileImgUrl: account.profileImgUrl,
         role: Role.User
@@ -216,7 +212,6 @@ describe('AccountService', () => {
       db.account.findUnique.resolves(account)
       const accountDTO: RegisterAccountDTO = {
         username: account.username,
-        birthday: account.birthday,
         email: account.email,
         name: account.name,
         password: account.password
@@ -235,7 +230,6 @@ describe('AccountService', () => {
 
       const accountDTO: RegisterAccountDTO = {
         username: account.username,
-        birthday: account.birthday,
         email: account.email,
         name: account.name,
         password: account.password
@@ -428,7 +422,6 @@ describe('AccountService', () => {
       expect(result).to.be.deep.equal({
         id: account.id,
         name: account.name,
-        birthday: account.birthday,
         email: account.email,
         profileImgUrl: account.profileImgUrl,
         role: account.role
@@ -467,7 +460,6 @@ describe('AccountService', () => {
       expect(result).to.be.deep.equal({
         id: account.id,
         name: account.name,
-        birthday: account.birthday,
         email: account.email,
         profileImgUrl: account.profileImgUrl,
         role: account.role
@@ -506,7 +498,6 @@ describe('AccountService', () => {
       expect(result).to.be.deep.equal({
         id: account.id,
         name: account.name,
-        birthday: account.birthday,
         email: account.email,
         profileImgUrl: account.profileImgUrl,
         role: account.role

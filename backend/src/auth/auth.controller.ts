@@ -5,7 +5,6 @@ import {
   Get,
   Inject,
   InternalServerErrorException,
-  Logger,
   Post,
   Req,
   Res
@@ -24,8 +23,6 @@ import type { JwtTokens } from './interface/jwt.interface'
 
 @Controller('auth')
 export class AuthController {
-  private readonly logger = new Logger(AuthController.name)
-
   constructor(
     @Inject('AuthService') private readonly authService: AuthService
   ) {}
@@ -52,7 +49,6 @@ export class AuthController {
       if (error instanceof UnidentifiedException) {
         throw new BadRequestException(error.message)
       }
-      this.logger.error(error.message, error.stack)
       throw new InternalServerErrorException('Login failed')
     }
   }
@@ -66,7 +62,6 @@ export class AuthController {
       await this.authService.deleteRefreshToken(req.user.id)
       res.clearCookie('refresh_token', REFRESH_TOKEN_COOKIE_OPTIONS)
     } catch (error) {
-      this.logger.error(error.message, error.stack)
       throw new InternalServerErrorException()
     }
   }
@@ -87,7 +82,6 @@ export class AuthController {
       if (error instanceof InvalidJwtTokenException) {
         throw new BadRequestException(error.message)
       }
-      this.logger.error(error.message, error.stack)
       throw new InternalServerErrorException('Failed to reissue tokens')
     }
   }

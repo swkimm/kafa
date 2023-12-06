@@ -7,7 +7,6 @@ import {
   Get,
   Inject,
   InternalServerErrorException,
-  Logger,
   NotFoundException,
   Post,
   Put,
@@ -32,8 +31,6 @@ import { UpdatePasswordDTO } from './dto/updatePassword.dto'
 
 @Controller('account')
 export class AccountController {
-  private readonly logger = new Logger(AccountController.name)
-
   constructor(
     @Inject('AccountService') private readonly accountService: AccountService
   ) {}
@@ -48,7 +45,6 @@ export class AccountController {
       if (error instanceof EntityNotExistException) {
         throw new NotFoundException('account does not exists')
       } else {
-        this.logger.error(error.message, error.stack)
         throw new InternalServerErrorException(error)
       }
     }
@@ -64,7 +60,6 @@ export class AccountController {
       if (error instanceof EntityNotExistException) {
         throw new NotFoundException('account does not exists')
       } else {
-        this.logger.error(error.message, error.stack)
         throw new InternalServerErrorException(error)
       }
     }
@@ -89,7 +84,6 @@ export class AccountController {
             : 'duplicate username'
         )
       } else {
-        this.logger.error(error.message, error.stack)
         throw new InternalServerErrorException(error)
       }
     }
@@ -108,10 +102,8 @@ export class AccountController {
       } else if (error instanceof UnidentifiedException) {
         throw new BadRequestException('Invalid email pin code')
       } else if (error instanceof CacheException) {
-        this.logger.error(error.message, error.stack)
         throw new InternalServerErrorException('cache error')
       } else {
-        this.logger.error(error.message, error.stack)
         throw new InternalServerErrorException(error)
       }
     }
@@ -130,10 +122,8 @@ export class AccountController {
       } else if (error instanceof UnidentifiedException) {
         throw new BadRequestException('Invalid email pin code')
       } else if (error instanceof CacheException) {
-        this.logger.error(error.message, error.stack)
         throw new InternalServerErrorException('cache error')
       } else {
-        this.logger.error(error.message, error.stack)
         throw new InternalServerErrorException(error)
       }
     }
@@ -150,10 +140,8 @@ export class AccountController {
       if (error instanceof EntityNotExistException) {
         throw new NotFoundException('account does not exists')
       } else if (error instanceof CacheException) {
-        this.logger.error(error.message, error.stack)
         throw new InternalServerErrorException('cache error')
       } else {
-        this.logger.error(error.message, error.stack)
         throw new InternalServerErrorException(error)
       }
     }
@@ -173,7 +161,6 @@ export class AccountController {
       if (error instanceof EntityNotExistException) {
         throw new NotFoundException('account does not exists')
       } else {
-        this.logger.error(error.message, error.stack)
         throw new InternalServerErrorException(error)
       }
     }
@@ -192,7 +179,6 @@ export class AccountController {
       } else if (error instanceof UnidentifiedException) {
         throw new BadRequestException('Invalid password')
       } else {
-        this.logger.error(error.message, error.stack)
         throw new InternalServerErrorException(error)
       }
     }
@@ -206,7 +192,6 @@ export class AccountController {
       if (error instanceof EntityNotExistException) {
         throw new NotFoundException('account does not exists')
       } else {
-        this.logger.error(error.message, error.stack)
         throw new InternalServerErrorException(error)
       }
     }

@@ -1,27 +1,19 @@
 import {
   Body,
-  ConflictException,
   Controller,
   Delete,
   Get,
   Inject,
-  InternalServerErrorException,
-  NotFoundException,
   Param,
   ParseIntPipe,
   Post,
   Put,
   Query,
-  Req,
-  UnauthorizedException
+  Req
 } from '@nestjs/common'
 import { AuthenticatedRequest } from '@/common/class/authenticated-request.interface'
 import { Public } from '@/common/decorator/guard.decorator'
-import {
-  ConflictFoundException,
-  EntityNotExistException,
-  UnverifiedException
-} from '@/common/exception/business.exception'
+import { businessExceptionBinder } from '@/common/exception/business-exception.binder'
 import type { RegisterTeamRequest, Team } from '@prisma/client'
 import { TeamService } from './abstract/team.service'
 import { RegisterTeamRequestDTO } from './dto/register-team-request.dto'
@@ -45,10 +37,7 @@ export class TeamController {
     try {
       return await this.teamService.getTeam(id)
     } catch (error) {
-      if (error instanceof EntityNotExistException) {
-        throw new NotFoundException(error.message)
-      }
-      throw new InternalServerErrorException(error.message)
+      businessExceptionBinder(error)
     }
   }
 
@@ -56,10 +45,14 @@ export class TeamController {
   @Get()
   async getTeams(
     @Query('page', ParseIntPipe) page: number,
-    @Query('limit', ParseIntPipe) limit?: number,
+    @Query('limit', new ParseIntPipe({ optional: true })) limit?: number,
     @Query('option') option?: string
   ): Promise<TeamManyDTO[]> {
-    return await this.teamService.getTeams(page, limit, option)
+    try {
+      return await this.teamService.getTeams(page, limit, option)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
   }
 
   @Public()
@@ -70,10 +63,7 @@ export class TeamController {
     try {
       return await this.teamService.getLeagueTeams(leagueId)
     } catch (error) {
-      if (error instanceof EntityNotExistException) {
-        throw new NotFoundException(error.message)
-      }
-      throw new InternalServerErrorException(error.message)
+      businessExceptionBinder(error)
     }
   }
 
@@ -85,7 +75,7 @@ export class TeamController {
     try {
       return await this.teamService.getAssociationTeams(associationId)
     } catch (error) {
-      throw new InternalServerErrorException(error.message)
+      businessExceptionBinder(error)
     }
   }
 
@@ -96,7 +86,7 @@ export class TeamController {
     try {
       return await this.teamService.getAccountRegisterTeamRequests(req.user.id)
     } catch (error) {
-      throw new InternalServerErrorException(error.message)
+      businessExceptionBinder(error)
     }
   }
 
@@ -109,16 +99,7 @@ export class TeamController {
       requestTeamDTO.accountId = req.user.id
       return await this.teamService.createRegisterTeamRequest(requestTeamDTO)
     } catch (error) {
-      if (error instanceof EntityNotExistException) {
-        throw new NotFoundException(error.message)
-      }
-      if (error instanceof ConflictFoundException) {
-        throw new ConflictException(error.message)
-      }
-      if (error instanceof UnverifiedException) {
-        throw new UnauthorizedException(error.message)
-      }
-      throw new InternalServerErrorException(error.message)
+      businessExceptionBinder(error)
     }
   }
 
@@ -133,10 +114,7 @@ export class TeamController {
         req.user.id
       )
     } catch (error) {
-      if (error instanceof EntityNotExistException) {
-        throw new NotFoundException(error.message)
-      }
-      throw new InternalServerErrorException(error.message)
+      businessExceptionBinder(error)
     }
   }
 
@@ -147,10 +125,7 @@ export class TeamController {
     try {
       return await this.teamService.deleteTeam(id)
     } catch (error) {
-      if (error instanceof EntityNotExistException) {
-        throw new NotFoundException(error.message)
-      }
-      throw new InternalServerErrorException(error.message)
+      businessExceptionBinder(error)
     }
   }
 }

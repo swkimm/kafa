@@ -20,9 +20,9 @@ export class RolesGuard implements CanActivate {
     private readonly reflector: Reflector,
     @Inject('AccountService') private readonly service: AccountService
   ) {
-    Object.keys(Role).forEach((key, index) => {
-      this.#rolesHierarchy[key] = index
-    })
+    this.#rolesHierarchy[Role.Admin] = 15
+    this.#rolesHierarchy[Role.Manager] = 10
+    this.#rolesHierarchy[Role.User] = 5
   }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {

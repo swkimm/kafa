@@ -1,6 +1,4 @@
-import { Type } from 'class-transformer'
 import {
-  IsDate,
   IsEmail,
   IsNotEmpty,
   IsString,
@@ -25,11 +23,6 @@ export class RegisterAccountDTO {
   })
   @IsNotEmpty()
   password: string
-
-  @IsDate()
-  @IsNotEmpty()
-  @Type(() => Date)
-  birthday: Date
 
   @IsEmail()
   @IsNotEmpty()

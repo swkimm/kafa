@@ -36,7 +36,6 @@ describe('AuthService', () => {
     createdAt: new Date(),
     lastLogin: new Date(),
     password: VALID_PASSWORD,
-    birthday: new Date('2023-01-01'),
     role: Role.User,
     username: 'user01',
     email: 'example@example.com',

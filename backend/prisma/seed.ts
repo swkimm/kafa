@@ -212,6 +212,67 @@ const main = async function () {
   await prisma.registerTeamRequest.createMany({
     data: registerTeamRequests
   })
+
+  const leagues: Prisma.LeagueCreateManyInput[] = [
+    {
+      name: 'league01',
+      startedAt: new Date('2023-01-01'),
+      endedAt: new Date('2023-02-01')
+    },
+    {
+      name: 'league02',
+      startedAt: new Date('2023-02-01'),
+      endedAt: new Date('2023-03-01')
+    },
+    {
+      name: 'league03',
+      startedAt: new Date('2023-02-01'),
+      endedAt: new Date('2023-12-01')
+    },
+    {
+      name: 'league04',
+      startedAt: new Date('2023-01-01'),
+      endedAt: new Date('2023-12-01')
+    }
+  ]
+
+  await prisma.league.createMany({
+    data: leagues
+  })
+
+  const sponsers: Prisma.SponserCreateManyInput[] = [
+    {
+      name: 'sponser01',
+      websiteUrl: 'example'
+    },
+    {
+      name: 'sponser02',
+      websiteUrl: 'example'
+    },
+    {
+      name: 'sponser03',
+      websiteUrl: 'example'
+    },
+    {
+      name: 'sponser04',
+      websiteUrl: 'example'
+    }
+  ]
+
+  await prisma.sponser.createMany({
+    data: sponsers
+  })
+
+  const leagueSponsers: Prisma.LeagueSponserCreateManyInput[] = [
+    {
+      leagueId: 1,
+      sponserId: 1
+    }
+  ]
+
+  await prisma.leagueSponser.createMany({
+    data: leagueSponsers
+  })
 }
 
 main()

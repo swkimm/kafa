@@ -31,6 +31,12 @@ CREATE TYPE "TeamEnrollStatus" AS ENUM ('Received', 'Approved', 'Rejected');
 -- CreateEnum
 CREATE TYPE "LeagueApplyStatus" AS ENUM ('Received', 'Approved', 'Rejected');
 
+-- CreateEnum
+CREATE TYPE "GenderType" AS ENUM ('Male', 'Female', 'Others');
+
+-- CreateEnum
+CREATE TYPE "MembershipType" AS ENUM ('Basic', 'Pro');
+
 -- CreateTable
 CREATE TABLE "Account" (
     "id" SERIAL NOT NULL,
@@ -38,7 +44,6 @@ CREATE TABLE "Account" (
     "email" VARCHAR(128) NOT NULL,
     "username" VARCHAR(128) NOT NULL,
     "team_id" INTEGER,
-    "birthday" TIMESTAMP(3),
     "password" VARCHAR(128) NOT NULL,
     "status" "AccountStatus" NOT NULL DEFAULT 'Verifying',
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -49,6 +54,27 @@ CREATE TABLE "Account" (
     "last_login" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Account_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "AccountCredential" (
+    "account_id" INTEGER NOT NULL,
+    "name" VARCHAR(128) NOT NULL,
+    "gender" "GenderType" NOT NULL,
+    "birthday" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "AccountCredential_pkey" PRIMARY KEY ("account_id")
+);
+
+-- CreateTable
+CREATE TABLE "Membership" (
+    "account_id" INTEGER NOT NULL,
+    "type" "MembershipType" NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+    "ended_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Membership_pkey" PRIMARY KEY ("account_id")
 );
 
 -- CreateTable
@@ -154,17 +180,12 @@ CREATE TABLE "Association" (
 );
 
 -- CreateTable
-CREATE TABLE "AssociationLeague" (
-    "association_id" INTEGER NOT NULL,
-    "league_id" INTEGER NOT NULL
-);
-
--- CreateTable
 CREATE TABLE "League" (
     "id" SERIAL NOT NULL,
     "name" VARCHAR(256) NOT NULL,
     "started_at" TIMESTAMP(3) NOT NULL,
     "ended_at" TIMESTAMP(3) NOT NULL,
+    "association_id" INTEGER,
 
     CONSTRAINT "League_pkey" PRIMARY KEY ("id")
 );
@@ -241,6 +262,16 @@ CREATE TABLE "Roster" (
     "status" "RosterStatus" NOT NULL DEFAULT 'Enable',
 
     CONSTRAINT "Roster_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "RosterCredentials" (
+    "roster_id" INTEGER NOT NULL,
+    "name" VARCHAR(128) NOT NULL,
+    "gender" "GenderType" NOT NULL,
+    "birthday" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "RosterCredentials_pkey" PRIMARY KEY ("roster_id")
 );
 
 -- CreateTable
@@ -326,9 +357,6 @@ CREATE UNIQUE INDEX "OAuth_provider_id_provider_type_key" ON "OAuth"("provider_i
 CREATE INDEX "parent_id_idx" ON "Association"("parent_id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "AssociationLeague_association_id_league_id_key" ON "AssociationLeague"("association_id", "league_id");
-
--- CreateIndex
 CREATE UNIQUE INDEX "LeagueSponser_league_id_sponser_id_key" ON "LeagueSponser"("league_id", "sponser_id");
 
 -- CreateIndex
@@ -342,6 +370,12 @@ CREATE UNIQUE INDEX "PressGame_press_id_game_id_key" ON "PressGame"("press_id", 
 
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "Team"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "AccountCredential" ADD CONSTRAINT "AccountCredential_account_id_fkey" FOREIGN KEY ("account_id") REFERENCES "Account"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Membership" ADD CONSTRAINT "Membership_account_id_fkey" FOREIGN KEY ("account_id") REFERENCES "Account"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "OAuth" ADD CONSTRAINT "OAuth_account_id_fkey" FOREIGN KEY ("account_id") REFERENCES "Account"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -377,16 +411,13 @@ ALTER TABLE "Comment" ADD CONSTRAINT "Comment_account_id_fkey" FOREIGN KEY ("acc
 ALTER TABLE "Association" ADD CONSTRAINT "Association_parent_id_fkey" FOREIGN KEY ("parent_id") REFERENCES "Association"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "AssociationLeague" ADD CONSTRAINT "AssociationLeague_association_id_fkey" FOREIGN KEY ("association_id") REFERENCES "Association"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "League" ADD CONSTRAINT "League_association_id_fkey" FOREIGN KEY ("association_id") REFERENCES "Association"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "AssociationLeague" ADD CONSTRAINT "AssociationLeague_league_id_fkey" FOREIGN KEY ("league_id") REFERENCES "League"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "LeagueSponser" ADD CONSTRAINT "LeagueSponser_league_id_fkey" FOREIGN KEY ("league_id") REFERENCES "League"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "LeagueSponser" ADD CONSTRAINT "LeagueSponser_league_id_fkey" FOREIGN KEY ("league_id") REFERENCES "League"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "LeagueSponser" ADD CONSTRAINT "LeagueSponser_sponser_id_fkey" FOREIGN KEY ("sponser_id") REFERENCES "Sponser"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "LeagueSponser" ADD CONSTRAINT "LeagueSponser_sponser_id_fkey" FOREIGN KEY ("sponser_id") REFERENCES "Sponser"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Team" ADD CONSTRAINT "Team_association_id_fkey" FOREIGN KEY ("association_id") REFERENCES "Association"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -405,6 +436,9 @@ ALTER TABLE "Roster" ADD CONSTRAINT "Roster_account_id_fkey" FOREIGN KEY ("accou
 
 -- AddForeignKey
 ALTER TABLE "Roster" ADD CONSTRAINT "Roster_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "Team"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "RosterCredentials" ADD CONSTRAINT "RosterCredentials_roster_id_fkey" FOREIGN KEY ("roster_id") REFERENCES "Roster"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Athlete" ADD CONSTRAINT "Athlete_roster_id_fkey" FOREIGN KEY ("roster_id") REFERENCES "Roster"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

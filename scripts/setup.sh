@@ -42,13 +42,10 @@ fi
 # Apply database migration
 for i in {1..5}
 do
-  pnpm --filter backend exec prisma migrate dev && break # break if migration succeed
+  pnpm --filter backend exec prisma migrate reset -f && break # break if migration succeed
   echo -e '\n⚠️ Failed to migrate. Waiting for db to be ready...\n'
   sleep 5
 done
-
-# Seeding Database
-pnpm prisma db seed
 
 # Setup Minio
 pnpm exec ts-node scripts/setup-minio.ts

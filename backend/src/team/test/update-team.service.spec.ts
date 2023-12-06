@@ -111,7 +111,6 @@ describe('UpdateTeamService', () => {
     createdAt: new Date('2023-01-01'),
     lastLogin: new Date('2023-01-01'),
     password: 'password',
-    birthday: new Date('2023-01-01'),
     role: Role.User,
     username: 'user01',
     email: 'example@example.com',

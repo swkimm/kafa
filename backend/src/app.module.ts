@@ -14,7 +14,10 @@ import { ExceptionsFilter } from './common/exception/exception.filter'
 import { RolesGuard } from './common/guard/roles.guard'
 import { EmailModule } from './email/email.module'
 import { MailerConfigService } from './email/mailer-config.service'
+import { LeagueSponserModule } from './league-sponser/league-sponser.module'
+import { LeagueModule } from './league/league.module'
 import { PrismaModule } from './prisma/prisma.module'
+import { SponserModule } from './sponser/sponser.module'
 import { StorageModule } from './storage/storage.module'
 import { TeamLeagueModule } from './team-league/team-league.module'
 import { TeamModule } from './team/team.module'
@@ -43,7 +46,10 @@ import { TeamModule } from './team/team.module'
     TeamModule,
     TeamLeagueModule,
     AssociationModule,
-    StorageModule
+    StorageModule,
+    LeagueModule,
+    SponserModule,
+    LeagueSponserModule
   ]
 })
 export class AppModule {}

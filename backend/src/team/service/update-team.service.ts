@@ -82,7 +82,6 @@ export class UpdateTeamServiceImpl
       const password = generatePassword()
       const accountDTO: RegisterAccountDTO = {
         name: registerTeamRequest.name,
-        birthday: new Date(),
         email: requestAccount.email,
         password,
         username

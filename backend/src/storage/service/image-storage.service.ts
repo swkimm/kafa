@@ -6,6 +6,7 @@ import {
   PutObjectCommand,
   DeleteObjectCommand
 } from '@aws-sdk/client-s3'
+import mime from 'mime-types'
 import { v4 as uuidv4 } from 'uuid'
 import type { ImageStorageService } from '../interface/image-storage.service.interface'
 
@@ -37,17 +38,22 @@ export class ImageStorageServiceImpl implements ImageStorageService {
     folder: string
   ): Promise<{ url: string }> {
     const key = `${folder}/${this.generateUniqueImageName()}`
+    const fileType = this.extractContentType(file.originalname)
 
     try {
       await this.s3.send(
         new PutObjectCommand({
           Bucket: this.configService.get('AWS_CDN_BUCKET_NAME'),
           Key: key,
-          Body: file.buffer
+          Body: file.buffer,
+          ContentType: fileType
         })
       )
 
-      if (this.configService.get('NODE_ENV') === 'production') {
+      if (
+        this.configService.get('NODE_ENV') === 'production' ||
+        this.configService.get('NODE_ENV') === 'staging'
+      ) {
         return {
           url: `https://${this.configService.get('CDN_SERVER_DOMAIN')}/${key}`
         }
@@ -91,5 +97,11 @@ export class ImageStorageServiceImpl implements ImageStorageService {
     const uniqueId = uuidv4()
 
     return uniqueId
+  }
+
+  private extractContentType(fileName: string): string {
+    return fileName
+      ? mime.lookup(fileName) || 'application/octet-stream'
+      : 'application/octet-stream'
   }
 }
