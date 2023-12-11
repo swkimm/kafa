@@ -1,7 +1,6 @@
 import { Test, type TestingModule } from '@nestjs/testing'
 import {
   EntityNotExistException,
-  ParameterValidationException,
   UnexpectedException
 } from '@/common/exception/business.exception'
 import { calculateOffset } from '@/common/pagination/calculate-offset'
@@ -138,18 +137,6 @@ describe('GetAssociationService', () => {
           }
         })
       ).to.be.true
-    })
-
-    it('should pass BusinessException when instance of BusinessException occurs', async () => {
-      // given
-      const page = -1
-      const limit = 10
-      db.association.findMany.resolves
-
-      // then
-      await expect(service.getAssociations(page, limit)).to.be.rejectedWith(
-        ParameterValidationException
-      )
     })
 
     it('should throw Unexpected Exception when unexpected error occurs', async () => {

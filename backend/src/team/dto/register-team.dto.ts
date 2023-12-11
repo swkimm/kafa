@@ -9,6 +9,9 @@ import {
   IsString
 } from 'class-validator'
 
+/**
+ * 팀 생성 정보를 담는 객체
+ */
 export class RegisterTeamDTO {
   @IsNumber()
   @IsNotEmpty()

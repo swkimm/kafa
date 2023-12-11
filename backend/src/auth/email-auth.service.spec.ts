@@ -11,10 +11,10 @@ import { expect } from 'chai'
 import { describe } from 'mocha'
 import * as sinon from 'sinon'
 import { EmailAuthServiceImpl } from './email-auth.service'
-import type { ThirdPartyAuthService } from './third-party-auth.service.interface'
+import type { PinAuthService } from './pin-auth.service.interface'
 
 describe('EmailAuthService', () => {
-  let service: ThirdPartyAuthService
+  let service: PinAuthService
   let cache: Cache
 
   const VALID_PASSWORD = 'password'
@@ -55,7 +55,7 @@ describe('EmailAuthService', () => {
       ]
     }).compile()
 
-    service = module.get<ThirdPartyAuthService>('EmailAuthService')
+    service = module.get<PinAuthService>('EmailAuthService')
     cache = module.get<Cache>(CACHE_MANAGER)
 
     sinon.reset()
@@ -96,8 +96,11 @@ describe('EmailAuthService', () => {
     })
 
     it('should throw EmptyPrameterException when pin is not passed', async () => {
+      // given
+      const pin = ''
+
       // then
-      await expect(service.verifyPin(account.id)).to.be.rejectedWith(
+      await expect(service.verifyPin(account.id, pin)).to.be.rejectedWith(
         EmptyParameterException
       )
     })

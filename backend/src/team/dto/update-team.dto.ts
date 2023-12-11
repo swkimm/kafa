@@ -1,6 +1,9 @@
 import { Type } from 'class-transformer'
 import { IsDate, IsHexColor, IsOptional, IsString } from 'class-validator'
 
+/**
+ * 수정할 팀 정보를 담는 객체
+ */
 export class UpdateTeamDTO {
   @IsString()
   @IsOptional()

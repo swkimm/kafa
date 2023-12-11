@@ -18,6 +18,9 @@ import type { UpdateLeagueDTO } from '../dto/update-league.dto'
 import { GetLeagueService } from '../interface/get-league.service.interface'
 import type { UpdateLeagueService } from '../interface/update-league.service.interface'
 
+/**
+ * 리그 정보 업데이트와 관련된 서비스 인터페이스 [UpdateLeagueService] 구현체
+ */
 export class UpdateLeagueServiceImpl implements UpdateLeagueService<League> {
   constructor(
     private readonly prismaService: PrismaService,
@@ -82,6 +85,15 @@ export class UpdateLeagueServiceImpl implements UpdateLeagueService<League> {
     }
   }
 
+  /**
+   * updateLeague 메서드의 파라미터 유효성을 검사하는 private 매서드
+   *
+   * @param {number} leagueId - 업데이트할 리그의 Id
+   * @param {UpdateLeagueDTO} leagueDTO - 업데이트 정보가 담긴 객체
+   * @returns {void}
+   * @throws {ParameterValidationException} 리그 시작 날짜와 종료 날짜를 잘못 전달한 경우 발생
+   * @throws {EntityNotExistException} 존재하지 않는 리그의 Id를 전달할 경우 발생
+   */
   private async checkDate(
     leagueId: number,
     leagueDTO: UpdateLeagueDTO

@@ -7,6 +7,9 @@ import { PrismaService } from '@/prisma/prisma.service'
 import { Prisma, type League } from '@prisma/client'
 import type { DeleteLeagueService } from '../interface/delete-league.service.interface'
 
+/**
+ * 리그 삭제와 관련된 서비스 인터페이스 [DeleteLeagueService] 구현체
+ */
 @Injectable()
 export class DeleteLeagueServiceImpl implements DeleteLeagueService<League> {
   constructor(private readonly prismaService: PrismaService) {}

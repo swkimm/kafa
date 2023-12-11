@@ -23,6 +23,9 @@ import type { UpdateTeamDTO } from '../dto/update-team.dto'
 import { RegisterTeamService } from '../interface/register-team.service.interface'
 import type { UpdateTeamService } from '../interface/update-team.service.interface'
 
+/**
+ * 팀 정보 업데이트와 관련된 서비스 인터페이스 [UpdateTeamService] 구현체
+ */
 @Injectable()
 export class UpdateTeamServiceImpl
   implements UpdateTeamService<Team, RegisterTeamRequest>
@@ -155,6 +158,12 @@ export class UpdateTeamServiceImpl
     }
   }
 
+  /**
+   * DB에 저장된 팀 등록 정보를 담은 JSON 객체를 팀 등록 정보를 담은 객체로 변환합니다.
+   *
+   * @param data - DB에 저장된 팀 등록 정보를 담은 JSON 객체
+   * @returns {RegisterTeamDTO} 팀 등록 정보를 담은 객체
+   */
   private jsonDataParser(data: Prisma.JsonValue): RegisterTeamDTO {
     return plainToClass(RegisterTeamDTO, data)
   }

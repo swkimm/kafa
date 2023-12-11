@@ -1,7 +1,7 @@
 import { CACHE_MANAGER } from '@nestjs/cache-manager'
 import { Inject, Injectable } from '@nestjs/common'
 import { AuthService } from '@/auth/auth.service.interface'
-import { ThirdPartyAuthService } from '@/auth/third-party-auth.service.interface'
+import { PinAuthService } from '@/auth/pin-auth.service.interface'
 import { emailUpdateVerificationCacheKey } from '@/common/cache/cache-keys'
 import { EMAIL_VERIFICATION_PIN_EXPIRE_TIME } from '@/common/constant/time.constants'
 import {
@@ -29,14 +29,10 @@ export class AccountServiceImpl implements AccountService {
   constructor(
     private readonly prismaService: PrismaService,
     @Inject('EmailAuthService')
-    private readonly emailAuthService: ThirdPartyAuthService,
+    private readonly emailAuthService: PinAuthService,
     @Inject('AuthService') private readonly authService: AuthService,
     @Inject(CACHE_MANAGER) private readonly cache: Cache
   ) {}
-
-  /**
-   * Public Methods
-   */
 
   async getAccountRole(accountId: number): Promise<{
     role: Role
@@ -362,7 +358,10 @@ export class AccountServiceImpl implements AccountService {
     return account !== null
   }
 
-  // async updatePassword(
+  /**
+   * [미구현] 비밀번호 초기화
+   */
+  // async resetPassword(
   //   accountDTO: UpdatePasswordDTO,
   //   accountId: number
   // ): Promise<{ result: string }> {
@@ -392,9 +391,10 @@ export class AccountServiceImpl implements AccountService {
   // }
 
   /**
-   * Private Methods
+   * Account 엔티티를 받아 민감한 정보를 제거하고 반환합니다.
+   * @param {Account} account - Account 엔티티
+   * @returns {AccountDTO} 민감한 정보가 제거된 객체
    */
-
   private accountDTOSerializer(account: Account): AccountDTO {
     const result: AccountSerializer = plainToClass(AccountSerializer, account, {
       excludeExtraneousValues: true,
@@ -404,10 +404,22 @@ export class AccountServiceImpl implements AccountService {
     return new AccountDTO(result)
   }
 
+  /**
+   * 비밀번호 단방향 해싱함수
+   * @param {string} password - 비밀번호
+   * @returns {Promise<string>} 해싱된 비밀번호
+   */
   private async hashPassword(password: string): Promise<string> {
     return await hash(password)
   }
 
+  /**
+   * 계정을 생성하고 생성된 계정을 반환합니다.
+   * @param {RegisterAccountDTO} accountDTO - 생성할 계정 정보가 담긴 객체
+   * @param {Role} role - 권한
+   * @param status - 상태
+   * @returns {Account} Account 엔티티
+   */
   private async createAccount(
     accountDTO: RegisterAccountDTO,
     role: Role,

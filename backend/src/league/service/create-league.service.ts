@@ -10,6 +10,9 @@ import { Prisma, type League } from '@prisma/client'
 import type { CreateLeagueDTO } from '../dto/create-league.dto'
 import type { CreateLeagueService } from '../interface/create-league.service.interface'
 
+/**
+ * 리그 생성과 관련된 서비스 인터페이스 [CreateLeagueService] 구현체
+ */
 @Injectable()
 export class CreateLeagueServiceImpl implements CreateLeagueService<League> {
   constructor(private readonly prismaService: PrismaService) {}
@@ -37,6 +40,13 @@ export class CreateLeagueServiceImpl implements CreateLeagueService<League> {
     }
   }
 
+  /**
+   * 리그의 시작 종료 날짜 유효성을 검사하는 private 메서드
+   *
+   * @param {CreateLeagueDTO} leagueDTO
+   * @return {void}
+   * @throws {ParameterValidationException} 유효하지 않은 시작 종료 날짜를 전달한 경우 발생
+   */
   private checkDate(leagueDTO: CreateLeagueDTO): void {
     if (leagueDTO.startedAt.getTime() > leagueDTO.endedAt.getTime()) {
       throw new ParameterValidationException('ended date')

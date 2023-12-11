@@ -8,6 +8,9 @@ import { Prisma, type Sponser } from '@prisma/client'
 import type { UpdateSponserDTO } from '../dto/update-sponser.dto'
 import type { UpdateSponserService } from '../interface/update-sponser.service.interface'
 
+/**
+ * 스폰서 정보 업데이트와 관련된 서비스 인터페이스 [UpdateSponserService] 구현체
+ */
 @Injectable()
 export class UpdateSponserServiceImpl implements UpdateSponserService<Sponser> {
   constructor(private readonly prismaService: PrismaService) {}

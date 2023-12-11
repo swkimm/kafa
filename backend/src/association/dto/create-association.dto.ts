@@ -7,6 +7,9 @@ import {
   IsString
 } from 'class-validator'
 
+/**
+ * 협회 생성 정보를 담는 DTO 클래스
+ */
 export class CreateAssociationDTO {
   @IsNumber()
   @IsOptional()

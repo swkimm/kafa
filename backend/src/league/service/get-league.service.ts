@@ -18,6 +18,9 @@ import {
 } from '@prisma/client'
 import type { GetLeagueService } from '../interface/get-league.service.interface'
 
+/**
+ * 리그 조회와 관련된 서비스 인터페이스 [GetLeagueService] 구현체
+ */
 @Injectable()
 export class GetLeagueServiceImpl implements GetLeagueService<League, Sponser> {
   constructor(
@@ -80,6 +83,8 @@ export class GetLeagueServiceImpl implements GetLeagueService<League, Sponser> {
     limit = 10
   ): Promise<Sponser[]> {
     try {
+      await this.getLeague(leagueId)
+
       const leagueSponsers =
         await this.leagueSponserService.getLeagueSponsersByLeagueId(
           leagueId,

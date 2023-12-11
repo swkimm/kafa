@@ -19,6 +19,9 @@ import {
 } from '@prisma/client'
 import type { GetTeamService } from '../interface/get-team.service.interface'
 
+/**
+ * 팀 조회와 관련된 서비스 인터페이스 [GetTeamService] 구현체
+ */
 @Injectable()
 export class GetTeamServiceImpl
   implements GetTeamService<Team, RegisterTeamRequest>
@@ -152,7 +155,14 @@ export class GetTeamServiceImpl
     }
   }
 
-  private checkTeamEnrollStatusParameters(target: string) {
+  /**
+   * 팀 등록 요청 상태 값이 유효한지 검사합니다.
+   *
+   * @param {string} target - 팀 등록 요청 상태
+   * @returns {void}
+   * @throws {ParameterValidationException} 잘못된 팀 등록 요청 상태를 전달할 경우 발생
+   */
+  private checkTeamEnrollStatusParameters(target: string): void {
     if (!target) {
       return
     }
@@ -168,7 +178,14 @@ export class GetTeamServiceImpl
     }
   }
 
-  private checkTeamStatusParameters(target: string) {
+  /**
+   * 팀 상태 값이 유효한지 검사합니다.
+   *
+   * @param {string} target - 팀 상태
+   * @returns {void}
+   * @throws {ParameterValidationException} 잘못된 팀 상태를 전달할 경우 발생
+   */
+  private checkTeamStatusParameters(target: string): void {
     if (!target) {
       return
     }

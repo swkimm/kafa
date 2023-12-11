@@ -8,6 +8,9 @@ import { PrismaService } from '@/prisma/prisma.service'
 import { Prisma, type Sponser } from '@prisma/client'
 import type { GetSponserService } from '../interface/get-sponser.service.interface'
 
+/**
+ * 스폰서 조회와 관련된 서비스 인터페이스 [GetSponserService] 구현체
+ */
 @Injectable()
 export class GetSponserServiceImpl implements GetSponserService<Sponser> {
   constructor(private readonly prismaSerivce: PrismaService) {}

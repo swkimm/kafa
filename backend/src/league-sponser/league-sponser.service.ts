@@ -11,6 +11,9 @@ import type { CreateLeagueSponserDTO } from './dto/create-league-sponser.dto'
 import type { UpdateLeagueSponserDTO } from './dto/update-league-sponser.dto'
 import type { LeagueSponserService } from './league-sponser.service.interface'
 
+/**
+ * 리그와 스폰서를 중계하는 서브 모듈 인터페이스 [LeagueSponserService] 구현체
+ */
 @Injectable()
 export class LeagueSponserServiceImpl
   implements LeagueSponserService<LeagueSponser>

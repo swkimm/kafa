@@ -23,6 +23,9 @@ import type { RegisterTeamRequestDTO } from '../dto/register-team-request.dto'
 import { RegisterTeamDTO } from '../dto/register-team.dto'
 import type { RegisterTeamService } from '../interface/register-team.service.interface'
 
+/**
+ * 팀 등록과 관련된 서비스 인터페이스 [RegisterTeamService] 구현체
+ */
 @Injectable()
 export class RegisterTeamServiceImpl
   implements RegisterTeamService<Team, RegisterTeamRequest>
@@ -94,7 +97,16 @@ export class RegisterTeamServiceImpl
     }
   }
 
-  private async checkParameterType(registerTeamDTO: RegisterTeamDTO) {
+  /**
+   * 팀 등록 정보의 타입과 값을 검사하는 private 메서드
+   *
+   * @param {RegisterTeamDTO} registerTeamDTO - 등록할 팀 정보가 담긴 객체
+   * @returns {Promise<void>}
+   * @throws {ParameterValidationException} 유효하지 않은 값이 팀 등록 정보 객체에 있을 경우 발생
+   */
+  private async checkParameterType(
+    registerTeamDTO: RegisterTeamDTO
+  ): Promise<void> {
     const target = plainToClass(RegisterTeamDTO, registerTeamDTO)
     const errors = await validate(target)
 
@@ -103,7 +115,20 @@ export class RegisterTeamServiceImpl
     }
   }
 
-  private async checkDuplicateAccount(username: string, email: string) {
+  /**
+   * 팀 생성 요청 정보에 포함된 아이디와 이메일의 중복 여부를 확인하는 private 메서드.
+   * 이메일의 경우 Manager 권한에서 중복되는 email이 있는지 검사한다.
+   *
+   *
+   * @param {string} username - 중복을 확인할 username
+   * @param {stirng} email - 중복을 확인할 email
+   * @returns {Promise<void>}
+   * @throws {ConflictFoundException} 중복되는 username이나 email을 전달할 경우 발생
+   */
+  private async checkDuplicateAccount(
+    username: string,
+    email: string
+  ): Promise<void> {
     const checkId = await this.accountService.isAccountExist(
       'username',
       username
@@ -123,7 +148,14 @@ export class RegisterTeamServiceImpl
     }
   }
 
-  private async checkDuplicateRequest(accountId: number) {
+  /**
+   * 개인 계정에서 중복되는 팀 등록 요청이 있는지 검사하는 private 메서드
+   *
+   * @param {number} accountId - 팀 등록을 요청하는 개인 계정의 Id
+   * @returns {Promise<void>}
+   * @throws {ConflictFoundException} 중복되는 팀 등록 요청이 존재할 경우 발생
+   */
+  private async checkDuplicateRequest(accountId: number): Promise<void> {
     const checkAccount = await this.prismaService.registerTeamRequest.findFirst(
       {
         where: {

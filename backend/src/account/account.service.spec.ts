@@ -11,7 +11,7 @@ import {
 } from '@/common/exception/business.exception'
 import type { EmailService } from '@/email/email.service.interface'
 import { PrismaService } from '@/prisma/prisma.service'
-import { type Account, Role, AccountStatus } from '@prisma/client'
+import { type Account, Role, AccountStatus, Prisma } from '@prisma/client'
 import { hash } from 'argon2'
 import type { Cache } from 'cache-manager'
 import { expect } from 'chai'
@@ -19,10 +19,9 @@ import { describe } from 'mocha'
 import * as sinon from 'sinon'
 import { AccountServiceImpl } from './account.service'
 import type { AccountService } from './account.service.interface'
+import { AccountDTO } from './dto/account.dto'
 import type { RegisterAccountDTO } from './dto/registerAccount.dto'
 import type { UpdatePasswordDTO } from './dto/updatePassword.dto'
-
-// import type { UpdatePasswordDTO } from './dto/updatePassword.dto'
 
 describe('AccountService', () => {
   let service: AccountService
@@ -639,6 +638,65 @@ describe('AccountService', () => {
       await expect(service.isVerifiedAccount(account.id)).to.be.rejectedWith(
         UnverifiedException
       )
+    })
+  })
+
+  describe('mappingManagerAccount', () => {
+    it('should return AccountDTO', async () => {
+      // given
+      const teamId = 1
+      const accountId = 1
+      db.account.update.resolves(account)
+
+      // when
+      const result = await service.mappingManagerAccount(teamId, accountId)
+
+      // then
+      expect(result).to.be.deep.equal(new AccountDTO(account))
+      expect(
+        db.account.update.calledOnceWith({
+          where: {
+            id: accountId
+          },
+          data: {
+            teamId
+          }
+        })
+      ).to.be.true
+    })
+
+    it('should throw EntityNotExistException when invalid accountId passed', async () => {
+      // given
+      const teamId = 1
+      const accountId = 1
+      db.account.update.rejects(
+        new Prisma.PrismaClientKnownRequestError('test', {
+          clientVersion: '1.0.0',
+          code: 'P2025'
+        })
+      )
+
+      // then
+      await expect(
+        service.mappingManagerAccount(accountId, teamId)
+      ).to.be.rejectedWith(EntityNotExistException)
+    })
+
+    it('should throw EntityNotExistException when invalid teamId passed', async () => {
+      // given
+      const teamId = 1
+      const accountId = 1
+      db.account.update.rejects(
+        new Prisma.PrismaClientKnownRequestError('test', {
+          clientVersion: '1.0.0',
+          code: 'P2003'
+        })
+      )
+
+      // then
+      await expect(
+        service.mappingManagerAccount(accountId, teamId)
+      ).to.be.rejectedWith(EntityNotExistException)
     })
   })
 

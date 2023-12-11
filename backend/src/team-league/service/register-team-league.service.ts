@@ -8,6 +8,9 @@ import { PrismaService } from '@/prisma/prisma.service'
 import { Prisma, type TeamLeague } from '@prisma/client'
 import type { RegisterTeamLeagueService } from '../interface/register-team-league.service.interface'
 
+/**
+ * 팀과 리그의 연결 정보를 생성하는 서비스 인터페이스 [RegisterTeamLeagueService] 구현체
+ */
 @Injectable()
 export class RegisterTeamLeagueServiceImpl
   implements RegisterTeamLeagueService<TeamLeague>

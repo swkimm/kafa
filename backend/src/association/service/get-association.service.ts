@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common'
 import {
-  BusinessException,
   EntityNotExistException,
   UnexpectedException
 } from '@/common/exception/business.exception'
@@ -43,9 +42,6 @@ export class GetAssociationServiceImpl
         }
       })
     } catch (error) {
-      if (error instanceof BusinessException) {
-        throw error
-      }
       throw new UnexpectedException(error)
     }
   }

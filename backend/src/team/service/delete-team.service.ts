@@ -7,6 +7,9 @@ import { PrismaService } from '@/prisma/prisma.service'
 import { Prisma, TeamStatus } from '@prisma/client'
 import type { DeleteTeamService } from '../interface/delete-team.service.interface'
 
+/**
+ * 팀 삭제와 관련된 서비스 인터페이스 [DeleteTeamService] 구현체
+ */
 @Injectable()
 export class DeleteTeamServiceImpl
   implements DeleteTeamService<{ result: string }>

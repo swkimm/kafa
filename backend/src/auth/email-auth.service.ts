@@ -8,9 +8,9 @@ import {
 } from '@/common/exception/business.exception'
 import { EmailService } from '@/email/email.service.interface'
 import { Cache } from 'cache-manager'
-import type { ThirdPartyAuthService } from './third-party-auth.service.interface'
+import type { PinAuthService } from './pin-auth.service.interface'
 
-export class EmailAuthServiceImpl implements ThirdPartyAuthService {
+export class EmailAuthServiceImpl implements PinAuthService {
   constructor(
     @Inject(CACHE_MANAGER) private readonly cache: Cache,
     @Inject('EmailService') private readonly emailService: EmailService

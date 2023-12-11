@@ -7,6 +7,9 @@ import { PrismaService } from '@/prisma/prisma.service'
 import { Prisma, type TeamLeague } from '@prisma/client'
 import type { GetTeamLeagueService } from '../interface/get-team-league.service.interface'
 
+/**
+ * 팀과 리그의 연결 정보를 조회하는 서비스 인터페이스 [GetTeamLeagueService] 구현체
+ */
 @Injectable()
 export class GetTeamLeagueServiceImpl
   implements GetTeamLeagueService<TeamLeague>
@@ -51,6 +54,13 @@ export class GetTeamLeagueServiceImpl
     }
   }
 
+  /**
+   * 특정 Id를 가진 리그가 존재하는지 확인하는 private 메서드
+   *
+   * @param {number} leagueId
+   * @returns {Promise<void>}
+   * @throws {Prisma.PrismaClientKnownRequestError} 존재하지 않는 리그의 Id를 전달한 경우 발생 [P2025]
+   */
   private async checkLeagueId(leagueId: number): Promise<void> {
     await this.prismaService.league.findUniqueOrThrow({
       where: {
@@ -59,6 +69,13 @@ export class GetTeamLeagueServiceImpl
     })
   }
 
+  /**
+   * 특정 Id를 가진 팀이 존재하는지 확인하는 private 메서드
+   *
+   * @param {number} teamId
+   * @returns {Promise<void>}
+   * @throws {Prisma.PrismaClientKnownRequestError} 존재하지 않는 팀의 Id를 전달한 경우 발생 [P2025]
+   */
   private async checkTeamId(teamId: number): Promise<void> {
     await this.prismaService.team.findUniqueOrThrow({
       where: {

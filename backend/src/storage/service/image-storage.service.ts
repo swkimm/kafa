@@ -10,6 +10,10 @@ import mime from 'mime-types'
 import { v4 as uuidv4 } from 'uuid'
 import type { ImageStorageService } from '../interface/image-storage.service.interface'
 
+/**
+ * Object Storage의 이미지를 관리하는 서비스 인터페이스 [ImageStorageService]의 구현체.
+ * Ojbect Storage로 AWS의 S3 버킷을 사용한다.
+ */
 @Injectable()
 export class ImageStorageServiceImpl implements ImageStorageService {
   private readonly s3: S3Client
@@ -86,6 +90,13 @@ export class ImageStorageServiceImpl implements ImageStorageService {
     }
   }
 
+  /**
+   * HTTP URI로 부터 파일의 디렉토리를 추출하여 리턴합니다.
+   *
+   *
+   * @param {string} url
+   * @returns {string | null} 추출한 디렉토리 경로
+   */
   private extractImagePathFromUrl(url: string): string | null {
     const regex =
       /https?:\/\/[^/]+\/((?:[^/]+\/)+[^/]+\.(jpg|jpeg|png|heif|heic|webp))/
@@ -93,12 +104,22 @@ export class ImageStorageServiceImpl implements ImageStorageService {
     return match ? match[1] : null
   }
 
+  /**
+   * 랜덤한 uuid를 생성하여 리턴합니다.
+   *
+   * @returns {string}
+   */
   private generateUniqueImageName(): string {
     const uniqueId = uuidv4()
 
     return uniqueId
   }
 
+  /**
+   * 파일이름으로 부터 MimeType을 추출하여 리턴합니다.
+   * @param {string} fileName
+   * @returns {string} 추출한 MimeType
+   */
   private extractContentType(fileName: string): string {
     return fileName
       ? mime.lookup(fileName) || 'application/octet-stream'

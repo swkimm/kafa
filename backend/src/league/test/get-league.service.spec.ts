@@ -254,11 +254,12 @@ describe('GetLeagueService', () => {
   })
 
   describe('getSponserByLeagueId', () => {
-    it('should retrun sponsers', async () => {
+    it('should return sponsers', async () => {
       // given
       const leagueId = 1
       const page = 1
       const limit = 3
+      db.league.findUniqueOrThrow.resolves()
       mockLeagueSponserService.getLeagueSponsersByLeagueId.resolves(
         leagueSponsers
       )
@@ -305,6 +306,7 @@ describe('GetLeagueService', () => {
       const leagueId = 1
       const page = 1
       const limit = 3
+      db.league.findUniqueOrThrow.resolves()
       mockLeagueSponserService.getLeagueSponsersByLeagueId.rejects(
         new EntityNotExistException('test')
       )

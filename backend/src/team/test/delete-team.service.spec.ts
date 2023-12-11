@@ -4,7 +4,7 @@ import {
   UnexpectedException
 } from '@/common/exception/business.exception'
 import { PrismaService } from '@/prisma/prisma.service'
-import { type Team, Prisma, TeamStatus } from '@prisma/client'
+import { Prisma, TeamStatus } from '@prisma/client'
 import { expect } from 'chai'
 import { describe } from 'mocha'
 import * as sinon from 'sinon'
@@ -18,7 +18,7 @@ describe('DeleteTeamService', () => {
     }
   }
 
-  let service: DeleteTeamService<Team>
+  let service: DeleteTeamService<{ result: string }>
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -34,7 +34,8 @@ describe('DeleteTeamService', () => {
       ]
     }).compile()
 
-    service = module.get<DeleteTeamService<Team>>('DeleteTeamService')
+    service =
+      module.get<DeleteTeamService<{ result: string }>>('DeleteTeamService')
 
     sinon.reset()
   })
