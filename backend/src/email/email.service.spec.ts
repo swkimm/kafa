@@ -1,4 +1,5 @@
 import { MailerService } from '@nestjs-modules/mailer'
+import { ConfigModule } from '@nestjs/config'
 import { Test, type TestingModule } from '@nestjs/testing'
 import { expect } from 'chai'
 import * as sinon from 'sinon'
@@ -27,6 +28,12 @@ describe('EmailService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [
+        ConfigModule.forRoot({
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          load: [() => ({ NODE_ENV: 'staging' })]
+        })
+      ],
       providers: [
         { provide: 'EmailService', useClass: EmailServiceImpl },
         { provide: MailerService, useValue: MailerMock }

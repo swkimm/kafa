@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Get,
@@ -7,7 +6,8 @@ import {
   InternalServerErrorException,
   Post,
   Req,
-  Res
+  Res,
+  UnauthorizedException
 } from '@nestjs/common'
 import { AuthenticatedRequest } from '@/common/class/authenticated-request.interface'
 import { REFRESH_TOKEN_COOKIE_OPTIONS } from '@/common/constant/time.constants'
@@ -47,7 +47,7 @@ export class AuthController {
       this.setJwtResponse(res, jwtTokens)
     } catch (error) {
       if (error instanceof UnidentifiedException) {
-        throw new BadRequestException(error.message)
+        throw new UnauthorizedException(error.message)
       }
       throw new InternalServerErrorException('Login failed')
     }
@@ -73,14 +73,14 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response
   ): Promise<void> {
     const refreshToken = req.cookies['refresh_token']
-    if (!refreshToken) throw new BadRequestException('Invalid Token')
+    if (!refreshToken) throw new UnauthorizedException('Invalid Token')
 
     try {
       const newJwtTokens = await this.authService.updateJwtTokens(refreshToken)
       this.setJwtResponse(res, newJwtTokens)
     } catch (error) {
       if (error instanceof InvalidJwtTokenException) {
-        throw new BadRequestException(error.message)
+        throw new UnauthorizedException(error.message)
       }
       throw new InternalServerErrorException('Failed to reissue tokens')
     }

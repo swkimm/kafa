@@ -7,5 +7,6 @@
   },
   "[terraform]": {
     "editor.defaultFormatter": "hashicorp.terraform"
-  }
+  },
+  "thunder-client.saveToWorkspace": true
 }

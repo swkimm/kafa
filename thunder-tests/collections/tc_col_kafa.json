@@ -1,0 +1,674 @@
+{
+    "_id": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+    "colName": "KAFA",
+    "created": "2023-12-12T05:51:31.895Z",
+    "sortNum": 10000,
+    "folders": [
+        {
+            "_id": "e689668e-d151-4ebe-9316-4cc40c585435",
+            "name": "Auth",
+            "containerId": "",
+            "created": "2023-12-12T06:07:33.436Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "5fc373ce-1fd7-40d8-89e2-7a07147d3606",
+            "name": "login",
+            "containerId": "94ed372b-d034-47d5-a6c8-c0b3ebecd6b8",
+            "created": "2023-12-12T06:47:28.063Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "b1b13606-6eac-4222-a5b4-9c2a0ff83be5",
+            "name": "logout",
+            "containerId": "e22477f7-dcc5-4b35-a3b7-f05b0c526738",
+            "created": "2023-12-12T06:47:35.943Z",
+            "sortNum": 5000
+        },
+        {
+            "_id": "765b890a-f1e7-46bf-bad0-92419d406fc1",
+            "name": "reissue",
+            "containerId": "e22477f7-dcc5-4b35-a3b7-f05b0c526738",
+            "created": "2023-12-12T06:47:45.143Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "b8feb67f-9717-4f94-bd00-14c05794cffd",
+            "name": "Common",
+            "containerId": "",
+            "created": "2023-12-12T06:50:01.526Z",
+            "sortNum": 70000
+        },
+        {
+            "_id": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "Login",
+            "containerId": "b8feb67f-9717-4f94-bd00-14c05794cffd",
+            "created": "2023-12-12T06:50:08.099Z",
+            "sortNum": 80000
+        },
+        {
+            "_id": "b6a14d73-2b4c-4aca-a46e-c0cf4696b6db",
+            "name": "Association",
+            "containerId": "",
+            "created": "2023-12-12T07:23:42.195Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "b5dc313a-b19f-4915-9953-88906d7234e7",
+            "name": "Account",
+            "containerId": "",
+            "created": "2023-12-12T07:24:24.254Z",
+            "sortNum": 55000
+        },
+        {
+            "_id": "3fa6fcb6-5740-42b9-9a05-97e65aa2cb78",
+            "name": "registerAccount",
+            "containerId": "ec1400c6-b732-414d-8c78-296ef8f575a7",
+            "created": "2023-12-12T07:24:36.991Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "123fc72a-f810-4e13-83c3-28b8085bf65f",
+            "name": "getAccountRole",
+            "containerId": "bc951fe6-f3d0-4943-bc5a-047b0419c621",
+            "created": "2023-12-12T07:24:50.158Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "94ed372b-d034-47d5-a6c8-c0b3ebecd6b8",
+            "name": "Public",
+            "containerId": "e689668e-d151-4ebe-9316-4cc40c585435",
+            "created": "2023-12-12T07:25:00.998Z",
+            "sortNum": 130000
+        },
+        {
+            "_id": "e22477f7-dcc5-4b35-a3b7-f05b0c526738",
+            "name": "Normal",
+            "containerId": "e689668e-d151-4ebe-9316-4cc40c585435",
+            "created": "2023-12-12T07:25:11.882Z",
+            "sortNum": 140000
+        },
+        {
+            "_id": "ec1400c6-b732-414d-8c78-296ef8f575a7",
+            "name": "Public",
+            "containerId": "b5dc313a-b19f-4915-9953-88906d7234e7",
+            "created": "2023-12-12T07:26:13.760Z",
+            "sortNum": 55000
+        },
+        {
+            "_id": "bc951fe6-f3d0-4943-bc5a-047b0419c621",
+            "name": "Normal",
+            "containerId": "b5dc313a-b19f-4915-9953-88906d7234e7",
+            "created": "2023-12-12T07:26:25.485Z",
+            "sortNum": 160000
+        },
+        {
+            "_id": "7cc6fd74-e6dc-4501-beec-aa5921a3ec1f",
+            "name": "getAccountProfile",
+            "containerId": "bc951fe6-f3d0-4943-bc5a-047b0419c621",
+            "created": "2023-12-12T07:26:33.442Z",
+            "sortNum": 170000
+        },
+        {
+            "_id": "3720085b-1f6d-4677-8207-5ccc2c9c4407",
+            "name": "verifyEmail",
+            "containerId": "bc951fe6-f3d0-4943-bc5a-047b0419c621",
+            "created": "2023-12-12T07:26:42.926Z",
+            "sortNum": 180000
+        },
+        {
+            "_id": "4823a2f1-71f2-4fc4-9011-55401f457354",
+            "name": "updateEmail",
+            "containerId": "bc951fe6-f3d0-4943-bc5a-047b0419c621",
+            "created": "2023-12-12T07:26:49.703Z",
+            "sortNum": 190000
+        },
+        {
+            "_id": "7bc9a379-844b-440c-9480-97b72abb5f73",
+            "name": "updatePassword",
+            "containerId": "bc951fe6-f3d0-4943-bc5a-047b0419c621",
+            "created": "2023-12-12T07:26:56.498Z",
+            "sortNum": 200000
+        },
+        {
+            "_id": "82cc5b50-3f1d-44c6-a78e-05a554f46f96",
+            "name": "updateAccountProfile",
+            "containerId": "bc951fe6-f3d0-4943-bc5a-047b0419c621",
+            "created": "2023-12-12T07:27:04.835Z",
+            "sortNum": 210000
+        },
+        {
+            "_id": "1abea004-a7e3-41f9-b4e7-093c594c10c0",
+            "name": "withdrawAccount",
+            "containerId": "bc951fe6-f3d0-4943-bc5a-047b0419c621",
+            "created": "2023-12-12T07:27:11.846Z",
+            "sortNum": 220000
+        },
+        {
+            "_id": "e13b3d71-ea8d-4a3d-b5de-9134f7ee679f",
+            "name": "Logout",
+            "containerId": "b8feb67f-9717-4f94-bd00-14c05794cffd",
+            "created": "2023-12-12T08:28:00.056Z",
+            "sortNum": 230000
+        },
+        {
+            "_id": "2b51db2b-60c8-443e-b37c-0df0693072a3",
+            "name": "Public",
+            "containerId": "b6a14d73-2b4c-4aca-a46e-c0cf4696b6db",
+            "created": "2023-12-12T08:35:54.365Z",
+            "sortNum": 240000
+        },
+        {
+            "_id": "b2d1eb58-ee80-4281-bfb6-250d7821d627",
+            "name": "Normal",
+            "containerId": "b6a14d73-2b4c-4aca-a46e-c0cf4696b6db",
+            "created": "2023-12-12T08:35:59.030Z",
+            "sortNum": 250000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "05a60c14-ea90-4756-9177-43d7f6030a88",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "5fc373ce-1fd7-40d8-89e2-7a07147d3606",
+            "name": "Success",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-12-12T06:08:05.635Z",
+            "modified": "2023-12-12T08:27:07.755Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user01\",\n  \"password\": \"1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                }
+            ],
+            "docs": "## [Public] Login\n\n### Description\n로그인\n\n### Query String\n|name|type|Description|\n|---|----|-------|\n\n### Request Body\n|name|type|Description|\n|---|----|-------|\n|username|string|아이디|\n|password|string|비밀번호|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|잘못된 username과 password를 전달한 경우 발생|\n\n### Return Type\n|name|type|Description|\n|---|----|-------|"
+        },
+        {
+            "_id": "779af23d-dcfa-494e-9407-f035cba0b089",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "b1b13606-6eac-4222-a5b4-9c2a0ff83be5",
+            "name": "Success",
+            "url": "/auth/logout",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-12-12T06:08:10.529Z",
+            "modified": "2023-12-12T08:41:27.359Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                }
+            ],
+            "docs": "## [User+] Logout\n\n\n### Description\n로그아웃\n\n\n### Body\n**void**\n\n\n### Return Type\n**void**\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태에서 시도할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "976eaca7-37ef-4090-a6d6-21860f575eb5",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "765b890a-f1e7-46bf-bad0-92419d406fc1",
+            "name": "Success",
+            "url": "/auth/reissue",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-12-12T06:08:21.724Z",
+            "modified": "2023-12-12T08:41:37.120Z",
+            "headers": [],
+            "params": [],
+            "tests": [],
+            "docs": "## [User+] Logout\n\n\n### Description\n로그아웃\n\n\n### Body\n**void**\n\n\n### Return Type\n**void**\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태에서 시도할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "7e1bca30-6fab-4b37-87df-856f6a7c7781",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "",
+            "name": "TEST",
+            "url": "/test",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2023-12-12T06:14:04.569Z",
+            "modified": "2023-12-12T07:10:11.667Z",
+            "headers": [],
+            "params": [],
+            "tests": [],
+            "docs": "## [Public] CONNECTION TEST\n\nAPI 서버 연결 테스트 용도로 사용합니다."
+        },
+        {
+            "_id": "142ca2e0-3862-4835-8851-cabae72dc160",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as user",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2023-12-12T06:50:15.233Z",
+            "modified": "2023-12-12T06:51:18.273Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user01\",\n  \"password\": \"1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ]
+        },
+        {
+            "_id": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as manager",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2023-12-12T06:51:59.087Z",
+            "modified": "2023-12-12T06:53:12.640Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"manager01\",\n  \"password\": \"1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ]
+        },
+        {
+            "_id": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as admin",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2023-12-12T06:52:11.764Z",
+            "modified": "2023-12-12T06:53:44.382Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"admin01\",\n  \"password\": \"1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ]
+        },
+        {
+            "_id": "c0e48b7b-ad03-4901-9f60-cf18142d927c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "",
+            "name": "README",
+            "url": "",
+            "method": "OPTIONS",
+            "sortNum": 90000,
+            "created": "2023-12-12T07:10:21.532Z",
+            "modified": "2023-12-12T07:24:04.410Z",
+            "headers": [],
+            "params": [],
+            "tests": [],
+            "docs": "## [권한] 이름\n\n\n### Description\n간단한 설명\n\n\n### Query String?\n|name|type|Description|\n|---|----|-------|\n\n\n### Query Parameter?\n|name|type|Description|\n|---|----|-------|\n\n\n### Body\n**void**\nor\n|name|type|Description|\n|---|----|-------|\n\n\n### Return Type\n**void**\nor\n|name|type|Description|\n|---|----|-------|\n\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n\n\n### Others?"
+        },
+        {
+            "_id": "d00a2af7-68bc-412b-b89b-0b821f764a8e",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "3fa6fcb6-5740-42b9-9a05-97e65aa2cb78",
+            "name": "Success",
+            "url": "/account",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2023-12-12T07:27:22.791Z",
+            "modified": "2023-12-12T08:20:22.442Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test_user\",\n  \"username\": \"test01\",\n  \"password\": \"trust@1234\",\n  \"email\": \"toby.park@humantrust.one\"\n}",
+                "form": []
+            },
+            "tests": [],
+            "docs": "## [Public] RegisterAccount\n\n\n### Description\n회원가입을 진행합니다.   \n*주의* Staging 또는 Production 환경에서 실행시 인증메일이 발송됩니다.\n\n\n### Body\n|name|type|Description|\n|---|----|-------|\n|name|string|이름|\n|username|string|아이디|\n|password|string|비밀번호|\n|email|string|이메일|\n\n\n### Return Type\n|name|type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|이름|\n|email|string|이메일|\n|profileImageUrl|string|프로필 이미지 주소|\n|role|string|권한|\n\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|비밀번호 규칙을 만족하지 못할 경우 발생|\n|409|Conflict|이미 존재하는 username 이나 email 을 전달한 경우 발생|\n\n\n### Others\n**비밀번호 규칙**\n- 8글자 이상\n- 숫자, 특수문자, 영문자 최소 1개 이상씩 포함"
+        },
+        {
+            "_id": "7c231e46-9512-498e-9c33-90983014ab57",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "3fa6fcb6-5740-42b9-9a05-97e65aa2cb78",
+            "name": "400: Bad Request",
+            "url": "/account",
+            "method": "POST",
+            "sortNum": 110000,
+            "created": "2023-12-12T08:19:17.480Z",
+            "modified": "2023-12-12T08:21:38.672Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test_user\",\n  \"username\": \"test01\",\n  \"password\": \"1234\",\n  \"email\": \"toby.park@humantrust.one\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ]
+        },
+        {
+            "_id": "3343d479-5567-4d97-9db1-1c6a4ba6879a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "3fa6fcb6-5740-42b9-9a05-97e65aa2cb78",
+            "name": "409: Conflict",
+            "url": "/account",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2023-12-12T08:19:30.909Z",
+            "modified": "2023-12-12T08:22:16.713Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test_user\",\n  \"username\": \"test01\",\n  \"password\": \"trust@1234\",\n  \"email\": \"toby.park@humantrust.one\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "409"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "d00a2af7-68bc-412b-b89b-0b821f764a8e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "7b9e56e2-0638-421f-9eae-2fa3fae730c1",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "5fc373ce-1fd7-40d8-89e2-7a07147d3606",
+            "name": "401: Unauthorized",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 130000,
+            "created": "2023-12-12T08:24:03.123Z",
+            "modified": "2023-12-12T08:26:57.107Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"test1234\",\n  \"password\": \"1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ]
+        },
+        {
+            "_id": "91384d50-fc9e-4d1b-8198-8164d1364711",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "b1b13606-6eac-4222-a5b4-9c2a0ff83be5",
+            "name": "401: Unauthorized",
+            "url": "/auth/logout",
+            "method": "POST",
+            "sortNum": 140000,
+            "created": "2023-12-12T08:27:24.585Z",
+            "modified": "2023-12-12T08:29:07.105Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e13b3d71-ea8d-4a3d-b5de-9134f7ee679f",
+            "name": "logout",
+            "url": "/auth/logout",
+            "method": "POST",
+            "sortNum": 150000,
+            "created": "2023-12-12T08:28:06.646Z",
+            "modified": "2023-12-12T08:35:12.448Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ],
+                "options": {
+                    "clearCookies": true
+                }
+            }
+        },
+        {
+            "_id": "b0e855e3-62a4-48ac-a2dc-4ae24713eb63",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "765b890a-f1e7-46bf-bad0-92419d406fc1",
+            "name": "401: Unauthorized",
+            "url": "/auth/reissue",
+            "method": "GET",
+            "sortNum": 160000,
+            "created": "2023-12-12T08:29:39.796Z",
+            "modified": "2023-12-12T08:35:41.214Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ],
+                "options": {
+                    "clearCookies": true
+                }
+            }
+        },
+        {
+            "_id": "b86107ac-627a-4cb0-9e56-62467f30ca10",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "123fc72a-f810-4e13-83c3-28b8085bf65f",
+            "name": "Success",
+            "url": "/account/role",
+            "method": "GET",
+            "sortNum": 170000,
+            "created": "2023-12-12T08:36:35.202Z",
+            "modified": "2023-12-12T08:41:03.549Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.role",
+                    "action": "equal",
+                    "value": "User"
+                }
+            ],
+            "docs": "## [User+] GetAccountRole\n\n\n### Description\n현재 로그인한 계정의 권한 정보를 불러옵니다.\n\n\n### Return Type\n|name|type|Description|\n|---|----|------|\n|role|string|권한|\n\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태로 요청을 보낼 경우 발생|\n\n\n### Others\n**권한의 종류**\n- user: 일반 유저\n- manager: 팀 매니저\n- admin: 협회 관리자",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "51a56e5b-2a1f-49e6-b41a-4722faada82e",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "123fc72a-f810-4e13-83c3-28b8085bf65f",
+            "name": "401: Unauthorized",
+            "url": "/account/role",
+            "method": "GET",
+            "sortNum": 180000,
+            "created": "2023-12-12T08:40:09.331Z",
+            "modified": "2023-12-12T08:40:24.516Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        }
+    ],
+    "settings": {
+        "auth": {
+            "type": "bearer",
+            "bearer": "{{access_token}}"
+        },
+        "docs": "대한미식축구 협회 API 문서",
+        "options": {
+            "baseUrl": "http://localhost:4000"
+        },
+        "envId": "25a07e1f-107b-443c-915b-6339acf361a0"
+    }
+}
