@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
   Inject,
   Param,
@@ -13,8 +12,9 @@ import {
 } from '@nestjs/common'
 import { AuthenticatedRequest } from '@/common/class/authenticated-request.interface'
 import { Public } from '@/common/decorator/guard.decorator'
+import { Roles } from '@/common/decorator/roles.decorator'
 import { businessExceptionBinder } from '@/common/exception/business-exception.binder'
-import type { RegisterTeamRequest, Team } from '@prisma/client'
+import { Role, type RegisterTeamRequest, type Team } from '@prisma/client'
 import { TeamService } from './abstract/team.service'
 import { RegisterTeamRequestDTO } from './dto/register-team-request.dto'
 import type { TeamManyDTO } from './dto/team-many.dto'
@@ -30,6 +30,17 @@ export class TeamController {
       RegisterTeamRequest
     >
   ) {}
+
+  @Get('requests')
+  async getAccountRegisterTeamRequests(
+    @Req() req: AuthenticatedRequest
+  ): Promise<RegisterTeamRequest[]> {
+    try {
+      return await this.teamService.getAccountRegisterTeamRequests(req.user.id)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
 
   @Public()
   @Get(':id')
@@ -79,17 +90,6 @@ export class TeamController {
     }
   }
 
-  @Get('requests')
-  async getAccountRegisterTeamRequests(
-    @Req() req: AuthenticatedRequest
-  ): Promise<RegisterTeamRequest[]> {
-    try {
-      return await this.teamService.getAccountRegisterTeamRequests(req.user.id)
-    } catch (error) {
-      businessExceptionBinder(error)
-    }
-  }
-
   @Post('requests')
   async createRegisterTeamRequest(
     @Body() requestTeamDTO: RegisterTeamRequestDTO,
@@ -103,6 +103,7 @@ export class TeamController {
     }
   }
 
+  @Roles(Role.Manager)
   @Put('profile')
   async updateTeamProfile(
     @Body() updateTeamDTO: UpdateTeamDTO,
@@ -113,17 +114,6 @@ export class TeamController {
         updateTeamDTO,
         req.user.id
       )
-    } catch (error) {
-      businessExceptionBinder(error)
-    }
-  }
-
-  @Delete(':id')
-  async deleteTeam(
-    @Param('id', ParseIntPipe) id: number
-  ): Promise<{ result: string }> {
-    try {
-      return await this.teamService.deleteTeam(id)
     } catch (error) {
       businessExceptionBinder(error)
     }

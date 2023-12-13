@@ -43,7 +43,6 @@ describe('RegisterTeamService', () => {
     name: 'team01',
     profileImgUrl: '',
     status: TeamStatus.Enabled,
-    rejectReason: '',
     subColor: '#123456',
     deletedAt: undefined,
     createdAt: new Date()

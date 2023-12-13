@@ -51,7 +51,6 @@ describe('GetTeamService', () => {
       initial: 'team01',
       name: 'team01',
       profileImgUrl: '',
-      rejectReason: undefined,
       subColor: '',
       deletedAt: undefined,
       createdAt: new Date()
@@ -68,7 +67,6 @@ describe('GetTeamService', () => {
       initial: 'team02',
       name: 'team02',
       profileImgUrl: '',
-      rejectReason: undefined,
       subColor: '',
       deletedAt: undefined,
       createdAt: new Date()
@@ -85,7 +83,6 @@ describe('GetTeamService', () => {
       initial: 'team03',
       name: 'team03',
       profileImgUrl: '',
-      rejectReason: undefined,
       subColor: '',
       deletedAt: undefined,
       createdAt: new Date()
@@ -275,7 +272,8 @@ describe('GetTeamService', () => {
       expect(
         db.team.findMany.calledOnceWith({
           where: {
-            associationId
+            associationId,
+            status: 'Enabled'
           }
         })
       ).to.be.true
@@ -382,7 +380,7 @@ describe('GetTeamService', () => {
       expect(
         db.registerTeamRequest.findMany.calledOnceWith({
           where: {
-            id: accountId
+            accountId
           }
         })
       ).to.be.true

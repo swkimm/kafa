@@ -4,7 +4,8 @@ import {
   Role,
   AccountStatus,
   TeamEnrollStatus,
-  TeamStatus
+  TeamStatus,
+  LeagueApplyStatus
 } from '@prisma/client'
 import { hash } from 'argon2'
 
@@ -17,15 +18,39 @@ const main = async function () {
       email: 'user01@example.com',
       role: Role.User,
       name: 'user01',
-      password: await hash('1234'),
+      password: await hash('trust@1234'),
       status: AccountStatus.Enable
+    },
+    {
+      username: 'user02',
+      email: 'user02@example.com',
+      role: Role.User,
+      name: 'user02',
+      password: await hash('trust@1234'),
+      status: AccountStatus.Enable
+    },
+    {
+      username: 'user03',
+      email: 'user03@example.com',
+      role: Role.User,
+      name: 'user03',
+      password: await hash('trust@1234'),
+      status: AccountStatus.Enable
+    },
+    {
+      username: 'user04',
+      email: 'user04@example.com',
+      role: Role.User,
+      name: 'user04',
+      password: await hash('trust@1234'),
+      status: AccountStatus.Verifying
     },
     {
       username: 'manager01',
       email: 'manager01@example.com',
       role: Role.Manager,
       name: 'manager01',
-      password: await hash('1234'),
+      password: await hash('trust@1234'),
       status: AccountStatus.Enable
     },
     {
@@ -33,7 +58,7 @@ const main = async function () {
       email: 'admin01@example.com',
       role: Role.Admin,
       name: 'admin01',
-      password: await hash('1234'),
+      password: await hash('trust@1234'),
       status: AccountStatus.Enable
     }
   ]
@@ -52,6 +77,12 @@ const main = async function () {
       name: 'association02',
       globalName: 'association02',
       initial: 'ATWO'
+    },
+    {
+      name: 'association03',
+      globalName: 'association03',
+      initial: 'ATHREE',
+      parentId: 1
     }
   ]
 
@@ -108,7 +139,7 @@ const main = async function () {
       hometown: 'busan',
       initial: 'TFIVE',
       status: TeamStatus.Enabled,
-      associationId: 1
+      associationId: 2
     },
     {
       name: 'team06',
@@ -118,7 +149,7 @@ const main = async function () {
       hometown: 'busan',
       initial: 'TSIX',
       status: TeamStatus.Enabled,
-      associationId: 1
+      associationId: 2
     },
     {
       name: 'team07',
@@ -128,7 +159,7 @@ const main = async function () {
       hometown: 'busan',
       initial: 'TSEVEN',
       status: TeamStatus.Enabled,
-      associationId: 1
+      associationId: 2
     },
     {
       name: 'team08',
@@ -138,7 +169,7 @@ const main = async function () {
       hometown: 'busan',
       initial: 'TEIGHT',
       status: TeamStatus.Disabled,
-      associationId: 1
+      associationId: 2
     }
   ]
 
@@ -240,6 +271,37 @@ const main = async function () {
     data: leagues
   })
 
+  const teamLeagues: Prisma.TeamLeagueCreateManyInput[] = [
+    {
+      leagueId: 1,
+      teamId: 1,
+      applyStatus: LeagueApplyStatus.Approved,
+      rank: 1
+    },
+    {
+      leagueId: 1,
+      teamId: 2,
+      applyStatus: LeagueApplyStatus.Approved,
+      rank: 3
+    },
+    {
+      leagueId: 1,
+      teamId: 3,
+      applyStatus: LeagueApplyStatus.Approved,
+      rank: 2
+    },
+    {
+      leagueId: 1,
+      teamId: 4,
+      applyStatus: LeagueApplyStatus.Rejected,
+      rejectReason: 'test'
+    }
+  ]
+
+  await prisma.teamLeague.createMany({
+    data: teamLeagues
+  })
+
   const sponsers: Prisma.SponserCreateManyInput[] = [
     {
       name: 'sponser01',
@@ -267,6 +329,10 @@ const main = async function () {
     {
       leagueId: 1,
       sponserId: 1
+    },
+    {
+      leagueId: 1,
+      sponserId: 2
     }
   ]
 

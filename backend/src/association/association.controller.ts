@@ -1,4 +1,11 @@
-import { Controller, Get, Inject, ParseIntPipe, Query } from '@nestjs/common'
+import {
+  Controller,
+  Get,
+  Inject,
+  Param,
+  ParseIntPipe,
+  Query
+} from '@nestjs/common'
 import { Public } from '@/common/decorator/guard.decorator'
 import { businessExceptionBinder } from '@/common/exception/business-exception.binder'
 import type { Association } from '@prisma/client'
@@ -14,7 +21,7 @@ export class AssociationController {
   @Public()
   @Get(':id')
   async getAssociation(
-    @Query('id', ParseIntPipe) associationId: number
+    @Param('id', ParseIntPipe) associationId: number
   ): Promise<Association> {
     try {
       return await this.associationService.getAssociation(associationId)

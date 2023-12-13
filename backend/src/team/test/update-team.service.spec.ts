@@ -61,7 +61,6 @@ describe('UpdateTeamService', () => {
     name: 'team01',
     profileImgUrl: '',
     status: TeamStatus.Enabled,
-    rejectReason: '',
     subColor: '#123456',
     deletedAt: undefined,
     createdAt: new Date('2023-01-01')

@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Inject,
   Param,
@@ -60,6 +61,17 @@ export class AdminTeamController {
   ): Promise<RegisterTeamRequest> {
     try {
       return await this.teamService.rejectRegisterTeamRequest(requestId, reason)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Delete(':id')
+  async deleteTeam(
+    @Param('id', ParseIntPipe) id: number
+  ): Promise<{ result: string }> {
+    try {
+      return await this.teamService.deleteTeam(id)
     } catch (error) {
       businessExceptionBinder(error)
     }

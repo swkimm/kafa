@@ -1,4 +1,5 @@
 import {
+  IsAlphanumeric,
   IsEmail,
   IsNotEmpty,
   IsString,
@@ -12,6 +13,7 @@ export class RegisterAccountDTO {
 
   @IsString()
   @IsNotEmpty()
+  @IsAlphanumeric()
   username: string
 
   @IsStrongPassword({

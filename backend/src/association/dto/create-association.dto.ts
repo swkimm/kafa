@@ -1,10 +1,10 @@
 import {
   IsAlpha,
-  IsAlphanumeric,
   IsNotEmpty,
   IsNumber,
   IsOptional,
-  IsString
+  IsString,
+  IsUppercase
 } from 'class-validator'
 
 /**
@@ -19,11 +19,12 @@ export class CreateAssociationDTO {
   @IsNotEmpty()
   name: string
 
-  @IsAlphanumeric()
+  @IsString()
   @IsNotEmpty()
   globalName: string
 
   @IsAlpha()
+  @IsUppercase()
   @IsNotEmpty()
   initial: string
 }

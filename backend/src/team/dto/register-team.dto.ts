@@ -6,7 +6,8 @@ import {
   IsNotEmpty,
   IsNumber,
   IsOptional,
-  IsString
+  IsString,
+  Matches
 } from 'class-validator'
 
 /**
@@ -21,7 +22,10 @@ export class RegisterTeamDTO {
   @IsNotEmpty()
   name: string
 
-  @IsAlpha()
+  @Matches(/^[A-Za-z][A-Za-z\s]*$/, {
+    message:
+      '영문 이름은 알파벳으로 시작하면서 알파벳과 공백 문자만 포함해야 합니다.'
+  })
   @IsNotEmpty()
   globalName: string
 

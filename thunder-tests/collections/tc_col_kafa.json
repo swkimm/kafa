@@ -37,7 +37,7 @@
             "name": "Common",
             "containerId": "",
             "created": "2023-12-12T06:50:01.526Z",
-            "sortNum": 70000
+            "sortNum": 330000
         },
         {
             "_id": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
@@ -160,10 +160,185 @@
         },
         {
             "_id": "b2d1eb58-ee80-4281-bfb6-250d7821d627",
-            "name": "Normal",
+            "name": "Admin",
             "containerId": "b6a14d73-2b4c-4aca-a46e-c0cf4696b6db",
             "created": "2023-12-12T08:35:59.030Z",
             "sortNum": 250000
+        },
+        {
+            "_id": "6981ab42-edc8-490e-88b5-75bcfb8d11ba",
+            "name": "getAssoication",
+            "containerId": "2b51db2b-60c8-443e-b37c-0df0693072a3",
+            "created": "2023-12-12T12:51:53.452Z",
+            "sortNum": 260000
+        },
+        {
+            "_id": "543da69d-194b-4aea-9b6b-6cbfe7a318db",
+            "name": "getAssoications",
+            "containerId": "2b51db2b-60c8-443e-b37c-0df0693072a3",
+            "created": "2023-12-12T13:04:17.535Z",
+            "sortNum": 270000
+        },
+        {
+            "_id": "e5c6fa07-ea11-42be-bd5e-1ac8b4481c8e",
+            "name": "createAssociation",
+            "containerId": "b2d1eb58-ee80-4281-bfb6-250d7821d627",
+            "created": "2023-12-12T13:10:01.598Z",
+            "sortNum": 280000
+        },
+        {
+            "_id": "8ef8d8c8-949b-4d8e-aea9-c8a207e07d04",
+            "name": "updateAssociation",
+            "containerId": "b2d1eb58-ee80-4281-bfb6-250d7821d627",
+            "created": "2023-12-12T13:10:39.528Z",
+            "sortNum": 290000
+        },
+        {
+            "_id": "44af70c6-2a02-488e-bca1-c559cb9d32b7",
+            "name": "deleteAssociation",
+            "containerId": "b2d1eb58-ee80-4281-bfb6-250d7821d627",
+            "created": "2023-12-12T13:10:46.093Z",
+            "sortNum": 300000
+        },
+        {
+            "_id": "03bded80-952b-490e-9f99-df3751996b31",
+            "name": "Team",
+            "containerId": "",
+            "created": "2023-12-12T14:07:07.258Z",
+            "sortNum": 310000
+        },
+        {
+            "_id": "ef1eb5e0-88ae-4bd0-bafb-816722152593",
+            "name": "League",
+            "containerId": "",
+            "created": "2023-12-12T14:07:14.468Z",
+            "sortNum": 320000
+        },
+        {
+            "_id": "0abfe165-8ff2-4f3d-baa8-5ba72e657b46",
+            "name": "getTeam",
+            "containerId": "929d39b8-0496-42de-a410-55237338b9f9",
+            "created": "2023-12-12T14:07:42.004Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "3ff20e7c-1e61-4f6d-9d96-0b5f6c7c2f70",
+            "name": "getTeams",
+            "containerId": "929d39b8-0496-42de-a410-55237338b9f9",
+            "created": "2023-12-12T14:07:46.853Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "b302ae4f-11db-4cc2-8b33-80687a733aae",
+            "name": "Sponser",
+            "containerId": "",
+            "created": "2023-12-12T14:09:03.736Z",
+            "sortNum": 325000
+        },
+        {
+            "_id": "929d39b8-0496-42de-a410-55237338b9f9",
+            "name": "Public",
+            "containerId": "03bded80-952b-490e-9f99-df3751996b31",
+            "created": "2023-12-12T14:09:12.823Z",
+            "sortNum": 360000
+        },
+        {
+            "_id": "17a03852-16e8-44a9-8233-21e6b4dc734e",
+            "name": "getTeamsByLeagueId",
+            "containerId": "929d39b8-0496-42de-a410-55237338b9f9",
+            "created": "2023-12-12T14:09:42.520Z",
+            "sortNum": 370000
+        },
+        {
+            "_id": "dad982f3-e77c-414e-9835-d7e73277ac1e",
+            "name": "getTeamsByAssoicationId",
+            "containerId": "929d39b8-0496-42de-a410-55237338b9f9",
+            "created": "2023-12-12T14:09:50.528Z",
+            "sortNum": 380000
+        },
+        {
+            "_id": "4c5d53cf-654a-4c0d-b848-990a13be6a3c",
+            "name": "Normal",
+            "containerId": "03bded80-952b-490e-9f99-df3751996b31",
+            "created": "2023-12-12T14:10:22.270Z",
+            "sortNum": 400000
+        },
+        {
+            "_id": "f66c0790-3904-4b37-aef2-aa1fc54a1037",
+            "name": "getAccountRegisterTeamRequests",
+            "containerId": "4c5d53cf-654a-4c0d-b848-990a13be6a3c",
+            "created": "2023-12-12T14:10:32.638Z",
+            "sortNum": 410000
+        },
+        {
+            "_id": "88751974-ca2a-43fe-bf52-5920638352ba",
+            "name": "createRegisterTeamRequest",
+            "containerId": "4c5d53cf-654a-4c0d-b848-990a13be6a3c",
+            "created": "2023-12-12T14:10:43.796Z",
+            "sortNum": 420000
+        },
+        {
+            "_id": "48163c86-c888-4106-b15f-7fa59ed50b60",
+            "name": "Manager",
+            "containerId": "03bded80-952b-490e-9f99-df3751996b31",
+            "created": "2023-12-12T14:10:50.520Z",
+            "sortNum": 430000
+        },
+        {
+            "_id": "16c87ec7-fb96-41f5-b07f-f3c2d829e6ad",
+            "name": "updateTeamProfile",
+            "containerId": "48163c86-c888-4106-b15f-7fa59ed50b60",
+            "created": "2023-12-12T14:10:59.429Z",
+            "sortNum": 440000
+        },
+        {
+            "_id": "f81b449d-84fe-40f5-895c-8e8890472fc2",
+            "name": "Admin",
+            "containerId": "03bded80-952b-490e-9f99-df3751996b31",
+            "created": "2023-12-12T14:12:29.497Z",
+            "sortNum": 450000
+        },
+        {
+            "_id": "f600df10-4807-40c5-b532-a859a2e29214",
+            "name": "getResgisterTeamRequests",
+            "containerId": "f81b449d-84fe-40f5-895c-8e8890472fc2",
+            "created": "2023-12-12T14:13:29.519Z",
+            "sortNum": 460000
+        },
+        {
+            "_id": "c5fbdd19-5b4a-4d10-81fe-a18be57c4aac",
+            "name": "approveRegisterTeamRequest",
+            "containerId": "f81b449d-84fe-40f5-895c-8e8890472fc2",
+            "created": "2023-12-12T14:13:39.409Z",
+            "sortNum": 470000
+        },
+        {
+            "_id": "1aa4101a-83f0-420f-82b0-33d3933aa513",
+            "name": "rejectRegisterTeamRequest",
+            "containerId": "f81b449d-84fe-40f5-895c-8e8890472fc2",
+            "created": "2023-12-12T14:13:56.806Z",
+            "sortNum": 480000
+        },
+        {
+            "_id": "61d2c8ea-085f-43ef-bbf9-92772c28d2a2",
+            "name": "deleteTeam",
+            "containerId": "f81b449d-84fe-40f5-895c-8e8890472fc2",
+            "created": "2023-12-12T14:14:03.298Z",
+            "sortNum": 490000
+        },
+        {
+            "_id": "50f8324d-03bb-42f1-9497-1789359f5e70",
+            "name": "Public",
+            "containerId": "ef1eb5e0-88ae-4bd0-bafb-816722152593",
+            "created": "2023-12-12T14:59:02.678Z",
+            "sortNum": 500000
+        },
+        {
+            "_id": "edb7fd95-d0e7-4fa4-9bbf-a91afbcdad7c",
+            "name": "Public",
+            "containerId": "b302ae4f-11db-4cc2-8b33-80687a733aae",
+            "created": "2023-12-12T14:59:07.103Z",
+            "sortNum": 510000
         }
     ],
     "requests": [
@@ -176,12 +351,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-12-12T06:08:05.635Z",
-            "modified": "2023-12-12T08:27:07.755Z",
+            "modified": "2023-12-12T10:18:25.442Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"username\": \"user01\",\n  \"password\": \"1234\"\n}",
+                "raw": "{\n  \"username\": \"user01\",\n  \"password\": \"trust@1234\"\n}",
                 "form": []
             },
             "tests": [
@@ -192,7 +367,7 @@
                     "value": "201"
                 }
             ],
-            "docs": "## [Public] Login\n\n### Description\n로그인\n\n### Query String\n|name|type|Description|\n|---|----|-------|\n\n### Request Body\n|name|type|Description|\n|---|----|-------|\n|username|string|아이디|\n|password|string|비밀번호|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|잘못된 username과 password를 전달한 경우 발생|\n\n### Return Type\n|name|type|Description|\n|---|----|-------|"
+            "docs": "## [Public] Login\n\n### URI\nPOST /auth/login\n\n### Description\n로그인\n\n### Query String\n|name|type|Description|\n|---|----|-------|\n\n### Request Body\n|Name|Type|Description|\n|---|----|-------|\n|username|string|아이디|\n|password|string|비밀번호|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|잘못된 username과 password를 전달한 경우 발생|\n\n### Return Type\n|name|type|Description|\n|---|----|-------|"
         },
         {
             "_id": "779af23d-dcfa-494e-9407-f035cba0b089",
@@ -203,7 +378,7 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-12-12T06:08:10.529Z",
-            "modified": "2023-12-12T08:41:27.359Z",
+            "modified": "2023-12-12T08:55:29.909Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -214,7 +389,7 @@
                     "value": "201"
                 }
             ],
-            "docs": "## [User+] Logout\n\n\n### Description\n로그아웃\n\n\n### Body\n**void**\n\n\n### Return Type\n**void**\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태에서 시도할 경우 발생|",
+            "docs": "## [User+] Logout\n\n### URI\nPOST /auth/logout\n\n### Description\n로그아웃\n\n### Body\n**void**\n\n### Return Type\n**void**\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태에서 시도할 경우 발생|",
             "preReq": {
                 "runRequests": [
                     {
@@ -235,11 +410,11 @@
             "method": "GET",
             "sortNum": 10000,
             "created": "2023-12-12T06:08:21.724Z",
-            "modified": "2023-12-12T08:41:37.120Z",
+            "modified": "2023-12-12T08:55:53.837Z",
             "headers": [],
             "params": [],
             "tests": [],
-            "docs": "## [User+] Logout\n\n\n### Description\n로그아웃\n\n\n### Body\n**void**\n\n\n### Return Type\n**void**\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태에서 시도할 경우 발생|",
+            "docs": "## [User+] Logout\n\n### URI\nGET /auth/reissue\n\n### Description\n로그아웃\n\n### Body\n**void**\n\n### Return Type\n**void**\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태에서 시도할 경우 발생|",
             "preReq": {
                 "runRequests": [
                     {
@@ -260,11 +435,24 @@
             "method": "GET",
             "sortNum": 40000,
             "created": "2023-12-12T06:14:04.569Z",
-            "modified": "2023-12-12T07:10:11.667Z",
+            "modified": "2023-12-12T13:46:57.072Z",
             "headers": [],
             "params": [],
-            "tests": [],
-            "docs": "## [Public] CONNECTION TEST\n\nAPI 서버 연결 테스트 용도로 사용합니다."
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "ok"
+                }
+            ],
+            "docs": "## [TEST] CONNECTION TEST\n\nAPI 서버 연결 테스트 및 ECS Service Task의 Health Check 용도로 사용합니다."
         },
         {
             "_id": "142ca2e0-3862-4835-8851-cabae72dc160",
@@ -275,12 +463,12 @@
             "method": "POST",
             "sortNum": 60000,
             "created": "2023-12-12T06:50:15.233Z",
-            "modified": "2023-12-12T06:51:18.273Z",
+            "modified": "2023-12-12T10:18:12.668Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"username\": \"user01\",\n  \"password\": \"1234\"\n}",
+                "raw": "{\n  \"username\": \"user01\",\n  \"password\": \"trust@1234\"\n}",
                 "form": []
             },
             "tests": [
@@ -307,12 +495,12 @@
             "method": "POST",
             "sortNum": 70000,
             "created": "2023-12-12T06:51:59.087Z",
-            "modified": "2023-12-12T06:53:12.640Z",
+            "modified": "2023-12-12T10:18:16.267Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"username\": \"manager01\",\n  \"password\": \"1234\"\n}",
+                "raw": "{\n  \"username\": \"manager01\",\n  \"password\": \"trust@1234\"\n}",
                 "form": []
             },
             "tests": [
@@ -339,12 +527,12 @@
             "method": "POST",
             "sortNum": 80000,
             "created": "2023-12-12T06:52:11.764Z",
-            "modified": "2023-12-12T06:53:44.382Z",
+            "modified": "2023-12-12T10:18:19.987Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"username\": \"admin01\",\n  \"password\": \"1234\"\n}",
+                "raw": "{\n  \"username\": \"admin01\",\n  \"password\": \"trust@1234\"\n}",
                 "form": []
             },
             "tests": [
@@ -366,16 +554,16 @@
             "_id": "c0e48b7b-ad03-4901-9f60-cf18142d927c",
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "",
-            "name": "README",
+            "name": "DOCUMENT FORMAT",
             "url": "",
             "method": "OPTIONS",
             "sortNum": 90000,
             "created": "2023-12-12T07:10:21.532Z",
-            "modified": "2023-12-12T07:24:04.410Z",
+            "modified": "2023-12-12T09:11:37.320Z",
             "headers": [],
             "params": [],
             "tests": [],
-            "docs": "## [권한] 이름\n\n\n### Description\n간단한 설명\n\n\n### Query String?\n|name|type|Description|\n|---|----|-------|\n\n\n### Query Parameter?\n|name|type|Description|\n|---|----|-------|\n\n\n### Body\n**void**\nor\n|name|type|Description|\n|---|----|-------|\n\n\n### Return Type\n**void**\nor\n|name|type|Description|\n|---|----|-------|\n\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n\n\n### Others?"
+            "docs": "## [권한] 이름\n\n### URI\nHTTP METHOD url\n\n### Description\n간단한 설명\n\n### Query String?\n|Name|Type|Description|\n|---|----|-------|\n\n### Query Parameter?\n|Name|Type|Description|\n|---|----|-------|\n\n### Body\n**void**\nor\n|Name|Type|Description|\n|---|----|-------|\n\n### Return Type\n**void**\nor\n|Name|Type|Description|\n|---|----|-------|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n\n### Others?\n기타 사항"
         },
         {
             "_id": "d00a2af7-68bc-412b-b89b-0b821f764a8e",
@@ -386,7 +574,7 @@
             "method": "POST",
             "sortNum": 100000,
             "created": "2023-12-12T07:27:22.791Z",
-            "modified": "2023-12-12T08:20:22.442Z",
+            "modified": "2023-12-12T15:22:37.268Z",
             "headers": [],
             "params": [],
             "body": {
@@ -395,7 +583,7 @@
                 "form": []
             },
             "tests": [],
-            "docs": "## [Public] RegisterAccount\n\n\n### Description\n회원가입을 진행합니다.   \n*주의* Staging 또는 Production 환경에서 실행시 인증메일이 발송됩니다.\n\n\n### Body\n|name|type|Description|\n|---|----|-------|\n|name|string|이름|\n|username|string|아이디|\n|password|string|비밀번호|\n|email|string|이메일|\n\n\n### Return Type\n|name|type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|이름|\n|email|string|이메일|\n|profileImageUrl|string|프로필 이미지 주소|\n|role|string|권한|\n\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|비밀번호 규칙을 만족하지 못할 경우 발생|\n|409|Conflict|이미 존재하는 username 이나 email 을 전달한 경우 발생|\n\n\n### Others\n**비밀번호 규칙**\n- 8글자 이상\n- 숫자, 특수문자, 영문자 최소 1개 이상씩 포함"
+            "docs": "## [Public] RegisterAccount\n\n### URI\nPOST /account\n\n### Description\n회원가입을 진행합니다.   \n*주의* Staging 환경에서 테스트시 전달한 이메일 주소로 인증메일이 발송됩니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name|string|이름|\n|username|string|아이디|\n|password|string|비밀번호|\n|email|string|이메일|\n\n### Return Type\n|name|type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|이름|\n|email|string|이메일|\n|profileImageUrl|string|프로필 이미지 주소|\n|role|string|권한|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|비밀번호 규칙 또는 아이디 규칙을 만족하지 못할 경우 발생|\n|409|Conflict|이미 존재하는 username 이나 email 을 전달한 경우 발생|\n\n### Others\n**비밀번호 규칙**\n- 8글자 이상\n- 숫자, 특수문자, 영문자 최소 1개 이상씩 포함\n\n**아이디 규칙**\n- 숫자와 영문자만으로 구성된 문자열"
         },
         {
             "_id": "7c231e46-9512-498e-9c33-90983014ab57",
@@ -599,7 +787,7 @@
             "method": "GET",
             "sortNum": 170000,
             "created": "2023-12-12T08:36:35.202Z",
-            "modified": "2023-12-12T08:41:03.549Z",
+            "modified": "2023-12-12T09:09:52.091Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -616,7 +804,7 @@
                     "value": "User"
                 }
             ],
-            "docs": "## [User+] GetAccountRole\n\n\n### Description\n현재 로그인한 계정의 권한 정보를 불러옵니다.\n\n\n### Return Type\n|name|type|Description|\n|---|----|------|\n|role|string|권한|\n\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태로 요청을 보낼 경우 발생|\n\n\n### Others\n**권한의 종류**\n- user: 일반 유저\n- manager: 팀 매니저\n- admin: 협회 관리자",
+            "docs": "## [User+] GetAccountRole\n\n### URI\nGET /account/role\n\n### Description\n현재 로그인한 계정의 권한 정보를 불러옵니다.\n\n### Return Type\n|Name|Type|Description|\n|---|----|------|\n|role|string|권한|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태로 요청을 보낼 경우 발생|\n\n### Others\n**권한의 종류**\n- user: 일반 유저\n- manager: 팀 매니저\n- admin: 협회 관리자",
             "preReq": {
                 "runRequests": [
                     {
@@ -658,6 +846,2397 @@
                     }
                 ]
             }
+        },
+        {
+            "_id": "3d35c673-736b-4cb4-96d4-cb18ad5b5158",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7cc6fd74-e6dc-4501-beec-aa5921a3ec1f",
+            "name": "Success",
+            "url": "/account/profile",
+            "method": "GET",
+            "sortNum": 190000,
+            "created": "2023-12-12T08:59:20.420Z",
+            "modified": "2023-12-12T09:09:38.673Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.name",
+                    "action": "equal",
+                    "value": "user01"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.email",
+                    "action": "equal",
+                    "value": "user01@example.com"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.role",
+                    "action": "equal",
+                    "value": "User"
+                }
+            ],
+            "docs": "## [User+] GetAccountProfile\n\n### URI\nGET /account/profile\n\n### Description\n현재 로그인한 계정의 프로필 정보를 불러옵니다.\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|이름|\n|email|string|이메일|\n|profileImgUrl|string|프로필 이미지 주소|\n|role|string|권한|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|401|Unautorized|로그인 하지 않은 상태에서 요청을 보낼경우 발생|\n\n### Others\n**권한의 종류**\n- user: 일반 유저\n- manager: 팀 매니저\n- admin: 협회 관리자",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4904ee78-29f3-4d41-95ec-db6dc23071a2",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7cc6fd74-e6dc-4501-beec-aa5921a3ec1f",
+            "name": "401: Unauthorized",
+            "url": "/account/profile",
+            "method": "GET",
+            "sortNum": 200000,
+            "created": "2023-12-12T09:04:12.453Z",
+            "modified": "2023-12-12T09:04:34.958Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ],
+                "options": {
+                    "clearCookies": true
+                }
+            }
+        },
+        {
+            "_id": "22c54e57-faf0-4a00-8f3c-c8cb3cfda97f",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "3720085b-1f6d-4677-8207-5ccc2c9c4407",
+            "name": "Success",
+            "url": "/account/email/verify?pin=1234",
+            "method": "POST",
+            "sortNum": 210000,
+            "created": "2023-12-12T09:47:39.401Z",
+            "modified": "2023-12-12T09:56:41.025Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "pin",
+                    "value": "1234",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                }
+            ],
+            "docs": "## [User+] VerifyEmail\n\n### URI\nPOST /account/email/verify\n\n### Description\n\b핀 코드를 통해 이메일 주소를 인증합니다.\n\n### Query String?\n|Name|Type|Description|\n|---|----|------|\n|pin|string|인증할 이메일 주소로 전송된 핀 코드|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|------|\n|result|string|인증결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized(1)|잘못된 핀 번호를 전송한 경우 발생|\n|401|Unauthorized(2)|\b로그인을 하지 않은 상태에서 요청을 보낼경우 발생|\n\n### Others\n이메일이 전송되야하기 때문에 스테이징 서버에서만 테스트가 가능합니다.",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a049fe33-dbca-4a19-bac7-e72d7fc25aa9",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "3720085b-1f6d-4677-8207-5ccc2c9c4407",
+            "name": "401: Unauthorized(1)",
+            "url": "/account/email/verify?pin=1234",
+            "method": "POST",
+            "sortNum": 220000,
+            "created": "2023-12-12T09:48:38.053Z",
+            "modified": "2023-12-12T09:59:06.731Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "pin",
+                    "value": "1234",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "106e0674-fc71-4ccb-99d8-e7a492c3bdc3",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "3720085b-1f6d-4677-8207-5ccc2c9c4407",
+            "name": "401: Unauthorized(2)",
+            "url": "/account/email/verify?pin=1234",
+            "method": "POST",
+            "sortNum": 230000,
+            "created": "2023-12-12T09:49:53.048Z",
+            "modified": "2023-12-12T09:50:11.765Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "pin",
+                    "value": "1234",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "cea53191-3193-4068-af8c-67811f1c3274",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4823a2f1-71f2-4fc4-9011-55401f457354",
+            "name": "Success",
+            "url": "/account/email",
+            "method": "PUT",
+            "sortNum": 240000,
+            "created": "2023-12-12T10:02:22.009Z",
+            "modified": "2023-12-12T10:11:23.476Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"test@example.com\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.result",
+                    "action": "equal",
+                    "value": "ok"
+                }
+            ],
+            "docs": "## [User+] UpdateEmail\n\n### URI\nPUT /account/email\n\n### Description\n현재 로그인한 계정의 이메일 주소 업데이트 요청을 생성합니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|email|string|이메일 주소|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|result|string|요청 생성 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|이메일 주소 형식이 잘못된 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 요청을 전송할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "75ccc242-a55b-452f-9a6c-36fe2bae164d",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4823a2f1-71f2-4fc4-9011-55401f457354",
+            "name": "400: Bad Request",
+            "url": "/account/email",
+            "method": "PUT",
+            "sortNum": 250000,
+            "created": "2023-12-12T10:09:09.820Z",
+            "modified": "2023-12-12T10:10:17.899Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"this is not email format string\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "31d9312f-409c-4244-bea3-3ab441c954e6",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4823a2f1-71f2-4fc4-9011-55401f457354",
+            "name": "401: Unauthorized",
+            "url": "/account/email",
+            "method": "PUT",
+            "sortNum": 260000,
+            "created": "2023-12-12T10:09:30.342Z",
+            "modified": "2023-12-12T10:10:58.414Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"test@example.com\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "88f5640b-0c5f-4774-a5cb-e4e684626c55",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7bc9a379-844b-440c-9480-97b72abb5f73",
+            "name": "Success",
+            "url": "/account/password",
+            "method": "PUT",
+            "sortNum": 270000,
+            "created": "2023-12-12T10:12:15.335Z",
+            "modified": "2023-12-12T10:26:47.057Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"oldPassword\": \"trust@1234\",\n  \"newPassword\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.result",
+                    "action": "equal",
+                    "value": "ok"
+                }
+            ],
+            "docs": "## [User+] UpdatePassword\n\n### URI\nPUT /account/password\n\n### Description\n현재 로그인한 계정의 비밀번호를 변경합니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|oldPassword|string|기존 비밀번호|\n|newPassword|string|세로운 비밀번호|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|result|string|비밀번호 변경 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|400|Bad Request|새 비밀번호가 비밀번호 규칙을 만족시키지 못하는 경우 발생|\n|401|Unauthorized(1)|현재 비밀번호가 틀린 경우 발생|\n|401|Unauthorized(2)|로그인을 하지 않은 상태에서 요청을 전송할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "9bbe7c0d-320c-4bbc-9eb1-e4563e5321be",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7bc9a379-844b-440c-9480-97b72abb5f73",
+            "name": "400: Bad Request",
+            "url": "/account/password",
+            "method": "PUT",
+            "sortNum": 280000,
+            "created": "2023-12-12T10:23:39.182Z",
+            "modified": "2023-12-12T10:24:17.624Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"oldPassword\": \"trust@1234\",\n  \"newPassword\": \"1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ]
+        },
+        {
+            "_id": "2b3e9cd6-dc4b-4354-8137-ed954eda7380",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7bc9a379-844b-440c-9480-97b72abb5f73",
+            "name": "401: Unauthorized(1)",
+            "url": "/account/password",
+            "method": "PUT",
+            "sortNum": 290000,
+            "created": "2023-12-12T10:24:51.946Z",
+            "modified": "2023-12-12T10:26:34.936Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"oldPassword\": \"trust@1231\",\n  \"newPassword\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "8596a14c-b0c4-41df-851f-09a0ea2109d6",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7bc9a379-844b-440c-9480-97b72abb5f73",
+            "name": "401: Unauthorized(2)",
+            "url": "/account/password",
+            "method": "PUT",
+            "sortNum": 300000,
+            "created": "2023-12-12T10:25:34.775Z",
+            "modified": "2023-12-12T10:26:24.737Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"oldPassword\": \"trust@1231\",\n  \"newPassword\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "e85a6a93-8e76-4a53-873a-18beee097dac",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "82cc5b50-3f1d-44c6-a78e-05a554f46f96",
+            "name": "Success",
+            "url": "/account/profile",
+            "method": "PUT",
+            "sortNum": 290000,
+            "created": "2023-12-12T10:27:13.598Z",
+            "modified": "2023-12-12T10:37:33.723Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"user01\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.name",
+                    "action": "equal",
+                    "value": "user01"
+                }
+            ],
+            "docs": "## [User+] UpdateAccountProfile\n\n### URI\nPUT /account/profile\n\n### Description\n\b현재 로그인한 계정의 프로필 정보를 변경합니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name|string|이름|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|이름|\n|email|string|이메일 주소|\n|profileImgUrl|string?|프로필 이미지 주소|\n|role|string|권한|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|Body 값에 유효하지 않은 값을 포함시키는 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태에서 요청을 전송할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "32db19bb-28ca-4cee-b425-adbf7ea9d814",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "82cc5b50-3f1d-44c6-a78e-05a554f46f96",
+            "name": "400: Bad Request",
+            "url": "/account/profile",
+            "method": "PUT",
+            "sortNum": 300000,
+            "created": "2023-12-12T10:36:47.326Z",
+            "modified": "2023-12-12T10:38:26.701Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "1a35d3dd-3c48-4780-8576-dfa3959aa781",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "82cc5b50-3f1d-44c6-a78e-05a554f46f96",
+            "name": "401: Unauthorized",
+            "url": "/account/profile",
+            "method": "PUT",
+            "sortNum": 310000,
+            "created": "2023-12-12T10:38:01.571Z",
+            "modified": "2023-12-12T10:39:10.445Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"user01\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "f8f1df22-ddbb-4cdd-b10b-d407541bd23f",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "1abea004-a7e3-41f9-b4e7-093c594c10c0",
+            "name": "Success",
+            "url": "/account",
+            "method": "DELETE",
+            "sortNum": 330000,
+            "created": "2023-12-12T10:39:41.304Z",
+            "modified": "2023-12-12T10:47:52.674Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.name",
+                    "action": "equal",
+                    "value": "user02"
+                }
+            ],
+            "docs": "## [User+] WithdrawAccount\n\n### URI\nDELETE /account\n\n### Description\n현재 로그인한 계정을 삭제합니다.\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|이름|\n|email|string|이메일 주소|\n|profileImgUrl|string?|프로필 이미지 주소|\n|role|string|권한|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태에서 요청을 전송한 경우 발생|\n\n### Others\n**Soft delete**  \n- 실제로 삭제되지 않고 계정을 비활성화 상태로 전환합니다.",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "48e6bd8a-1000-4544-99dc-5920ad699726",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "48e6bd8a-1000-4544-99dc-5920ad699726",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as user for delete test",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 65000,
+            "created": "2023-12-12T10:42:44.529Z",
+            "modified": "2023-12-12T10:43:41.222Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user02\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ]
+        },
+        {
+            "_id": "f1ace086-3568-441e-be8f-cda5fd87c900",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "1abea004-a7e3-41f9-b4e7-093c594c10c0",
+            "name": "401: Unauthorized",
+            "url": "/account",
+            "method": "DELETE",
+            "sortNum": 350000,
+            "created": "2023-12-12T10:46:21.577Z",
+            "modified": "2023-12-12T10:46:45.672Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "0cb230b8-b86b-4bdb-b52b-21c48ac52398",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "6981ab42-edc8-490e-88b5-75bcfb8d11ba",
+            "name": "Success",
+            "url": "/associations/1",
+            "method": "GET",
+            "sortNum": 360000,
+            "created": "2023-12-12T12:52:02.368Z",
+            "modified": "2023-12-12T13:03:37.473Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.id",
+                    "action": "equal",
+                    "value": "1"
+                }
+            ],
+            "docs": "## [Public] GetAssociation\n\n### URI\nGET /associations/[:id]\n\n### Description\n\b협회 정보를 불러옵니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|id|number|협회 식별자|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|협회 이름|\n|globalName|협회 영어 이름|\n|initial|string|협회 이니셜|\n|profileImgUrl|string?|협회 프로필 이미지 주소|\n|parentId|number|상위 협회 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|id 파라미터로 잘못된 값을 설정했을 때 발생|\n|404|Not Found|존재하지 않는 협회의 식별자 값을 id 파라미터로 전달했을 때 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "3f332521-f9b7-4940-847c-bd9b4c503bf7",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "6981ab42-edc8-490e-88b5-75bcfb8d11ba",
+            "name": "404: Not Found",
+            "url": "/associations/100",
+            "method": "GET",
+            "sortNum": 370000,
+            "created": "2023-12-12T12:55:04.347Z",
+            "modified": "2023-12-12T12:58:13.766Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "8de746de-ce50-4f03-89ee-bb5c69dc107c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "6981ab42-edc8-490e-88b5-75bcfb8d11ba",
+            "name": "400: Bad Request",
+            "url": "/associations/abc",
+            "method": "GET",
+            "sortNum": 365000,
+            "created": "2023-12-12T12:55:12.050Z",
+            "modified": "2023-12-12T12:58:21.797Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "9ab82227-a41d-4831-934e-7359073f7b9e",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "543da69d-194b-4aea-9b6b-6cbfe7a318db",
+            "name": "Success",
+            "url": "/associations?page=1&limit=3",
+            "method": "GET",
+            "sortNum": 390000,
+            "created": "2023-12-12T13:04:31.123Z",
+            "modified": "2023-12-12T13:09:24.884Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json",
+                    "action": "count",
+                    "value": "3"
+                }
+            ],
+            "docs": "## [Public] GetAssociations\n\n### URI\nGET /associations\n\n### Description\n\b협회 목록을 불러옵니다.\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page|number|불러올 페이지 (>= 1)|\n|limit?|number|페이지 당 불러올 협회 수 (default 10)|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|협회 이름|\n|globalName|string|협회 영어 이름|\n|initial|string|협회 이니셜|\n|profileImgUrl|string?|협회 프로필 이미지 주소|\n|parentId|number|상위 협회 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 스트링으로 잘못된 값을 설정했을 때 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "2e4cd784-f3c0-4c94-a38c-c09fde9a9f68",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "543da69d-194b-4aea-9b6b-6cbfe7a318db",
+            "name": "400: Bad Request",
+            "url": "/associations?page=1&limit=abc",
+            "method": "GET",
+            "sortNum": 400000,
+            "created": "2023-12-12T13:04:39.806Z",
+            "modified": "2023-12-12T13:08:50.292Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "abc",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "6f4a6840-baa3-4583-b9aa-d6c5dce5fa60",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e5c6fa07-ea11-42be-bd5e-1ac8b4481c8e",
+            "name": "Success",
+            "url": "/admin/associations",
+            "method": "POST",
+            "sortNum": 440000,
+            "created": "2023-12-12T13:11:00.273Z",
+            "modified": "2023-12-12T13:33:48.672Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"association test\",\n  \"globalName\": \"association test\",\n  \"initial\": \"TEST\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.name",
+                    "action": "equal",
+                    "value": "association test"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.globalName",
+                    "action": "equal",
+                    "value": "association test"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.initial",
+                    "action": "equal",
+                    "value": "TEST"
+                }
+            ],
+            "docs": "## [Admin] CreateAssociation\n\n### URI\nPOST /associations\n\n### Description\n협회를 생성합니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name?|string|협회 이름|\n|globalName?|string|협회 영어 이름|\n|initial?|string|협회 이니셜|\n|parentId?|number|상위 협회 식별자|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|협회 이름|\n|globalName|string|협회 영어 이름|\n|initial|string|협회 이니셜|\n|profileImgUrl|string?|협회 프로필 이미지 주소|\n|parentId|number?|상위 협회 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|협회 생성 정보에 올바르지 않은 값이 포함된 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태에서 해당 요청을 보낼 시 발생|\n|403|Forbidden|Admin 권한이 아닌 계정으로 해당 요청을 보낼 시 발생|\n|404|Not Found|존재하지 않는 협회의 식별자를 부모 협회 식별자로 전달한 경우 발생|\n\n### Others\ninitial의 경우 대문자로만 이루어진 문자열을 전달해야 한다.",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "ee6cf119-c649-43bd-9579-cf597c2a609f",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e5c6fa07-ea11-42be-bd5e-1ac8b4481c8e",
+            "name": "400: Bad Request",
+            "url": "/admin/associations",
+            "method": "POST",
+            "sortNum": 450000,
+            "created": "2023-12-12T13:23:17.039Z",
+            "modified": "2023-12-12T13:26:29.273Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"association test\",\n  \"globalName\": \"association test\",\n  \"initial\": \"abcd\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "6305c10e-1ab1-442e-baf5-e3f1b137784c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e5c6fa07-ea11-42be-bd5e-1ac8b4481c8e",
+            "name": "401: Unauthorized",
+            "url": "/admin/associations",
+            "method": "POST",
+            "sortNum": 460000,
+            "created": "2023-12-12T13:23:27.147Z",
+            "modified": "2023-12-12T13:25:50.774Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"association test\",\n  \"globalName\": \"association test\",\n  \"initial\": \"TEST\"\n}",
+                "form": []
+            },
+            "tests": [],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "58569138-6936-4c8d-b18a-903987fa8a45",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e5c6fa07-ea11-42be-bd5e-1ac8b4481c8e",
+            "name": "403: Forbidden",
+            "url": "/admin/associations",
+            "method": "POST",
+            "sortNum": 470000,
+            "created": "2023-12-12T13:23:34.200Z",
+            "modified": "2023-12-12T13:25:17.757Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"association test\",\n  \"globalName\": \"association test\",\n  \"initial\": \"TEST\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "8f1fbf37-12b3-4c41-a895-d8f5e3e701a9",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e5c6fa07-ea11-42be-bd5e-1ac8b4481c8e",
+            "name": "404: Not Found",
+            "url": "/admin/associations",
+            "method": "POST",
+            "sortNum": 480000,
+            "created": "2023-12-12T13:23:40.223Z",
+            "modified": "2023-12-12T13:25:26.913Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"association test\",\n  \"globalName\": \"association test\",\n  \"initial\": \"TEST\",\n  \"parentId\": 1000\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4f8f25ab-664d-4965-b518-f7b335ba5e2b",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "8ef8d8c8-949b-4d8e-aea9-c8a207e07d04",
+            "name": "Success",
+            "url": "/admin/associations/2",
+            "method": "PUT",
+            "sortNum": 490000,
+            "created": "2023-12-12T13:28:12.144Z",
+            "modified": "2023-12-12T13:39:43.494Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"association update\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.name",
+                    "action": "equal",
+                    "value": "association update"
+                }
+            ],
+            "docs": "## [Admin] UpdateAssociation\n\n### URI\nPUT /associations/[:id]\n\n### Description\n협회 정보를 변경합니다.\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|id|number|협회 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name|string|협회 이름|\n|globalName|string|협회 영어 이름|\n|initial|string|협회 이니셜|\n|parentId?|number|상위 협회 식별자|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|협회 이름|\n|globalName|string|협회 영어 이름|\n|initial|string|협회 이니셜|\n|profileImgUrl|string?|협회 프로필 이미지 주소|\n|parentId|number?|상위 협회 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|id 쿼리 파라미터 또는 협회 변경 정보에 올바르지 않은 값이 포함된 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태에서 해당 요청을 보낼 시 발생|\n|403|Forbidden|Admin 권한이 아닌 계정으로 해당 요청을 보낼 시 발생|\n|404|Not Found|존재하지 않는 협회의 식별자를 부모 협회 식별자로 전달한 경우 발생|\n\n### Others\ninitial의 경우 대문자로만 이루어진 문자열을 전달해야 한다.",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b35ddd38-3798-4814-9d41-546ef68c74ec",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "8ef8d8c8-949b-4d8e-aea9-c8a207e07d04",
+            "name": "400: Bad Request",
+            "url": "/admin/associations/2",
+            "method": "PUT",
+            "sortNum": 500000,
+            "created": "2023-12-12T13:34:16.223Z",
+            "modified": "2023-12-12T13:35:22.108Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"parentId\": \"abcd\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "d357cba0-fe63-4d01-af91-1d26ffbcb7d2",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "8ef8d8c8-949b-4d8e-aea9-c8a207e07d04",
+            "name": "401: Unauthorized",
+            "url": "/admin/associations/2",
+            "method": "PUT",
+            "sortNum": 510000,
+            "created": "2023-12-12T13:34:22.765Z",
+            "modified": "2023-12-12T13:36:17.182Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"association update\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "842b2628-0572-42dd-b7bb-455713e4805b",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "8ef8d8c8-949b-4d8e-aea9-c8a207e07d04",
+            "name": "403: Forbidden",
+            "url": "/admin/associations/2",
+            "method": "PUT",
+            "sortNum": 520000,
+            "created": "2023-12-12T13:34:28.524Z",
+            "modified": "2023-12-12T13:36:47.815Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"association update\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "071275b5-6d99-4c17-b62a-28ed15b20100",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "8ef8d8c8-949b-4d8e-aea9-c8a207e07d04",
+            "name": "404: Not Found",
+            "url": "/admin/associations/2",
+            "method": "PUT",
+            "sortNum": 530000,
+            "created": "2023-12-12T13:34:38.158Z",
+            "modified": "2023-12-12T13:37:10.316Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"parentId\": 1000\n}",
+                "form": []
+            },
+            "tests": [],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4af6b428-11d2-4d17-aa53-36adb15241d1",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "44af70c6-2a02-488e-bca1-c559cb9d32b7",
+            "name": "Success",
+            "url": "/admin/associations/4",
+            "method": "DELETE",
+            "sortNum": 540000,
+            "created": "2023-12-12T13:37:47.150Z",
+            "modified": "2023-12-12T13:40:42.994Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.name",
+                    "action": "equal",
+                    "value": "association test"
+                }
+            ],
+            "docs": "## [Admin] DeleteAssociation\n\n### URI\nDELETE /associations/[:id]\n\n### Description\n\b협회를 삭제합니다.\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|id|number|협회 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|협회 이름|\n|globalName|string|협회 영어 이름|\n|initial|string|협회 이니셜|\n|profileImgUrl|string?|협회 프로필 이미지 주소|\n|parentId|number?|상위 협회 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|id 쿼리 파라미터에 올바르지 않은 값이 포함된 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태에서 해당 요청을 보낼 시 발생|\n|403|Forbidden|Admin 권한이 아닌 계정으로 해당 요청을 보낼 시 발생|\n|404|Not Found|존재하지 않는 협회의 식별자를 부모 협회 식별자로 전달한 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "6f4a6840-baa3-4583-b9aa-d6c5dce5fa60",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4e1a19c4-7c7f-4dac-a142-48af111f2632",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "44af70c6-2a02-488e-bca1-c559cb9d32b7",
+            "name": "400: Bad Request",
+            "url": "/admin/associations/test",
+            "method": "DELETE",
+            "sortNum": 550000,
+            "created": "2023-12-12T13:41:02.781Z",
+            "modified": "2023-12-12T13:41:48.129Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "dc2c125b-c1cd-4908-8885-10b6cb569948",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "44af70c6-2a02-488e-bca1-c559cb9d32b7",
+            "name": "401: Unauthorized",
+            "url": "/admin/associations/4",
+            "method": "DELETE",
+            "sortNum": 560000,
+            "created": "2023-12-12T13:41:09.457Z",
+            "modified": "2023-12-12T13:43:05.877Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "474ab96f-6f23-48d5-9e41-9bfcb9c9c6b5",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "44af70c6-2a02-488e-bca1-c559cb9d32b7",
+            "name": "403: Forbidden",
+            "url": "/admin/associations/4",
+            "method": "DELETE",
+            "sortNum": 570000,
+            "created": "2023-12-12T13:41:14.608Z",
+            "modified": "2023-12-12T13:43:37.018Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "04fc27e2-05d3-4537-b4ed-069f4dcd805e",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "44af70c6-2a02-488e-bca1-c559cb9d32b7",
+            "name": "404: Not Found",
+            "url": "/admin/associations/1000",
+            "method": "DELETE",
+            "sortNum": 580000,
+            "created": "2023-12-12T13:41:19.631Z",
+            "modified": "2023-12-12T13:44:02.051Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "061bafd2-839b-4f4e-aaee-d586a163d209",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0abfe165-8ff2-4f3d-baa8-5ba72e657b46",
+            "name": "Success",
+            "url": "/teams/1",
+            "method": "GET",
+            "sortNum": 590000,
+            "created": "2023-12-12T14:14:33.659Z",
+            "modified": "2023-12-13T06:18:46.997Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.name",
+                    "action": "equal",
+                    "value": "team01"
+                }
+            ],
+            "docs": "## [Public] GetTeam\n\n### URI\nGET /teams/[:id]\n\n### Description\n팀 정보를 불러옵니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|globalName|string|팀 영문 이름|\n|hometown|string|팀 연고지|\n|initial|string|팀 이니셜|\n|establisehdAt|Date|팀 설립연도|\n|color|string|팀 메인컬리|\n|subColor|string?|팀 서브컬러|\n|profileImgUrl|string?|팀 프로필 이미지 주소|\n|backgroundImgUrl|string?|팀 배경 이미지 주소|\n|deletedAt|Date?|팀 삭제 날짜|\n|status|string|팀 상태|\n|createdAt|Date|팀 객체 등록 날짜|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|id 쿼리 파라미터로 유효하지 않은 값을 전달할 경우 발생|\n|404|Not Found|존재하지 않는 팀의 식별자를 전달할 경우 발생|\n\n### Others\nstatus -  팀 활성화 상태를 나타냅니다\n- Enabled\n- Disabled"
+        },
+        {
+            "_id": "fcce5316-19df-4f2a-9547-793f77c050a9",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0abfe165-8ff2-4f3d-baa8-5ba72e657b46",
+            "name": "400: Bad Request",
+            "url": "/teams/abc",
+            "method": "GET",
+            "sortNum": 600000,
+            "created": "2023-12-12T14:25:24.290Z",
+            "modified": "2023-12-12T14:55:40.812Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "5c7c41c1-65bd-44ef-b048-8869411cd687",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0abfe165-8ff2-4f3d-baa8-5ba72e657b46",
+            "name": "404: Not Found",
+            "url": "/teams/1000",
+            "method": "GET",
+            "sortNum": 610000,
+            "created": "2023-12-12T14:25:45.252Z",
+            "modified": "2023-12-12T14:55:33.271Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "d6e5363d-7e82-402c-ba97-4afdbd6a30f4",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "3ff20e7c-1e61-4f6d-9d96-0b5f6c7c2f70",
+            "name": "Success",
+            "url": "/teams?page=1&limit=3",
+            "method": "GET",
+            "sortNum": 620000,
+            "created": "2023-12-12T14:26:11.507Z",
+            "modified": "2023-12-12T14:35:19.575Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json",
+                    "action": "count",
+                    "value": "3"
+                }
+            ],
+            "docs": "## [Public] GetTeam\n\n### URI\nGET /teams\n\n### Description\n팀 목록을 불러옵니다.\n\n### Query Strings\n|Name|Type|Description|\n|---|----|-------|\n|page|number|불러올 페이지( > 1)|\n|limit?|number|한 번에 불러올 팀 수 (default 10)|\n|option?|string|불러올 팀 옵션|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|globalName|string|팀 영문 이름|\n|initial|string|팀 이니셜|\n|color|string|팀 메인컬리|\n|profileImgUrl|팀 프로필 이미지 주소|string?|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 스트링에 유효하지 않은 값을 전달할 경우 발생|\n\n### Others\nstatus -  팀 활성화 상태를 나타냅니다.\n- Enabled\n- Disabled\n\noption - 불러올 팀의 등록 상태를 나타냅니다.\n- Disabled\n- 전달하지 않을 경우 Enabled",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "27e34832-4ba6-4d58-8913-08756bf3d8d2",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "3ff20e7c-1e61-4f6d-9d96-0b5f6c7c2f70",
+            "name": "400: Bad Request",
+            "url": "/teams?page=1&limit=3&option=test",
+            "method": "GET",
+            "sortNum": 630000,
+            "created": "2023-12-12T14:31:53.008Z",
+            "modified": "2023-12-12T14:32:29.949Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                },
+                {
+                    "name": "option",
+                    "value": "test",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "fd6eb1dc-3b5c-4558-8488-a09c6797f924",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "17a03852-16e8-44a9-8233-21e6b4dc734e",
+            "name": "Success",
+            "url": "/teams/leagues/1",
+            "method": "GET",
+            "sortNum": 640000,
+            "created": "2023-12-12T14:35:59.651Z",
+            "modified": "2023-12-12T14:48:29.110Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json",
+                    "action": "count",
+                    "value": "3"
+                }
+            ],
+            "docs": "## [Public] GetTeamsByLeagueId\n\n### URI\nGET /teams/leagues/[:leagueId]\n\n### Description\n해당 리그에 참여중인 팀 목록을 불러옵니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|globalName|string|팀 영문 이름|\n|hometown|string|팀 연고지|\n|initial|string|팀 이니셜|\n|establisehdAt|Date|팀 설립연도|\n|color|string|팀 메인컬리|\n|subColor|string?|팀 서브컬러|\n|profileImgUrl|팀 프로필 이미지 주소|string?|\n|backgroundImgUrl|팀 배경 이미지 주소|string?|\n|deletedAt|Date?|팀 삭제 날짜|\n|status|string|팀 상태|\n|createdAt|Date|팀 객체 등록 날짜|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|leagueId 쿼리 파라미터로 유효하지 않은 값을 전달할 경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 전달할 경우 발생|\n\n### Others\nstatus -  팀 활성화 상태를 나타냅니다\n- Enabled\n- Disabled",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "0ea49ef2-253c-441b-bfa6-9e498c52bac6",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "17a03852-16e8-44a9-8233-21e6b4dc734e",
+            "name": "400: Bad Request",
+            "url": "/teams/leagues/test",
+            "method": "GET",
+            "sortNum": 650000,
+            "created": "2023-12-12T14:41:48.821Z",
+            "modified": "2023-12-12T14:42:10.566Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "94ccf1f7-00ba-443e-899b-b9a6e03764d1",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "17a03852-16e8-44a9-8233-21e6b4dc734e",
+            "name": "404: Not Found",
+            "url": "/teams/leagues/1000",
+            "method": "GET",
+            "sortNum": 660000,
+            "created": "2023-12-12T14:41:55.426Z",
+            "modified": "2023-12-12T14:42:37.778Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "61328231-1f89-49cf-8e95-936794291524",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "dad982f3-e77c-414e-9835-d7e73277ac1e",
+            "name": "Success",
+            "url": "/teams/associations/1",
+            "method": "GET",
+            "sortNum": 670000,
+            "created": "2023-12-12T14:49:45.112Z",
+            "modified": "2023-12-12T14:54:04.330Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json",
+                    "action": "count",
+                    "value": "4"
+                }
+            ],
+            "docs": "## [Public] GetTeamsByAssociationId\n\n### URI\nGET /teams/leagues/[:associationId]\n\n### Description\n해당 협회에 소속된 팀 목록을 불러옵니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|associationId|number|리그 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|globalName|string|팀 영문 이름|\n|hometown|string|팀 연고지|\n|initial|string|팀 이니셜|\n|establisehdAt|Date|팀 설립연도|\n|color|string|팀 메인컬리|\n|subColor|string?|팀 서브컬러|\n|profileImgUrl|팀 프로필 이미지 주소|string?|\n|backgroundImgUrl|팀 배경 이미지 주소|string?|\n|deletedAt|Date?|팀 삭제 날짜|\n|status|string|팀 상태|\n|createdAt|Date|팀 객체 등록 날짜|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|associationId 쿼리 파라미터로 유효하지 않은 값을 전달할 경우 발생|\n|404|Not Found|존재하지 않는 협회의 식별자를 전달할 경우 발생|\n\n### Others\nstatus -  팀 활성화 상태를 나타냅니다\n- Enabled\n- Disabled",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "817e30fa-2487-4c4e-8bc7-498bb97dbcab",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "dad982f3-e77c-414e-9835-d7e73277ac1e",
+            "name": "400: Bad Request",
+            "url": "/teams/associations/test",
+            "method": "GET",
+            "sortNum": 680000,
+            "created": "2023-12-12T14:54:21.942Z",
+            "modified": "2023-12-12T14:55:08.920Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "68339ffd-b348-4fc8-bb1a-18c0dace7084",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "dad982f3-e77c-414e-9835-d7e73277ac1e",
+            "name": "404: Not Found",
+            "url": "/teams/associations/1000",
+            "method": "GET",
+            "sortNum": 690000,
+            "created": "2023-12-12T14:54:28.750Z",
+            "modified": "2023-12-12T14:55:02.911Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "84d653b9-5667-4a34-8953-2aed0e2b1463",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as user for create-team-request",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 67500,
+            "created": "2023-12-12T14:56:53.608Z",
+            "modified": "2023-12-12T14:58:35.670Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user03\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ]
+        },
+        {
+            "_id": "a238f681-cc75-48dc-91b2-96fafdc20934",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f66c0790-3904-4b37-aef2-aa1fc54a1037",
+            "name": "Success",
+            "url": "/teams/requests",
+            "method": "GET",
+            "sortNum": 710000,
+            "created": "2023-12-12T15:02:48.186Z",
+            "modified": "2023-12-13T06:30:33.252Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json",
+                    "action": "count",
+                    "value": "3"
+                }
+            ],
+            "docs": "## [User] GetAccountRegisterTeamRequests\n\n### URI\nGET /teams/requests\n\n### Description\n현재 로그인한 계정에서 신청한 팀 생성 요청 목록을 불러옵니다.\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 등록 요청 식별자|\n|accountId|number|팀 등록 요청 생성 계정 식별자|\n|username|string|희망하는 팀 계정 아이디|\n|data|*TeamDTO|등록할 팀 정보|\n|createdAt|Date|팀 등록 요청 생성 시간|\n|rejectReason|string?|팀 등록 요청 반려 사유|\n|status|string|팀 등록 요청 처리 상태|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n\n### Ohters\n**status**: 팀 등록 요청 처리 상태를 나타냅니다.\n- Approved: 승인됨\n- Rejected: 반려됨\n- Received: 접수됨\n\n**TeamDTO**\n|Name|Type|Description|\n|---|----|-------|\n|associationId|number|소속된 협회 식별자|\n|name|string|팀 명|\n|globalName|string|팀 영문 명|\n|hometown|string|팀 연고지|\n|initial|string|팀 영문 이니셜|\n|establishedAt|Date|팀 창단연도|\n|color|string|팀 메인 컬러|\n|subColor?|string|팀 서브 컬러|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "c4ee7472-e17f-4079-9e72-1a11b77d769a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f66c0790-3904-4b37-aef2-aa1fc54a1037",
+            "name": "401: Unauthorized",
+            "url": "/teams/requests",
+            "method": "GET",
+            "sortNum": 720000,
+            "created": "2023-12-12T15:07:58.315Z",
+            "modified": "2023-12-12T15:08:20.715Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "d1f4650d-fb97-4bc0-992a-f2e751962712",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as unverified user for create-team-request",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 68750,
+            "created": "2023-12-12T15:23:05.706Z",
+            "modified": "2023-12-12T15:23:33.288Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user04\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ]
+        },
+        {
+            "_id": "1912a6bb-fb11-49cd-bbca-43ad75b8ac31",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "88751974-ca2a-43fe-bf52-5920638352ba",
+            "name": "Success",
+            "url": "/teams/requests",
+            "method": "POST",
+            "sortNum": 730000,
+            "created": "2023-12-13T05:18:02.846Z",
+            "modified": "2023-12-13T06:01:15.733Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"data\": {\n    \"associationId\": 1,\n    \"name\": \"test team\",\n    \"globalName\": \"test team\",\n    \"hometown\": \"yeoui\",\n    \"initial\": \"TT\",\n    \"establishedAt\": \"2023-01-01\",\n    \"color\": \"#ffffff\"\n  },\n  \"teamAccountUsername\": \"test1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                }
+            ],
+            "docs": "## [User] CreateRegisterTeamRequest\n\n### URI\nPOST /teams/requests\n\n### Description\n현재 로그인한 계정으로 팀 등록 요청을 생성합니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|teamAccountUsername|string|희망하는 팀 계정 아이디|\n|data|TeamDTO|생성할 팀 정보|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 생성 요청 식별자|\n|accountId|number|팀 생성을 요청한 아이디|\n|username|string|희망하는 팀 계정 아이디|\n|createdAt|Date|요청 생성 시간|\n|rejectReason|string?|반려 사유|\n|status|string|요청 처리 상태|\n|data|TeamDTO|생성할 팀 정보|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|팀 생성 정보에 부적절한 값이 있을 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태 혹은 *인증을 완료하지 않은 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 협회 식별자를 보낸 경우 발생|\n|409|Conflict|이미 접수된 요청이 있거나, 중복되는 팀 계정 아이디를 보낸 경우 발생|\n\n### Others\n**TeamDTO**\n|Name|Type|Description|\n|---|----|-------|\n|associationId|number|소속된 협회 식별자|\n|name|string|팀 명|\n|globalName|string|팀 영문 명|\n|hometown|string|팀 연고지|\n|initial|string|팀 영문 이니셜|\n|establishedAt|Date|팀 창단연도|\n|color|string|팀 메인 컬러|\n|subColor?|string|팀 서브 컬러|\n\n**인증을 완료하지 않은 계정**\n- 이메일 인증 또는 본인 인증을 완료하지 않은 계정을 의미함\n\n**Status**\n- Approved: 승인됨\n- Rejected: 거부됨\n- Received: 접수됨",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "84d653b9-5667-4a34-8953-2aed0e2b1463",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "bc86f03b-d083-478f-bbc9-1b6d43f91a55",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "88751974-ca2a-43fe-bf52-5920638352ba",
+            "name": "400: Bad Request",
+            "url": "/teams/requests",
+            "method": "POST",
+            "sortNum": 740000,
+            "created": "2023-12-13T05:58:49.075Z",
+            "modified": "2023-12-13T05:59:40.631Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"data\": {\n    \"associationId\": 1,\n    \"name\": \"test team\",\n    \"globalName\": \"test team ###\",\n    \"hometown\": \"yeoui\",\n    \"initial\": \"TT\",\n    \"establishedAt\": \"2023-01-01\",\n    \"color\": \"#ffffff\"\n  },\n  \"teamAccountUsername\": \"test1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "84d653b9-5667-4a34-8953-2aed0e2b1463",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "38f997ce-0e60-4a47-9ed0-3629c7cef9b5",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "88751974-ca2a-43fe-bf52-5920638352ba",
+            "name": "401: Unauthorized",
+            "url": "/teams/requests",
+            "method": "POST",
+            "sortNum": 750000,
+            "created": "2023-12-13T06:01:32.752Z",
+            "modified": "2023-12-13T06:02:14.229Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"data\": {\n    \"associationId\": 1,\n    \"name\": \"test team\",\n    \"globalName\": \"test team\",\n    \"hometown\": \"yeoui\",\n    \"initial\": \"TT\",\n    \"establishedAt\": \"2023-01-01\",\n    \"color\": \"#ffffff\"\n  },\n  \"teamAccountUsername\": \"test1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "d1f4650d-fb97-4bc0-992a-f2e751962712",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a6cace9a-c852-4877-b8fb-3b70625403cc",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "88751974-ca2a-43fe-bf52-5920638352ba",
+            "name": "404: Not Found",
+            "url": "/teams/requests",
+            "method": "POST",
+            "sortNum": 760000,
+            "created": "2023-12-13T06:02:28.940Z",
+            "modified": "2023-12-13T06:03:59.286Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"data\": {\n    \"associationId\": 1000,\n    \"name\": \"test team\",\n    \"globalName\": \"test team\",\n    \"hometown\": \"yeoui\",\n    \"initial\": \"TT\",\n    \"establishedAt\": \"2023-01-01\",\n    \"color\": \"#ffffff\"\n  },\n  \"teamAccountUsername\": \"test1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "84d653b9-5667-4a34-8953-2aed0e2b1463",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "9be97c9c-8c80-4459-9e5c-313c47f3325e",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "88751974-ca2a-43fe-bf52-5920638352ba",
+            "name": "409: Conflict",
+            "url": "/teams/requests",
+            "method": "POST",
+            "sortNum": 770000,
+            "created": "2023-12-13T06:03:34.308Z",
+            "modified": "2023-12-13T06:04:37.991Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"data\": {\n    \"associationId\": 1000,\n    \"name\": \"test team\",\n    \"globalName\": \"test team\",\n    \"hometown\": \"yeoui\",\n    \"initial\": \"TT\",\n    \"establishedAt\": \"2023-01-01\",\n    \"color\": \"#ffffff\"\n  },\n  \"teamAccountUsername\": \"user01\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "409"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "84d653b9-5667-4a34-8953-2aed0e2b1463",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "200176a0-bc28-4bf1-996e-9b6e033ca2ca",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "16c87ec7-fb96-41f5-b07f-f3c2d829e6ad",
+            "name": "Success",
+            "url": "/teams/profile",
+            "method": "PUT",
+            "sortNum": 750000,
+            "created": "2023-12-13T06:05:26.187Z",
+            "modified": "2023-12-13T06:19:02.120Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test team\",\n  \"globalName\": \"test team\",\n  \"hometown\": \"yeoui\",\n  \"initial\": \"TT\",\n  \"establishedAt\": \"2023-01-01\",\n  \"color\": \"#ffffff\",\n  \"subColor\": \"#000000\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.name",
+                    "action": "equal",
+                    "value": "test team"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.subColor",
+                    "action": "equal",
+                    "value": "#000000"
+                }
+            ],
+            "docs": "## [Manager] UpdateTeamProfile\n\n### URI\nPUT /teams/profile\n\n### Description\n현재 로그인한 팀 계정과 연결된 팀의 정보를 변경합니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name?|string|팀 명|\n|globalName?|string|팀 영문 명|\n|hometown?|string|팀 연고지|\n|initial?|string|팀 영문 이니셜|\n|establishedAt?|Date|팀 창단연도|\n|color?|string|팀 메인 컬러|\n|subColor?|string|팀 서브 컬러|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|globalName|string|팀 영문 이름|\n|hometown|string|팀 연고지|\n|initial|string|팀 이니셜|\n|establisehdAt|Date|팀 설립연도|\n|color|string|팀 메인컬리|\n|subColor|string?|팀 서브컬러|\n|profileImgUrl|string?|팀 프로필 이미지 주소|\n|backgroundImgUrl|string?|팀 배경 이미지 주소|\n|deletedAt|Date?|팀 삭제 날짜|\n|status|string|팀 상태|\n|createdAt|Date|팀 객체 등록 날짜|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|올바르지 않은 형식의 값을 보낸 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|팀 계정이 아닌 일반 계정으로 해당 요청을 보낼 경우 발생|\n\n### Others\nstatus -  팀 활성화 상태를 나타냅니다\n- Enabled\n- Disabled",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "713c73d9-ac6d-4bd1-b828-23931e059536",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "16c87ec7-fb96-41f5-b07f-f3c2d829e6ad",
+            "name": "400: Bad Request",
+            "url": "/teams/profile",
+            "method": "PUT",
+            "sortNum": 760000,
+            "created": "2023-12-13T06:19:23.574Z",
+            "modified": "2023-12-13T06:20:23.560Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"subColor\": \"test\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "6bf19524-dfa6-4e7b-a305-44f00154952a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "16c87ec7-fb96-41f5-b07f-f3c2d829e6ad",
+            "name": "401: Unauthorized",
+            "url": "/teams/profile",
+            "method": "PUT",
+            "sortNum": 770000,
+            "created": "2023-12-13T06:20:29.446Z",
+            "modified": "2023-12-13T06:20:54.052Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"subColor\": \"test\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "79f54e02-8477-4076-acd7-105489b299eb",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "16c87ec7-fb96-41f5-b07f-f3c2d829e6ad",
+            "name": "403: Forbidden",
+            "url": "/teams/profile",
+            "method": "PUT",
+            "sortNum": 780000,
+            "created": "2023-12-13T06:20:59.003Z",
+            "modified": "2023-12-13T06:21:18.159Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"subColor\": \"test\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "00ca08be-4d9a-49d6-963b-8ef8ffe749b6",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f600df10-4807-40c5-b532-a859a2e29214",
+            "name": "Success",
+            "url": "/admin/teams/requests?limit=3&cursor=0",
+            "method": "GET",
+            "sortNum": 770000,
+            "created": "2023-12-13T06:23:30.750Z",
+            "modified": "2023-12-13T06:36:05.443Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                },
+                {
+                    "name": "cursor",
+                    "value": "0",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json",
+                    "action": "count",
+                    "value": "3"
+                }
+            ],
+            "docs": "## [Admin] GetRegisterTeamRequests\n\n### URI\nGET /admin/teams/requests\n\n### Description\n팀 등록 요청 목록을 불러옵니다.   \n*Cursor Based Pagination*이 적용되어 있습니다.\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|limit?|number|한 번에 불러올 요청 수 (default 10)|\n|cursor?|number|커서 (>= 0)|\n|*option?|string|불러올 요청 상태|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 등록 요청 식별자|\n|accountId|number|팀 등록 요청 생성 계정 식별자|\n|username|string|희망하는 팀 계정 아이디|\n|data|*TeamDTO|등록할 팀 정보|\n|createdAt|Date|팀 등록 요청 생성 시간|\n|rejectReason|string?|팀 등록 요청 반려 사유|\n|status|string|팀 등록 요청 처리 상태|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 스트링에 유효하지 않은 값이 있을 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n\n### Others\n**option**\n- null: 전체\n- Approved: 승인됨\n- Rejected: 반려됨\n- Received: 접수됨\n\n**TeamDTO**\n|Name|Type|Description|\n|---|----|-------|\n|associationId|number|소속된 협회 식별자|\n|name|string|팀 명|\n|globalName|string|팀 영문 명|\n|hometown|string|팀 연고지|\n|initial|string|팀 영문 이니셜|\n|establishedAt|Date|팀 창단연도|\n|color|string|팀 메인 컬러|\n|subColor?|string|팀 서브 컬러|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "f8f877d1-c88e-4eb0-9485-6f0ed2c3ca9c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f600df10-4807-40c5-b532-a859a2e29214",
+            "name": "400: Bad Request",
+            "url": "/admin/teams/requests?limit=3&cursor=0&option=TEST",
+            "method": "GET",
+            "sortNum": 790000,
+            "created": "2023-12-13T06:36:15.724Z",
+            "modified": "2023-12-13T06:36:49.400Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                },
+                {
+                    "name": "cursor",
+                    "value": "0",
+                    "isPath": false
+                },
+                {
+                    "name": "option",
+                    "value": "TEST",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "311f4142-090c-4139-be49-7fdcddb8fe5f",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f600df10-4807-40c5-b532-a859a2e29214",
+            "name": "401: Unauthorized",
+            "url": "/admin/teams/requests",
+            "method": "GET",
+            "sortNum": 800000,
+            "created": "2023-12-13T06:37:03.968Z",
+            "modified": "2023-12-13T06:37:46.667Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "9a81032e-fd85-41f3-a82c-da6310122949",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f600df10-4807-40c5-b532-a859a2e29214",
+            "name": "403: Forbidden",
+            "url": "/admin/teams/requests",
+            "method": "GET",
+            "sortNum": 810000,
+            "created": "2023-12-13T06:37:28.819Z",
+            "modified": "2023-12-13T06:37:28.819Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
         }
     ],
     "settings": {
@@ -667,7 +3246,7 @@
         },
         "docs": "대한미식축구 협회 API 문서",
         "options": {
-            "baseUrl": "http://localhost:4000"
+            "baseUrl": "{{host}}"
         },
         "envId": "25a07e1f-107b-443c-915b-6339acf361a0"
     }

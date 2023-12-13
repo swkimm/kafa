@@ -86,7 +86,6 @@ describe('TeamService', () => {
     name: 'team01',
     profileImgUrl: '',
     status: TeamStatus.Enabled,
-    rejectReason: '',
     subColor: '#123456',
     deletedAt: undefined,
     createdAt: new Date()
@@ -106,9 +105,9 @@ describe('TeamService', () => {
       initial: team.initial,
       subColor: team.subColor
     },
-    rejectReason: '',
     status: TeamEnrollStatus.Received,
-    username: 'team01'
+    username: 'team01',
+    rejectReason: ''
   }
 
   const rejectedRegisterTeamRequest: RegisterTeamRequest = {
@@ -143,7 +142,6 @@ describe('TeamService', () => {
       name: 'team01',
       profileImgUrl: '',
       status: TeamStatus.Enabled,
-      rejectReason: '',
       subColor: '#123456',
       deletedAt: undefined,
       createdAt: new Date()
@@ -160,7 +158,6 @@ describe('TeamService', () => {
       name: 'team02',
       profileImgUrl: '',
       status: TeamStatus.Enabled,
-      rejectReason: '',
       subColor: '#123456',
       deletedAt: undefined,
       createdAt: new Date()
@@ -177,7 +174,6 @@ describe('TeamService', () => {
       name: 'team03',
       profileImgUrl: '',
       status: TeamStatus.Enabled,
-      rejectReason: '',
       subColor: '#123456',
       deletedAt: undefined,
       createdAt: new Date()

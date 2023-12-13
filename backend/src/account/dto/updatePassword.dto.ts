@@ -19,7 +19,9 @@ export class UpdatePasswordDTO {
   @IsStrongPassword({
     minLength: 8,
     minNumbers: 1,
-    minSymbols: 1
+    minSymbols: 1,
+    minUppercase: 0,
+    minLowercase: 1
   })
   @IsNotEmpty()
   newPassword: string

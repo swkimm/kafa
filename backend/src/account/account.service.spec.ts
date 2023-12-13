@@ -449,7 +449,9 @@ describe('AccountService', () => {
   describe('updateAccountProfile', () => {
     it('should update account profile', async () => {
       // given
-      const accountDTO = {}
+      const accountDTO = {
+        name: 'test'
+      }
       db.account.update.resolves(account)
 
       // when
@@ -473,12 +475,14 @@ describe('AccountService', () => {
 
     it('should throw EntityNotExistException when invalid accountId passed', async () => {
       // given
-      const accountDTO = {}
+      const accountDTO = {
+        name: 'test'
+      }
       db.account.findUnique.resolves(null)
 
       // then
       await expect(
-        service.updateAccountProfile({ accountDTO }, account.id)
+        service.updateAccountProfile(accountDTO, account.id)
       ).to.be.rejectedWith(EntityNotExistException)
     })
   })

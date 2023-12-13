@@ -3,10 +3,10 @@ import {
   Controller,
   Delete,
   Inject,
+  Param,
   ParseIntPipe,
   Post,
-  Put,
-  Query
+  Put
 } from '@nestjs/common'
 import { Roles } from '@/common/decorator/roles.decorator'
 import { businessExceptionBinder } from '@/common/exception/business-exception.binder'
@@ -36,7 +36,7 @@ export class AdminAssociationController {
 
   @Put(':id')
   async updateAssociation(
-    @Query('id', ParseIntPipe) associationId: number,
+    @Param('id', ParseIntPipe) associationId: number,
     @Body() associationDTO: UpdateAssociationDTO
   ): Promise<Association> {
     try {
@@ -51,7 +51,7 @@ export class AdminAssociationController {
 
   @Delete(':id')
   async deleteAssociation(
-    @Body('id', ParseIntPipe) associationId: number
+    @Param('id', ParseIntPipe) associationId: number
   ): Promise<Association> {
     try {
       return await this.associationService.deleteAssociation(associationId)

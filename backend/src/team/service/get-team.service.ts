@@ -84,7 +84,8 @@ export class GetTeamServiceImpl
 
       return await this.prismaService.team.findMany({
         where: {
-          associationId
+          associationId,
+          status: 'Enabled'
         }
       })
     } catch (error) {
@@ -97,8 +98,13 @@ export class GetTeamServiceImpl
 
   async getLeagueTeams(leagueId: number): Promise<Team[]> {
     try {
-      const teams =
+      const teamLeagues =
         await this.teamLeagueService.getTeamLeaguesByLeagueId(leagueId)
+
+      const teams = teamLeagues.filter(
+        (teamLeague) => teamLeague.applyStatus === 'Approved'
+      )
+
       return await this.prismaService.team.findMany({
         where: {
           id: {
@@ -120,7 +126,7 @@ export class GetTeamServiceImpl
     try {
       return await this.prismaService.registerTeamRequest.findMany({
         where: {
-          id: accountId
+          accountId
         }
       })
     } catch (error) {

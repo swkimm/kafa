@@ -1,13 +1,9 @@
 import {
-  BadRequestException,
   Body,
-  ConflictException,
   Controller,
   Delete,
   Get,
   Inject,
-  InternalServerErrorException,
-  NotFoundException,
   Post,
   Put,
   Query,
@@ -15,12 +11,7 @@ import {
 } from '@nestjs/common'
 import { AuthenticatedRequest } from '@/common/class/authenticated-request.interface'
 import { Public } from '@/common/decorator/guard.decorator'
-import {
-  CacheException,
-  ConflictFoundException,
-  EntityNotExistException,
-  UnidentifiedException
-} from '@/common/exception/business.exception'
+import { businessExceptionBinder } from '@/common/exception/business-exception.binder'
 import { Role } from '@prisma/client'
 import { AccountService } from './account.service.interface'
 import type { AccountDTO } from './dto/account.dto'
@@ -42,11 +33,7 @@ export class AccountController {
     try {
       return await this.accountService.getAccountRole(req.user.id)
     } catch (error) {
-      if (error instanceof EntityNotExistException) {
-        throw new NotFoundException('account does not exists')
-      } else {
-        throw new InternalServerErrorException(error)
-      }
+      businessExceptionBinder(error)
     }
   }
 
@@ -57,11 +44,7 @@ export class AccountController {
     try {
       return await this.accountService.getAccountProfile(req.user.id)
     } catch (error) {
-      if (error instanceof EntityNotExistException) {
-        throw new NotFoundException('account does not exists')
-      } else {
-        throw new InternalServerErrorException(error)
-      }
+      businessExceptionBinder(error)
     }
   }
 
@@ -77,15 +60,7 @@ export class AccountController {
       )
       return result
     } catch (error) {
-      if (error instanceof ConflictFoundException) {
-        throw new ConflictException(
-          error.message.includes('email')
-            ? 'duplicate email'
-            : 'duplicate username'
-        )
-      } else {
-        throw new InternalServerErrorException(error)
-      }
+      businessExceptionBinder(error)
     }
   }
 
@@ -97,15 +72,7 @@ export class AccountController {
     try {
       return await this.accountService.verifyEmail(req.user.id, pin)
     } catch (error) {
-      if (error instanceof EntityNotExistException) {
-        throw new NotFoundException('account does not exists')
-      } else if (error instanceof UnidentifiedException) {
-        throw new BadRequestException('Invalid email pin code')
-      } else if (error instanceof CacheException) {
-        throw new InternalServerErrorException('cache error')
-      } else {
-        throw new InternalServerErrorException(error)
-      }
+      businessExceptionBinder(error)
     }
   }
 
@@ -117,15 +84,7 @@ export class AccountController {
     try {
       return await this.accountService.verifyUpdateEmail(req.user.id, pin)
     } catch (error) {
-      if (error instanceof EntityNotExistException) {
-        throw new NotFoundException('account does not exists')
-      } else if (error instanceof UnidentifiedException) {
-        throw new BadRequestException('Invalid email pin code')
-      } else if (error instanceof CacheException) {
-        throw new InternalServerErrorException('cache error')
-      } else {
-        throw new InternalServerErrorException(error)
-      }
+      businessExceptionBinder(error)
     }
   }
 
@@ -137,13 +96,7 @@ export class AccountController {
     try {
       return await this.accountService.updateEmail(accountDTO, req.user.id)
     } catch (error) {
-      if (error instanceof EntityNotExistException) {
-        throw new NotFoundException('account does not exists')
-      } else if (error instanceof CacheException) {
-        throw new InternalServerErrorException('cache error')
-      } else {
-        throw new InternalServerErrorException(error)
-      }
+      businessExceptionBinder(error)
     }
   }
 
@@ -158,11 +111,7 @@ export class AccountController {
         req.user.id
       )
     } catch (error) {
-      if (error instanceof EntityNotExistException) {
-        throw new NotFoundException('account does not exists')
-      } else {
-        throw new InternalServerErrorException(error)
-      }
+      businessExceptionBinder(error)
     }
   }
 
@@ -174,13 +123,7 @@ export class AccountController {
     try {
       return await this.accountService.updatePassword(accountDTO, req.user.id)
     } catch (error) {
-      if (error instanceof EntityNotExistException) {
-        throw new NotFoundException('account does not exists')
-      } else if (error instanceof UnidentifiedException) {
-        throw new BadRequestException('Invalid password')
-      } else {
-        throw new InternalServerErrorException(error)
-      }
+      businessExceptionBinder(error)
     }
   }
 
@@ -189,11 +132,7 @@ export class AccountController {
     try {
       return await this.accountService.withdrawAccount(req.user.id)
     } catch (error) {
-      if (error instanceof EntityNotExistException) {
-        throw new NotFoundException('account does not exists')
-      } else {
-        throw new InternalServerErrorException(error)
-      }
+      businessExceptionBinder(error)
     }
   }
 }

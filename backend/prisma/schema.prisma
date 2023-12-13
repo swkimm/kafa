@@ -280,7 +280,6 @@ model Team {
   backgroundImgUrl String?      @map("background_img_url") @db.Text
   deletedAt        DateTime?    @map("deleted_at")
   status           TeamStatus   @default(Enabled)
-  rejectReason     String?      @map("reject_reason") @db.Text
   createdAt        DateTime     @default(now()) @map("created_at")
   Association      Association  @relation(fields: [associationId], references: [id])
   Rosters          Roster[]
