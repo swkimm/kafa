@@ -5,43 +5,43 @@ import TeamCard from '../../../../components/cards/TeamCard'
 const teamList = [
   {
     id: 1,
-    teamLogo: '/logo/KAFA_OG.png',
-    teamName: 'TBD',
-    nickName: 'To Be Determined',
-    teamColor: '#888888',
-    createdAt: '2000'
+    name: 'TBD',
+    globalName: 'TBD',
+    initial: 'TBD',
+    color: '#ffffff',
+    profileImgUrl: '/logo/KAFA_OG.png'
   },
   {
     id: 2,
-    teamLogo: '/logo/KAFA_OG.png',
-    teamName: 'TBD',
-    nickName: 'To Be Determined',
-    teamColor: '#888888',
-    createdAt: '2000'
+    name: 'TBD',
+    globalName: 'TBD',
+    initial: 'TBD',
+    color: '#ffffff',
+    profileImgUrl: '/logo/KAFA_OG.png'
   },
   {
     id: 3,
-    teamLogo: '/logo/KAFA_OG.png',
-    teamName: 'TBD',
-    nickName: 'To Be Determined',
-    teamColor: '#888888',
-    createdAt: '2000'
+    name: 'TBD',
+    globalName: 'TBD',
+    initial: 'TBD',
+    color: '#ffffff',
+    profileImgUrl: '/logo/KAFA_OG.png'
   },
   {
     id: 4,
-    teamLogo: '/logo/KAFA_OG.png',
-    teamName: 'TBD',
-    nickName: 'To Be Determined',
-    teamColor: '#888888',
-    createdAt: '2000'
+    name: 'TBD',
+    globalName: 'TBD',
+    initial: 'TBD',
+    color: '#ffffff',
+    profileImgUrl: '/logo/KAFA_OG.png'
   },
   {
     id: 5,
-    teamLogo: '/logo/KAFA_OG.png',
-    teamName: 'TBD',
-    nickName: 'To Be Determined',
-    teamColor: '#888888',
-    createdAt: '2000'
+    name: 'TBD',
+    globalName: 'TBD',
+    initial: 'TBD',
+    color: '#ffffff',
+    profileImgUrl: '/logo/KAFA_OG.png'
   }
 ]
 

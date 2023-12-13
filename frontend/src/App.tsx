@@ -1,7 +1,10 @@
 // App.tsx
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import PrivateRoute from './common/PrivateRoute.tsx'
 import Footer from './components/footer/Footer'
 import Header from './components/header/Header.tsx'
+import Login from './pages/auth/Login.tsx'
+// import ProtectedComponent from './pages/auth/ProtectedComponent.tsx'
 import Home from './pages/huddle/Home.tsx'
 import League from './pages/league/League.tsx'
 import LeagueDetail from './pages/league/[id]/LeagueDetail.tsx'
@@ -26,6 +29,8 @@ const App = () => {
             <Route path="/league" element={<League />} />
             <Route path="/league/:leagueId" element={<LeagueDetail />} />
             <Route path="/pastLeague" element={<PastLeague />} />
+            <Route path="/login" element={<Login />} />
+
             <Route
               path="/pastLeague/:pastLeagueId"
               element={<PastLeagueDetail />}
@@ -50,6 +55,11 @@ const App = () => {
               path="/league/:leagueId/schedule/:gameid"
               element={<ScheduleDetail />}
             />
+
+            <Route element={<PrivateRoute />}>
+              <Route path="/protected" element={<TeamDetail />} />
+              {/* 다른 보호된 경로들... */}
+            </Route>
           </Routes>
         </div>
         <Footer />

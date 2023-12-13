@@ -5,57 +5,53 @@ import Button from '../buttons/Button'
 
 interface TeamCardProps {
   id: number
-  teamLogo: string
-  teamName: string
-  nickName: string
-  teamColor: string
-  createdAt: string
+  name: string
+  globalName: string
+  initial: string
+  color: string
+  profileImgUrl: string
   isWhite?: (teamColor: string) => boolean
   onClick?: (id: number) => void
 }
 
 const TeamCard: React.FC<TeamCardProps> = ({
   id,
-  teamLogo,
-  teamName,
-  nickName,
-  teamColor,
-  createdAt,
+  name,
+  globalName,
+  initial,
+  color,
+  profileImgUrl,
   isWhite = () => true,
   onClick
 }) => {
   return (
     <div
-      className={`flex rounded-lg font-sans text-white drop-shadow-xl sm:flex-row ${teamColor}`}
-      style={{ backgroundColor: teamColor, width: '500px', height: '200px' }} // 너비 설정
+      className={`flex rounded-lg font-sans text-white drop-shadow-xl sm:flex-row ${color}`}
+      style={{ backgroundColor: color, width: '500px', height: '200px' }} // 너비 설정
       onClick={() => onClick?.(id)}
     >
       <div className="relative flex flex-col items-center justify-center px-10">
         <img
           className="mx-5 my-5 h-20"
-          src={teamLogo}
-          alt={`${teamName} Logo`}
+          src={profileImgUrl}
+          alt={`${globalName} Logo`}
         />
       </div>
       <div className="flex flex-auto flex-col items-center justify-center p-5 text-white">
-        <div
-          className={`mt-1 text-lg ${isWhite(teamColor) ? 'text-black' : ''}`}
-        >
-          {teamName}
+        <div className={`mt-1 text-lg ${isWhite(color) ? 'text-black' : ''}`}>
+          {name}
         </div>
-        <div
-          className={`mb-3 text-lg ${isWhite(teamColor) ? 'text-black' : ''}`}
-        >
-          {nickName}
+        <div className={`mb-3 text-lg ${isWhite(color) ? 'text-black' : ''}`}>
+          {initial}
         </div>
         <Button
           variant="outlineWithLightHover"
           label="팀 페이지"
           onClick={() => onClick?.(id)}
         />
-        <p className={`mt-3 text-sm ${isWhite(teamColor) ? 'text-black' : ''}`}>
+        {/* <p className={`mt-3 text-sm ${isWhite(color) ? 'text-black' : ''}`}>
           since {new Date(createdAt).getFullYear()}
-        </p>
+        </p> */}
       </div>
     </div>
   )
@@ -63,10 +59,10 @@ const TeamCard: React.FC<TeamCardProps> = ({
 
 TeamCard.propTypes = {
   id: PropTypes.number.isRequired,
-  teamLogo: PropTypes.string.isRequired,
-  teamName: PropTypes.string.isRequired,
-  teamColor: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  globalName: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  profileImgUrl: PropTypes.string.isRequired,
   isWhite: PropTypes.func,
   onClick: PropTypes.func
 }

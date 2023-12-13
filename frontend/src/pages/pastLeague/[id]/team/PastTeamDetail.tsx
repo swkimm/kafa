@@ -9,14 +9,36 @@ import PastTeamPhotoItem from './[id]/items/PastTeamPhotoItem'
 import PastTeamRosterItem from './[id]/items/PastTeamRosterItem'
 import PastTeamStatsItem from './[id]/items/PastTeamStatsItem'
 
-const team = {
-  teamId: 1,
-  teamName: 'TBD',
-  teamLogo: '/logo/KAFA_OG.png',
-  nickName: 'To Be Determined',
-  teamColor: '#000000',
-  createdAt: '2000',
-  conference: 'TBD'
+interface Team {
+  id: number // 팀 식별자
+  name: string // 팀 이름
+  globalName: string // 팀 영문 이름
+  hometown: string // 팀 연고지
+  initial: string // 팀 이니셜
+  establisehdAt: Date // 팀 설립연도
+  color: string // 팀 메인컬러
+  subColor?: string // 팀 서브컬러 (선택 사항)
+  profileImgUrl?: string // 팀 프로필 이미지 주소 (선택 사항)
+  backgroundImgUrl?: string // 팀 배경 이미지 주소 (선택 사항)
+  deletedAt?: Date // 팀 삭제 날짜 (선택 사항)
+  status: string // 팀 상태
+  createdAt: Date // 팀 객체 등록 날짜
+  isWhite?: (teamColor: string) => boolean
+}
+
+const team: Team = {
+  id: 1,
+  name: 'TBD',
+  globalName: 'To be determined',
+  hometown: 'TBD',
+  initial: 'TBD',
+  establisehdAt: new Date(),
+  color: '#000000',
+  subColor: '#ffffff',
+  profileImgUrl: '/logo/KAFA_OG.png',
+  backgroundImgUrl: '#ffffff',
+  status: '',
+  createdAt: new Date()
 }
 
 const PastTeamDetail = () => {

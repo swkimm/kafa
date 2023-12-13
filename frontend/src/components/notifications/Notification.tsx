@@ -3,7 +3,7 @@ import { Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/20/solid'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
 import PropTypes from 'prop-types'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 
 interface NotificationProps {
   title: string
@@ -12,6 +12,14 @@ interface NotificationProps {
 
 const Notification: React.FC<NotificationProps> = ({ title, content }) => {
   const [show, setShow] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShow(false)
+    }, 3000)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <>
       <div
