@@ -8,14 +8,14 @@ import {
   Post,
   Put
 } from '@nestjs/common'
-import { Public } from '@/common/decorator/guard.decorator'
+import { Roles } from '@/common/decorator/roles.decorator'
 import { businessExceptionBinder } from '@/common/exception/business-exception.binder'
-import type { Sponser } from '@prisma/client'
+import { Role, type Sponser } from '@prisma/client'
 import { SponserService } from './abstract/sponser.service'
 import { CreateSponserDTO } from './dto/create-sponser.dto'
 import { UpdateSponserDTO } from './dto/update-sponser.dto'
 
-@Public()
+@Roles(Role.Admin)
 @Controller('admin/sponsers')
 export class AdminSponserController {
   constructor(

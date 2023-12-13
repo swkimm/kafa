@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { AccountService } from '@/account/account.service.interface'
 import type { RegisterAccountDTO } from '@/account/dto/registerAccount.dto'
 import {
@@ -38,7 +39,8 @@ export class UpdateTeamServiceImpl
     private readonly registerTeamService: RegisterTeamService<
       Team,
       RegisterTeamRequest
-    >
+    >,
+    private readonly configService: ConfigService
   ) {}
 
   async updateTeamProfile(
@@ -98,11 +100,15 @@ export class UpdateTeamServiceImpl
       const team =
         await this.registerTeamService.registerTeam(registerTeamRequest)
 
-      await this.emailService.sendTeamRegisterMail(
-        managerAccount.email,
-        username,
-        password
+      if (
+        this.configService.get('NODE_ENV') === 'staging' ||
+        this.configService.get('NODE_ENV') === 'production'
       )
+        await this.emailService.sendTeamRegisterMail(
+          managerAccount.email,
+          username,
+          password
+        )
 
       await this.accountService.mappingManagerAccount(
         managerAccount.id,
@@ -138,6 +144,17 @@ export class UpdateTeamServiceImpl
     reason: string
   ): Promise<RegisterTeamRequest> {
     try {
+      const { status } =
+        await this.prismaService.registerTeamRequest.findUniqueOrThrow({
+          where: {
+            id: requestId
+          }
+        })
+
+      if (status !== TeamEnrollStatus.Received) {
+        throw new ConflictFoundException('request already processed')
+      }
+
       return await this.prismaService.registerTeamRequest.update({
         where: {
           id: requestId
@@ -148,6 +165,9 @@ export class UpdateTeamServiceImpl
         }
       })
     } catch (error) {
+      if (error instanceof BusinessException) {
+        throw error
+      }
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'

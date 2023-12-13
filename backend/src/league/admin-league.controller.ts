@@ -44,7 +44,7 @@ export class AdminLeagueController {
     }
   }
 
-  @Post(':leagueId/sponsers/:sponserId/unlink')
+  @Delete(':leagueId/sponsers/:sponserId/link')
   async unlinkSponser(
     @Param('leagueId', ParseIntPipe) leagueId: number,
     @Param('sponserId', ParseIntPipe) sponserId: number

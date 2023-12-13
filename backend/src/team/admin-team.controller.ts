@@ -13,6 +13,7 @@ import { Roles } from '@/common/decorator/roles.decorator'
 import { businessExceptionBinder } from '@/common/exception/business-exception.binder'
 import { type RegisterTeamRequest, Role, type Team } from '@prisma/client'
 import { TeamService } from './abstract/team.service'
+import { RejectTeamRequestDTO } from './dto/reject-team-request.dto'
 
 @Roles(Role.Admin)
 @Controller('admin/teams')
@@ -57,10 +58,13 @@ export class AdminTeamController {
   @Put('requests/:requestId/reject')
   async rejectReigsterTeamRequest(
     @Param('requestId', ParseIntPipe) requestId: number,
-    @Body('reason') reason: string
+    @Body() body: RejectTeamRequestDTO
   ): Promise<RegisterTeamRequest> {
     try {
-      return await this.teamService.rejectRegisterTeamRequest(requestId, reason)
+      return await this.teamService.rejectRegisterTeamRequest(
+        requestId,
+        body.reason
+      )
     } catch (error) {
       businessExceptionBinder(error)
     }

@@ -31,7 +31,7 @@ export class LeagueController {
   }
 
   @Public()
-  @Get('associationId/:associationId')
+  @Get('associations/:associationId')
   async getLeaguesByAssociationId(
     @Param('associationId', ParseIntPipe) associationId: number,
     @Query('page', ParseIntPipe) page: number,

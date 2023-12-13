@@ -195,7 +195,7 @@ const main = async function () {
         associationId: 1,
         color: '#ffffff',
         establishedAt: new Date('2023-01-01'),
-        globalName: 'team_r_01',
+        globalName: 'team request 01',
         hometown: 'abc',
         initial: 'TeamROne',
         subColor: undefined
@@ -212,7 +212,7 @@ const main = async function () {
         associationId: 1,
         color: '#ffffff',
         establishedAt: new Date('2023-01-01'),
-        globalName: 'team_r_02',
+        globalName: 'team request 02',
         hometown: 'abc',
         initial: 'TeamRTwo',
         subColor: undefined
@@ -229,14 +229,31 @@ const main = async function () {
         associationId: 1,
         color: '#ffffff',
         establishedAt: new Date('2023-01-01'),
-        globalName: 'team_r_03',
+        globalName: 'team request three',
         hometown: 'abc',
         initial: 'TeamRThree',
         subColor: undefined
       },
       rejectReason: '',
       status: TeamEnrollStatus.Received,
-      username: 'team_r_03'
+      username: 'team03'
+    },
+    {
+      accountId: 1,
+      createdAt: new Date('2023-01-01'),
+      data: {
+        name: 'team_r_04',
+        associationId: 1,
+        color: '#ffffff',
+        establishedAt: new Date('2023-01-01'),
+        globalName: 'team request four',
+        hometown: 'abc',
+        initial: 'TeamRFour',
+        subColor: undefined
+      },
+      rejectReason: '',
+      status: TeamEnrollStatus.Received,
+      username: 'team04'
     }
   ]
 
@@ -248,17 +265,20 @@ const main = async function () {
     {
       name: 'league01',
       startedAt: new Date('2023-01-01'),
-      endedAt: new Date('2023-02-01')
+      endedAt: new Date('2023-02-01'),
+      associationId: 1
     },
     {
       name: 'league02',
       startedAt: new Date('2023-02-01'),
-      endedAt: new Date('2023-03-01')
+      endedAt: new Date('2023-03-01'),
+      associationId: 1
     },
     {
       name: 'league03',
       startedAt: new Date('2023-02-01'),
-      endedAt: new Date('2023-12-01')
+      endedAt: new Date('2023-12-01'),
+      associationId: 1
     },
     {
       name: 'league04',
@@ -333,6 +353,10 @@ const main = async function () {
     {
       leagueId: 1,
       sponserId: 2
+    },
+    {
+      leagueId: 1,
+      sponserId: 3
     }
   ]
 

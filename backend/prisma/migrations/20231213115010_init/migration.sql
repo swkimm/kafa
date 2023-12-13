@@ -221,7 +221,6 @@ CREATE TABLE "Team" (
     "background_img_url" TEXT,
     "deleted_at" TIMESTAMP(3),
     "status" "TeamStatus" NOT NULL DEFAULT 'Enabled',
-    "reject_reason" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Team_pkey" PRIMARY KEY ("id")
@@ -426,10 +425,10 @@ ALTER TABLE "Team" ADD CONSTRAINT "Team_association_id_fkey" FOREIGN KEY ("assoc
 ALTER TABLE "RegisterTeamRequest" ADD CONSTRAINT "RegisterTeamRequest_account_id_fkey" FOREIGN KEY ("account_id") REFERENCES "Account"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "TeamLeague" ADD CONSTRAINT "TeamLeague_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "Team"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "TeamLeague" ADD CONSTRAINT "TeamLeague_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "Team"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "TeamLeague" ADD CONSTRAINT "TeamLeague_league_id_fkey" FOREIGN KEY ("league_id") REFERENCES "League"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "TeamLeague" ADD CONSTRAINT "TeamLeague_league_id_fkey" FOREIGN KEY ("league_id") REFERENCES "League"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Roster" ADD CONSTRAINT "Roster_account_id_fkey" FOREIGN KEY ("account_id") REFERENCES "Account"("id") ON DELETE SET NULL ON UPDATE CASCADE;

@@ -306,8 +306,8 @@ model TeamLeague {
   rank         Int?              @db.SmallInt
   applyStatus  LeagueApplyStatus @default(Received)
   rejectReason String?           @map("reject_reason") @db.Text
-  Team         Team              @relation(fields: [teamId], references: [id])
-  League       League            @relation(fields: [leagueId], references: [id])
+  Team         Team              @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  League       League            @relation(fields: [leagueId], references: [id], onDelete: Cascade)
 
   @@unique([teamId, leagueId])
 }

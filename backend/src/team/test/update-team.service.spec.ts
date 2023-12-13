@@ -1,3 +1,4 @@
+import { ConfigModule } from '@nestjs/config'
 import { Test, type TestingModule } from '@nestjs/testing'
 import {
   ConflictFoundException,
@@ -124,6 +125,12 @@ describe('UpdateTeamService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [
+        ConfigModule.forRoot({
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          load: [() => ({ NODE_ENV: 'staging' })]
+        })
+      ],
       providers: [
         {
           provide: 'UpdateTeamService',
@@ -358,6 +365,7 @@ describe('UpdateTeamService', () => {
       const requestId = 1
       const reason = 'test'
       db.registerTeamRequest.update.resolves(rejectedRegisterTeamRequest)
+      db.registerTeamRequest.findUniqueOrThrow.resolves(registerTeamRequest)
 
       // when
       const result = await service.rejectRegisterTeamRequest(requestId, reason)
@@ -379,7 +387,7 @@ describe('UpdateTeamService', () => {
       // given
       const requestId = 1
       const reason = 'test'
-      db.registerTeamRequest.update.rejects(
+      db.registerTeamRequest.findUniqueOrThrow.rejects(
         new Prisma.PrismaClientKnownRequestError('test', {
           clientVersion: '1.0.0',
           code: 'P2025'

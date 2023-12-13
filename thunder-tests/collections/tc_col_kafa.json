@@ -339,6 +339,111 @@
             "containerId": "b302ae4f-11db-4cc2-8b33-80687a733aae",
             "created": "2023-12-12T14:59:07.103Z",
             "sortNum": 510000
+        },
+        {
+            "_id": "cf5757a3-0515-487a-a7f8-afe5a2ee560d",
+            "name": "getLeague",
+            "containerId": "50f8324d-03bb-42f1-9497-1789359f5e70",
+            "created": "2023-12-13T08:59:39.158Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "0385cc59-0dae-4507-af27-d50f7b46fbd7",
+            "name": "getLeaguesByAssociationId",
+            "containerId": "50f8324d-03bb-42f1-9497-1789359f5e70",
+            "created": "2023-12-13T09:00:01.084Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "68cee616-5636-477b-b18f-505acc988d12",
+            "name": "getSponsersByLeagueId",
+            "containerId": "50f8324d-03bb-42f1-9497-1789359f5e70",
+            "created": "2023-12-13T09:00:09.379Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "279557a6-01f9-421b-9f56-16cc83ae86eb",
+            "name": "Admin",
+            "containerId": "ef1eb5e0-88ae-4bd0-bafb-816722152593",
+            "created": "2023-12-13T09:33:11.440Z",
+            "sortNum": 550000
+        },
+        {
+            "_id": "f4f3b4d4-dc71-455b-a5b0-5c406d284171",
+            "name": "createLeague",
+            "containerId": "279557a6-01f9-421b-9f56-16cc83ae86eb",
+            "created": "2023-12-13T09:33:19.039Z",
+            "sortNum": 560000
+        },
+        {
+            "_id": "f2680c06-7564-4afd-8984-34897e9c5e21",
+            "name": "linkSponser",
+            "containerId": "279557a6-01f9-421b-9f56-16cc83ae86eb",
+            "created": "2023-12-13T09:33:26.869Z",
+            "sortNum": 570000
+        },
+        {
+            "_id": "a7d59324-d1f4-47b5-9642-1e0997191399",
+            "name": "unlinkSponser",
+            "containerId": "279557a6-01f9-421b-9f56-16cc83ae86eb",
+            "created": "2023-12-13T09:33:37.026Z",
+            "sortNum": 580000
+        },
+        {
+            "_id": "61ea3011-ef6e-493b-831d-d34d787094fd",
+            "name": "updateLeague",
+            "containerId": "279557a6-01f9-421b-9f56-16cc83ae86eb",
+            "created": "2023-12-13T09:33:43.505Z",
+            "sortNum": 590000
+        },
+        {
+            "_id": "4844e1c9-50ad-4dd2-b748-722f14fa5402",
+            "name": "deleteLeague",
+            "containerId": "279557a6-01f9-421b-9f56-16cc83ae86eb",
+            "created": "2023-12-13T09:33:48.711Z",
+            "sortNum": 600000
+        },
+        {
+            "_id": "8fb5eafa-70f6-40cd-b986-2c490cbce3ce",
+            "name": "getSponsers",
+            "containerId": "edb7fd95-d0e7-4fa4-9bbf-a91afbcdad7c",
+            "created": "2023-12-13T11:18:26.254Z",
+            "sortNum": 610000
+        },
+        {
+            "_id": "eab61e16-39ca-431f-9270-4d39f116c408",
+            "name": "getSponser",
+            "containerId": "edb7fd95-d0e7-4fa4-9bbf-a91afbcdad7c",
+            "created": "2023-12-13T11:19:18.291Z",
+            "sortNum": 305000
+        },
+        {
+            "_id": "45e7c98c-6ca5-41f1-8566-adc4c67de88c",
+            "name": "Admin",
+            "containerId": "b302ae4f-11db-4cc2-8b33-80687a733aae",
+            "created": "2023-12-13T11:26:11.528Z",
+            "sortNum": 630000
+        },
+        {
+            "_id": "4e2e890d-8842-487e-8c86-7c9009c44c10",
+            "name": "createSponser",
+            "containerId": "45e7c98c-6ca5-41f1-8566-adc4c67de88c",
+            "created": "2023-12-13T11:26:26.937Z",
+            "sortNum": 640000
+        },
+        {
+            "_id": "e9ba9c52-d2c3-4c95-a80b-5a2f786ff448",
+            "name": "updateSponser",
+            "containerId": "45e7c98c-6ca5-41f1-8566-adc4c67de88c",
+            "created": "2023-12-13T11:26:31.843Z",
+            "sortNum": 650000
+        },
+        {
+            "_id": "ebcf58b6-cab4-415b-b7f2-7d090a7829b6",
+            "name": "DeleteSponser",
+            "containerId": "45e7c98c-6ca5-41f1-8566-adc4c67de88c",
+            "created": "2023-12-13T11:26:36.690Z",
+            "sortNum": 660000
         }
     ],
     "requests": [
@@ -2650,7 +2755,7 @@
             "method": "GET",
             "sortNum": 710000,
             "created": "2023-12-12T15:02:48.186Z",
-            "modified": "2023-12-13T06:30:33.252Z",
+            "modified": "2023-12-13T08:17:04.426Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -2751,7 +2856,7 @@
             "method": "POST",
             "sortNum": 730000,
             "created": "2023-12-13T05:18:02.846Z",
-            "modified": "2023-12-13T06:01:15.733Z",
+            "modified": "2023-12-13T07:44:17.347Z",
             "headers": [],
             "params": [],
             "body": {
@@ -2765,6 +2870,18 @@
                     "custom": "",
                     "action": "equal",
                     "value": "201"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.username",
+                    "action": "equal",
+                    "value": "team1234"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.status",
+                    "action": "equal",
+                    "value": "Received"
                 }
             ],
             "docs": "## [User] CreateRegisterTeamRequest\n\n### URI\nPOST /teams/requests\n\n### Description\n현재 로그인한 계정으로 팀 등록 요청을 생성합니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|teamAccountUsername|string|희망하는 팀 계정 아이디|\n|data|TeamDTO|생성할 팀 정보|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 생성 요청 식별자|\n|accountId|number|팀 생성을 요청한 아이디|\n|username|string|희망하는 팀 계정 아이디|\n|createdAt|Date|요청 생성 시간|\n|rejectReason|string?|반려 사유|\n|status|string|요청 처리 상태|\n|data|TeamDTO|생성할 팀 정보|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|팀 생성 정보에 부적절한 값이 있을 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태 혹은 *인증을 완료하지 않은 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 협회 식별자를 보낸 경우 발생|\n|409|Conflict|이미 접수된 요청이 있거나, 중복되는 팀 계정 아이디를 보낸 경우 발생|\n\n### Others\n**TeamDTO**\n|Name|Type|Description|\n|---|----|-------|\n|associationId|number|소속된 협회 식별자|\n|name|string|팀 명|\n|globalName|string|팀 영문 명|\n|hometown|string|팀 연고지|\n|initial|string|팀 영문 이니셜|\n|establishedAt|Date|팀 창단연도|\n|color|string|팀 메인 컬러|\n|subColor?|string|팀 서브 컬러|\n\n**인증을 완료하지 않은 계정**\n- 이메일 인증 또는 본인 인증을 완료하지 않은 계정을 의미함\n\n**Status**\n- Approved: 승인됨\n- Rejected: 거부됨\n- Received: 접수됨",
@@ -3231,6 +3348,2560 @@
                 "runRequests": [
                     {
                         "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "cd9c6d2a-a0fd-47fe-89c6-0f32536e39d1",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c5fbdd19-5b4a-4d10-81fe-a18be57c4aac",
+            "name": "Success",
+            "url": "/admin/teams/requests/3/approve",
+            "method": "PUT",
+            "sortNum": 820000,
+            "created": "2023-12-13T07:09:39.194Z",
+            "modified": "2023-12-13T08:30:37.334Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.name",
+                    "action": "equal",
+                    "value": "team_r_03"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.status",
+                    "action": "equal",
+                    "value": "Enabled"
+                }
+            ],
+            "docs": "## [Admin] ApproveRegisterTeamRequest\n\n### URI\nPUT /admin/teams/requests/[:requestsId]/approve\n\n### Description\n팀 생성 요청을 승인하고 팀 계정 및 팀을 생성합니다.   \n*주의* Staging 환경에서 테스트할 경우 팀 계정 정보 메일이 발송됩니다.\n\n### Query Parameter?\n|Name|Type|Description|\n|---|----|-------|\n|requestId|number|팀 생성 요청 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|globalName|string|팀 영문 이름|\n|hometown|string|팀 연고지|\n|initial|string|팀 이니셜|\n|establisehdAt|Date|팀 설립연도|\n|color|string|팀 메인컬리|\n|subColor|string?|팀 서브컬러|\n|profileImgUrl|string?|팀 프로필 이미지 주소|\n|backgroundImgUrl|string?|팀 배경 이미지 주소|\n|deletedAt|Date?|팀 삭제 날짜|\n|status|string|팀 상태|\n|createdAt|Date|팀 객체 등록 날짜|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 requestId에 유효하지 않은 값이 포함된 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 요청의 식별자를 보낸 경우 발생|\n|409|Conflict|이미 처리가 완료된 요청의 식별자를 보낸 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "ecef5cb0-3a02-4277-b34b-fff0beed5901",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "1aa4101a-83f0-420f-82b0-33d3933aa513",
+            "name": "Success",
+            "url": "/admin/teams/requests/4/reject",
+            "method": "PUT",
+            "sortNum": 830000,
+            "created": "2023-12-13T07:09:47.677Z",
+            "modified": "2023-12-13T08:30:30.623Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"reason\": \"test\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.id",
+                    "action": "equal",
+                    "value": "4"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.status",
+                    "action": "equal",
+                    "value": "Rejected"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.rejectReason",
+                    "action": "equal",
+                    "value": "test"
+                }
+            ],
+            "docs": "## [Admin] RejectRegisterTeamRequest\n\n### URI\nPUT /admin/teams/requests/[:requestsId]/reject\n\n### Description\n팀 생성 요청을 \b반려합니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|requestId|number|팀 생성 요청 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|reason|string|반려 사유|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 등록 요청 식별자|\n|accountId|number|팀 등록 요청 생성 계정 식별자|\n|username|string|희망하는 팀 계정 아이디|\n|data|*TeamDTO|등록할 팀 정보|\n|createdAt|Date|팀 등록 요청 생성 시간|\n|rejectReason|string|팀 등록 요청 반려 사유|\n|status|string|팀 등록 요청 처리 상태|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 requestId에 유효하지 않은 값이 있거나 또는 반려 사유를 포함하지 않은 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 요청의 식별자를 보낸 경우 발생|\n|409|Conflict|이미 처리가 완료된 요청의 식별자를 보낸 경우 발생|\n\n### Others\n**TeamDTO**\n|Name|Type|Description|\n|---|----|-------|\n|associationId|number|소속된 협회 식별자|\n|name|string|팀 명|\n|globalName|string|팀 영문 명|\n|hometown|string|팀 연고지|\n|initial|string|팀 영문 이니셜|\n|establishedAt|Date|팀 창단연도|\n|color|string|팀 메인 컬러|\n|subColor?|string|팀 서브 컬러|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "1c177758-3175-4a36-9b6a-57a8025c49f2",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "61d2c8ea-085f-43ef-bbf9-92772c28d2a2",
+            "name": "Success",
+            "url": "/admin/teams/7",
+            "method": "DELETE",
+            "sortNum": 840000,
+            "created": "2023-12-13T07:10:02.099Z",
+            "modified": "2023-12-13T08:32:31.267Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.result",
+                    "action": "equal",
+                    "value": "ok"
+                }
+            ],
+            "docs": "## [Admin] DeleteTeam\n\n### URI\nDELETE /admin/teams/[:teamId]\n\n### Description\n팀을 삭제합니다.   \nSoft Delete\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|teamId|number|팀 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|result|string|삭제 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 teamId에 유효하지 않은 값이 있을 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 팀의 식별자를 보낸 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "ce68b552-29fd-43c3-bd4b-cada2722beac",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c5fbdd19-5b4a-4d10-81fe-a18be57c4aac",
+            "name": "400: Bad Request",
+            "url": "/admin/teams/requests/test/approve",
+            "method": "PUT",
+            "sortNum": 850000,
+            "created": "2023-12-13T07:50:06.071Z",
+            "modified": "2023-12-13T07:51:13.852Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "e7b10ec0-947d-4c7d-affb-bee83b1563b6",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c5fbdd19-5b4a-4d10-81fe-a18be57c4aac",
+            "name": "401: Unauthorized",
+            "url": "/admin/teams/requests/test/approve",
+            "method": "PUT",
+            "sortNum": 860000,
+            "created": "2023-12-13T07:50:30.938Z",
+            "modified": "2023-12-13T07:51:21.963Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "9ddda311-7b7d-4175-a459-0a93523bbbad",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c5fbdd19-5b4a-4d10-81fe-a18be57c4aac",
+            "name": "403: Forbidden",
+            "url": "/admin/teams/requests/3/approve",
+            "method": "PUT",
+            "sortNum": 870000,
+            "created": "2023-12-13T07:51:28.047Z",
+            "modified": "2023-12-13T07:51:50.049Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "875f9788-5c28-416d-86e8-c537e686ea8f",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c5fbdd19-5b4a-4d10-81fe-a18be57c4aac",
+            "name": "404: Not Found",
+            "url": "/admin/teams/requests/1000/approve",
+            "method": "PUT",
+            "sortNum": 880000,
+            "created": "2023-12-13T07:51:58.128Z",
+            "modified": "2023-12-13T07:52:33.862Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "e79f2aa1-91f6-4fb4-a408-995c7a84d024",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c5fbdd19-5b4a-4d10-81fe-a18be57c4aac",
+            "name": "409: Conflict",
+            "url": "/admin/teams/requests/1/approve",
+            "method": "PUT",
+            "sortNum": 890000,
+            "created": "2023-12-13T07:52:41.524Z",
+            "modified": "2023-12-13T07:52:58.839Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "409"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "288f34a6-ad31-4807-bee6-bb7f0e7cb66a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "1aa4101a-83f0-420f-82b0-33d3933aa513",
+            "name": "400: Bad Request",
+            "url": "/admin/teams/requests/4/reject",
+            "method": "PUT",
+            "sortNum": 880000,
+            "created": "2023-12-13T08:22:52.675Z",
+            "modified": "2023-12-13T08:23:09.951Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "60e7a4da-3842-4675-b394-19070ba67ed4",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "1aa4101a-83f0-420f-82b0-33d3933aa513",
+            "name": "401: Unauthorized",
+            "url": "/admin/teams/requests/4/reject",
+            "method": "PUT",
+            "sortNum": 890000,
+            "created": "2023-12-13T08:23:23.873Z",
+            "modified": "2023-12-13T08:23:35.295Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "fef8a8fe-1020-454c-9e9d-c5e16b1c871a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "1aa4101a-83f0-420f-82b0-33d3933aa513",
+            "name": "403: Forbidden",
+            "url": "/admin/teams/requests/4/reject",
+            "method": "PUT",
+            "sortNum": 900000,
+            "created": "2023-12-13T08:23:56.867Z",
+            "modified": "2023-12-13T08:24:14.254Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a66de2ac-354a-4140-b703-bbd9ba5fbac4",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "1aa4101a-83f0-420f-82b0-33d3933aa513",
+            "name": "404: Not Found",
+            "url": "/admin/teams/requests/1000/reject",
+            "method": "PUT",
+            "sortNum": 910000,
+            "created": "2023-12-13T08:24:17.684Z",
+            "modified": "2023-12-13T08:24:47.001Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"reason\": \"test\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "7c0e4cdf-f8e7-4577-ab02-4f8cfc3be4b3",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "1aa4101a-83f0-420f-82b0-33d3933aa513",
+            "name": "409: Conflict",
+            "url": "/admin/teams/requests/1/reject",
+            "method": "PUT",
+            "sortNum": 920000,
+            "created": "2023-12-13T08:24:59.326Z",
+            "modified": "2023-12-13T08:25:17.707Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"reason\": \"test\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "409"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "6d6b1168-92bb-42b1-b5f9-4c730c04f2a5",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "61d2c8ea-085f-43ef-bbf9-92772c28d2a2",
+            "name": "400: Bad Request",
+            "url": "/admin/teams/test",
+            "method": "DELETE",
+            "sortNum": 890000,
+            "created": "2023-12-13T08:49:37.709Z",
+            "modified": "2023-12-13T08:49:59.366Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "5ae98e41-53db-4db3-a4a8-1ec12efd3460",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "61d2c8ea-085f-43ef-bbf9-92772c28d2a2",
+            "name": "401: Unauthorized",
+            "url": "/admin/teams/7",
+            "method": "DELETE",
+            "sortNum": 900000,
+            "created": "2023-12-13T08:50:03.526Z",
+            "modified": "2023-12-13T08:50:32.031Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4179c5cd-fa59-4c02-aea1-f752cfaef318",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "61d2c8ea-085f-43ef-bbf9-92772c28d2a2",
+            "name": "403: Forbidden",
+            "url": "/admin/teams/7",
+            "method": "DELETE",
+            "sortNum": 910000,
+            "created": "2023-12-13T08:50:36.443Z",
+            "modified": "2023-12-13T08:50:44.456Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "013ccb4c-26c5-4b8d-8df9-3997ab29d232",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "61d2c8ea-085f-43ef-bbf9-92772c28d2a2",
+            "name": "404: Not Found",
+            "url": "/admin/teams/1000",
+            "method": "DELETE",
+            "sortNum": 900000,
+            "created": "2023-12-13T08:51:13.378Z",
+            "modified": "2023-12-13T08:51:45.069Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4d3a7e3f-f13c-46a5-aa84-523151873404",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "cf5757a3-0515-487a-a7f8-afe5a2ee560d",
+            "name": "Success",
+            "url": "/leagues/1",
+            "method": "GET",
+            "sortNum": 920000,
+            "created": "2023-12-13T09:00:28.354Z",
+            "modified": "2023-12-13T09:15:57.727Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.id",
+                    "action": "equal",
+                    "value": "1"
+                }
+            ],
+            "docs": "## [Public] GetLeague\n\n### URI\nGET /leagues/[:leagueId]\n\n### Description\n리그 정보를 불러옵니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그 명|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|associationId|number|리그 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 leagueId에 유효하지 않은 값을 전달한 경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 전달한 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "e63e2ccd-6b27-4f89-b338-79c29c758d02",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "cf5757a3-0515-487a-a7f8-afe5a2ee560d",
+            "name": "400: Bad Request",
+            "url": "/leagues/test",
+            "method": "GET",
+            "sortNum": 930000,
+            "created": "2023-12-13T09:12:31.664Z",
+            "modified": "2023-12-13T09:12:56.383Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "bde44709-b8bd-422d-af78-51db6ba95d32",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "cf5757a3-0515-487a-a7f8-afe5a2ee560d",
+            "name": "404: Not Found",
+            "url": "/leagues/1000",
+            "method": "GET",
+            "sortNum": 940000,
+            "created": "2023-12-13T09:13:10.413Z",
+            "modified": "2023-12-13T09:13:23.652Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "f6a4f28b-fb58-481f-b910-8c908d9f4108",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0385cc59-0dae-4507-af27-d50f7b46fbd7",
+            "name": "Success",
+            "url": "/leagues/associations/1?page=1&limit=3",
+            "method": "GET",
+            "sortNum": 950000,
+            "created": "2023-12-13T09:13:46.092Z",
+            "modified": "2023-12-13T09:20:48.247Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json",
+                    "action": "count",
+                    "value": "3"
+                }
+            ],
+            "docs": "## [Public] GetLeaguesByAssociationId\n\n### URI\nGET /leagues/associationId/[:associationId]\n\n### Description\n특정 협회에서 주최한 리그 목록을 불러옵니다.\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page?|number|불러올 페이지 (>= 1)|\n|limit?|number|한 번에 불러올 리그 수 (default 10)|\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|associationId|number|협회 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그 명|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|associationId|number|리그 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 associationId에 유효하지 않은 값을 전달한 경우 발생|\n|404|Not Found|존재하지 않는 협회의 식별자를 전달한 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "fcd7c7ce-a544-43aa-b42f-66f90a8d93e8",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0385cc59-0dae-4507-af27-d50f7b46fbd7",
+            "name": "400: Bad Request",
+            "url": "/leagues/associations/test?page=1&limit=3",
+            "method": "GET",
+            "sortNum": 960000,
+            "created": "2023-12-13T09:19:22.018Z",
+            "modified": "2023-12-13T09:19:52.703Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "dd4e2263-6f62-4cca-9320-44526459ef76",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0385cc59-0dae-4507-af27-d50f7b46fbd7",
+            "name": "404: Not Found",
+            "url": "/leagues/associations/1000?page=1&limit=3",
+            "method": "GET",
+            "sortNum": 970000,
+            "created": "2023-12-13T09:19:29.580Z",
+            "modified": "2023-12-13T09:20:13.519Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "c2794b39-1aef-4219-bb6d-e810198a5141",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "68cee616-5636-477b-b18f-505acc988d12",
+            "name": "Success",
+            "url": "/leagues/1/sponsers?page=1&limit=3",
+            "method": "GET",
+            "sortNum": 980000,
+            "created": "2023-12-13T09:21:04.262Z",
+            "modified": "2023-12-13T11:32:42.561Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json",
+                    "action": "count",
+                    "value": "3"
+                }
+            ],
+            "docs": "## [Public] GetSponsersByLeagueId\n\n### URI\nGET /leagues/[:leagueId]/sponsers\n\n### Description\n특정 리그를 후원중인 스폰서 목록을 불러옵니다.\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page?|number|불러올 페이지 (>= 1)|\n|limit?|number|한 번에 불러올 스폰서 수 (default 10)|\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|\b리그 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|스폰서 식별자|\n|name|string|스폰서 이름|\n|websiteUrl|string|스폰서 웹사이트 주소|\n|profileImgUrl|string?|스폰서 프로필 이미지 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 leagueId 에 유효하지 않은 값을 전달한 경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 전달한 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "95539bdb-35fc-48ab-9f09-16f7b481dd73",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "68cee616-5636-477b-b18f-505acc988d12",
+            "name": "400: Bad Request",
+            "url": "/leagues/test/sponsers?page=1&limit=3",
+            "method": "GET",
+            "sortNum": 990000,
+            "created": "2023-12-13T09:31:18.668Z",
+            "modified": "2023-12-13T09:31:36.903Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "19fb091a-e43f-4cfe-9ca3-0cbf637269df",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "68cee616-5636-477b-b18f-505acc988d12",
+            "name": "404: Not Found",
+            "url": "/leagues/1000/sponsers?page=1&limit=3",
+            "method": "GET",
+            "sortNum": 1000000,
+            "created": "2023-12-13T09:31:45.189Z",
+            "modified": "2023-12-13T09:31:59.937Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "047c8301-0970-4b1f-8b5c-77db9ef10d32",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f4f3b4d4-dc71-455b-a5b0-5c406d284171",
+            "name": "Success",
+            "url": "/admin/leagues",
+            "method": "POST",
+            "sortNum": 1010000,
+            "created": "2023-12-13T09:33:58.639Z",
+            "modified": "2023-12-13T09:39:41.999Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test league\",\n  \"startedAt\": \"2023-01-01\",\n  \"endedAt\": \"2023-12-31\",\n  \"associationId\": 1\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.associationId",
+                    "action": "equal",
+                    "value": "1"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.name",
+                    "action": "equal",
+                    "value": "test league"
+                }
+            ],
+            "docs": "## [Admin] CreateLeague\n\n### URI\nPOST /admin/leagues\n\n### Description\n리그를 생성합니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name|string|리그 명|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|associationId|number|리그를 주최하는 협회의 식별자|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그 명|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|associationId|number|리그를 주최하는 협회의 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|유효하지 않은 리그 생성 정보를 보낸 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태에서 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 협회의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b2102a14-1885-46d9-a766-3b53d76a46be",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f4f3b4d4-dc71-455b-a5b0-5c406d284171",
+            "name": "400: Bad Request",
+            "url": "/admin/leagues",
+            "method": "POST",
+            "sortNum": 1020000,
+            "created": "2023-12-13T09:40:06.670Z",
+            "modified": "2023-12-13T09:40:43.982Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test league\",\n  \"startedAt\": \"2024-01-01\",\n  \"endedAt\": \"2023-12-31\",\n  \"associationId\": 1\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a9dc565b-a310-4d37-95a0-03c131389609",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f4f3b4d4-dc71-455b-a5b0-5c406d284171",
+            "name": "401: Unauthorized",
+            "url": "/admin/leagues",
+            "method": "POST",
+            "sortNum": 1030000,
+            "created": "2023-12-13T09:40:55.066Z",
+            "modified": "2023-12-13T09:41:19.231Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test league\",\n  \"startedAt\": \"2023-01-01\",\n  \"endedAt\": \"2023-12-31\",\n  \"associationId\": 1\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b177e8e7-5c90-43c6-829f-80bed6ebc0d3",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f4f3b4d4-dc71-455b-a5b0-5c406d284171",
+            "name": "403: Forbidden",
+            "url": "/admin/leagues",
+            "method": "POST",
+            "sortNum": 1040000,
+            "created": "2023-12-13T09:41:22.612Z",
+            "modified": "2023-12-13T09:41:39.688Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test league\",\n  \"startedAt\": \"2023-01-01\",\n  \"endedAt\": \"2023-12-31\",\n  \"associationId\": 1\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "9b464ea8-4927-4ee8-afb9-4744ccab46fb",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f4f3b4d4-dc71-455b-a5b0-5c406d284171",
+            "name": "404: Not Found",
+            "url": "/admin/leagues",
+            "method": "POST",
+            "sortNum": 1050000,
+            "created": "2023-12-13T09:41:44.183Z",
+            "modified": "2023-12-13T09:42:05.465Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test league\",\n  \"startedAt\": \"2023-01-01\",\n  \"endedAt\": \"2023-12-31\",\n  \"associationId\": 1000\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "69d05e62-2a3e-4200-af22-06ad1b96de11",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f2680c06-7564-4afd-8984-34897e9c5e21",
+            "name": "Success",
+            "url": "/admin/leagues/1/sponsers/4/link",
+            "method": "POST",
+            "sortNum": 1030000,
+            "created": "2023-12-13T09:43:21.354Z",
+            "modified": "2023-12-13T10:35:29.702Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                }
+            ],
+            "docs": "## [Admin] LinkSponser\n\n### URI\nPOST /admin/leagues/[:leagueId]/sponsers/[:sponserId]/link\n\n### Description\n리그에 스폰서를 추가합니다.\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n|sponserId|number|스폰서 식별자|\n\n\n### Body\n**void**\n\n### Return Type\n**void**\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|leagueId 또는 sponserId에 유효하지 않은 값이 포함될 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태에서 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 리그나 스폰서의 식별자를 전달할 경우 발생|\n|409|Conflict|이미 해당 리그에 등록된 스폰서를 중복으로 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b14994a0-18a0-402a-867b-6946b3a62ac6",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "a7d59324-d1f4-47b5-9642-1e0997191399",
+            "name": "Success",
+            "url": "/admin/leagues/1/sponsers/3/unlink",
+            "method": "POST",
+            "sortNum": 1040000,
+            "created": "2023-12-13T09:49:27.079Z",
+            "modified": "2023-12-13T10:38:20.679Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                }
+            ],
+            "docs": "## [Admin] UnlinkSponser\n\n### URI\nPOST /admin/leagues/[:leagueId]/sponsers/[:sponserId]/link\n\n### Description\n리그를 후원 중인 스폰서를 후원 목록에서 제외합니다.\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n|sponserId|number|스폰서 식별자|\n\n\n### Body\n**void**\n\n### Return Type\n**void**\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값을 보낸 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태에서 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 리그나 스폰서의 식별자를 전달할 경우, 후원중이지 않은 스폰서의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "fe13950b-57dc-4489-9825-e5f9dad10a5e",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f2680c06-7564-4afd-8984-34897e9c5e21",
+            "name": "400: Bad Request",
+            "url": "/admin/leagues/1/sponsers/abcd/link",
+            "method": "POST",
+            "sortNum": 1050000,
+            "created": "2023-12-13T10:32:58.072Z",
+            "modified": "2023-12-13T10:35:38.852Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b644db6f-ae44-4559-944e-539e7b8e5767",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f2680c06-7564-4afd-8984-34897e9c5e21",
+            "name": "401: Unauthorized",
+            "url": "/admin/leagues/1/sponsers/1/link",
+            "method": "POST",
+            "sortNum": 1060000,
+            "created": "2023-12-13T10:35:44.894Z",
+            "modified": "2023-12-13T10:36:05.193Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "1ba2e917-08f5-474e-b57d-c450daec81bb",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f2680c06-7564-4afd-8984-34897e9c5e21",
+            "name": "403: Forbidden",
+            "url": "/admin/leagues/1/sponsers/1/link",
+            "method": "POST",
+            "sortNum": 1070000,
+            "created": "2023-12-13T10:36:09.070Z",
+            "modified": "2023-12-13T10:36:27.948Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "7865c897-ad12-46eb-873f-b6135c78360a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f2680c06-7564-4afd-8984-34897e9c5e21",
+            "name": "404: Not Found",
+            "url": "/admin/leagues/10000/sponsers/1/link",
+            "method": "POST",
+            "sortNum": 1080000,
+            "created": "2023-12-13T10:36:37.081Z",
+            "modified": "2023-12-13T10:36:58.887Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4d3a6b2f-0608-4c83-9d4d-315aa89e7d2a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f2680c06-7564-4afd-8984-34897e9c5e21",
+            "name": "409: Conflict",
+            "url": "/admin/leagues/1/sponsers/1/link",
+            "method": "POST",
+            "sortNum": 1090000,
+            "created": "2023-12-13T10:37:09.932Z",
+            "modified": "2023-12-13T10:37:37.866Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "409"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "767ecc24-ae44-4be1-ab62-7b0b2222b48a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "61ea3011-ef6e-493b-831d-d34d787094fd",
+            "name": "Success",
+            "url": "/admin/leagues/1",
+            "method": "PUT",
+            "sortNum": 1060000,
+            "created": "2023-12-13T10:37:54.403Z",
+            "modified": "2023-12-13T10:45:33.882Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test league\",\n  \"startedAt\": \"2023-01-11\",\n  \"endedAt\": \"2023-11-11\",\n  \"associationId\": 1\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.name",
+                    "action": "equal",
+                    "value": "test league"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.startedAt",
+                    "action": "equal",
+                    "value": "2023-01-11T00:00:00.000Z"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.endedAt",
+                    "action": "equal",
+                    "value": "2023-11-11T00:00:00.000Z"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.associationId",
+                    "action": "equal",
+                    "value": "1"
+                }
+            ],
+            "docs": "## [Admin] UpdateLeague\n\n### URI\nPUT /admin/leagues/[:leagueId]\n\n### Description\n리그 정보를 변경 합니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name?|string|리그 명|\n|startedAt?|Date|리그 시작 날짜|\n|endedAt?|Date|리그 종료 날짜|\n|associationId?|number|리그를 주최하는 협회의 식별자|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그 명|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|associationId|number|리그를 주최하는 협회의 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|유효하지 않은 리그 변경 정보를 보낸 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태에서 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 리그 또는 협회의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "e14551ca-9ea8-48ea-8a24-3b4988f99f1c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4844e1c9-50ad-4dd2-b748-722f14fa5402",
+            "name": "Success",
+            "url": "/admin/leagues/1",
+            "method": "DELETE",
+            "sortNum": 1070000,
+            "created": "2023-12-13T10:37:58.933Z",
+            "modified": "2023-12-13T10:53:58.650Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.id",
+                    "action": "equal",
+                    "value": "1"
+                }
+            ],
+            "docs": "## [Admin] DeleteLeague\n\n### URI\nDELETE /admin/leagues/[:leagueId]\n\n### Description\n리그를 삭제 합니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그 명|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|associationId|number|리그를 주최하는 협회의 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값을 보낸 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태에서 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a1eb0c5d-a1b6-4302-9483-a50cb76a12d0",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "a7d59324-d1f4-47b5-9642-1e0997191399",
+            "name": "400: Bad Request",
+            "url": "/admin/leagues/1abc/sponsers/3/unlink",
+            "method": "POST",
+            "sortNum": 1080000,
+            "created": "2023-12-13T10:38:38.449Z",
+            "modified": "2023-12-13T10:39:10.963Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "ad3324e4-e5e5-460f-afb9-fd71de245c8a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "a7d59324-d1f4-47b5-9642-1e0997191399",
+            "name": "401: Unauthorized",
+            "url": "/admin/leagues/1/sponsers/3/unlink",
+            "method": "POST",
+            "sortNum": 1090000,
+            "created": "2023-12-13T10:39:15.346Z",
+            "modified": "2023-12-13T10:39:59.262Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4f6d6efe-13df-4c46-95dd-c8ab0a39161b",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "a7d59324-d1f4-47b5-9642-1e0997191399",
+            "name": "403: Forbidden",
+            "url": "/admin/leagues/1/sponsers/3/unlink",
+            "method": "POST",
+            "sortNum": 1100000,
+            "created": "2023-12-13T10:39:43.579Z",
+            "modified": "2023-12-13T10:40:36.010Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "2513a2b2-abc8-4b13-9cff-d338628b10d4",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "a7d59324-d1f4-47b5-9642-1e0997191399",
+            "name": "404: Not Found",
+            "url": "/admin/leagues/1/sponsers/3000/unlink",
+            "method": "POST",
+            "sortNum": 1110000,
+            "created": "2023-12-13T10:40:03.265Z",
+            "modified": "2023-12-13T10:40:26.189Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "930bc832-6f07-4b13-afc4-97cb289ae8be",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "61ea3011-ef6e-493b-831d-d34d787094fd",
+            "name": "400: Bad Request",
+            "url": "/admin/leagues/1",
+            "method": "PUT",
+            "sortNum": 1090000,
+            "created": "2023-12-13T10:46:05.318Z",
+            "modified": "2023-12-13T10:46:44.418Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"startedAt\": \"2024-01-11\",\n  \"endedAt\": \"2023-11-11\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "3d08e0a5-8a5d-4d09-8200-8e91e2b46b54",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "61ea3011-ef6e-493b-831d-d34d787094fd",
+            "name": "401: Unauthorized",
+            "url": "/admin/leagues/1",
+            "method": "PUT",
+            "sortNum": 1100000,
+            "created": "2023-12-13T10:46:57.428Z",
+            "modified": "2023-12-13T10:47:20.316Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"startedAt\": \"2024-01-11\",\n  \"endedAt\": \"2023-11-11\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "2ffb9cf7-2a91-4a02-ac94-4219499ad091",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "61ea3011-ef6e-493b-831d-d34d787094fd",
+            "name": "403: Forbidden",
+            "url": "/admin/leagues/1",
+            "method": "PUT",
+            "sortNum": 1110000,
+            "created": "2023-12-13T10:47:24.006Z",
+            "modified": "2023-12-13T10:47:36.653Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"startedAt\": \"2024-01-11\",\n  \"endedAt\": \"2023-11-11\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4a1dcc08-64f6-4a3c-abdf-5bcb6a44553a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "61ea3011-ef6e-493b-831d-d34d787094fd",
+            "name": "404: Not Found",
+            "url": "/admin/leagues/1000",
+            "method": "PUT",
+            "sortNum": 1120000,
+            "created": "2023-12-13T10:47:41.119Z",
+            "modified": "2023-12-13T10:47:59.556Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"startedAt\": \"2024-01-11\",\n  \"endedAt\": \"2023-11-11\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "709a5ab6-1cdd-407c-b9b8-74848731cd4f",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4844e1c9-50ad-4dd2-b748-722f14fa5402",
+            "name": "400: Bad Request",
+            "url": "/admin/leagues/1abc",
+            "method": "DELETE",
+            "sortNum": 1100000,
+            "created": "2023-12-13T10:54:31.275Z",
+            "modified": "2023-12-13T10:54:54.254Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "f538d0d8-2ddb-427b-9599-c3318c55de7c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4844e1c9-50ad-4dd2-b748-722f14fa5402",
+            "name": "401: Unauthorized",
+            "url": "/admin/leagues/1",
+            "method": "DELETE",
+            "sortNum": 1110000,
+            "created": "2023-12-13T10:55:00.959Z",
+            "modified": "2023-12-13T10:55:24.208Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a792cb24-1f1b-413c-ae27-2f940c4c2542",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4844e1c9-50ad-4dd2-b748-722f14fa5402",
+            "name": "403: Forbidden",
+            "url": "/admin/leagues/1",
+            "method": "DELETE",
+            "sortNum": 1120000,
+            "created": "2023-12-13T10:55:27.681Z",
+            "modified": "2023-12-13T10:55:42.347Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "d64a7219-0e13-445e-88e3-3530859ad8ed",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4844e1c9-50ad-4dd2-b748-722f14fa5402",
+            "name": "404: Not Found",
+            "url": "/admin/leagues/1000",
+            "method": "DELETE",
+            "sortNum": 1110000,
+            "created": "2023-12-13T10:55:51.729Z",
+            "modified": "2023-12-13T10:56:11.367Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "afc694e3-8641-469f-b42b-d4679fbe7eb6",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "8fb5eafa-70f6-40cd-b986-2c490cbce3ce",
+            "name": "Success",
+            "url": "/sponsers?page=1&limit=3",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-12-13T11:19:33.708Z",
+            "modified": "2023-12-13T11:35:23.133Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "json-query",
+                    "custom": "json",
+                    "action": "count",
+                    "value": "3"
+                },
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ],
+            "docs": "## [Public] GetSponsers\n\n### URI\nGET /sponsers\n\n### Description\n전체 스폰서 목록을 불러옵니다.\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page?|number|불러올 페이지 (>= 1)|\n|limit?|number|한 번에 불러올 스폰서 수 (default 10)|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|스폰서 식별자|\n|name|string|스폰서 이름|\n|websiteUrl|string|스폰서 웹사이트 주소|\n|profileImgUrl|string?|스폰서 프로필 이미지 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 스트링에 유효하지 않은 값을 전달한 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "69fd05ef-ef73-4ffc-95dd-eebd6cb16a16",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "8fb5eafa-70f6-40cd-b986-2c490cbce3ce",
+            "name": "400: Bad Request",
+            "url": "/sponsers?page=a",
+            "method": "GET",
+            "sortNum": 1160000,
+            "created": "2023-12-13T11:22:27.470Z",
+            "modified": "2023-12-13T11:22:51.024Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "a",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "ac173ff4-6ec8-481a-8d4d-461da2521142",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "eab61e16-39ca-431f-9270-4d39f116c408",
+            "name": "Success",
+            "url": "/sponsers/1",
+            "method": "GET",
+            "sortNum": 1170000,
+            "created": "2023-12-13T11:23:12.815Z",
+            "modified": "2023-12-13T11:35:05.177Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.id",
+                    "action": "equal",
+                    "value": "1"
+                }
+            ],
+            "docs": "## [Public] GetSponser\n\n### URI\nGET /sponsers/[:sponserId]\n\n### Description\n스폰서 정보를 불러옵니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|sponserId|number|스폰서 식별자|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|스폰서 식별자|\n|name|string|스폰서 이름|\n|websiteUrl|string|스폰서 웹사이트 주소|\n|profileImgUrl|string?|스폰서 프로필 이미지 주소|\n\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 sponserId에 유효하지 않은 값을 전달한 경우 발생|\n|404|Not Found|존재하지 않는 스폰서의 식별자를 전달한 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4e9f8306-bc8b-43af-a0c6-c5f18ca7ba72",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "eab61e16-39ca-431f-9270-4d39f116c408",
+            "name": "400: Bad Request",
+            "url": "/sponsers/abc",
+            "method": "GET",
+            "sortNum": 1180000,
+            "created": "2023-12-13T11:25:20.182Z",
+            "modified": "2023-12-13T11:25:41.068Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "6a147939-82fe-4fa4-a08c-37f1434c1045",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "eab61e16-39ca-431f-9270-4d39f116c408",
+            "name": "404: Not Found",
+            "url": "/sposners/1000",
+            "method": "GET",
+            "sortNum": 1190000,
+            "created": "2023-12-13T11:25:26.379Z",
+            "modified": "2023-12-13T11:25:58.418Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b9d14404-cc49-42fe-8f43-aa401db26b44",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4e2e890d-8842-487e-8c86-7c9009c44c10",
+            "name": "Success",
+            "url": "/admin/sponsers",
+            "method": "POST",
+            "sortNum": 1200000,
+            "created": "2023-12-13T11:26:51.226Z",
+            "modified": "2023-12-13T11:41:33.027Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test sponser\",\n  \"websiteUrl\": \"https://kafa.one\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.name",
+                    "action": "equal",
+                    "value": "test sponser"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.websiteUrl",
+                    "action": "equal",
+                    "value": "https://kafa.one"
+                }
+            ],
+            "docs": "## [Admin] CreateSponser\n\n### URI\nPOST /admin/sponsers\n\n### Description\n스폰서를 생성합니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name|string|스폰서 이름|\n|websiteUrl|string|스폰서 웹사이트 주소|\n|profileImgUrl?|string|스폰서 프로필 이미지 주소|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|스폰서 식별자|\n|name|string|스폰서 이름|\n|websiteUrl|string|스폰서 웹사이트 주소|\n|profileImgUrl|string?|스폰서 프로필 이미지 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|BadRequest|유효하지 않은 스폰서 생성 정보 값을 전달할 경우 발생|\n|401|Unauthorized|로그인 하지 않고 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "53d9482b-6c11-4dc0-9ed6-611e6f5fd83a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4e2e890d-8842-487e-8c86-7c9009c44c10",
+            "name": "400: Bad Request",
+            "url": "/admin/sponsers",
+            "method": "POST",
+            "sortNum": 1210000,
+            "created": "2023-12-13T11:35:58.525Z",
+            "modified": "2023-12-13T11:36:28.791Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test sponser\",\n  \"websiteUrl\": \"https://kafa\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "9041d7b8-5d14-409e-b6ff-3b051fa92fd2",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4e2e890d-8842-487e-8c86-7c9009c44c10",
+            "name": "401: Unauthorized",
+            "url": "/admin/sponsers",
+            "method": "POST",
+            "sortNum": 1220000,
+            "created": "2023-12-13T11:36:38.530Z",
+            "modified": "2023-12-13T11:37:07.264Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test sponser\",\n  \"websiteUrl\": \"https://kafa.one\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "18f8107b-75fa-4d92-848f-4220c34b54cc",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4e2e890d-8842-487e-8c86-7c9009c44c10",
+            "name": "403: Forbidden",
+            "url": "/admin/sponsers",
+            "method": "POST",
+            "sortNum": 1230000,
+            "created": "2023-12-13T11:37:52.841Z",
+            "modified": "2023-12-13T11:37:59.315Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"test sponser\",\n  \"websiteUrl\": \"https://kafa.one\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "25d6d956-c0a1-47d1-a85d-8fbff2024a51",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e9ba9c52-d2c3-4c95-a80b-5a2f786ff448",
+            "name": "Success",
+            "url": "/admin/sponsers/1",
+            "method": "PUT",
+            "sortNum": 1230000,
+            "created": "2023-12-13T11:38:36.413Z",
+            "modified": "2023-12-13T11:43:36.762Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"sponser update test\",\n  \"websiteUrl\": \"https://test.com\",\n  \"profileImgUrl\": \"https://image.com\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.id",
+                    "action": "equal",
+                    "value": "1"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.name",
+                    "action": "equal",
+                    "value": "sponser update test"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.websiteUrl",
+                    "action": "equal",
+                    "value": "https://test.com"
+                }
+            ],
+            "docs": "## [Admin] UpdateSponser\n\n### URI\nPUT /admin/sponsers/[:sponserId]\n\n### Description\n스폰서 정보를 변경합니다.\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|sponserId|number|스폰서 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name?|string|스폰서 이름|\n|websiteUrl?|string|스폰서 웹사이트 주소|\n|profileImgUrl?|string|스폰서 프로필 이미지 주소|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|스폰서 식별자|\n|name|string|스폰서 이름|\n|websiteUrl|string|스폰서 웹사이트 주소|\n|profileImgUrl|string?|스폰서 프로필 이미지 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|BadRequest|유효하지 않은 스폰서 변경 정보 값을 전달할 경우 발생|\n|401|Unauthorized|로그인 하지 않고 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 스폰서의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "6399fbec-4b58-412e-859f-60698e460cae",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "ebcf58b6-cab4-415b-b7f2-7d090a7829b6",
+            "name": "Success",
+            "url": "/admin/sponsers/5",
+            "method": "DELETE",
+            "sortNum": 1240000,
+            "created": "2023-12-13T11:38:40.063Z",
+            "modified": "2023-12-13T11:47:26.477Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.id",
+                    "action": "equal",
+                    "value": "5"
+                }
+            ],
+            "docs": "## [Admin] DeleteSponser\n\n### URI\nDELETE /admin/sponsers/[:sponserId]\n\n### Description\n스폰서를 삭제합니다.\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|sponserId|number|스폰서 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|스폰서 식별자|\n|name|string|스폰서 이름|\n|websiteUrl|string|스폰서 웹사이트 주소|\n|profileImgUrl|string?|스폰서 프로필 이미지 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|BadRequest|쿼리 파라미터 sponserId에 유효하지 않은 값을 전달할 경우 발생|\n|401|Unauthorized|로그인 하지 않고 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 스폰서의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "b9d14404-cc49-42fe-8f43-aa401db26b44",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "e9e896d0-951d-4da8-b7a1-ca15962678dd",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e9ba9c52-d2c3-4c95-a80b-5a2f786ff448",
+            "name": "400: Bad Request",
+            "url": "/admin/sponsers/1",
+            "method": "PUT",
+            "sortNum": 1250000,
+            "created": "2023-12-13T11:43:53.897Z",
+            "modified": "2023-12-13T11:44:28.107Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"profileImgUrl\": \"httpk://image.com\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "446ba4ce-11c1-4a4a-9bea-35097c38c97e",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e9ba9c52-d2c3-4c95-a80b-5a2f786ff448",
+            "name": "401: Unauthorized",
+            "url": "/admin/sponsers/1",
+            "method": "PUT",
+            "sortNum": 1260000,
+            "created": "2023-12-13T11:44:35.116Z",
+            "modified": "2023-12-13T11:44:47.515Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"profileImgUrl\": \"httpk://image.com\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "e7d3b5ed-7aad-486a-9bfb-8905a6d18460",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e9ba9c52-d2c3-4c95-a80b-5a2f786ff448",
+            "name": "403: Forbidden",
+            "url": "/admin/sponsers/1",
+            "method": "PUT",
+            "sortNum": 1270000,
+            "created": "2023-12-13T11:44:51.100Z",
+            "modified": "2023-12-13T11:45:16.349Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"profileImgUrl\": \"https://image.com\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "7bb03e8f-848e-44b0-88da-1510d719b91d",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e9ba9c52-d2c3-4c95-a80b-5a2f786ff448",
+            "name": "404: Not Found",
+            "url": "/admin/sponsers/1000",
+            "method": "PUT",
+            "sortNum": 1280000,
+            "created": "2023-12-13T11:45:19.432Z",
+            "modified": "2023-12-13T11:45:38.459Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"profileImgUrl\": \"https://image.com\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4c15147a-ffaf-4b21-ac63-161c6f66bd02",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "ebcf58b6-cab4-415b-b7f2-7d090a7829b6",
+            "name": "400: Bad Request",
+            "url": "/admin/sponsers/abc",
+            "method": "DELETE",
+            "sortNum": 1260000,
+            "created": "2023-12-13T11:47:57.516Z",
+            "modified": "2023-12-13T11:48:19.500Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "f26ea6ea-4141-496c-8442-2605af87e6c9",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "ebcf58b6-cab4-415b-b7f2-7d090a7829b6",
+            "name": "401: Unauthorized",
+            "url": "/admin/sponsers/abc",
+            "method": "DELETE",
+            "sortNum": 1270000,
+            "created": "2023-12-13T11:48:23.262Z",
+            "modified": "2023-12-13T11:48:39.769Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "2ddf77b0-c0d2-4bea-b010-bfc29496f999",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "ebcf58b6-cab4-415b-b7f2-7d090a7829b6",
+            "name": "403: Forbidden",
+            "url": "/admin/sponsers/1000",
+            "method": "DELETE",
+            "sortNum": 1280000,
+            "created": "2023-12-13T11:48:43.073Z",
+            "modified": "2023-12-13T11:49:34.237Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "72a4ed5b-d6f7-4002-80ee-a848d1d28d21",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "ebcf58b6-cab4-415b-b7f2-7d090a7829b6",
+            "name": "404: Not Found",
+            "url": "/admin/sponsers/1",
+            "method": "DELETE",
+            "sortNum": 1290000,
+            "created": "2023-12-13T11:49:16.775Z",
+            "modified": "2023-12-13T11:49:16.775Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""

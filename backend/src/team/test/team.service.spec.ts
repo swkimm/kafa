@@ -1,3 +1,4 @@
+import { ConfigModule } from '@nestjs/config'
 import { Test, type TestingModule } from '@nestjs/testing'
 import { PrismaService } from '@/prisma/prisma.service'
 import {
@@ -226,6 +227,12 @@ describe('TeamService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [
+        ConfigModule.forRoot({
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          load: [() => ({ NODE_ENV: 'staging' })]
+        })
+      ],
       providers: [
         {
           provide: 'TeamService',
@@ -548,6 +555,7 @@ describe('TeamService', () => {
       const requestId = 1
       const reason = 'test'
       db.registerTeamRequest.update.resolves(rejectedRegisterTeamRequest)
+      db.registerTeamRequest.findUniqueOrThrow.resolves(registerTeamRequest)
 
       // when
       const result = await service.rejectRegisterTeamRequest(requestId, reason)

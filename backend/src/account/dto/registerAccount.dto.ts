@@ -11,7 +11,6 @@ export class RegisterAccountDTO {
   @IsNotEmpty()
   name: string
 
-  @IsString()
   @IsNotEmpty()
   @IsAlphanumeric()
   username: string
