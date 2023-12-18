@@ -29,7 +29,7 @@ CREATE TYPE "TeamStatus" AS ENUM ('Enabled', 'Disabled');
 CREATE TYPE "TeamEnrollStatus" AS ENUM ('Received', 'Approved', 'Rejected');
 
 -- CreateEnum
-CREATE TYPE "LeagueApplyStatus" AS ENUM ('Received', 'Approved', 'Rejected');
+CREATE TYPE "LeagueApplyStatus" AS ENUM ('Received', 'Approved', 'Hold', 'Rejected');
 
 -- CreateEnum
 CREATE TYPE "GenderType" AS ENUM ('Male', 'Female', 'Others');
@@ -290,8 +290,8 @@ CREATE TABLE "Game" (
     "started_at" TIMESTAMP(3) NOT NULL,
     "home_team_id" INTEGER NOT NULL,
     "away_team_id" INTEGER NOT NULL,
-    "result" "GameResult" NOT NULL,
     "stadium" VARCHAR(256) NOT NULL,
+    "result" "GameResult" NOT NULL,
 
     CONSTRAINT "Game_pkey" PRIMARY KEY ("id")
 );
@@ -464,7 +464,7 @@ ALTER TABLE "PressGame" ADD CONSTRAINT "PressGame_game_id_fkey" FOREIGN KEY ("ga
 ALTER TABLE "PressGame" ADD CONSTRAINT "PressGame_press_id_fkey" FOREIGN KEY ("press_id") REFERENCES "Press"("account_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Score" ADD CONSTRAINT "Score_game_id_fkey" FOREIGN KEY ("game_id") REFERENCES "Game"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Score" ADD CONSTRAINT "Score_game_id_fkey" FOREIGN KEY ("game_id") REFERENCES "Game"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Record" ADD CONSTRAINT "Record_game_id_fkey" FOREIGN KEY ("game_id") REFERENCES "Game"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

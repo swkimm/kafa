@@ -444,6 +444,90 @@
             "containerId": "45e7c98c-6ca5-41f1-8566-adc4c67de88c",
             "created": "2023-12-13T11:26:36.690Z",
             "sortNum": 660000
+        },
+        {
+            "_id": "4869dc11-bb35-48b3-9034-2fe551592667",
+            "name": "Game",
+            "containerId": "",
+            "created": "2023-12-18T05:56:33.088Z",
+            "sortNum": 182500
+        },
+        {
+            "_id": "be01d03e-f606-447d-88fc-ef5ff2f1d8e8",
+            "name": "Normal",
+            "containerId": "4869dc11-bb35-48b3-9034-2fe551592667",
+            "created": "2023-12-18T05:56:49.190Z",
+            "sortNum": 680000
+        },
+        {
+            "_id": "95fe1577-9a80-4965-a50f-d3d89b7c665f",
+            "name": "Admin",
+            "containerId": "4869dc11-bb35-48b3-9034-2fe551592667",
+            "created": "2023-12-18T05:56:54.598Z",
+            "sortNum": 690000
+        },
+        {
+            "_id": "b4cf8259-592e-47d3-b5d2-6e5bb9c7495e",
+            "name": "getGame",
+            "containerId": "be01d03e-f606-447d-88fc-ef5ff2f1d8e8",
+            "created": "2023-12-18T06:07:26.672Z",
+            "sortNum": 700000
+        },
+        {
+            "_id": "e7caba89-5f2e-44cd-bea8-4aaef10cfa52",
+            "name": "getGames",
+            "containerId": "be01d03e-f606-447d-88fc-ef5ff2f1d8e8",
+            "created": "2023-12-18T06:07:33.422Z",
+            "sortNum": 710000
+        },
+        {
+            "_id": "dba14753-3cc9-4749-a4b2-84301d355137",
+            "name": "getGameByLeagueId",
+            "containerId": "be01d03e-f606-447d-88fc-ef5ff2f1d8e8",
+            "created": "2023-12-18T06:07:39.837Z",
+            "sortNum": 720000
+        },
+        {
+            "_id": "630f4104-9604-433d-b901-728db200cbb1",
+            "name": "getScore",
+            "containerId": "be01d03e-f606-447d-88fc-ef5ff2f1d8e8",
+            "created": "2023-12-18T06:07:47.591Z",
+            "sortNum": 730000
+        },
+        {
+            "_id": "865bce2c-ab42-4264-8845-c20965dfee07",
+            "name": "createGame",
+            "containerId": "95fe1577-9a80-4965-a50f-d3d89b7c665f",
+            "created": "2023-12-18T06:36:14.371Z",
+            "sortNum": 740000
+        },
+        {
+            "_id": "7c48f912-8708-404c-9bf9-8d4272f5cc2a",
+            "name": "createScore",
+            "containerId": "95fe1577-9a80-4965-a50f-d3d89b7c665f",
+            "created": "2023-12-18T06:36:26.643Z",
+            "sortNum": 750000
+        },
+        {
+            "_id": "0fd40f2a-8e2f-40c0-8376-e23343aed7c6",
+            "name": "updateGame",
+            "containerId": "95fe1577-9a80-4965-a50f-d3d89b7c665f",
+            "created": "2023-12-18T06:36:32.795Z",
+            "sortNum": 760000
+        },
+        {
+            "_id": "aca7aeb5-905c-45f6-9fbe-6abf4e2563e3",
+            "name": "updateScore",
+            "containerId": "95fe1577-9a80-4965-a50f-d3d89b7c665f",
+            "created": "2023-12-18T06:36:38.318Z",
+            "sortNum": 770000
+        },
+        {
+            "_id": "5c28607e-ab95-4e36-b686-99afd7dcfe8f",
+            "name": "deleteGame",
+            "containerId": "95fe1577-9a80-4965-a50f-d3d89b7c665f",
+            "created": "2023-12-18T06:36:46.167Z",
+            "sortNum": 780000
         }
     ],
     "requests": [
@@ -5902,6 +5986,1362 @@
                 "runRequests": [
                     {
                         "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "e78a330d-2562-4824-aca4-8529874484ba",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "b4cf8259-592e-47d3-b5d2-6e5bb9c7495e",
+            "name": "Success",
+            "url": "/games/1",
+            "method": "GET",
+            "sortNum": 1310000,
+            "created": "2023-12-18T06:07:53.254Z",
+            "modified": "2023-12-18T08:09:31.141Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.id",
+                    "action": "equal",
+                    "value": "1"
+                }
+            ],
+            "docs": "## [Public] GetGame\n\n### URI\nGET /games/[:gameId]\n\n### Description\n경기 정보를 불러옵니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|불러올 게임의 식별자|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|BadRequest|쿼리 파라미터에 잘못된 값이 있을 경우 발생|\n|404|NotFound|존재하지 않는 경기의 식별자를 전달할 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "11e1a550-906c-4a7e-bc85-e9883163d9bb",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e7caba89-5f2e-44cd-bea8-4aaef10cfa52",
+            "name": "Success",
+            "url": "/games?cursor=0&limit=3",
+            "method": "GET",
+            "sortNum": 1320000,
+            "created": "2023-12-18T06:15:48.628Z",
+            "modified": "2023-12-18T06:19:42.877Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "cursor",
+                    "value": "0",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json",
+                    "action": "count",
+                    "value": "3"
+                }
+            ],
+            "docs": "## [Public] GetGames\n\n### URI\nGET /games\n\n### Description\n경기 목록을 불러옵니다.\nCursor Based Pagination이 적용되어있습니다.\n\n### \bQuery String\n|Name|Type|Description|\n|---|----|-------|\n|cursor?|number|현재 커서 (>= 0)|\n|limit?|number|한 번에 불러올 경기 수 (>= 1, default 10)|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|BadRequest|쿼리 스트링에 잘못된 값이 있을 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4c6ecdb9-3d56-4d6c-ac86-f568c6394e43",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "dba14753-3cc9-4749-a4b2-84301d355137",
+            "name": "Success",
+            "url": "/games/leagues/1?cursor=0&limit=3",
+            "method": "GET",
+            "sortNum": 1330000,
+            "created": "2023-12-18T06:20:01.213Z",
+            "modified": "2023-12-18T06:23:17.119Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "cursor",
+                    "value": "0",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json",
+                    "action": "count",
+                    "value": "3"
+                }
+            ],
+            "docs": "## [Public] GetGamesByLeagueId\n\n### URI\nGET /games/leagues/[:leagueId]\n\n### Description\n특정 리그에 속한 경기 목록을 불러옵니다.\nCursor Based Pagination이 적용되어있습니다.\n\n### \bQuery Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|경기 목록을 조회할 리그의 식별자|\n\n### \bQuery String\n|Name|Type|Description|\n|---|----|-------|\n|cursor?|number|현재 커서 (>= 0)|\n|limit?|number|한 번에 불러올 경기 수 (>= 1, default 10)|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|BadRequest|쿼리 스트링 또는 쿼리 파라미터에 잘못된 값이 있을 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "ce4fb90f-5b77-4aa4-8722-791402f1574c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "630f4104-9604-433d-b901-728db200cbb1",
+            "name": "Success",
+            "url": "/games/1/score",
+            "method": "GET",
+            "sortNum": 1340000,
+            "created": "2023-12-18T06:23:28.818Z",
+            "modified": "2023-12-18T08:09:14.093Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.gameId",
+                    "action": "equal",
+                    "value": "1"
+                }
+            ],
+            "docs": "## [Public] GetScore\n\n### URI\nGET /games/[:gameId]/score\n\n### Description\n경기의 점수를 불러옵니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|점수를 불러올 게임의 식별자|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|경기의 식별자|\n|homeTeamScore|number|홈 팀의 총점|\n|homeTeamQuarterScores|number[]|홈 팀의 쿼터별 점수|\n|awayTeamScore|number|어웨이 팀의 총점|\n|awayTeamQuarterScores|number[]|어웨이 팀의 쿼터별 점수|\n|overtime|boolean|연장 여부|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|BadRequest|쿼리 파라미터에 잘못된 값이 있을 경우 발생|\n|404|NotFound|존재하지 않는 경기의 식별자를 전달할 경우 또는 아직 점수가 입력되지 않은 경기에 대해 해당 요청을 전송할경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "79732593-9982-4f8f-b8e6-a902d0fb7801",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "b4cf8259-592e-47d3-b5d2-6e5bb9c7495e",
+            "name": "400: Bad Request",
+            "url": "/games/abc",
+            "method": "GET",
+            "sortNum": 1350000,
+            "created": "2023-12-18T06:30:38.192Z",
+            "modified": "2023-12-18T06:31:19.169Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "9b600b8b-b03e-406d-87f6-41c57364ad40",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "b4cf8259-592e-47d3-b5d2-6e5bb9c7495e",
+            "name": "404: Not Found",
+            "url": "/games/10000",
+            "method": "GET",
+            "sortNum": 1360000,
+            "created": "2023-12-18T06:30:43.306Z",
+            "modified": "2023-12-18T06:31:31.117Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ]
+        },
+        {
+            "_id": "9ca10102-c0d4-4775-97b4-f4849be9a759",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e7caba89-5f2e-44cd-bea8-4aaef10cfa52",
+            "name": "400: Bad Request",
+            "url": "/games?cursor=test",
+            "method": "GET",
+            "sortNum": 1370000,
+            "created": "2023-12-18T06:31:41.500Z",
+            "modified": "2023-12-18T06:32:02.679Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "cursor",
+                    "value": "test",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a8f46ce7-1f39-4191-be97-a460dae9105d",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "dba14753-3cc9-4749-a4b2-84301d355137",
+            "name": "400: Bad Request",
+            "url": "/games/leagues/1?cursor=abc",
+            "method": "GET",
+            "sortNum": 1380000,
+            "created": "2023-12-18T06:32:11.192Z",
+            "modified": "2023-12-18T06:32:36.377Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "cursor",
+                    "value": "abc",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "df21593e-10ec-4699-bae9-a81bdacc1266",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "dba14753-3cc9-4749-a4b2-84301d355137",
+            "name": "404: Not Found",
+            "url": "/games/leagues/10000",
+            "method": "GET",
+            "sortNum": 1390000,
+            "created": "2023-12-18T06:32:43.598Z",
+            "modified": "2023-12-18T06:32:55.280Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ]
+        },
+        {
+            "_id": "a59dcbb0-03b4-41e1-93aa-edf1e521349a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "630f4104-9604-433d-b901-728db200cbb1",
+            "name": "400: Bad Request",
+            "url": "/games/abc/score",
+            "method": "GET",
+            "sortNum": 1400000,
+            "created": "2023-12-18T06:33:04.363Z",
+            "modified": "2023-12-18T06:33:21.459Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "d197d055-d110-423b-a4cd-0a7cc22176d8",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "630f4104-9604-433d-b901-728db200cbb1",
+            "name": "404: Not Found",
+            "url": "/games/10000/score",
+            "method": "GET",
+            "sortNum": 1410000,
+            "created": "2023-12-18T06:33:26.883Z",
+            "modified": "2023-12-18T06:33:43.469Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "8931ddbc-1379-42e6-a529-0aa03b2e8628",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "865bce2c-ab42-4264-8845-c20965dfee07",
+            "name": "Success",
+            "url": "/admin/games",
+            "method": "POST",
+            "sortNum": 1430000,
+            "created": "2023-12-18T07:00:54.205Z",
+            "modified": "2023-12-18T07:08:13.241Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"leagueId\": 1,\n  \"homeTeamId\": 1,\n  \"awayTeamId\": 2,\n  \"startedAt\": \"2023-12-31\",\n  \"result\": \"NotFinished\",\n  \"stadium\": \"test stadium\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.homeTeamId",
+                    "action": "equal",
+                    "value": "1"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.awayTeamId",
+                    "action": "equal",
+                    "value": "2"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.stadium",
+                    "action": "equal",
+                    "value": "test stadium"
+                }
+            ],
+            "docs": "## [Admin] CreateGame\n\n### URI\nPOST /admin/games\n\n### Description\n\b경기를 생성합니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|경기 생성 정보에 유효하지 않은 값이 포함될 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 경기 생성 정보에 포함하여 전달할 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "c959d7ca-5d84-4207-b38f-3f2908c6f6c2",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7c48f912-8708-404c-9bf9-8d4272f5cc2a",
+            "name": "Success",
+            "url": "/admin/games/4/score",
+            "method": "POST",
+            "sortNum": 1440000,
+            "created": "2023-12-18T07:08:34.444Z",
+            "modified": "2023-12-18T08:09:05.746Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.gameId",
+                    "action": "equal",
+                    "value": "4"
+                }
+            ],
+            "docs": "## [Admin] CreateScore\n\n### URI\nPOST /admin/games/[:gameId]/score\n\n### Description\n경기의 점수를 생성합니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|점수를 생성할 게임의 식별자|\n\n### Body\n**void**\n\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|경기의 식별자|\n|homeTeamScore|number?|홈 팀의 총점|\n|homeTeamQuarterScores|number[]|홈 팀의 쿼터별 점수|\n|awayTeamScore|number?|어웨이 팀의 총점|\n|awayTeamQuarterScores|number[]|어웨이 팀의 쿼터별 점수|\n|overtime|boolean?|연장 여부|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 잘못된 값이 있을 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 경기의 식별자를 전달할 경우 발생|\n|409|Conflict|이미 점수가 생성된 경기에 중복으로 해당 요청을 보낼 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "8931ddbc-1379-42e6-a529-0aa03b2e8628",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "aa24bd70-56dd-42ea-9220-e5224c7f7a69",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0fd40f2a-8e2f-40c0-8376-e23343aed7c6",
+            "name": "Success",
+            "url": "/admin/games/4",
+            "method": "PUT",
+            "sortNum": 1460000,
+            "created": "2023-12-18T07:46:23.391Z",
+            "modified": "2023-12-18T07:53:13.150Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"leagueId\": 2,\n  \"stadium\": \"update test\",\n  \"result\": \"Draw\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.id",
+                    "action": "equal",
+                    "value": "4"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.leagueId",
+                    "action": "equal",
+                    "value": "2"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.stadium",
+                    "action": "equal",
+                    "value": "update test"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.result",
+                    "action": "equal",
+                    "value": "Draw"
+                }
+            ],
+            "docs": "## [Admin] UpdateGame\n\n### URI\nPUT /admin/games/[:gameId]\n\n### Description\n경기 정보를 업데이트 합니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|정보를 업데이트할 게임의 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|leagueId?|number|경기가 속한 리그의 식별자|\n|startedAt?|Date|킥오프 시간|\n|homeTeamId?|number|홈 팀의 식별자|\n|awayTeamId?|number|어웨이 팀의 식별자|\n|stadium?|string|경기장|\n|*result?|string|경기 결과|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 또는 Body에 잘못된 값이 있을 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 경기의 식별자 또는 리그의 식별자를 전달할 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "8931ddbc-1379-42e6-a529-0aa03b2e8628",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a2740c0c-f644-4699-8242-7c8f7eddf66f",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "aca7aeb5-905c-45f6-9fbe-6abf4e2563e3",
+            "name": "Success",
+            "url": "/admin/games/4/score",
+            "method": "PUT",
+            "sortNum": 1470000,
+            "created": "2023-12-18T07:53:41.370Z",
+            "modified": "2023-12-18T08:08:25.349Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"homeTeamQuarterScores\":  [0, 0, 7, 7],\n  \"awayTeamQuarterScores\": [3, 0, 0, 0],\n  \"overtime\": false\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.gameId",
+                    "action": "equal",
+                    "value": "4"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.homeTeamScore",
+                    "action": "equal",
+                    "value": "14"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.awayTeamScore",
+                    "action": "equal",
+                    "value": "3"
+                }
+            ],
+            "docs": "## [Admin] UpdateScore\n\n### URI\nPUT /admin/games/[:gameId]/score\n\n### Description\n경기의 점수를 업데이트합니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|점수를 업데이트할 게임의 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|homeTeamQuarterScores|number[]|홈 팀의 쿼터별 점수|\n|awayTeamQuarterScores|number[]|어웨이 팀의 쿼터별 점수|\n|overtime|boolean|연장 여부|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|경기의 식별자|\n|homeTeamScore|number|홈 팀의 총점|\n|homeTeamQuarterScores|number[]|홈 팀의 쿼터별 점수|\n|awayTeamScore|number|어웨이 팀의 총점|\n|awayTeamQuarterScores|number[]|어웨이 팀의 쿼터별 점수|\n|overtime|boolean|연장 여부|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 잘못된 값이 있을 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 경기의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "c959d7ca-5d84-4207-b38f-3f2908c6f6c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "79f8188b-729a-4845-b3a8-f1ce00875a3c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "5c28607e-ab95-4e36-b686-99afd7dcfe8f",
+            "name": "Success",
+            "url": "/admin/games/4",
+            "method": "DELETE",
+            "sortNum": 1480000,
+            "created": "2023-12-18T07:57:48.039Z",
+            "modified": "2023-12-18T08:28:28.800Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.id",
+                    "action": "equal",
+                    "value": "4"
+                }
+            ],
+            "docs": "## [Admin] DeleteGame\n\n### URI\nDELETE /admin/games/[:gameId]\n\n### Description\n경기를 삭제합니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|삭제할 경기의 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 포함될 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 전달할 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "8931ddbc-1379-42e6-a529-0aa03b2e8628",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "01fd14e1-03bb-4222-8822-17a39c81df66",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "865bce2c-ab42-4264-8845-c20965dfee07",
+            "name": "400: Bad Request",
+            "url": "/admin/games",
+            "method": "POST",
+            "sortNum": 1490000,
+            "created": "2023-12-18T08:14:09.526Z",
+            "modified": "2023-12-18T08:14:48.167Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"leagueId\": 1,\n  \"homeTeamId\": 1,\n  \"awayTeamId\": 1,\n  \"startedAt\": \"2023-12-31\",\n  \"result\": \"NotFinished\",\n  \"stadium\": \"test stadium\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b59ec4b5-ff8e-44b8-86ca-6e73408bebee",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "865bce2c-ab42-4264-8845-c20965dfee07",
+            "name": "403: Forbidden",
+            "url": "/admin/games",
+            "method": "POST",
+            "sortNum": 1500000,
+            "created": "2023-12-18T08:14:52.826Z",
+            "modified": "2023-12-18T08:15:41.526Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"leagueId\": 1,\n  \"homeTeamId\": 1,\n  \"awayTeamId\": 2,\n  \"startedAt\": \"2023-12-31\",\n  \"result\": \"NotFinished\",\n  \"stadium\": \"test stadium\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a1e11d15-47a4-43dd-9d3f-8eeaa8cdc23a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "865bce2c-ab42-4264-8845-c20965dfee07",
+            "name": "404: Not Found",
+            "url": "/admin/games",
+            "method": "POST",
+            "sortNum": 1510000,
+            "created": "2023-12-18T08:15:45.186Z",
+            "modified": "2023-12-18T08:16:04.350Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"leagueId\": 10000,\n  \"homeTeamId\": 1,\n  \"awayTeamId\": 2,\n  \"startedAt\": \"2023-12-31\",\n  \"result\": \"NotFinished\",\n  \"stadium\": \"test stadium\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "f8855ce6-e4e8-4531-b960-706c9425d1e3",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "865bce2c-ab42-4264-8845-c20965dfee07",
+            "name": "401: Unauthorized",
+            "url": "/admin/games",
+            "method": "POST",
+            "sortNum": 1495000,
+            "created": "2023-12-18T08:16:26.403Z",
+            "modified": "2023-12-18T08:16:49.376Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"leagueId\": 1,\n  \"homeTeamId\": 1,\n  \"awayTeamId\": 2,\n  \"startedAt\": \"2023-12-31\",\n  \"result\": \"NotFinished\",\n  \"stadium\": \"test stadium\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "c7c8fa3c-769d-4f83-8605-11731b181674",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0fd40f2a-8e2f-40c0-8376-e23343aed7c6",
+            "name": "400: Bad Request",
+            "url": "/admin/games/abc",
+            "method": "PUT",
+            "sortNum": 1500000,
+            "created": "2023-12-18T08:17:06.129Z",
+            "modified": "2023-12-18T08:18:05.657Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "1eae636e-c931-4291-b28e-7beed27a9a2e",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7c48f912-8708-404c-9bf9-8d4272f5cc2a",
+            "name": "400: Bad Request",
+            "url": "/admin/games/abc/score",
+            "method": "POST",
+            "sortNum": 1510000,
+            "created": "2023-12-18T08:18:24.637Z",
+            "modified": "2023-12-18T08:19:16.238Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "9f5f202e-8eef-40ea-b0d0-6d41f7ec99cf",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7c48f912-8708-404c-9bf9-8d4272f5cc2a",
+            "name": "401: Unauthorized",
+            "url": "/admin/games/abc/score",
+            "method": "POST",
+            "sortNum": 1520000,
+            "created": "2023-12-18T08:18:59.916Z",
+            "modified": "2023-12-18T08:18:59.916Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "d0cd3616-e6b7-4aa5-afda-3b5e5890d58f",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7c48f912-8708-404c-9bf9-8d4272f5cc2a",
+            "name": "403: Forbidden",
+            "url": "/admin/games/abc/score",
+            "method": "POST",
+            "sortNum": 1530000,
+            "created": "2023-12-18T08:19:18.983Z",
+            "modified": "2023-12-18T08:19:34.411Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a76d30ca-88ec-4374-ab75-822b2f4a2e2b",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7c48f912-8708-404c-9bf9-8d4272f5cc2a",
+            "name": "404: Not Found",
+            "url": "/admin/games/1000/score",
+            "method": "POST",
+            "sortNum": 1540000,
+            "created": "2023-12-18T08:19:48.141Z",
+            "modified": "2023-12-18T08:20:54.841Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b72b1419-222c-44f4-b974-4f3f27bdb2b9",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7c48f912-8708-404c-9bf9-8d4272f5cc2a",
+            "name": "409: Conflict",
+            "url": "/admin/games/1/score",
+            "method": "POST",
+            "sortNum": 1550000,
+            "created": "2023-12-18T08:21:13.949Z",
+            "modified": "2023-12-18T08:21:32.756Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "409"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "3c778fa1-eb9a-4f51-b0d3-63357821e9d8",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0fd40f2a-8e2f-40c0-8376-e23343aed7c6",
+            "name": "401: Unauthorized",
+            "url": "/admin/games/abc",
+            "method": "PUT",
+            "sortNum": 1510000,
+            "created": "2023-12-18T08:24:10.685Z",
+            "modified": "2023-12-18T08:24:25.696Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "53fdcf9a-4d62-49bd-838f-62332aa6ed2a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0fd40f2a-8e2f-40c0-8376-e23343aed7c6",
+            "name": "403: Forbidden",
+            "url": "/admin/games/abc",
+            "method": "PUT",
+            "sortNum": 1520000,
+            "created": "2023-12-18T08:24:32.825Z",
+            "modified": "2023-12-18T08:24:46.466Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "da0cfdd9-165f-4242-838d-2e0f040c331f",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0fd40f2a-8e2f-40c0-8376-e23343aed7c6",
+            "name": "404: Not Found",
+            "url": "/admin/games/1",
+            "method": "PUT",
+            "sortNum": 1530000,
+            "created": "2023-12-18T08:25:07.011Z",
+            "modified": "2023-12-18T08:25:29.158Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"leagueId\": 10000,\n  \"stadium\": \"update test\",\n  \"result\": \"Draw\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "2f4faaea-8864-45e3-8693-83615ff4e2fe",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "aca7aeb5-905c-45f6-9fbe-6abf4e2563e3",
+            "name": "400: Bad Request",
+            "url": "/admin/games/1/score",
+            "method": "PUT",
+            "sortNum": 1520000,
+            "created": "2023-12-18T08:26:10.124Z",
+            "modified": "2023-12-18T08:26:35.380Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"homeTeamQuarterScores\":  [0, 0, 7, 7],\n  \"awayTeamQuarterScores\": [3, 0, 0, 0],\n  \"overtime\": true\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4daaed3c-4f1e-488c-90f8-ee9d49a1e800",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "aca7aeb5-905c-45f6-9fbe-6abf4e2563e3",
+            "name": "401: Unauthorized",
+            "url": "/admin/games/1/score",
+            "method": "PUT",
+            "sortNum": 1530000,
+            "created": "2023-12-18T08:26:51.197Z",
+            "modified": "2023-12-18T08:27:05.541Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"homeTeamQuarterScores\":  [0, 0, 7, 7],\n  \"awayTeamQuarterScores\": [3, 0, 0, 0],\n  \"overtime\": true\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a9974162-915e-4811-bb19-3c599553f1c4",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "aca7aeb5-905c-45f6-9fbe-6abf4e2563e3",
+            "name": "403: Bad Request",
+            "url": "/admin/games/1/score",
+            "method": "PUT",
+            "sortNum": 1540000,
+            "created": "2023-12-18T08:27:08.030Z",
+            "modified": "2023-12-18T08:27:30.030Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"homeTeamQuarterScores\":  [0, 0, 7, 7],\n  \"awayTeamQuarterScores\": [3, 0, 0, 0],\n  \"overtime\": true\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "61d0ae56-348d-4a93-bf9f-ae5c1e04267a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "aca7aeb5-905c-45f6-9fbe-6abf4e2563e3",
+            "name": "404: Not Found",
+            "url": "/admin/games/10000/score",
+            "method": "PUT",
+            "sortNum": 1550000,
+            "created": "2023-12-18T08:27:32.480Z",
+            "modified": "2023-12-18T08:27:52.557Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"homeTeamQuarterScores\":  [0, 0, 7, 7],\n  \"awayTeamQuarterScores\": [3, 0, 0, 0],\n  \"overtime\": false\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "d28cd7d4-72df-48a7-9d3d-aa654d0ce76e",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "5c28607e-ab95-4e36-b686-99afd7dcfe8f",
+            "name": "400: Bad Request",
+            "url": "/admin/games/abc",
+            "method": "DELETE",
+            "sortNum": 1530000,
+            "created": "2023-12-18T08:28:50.203Z",
+            "modified": "2023-12-18T08:29:48.665Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "ac4cfaf8-5fe2-4b31-bb3d-6833de0f3da0",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "5c28607e-ab95-4e36-b686-99afd7dcfe8f",
+            "name": "401: Unauthorized",
+            "url": "/admin/games/1",
+            "method": "DELETE",
+            "sortNum": 1540000,
+            "created": "2023-12-18T08:29:13.552Z",
+            "modified": "2023-12-18T08:30:11.420Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "f5ae8ae7-188b-494c-a84d-54bf6d179888",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "5c28607e-ab95-4e36-b686-99afd7dcfe8f",
+            "name": "403: Forbidden",
+            "url": "/admin/games/1",
+            "method": "DELETE",
+            "sortNum": 1550000,
+            "created": "2023-12-18T08:29:52.731Z",
+            "modified": "2023-12-18T08:30:06.984Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b53a34b5-f6d3-48e5-8527-f5bc05d5798d",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "5c28607e-ab95-4e36-b686-99afd7dcfe8f",
+            "name": "404: Not Found",
+            "url": "/admin/games/10000",
+            "method": "DELETE",
+            "sortNum": 1560000,
+            "created": "2023-12-18T08:30:28.503Z",
+            "modified": "2023-12-18T08:30:44.267Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""

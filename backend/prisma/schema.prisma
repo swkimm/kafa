@@ -76,6 +76,7 @@ enum TeamEnrollStatus {
 enum LeagueApplyStatus {
   Received
   Approved
+  Hold
   Rejected
 }
 
@@ -352,10 +353,10 @@ model Game {
   startedAt    DateTime      @map("started_at")
   homeTeamId   Int           @map("home_team_id")
   awayTeamId   Int           @map("away_team_id")
+  stadium      String        @db.VarChar(256)
+  result       GameResult
   homeTeam     Team          @relation("homeTeam", fields: [homeTeamId], references: [id])
   awayTeam     Team          @relation("awayTeam", fields: [awayTeamId], references: [id])
-  result       GameResult
-  stadium      String        @db.VarChar(256)
   League       League        @relation(fields: [leagueId], references: [id])
   score        Score?
   RefereeGames RefereeGame[]
@@ -390,7 +391,7 @@ model Score {
   awayTeamScore         Int?     @map("away_team_score")
   awayTeamQuarterScores Int[]    @map("away_team_quarter_scores")
   overtime              Boolean?
-  Game                  Game     @relation(fields: [gameId], references: [id])
+  Game                  Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
 }
 
 // Record module

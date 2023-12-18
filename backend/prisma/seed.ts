@@ -5,7 +5,8 @@ import {
   AccountStatus,
   TeamEnrollStatus,
   TeamStatus,
-  LeagueApplyStatus
+  LeagueApplyStatus,
+  GameResult
 } from '@prisma/client'
 import { hash } from 'argon2'
 
@@ -362,6 +363,60 @@ const main = async function () {
 
   await prisma.leagueSponser.createMany({
     data: leagueSponsers
+  })
+
+  const games: Prisma.GameCreateManyInput[] = [
+    {
+      homeTeamId: 1,
+      awayTeamId: 2,
+      leagueId: 1,
+      result: GameResult.HomeWin,
+      stadium: 'seoul',
+      startedAt: new Date('2023-01-01')
+    },
+    {
+      homeTeamId: 1,
+      awayTeamId: 3,
+      leagueId: 1,
+      result: GameResult.AwayWin,
+      stadium: 'seoul',
+      startedAt: new Date('2023-01-02')
+    },
+    {
+      homeTeamId: 2,
+      awayTeamId: 3,
+      leagueId: 1,
+      result: GameResult.NotFinished,
+      stadium: 'seoul',
+      startedAt: new Date('2023-01-03')
+    }
+  ]
+
+  await prisma.game.createMany({
+    data: games
+  })
+
+  const scores: Prisma.ScoreCreateManyInput[] = [
+    {
+      gameId: 1,
+      homeTeamScore: 14,
+      homeTeamQuarterScores: [7, 0, 7, 0],
+      awayTeamScore: 0,
+      awayTeamQuarterScores: [0, 0, 0, 0],
+      overtime: false
+    },
+    {
+      gameId: 2,
+      homeTeamScore: 0,
+      homeTeamQuarterScores: [0, 0, 0, 0],
+      awayTeamScore: 7,
+      awayTeamQuarterScores: [0, 0, 0, 7],
+      overtime: false
+    }
+  ]
+
+  await prisma.score.createMany({
+    data: scores
   })
 }
 

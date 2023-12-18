@@ -34,6 +34,7 @@ import { UpdateLeagueServiceImpl } from './service/update-league.service'
       useClass: LeagueServiceImpl
     }
   ],
-  imports: [AssociationModule, LeagueSponserModule, SponserModule]
+  imports: [AssociationModule, LeagueSponserModule, SponserModule],
+  exports: [{ provide: 'LeagueService', useClass: LeagueServiceImpl }]
 })
 export class LeagueModule {}

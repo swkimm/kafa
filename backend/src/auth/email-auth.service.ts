@@ -23,7 +23,7 @@ export class EmailAuthServiceImpl implements PinAuthService {
 
     try {
       const pin = await this.cache.get(emailVerificationCacheKey(accountId))
-      return pin === code
+      return !pin ? false : pin === code
     } catch (error) {
       throw new CacheException(error)
     }

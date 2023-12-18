@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  build-backend:
     name: Build Docker image
     runs-on: ubuntu-latest
     steps:
@@ -39,6 +39,30 @@ jobs:
       - name: Update ECS service
         run: aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SERVICE }} --force-new-deployment
 
+  build-frontend:
+    name: Build frontend bundle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build static bundle
+        run: pnpm --filter frontend build
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: frontend-bundle
+          path: ./frontend/dist
+
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
@@ -59,6 +83,12 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.5.2
+
+      - name: Load frontend static bundle
+        uses: actions/download-artifact@v3
+        with:
+          name: frontend-bundle
+          path: ./frontend/dist
 
       - name: Create Terraform variable file
         working-directory: ./aws/
