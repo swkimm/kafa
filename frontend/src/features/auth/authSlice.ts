@@ -1,35 +1,31 @@
 // src/features/auth/authSlice.ts
-import type { RootState } from '@/app/store'
-import axiosInstance from '@/common/axios'
+import type { AppDispatch, RootState } from '@/app/store'
+import axiosInstance from '@/commons/axios'
 import {
   createSlice,
-  type PayloadAction,
-  createAsyncThunk
+  createAsyncThunk,
+  type PayloadAction
 } from '@reduxjs/toolkit'
 import axios, { type AxiosError } from 'axios'
 
 interface AuthState {
   user: string | null
   token: string | null
+  refreshToken: string | null
   isLoggedIn: boolean
   status: 'idle' | 'loading' | 'succeeded' | 'failed'
-  role: 'user' | 'manager' | 'admin'
+  role: string
   error: string | null
 }
 
 const initialState: AuthState = {
   user: null,
   token: null,
+  refreshToken: null,
   isLoggedIn: false,
   status: 'idle',
-  role: 'user',
+  role: '',
   error: null
-}
-
-interface LoginResponse {
-  user: string
-  token: string
-  role: 'user' | 'manager' | 'admin'
 }
 
 // 로그인
@@ -44,7 +40,10 @@ export const loginUser = createAsyncThunk(
         username,
         password
       })
-      return response.data
+      const token = response.headers.authorization.split(' ')[1]
+      // 로컬 스토리지에 토큰 저장
+      localStorage.setItem('token', token)
+      return { token }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         const message =
@@ -62,29 +61,52 @@ export const getRole = createAsyncThunk(
   async (_, { getState, rejectWithValue }) => {
     try {
       const state = getState() as RootState
+      console.log('Current state:', state)
       const token = state.auth.token
-
-      // 토큰 로깅
-      console.log('Sending token:', token)
+      console.log('Token:', token)
 
       const response = await axiosInstance.get('/account/role', {
         headers: { Authorization: `Bearer ${token}` }
       })
-
-      // 요청과 응답 로깅
-      console.log('Response data:', response.data)
+      console.log(response)
 
       return response.data.role
     } catch (error) {
-      const axiosError = error as AxiosError // 타입 단언
+      const axiosError = error as AxiosError
       console.error('Error fetching role:', axiosError)
-
       if (axiosError.response) {
-        // 서버로부터의 응답이 있는 경우, 그 내용도 출력
-        console.error('Error response:', axiosError.response)
+        console.error('Error response data:', axiosError.response.data)
       }
-
       return rejectWithValue('Failed to fetch role')
+    }
+  }
+)
+
+// reissue 처리
+export const reissueToken = createAsyncThunk(
+  'auth/reissue',
+  async (_, { getState, rejectWithValue }) => {
+    const state = getState() as RootState
+    const refreshToken = state.auth.refreshToken
+    if (!refreshToken) {
+      return rejectWithValue('리프레시 토큰이 없습니다')
+    }
+
+    try {
+      const response = await axiosInstance.get('/auth/reissue')
+      const newAccessToken = response.data.accessToken
+      const newRefreshToken = response.data.refreshToken // 새로운 리프레시 토큰 추출
+
+      // 새로운 액세스 토큰과 리프레시 토큰을 반환합니다.
+      return {
+        token: newAccessToken,
+        refreshToken: newRefreshToken
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        return rejectWithValue(error.response.data.message)
+      }
+      return rejectWithValue('토큰 재발급 실패')
     }
   }
 )
@@ -97,6 +119,13 @@ const authSlice = createSlice({
       state.user = null
       state.token = null
       state.isLoggedIn = false
+    },
+    setLoginState(
+      state,
+      action: PayloadAction<{ isLoggedIn: boolean; token: string | null }>
+    ) {
+      state.isLoggedIn = action.payload.isLoggedIn
+      state.token = action.payload.token
     }
   },
   extraReducers: (builder) => {
@@ -104,16 +133,13 @@ const authSlice = createSlice({
       .addCase(loginUser.pending, (state) => {
         state.status = 'loading'
       })
-      .addCase(
-        loginUser.fulfilled,
-        (state, action: PayloadAction<LoginResponse>) => {
-          state.user = action.payload.user
-          state.token = action.payload.token
-          state.isLoggedIn = true
-          state.status = 'succeeded'
-          state.role = action.payload.role
-        }
-      )
+      .addCase(loginUser.fulfilled, (state, action) => {
+        console.log('Login payload:', action.payload)
+        state.token = action.payload.token
+        state.isLoggedIn = true
+        state.status = 'succeeded'
+        console.log('isLoggedIn after login:', state.isLoggedIn)
+      })
       .addCase(loginUser.rejected, (state, action) => {
         const error = action.payload as AxiosError
         state.error = error.message
@@ -125,6 +151,11 @@ const authSlice = createSlice({
   }
 })
 
-export const { logout } = authSlice.actions
+export const logoutUser = () => (dispatch: AppDispatch) => {
+  // 로컬 스토리지에서 토큰 제거
+  localStorage.removeItem('token')
+  dispatch(logout())
+}
+export const { logout, setLoginState } = authSlice.actions
 
 export default authSlice.reducer

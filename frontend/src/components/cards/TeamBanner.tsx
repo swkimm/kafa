@@ -1,34 +1,16 @@
 // TeamBanner.tsx
+import type { TeamComplication } from '@/commons/interfaces/teamComplication'
 import type React from 'react'
 
-interface TeamBannerProps {
-  id: number // 팀 식별자
-  name: string // 팀 이름
-  globalName: string // 팀 영문 이름
-  hometown: string // 팀 연고지
-  initial: string // 팀 이니셜
-  establisehdAt: Date // 팀 설립연도
-  color: string // 팀 메인컬러
-  subColor?: string // 팀 서브컬러 (선택 사항)
-  profileImgUrl?: string // 팀 프로필 이미지 주소 (선택 사항)
-  backgroundImgUrl?: string // 팀 배경 이미지 주소 (선택 사항)
-  deletedAt?: Date // 팀 삭제 날짜 (선택 사항)
-  status: string // 팀 상태
-  createdAt: Date // 팀 객체 등록 날짜
-  isWhite?: (teamColor: string) => boolean
-}
-
-const TeamBanner: React.FC<TeamBannerProps> = ({
+const TeamBanner: React.FC<TeamComplication> = ({
   name,
   globalName,
-  hometown,
   initial,
-  establisehdAt,
   color,
   profileImgUrl,
   isWhite = () => false
 }) => {
-  const getYear = (date: Date) => new Date(date).getFullYear().toString()
+  // const getYear = (date: Date) => new Date(date).getFullYear().toString()
   const isWhiteText = isWhite(color)
 
   const darkenColor = (hex: string | undefined, percent: number) => {
@@ -80,8 +62,8 @@ const TeamBanner: React.FC<TeamBannerProps> = ({
               isWhiteText ? 'text-black' : ''
             }`}
           >
-            <div className="mb-2 text-xs">Hometown</div>
-            <div className="font-bold sm:text-lg lg:text-2xl">{hometown}</div>
+            <div className="mb-2 text-xs">globalName</div>
+            <div className="font-bold sm:text-lg lg:text-2xl">{globalName}</div>
           </div>
           <hr className="my-3 border-b-0" />
           <div
@@ -100,7 +82,7 @@ const TeamBanner: React.FC<TeamBannerProps> = ({
           >
             <div className="mb-2 text-xs">Established</div>
             <div className="font-bold sm:text-lg lg:text-2xl">
-              {getYear(establisehdAt)}
+              {/* {getYear(establisehdAt)} */}
             </div>
           </div>
         </div>

@@ -1,8 +1,9 @@
+import type { TeamSimple } from '@/commons/interfaces/teamSimple'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import TeamCard from '../../../../components/cards/TeamCard'
 
-const teamList = [
+const teamList: TeamSimple[] = [
   {
     id: 1,
     name: 'TBD',

@@ -1,16 +1,16 @@
-// Notification.tsx
+// Alert.tsx
 import { Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/20/solid'
-import { CheckCircleIcon } from '@heroicons/react/24/outline'
+import { ExclamationTriangleIcon } from '@heroicons/react/24/solid'
 import PropTypes from 'prop-types'
 import { Fragment, useEffect, useState } from 'react'
 
-interface NotificationProps {
+interface AlertProps {
   title: string
   content?: string
 }
 
-const Notification: React.FC<NotificationProps> = ({ title, content }) => {
+const Alert: React.FC<AlertProps> = ({ title, content }) => {
   const [show, setShow] = useState(true)
 
   useEffect(() => {
@@ -41,10 +41,7 @@ const Notification: React.FC<NotificationProps> = ({ title, content }) => {
               <div className="p-4">
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
-                    <CheckCircleIcon
-                      className="h-6 w-6 text-green-400"
-                      aria-hidden="true"
-                    />
+                    <ExclamationTriangleIcon className="h-6 w-6 text-red-500" />
                   </div>
                   <div className="ml-3 w-0 flex-1 pt-0.5">
                     <p className="text-sm font-medium text-gray-900">{title}</p>
@@ -74,9 +71,9 @@ const Notification: React.FC<NotificationProps> = ({ title, content }) => {
   )
 }
 
-Notification.propTypes = {
+Alert.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string
 }
 
-export default Notification
+export default Alert

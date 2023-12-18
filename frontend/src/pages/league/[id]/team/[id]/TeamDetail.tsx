@@ -1,5 +1,6 @@
 // TeamDetail.tsx
 // import { useParams } from 'react-router-dom'
+import type { TeamComplication } from '@/commons/interfaces/teamComplication'
 import TeamBanner from '@/components/cards/TeamBanner'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -9,24 +10,7 @@ import RosterItem from './items/RosterItem'
 import StatsItem from './items/StatsItem'
 import TeamHomeItem from './items/TeamHomeItem'
 
-interface Team {
-  id: number // 팀 식별자
-  name: string // 팀 이름
-  globalName: string // 팀 영문 이름
-  hometown: string // 팀 연고지
-  initial: string // 팀 이니셜
-  establisehdAt: Date // 팀 설립연도
-  color: string // 팀 메인컬러
-  subColor?: string // 팀 서브컬러 (선택 사항)
-  profileImgUrl?: string // 팀 프로필 이미지 주소 (선택 사항)
-  backgroundImgUrl?: string // 팀 배경 이미지 주소 (선택 사항)
-  deletedAt?: Date // 팀 삭제 날짜 (선택 사항)
-  status: string // 팀 상태
-  createdAt: Date // 팀 객체 등록 날짜
-  isWhite?: (teamColor: string) => boolean
-}
-
-const team: Team = {
+const team: TeamComplication = {
   id: 1,
   name: 'TBD',
   globalName: 'To be determined',
@@ -63,10 +47,10 @@ const TeamDetail = () => {
       <TeamBanner
         id={team.id}
         name={team.name}
-        globalName={team.globalName} // 적절한 값으로 대체
-        hometown={team.hometown} // 적절한 값으로 대체
-        initial={team.initial} // 적절한 값으로 대체
-        establisehdAt={new Date(team.establisehdAt)} // 문자열 날짜를 Date 객체로 변환
+        globalName={team.globalName}
+        hometown={team.hometown}
+        initial={team.initial}
+        establisehdAt={new Date(team.establisehdAt)}
         color={team.color}
         profileImgUrl={team.profileImgUrl}
         status={team.status}

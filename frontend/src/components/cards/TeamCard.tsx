@@ -1,20 +1,10 @@
 // TeamCard.tsx
+import type { TeamSimple } from '@/commons/interfaces/teamSimple'
 import PropTypes from 'prop-types'
 import type React from 'react'
 import Button from '../buttons/Button'
 
-interface TeamCardProps {
-  id: number
-  name: string
-  globalName: string
-  initial: string
-  color: string
-  profileImgUrl: string
-  isWhite?: (teamColor: string) => boolean
-  onClick?: (id: number) => void
-}
-
-const TeamCard: React.FC<TeamCardProps> = ({
+const TeamCard: React.FC<TeamSimple> = ({
   id,
   name,
   globalName,
