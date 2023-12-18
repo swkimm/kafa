@@ -1,4 +1,4 @@
-name: CD-React
+name: DEPLOY-ReactJS
 
 on:
   workflow_dispatch:

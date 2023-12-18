@@ -1,4 +1,4 @@
-name: CD-Nest
+name: DEPLOY-NestJS
 
 on:
   workflow_dispatch:
@@ -13,9 +13,10 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  build-and-deploy:
     name: Build Docker image
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3
