@@ -10,3 +10,5 @@ variable "cdn_server_domain" {}
 variable "aws_cdn_bucket_region" {}
 variable "nodemailer_from" {}
 variable "nodemailer_user_name" {}
+variable "cloudfront_secret_key" {}
+variable "region" {}

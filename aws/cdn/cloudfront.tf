@@ -21,9 +21,27 @@ resource "aws_cloudfront_distribution" "main" {
     }
   }
 
-  enabled = true
-  comment = "kafa-cdn-cloudfront-distribution"
-  aliases = ["cdn.kafa.one"]
+  ordered_cache_behavior {
+    path_pattern           = "/secret/*"
+    allowed_methods        = ["GET", "HEAD", "OPTIONS"]
+    cached_methods         = ["GET", "HEAD"]
+    target_origin_id       = aws_s3_bucket.cdn_bucket.id
+    viewer_protocol_policy = "redirect-to-https"
+
+    trusted_key_groups = [aws_cloudfront_key_group.cdn.id]
+
+    forwarded_values {
+      query_string = false
+      cookies {
+        forward = "all"
+      }
+    }
+  }
+
+  price_class = "PriceClass_200"
+  enabled     = true
+  comment     = "kafa-cdn-cloudfront-distribution"
+  aliases     = ["cdn.kafa.one"]
 
   restrictions {
     geo_restriction {
@@ -44,4 +62,21 @@ resource "aws_cloudfront_origin_access_control" "main" {
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
   signing_protocol                  = "sigv4"
+}
+
+########## AWS CloudFront Key Pair##########
+resource "aws_cloudfront_key_group" "cdn" {
+  comment = "kafa cdn key group"
+  items   = [aws_cloudfront_public_key.cdn.id]
+  name    = "kafa-cdn-key-group"
+}
+
+resource "aws_cloudfront_public_key" "cdn" {
+  comment     = "kafa cdn public key"
+  encoded_key = file("./cdn/key/kafa_cdn_public_key.pem")
+  name        = "kafa-cdn-public-key"
+}
+
+output "cloudfront_public_key" {
+  value = aws_cloudfront_public_key.cdn.id
 }

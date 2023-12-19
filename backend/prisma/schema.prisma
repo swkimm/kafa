@@ -93,33 +93,41 @@ enum MembershipType {
 
 // Account Module
 model Account {
-  id                  Int                   @id @default(autoincrement())
-  name                String                @db.VarChar(128)
-  email               String                @db.VarChar(128)
-  username            String                @unique @db.VarChar(128)
-  teamId              Int?                  @map("team_id")
-  password            String                @db.VarChar(128) // hashed password
-  status              AccountStatus         @default(Verifying)
-  createdAt           DateTime              @default(now()) @map("created_at")
-  deletedAt           DateTime?
-  role                Role
-  profileImgUrl       String?               @map("profile_img_url") @db.Text
-  lastPasswordChanged DateTime              @default(now()) @map("last_password_changed")
-  lastLogin           DateTime              @default(now()) @map("last_login")
-  OAuths              OAuth[]
-  Referee             Referee?
-  Press               Press?
-  Notifications       Notification[]
-  NotificationAllow   NotificationAllow?
-  Posts               Post[]
-  Comments            Comment[]
-  Rosters             Roster[]
-  RegisterTeamRequest RegisterTeamRequest[]
-  Team                Team?                 @relation(fields: [teamId], references: [id])
-  AccountCreadential  AccountCredential?
-  Membership          Membership?
+  id                   Int                   @id @default(autoincrement())
+  name                 String                @db.VarChar(128)
+  email                String                @db.VarChar(128)
+  username             String                @unique @db.VarChar(128)
+  teamId               Int?                  @map("team_id")
+  password             String                @db.VarChar(128) // hashed password
+  status               AccountStatus         @default(Verifying)
+  createdAt            DateTime              @default(now()) @map("created_at")
+  deletedAt            DateTime?
+  role                 Role
+  profileImgUrl        String?               @map("profile_img_url") @db.Text
+  lastPasswordChanged  DateTime              @default(now()) @map("last_password_changed")
+  lastLogin            DateTime              @default(now()) @map("last_login")
+  OAuths               OAuth[]
+  Referee              Referee?
+  Press                Press?
+  Notifications        Notification[]
+  NotificationAllow    NotificationAllow?
+  Posts                Post[]
+  Comments             Comment[]
+  Rosters              Roster[]
+  RegisterTeamRequest  RegisterTeamRequest[]
+  Team                 Team?                 @relation(fields: [teamId], references: [id])
+  AccountCreadential   AccountCredential?
+  Membership           Membership?
+  AccountCertification AccountCertification?
 
   @@unique([email, role])
+}
+
+model AccountCertification {
+  accountId Int      @id @map("account_id")
+  fileUrl   String   @db.Text
+  updatedAt DateTime @updatedAt @map("updated_at")
+  Account   Account  @relation(fields: [accountId], references: [id])
 }
 
 model AccountCredential {
@@ -127,6 +135,8 @@ model AccountCredential {
   name      String     @db.VarChar(128)
   gender    GenderType
   birthday  DateTime
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
   Account   Account    @relation(fields: [accountId], references: [id])
 }
 
@@ -339,7 +349,7 @@ model RosterCredentials {
 
 model Athlete {
   rosterId Int      @id @map("roster_id")
-  position String[]
+  position Json
   height   Int
   weight   Int
   Records  Record[]

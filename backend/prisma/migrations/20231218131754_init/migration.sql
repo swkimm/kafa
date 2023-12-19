@@ -57,11 +57,22 @@ CREATE TABLE "Account" (
 );
 
 -- CreateTable
+CREATE TABLE "AccountCertification" (
+    "account_id" INTEGER NOT NULL,
+    "fileUrl" TEXT NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "AccountCertification_pkey" PRIMARY KEY ("account_id")
+);
+
+-- CreateTable
 CREATE TABLE "AccountCredential" (
     "account_id" INTEGER NOT NULL,
     "name" VARCHAR(128) NOT NULL,
     "gender" "GenderType" NOT NULL,
     "birthday" TIMESTAMP(3) NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "AccountCredential_pkey" PRIMARY KEY ("account_id")
 );
@@ -276,7 +287,7 @@ CREATE TABLE "RosterCredentials" (
 -- CreateTable
 CREATE TABLE "Athlete" (
     "roster_id" INTEGER NOT NULL,
-    "position" TEXT[],
+    "position" JSONB NOT NULL,
     "height" INTEGER NOT NULL,
     "weight" INTEGER NOT NULL,
 
@@ -369,6 +380,9 @@ CREATE UNIQUE INDEX "PressGame_press_id_game_id_key" ON "PressGame"("press_id", 
 
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "Team"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "AccountCertification" ADD CONSTRAINT "AccountCertification_account_id_fkey" FOREIGN KEY ("account_id") REFERENCES "Account"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "AccountCredential" ADD CONSTRAINT "AccountCredential_account_id_fkey" FOREIGN KEY ("account_id") REFERENCES "Account"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

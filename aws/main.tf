@@ -15,6 +15,19 @@ terraform {
   }
 }
 
+provider "aws" {
+  region = var.region
+}
+
+provider "aws" {
+  alias  = "east"
+  region = "us-east-1"
+}
+
+module "kafa-cdn" {
+  source = "./cdn"
+}
+
 module "kafa" {
   source = "./kafa"
 
@@ -30,8 +43,12 @@ module "kafa" {
   aws_cdn_bucket_region      = var.aws_cdn_bucket_region
   nodemailer_from            = var.nodemailer_from
   nodemailer_user_name       = var.nodemailer_user_name
-}
+  cloudfront_secret_key      = var.cloudfront_secret_key
+  cloudfront_id_key          = module.kafa-cdn.cloudfront_public_key
 
-module "kafa-cdn" {
-  source = "./cdn"
+  providers = {
+    aws.east = aws.east
+  }
+
+  depends_on = [module.kafa-cdn]
 }

@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 import { Test, type TestingModule } from '@nestjs/testing'
 import { refreshTokenCacheKey } from '@/common/cache/cache-keys'
-import { REFRESH_TOKEN_EXPIRE_TIME } from '@/common/constant/time.constants'
+import { REFRESH_TOKEN_CACHE_EXIPRE_TIME } from '@/common/constant/time.constants'
 import {
   InvalidJwtTokenException,
   UnidentifiedException
@@ -136,7 +136,7 @@ describe('AuthService', () => {
         cacheSpy.calledOnceWith(
           refreshTokenCacheKey(user.id),
           REFRESH_TOKEN,
-          REFRESH_TOKEN_EXPIRE_TIME * 1000
+          REFRESH_TOKEN_CACHE_EXIPRE_TIME
         )
       ).to.be.true
       expect(signAsyncSpy.calledTwice).to.be.true

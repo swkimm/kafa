@@ -10,7 +10,10 @@ import {
   UnauthorizedException
 } from '@nestjs/common'
 import { AuthenticatedRequest } from '@/common/class/authenticated-request.interface'
-import { REFRESH_TOKEN_COOKIE_OPTIONS } from '@/common/constant/time.constants'
+import {
+  CLOUDFRONT_SIGNED_COOKIE_OPTIONS,
+  REFRESH_TOKEN_COOKIE_OPTIONS
+} from '@/common/constant/time.constants'
 import { Public } from '@/common/decorator/guard.decorator'
 import {
   InvalidJwtTokenException,
@@ -18,13 +21,16 @@ import {
 } from '@/common/exception/business.exception'
 import { Request, Response } from 'express'
 import { AuthService } from './auth.service.interface'
+import { CloudFrontAuthService } from './cloudfront-auth.service.interface'
 import { LoginUserDto } from './dto/login-user.dto'
 import type { JwtTokens } from './interface/jwt.interface'
 
 @Controller('auth')
 export class AuthController {
   constructor(
-    @Inject('AuthService') private readonly authService: AuthService
+    @Inject('AuthService') private readonly authService: AuthService,
+    @Inject('CloudFrontAuthService')
+    private readonly test: CloudFrontAuthService
   ) {}
 
   setJwtResponse = (res: Response, jwtTokens: JwtTokens) => {
@@ -83,6 +89,20 @@ export class AuthController {
         throw new UnauthorizedException(error.message)
       }
       throw new InternalServerErrorException('Failed to reissue tokens')
+    }
+  }
+
+  @Public()
+  @Get('test')
+  async hello(@Res({ passthrough: true }) res: Response) {
+    const cookies = this.test.issueCookies('https://cdn.kafa.one/secret/logo')
+
+    for (const cookieKey in cookies) {
+      res.cookie(
+        cookieKey,
+        cookies[cookieKey],
+        CLOUDFRONT_SIGNED_COOKIE_OPTIONS
+      )
     }
   }
 }

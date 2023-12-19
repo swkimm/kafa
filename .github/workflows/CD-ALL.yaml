@@ -92,7 +92,9 @@ jobs:
 
       - name: Create Terraform variable file
         working-directory: ./aws/
-        run: echo "$TFVARS" > terraform.tfvars
+        run: |
+          echo "$TFVARS" > terraform.tfvars
+          echo -e "cloudfront_secret_key  = <<EOF\n${{ secrets.CLOUDFRONT_SECRET_KEY }}\nEOF" >> terraform.tfvars
         env:
           TFVARS: ${{ secrets.TF_VARS }}
 

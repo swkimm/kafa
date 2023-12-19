@@ -89,6 +89,8 @@ resource "aws_ecs_task_definition" "api" {
     aws_cdn_bucket_region      = var.aws_cdn_bucket_region
     nodemailer_from            = var.nodemailer_from
     nodemailer_user_name       = var.nodemailer_user_name
+    cloudfront_id_key          = var.cloudfront_id_key
+    cloudfront_secret_key      = replace(var.cloudfront_secret_key, "\n", "\\n")
   })
 
   execution_role_arn = aws_iam_role.ecs_task_execution_role.arn

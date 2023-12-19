@@ -1,9 +1,4 @@
 ########## AWS Route53 ##########
-provider "aws" {
-  alias  = "us-east-1"
-  region = "us-east-1"
-}
-
 data "aws_route53_zone" "main" {
   name = "kafa.one."
 }
@@ -11,7 +6,7 @@ data "aws_route53_zone" "main" {
 resource "aws_acm_certificate" "main" {
   domain_name       = "dev.kafa.one"
   validation_method = "DNS"
-  provider          = aws.us-east-1
+  provider          = aws.east
 }
 
 resource "aws_route53_record" "cert" {
@@ -45,7 +40,7 @@ resource "aws_route53_record" "main" {
 }
 
 resource "aws_acm_certificate_validation" "main" {
-  provider        = aws.us-east-1
+  provider        = aws.east
   certificate_arn = aws_acm_certificate.main.arn
   validation_record_fqdns = [
     for record in aws_route53_record.cert : record.fqdn

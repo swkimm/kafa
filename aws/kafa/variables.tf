@@ -69,7 +69,18 @@ variable "nodemailer_from" {
   type    = string
   default = "abcd"
 }
+
 variable "nodemailer_user_name" {
   type    = string
   default = "abcd"
+}
+
+variable "cloudfront_id_key" {
+  type    = string
+  default = ""
+}
+
+variable "cloudfront_secret_key" {
+  type    = string
+  default = ""
 }

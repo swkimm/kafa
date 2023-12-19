@@ -5,6 +5,7 @@ import { JwtService, type JwtVerifyOptions } from '@nestjs/jwt'
 import { refreshTokenCacheKey } from '@/common/cache/cache-keys'
 import {
   ACCESS_TOKEN_EXPIRE_TIME,
+  REFRESH_TOKEN_CACHE_EXIPRE_TIME,
   REFRESH_TOKEN_EXPIRE_TIME
 } from '@/common/constant/time.constants'
 import {
@@ -101,7 +102,7 @@ export class JwtAuthService implements AuthService {
     await this.cacheManager.set(
       refreshTokenCacheKey(userId),
       refreshToken,
-      REFRESH_TOKEN_EXPIRE_TIME * 1000 // milliseconds
+      REFRESH_TOKEN_CACHE_EXIPRE_TIME
     )
 
     return { accessToken, refreshToken }
