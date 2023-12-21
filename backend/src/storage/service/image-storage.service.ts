@@ -46,8 +46,8 @@ export class ImageStorageServiceImpl implements ImageStorageService {
   ): Promise<{ url: string }> {
     try {
       const extension = this.getFileExtension(file.originalname)
-      const key = `${folder}/${this.generateUniqueImageName()}${extension}`
-      const cdnKey = `${folder}/${this.generateUniqueImageName()}`
+      const keyWithoutExtenstion = `${folder}/${this.generateUniqueImageName()}`
+      const key = keyWithoutExtenstion + `${extension}`
       const fileType = this.extractContentType(file)
 
       await this.s3.send(
@@ -66,7 +66,7 @@ export class ImageStorageServiceImpl implements ImageStorageService {
         return {
           url: `https://${this.configService.get(
             'CDN_SERVER_DOMAIN'
-          )}/${cdnKey}`
+          )}/${keyWithoutExtenstion}`
         }
       } else {
         return {
