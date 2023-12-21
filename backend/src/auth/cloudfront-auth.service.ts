@@ -28,6 +28,7 @@ export class CloundFrontAuthServiceImpl implements CloudFrontAuthService {
     const policy = JSON.stringify({
       Statement: [
         {
+          Resource: resourceUrl,
           Condition: {
             DateLessThan: {
               // eslint-disable-next-line @typescript-eslint/naming-convention
