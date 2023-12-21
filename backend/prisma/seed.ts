@@ -79,7 +79,7 @@ const main = async function () {
   const accountCertificaions: Prisma.AccountCertificationCreateManyInput[] = [
     {
       accountId: 1,
-      fileUrl: 'https://dev.kafa.one'
+      fileUrl: 'https://dev.kafa.one/test'
     }
   ]
 

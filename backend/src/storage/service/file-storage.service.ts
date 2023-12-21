@@ -41,16 +41,9 @@ export class FileStorageServiceImpl implements FileStorageService {
     file: Express.Multer.File,
     folder: string
   ): Promise<{ url: string }> {
-    const key = `${folder}/${this.generateUniqueName()}`
-    const fileType = this.extractContentType(file)
-
     try {
-      console.log({
-        Bucket: this.configService.get('AWS_CDN_ORIGIN_BUCKET_NAME'),
-        Key: key,
-        Body: file.buffer,
-        ContentType: fileType
-      })
+      const key = `${folder}/${this.generateUniqueName()}`
+      const fileType = this.extractContentType(file)
 
       await this.s3.send(
         new PutObjectCommand({

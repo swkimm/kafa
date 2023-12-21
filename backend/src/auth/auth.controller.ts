@@ -105,4 +105,18 @@ export class AuthController {
       )
     }
   }
+
+  @Public()
+  @Get('test/all')
+  async testAll(@Res({ passthrough: true }) res: Response) {
+    const cookies = this.test.issueCookies('https://cdn.kafa.one/secret/*')
+
+    for (const cookieKey in cookies) {
+      res.cookie(
+        cookieKey,
+        cookies[cookieKey],
+        CLOUDFRONT_SIGNED_COOKIE_OPTIONS
+      )
+    }
+  }
 }

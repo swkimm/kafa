@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { UnexpectedException } from '@/common/exception/business.exception'
+import {
+  ParameterValidationException,
+  UnexpectedException
+} from '@/common/exception/business.exception'
 import {
   S3Client,
   PutObjectCommand,
@@ -41,10 +44,12 @@ export class ImageStorageServiceImpl implements ImageStorageService {
     file: Express.Multer.File,
     folder: string
   ): Promise<{ url: string }> {
-    const key = `${folder}/${this.generateUniqueImageName()}`
-    const fileType = this.extractContentType(file)
-
     try {
+      const extension = this.getFileExtension(file.originalname)
+      const key = `${folder}/${this.generateUniqueImageName()}${extension}`
+      const cdnKey = `${folder}/${this.generateUniqueImageName()}`
+      const fileType = this.extractContentType(file)
+
       await this.s3.send(
         new PutObjectCommand({
           Bucket: this.configService.get('AWS_CDN_BUCKET_NAME'),
@@ -59,7 +64,9 @@ export class ImageStorageServiceImpl implements ImageStorageService {
         this.configService.get('NODE_ENV') === 'staging'
       ) {
         return {
-          url: `https://${this.configService.get('CDN_SERVER_DOMAIN')}/${key}`
+          url: `https://${this.configService.get(
+            'CDN_SERVER_DOMAIN'
+          )}/${cdnKey}`
         }
       } else {
         return {
@@ -93,8 +100,7 @@ export class ImageStorageServiceImpl implements ImageStorageService {
   /**
    * HTTP URI로 부터 파일의 디렉토리를 추출하여 리턴합니다.
    *
-   *
-   * @param {string} url
+   * @param {string} url - HTTP URI
    * @returns {string | null} 추출한 디렉토리 경로
    */
   private extractImagePathFromUrl(url: string): string | null {
@@ -121,7 +127,7 @@ export class ImageStorageServiceImpl implements ImageStorageService {
 
   /**
    * 파일이름으로 부터 MimeType을 추출하여 리턴합니다.
-   * @param {Express.Multer.File} file -
+   * @param {Express.Multer.File} file - MimeType을 추출할 파일
    * @returns {string} 추출한 MimeType
    */
   private extractContentType(file: Express.Multer.File): string {
@@ -132,5 +138,22 @@ export class ImageStorageServiceImpl implements ImageStorageService {
     return file.originalname
       ? mime.lookup(file.originalname) || 'application/octet-stream'
       : 'application/octet-stream'
+  }
+
+  /**
+   * 파일에서 확장자를 추출합니다.
+   *
+   * @param {string} filename - 파일 원본명
+   * @returns {string} 확장자
+   * @throws {ParameterValidationException} 전달받은 파일에 확장자가 없는 경우 발생
+   */
+  private getFileExtension(filename: string): string {
+    const match = filename.match(/\.[^.]+$/)
+
+    if (match) {
+      return match[0]
+    }
+
+    throw new ParameterValidationException('image file extension')
   }
 }

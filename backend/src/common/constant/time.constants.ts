@@ -14,7 +14,11 @@ export const REFRESH_TOKEN_COOKIE_OPTIONS: CookieOptions = {
   httpOnly: true,
   secure:
     process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging',
-  sameSite: 'strict'
+  sameSite: 'strict',
+  path:
+    process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging'
+      ? '/api/auth/reissue'
+      : '/auth/reissue'
 }
 export const REFRESH_TOKEN_CACHE_EXIPRE_TIME =
   14 * SECONDS_PER_DAY * SECONDS_TO_MILLISECONDS
