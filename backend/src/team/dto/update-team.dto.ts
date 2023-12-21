@@ -4,6 +4,7 @@ import {
   IsHexColor,
   IsOptional,
   IsString,
+  IsUrl,
   Matches
 } from 'class-validator'
 
@@ -42,4 +43,8 @@ export class UpdateTeamDTO {
   @IsHexColor()
   @IsOptional()
   subColor?: string
+
+  @IsUrl()
+  @IsOptional()
+  profileImgUrl?: string
 }

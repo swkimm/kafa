@@ -16,7 +16,7 @@ export const IMAGE_OPTIONS: MulterOptions = {
     cb: FileFilterCallback
   ) => {
     const fileExts = ['png', 'jpg', 'jpeg', 'webp', 'heif', 'heic']
-    const ext = file.originalname.split('.').pop()
+    const ext = file.originalname.split('.').pop().toLocaleLowerCase()
     if (!fileExts.includes(ext)) {
       return cb(null, false)
     }

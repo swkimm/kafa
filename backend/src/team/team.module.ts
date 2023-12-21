@@ -19,6 +19,12 @@ import { TeamController } from './team.controller'
     { provide: 'UpdateTeamService', useClass: UpdateTeamServiceImpl },
     { provide: 'GetTeamService', useClass: GetTeamServiceImpl },
     { provide: 'TeamService', useClass: TeamServiceImpl }
+  ],
+  exports: [
+    {
+      provide: 'TeamService',
+      useClass: TeamServiceImpl
+    }
   ]
 })
 export class TeamModule {}

@@ -51,6 +51,20 @@ export class GetLeagueServiceImpl implements GetLeagueService<League, Sponser> {
     }
   }
 
+  async getLeagues(page: number, limit = 10): Promise<League[]> {
+    try {
+      return await this.prismaService.league.findMany({
+        take: limit,
+        skip: calculateOffset(page, limit),
+        orderBy: {
+          startedAt: 'desc'
+        }
+      })
+    } catch (error) {
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
   async getLeaguesByAssociationId(
     associationId: number,
     page: number,

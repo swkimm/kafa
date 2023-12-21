@@ -7,6 +7,7 @@ export class AccountDTO {
   email: string
   profileImgUrl: string
   role: Role
+  teamId: number
 
   constructor(account: AccountSerializer) {
     this.id = account.id
@@ -14,6 +15,7 @@ export class AccountDTO {
     this.email = account.email
     this.profileImgUrl = account.profileImgUrl
     this.role = account.role
+    this.teamId = account.teamId
   }
 }
 
@@ -41,6 +43,9 @@ export class AccountSerializer {
 
   @Expose()
   role: Role
+
+  @Expose()
+  teamId: number
 
   constructor(partial: Partial<Account>) {
     Object.assign(this, partial)

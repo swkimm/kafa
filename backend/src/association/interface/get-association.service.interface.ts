@@ -2,7 +2,7 @@ import type { Association } from '@prisma/client'
 
 /**
  * 협회 조회와 관련된 서비스 모음
- * @templage T - 'Association' 타입을 확장하는 제네릭 타입
+ * @template T - 'Association' 타입을 확장하는 제네릭 타입
  */
 export interface GetAssociationService<T extends Association> {
   /**

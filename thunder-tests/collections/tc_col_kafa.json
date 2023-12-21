@@ -528,6 +528,83 @@
             "containerId": "95fe1577-9a80-4965-a50f-d3d89b7c665f",
             "created": "2023-12-18T06:36:46.167Z",
             "sortNum": 780000
+        },
+        {
+            "_id": "e037d364-9c79-41cb-8f36-c95f5cd335db",
+            "name": "getAccountCertification",
+            "containerId": "bc951fe6-f3d0-4943-bc5a-047b0419c621",
+            "created": "2023-12-20T14:45:41.664Z",
+            "sortNum": 790000
+        },
+        {
+            "_id": "684888c6-70a1-48ba-a698-59280a425441",
+            "name": "upsertAccountCertification",
+            "containerId": "bc951fe6-f3d0-4943-bc5a-047b0419c621",
+            "created": "2023-12-20T14:57:02.228Z",
+            "sortNum": 800000
+        },
+        {
+            "_id": "c68f4657-5834-48db-a865-942400aa6b75",
+            "name": "getLeagues",
+            "containerId": "50f8324d-03bb-42f1-9497-1789359f5e70",
+            "created": "2023-12-21T08:42:12.412Z",
+            "sortNum": 15000
+        },
+        {
+            "_id": "fb4beabc-b931-4680-afff-b240435278e0",
+            "name": "Profile",
+            "containerId": "",
+            "created": "2023-12-21T08:47:13.090Z",
+            "sortNum": 118750
+        },
+        {
+            "_id": "cdc7daa3-3551-4c08-9e11-18525e8b2b1c",
+            "name": "Normal",
+            "containerId": "fb4beabc-b931-4680-afff-b240435278e0",
+            "created": "2023-12-21T08:47:34.869Z",
+            "sortNum": 830000
+        },
+        {
+            "_id": "a45fe1fd-d3b5-4d47-986a-cd19e579e4a1",
+            "name": "Manager",
+            "containerId": "fb4beabc-b931-4680-afff-b240435278e0",
+            "created": "2023-12-21T08:47:39.759Z",
+            "sortNum": 840000
+        },
+        {
+            "_id": "1c95f201-1598-4cf9-bd9e-4771d6bf86ea",
+            "name": "Admin",
+            "containerId": "fb4beabc-b931-4680-afff-b240435278e0",
+            "created": "2023-12-21T08:47:43.437Z",
+            "sortNum": 850000
+        },
+        {
+            "_id": "7049c31a-4799-4414-ab79-aea0310fcc64",
+            "name": "upsertMyAccountProfile",
+            "containerId": "cdc7daa3-3551-4c08-9e11-18525e8b2b1c",
+            "created": "2023-12-21T08:51:34.428Z",
+            "sortNum": 860000
+        },
+        {
+            "_id": "a74fd838-d68b-40ba-a340-6bfaa02df857",
+            "name": "upsertOtherAccountProfile",
+            "containerId": "cdc7daa3-3551-4c08-9e11-18525e8b2b1c",
+            "created": "2023-12-21T08:51:44.432Z",
+            "sortNum": 870000
+        },
+        {
+            "_id": "e8c35e0a-d635-4eea-85b0-1a8a3235e496",
+            "name": "upsertTeamProfile",
+            "containerId": "a45fe1fd-d3b5-4d47-986a-cd19e579e4a1",
+            "created": "2023-12-21T08:52:09.638Z",
+            "sortNum": 880000
+        },
+        {
+            "_id": "ec6ff700-d436-41e4-b746-62cc0c0f997a",
+            "name": "upsertSponserProfile",
+            "containerId": "1c95f201-1598-4cf9-bd9e-4771d6bf86ea",
+            "created": "2023-12-21T08:52:20.999Z",
+            "sortNum": 890000
         }
     ],
     "requests": [
@@ -4129,7 +4206,7 @@
             "method": "GET",
             "sortNum": 950000,
             "created": "2023-12-13T09:13:46.092Z",
-            "modified": "2023-12-13T09:20:48.247Z",
+            "modified": "2023-12-21T08:43:23.236Z",
             "headers": [],
             "params": [
                 {
@@ -4157,7 +4234,7 @@
                     "value": "3"
                 }
             ],
-            "docs": "## [Public] GetLeaguesByAssociationId\n\n### URI\nGET /leagues/associationId/[:associationId]\n\n### Description\n특정 협회에서 주최한 리그 목록을 불러옵니다.\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page?|number|불러올 페이지 (>= 1)|\n|limit?|number|한 번에 불러올 리그 수 (default 10)|\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|associationId|number|협회 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그 명|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|associationId|number|리그 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 associationId에 유효하지 않은 값을 전달한 경우 발생|\n|404|Not Found|존재하지 않는 협회의 식별자를 전달한 경우 발생|",
+            "docs": "## [Public] GetLeaguesByAssociationId\n\n### URI\nGET /leagues/associationId/[:associationId]\n\n### Description\n특정 협회에서 주최한 리그 목록을 불러옵니다.\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page|number|불러올 페이지 (>= 1)|\n|limit?|number|한 번에 불러올 리그 수 (default 10)|\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|associationId|number|협회 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그 명|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|associationId|number|리그 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 associationId에 유효하지 않은 값을 전달한 경우 발생|\n|404|Not Found|존재하지 않는 협회의 식별자를 전달한 경우 발생|",
             "preReq": {
                 "runRequests": [
                     {
@@ -7342,6 +7419,394 @@
                 "runRequests": [
                     {
                         "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "733a9d8b-5661-43a5-9cf3-42f7be41c2ea",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e037d364-9c79-41cb-8f36-c95f5cd335db",
+            "name": "Success",
+            "url": "/account/certification",
+            "method": "GET",
+            "sortNum": 1570000,
+            "created": "2023-12-20T14:45:49.071Z",
+            "modified": "2023-12-20T15:16:22.514Z",
+            "headers": [],
+            "params": [],
+            "tests": [],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "1f195351-b7da-4054-a27d-374fbd0edb56",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "1f195351-b7da-4054-a27d-374fbd0edb56",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "684888c6-70a1-48ba-a698-59280a425441",
+            "name": "Success",
+            "url": "/account/certification",
+            "method": "POST",
+            "sortNum": 1590000,
+            "created": "2023-12-20T14:57:07.133Z",
+            "modified": "2023-12-20T14:59:18.740Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [],
+                "files": [
+                    {
+                        "name": "file",
+                        "value": "../backend/src/storage/dummy/hello.txt"
+                    }
+                ]
+            },
+            "tests": [],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "fd5cea53-5389-4718-b112-adaa1a88a125",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c68f4657-5834-48db-a865-942400aa6b75",
+            "name": "Success",
+            "url": "/leagues?page=1&limit=3",
+            "method": "GET",
+            "sortNum": 1610000,
+            "created": "2023-12-21T08:42:19.448Z",
+            "modified": "2023-12-21T08:46:02.331Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.",
+                    "action": "count",
+                    "value": "3"
+                }
+            ],
+            "docs": "## [Public] GetLeagues\n\n### URI\nGET /leagues\n\n### Description\n리그 목록을 시작 날짜가 늦은 순서대로 불러옵니다.\n**Offset Based Pagination**이 적용되어 있습니다.\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page|number|불러올 페이지 (>= 1)|\n|limit?|number|한 번에 불러올 리그 수 (default 10)|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그 명|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|associationId|number|리그 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 스트링에 유효하지 않은 값을 전달한 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "eb829174-c249-41f1-988f-2fe75272af5d",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c68f4657-5834-48db-a865-942400aa6b75",
+            "name": "400: Bad Request",
+            "url": "/leagues?page=abc&limit=3",
+            "method": "GET",
+            "sortNum": 1620000,
+            "created": "2023-12-21T08:46:24.096Z",
+            "modified": "2023-12-21T08:46:50.152Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "abc",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "cbd7c928-d541-4930-917e-0648591e75f3",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7049c31a-4799-4414-ab79-aea0310fcc64",
+            "name": "Success",
+            "url": "/profile/account",
+            "method": "POST",
+            "sortNum": 1650000,
+            "created": "2023-12-21T08:59:56.249Z",
+            "modified": "2023-12-21T09:06:27.761Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [],
+                "files": [
+                    {
+                        "name": "image",
+                        "value": "../backend/src/storage/dummy/logo.png"
+                    }
+                ]
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "/account/1/profile"
+                }
+            ],
+            "docs": "## [User+] UpsertMyAccountProfile\n\n### URI\nPOST /profile/account\n\n### Description\n현재 로그인한 계정의 프로필 이미지를 등록 또는 변경하고 등록된 이미지의 url을 반환합니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|image|FILE|등록할 프로필 이미지|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n||string|등록된 이미지의 url|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|프로필 사진에 유효하지 않은 파일 형식을 보낸 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낸 경우 발생|\n\n### Others\n지원되는 사진 포맷 목록\n- png\n- jpg, jpeg\n- heic, heif\n- webp",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b925b5bf-6bcc-4dc8-a3d2-9fd3d1d2898d",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "a74fd838-d68b-40ba-a340-6bfaa02df857",
+            "name": "Success",
+            "url": "/profile/account/1",
+            "method": "POST",
+            "sortNum": 1660000,
+            "created": "2023-12-21T09:07:50.919Z",
+            "modified": "2023-12-21T09:11:22.711Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [],
+                "files": [
+                    {
+                        "name": "image",
+                        "value": "../backend/src/storage/dummy/logo.png"
+                    }
+                ]
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "/account/1/profile"
+                }
+            ],
+            "docs": "## [Admin] UpsertOtherAccountProfile\n\n### URI\nPOST /profile/account/[:accountId]\n\n### Description\n특정 계정의 프로필 이미지를 등록 또는 변경하고 등록된 이미지의 url을 반환합니다.\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|accountId|number|프로필 이미지를 변경할 계정의 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|image|FILE|등록할 프로필 이미지|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n||string|등록된 이미지의 url|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|프로필 사진에 유효하지 않은 파일 형식 또는 쿼리 파라미터에 유효하지 않은 값을 보낸 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낸 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낸 경우 발생|\n|404|Not Found|존재하지 않는 계정의 식별자를 전달한 경우 발생|\n\n### Others\n지원되는 사진 포맷 목록\n- png\n- jpg, jpeg\n- heic, heif\n- webp",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "66525465-65f4-441c-affa-307e81cd5f9f",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e8c35e0a-d635-4eea-85b0-1a8a3235e496",
+            "name": "Success",
+            "url": "/profile/team/1",
+            "method": "POST",
+            "sortNum": 1670000,
+            "created": "2023-12-21T09:13:48.332Z",
+            "modified": "2023-12-21T09:36:53.837Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [],
+                "files": [
+                    {
+                        "name": "image",
+                        "value": "../backend/src/storage/dummy/logo.png"
+                    }
+                ]
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "kafa-cdn-bucket/team/1"
+                }
+            ],
+            "docs": "## [Manager+] UpsertTeamProfile\n\n### URI\nPOST /profile/team/[:teamId]\n\n### Description\n특정 팀의 프로필 이미지를 등록 또는 변경하고 등록된 이미지의 url을 반환합니다.\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|teamId|number|프로필 이미지를 변경할 팀의 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|image|FILE|등록할 프로필 이미지|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n||string|등록된 이미지의 url|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|프로필 사진에 유효하지 않은 파일 형식 또는 쿼리 파라미터에 유효하지 않은 값을 보낸 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낸 경우 발생|\n|403|Forbidden|매니저 계정으로 요청할 때 현재 계정에 연결되지 않은 팀으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 팀의 식별자를 전달한 경우 발생|\n\n### Others\n지원되는 사진 포맷 목록\n- png\n- jpg, jpeg\n- heic, heif\n- webp",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "6e8bb560-c722-470e-a16f-be0c3ea50822",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "e963b4b8-8bdc-48b4-8aba-d2a45707cd1c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "ec6ff700-d436-41e4-b746-62cc0c0f997a",
+            "name": "Success",
+            "url": "/profile/sponser/1",
+            "method": "POST",
+            "sortNum": 1680000,
+            "created": "2023-12-21T09:28:22.884Z",
+            "modified": "2023-12-21T09:38:08.596Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [],
+                "files": [
+                    {
+                        "name": "image",
+                        "value": "../backend/src/storage/dummy/logo.png"
+                    }
+                ]
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "sponser/1/profile"
+                }
+            ],
+            "docs": "## [Admin] UpsertSponserProfile\n\n### URI\nPOST /profile/sponser/[:sponserId]\n\n### Description\n특정 스폰서의 프로필 이미지를 등록 또는 변경하고 등록된 이미지의 url을 반환합니다.\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|sponserId|number|프로필 이미지를 변경할 스폰서의 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|image|FILE|등록할 프로필 이미지|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n||string|등록된 이미지의 url|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|프로필 사진에 유효하지 않은 파일 형식 또는 쿼리 파라미터에 유효하지 않은 값을 보낸 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낸 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낸 경우 발생|\n|404|Not Found|존재하지 않는 스폰서의 식별자를 전달한 경우 발생|\n\n### Others\n지원되는 사진 포맷 목록\n- png\n- jpg, jpeg\n- heic, heif\n- webp",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "6e8bb560-c722-470e-a16f-be0c3ea50822",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as manager for image test",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 75000,
+            "created": "2023-12-21T09:32:20.306Z",
+            "modified": "2023-12-21T09:35:28.284Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"manager02\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""

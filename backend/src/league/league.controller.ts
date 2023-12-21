@@ -19,6 +19,19 @@ export class LeagueController {
   ) {}
 
   @Public()
+  @Get('')
+  async getLeagues(
+    @Query('page', ParseIntPipe) page: number,
+    @Query('limit', new ParseIntPipe({ optional: true })) limit?: number
+  ): Promise<League[]> {
+    try {
+      return await this.leagueService.getLeagues(page, limit)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Public()
   @Get(':id')
   async getLeague(
     @Param('id', ParseIntPipe) leagueId: number

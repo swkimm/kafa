@@ -119,11 +119,11 @@ describe('GetLeagueService', () => {
 
     service = module.get<GetLeagueService<League, Sponser>>('GetLeagueService')
 
-    sinon.stub()
+    sinon.reset()
   })
 
   afterEach(() => {
-    sinon.stub()
+    sinon.reset()
   })
 
   it('should be defined', () => {
@@ -183,8 +183,44 @@ describe('GetLeagueService', () => {
     })
   })
 
+  describe('getLeagues', () => {
+    it('should return leagues', async () => {
+      // given
+      const page = 1
+      const limit = 10
+      db.league.findMany.resolves(leagues)
+
+      // when
+      const result = await service.getLeagues(page, limit)
+
+      // then
+      expect(result).to.be.deep.equal(leagues)
+      expect(
+        db.league.findMany.calledOnceWith({
+          take: limit,
+          skip: calculateOffset(page, limit),
+          orderBy: {
+            startedAt: 'desc'
+          }
+        })
+      ).to.be.true
+    })
+
+    it('should throw UnexpectedException when unexpected error occurs', async () => {
+      // given
+      const page = 1
+      const limit = 10
+      db.league.findMany.rejects(new Error('test'))
+
+      // then
+      await expect(service.getLeagues(page, limit)).to.be.rejectedWith(
+        UnexpectedException
+      )
+    })
+  })
+
   describe('getLeaguesByAssociationId', () => {
-    it('should return association', async () => {
+    it('should return leagues', async () => {
       // given
       const associationId = 1
       const page = 1

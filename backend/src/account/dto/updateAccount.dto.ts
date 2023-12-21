@@ -1,7 +1,11 @@
-import { IsNotEmpty, IsString } from 'class-validator'
+import { IsOptional, IsString, IsUrl } from 'class-validator'
 
 export class UpdateAccountProfileDTO {
   @IsString()
-  @IsNotEmpty()
-  name: string
+  @IsOptional()
+  name?: string
+
+  @IsUrl()
+  @IsOptional()
+  profileImgUrl?: string
 }

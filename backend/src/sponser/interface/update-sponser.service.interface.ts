@@ -3,7 +3,7 @@ import type { UpdateSponserDTO } from '../dto/update-sponser.dto'
 
 /**
  * 스폰서 정보 업데이트와 관련된 서비스 인터페이스
- * @templage T - Sponser 타입을 확장하는 제네릭 타입
+ * @template T - Sponser 타입을 확장하는 제네릭 타입
  */
 export interface UpdateSponserService<T extends Sponser> {
   /**

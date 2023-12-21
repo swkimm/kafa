@@ -3,7 +3,7 @@ import type { UpdateAssociationDTO } from '../dto/update-association.dto'
 
 /**
  * 협회 정보를 변경하는 서비스 모음
- * @templage T - 'Association' 타입을 확장하는 제네릭 타입
+ * @template T - 'Association' 타입을 확장하는 제네릭 타입
  */
 export interface UpdateAssociationService<T extends Association> {
   /**

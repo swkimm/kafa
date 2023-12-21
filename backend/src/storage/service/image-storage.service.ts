@@ -42,7 +42,7 @@ export class ImageStorageServiceImpl implements ImageStorageService {
     folder: string
   ): Promise<{ url: string }> {
     const key = `${folder}/${this.generateUniqueImageName()}`
-    const fileType = this.extractContentType(file.originalname)
+    const fileType = this.extractContentType(file)
 
     try {
       await this.s3.send(
@@ -69,7 +69,7 @@ export class ImageStorageServiceImpl implements ImageStorageService {
         }
       }
     } catch (error) {
-      throw new UnexpectedException(error)
+      throw new UnexpectedException(error, error.stack)
     }
   }
 
@@ -86,7 +86,7 @@ export class ImageStorageServiceImpl implements ImageStorageService {
 
       return { result: 'ok' }
     } catch (error) {
-      throw new UnexpectedException(error)
+      throw new UnexpectedException(error, error.stack)
     }
   }
 
@@ -99,7 +99,11 @@ export class ImageStorageServiceImpl implements ImageStorageService {
    */
   private extractImagePathFromUrl(url: string): string | null {
     const regex =
-      /https?:\/\/[^/]+\/((?:[^/]+\/)+[^/]+\.(jpg|jpeg|png|heif|heic|webp))/
+      this.configService.get('NODE_ENV') === 'staging' ||
+      this.configService.get('NODE_ENV') === 'production'
+        ? /https?:\/\/[^/]+\/(.+)/
+        : /https?:\/\/127\.0\.0\.1:9000\/kafa-cdn-bucket\/(.+)/
+
     const match = url.match(regex)
     return match ? match[1] : null
   }
@@ -117,12 +121,16 @@ export class ImageStorageServiceImpl implements ImageStorageService {
 
   /**
    * 파일이름으로 부터 MimeType을 추출하여 리턴합니다.
-   * @param {string} fileName
+   * @param {Express.Multer.File} file -
    * @returns {string} 추출한 MimeType
    */
-  private extractContentType(fileName: string): string {
-    return fileName
-      ? mime.lookup(fileName) || 'application/octet-stream'
+  private extractContentType(file: Express.Multer.File): string {
+    if (file.mimetype) {
+      return file.mimetype.toString()
+    }
+
+    return file.originalname
+      ? mime.lookup(file.originalname) || 'application/octet-stream'
       : 'application/octet-stream'
   }
 }

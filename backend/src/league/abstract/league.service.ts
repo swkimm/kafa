@@ -32,6 +32,17 @@ export abstract class LeagueService<T extends League, V extends Sponser> {
   }
 
   /**
+   * 리그 목록을 반환합니다.
+   *
+   * @param {number} page 불러올 페이지
+   * @param {number} [limit=10] 한 번에 불러올 리그 수
+   * @returns {Promise<T[]>} 리그 목록
+   */
+  async getLeagues(page: number, limit?: number): Promise<T[]> {
+    return await this.getLeagueService.getLeagues(page, limit)
+  }
+
+  /**
    * 특정 협회의 리그 목록을 반환합니다.
    *
    * @param {number} associationId 리그 목록을 조회할 협회의 Id

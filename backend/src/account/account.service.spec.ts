@@ -193,7 +193,8 @@ describe('AccountService', () => {
         name: account.name,
         email: account.email,
         profileImgUrl: account.profileImgUrl,
-        role: Role.User
+        role: Role.User,
+        teamId: undefined
       })
       expect(
         db.account.create.calledWithMatch({
@@ -423,7 +424,8 @@ describe('AccountService', () => {
         name: account.name,
         email: account.email,
         profileImgUrl: account.profileImgUrl,
-        role: account.role
+        role: account.role,
+        teamId: undefined
       })
       expect(db.account.findUnique.calledTwice).to.be.true
       expect(
@@ -463,7 +465,8 @@ describe('AccountService', () => {
         name: account.name,
         email: account.email,
         profileImgUrl: account.profileImgUrl,
-        role: account.role
+        role: account.role,
+        teamId: undefined
       })
       expect(
         db.account.update.calledOnceWith({
@@ -503,7 +506,8 @@ describe('AccountService', () => {
         name: account.name,
         email: account.email,
         profileImgUrl: account.profileImgUrl,
-        role: account.role
+        role: account.role,
+        teamId: undefined
       })
     })
 

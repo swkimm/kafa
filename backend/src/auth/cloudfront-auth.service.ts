@@ -15,7 +15,11 @@ export class CloundFrontAuthServiceImpl implements CloudFrontAuthService {
     this.keyPairId = this.config.get('CLOUDFRONT_ID_KEY')
     this.privateKey = this.config.get('CLOUDFRONT_SECRET_KEY')
 
-    if (!this.keyPairId || !this.privateKey) {
+    if (
+      (!this.keyPairId || !this.privateKey) &&
+      (this.config.get('NODE_ENV') === 'staging' ||
+        this.config.get('NODE_ENV') === 'production')
+    ) {
       throw new Error('CloudFront key pair ID or private key is not configured')
     }
   }

@@ -3,7 +3,7 @@ import type { UpdateScoreDTO } from '../dto/update-score.dto'
 
 /**
  * 경기의 점수 업데이트와 관련된 서비스 모음
- * @templage T - 'Score' 타입을 확장하는 제네릭 타입
+ * @template T - 'Score' 타입을 확장하는 제네릭 타입
  */
 export interface UpdateScoreService<T extends Score> {
   /**

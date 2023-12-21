@@ -3,7 +3,7 @@ import type { UpdateGameDTO } from '../dto/update-game.dto'
 
 /**
  * 경기 정보 변경과 관련된 서비스 모음
- * @templage T - 'Game' 타입을 확장하는 제네릭 타입
+ * @template T - 'Game' 타입을 확장하는 제네릭 타입
  */
 export interface UpdateGameService<T extends Game> {
   /**

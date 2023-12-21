@@ -55,6 +55,14 @@ const main = async function () {
       status: AccountStatus.Enable
     },
     {
+      username: 'manager02',
+      email: 'manager02@example.com',
+      role: Role.Manager,
+      name: 'manager02',
+      password: await hash('trust@1234'),
+      status: AccountStatus.Enable
+    },
+    {
       username: 'admin01',
       email: 'admin01@example.com',
       role: Role.Admin,
@@ -66,6 +74,17 @@ const main = async function () {
 
   await prisma.account.createMany({
     data: accounts
+  })
+
+  const accountCertificaions: Prisma.AccountCertificationCreateManyInput[] = [
+    {
+      accountId: 1,
+      fileUrl: 'https://dev.kafa.one'
+    }
+  ]
+
+  await prisma.accountCertification.createMany({
+    data: accountCertificaions
   })
 
   const associations: Prisma.AssociationCreateManyInput[] = [
@@ -181,6 +200,15 @@ const main = async function () {
   await prisma.account.update({
     where: {
       id: 2
+    },
+    data: {
+      teamId: 1
+    }
+  })
+
+  await prisma.account.update({
+    where: {
+      id: 6
     },
     data: {
       teamId: 1

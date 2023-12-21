@@ -3,7 +3,7 @@ import type { CreateSponserDTO } from '../dto/create-sponser.dto'
 
 /**
  * 스폰서 생성과 관련된 서비스 인터페이스
- * @templage T - Sponser 타입을 확장하는 제네릭 타입
+ * @template T - Sponser 타입을 확장하는 제네릭 타입
  */
 export interface CreateSponserService<T extends Sponser> {
   /**

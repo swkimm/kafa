@@ -3,7 +3,7 @@ import type { CreateLeagueDTO } from '../dto/create-league.dto'
 
 /**
  * 리그 생성과 관련된 서비스 모음
- * @templage T - 'League' 타입을 확장하는 제네릭 타입
+ * @template T - 'League' 타입을 확장하는 제네릭 타입
  */
 export interface CreateLeagueService<T extends League> {
   /**

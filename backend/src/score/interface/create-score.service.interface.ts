@@ -3,7 +3,7 @@ import type { CreateScoreDTO } from '../dto/create-score.dto'
 
 /**
  * 경기의 점수 조회와 관련된 서비스 모음
- * @templage T - 'Score' 타입을 확장하는 제네릭 타입
+ * @template T - 'Score' 타입을 확장하는 제네릭 타입
  */
 export interface CreateScoreService<T extends Score> {
   /**

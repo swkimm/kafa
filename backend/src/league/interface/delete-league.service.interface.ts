@@ -2,7 +2,7 @@ import type { League } from '@prisma/client'
 
 /**
  * 리그 삭제와 관련된 서비스 모음
- * @templage T - 'League' 타입을 확장하는 제네릭 타입
+ * @template T - 'League' 타입을 확장하는 제네릭 타입
  */
 export interface DeleteLeagueService<T extends League> {
   /**

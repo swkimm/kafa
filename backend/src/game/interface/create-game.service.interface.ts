@@ -3,7 +3,7 @@ import type { CreateGameDTO } from '../dto/create-game.dto'
 
 /**
  * 경기 생성과 관련된 서비스 모음
- * @templage T - 'Game' 타입을 확장하는 제네릭 타입
+ * @template T - 'Game' 타입을 확장하는 제네릭 타입
  */
 export interface CreateGameService<T extends Game> {
   /**

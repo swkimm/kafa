@@ -18,6 +18,7 @@ import { GameModule } from './game/game.module'
 import { LeagueSponserModule } from './league-sponser/league-sponser.module'
 import { LeagueModule } from './league/league.module'
 import { PrismaModule } from './prisma/prisma.module'
+import { ProfileModule } from './profile/profile.module'
 import { ScoreModule } from './score/score.module'
 import { SponserModule } from './sponser/sponser.module'
 import { StorageModule } from './storage/storage.module'
@@ -53,7 +54,8 @@ import { TeamModule } from './team/team.module'
     SponserModule,
     LeagueSponserModule,
     GameModule,
-    ScoreModule
+    ScoreModule,
+    ProfileModule
   ]
 })
 export class AppModule {}

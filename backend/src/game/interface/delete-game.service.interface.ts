@@ -2,7 +2,7 @@ import type { Game } from '@prisma/client'
 
 /**
  * 경기 삭제와 관련된 서비스 모음
- * @templage T - 'Game' 타입을 확장하는 제네릭 타입
+ * @template T - 'Game' 타입을 확장하는 제네릭 타입
  */
 export interface DeleteGameService<T extends Game> {
   /**

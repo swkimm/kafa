@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -7,23 +8,30 @@ import {
   Post,
   Put,
   Query,
-  Req
+  Req,
+  UploadedFile,
+  UseInterceptors
 } from '@nestjs/common'
+import { FileInterceptor } from '@nestjs/platform-express'
 import { AuthenticatedRequest } from '@/common/class/authenticated-request.interface'
 import { Public } from '@/common/decorator/guard.decorator'
 import { businessExceptionBinder } from '@/common/exception/business-exception.binder'
-import { Role } from '@prisma/client'
+import { FILE_OPTIONS } from '@/storage/option/file-option'
+import { type AccountCertification, Role } from '@prisma/client'
 import { AccountService } from './account.service.interface'
 import type { AccountDTO } from './dto/account.dto'
 import { RegisterAccountDTO } from './dto/registerAccount.dto'
 import { UpdateAccountProfileDTO } from './dto/updateAccount.dto'
 import { UpdateEmailDTO } from './dto/updateEmail.dto'
 import { UpdatePasswordDTO } from './dto/updatePassword.dto'
+import { AccountCertificationService } from './interface/account-certification.service.interface'
 
 @Controller('account')
 export class AccountController {
   constructor(
-    @Inject('AccountService') private readonly accountService: AccountService
+    @Inject('AccountService') private readonly accountService: AccountService,
+    @Inject('AccountCertificationService')
+    private readonly accountCertificationService: AccountCertificationService<AccountCertification>
   ) {}
 
   @Get('role')
@@ -131,6 +139,41 @@ export class AccountController {
   async withdrawAccount(@Req() req: AuthenticatedRequest): Promise<AccountDTO> {
     try {
       return await this.accountService.withdrawAccount(req.user.id)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  /**
+   * Certification and Credential
+   */
+
+  @Get('certification')
+  async getAccountCertificaion(@Req() req: AuthenticatedRequest) {
+    try {
+      return await this.accountCertificationService.getCertification(
+        req.user.id
+      )
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Post('certification')
+  @UseInterceptors(FileInterceptor('file', FILE_OPTIONS))
+  async upsertAccountCertification0(
+    @UploadedFile() file: Express.Multer.File,
+    @Req() req: AuthenticatedRequest
+  ): Promise<AccountCertification> {
+    if (!file) {
+      throw new BadRequestException('Invalid file format or size')
+    }
+
+    try {
+      return await this.accountCertificationService.upsertCertification(
+        file,
+        req.user.id
+      )
     } catch (error) {
       businessExceptionBinder(error)
     }

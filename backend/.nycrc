@@ -9,7 +9,8 @@
     "src/**/prisma.service.ts",
     "src/**/abstract/**",
     "src/**/storage/**",
-    "src/**/service/{association,game,league,score,sponser,team,team-league}.service.ts"
+    "src/**/service/{association,game,league,score,sponser,team,team-league}.service.ts",
+    "src/**/cloudfront-auth.service.ts"
   ],
   "extension": [".ts"],
   "report-dir": "./.nyc_output/report",
