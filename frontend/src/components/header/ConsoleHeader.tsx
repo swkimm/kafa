@@ -16,6 +16,7 @@ const ConsoleHeader = () => {
   const handleLogout = () => {
     dispatch(logout())
     setShowLogoutNotification(true)
+    navigate('/login')
   }
 
   const goToConsoleHomePage = () => {
@@ -37,7 +38,7 @@ const ConsoleHeader = () => {
                     onClick={goToConsoleHomePage}
                     src={logo}
                     alt="KAFA Logo"
-                    className="h-15 w-20"
+                    className="h-15 w-20 cursor-pointer"
                   />
                 </div>
                 <div className="hidden sm:ml-2 sm:flex sm:space-x-4">

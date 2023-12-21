@@ -42,7 +42,7 @@ const PastLeagueDetail = () => {
   }
 
   return (
-    <div className="pt-16">
+    <div className="">
       <div className="max-w-screen">
         <div
           key={pastLeague.id}

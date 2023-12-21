@@ -53,11 +53,11 @@ const League = () => {
   }
 
   const goToLeagueDetail = (id: number) => {
-    navigate(`/league/${id}`)
+    navigate(`/leagues/${id}`)
   }
 
   return (
-    <div className="pt-16">
+    <div className="">
       <div className="bg-indigo-800 p-6 text-xl font-bold text-white">
         LEAGUES
       </div>

@@ -1,129 +1,96 @@
-// Home.tsx
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useState, useEffect } from 'react'
-import HomeItem from './items/HomeItem'
-import MediaItem from './items/MediaItem'
-import NoticeItem from './items/NoticeItem'
-import PhotoItem from './items/PhotoItem'
-import ScheduleItem from './items/ScheduleItem'
+import { useState } from 'react'
+import AppealItem from './items/AppealItem'
+import FaqsItem from './items/FaqsItem'
+import HistoryItem from './items/HistoryItem'
+import OrganizationItem from './items/OrganizationItem'
+import OutlineItem from './items/OutlineItem'
 
-const Home = () => {
+const AssociationHome = () => {
   const [currentComponent, setCurrentComponent] = useState<string | null>(
-    'HOME'
+    '개요'
   )
-
-  const [videoSource, setVideoSource] = useState(
-    'https://cdn.playprove.one/landing/desktop.mp4'
-  )
-  useEffect(() => {
-    const updateVideoSource = () => {
-      const isMobile = window.innerWidth < 768 // 768px 미만을 모바일로 가정
-      if (isMobile) {
-        setVideoSource('https://cdn.playprove.one/landing/mobile.mp4')
-      } else {
-        setVideoSource('https://cdn.playprove.one/landing/desktop.mp4')
-      }
-    }
-    updateVideoSource()
-    window.addEventListener('resize', updateVideoSource)
-    return () => {
-      window.removeEventListener('resize', updateVideoSource)
-    }
-  }, [])
 
   const renderComponent = () => {
-    if (currentComponent === 'HOME') {
-      return <HomeItem />
-    } else if (currentComponent === 'SCHEDULE') {
-      return <ScheduleItem />
-    } else if (currentComponent === 'NOTICE') {
-      return <NoticeItem />
-    } else if (currentComponent === 'MEDIA') {
-      return <MediaItem />
-    } else if (currentComponent === 'PHOTO') {
-      return <PhotoItem />
+    if (currentComponent === '개요') {
+      return <OutlineItem />
+    } else if (currentComponent === '연혁') {
+      return <HistoryItem />
+    } else if (currentComponent === '조직도') {
+      return <OrganizationItem />
+    } else if (currentComponent === '신문고') {
+      return <AppealItem />
+    } else if (currentComponent === 'FAQs') {
+      return <FaqsItem />
     }
   }
-
   return (
-    <div className="flex h-full w-full flex-col bg-gray-100">
-      <div className="flex h-full justify-center">
-        <div className="relative h-screen w-full">
-          <video
-            src={videoSource}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="h-full w-full object-cover"
-          />
-        </div>
-      </div>
+    <div className="">
       <Disclosure as="nav" className="w-full bg-indigo-800 shadow">
         {({ open }) => (
           <>
-            <div className="px-4 sm:px-6 lg:px-8">
+            <div className=" px-4 sm:px-6 lg:px-8">
               <div className="flex h-20 justify-between">
                 <div className="flex">
                   <div className="font-lg flex flex-shrink-0 items-center font-bold text-white">
-                    HUDDLE
+                    협회정보
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     <Disclosure.Button
                       as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
-                        currentComponent === 'HOME'
+                        currentComponent === '개요'
                           ? 'border-b-2 border-white'
                           : 'border-b-2 border-transparent hover:border-white hover:text-black'
                       }`}
-                      onClick={() => setCurrentComponent('HOME')}
+                      onClick={() => setCurrentComponent('개요')}
                     >
-                      HOME
+                      개요
                     </Disclosure.Button>
                     <Disclosure.Button
                       as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
-                        currentComponent === 'SCHEDULE'
+                        currentComponent === '연혁'
                           ? 'border-b-2 border-white text-white'
                           : 'border-b-2 border-transparent text-white hover:border-white hover:text-black'
                       }`}
-                      onClick={() => setCurrentComponent('SCHEDULE')}
+                      onClick={() => setCurrentComponent('연혁')}
                     >
-                      SCHEDULE
+                      연혁
                     </Disclosure.Button>
                     <Disclosure.Button
                       as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
-                        currentComponent === 'NOTICE'
+                        currentComponent === '조직도'
                           ? 'border-b-2 border-white text-white'
                           : 'border-b-2 border-transparent text-white hover:border-white hover:text-black'
                       }`}
-                      onClick={() => setCurrentComponent('NOTICE')}
+                      onClick={() => setCurrentComponent('조직도')}
                     >
-                      NOTICE
+                      조직도
                     </Disclosure.Button>
                     <Disclosure.Button
                       as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
-                        currentComponent === 'MEDIA'
+                        currentComponent === '신문고'
                           ? 'border-b-2 border-white text-white'
                           : 'border-b-2 border-transparent text-white hover:border-white hover:text-black'
                       }`}
-                      onClick={() => setCurrentComponent('MEDIA')}
+                      onClick={() => setCurrentComponent('신문고')}
                     >
-                      MEDIA
+                      신문고
                     </Disclosure.Button>
                     <Disclosure.Button
                       as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
-                        currentComponent === 'PHOTO'
+                        currentComponent === 'FAQs'
                           ? 'border-b-2 border-white text-white'
                           : 'border-b-2 border-transparent text-white hover:border-white hover:text-black'
                       }`}
-                      onClick={() => setCurrentComponent('PHOTO')}
+                      onClick={() => setCurrentComponent('FAQs')}
                     >
-                      PHOTO
+                      FAQs
                     </Disclosure.Button>
                   </div>
                 </div>
@@ -189,4 +156,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default AssociationHome

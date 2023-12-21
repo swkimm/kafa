@@ -25,7 +25,11 @@ const Login = () => {
 
       if (getRole.fulfilled.match(roleResult)) {
         console.log('Updated Role:', roleResult.payload) // 역할 정보 출력
-        if (roleResult.payload === 'User') {
+        if (
+          roleResult.payload === 'User' ||
+          roleResult.payload === 'Manager' ||
+          roleResult.payload === 'Admin'
+        ) {
           navigate('/console')
         }
       }

@@ -1,35 +1,41 @@
 // src/common/PrivateRoute.tsx
 import type { RootState } from '@/app/store'
-import { setLoginState } from '@/features/auth/authSlice'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, Outlet } from 'react-router-dom'
+import Alert from '@/components/notifications/Alert'
+import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
+import { Outlet, useNavigate } from 'react-router-dom'
 
-// RootState 타입 가져오기
-const PrivateRoute = () => {
-  const dispatch = useDispatch()
-  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn)
-  const [isLoading, setLoading] = useState(true)
+interface PrivateRouteProps {
+  allowedRoles: string[]
+}
 
-  useEffect(() => {
-    // 로컬 스토리지에서 토큰 확인
-    const token = localStorage.getItem('token')
-    if (token) {
-      // 로그인 상태 업데이트
-      dispatch(setLoginState({ isLoggedIn: true, token }))
-    }
-    setLoading(false) // 로딩 상태 해제
-  }, [dispatch])
-
-  if (isLoading) {
-    return <div>Loading...</div> // 로딩 인디케이터 표시
-  }
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ allowedRoles }) => {
+  const { isLoggedIn, role } = useSelector((state: RootState) => state.auth)
+  const navigate = useNavigate()
 
   if (!isLoggedIn) {
-    return <Navigate to="/login" replace />
+    // 로그인하지 않은 경우 로그인 페이지로 리디렉션
+    navigate('/login')
+  }
+
+  if (!allowedRoles.includes(role)) {
+    // 허용되지 않은 역할인 경우 경고 메시지 표시
+    navigate('/login')
+    return (
+      <div>
+        <Alert
+          title="접근 제한"
+          content="이 페이지에 접근할 권한이 없습니다."
+        />
+      </div>
+    )
   }
 
   return <Outlet />
+}
+
+PrivateRoute.propTypes = {
+  allowedRoles: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 }
 
 export default PrivateRoute

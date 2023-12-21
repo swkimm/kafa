@@ -34,7 +34,7 @@ const Header = () => {
   }
 
   const goToLeaguePage = () => {
-    navigate('/league')
+    navigate('/leagues')
   }
 
   const gotoPastLeaguePage = () => {
@@ -55,6 +55,22 @@ const Header = () => {
 
   const gotoLoginPage = () => {
     navigate('/login')
+  }
+
+  const gotoAssociationPage = () => {
+    navigate('/association')
+  }
+
+  const gotoBoard = () => {
+    navigate('/board')
+  }
+
+  const goToAppealPage = () => {
+    navigate('/appeal')
+  }
+
+  const goToCalendar = () => {
+    navigate('/calendar')
   }
 
   useEffect(() => {
@@ -113,18 +129,13 @@ const Header = () => {
                   >
                     HUDDLE
                   </Disclosure.Button>
-                  <a
-                    href="#"
+                  <Disclosure.Button
+                    as="button"
+                    onClick={gotoAssociationPage}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     협회정보
-                  </a>
-                  <a
-                    href="#"
-                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
-                  >
-                    심판
-                  </a>
+                  </Disclosure.Button>
                   <a
                     href="#"
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
@@ -137,6 +148,13 @@ const Header = () => {
                   >
                     자료실
                   </a>
+                  <Disclosure.Button
+                    as="button"
+                    onClick={gotoBoard}
+                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
+                  >
+                    게시판
+                  </Disclosure.Button>
                 </div>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center ">
@@ -148,18 +166,20 @@ const Header = () => {
                   >
                     NOTICE
                   </Disclosure.Button>
-                  <a
-                    href="#"
-                    className="px-1 pt-1 text-sm text-white hover:text-gray-700"
+                  <Disclosure.Button
+                    as="button"
+                    onClick={goToAppealPage}
+                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     신문고
-                  </a>
-                  <a
-                    href="#"
-                    className="px-1 pt-1 text-sm text-white hover:text-gray-700"
+                  </Disclosure.Button>
+                  <Disclosure.Button
+                    as="button"
+                    onClick={goToCalendar}
+                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     캘린더
-                  </a>
+                  </Disclosure.Button>
                   {isLoggedIn ? (
                     <Disclosure.Button
                       as="button"
@@ -257,13 +277,6 @@ const Header = () => {
                 href="#"
                 className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
               >
-                심판
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="#"
-                className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
-              >
                 국가대표
               </Disclosure.Button>
               <Disclosure.Button
@@ -272,6 +285,13 @@ const Header = () => {
                 className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
               >
                 자료실
+              </Disclosure.Button>
+              <Disclosure.Button
+                as="a"
+                href="#"
+                className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
+              >
+                게시판
               </Disclosure.Button>
             </div>
             <div className="border-t border-gray-200 pb-3 pt-4">

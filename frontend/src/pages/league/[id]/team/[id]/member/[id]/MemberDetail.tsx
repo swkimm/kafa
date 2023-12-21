@@ -51,7 +51,7 @@ const MemberDetail = () => {
     console.log('Selected option:', selected)
   }
   return (
-    <div className="pt-16">
+    <div className="">
       <MemberBanner {...member} />
       <div className="bg-indigo-800 p-6 text-xl text-white">
         {member.name} PERSONAL STATS

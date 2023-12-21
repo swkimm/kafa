@@ -1,34 +1,60 @@
 // TeamDetail.tsx
 // import { useParams } from 'react-router-dom'
-import type { TeamComplication } from '@/commons/interfaces/teamComplication'
+import axiosInstance from '@/commons/axios'
+import type { TeamComplication } from '@/commons/interfaces/team/teamComplication'
 import TeamBanner from '@/components/cards/TeamBanner'
+import Alert from '@/components/notifications/Alert'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import BoardItem from './items/BoardItem'
 import RosterItem from './items/RosterItem'
 import StatsItem from './items/StatsItem'
 import TeamHomeItem from './items/TeamHomeItem'
 
-const team: TeamComplication = {
-  id: 1,
-  name: 'TBD',
-  globalName: 'To be determined',
-  hometown: 'TBD',
-  initial: 'TBD',
-  establisehdAt: new Date(),
-  color: '#000000',
-  subColor: '#ffffff',
-  profileImgUrl: '/logo/KAFA_OG.png',
-  backgroundImgUrl: '#ffffff',
-  status: '',
-  createdAt: new Date()
-}
+// const team: TeamComplication = {
+//   id: 1,
+//   name: 'TBD',
+//   globalName: 'To be determined',
+//   hometown: 'TBD',
+//   initial: 'TBD',
+//   establisehdAt: new Date(),
+//   color: '#000000',
+//   subColor: '#ffffff',
+//   profileImgUrl: '/logo/KAFA_OG.png',
+//   backgroundImgUrl: '#ffffff',
+//   status: '',
+//   createdAt: new Date()
+// }
 
 const TeamDetail = () => {
+  const { teamId } = useParams()
   const [currentComponent, setCurrentComponent] = useState<string | null>(
     'HOME'
   )
+  const [team, setTeam] = useState<TeamComplication | null>(null)
+  const [alert, setAlert] = useState<{
+    title: string
+    content?: string
+  } | null>(null)
+
+  useEffect(() => {
+    const getTeam = async () => {
+      try {
+        const response = await axiosInstance.get(`/teams/${teamId}`)
+        setTeam(response.data)
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setAlert({ title: 'Error', content: error.message })
+        } else {
+          // Handle cases where error is not an instance of Error
+          setAlert({ title: 'Error', content: 'An unknown error occurred' })
+        }
+      }
+    }
+    getTeam()
+  }, [teamId])
 
   const renderComponent = () => {
     if (currentComponent === 'HOME') {
@@ -43,19 +69,22 @@ const TeamDetail = () => {
   }
 
   return (
-    <div className="pt-16">
-      <TeamBanner
-        id={team.id}
-        name={team.name}
-        globalName={team.globalName}
-        hometown={team.hometown}
-        initial={team.initial}
-        establisehdAt={new Date(team.establisehdAt)}
-        color={team.color}
-        profileImgUrl={team.profileImgUrl}
-        status={team.status}
-        createdAt={team.createdAt}
-      />
+    <div className="">
+      {team && (
+        <TeamBanner
+          id={team.id}
+          name={team.name}
+          globalName={team.globalName}
+          hometown={team.hometown}
+          initial={team.initial}
+          establisehdAt={new Date(team.establisehdAt)}
+          color={team.color}
+          profileImgUrl={team.profileImgUrl}
+          status={team.status}
+          createdAt={team.createdAt}
+        />
+      )}
+
       <Disclosure as="nav" className="w-full bg-indigo-800 shadow">
         {({ open }) => (
           <>
@@ -159,6 +188,8 @@ const TeamDetail = () => {
           </>
         )}
       </Disclosure>
+      {alert && <Alert title={alert.title} content={alert.content} />}
+
       {renderComponent()}
     </div>
   )

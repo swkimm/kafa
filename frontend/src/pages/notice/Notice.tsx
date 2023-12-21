@@ -1,6 +1,6 @@
 const Notice = () => {
   return (
-    <div className="mt-16">
+    <div className="">
       <h1>Notice</h1>
     </div>
   )

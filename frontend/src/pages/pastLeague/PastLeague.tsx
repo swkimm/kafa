@@ -129,7 +129,7 @@ const PastLeague = () => {
   })
 
   return (
-    <div className="pt-16">
+    <div className="">
       <div className="flex justify-between bg-indigo-800 p-6">
         <div className="text-xl font-bold text-white">PAST LEAGUES</div>
         <div className="text-white">

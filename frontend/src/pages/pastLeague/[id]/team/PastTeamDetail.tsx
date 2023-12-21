@@ -1,6 +1,6 @@
 // PastTeamDetail.tsx
 // import { useParams } from 'react-router-dom'
-import type { TeamComplication } from '@/commons/interfaces/teamComplication'
+import type { TeamComplication } from '@/commons/interfaces/team/teamComplication'
 import TeamBanner from '@/components/cards/TeamBanner'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -43,7 +43,7 @@ const PastTeamDetail = () => {
   }
 
   return (
-    <div className="pt-16">
+    <div className="">
       <TeamBanner {...team} />
       <Disclosure as="nav" className="w-full bg-indigo-800 shadow">
         {({ open }) => (

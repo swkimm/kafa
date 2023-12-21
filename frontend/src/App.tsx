@@ -6,11 +6,15 @@ import PrivateRoute from './commons/PrivateRoute.tsx'
 import ConsoleLayout from './commons/layout/ConsoleLayout.tsx'
 import MainLayout from './commons/layout/MainLayout.tsx'
 import { setLoginState } from './features/auth/authSlice.ts'
+import AssociationHome from './pages/association/AssociationHome.tsx'
+import AppealItem from './pages/association/items/AppealItem.tsx'
 import Login from './pages/auth/Login.tsx'
 import SignUp from './pages/auth/SignUp.tsx'
+import BoardHome from './pages/board/BoardHome.tsx'
+import Calendar from './pages/calendar/Calendar.tsx'
 import ConsoleHome from './pages/console/ConsoleHome.tsx'
-import RegisterLeague from './pages/console/league/RegisterLeague.tsx'
-// import ProtectedComponent from './pages/auth/ProtectedComponent.tsx'
+// import ManageLeague from './pages/console/admin/league/ManageLeague.tsx'
+import RegisterLeague from './pages/console/admin/league/RegisterLeague.tsx'
 import Home from './pages/huddle/Home.tsx'
 import League from './pages/league/League.tsx'
 import LeagueDetail from './pages/league/[id]/LeagueDetail.tsx'
@@ -41,12 +45,24 @@ const App = () => {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/notice" element={<Notice />} />
-          <Route path="/league" element={<League />} />
-          <Route path="/league/:leagueId" element={<LeagueDetail />} />
+          <Route path="/board" element={<BoardHome />} />
+          <Route path="/appeal" element={<AppealItem />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/leagues" element={<League />} />
+          <Route path="/leagues/:leagueId" element={<LeagueDetail />} />
+          <Route
+            path="/league/:leagueId/team/:teamId"
+            element={<TeamDetail />}
+          />
+          <Route
+            path="/league/:leagueId/team/:teamId/member/:memberId"
+            element={<MemberDetail />}
+          />
+          <Route
+            path="/league/:leagueId/schedule/:gameid"
+            element={<ScheduleDetail />}
+          />
           <Route path="/pastLeague" element={<PastLeague />} />
-
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
 
           <Route
             path="/pastLeague/:pastLeagueId"
@@ -60,27 +76,26 @@ const App = () => {
             path="/pastLeague/:pastLeagueId/team/:teamId/member/:memberId"
             element={<PastMemberDetail />}
           />
-          <Route
-            path="/league/:leagueId/team/:teamId"
-            element={<TeamDetail />}
-          />
-          <Route
-            path="/league/:leagueId/team/:teamId/member/:memberId"
-            element={<MemberDetail />}
-          />
-          <Route
-            path="/league/:leagueId/schedule/:gameid"
-            element={<ScheduleDetail />}
-          />
+          <Route path="/association" element={<AssociationHome />} />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
         </Route>
 
-        <Route element={<PrivateRoute />}>
+        <Route
+          element={<PrivateRoute allowedRoles={['Admin', 'User', 'Manager']} />}
+        >
           <Route element={<ConsoleLayout />}>
             <Route path="/console" element={<ConsoleHome />} />
+          </Route>
+        </Route>
+        <Route element={<PrivateRoute allowedRoles={['Admin']} />}>
+          <Route element={<ConsoleLayout />}>
             <Route
               path="/console/registerLeague"
               element={<RegisterLeague />}
             />
+            {/* <Route path="/console/manageLeague" element={<ManageLeague />} /> */}
           </Route>
         </Route>
       </Routes>

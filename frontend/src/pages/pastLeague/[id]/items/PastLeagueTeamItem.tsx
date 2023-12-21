@@ -1,4 +1,4 @@
-import type { TeamSimple } from '@/commons/interfaces/teamSimple'
+import type { TeamSimple } from '@/commons/interfaces/team/teamSimple'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import TeamCard from '../../../../components/cards/TeamCard'

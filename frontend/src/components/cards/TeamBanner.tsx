@@ -1,16 +1,17 @@
 // TeamBanner.tsx
-import type { TeamComplication } from '@/commons/interfaces/teamComplication'
+import type { TeamComplication } from '@/commons/interfaces/team/teamComplication'
 import type React from 'react'
 
 const TeamBanner: React.FC<TeamComplication> = ({
   name,
   globalName,
   initial,
+  establisehdAt,
   color,
   profileImgUrl,
-  isWhite = () => false
+  isWhite = () => true
 }) => {
-  // const getYear = (date: Date) => new Date(date).getFullYear().toString()
+  const getYear = (date: Date) => new Date(date).getFullYear().toString()
   const isWhiteText = isWhite(color)
 
   const darkenColor = (hex: string | undefined, percent: number) => {
@@ -42,10 +43,10 @@ const TeamBanner: React.FC<TeamComplication> = ({
           </div>
           <div className="basis-1/3 px-4">
             <img
-              src={profileImgUrl}
+              src={profileImgUrl || '/logo/KAFA_OG.png'}
               alt={name}
-              className="m-auto hidden items-center text-center sm:hidden lg:block lg:h-64 lg:w-64"
-              onError={(e) => (e.currentTarget.src = '/path_to_default_image')}
+              className="m-auto hidden items-center text-center text-black sm:hidden lg:block lg:h-64 lg:w-64"
+              onError={(e) => (e.currentTarget.src = '/logo/KAFA_OG.png')}
             />
           </div>
           <div className="basis-1/3">
@@ -82,13 +83,13 @@ const TeamBanner: React.FC<TeamComplication> = ({
           >
             <div className="mb-2 text-xs">Established</div>
             <div className="font-bold sm:text-lg lg:text-2xl">
-              {/* {getYear(establisehdAt)} */}
+              {getYear(establisehdAt)}
             </div>
           </div>
         </div>
         <div
           className="flex flex-row justify-center py-3"
-          style={{ backgroundColor: darkenColor(color, 100) }} // `darkenColor` 함수 구현 필요
+          style={{ backgroundColor: darkenColor(color, 20) }} // `darkenColor` 함수 구현 필요
         >
           <div className="flex flex-row">
             <a href="#" className="">

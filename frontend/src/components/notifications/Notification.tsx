@@ -10,7 +10,7 @@ interface NotificationProps {
   content?: string
 }
 
-const Notification: React.FC<NotificationProps> = ({ title, content }) => {
+const MyNotification: React.FC<NotificationProps> = ({ title, content }) => {
   const [show, setShow] = useState(true)
 
   useEffect(() => {
@@ -74,9 +74,9 @@ const Notification: React.FC<NotificationProps> = ({ title, content }) => {
   )
 }
 
-Notification.propTypes = {
+MyNotification.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string
 }
 
-export default Notification
+export default MyNotification

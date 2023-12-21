@@ -52,7 +52,7 @@ const DropdownLeft: React.FC<SimpleProps> = ({
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="py-1">
+          <div className="px-2">
             {optionList?.length > 0 ? (
               optionList.map((option) => (
                 <Menu.Item key={option.id}>
