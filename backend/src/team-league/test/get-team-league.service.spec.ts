@@ -14,7 +14,8 @@ import { GetTeamLeagueServiceImpl } from '../service/get-team-league.service'
 describe('GetTeamLeagueService', () => {
   const db = {
     teamLeague: {
-      findMany: sinon.stub()
+      findMany: sinon.stub(),
+      findUniqueOrThrow: sinon.stub()
     },
     team: {
       findUniqueOrThrow: sinon.stub()
@@ -86,6 +87,49 @@ describe('GetTeamLeagueService', () => {
     expect(service).to.be.ok
   })
 
+  describe('getTeamLeague', () => {
+    it('should return teamLeague', async () => {
+      // given
+      const teamId = 1
+      const leagueId = 1
+      db.teamLeague.findUniqueOrThrow.resolves(teamLeagues[0])
+
+      // when
+      const result = await service.getTeamLeague(teamId, leagueId)
+
+      // then
+      expect(result).to.be.deep.equal(teamLeagues[0])
+      expect(
+        db.teamLeague.findUniqueOrThrow.calledOnceWith({
+          where: {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            teamId_leagueId: {
+              teamId,
+              leagueId
+            }
+          }
+        })
+      ).to.be.true
+    })
+
+    it('should throw EntityNotExistException', async () => {
+      // given
+      const teamId = 1
+      const leagueId = 1
+      db.teamLeague.findUniqueOrThrow.rejects(
+        new Prisma.PrismaClientKnownRequestError('test', {
+          clientVersion: '1.0.0',
+          code: 'P2025'
+        })
+      )
+
+      // then
+      await expect(service.getTeamLeague(teamId, leagueId)).to.be.rejectedWith(
+        EntityNotExistException
+      )
+    })
+  })
+
   describe('getTeamLeaguesByLeagueId', () => {
     it('should return teamLeagues', async () => {
       // given
@@ -102,7 +146,8 @@ describe('GetTeamLeagueService', () => {
       expect(
         db.teamLeague.findMany.calledOnceWith({
           where: {
-            leagueId
+            leagueId,
+            applyStatus: LeagueApplyStatus.Approved
           }
         })
       ).to.be.true
@@ -153,7 +198,8 @@ describe('GetTeamLeagueService', () => {
       expect(
         db.teamLeague.findMany.calledOnceWith({
           where: {
-            teamId
+            teamId,
+            applyStatus: LeagueApplyStatus.Approved
           }
         })
       ).to.be.true

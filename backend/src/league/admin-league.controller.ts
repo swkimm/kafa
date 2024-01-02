@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Inject,
   Param,
   ParseIntPipe,
@@ -10,9 +11,16 @@ import {
 } from '@nestjs/common'
 import { Roles } from '@/common/decorator/roles.decorator'
 import { businessExceptionBinder } from '@/common/exception/business-exception.binder'
-import { Role, type League, type Sponser } from '@prisma/client'
+import {
+  Role,
+  type League,
+  type Sponser,
+  type TeamLeague
+} from '@prisma/client'
 import { LeagueService } from './abstract/league.service'
 import { CreateLeagueDTO } from './dto/create-league.dto'
+import type { TeamRosterWithSensitiveInfoDTO } from './dto/register-league-availability.dto'
+import { RejectReasonDTO } from './dto/reject-reason.dto'
 import { UpdateLeagueDTO } from './dto/update-league.dto'
 
 @Roles(Role.Admin)
@@ -20,14 +28,74 @@ import { UpdateLeagueDTO } from './dto/update-league.dto'
 export class AdminLeagueController {
   constructor(
     @Inject('LeagueService')
-    private readonly leagueService: LeagueService<League, Sponser>
+    private readonly leagueService: LeagueService<League, TeamLeague, Sponser>
   ) {}
+
+  @Get(':leagueId/requests')
+  async getJoinLeagueRequests(
+    @Param('leagueId', ParseIntPipe) leagueId: number
+  ): Promise<TeamLeague[]> {
+    try {
+      return await this.leagueService.getJoinLeagueRequests(leagueId)
+    } catch (error) {
+      console.log(error)
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Get(':leagueId/teams/:teamId/join-request')
+  async getJoinLeagueRequestInfo(
+    @Param('leagueId', ParseIntPipe) leagueId: number,
+    @Param('teamId', ParseIntPipe) teamId: number
+  ): Promise<TeamRosterWithSensitiveInfoDTO> {
+    try {
+      return await this.leagueService.getLeagueJoinRequestWithRosterAndCredentials(
+        teamId,
+        leagueId
+      )
+    } catch (error) {
+      console.log(error)
+      businessExceptionBinder(error)
+    }
+  }
 
   @Post('')
   async createLeague(@Body() leagueDTO: CreateLeagueDTO): Promise<League> {
     try {
       return await this.leagueService.createLeague(leagueDTO)
     } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Post(':leagueId/teams/:teamId/approve')
+  async approveRegisterLeague(
+    @Param('leagueId', ParseIntPipe) leagueId: number,
+    @Param('teamId', ParseIntPipe) teamId: number
+  ): Promise<TeamLeague> {
+    try {
+      return await this.leagueService.approveRegisterLeague(teamId, leagueId)
+    } catch (error) {
+      console.log(error)
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Post(':leagueId/teams/:teamId/reject')
+  async rejectRegisterLeague(
+    @Param('leagueId', ParseIntPipe) leagueId: number,
+    @Param('teamId', ParseIntPipe) teamId: number,
+    @Body() leagueDTO: RejectReasonDTO
+  ): Promise<TeamLeague> {
+    try {
+      return await this.leagueService.rejectRegisterLeague(
+        teamId,
+        leagueId,
+        leagueDTO.reason,
+        leagueDTO.type
+      )
+    } catch (error) {
+      console.log(error)
       businessExceptionBinder(error)
     }
   }
@@ -44,7 +112,7 @@ export class AdminLeagueController {
     }
   }
 
-  @Delete(':leagueId/sponsers/:sponserId/link')
+  @Post(':leagueId/sponsers/:sponserId/unlink')
   async unlinkSponser(
     @Param('leagueId', ParseIntPipe) leagueId: number,
     @Param('sponserId', ParseIntPipe) sponserId: number

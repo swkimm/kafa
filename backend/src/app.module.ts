@@ -19,6 +19,7 @@ import { LeagueSponserModule } from './league-sponser/league-sponser.module'
 import { LeagueModule } from './league/league.module'
 import { PrismaModule } from './prisma/prisma.module'
 import { ProfileModule } from './profile/profile.module'
+import { RosterModule } from './roster/roster.module'
 import { ScoreModule } from './score/score.module'
 import { SponserModule } from './sponser/sponser.module'
 import { StorageModule } from './storage/storage.module'
@@ -28,9 +29,9 @@ import { TeamModule } from './team/team.module'
 @Module({
   providers: [
     AppService,
+    { provide: APP_FILTER, useClass: ExceptionsFilter },
     { provide: APP_GUARD, useClass: JwtAuthGuard },
-    { provide: APP_GUARD, useClass: RolesGuard },
-    { provide: APP_FILTER, useClass: ExceptionsFilter }
+    { provide: APP_GUARD, useClass: RolesGuard }
   ],
   controllers: [AppController],
   imports: [
@@ -55,7 +56,8 @@ import { TeamModule } from './team/team.module'
     LeagueSponserModule,
     GameModule,
     ScoreModule,
-    ProfileModule
+    ProfileModule,
+    RosterModule
   ]
 })
 export class AppModule {}

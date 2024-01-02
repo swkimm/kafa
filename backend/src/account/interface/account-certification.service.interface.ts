@@ -12,6 +12,7 @@ export interface AccountCertificationService<T extends AccountCertification> {
    * @param accountId - 인증서를 등록할 계정의 Id
    * @returns {T} 등록된 인증서 정보
    * @throws {EntityNotExistException} 존재하지 않는 계정의 Id를 전달할 경우 발생
+   * @throws {UnverifiedException} 개인 정보 인증이 완료되지 않은 계정에 해당 요청을 보낼 시 발생
    */
   upsertCertification(file: Express.Multer.File, accountId: number): Promise<T>
 

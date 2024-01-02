@@ -80,7 +80,7 @@ export class FileStorageServiceImpl implements FileStorageService {
       await this.s3.send(
         new DeleteObjectCommand({
           Bucket: this.configService.get('AWS_CDN_ORIGIN_BUCKET_NAME'),
-          Key: originKey
+          Key: originKey ?? 'undefined'
         })
       )
 
@@ -121,7 +121,7 @@ export class FileStorageServiceImpl implements FileStorageService {
 
   /**
    * 파일이름으로 부터 MimeType을 추출하여 리턴합니다.
-   * @param {Express.Multer.File} file -
+   * @param {Express.Multer.File} file
    * @returns {string} 추출한 MimeType
    */
   private extractContentType(file: Express.Multer.File): string {

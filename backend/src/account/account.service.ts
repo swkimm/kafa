@@ -358,6 +358,27 @@ export class AccountServiceImpl implements AccountService {
     return account !== null
   }
 
+  async checkTeamAccount(accountId: number, teamId: number): Promise<boolean> {
+    try {
+      if (!teamId || !accountId) return false
+
+      const account = await this.prismaService.account.findUniqueOrThrow({
+        where: {
+          id: accountId
+        }
+      })
+
+      if (account.role === Role.Admin) return true
+
+      return account.teamId === teamId
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new EntityNotExistException('accountId')
+      }
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
   /**
    * [미구현] 비밀번호 초기화
    */

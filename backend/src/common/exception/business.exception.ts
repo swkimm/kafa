@@ -1,44 +1,43 @@
 export class BusinessException extends Error {
   name: string
 
-  constructor(message: string, stack?: string) {
+  constructor(message: string) {
     super(message)
     this.name = this.constructor.name
-    this.stack = stack
   }
 }
 
 /** [400] Throw when a user does not pass the essential parameter. */
 export class EmptyParameterException extends BusinessException {
-  constructor(credential, stack?: string) {
-    super(`${credential} is empty`, stack)
+  constructor(credential) {
+    super(`${credential} is empty`)
   }
 }
 
 /** [400] Throw when a user pass the invalid parameter. */
 export class ParameterValidationException extends BusinessException {
-  constructor(entity, stack?: string) {
-    super(entity, stack)
+  constructor(entity) {
+    super(entity)
   }
 }
 
 /** [401] Throw when a user cannot be identified with given credential. */
 export class UnidentifiedException extends BusinessException {
-  constructor(credential, stack?: string) {
-    super(`Incorrect ${credential}`, stack)
+  constructor(credential) {
+    super(`Incorrect ${credential}`)
   }
 }
 
 export class UnverifiedException extends BusinessException {
-  constructor(credential, stack?: string) {
-    super(`Unverified account ${credential}`, stack)
+  constructor(credential) {
+    super(`Unverified account ${credential}`)
   }
 }
 
 /** [401] Throw when JWT token is invalid. */
 export class InvalidJwtTokenException extends BusinessException {
-  constructor(message, stack?: string) {
-    super(`Invalid token: ${message}`, stack)
+  constructor(message) {
+    super(`Invalid token: ${message}`)
   }
 }
 
@@ -47,24 +46,24 @@ export class ForbiddenAccessException extends BusinessException {}
 
 /** [404] Throw when requested entity is not found. */
 export class EntityNotExistException extends BusinessException {
-  constructor(entity, stack?: string) {
-    super(`${entity} does not exist`, stack)
+  constructor(entity) {
+    super(`${entity} does not exist`)
   }
 }
 
 /** [409] Throw when the request has a conflict with relevant entities.
  */
 export class ConflictFoundException extends BusinessException {
-  constructor(entity, stack?: string) {
-    super(`${entity} is already exists`, stack)
+  constructor(entity) {
+    super(`${entity} is already exists`)
   }
 }
 
 /** [409] Throw when the request has a conflict with relevant entities.
  */
 export class DuplicateFoundException extends ConflictFoundException {
-  constructor(entity, stack?: string) {
-    super(`${entity} is already in use`, stack)
+  constructor(entity) {
+    super(`${entity} is already in use`)
   }
 }
 
@@ -73,28 +72,31 @@ export class UnprocessableDataException extends BusinessException {}
 
 /** [422] Throw when file data is invalid or cannot be processed. */
 export class UnprocessableFileDataException extends UnprocessableDataException {
-  constructor(message, fileName, rowNumber, stack?: string) {
-    super(`${message} @${fileName}:${rowNumber}`, stack)
+  constructor(message, fileName, rowNumber) {
+    super(`${message} @${fileName}:${rowNumber}`)
   }
 }
 
 /** [500] Cache Exception */
 export class CacheException extends BusinessException {
-  constructor(error, stack?: string) {
-    super(error, stack)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  constructor(error, ...args) {
+    super(error)
   }
 }
 
 /** [500] Database Exception */
 export class DatabaseException extends BusinessException {
-  constructor(error, stack?: string) {
-    super(error, stack)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  constructor(error, ...args) {
+    super(error)
   }
 }
 
 /** [500] Unexpected Exception */
 export class UnexpectedException extends BusinessException {
-  constructor(error, stack?: string) {
-    super(error, stack)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  constructor(error, ...args) {
+    super(error)
   }
 }

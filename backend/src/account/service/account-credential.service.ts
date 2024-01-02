@@ -5,6 +5,7 @@ import {
 } from '@/common/exception/business.exception'
 import { PrismaService } from '@/prisma/prisma.service'
 import { Prisma, type AccountCredential } from '@prisma/client'
+import type { CreateAccountCredentialDTO } from '../dto/createAccountCredential.dto'
 import type { AccountCredentialService } from '../interface/account-credential.service.interface'
 
 @Injectable()
@@ -41,6 +42,28 @@ export class AccountCredentialServiceImpl
 
       return credential ? true : false
     } catch (error) {
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
+  async createCredential(
+    accountId: number,
+    accountDTO: CreateAccountCredentialDTO
+  ): Promise<AccountCredential> {
+    try {
+      return await this.prismaService.accountCredential.create({
+        data: {
+          accountId,
+          ...accountDTO
+        }
+      })
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2025'
+      ) {
+        throw new EntityNotExistException('accountId')
+      }
       throw new UnexpectedException(error, error.stack)
     }
   }

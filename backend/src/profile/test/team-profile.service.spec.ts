@@ -4,6 +4,7 @@ import {
   ForbiddenAccessException,
   UnexpectedException
 } from '@/common/exception/business.exception'
+import { PrismaService } from '@/prisma/prisma.service'
 import { Role } from '@prisma/client'
 import { expect } from 'chai'
 import * as sinon from 'sinon'
@@ -38,6 +39,12 @@ describe('TeamProfileService', () => {
     path: 'uploads/dummy.jpg'
   }
 
+  const db = {
+    team: {
+      update: sinon.stub()
+    }
+  }
+
   let service: TeamProfileServiceImpl
 
   beforeEach(async () => {
@@ -58,6 +65,10 @@ describe('TeamProfileService', () => {
         {
           provide: 'ImageStorageService',
           useValue: mockImageStorageService
+        },
+        {
+          provide: PrismaService,
+          useValue: db
         }
       ]
     }).compile()
@@ -97,10 +108,14 @@ describe('TeamProfileService', () => {
         )
       ).to.be.true
       expect(
-        mockTeamService.updateTeamProfile.calledOnceWith(
-          { profileImgUrl: 'test' },
-          teamId
-        )
+        db.team.update.calledOnceWith({
+          where: {
+            id: teamId
+          },
+          data: {
+            profileImgUrl: 'test'
+          }
+        })
       ).to.be.true
     })
 
@@ -124,10 +139,14 @@ describe('TeamProfileService', () => {
         )
       ).to.be.true
       expect(
-        mockTeamService.updateTeamProfile.calledOnceWith(
-          { profileImgUrl: 'test' },
-          teamId
-        )
+        db.team.update.calledOnceWith({
+          where: {
+            id: teamId
+          },
+          data: {
+            profileImgUrl: 'test'
+          }
+        })
       ).to.be.true
     })
 

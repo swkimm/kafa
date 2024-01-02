@@ -8,7 +8,7 @@ CREATE TYPE "OAuthProvider" AS ENUM ('Google');
 CREATE TYPE "RefereeClass" AS ENUM ('A', 'B', 'C');
 
 -- CreateEnum
-CREATE TYPE "RosterStatus" AS ENUM ('Enable', 'Graduate', 'Disable');
+CREATE TYPE "RosterStatus" AS ENUM ('Enable', 'Graduate', 'Disable', 'Verifying');
 
 -- CreateEnum
 CREATE TYPE "RosterType" AS ENUM ('Athlete', 'Staff', 'Coach', 'HeadCoach');
@@ -260,6 +260,13 @@ CREATE TABLE "TeamLeague" (
 );
 
 -- CreateTable
+CREATE TABLE "LeagueRoster" (
+    "league_id" INTEGER NOT NULL,
+    "roster_id" INTEGER NOT NULL,
+    "awards" JSONB
+);
+
+-- CreateTable
 CREATE TABLE "Roster" (
     "id" SERIAL NOT NULL,
     "name" VARCHAR(64) NOT NULL,
@@ -268,8 +275,8 @@ CREATE TABLE "Roster" (
     "team_id" INTEGER NOT NULL,
     "account_id" INTEGER,
     "register_year" TIMESTAMP(3) NOT NULL,
-    "profile_img_url" TEXT NOT NULL,
-    "status" "RosterStatus" NOT NULL DEFAULT 'Enable',
+    "profile_img_url" TEXT,
+    "status" "RosterStatus" NOT NULL DEFAULT 'Verifying',
 
     CONSTRAINT "Roster_pkey" PRIMARY KEY ("id")
 );
@@ -290,6 +297,7 @@ CREATE TABLE "Athlete" (
     "position" JSONB NOT NULL,
     "height" INTEGER NOT NULL,
     "weight" INTEGER NOT NULL,
+    "backNumber" INTEGER NOT NULL,
 
     CONSTRAINT "Athlete_pkey" PRIMARY KEY ("roster_id")
 );
@@ -373,6 +381,9 @@ CREATE UNIQUE INDEX "LeagueSponser_league_id_sponser_id_key" ON "LeagueSponser"(
 CREATE UNIQUE INDEX "TeamLeague_team_id_league_id_key" ON "TeamLeague"("team_id", "league_id");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "LeagueRoster_league_id_roster_id_key" ON "LeagueRoster"("league_id", "roster_id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "RefereeGame_referee_id_game_id_key" ON "RefereeGame"("referee_id", "game_id");
 
 -- CreateIndex
@@ -445,16 +456,22 @@ ALTER TABLE "TeamLeague" ADD CONSTRAINT "TeamLeague_team_id_fkey" FOREIGN KEY ("
 ALTER TABLE "TeamLeague" ADD CONSTRAINT "TeamLeague_league_id_fkey" FOREIGN KEY ("league_id") REFERENCES "League"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "LeagueRoster" ADD CONSTRAINT "LeagueRoster_league_id_fkey" FOREIGN KEY ("league_id") REFERENCES "League"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "LeagueRoster" ADD CONSTRAINT "LeagueRoster_roster_id_fkey" FOREIGN KEY ("roster_id") REFERENCES "Roster"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Roster" ADD CONSTRAINT "Roster_account_id_fkey" FOREIGN KEY ("account_id") REFERENCES "Account"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Roster" ADD CONSTRAINT "Roster_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "Team"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "RosterCredentials" ADD CONSTRAINT "RosterCredentials_roster_id_fkey" FOREIGN KEY ("roster_id") REFERENCES "Roster"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "RosterCredentials" ADD CONSTRAINT "RosterCredentials_roster_id_fkey" FOREIGN KEY ("roster_id") REFERENCES "Roster"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Athlete" ADD CONSTRAINT "Athlete_roster_id_fkey" FOREIGN KEY ("roster_id") REFERENCES "Roster"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Athlete" ADD CONSTRAINT "Athlete_roster_id_fkey" FOREIGN KEY ("roster_id") REFERENCES "Roster"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Game" ADD CONSTRAINT "Game_home_team_id_fkey" FOREIGN KEY ("home_team_id") REFERENCES "Team"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

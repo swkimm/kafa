@@ -169,4 +169,14 @@ export interface AccountService {
    * @returns {Promise<boolean>} 존재여부 [true: 존재함]
    */
   isEmailExist(email: string, role: Role): Promise<boolean>
+
+  /**
+   * 특정 계정이 특정 팀의 매니저 계정인지 여부를 반환합니다.
+   *
+   * @param {number} accountId - 매니저 계정의 Id
+   * @param {number} teamId - 팀의 Id
+   * @returns {Promise<boolean>}
+   * @throws {EntityNotExistException} 존재하지 않는 계정 또는 팀 Id를 전달할 경우 발생
+   */
+  checkTeamAccount(accountId: number, teamId: number): Promise<boolean>
 }

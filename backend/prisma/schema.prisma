@@ -30,6 +30,7 @@ enum RosterStatus {
   Enable
   Graduate
   Disable
+  Verifying
 }
 
 enum RosterType {
@@ -257,6 +258,7 @@ model League {
   TeamLeagues    TeamLeague[]
   Games          Game[]
   Association    Association?    @relation(fields: [associationId], references: [id])
+  LeagueRoster   LeagueRoster[]
 }
 
 model LeagueSponser {
@@ -323,6 +325,16 @@ model TeamLeague {
   @@unique([teamId, leagueId])
 }
 
+model LeagueRoster {
+  leagueId Int    @map("league_id")
+  rosterId Int    @map("roster_id")
+  awards   Json?
+  League   League @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+  Roster   Roster @relation(fields: [rosterId], references: [id], onDelete: Cascade)
+
+  @@unique([leagueId, rosterId])
+}
+
 model Roster {
   id                Int                @id @default(autoincrement())
   name              String             @db.VarChar(64)
@@ -331,12 +343,13 @@ model Roster {
   teamId            Int                @map("team_id")
   accountId         Int?               @map("account_id")
   registerYear      DateTime           @map("register_year")
-  profileImgUrl     String             @map("profile_img_url") @db.Text
-  status            RosterStatus       @default(Enable)
+  profileImgUrl     String?            @map("profile_img_url") @db.Text
+  status            RosterStatus       @default(Verifying)
   Account           Account?           @relation(fields: [accountId], references: [id])
   Team              Team               @relation(fields: [teamId], references: [id])
   Athlete           Athlete?
   RosterCredentials RosterCredentials?
+  LeagueRoster      LeagueRoster[]
 }
 
 model RosterCredentials {
@@ -344,16 +357,17 @@ model RosterCredentials {
   name     String     @db.VarChar(128)
   gender   GenderType
   birthday DateTime
-  Roster   Roster     @relation(fields: [rosterId], references: [id])
+  Roster   Roster     @relation(fields: [rosterId], references: [id], onDelete: Cascade)
 }
 
 model Athlete {
-  rosterId Int      @id @map("roster_id")
-  position Json
-  height   Int
-  weight   Int
-  Records  Record[]
-  Roster   Roster   @relation(fields: [rosterId], references: [id])
+  rosterId   Int      @id @map("roster_id")
+  position   Json
+  height     Int
+  weight     Int
+  backNumber Int
+  Records    Record[]
+  Roster     Roster   @relation(fields: [rosterId], references: [id], onDelete: Cascade)
 }
 
 // Game Module

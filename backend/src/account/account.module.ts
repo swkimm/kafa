@@ -26,6 +26,14 @@ import { AccountCredentialServiceImpl } from './service/account-credential.servi
     {
       provide: 'AccountService',
       useClass: AccountServiceImpl
+    },
+    {
+      provide: 'AccountCredentialService',
+      useClass: AccountCredentialServiceImpl
+    },
+    {
+      provide: 'AccountCertificationService',
+      useClass: AccountCertificationServiceImpl
     }
   ]
 })

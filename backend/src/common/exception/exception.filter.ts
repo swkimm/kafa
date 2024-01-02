@@ -2,15 +2,16 @@ import {
   type ExceptionFilter,
   Catch,
   type ArgumentsHost,
-  HttpException,
-  Logger
+  Logger,
+  HttpException
 } from '@nestjs/common'
+import type { CustomHttpException } from './custom-http-exception'
 
 @Catch(HttpException)
 export class ExceptionsFilter implements ExceptionFilter {
   private readonly logger = new Logger('KAFA')
 
-  catch(exception: HttpException, host: ArgumentsHost) {
+  catch(exception: CustomHttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp()
     const response = ctx.getResponse()
     const request = ctx.getRequest()
@@ -18,6 +19,14 @@ export class ExceptionsFilter implements ExceptionFilter {
 
     if (status >= 500) {
       this.loggingError(exception, request)
+      exception.message = '알 수 없는 오류 발생'
+    } else {
+      if (
+        process.env.NODE_ENV !== 'production' &&
+        process.env.NODE_ENV !== 'staging'
+      ) {
+        this.loggingError(exception, request)
+      }
     }
 
     response.status(status).json({
@@ -25,16 +34,16 @@ export class ExceptionsFilter implements ExceptionFilter {
       timestamp: new Date().toISOString(),
       path: request.url,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      response: (exception.getResponse() as any).message ?? exception.message
+      message: (exception.getResponse() as any).message ?? exception.message
     })
   }
 
-  private loggingError(exception: HttpException, request) {
+  private loggingError(exception: CustomHttpException, request) {
     const logData = {
       errorType: exception.name,
       message: exception.message,
       path: `${request.method} ${request.url}`,
-      stack: exception.stack,
+      stack: exception.originStack,
       requestBody: request.body,
       user: request.user
         ? {
@@ -45,6 +54,16 @@ export class ExceptionsFilter implements ExceptionFilter {
         : undefined
     }
 
-    this.logger.error(JSON.stringify(logData))
+    if (
+      process.env.NODE_ENV === 'production' ||
+      process.env.NODE_ENV === 'staging'
+    ) {
+      this.logger.error(JSON.stringify(logData))
+    } else {
+      if (exception.originStack) {
+        this.logger.error(exception.originStack)
+      }
+      this.logger.error(logData)
+    }
   }
 }

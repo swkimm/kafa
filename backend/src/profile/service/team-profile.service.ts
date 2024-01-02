@@ -5,6 +5,7 @@ import {
   ForbiddenAccessException,
   UnexpectedException
 } from '@/common/exception/business.exception'
+import { PrismaService } from '@/prisma/prisma.service'
 import { ImageStorageService } from '@/storage/interface/image-storage.service.interface'
 import { TeamService } from '@/team/abstract/team.service'
 import { Role, type RegisterTeamRequest, type Team } from '@prisma/client'
@@ -22,7 +23,8 @@ export class TeamProfileServiceImpl implements TeamProfileService {
       RegisterTeamRequest
     >,
     @Inject('AccountService')
-    private readonly accountService: AccountService
+    private readonly accountService: AccountService,
+    private readonly prismaService: PrismaService
   ) {}
 
   async upsertProfile(
@@ -41,14 +43,20 @@ export class TeamProfileServiceImpl implements TeamProfileService {
         `team/${teamId}/profile`
       )
 
-      await this.teamService.updateTeamProfile({ profileImgUrl: url }, teamId)
+      await this.prismaService.team.update({
+        where: {
+          id: teamId
+        },
+        data: {
+          profileImgUrl: url
+        }
+      })
 
       return url
     } catch (error) {
       if (error instanceof BusinessException) {
         throw error
       }
-
       throw new UnexpectedException(error, error.stack)
     }
   }

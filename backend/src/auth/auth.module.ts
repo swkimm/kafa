@@ -5,7 +5,7 @@ import { PassportModule } from '@nestjs/passport'
 import { AccountModule } from '@/account/account.module'
 import { AuthController } from './auth.controller'
 import { JwtAuthService } from './auth.service'
-import { CloundFrontAuthServiceImpl } from './cloudfront-auth.service'
+import { CloudFrontAuthServiceImpl } from './cloudfront-auth.service'
 import { EmailAuthServiceImpl } from './email-auth.service'
 import { JwtStrategy } from './strategy/jwt.strategy'
 
@@ -34,7 +34,7 @@ import { JwtStrategy } from './strategy/jwt.strategy'
     },
     { provide: 'EmailAuthService', useClass: EmailAuthServiceImpl },
     JwtStrategy,
-    { provide: 'CloudFrontAuthService', useClass: CloundFrontAuthServiceImpl }
+    { provide: 'CloudFrontAuthService', useClass: CloudFrontAuthServiceImpl }
   ],
   controllers: [AuthController],
   exports: [

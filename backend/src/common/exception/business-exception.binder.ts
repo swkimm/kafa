@@ -1,13 +1,4 @@
 import {
-  BadRequestException,
-  ForbiddenException,
-  InternalServerErrorException,
-  NotFoundException,
-  UnauthorizedException,
-  UnprocessableEntityException,
-  ConflictException
-} from '@nestjs/common'
-import {
   EmptyParameterException,
   ParameterValidationException,
   UnidentifiedException,
@@ -23,6 +14,15 @@ import {
   DatabaseException,
   UnexpectedException
 } from './business.exception'
+import {
+  BadRequestException,
+  ForbiddenException,
+  InternalServerErrorException,
+  NotFoundException,
+  UnauthorizedException,
+  UnprocessableEntityException,
+  ConflictException
+} from './custom-http-exception'
 
 export const businessExceptionBinder = (error: Error) => {
   if (

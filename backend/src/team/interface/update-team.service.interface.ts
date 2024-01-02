@@ -14,11 +14,11 @@ export interface UpdateTeamService<
    * 팀 정보를 업데이트 후 업데이트 된 팀 정보를 반환합니다.
    *
    * @param {UpdateTeamDTO} teamDTO - 팀 업데이트 정보가 담긴 객체
-   * @param {number} teamId - 정보를 업데이트할 팀의 Id
+   * @param {number} managerId - 정보를 업데이트할 팀 매니저 계정의 Id
    * @returns {Promise<T>} - 업데이트 된 팀 정보
    * @throws {EntityNotExistException} 존재하지 않는 팀의 Id를 전달할 경우 발생
    */
-  updateTeamProfile(teamDTO: UpdateTeamDTO, teamId: number): Promise<T>
+  updateTeamProfile(teamDTO: UpdateTeamDTO, managerId: number): Promise<T>
 
   /**
    * 팀 등록 요청을 수락하고 팀을 등록한 다음 등록된 팀을 반환합니다.

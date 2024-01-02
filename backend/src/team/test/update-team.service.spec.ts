@@ -171,7 +171,8 @@ describe('UpdateTeamService', () => {
   describe('updateTeamProfile', () => {
     it('should return result ok', async () => {
       // given
-      const teamId = 1
+      mockAccountService.getAccountProfile.resolves({ teamId: 1 })
+      const managerId = 1
       const teamDTO: UpdateTeamDTO = {
         name: team.name,
         color: team.color,
@@ -184,23 +185,25 @@ describe('UpdateTeamService', () => {
       db.team.update.resolves(team)
 
       // when
-      const result = await service.updateTeamProfile(teamDTO, teamId)
+      const result = await service.updateTeamProfile(teamDTO, managerId)
 
       // then
       expect(result).to.be.deep.equal(team)
       expect(
         db.team.update.calledOnceWith({
           where: {
-            id: teamId
+            id: managerId
           },
           data: {
             ...teamDTO
           }
         })
       ).to.be.true
+      expect(mockAccountService.getAccountProfile.calledOnceWith(managerId)).to
+        .be.true
     })
 
-    it('should throw EntityNotExistException when invalid teamId passed', async () => {
+    it('should throw EntityNotExistException when invalid accountId passed', async () => {
       // given
       const teamId = 1
       const teamDTO: UpdateTeamDTO = {
@@ -212,11 +215,8 @@ describe('UpdateTeamService', () => {
         initial: team.initial,
         subColor: team.subColor
       }
-      db.team.update.rejects(
-        new Prisma.PrismaClientKnownRequestError('test', {
-          code: 'P2025',
-          clientVersion: '1.0.0'
-        })
+      mockAccountService.getAccountProfile.rejects(
+        new EntityNotExistException('test')
       )
 
       // then

@@ -7,7 +7,7 @@ import {
 import type { CloudFrontAuthService } from './cloudfront-auth.service.interface'
 
 @Injectable()
-export class CloundFrontAuthServiceImpl implements CloudFrontAuthService {
+export class CloudFrontAuthServiceImpl implements CloudFrontAuthService {
   private readonly keyPairId: string
   private readonly privateKey: string
 

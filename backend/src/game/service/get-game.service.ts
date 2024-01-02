@@ -6,7 +6,13 @@ import {
 } from '@/common/exception/business.exception'
 import { LeagueService } from '@/league/abstract/league.service'
 import { PrismaService } from '@/prisma/prisma.service'
-import { Prisma, type Game, type League, type Sponser } from '@prisma/client'
+import {
+  Prisma,
+  type Game,
+  type League,
+  type Sponser,
+  type TeamLeague
+} from '@prisma/client'
 import type { GetGameService } from '../interface/get-game.service.interface'
 
 @Injectable()
@@ -14,7 +20,7 @@ export class GetGameServiceImpl implements GetGameService<Game> {
   constructor(
     private readonly prismaService: PrismaService,
     @Inject('LeagueService')
-    private readonly leagueService: LeagueService<League, Sponser>
+    private readonly leagueService: LeagueService<League, TeamLeague, Sponser>
   ) {}
 
   async getGame(gameId: number): Promise<Game> {

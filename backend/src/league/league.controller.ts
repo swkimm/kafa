@@ -4,18 +4,29 @@ import {
   Inject,
   Param,
   ParseIntPipe,
-  Query
+  Post,
+  Query,
+  Req
 } from '@nestjs/common'
+import { AuthenticatedRequest } from '@/common/class/authenticated-request.interface'
 import { Public } from '@/common/decorator/guard.decorator'
+import { Roles } from '@/common/decorator/roles.decorator'
 import { businessExceptionBinder } from '@/common/exception/business-exception.binder'
-import type { League, Sponser } from '@prisma/client'
+import {
+  Role,
+  type League,
+  type Sponser,
+  type TeamLeague
+} from '@prisma/client'
 import { LeagueService } from './abstract/league.service'
+import type { LeagueWithAssociationDTO } from './dto/league-with-association.dto'
+import type { RegisterLeagueAvaliabilityDTO } from './dto/register-league-availability.dto'
 
 @Controller('leagues')
 export class LeagueController {
   constructor(
     @Inject('LeagueService')
-    private readonly leagueService: LeagueService<League, Sponser>
+    private readonly leagueService: LeagueService<League, TeamLeague, Sponser>
   ) {}
 
   @Public()
@@ -27,6 +38,45 @@ export class LeagueController {
     try {
       return await this.leagueService.getLeagues(page, limit)
     } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Roles(Role.Manager)
+  @Get('validation')
+  async checkTeamRosterCertifications(
+    @Req() req: AuthenticatedRequest
+  ): Promise<RegisterLeagueAvaliabilityDTO> {
+    try {
+      return await this.leagueService.checkTeamRosterCertifications(req.user.id)
+    } catch (error) {
+      console.log(error)
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Roles(Role.Manager)
+  @Get('joinable')
+  async getJoinableLeagues(
+    @Query('limit', new ParseIntPipe({ optional: true })) limit?: number
+  ): Promise<LeagueWithAssociationDTO[]> {
+    try {
+      return await this.leagueService.getJoinableLeagues(limit)
+    } catch (error) {
+      console.log(error)
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Roles(Role.Manager)
+  @Get('requests')
+  async getTeamJoinLeagueRequests(
+    @Req() req: AuthenticatedRequest
+  ): Promise<TeamLeague[]> {
+    try {
+      return await this.leagueService.getTeamJoinLeagueRequests(req.user.id)
+    } catch (error) {
+      console.log(error)
       businessExceptionBinder(error)
     }
   }
@@ -76,6 +126,34 @@ export class LeagueController {
         limit
       )
     } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Roles(Role.Manager)
+  @Post(':leagueId/request-join')
+  async requestJoinLeague(
+    @Req() req: AuthenticatedRequest,
+    @Param('leagueId', ParseIntPipe) leagueId: number
+  ): Promise<TeamLeague> {
+    try {
+      return await this.leagueService.requestJoinLeague(leagueId, req.user.id)
+    } catch (error) {
+      console.log(error)
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Roles(Role.Manager)
+  @Post(':leagueId/retry-join')
+  async retryJoinLeague(
+    @Req() req: AuthenticatedRequest,
+    @Param('leagueId', ParseIntPipe) leagueId: number
+  ): Promise<TeamLeague> {
+    try {
+      return await this.leagueService.retryJoinLeague(leagueId, req.user.id)
+    } catch (error) {
+      console.log(error)
       businessExceptionBinder(error)
     }
   }

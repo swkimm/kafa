@@ -7,7 +7,9 @@ import type { AccountCertificationService } from '../interface/account-certifica
 import { AccountCertificationServiceImpl } from '../service/account-certification.service'
 
 describe('AccountCertificationService', () => {
-  const mockAuthService = {}
+  const mockAccountCredentialService = {
+    checkCredential: sinon.stub()
+  }
   const db = {}
   const mockFileStorageService = {
     uploadObject: sinon.stub(),
@@ -24,8 +26,8 @@ describe('AccountCertificationService', () => {
           useClass: AccountCertificationServiceImpl
         },
         {
-          provide: 'AuthService',
-          useValue: mockAuthService
+          provide: 'AccountCredentialService',
+          useValue: mockAccountCredentialService
         },
         {
           provide: PrismaService,

@@ -45,9 +45,10 @@ export class UpdateTeamServiceImpl
 
   async updateTeamProfile(
     teamDTO: UpdateTeamDTO,
-    teamId: number
+    managerId: number
   ): Promise<Team> {
     try {
+      const { teamId } = await this.accountService.getAccountProfile(managerId)
       return await this.prismaService.team.update({
         where: {
           id: teamId
@@ -57,6 +58,9 @@ export class UpdateTeamServiceImpl
         }
       })
     } catch (error) {
+      if (error instanceof BusinessException) {
+        throw error
+      }
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'

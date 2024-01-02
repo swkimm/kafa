@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import {
   EntityNotExistException,
+  ParameterValidationException,
   UnexpectedException
 } from '@/common/exception/business.exception'
 import { PrismaService } from '@/prisma/prisma.service'
-import { Prisma, type TeamLeague } from '@prisma/client'
+import { LeagueApplyStatus, Prisma, type TeamLeague } from '@prisma/client'
 import type { GetTeamLeagueService } from '../interface/get-team-league.service.interface'
 
 /**
@@ -16,12 +17,16 @@ export class GetTeamLeagueServiceImpl
 {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async getTeamLeaguesByLeagueId(leagueId: number): Promise<TeamLeague[]> {
+  async getTeamLeaguesByLeagueId(
+    leagueId: number,
+    option = 'Approved'
+  ): Promise<TeamLeague[]> {
     try {
       await this.checkLeagueId(leagueId)
       return await this.prismaService.teamLeague.findMany({
         where: {
-          leagueId
+          leagueId,
+          applyStatus: this.transFormStatus(option)
         }
       })
     } catch (error) {
@@ -35,12 +40,16 @@ export class GetTeamLeagueServiceImpl
     }
   }
 
-  async getTeamLeaguesByTeamId(teamId: number): Promise<TeamLeague[]> {
+  async getTeamLeaguesByTeamId(
+    teamId: number,
+    option = 'Approved'
+  ): Promise<TeamLeague[]> {
     try {
       await this.checkTeamId(teamId)
       return await this.prismaService.teamLeague.findMany({
         where: {
-          teamId
+          teamId,
+          applyStatus: this.transFormStatus(option)
         }
       })
     } catch (error) {
@@ -49,6 +58,28 @@ export class GetTeamLeagueServiceImpl
         error.code === 'P2025'
       ) {
         throw new EntityNotExistException('teamId')
+      }
+      throw new UnexpectedException(error)
+    }
+  }
+
+  async getTeamLeague(teamId: number, leagueId: number): Promise<TeamLeague> {
+    try {
+      return await this.prismaService.teamLeague.findUniqueOrThrow({
+        where: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          teamId_leagueId: {
+            teamId,
+            leagueId
+          }
+        }
+      })
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2025'
+      ) {
+        throw new EntityNotExistException('teamId or leagueId')
       }
       throw new UnexpectedException(error)
     }
@@ -82,5 +113,15 @@ export class GetTeamLeagueServiceImpl
         id: teamId
       }
     })
+  }
+
+  private transFormStatus(option: string): LeagueApplyStatus {
+    try {
+      return LeagueApplyStatus[option]
+    } catch (error) {
+      throw new ParameterValidationException(
+        'option 프로퍼티에 유효하지 않은 값이 있습니다'
+      )
+    }
   }
 }

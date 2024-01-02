@@ -2,12 +2,19 @@ import { Inject, Injectable } from '@nestjs/common'
 import {
   BusinessException,
   EntityNotExistException,
-  UnexpectedException
+  UnexpectedException,
+  UnverifiedException
 } from '@/common/exception/business.exception'
 import { PrismaService } from '@/prisma/prisma.service'
 import { FileStorageService } from '@/storage/interface/file-storage.service.interface'
-import { Prisma, type AccountCertification } from '@prisma/client'
+import {
+  Prisma,
+  type AccountCertification,
+  type AccountCredential,
+  Role
+} from '@prisma/client'
 import type { AccountCertificationService } from '../interface/account-certification.service.interface'
+import { AccountCredentialService } from '../interface/account-credential.service.interface'
 
 @Injectable()
 export class AccountCertificationServiceImpl
@@ -16,14 +23,19 @@ export class AccountCertificationServiceImpl
   constructor(
     private readonly prismaService: PrismaService,
     @Inject('FileStorageService')
-    private readonly fileStorageService: FileStorageService
+    private readonly fileStorageService: FileStorageService,
+    @Inject('AccountCredentialService')
+    private readonly accountCredentialService: AccountCredentialService<AccountCredential>
   ) {}
 
   async getCertification(accountId: number): Promise<AccountCertification> {
     try {
       return await this.prismaService.accountCertification.findUniqueOrThrow({
         where: {
-          accountId
+          accountId,
+          Account: {
+            role: Role.User
+          }
         }
       })
     } catch (error) {
@@ -42,6 +54,13 @@ export class AccountCertificationServiceImpl
     accountId: number
   ): Promise<AccountCertification> {
     try {
+      const credentialExist =
+        await this.accountCredentialService.checkCredential(accountId)
+
+      if (!credentialExist) {
+        throw new UnverifiedException('account credential')
+      }
+
       const certificaionExist = await this.checkCertification(accountId)
 
       if (certificaionExist) {
@@ -56,7 +75,10 @@ export class AccountCertificationServiceImpl
 
       return await this.prismaService.accountCertification.upsert({
         where: {
-          accountId
+          accountId,
+          Account: {
+            role: Role.User
+          }
         },
         update: {
           fileUrl: url
@@ -80,7 +102,10 @@ export class AccountCertificationServiceImpl
       const certification =
         await this.prismaService.accountCertification.findUnique({
           where: {
-            accountId
+            accountId,
+            Account: {
+              role: Role.User
+            }
           }
         })
 

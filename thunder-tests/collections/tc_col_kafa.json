@@ -605,6 +605,139 @@
             "containerId": "1c95f201-1598-4cf9-bd9e-4771d6bf86ea",
             "created": "2023-12-21T08:52:20.999Z",
             "sortNum": 890000
+        },
+        {
+            "_id": "27d708eb-61a8-4dfc-80cb-c59b39ccf159",
+            "name": "Roster",
+            "containerId": "",
+            "created": "2023-12-21T17:14:10.204Z",
+            "sortNum": 322500
+        },
+        {
+            "_id": "c7e22dd6-b5a1-48e0-b35e-c99c1438732f",
+            "name": "Public",
+            "containerId": "27d708eb-61a8-4dfc-80cb-c59b39ccf159",
+            "created": "2023-12-21T17:14:27.113Z",
+            "sortNum": 910000
+        },
+        {
+            "_id": "c08cf838-0382-4972-8da8-392528cd0eea",
+            "name": "getRoster",
+            "containerId": "c7e22dd6-b5a1-48e0-b35e-c99c1438732f",
+            "created": "2023-12-21T17:14:36.714Z",
+            "sortNum": 920000
+        },
+        {
+            "_id": "35d0a883-069b-4fa7-b413-95d5c6c7cd25",
+            "name": "getTeamRostersByLeagueId",
+            "containerId": "c7e22dd6-b5a1-48e0-b35e-c99c1438732f",
+            "created": "2023-12-21T17:15:51.062Z",
+            "sortNum": 940000
+        },
+        {
+            "_id": "547ccae1-9867-483d-bed7-d4f59d09b901",
+            "name": "Manager",
+            "containerId": "27d708eb-61a8-4dfc-80cb-c59b39ccf159",
+            "created": "2023-12-26T08:01:47.079Z",
+            "sortNum": 950000
+        },
+        {
+            "_id": "0b5bb7b1-9d43-4a6a-b5f0-542a91dc6d1c",
+            "name": "createRoster",
+            "containerId": "547ccae1-9867-483d-bed7-d4f59d09b901",
+            "created": "2023-12-26T08:02:02.084Z",
+            "sortNum": 970000
+        },
+        {
+            "_id": "c41e8d2c-31b0-4dff-8284-d399464124ce",
+            "name": "getTeamRosters",
+            "containerId": "c7e22dd6-b5a1-48e0-b35e-c99c1438732f",
+            "created": "2023-12-27T12:13:53.605Z",
+            "sortNum": 980000
+        },
+        {
+            "_id": "7733569c-f8bc-4560-aa3e-75f2ebe21a55",
+            "name": "updateRoster",
+            "containerId": "547ccae1-9867-483d-bed7-d4f59d09b901",
+            "created": "2023-12-27T12:14:36.636Z",
+            "sortNum": 990000
+        },
+        {
+            "_id": "173304dd-4e99-40a4-bec3-a35eca013088",
+            "name": "deleteRoster",
+            "containerId": "547ccae1-9867-483d-bed7-d4f59d09b901",
+            "created": "2023-12-27T12:14:41.963Z",
+            "sortNum": 1000000
+        },
+        {
+            "_id": "14c6d020-9b9b-426b-9f80-e415a5b2fc74",
+            "name": "Normal",
+            "containerId": "27d708eb-61a8-4dfc-80cb-c59b39ccf159",
+            "created": "2023-12-27T12:14:58.668Z",
+            "sortNum": 930000
+        },
+        {
+            "_id": "3a0f053a-8178-4427-ba0a-e58a85a4cc83",
+            "name": "getConnectableRosters",
+            "containerId": "14c6d020-9b9b-426b-9f80-e415a5b2fc74",
+            "created": "2023-12-27T12:15:24.208Z",
+            "sortNum": 1020000
+        },
+        {
+            "_id": "4767d849-34da-4356-b682-bce85cf14ca0",
+            "name": "connectRoster",
+            "containerId": "14c6d020-9b9b-426b-9f80-e415a5b2fc74",
+            "created": "2023-12-27T12:15:47.059Z",
+            "sortNum": 1030000
+        },
+        {
+            "_id": "f166c36b-72cf-4935-a3e8-1cef1eaeeb7f",
+            "name": "requestCreateRoster",
+            "containerId": "14c6d020-9b9b-426b-9f80-e415a5b2fc74",
+            "created": "2023-12-27T12:16:00.420Z",
+            "sortNum": 1040000
+        },
+        {
+            "_id": "f9fa2b14-4e3e-4deb-a621-c5f34d622d94",
+            "name": "getCreateRosterRequests",
+            "containerId": "547ccae1-9867-483d-bed7-d4f59d09b901",
+            "created": "2023-12-27T12:16:23.324Z",
+            "sortNum": 1050000
+        },
+        {
+            "_id": "6153755c-7c70-4619-b3da-68346b22d228",
+            "name": "approveCreateRosterRequest",
+            "containerId": "547ccae1-9867-483d-bed7-d4f59d09b901",
+            "created": "2023-12-27T12:17:08.475Z",
+            "sortNum": 1060000
+        },
+        {
+            "_id": "d6c0d6df-c357-41f6-a77f-abdcb878fb84",
+            "name": "rejectCreateRosterRequest",
+            "containerId": "547ccae1-9867-483d-bed7-d4f59d09b901",
+            "created": "2023-12-27T12:17:28.468Z",
+            "sortNum": 1070000
+        },
+        {
+            "_id": "7766f44c-7107-4380-bf67-81af5b2b4d45",
+            "name": "Manager",
+            "containerId": "ef1eb5e0-88ae-4bd0-bafb-816722152593",
+            "created": "2023-12-28T09:01:15.492Z",
+            "sortNum": 525000
+        },
+        {
+            "_id": "ce98c588-906e-41b3-a929-f637c606b1b1",
+            "name": "checkTeamRosterCertifications",
+            "containerId": "7766f44c-7107-4380-bf67-81af5b2b4d45",
+            "created": "2023-12-28T09:01:35.133Z",
+            "sortNum": 1090000
+        },
+        {
+            "_id": "0ede2ba7-f879-4b21-b89d-f4caebab38df",
+            "name": "requestJoinLeague",
+            "containerId": "7766f44c-7107-4380-bf67-81af5b2b4d45",
+            "created": "2023-12-28T09:01:47.087Z",
+            "sortNum": 1100000
         }
     ],
     "requests": [
@@ -676,10 +809,17 @@
             "method": "GET",
             "sortNum": 10000,
             "created": "2023-12-12T06:08:21.724Z",
-            "modified": "2023-12-12T08:55:53.837Z",
+            "modified": "2023-12-29T08:25:21.901Z",
             "headers": [],
             "params": [],
-            "tests": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ],
             "docs": "## [User+] Logout\n\n### URI\nGET /auth/reissue\n\n### Description\n로그아웃\n\n### Body\n**void**\n\n### Return Type\n**void**\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태에서 시도할 경우 발생|",
             "preReq": {
                 "runRequests": [
@@ -693,38 +833,10 @@
             }
         },
         {
-            "_id": "7e1bca30-6fab-4b37-87df-856f6a7c7781",
-            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
-            "containerId": "",
-            "name": "TEST",
-            "url": "/test",
-            "method": "GET",
-            "sortNum": 40000,
-            "created": "2023-12-12T06:14:04.569Z",
-            "modified": "2023-12-12T13:46:57.072Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "200"
-                },
-                {
-                    "type": "res-body",
-                    "custom": "",
-                    "action": "contains",
-                    "value": "ok"
-                }
-            ],
-            "docs": "## [TEST] CONNECTION TEST\n\nAPI 서버 연결 테스트 및 ECS Service Task의 Health Check 용도로 사용합니다."
-        },
-        {
             "_id": "142ca2e0-3862-4835-8851-cabae72dc160",
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
-            "name": "login as user",
+            "name": "login as user01",
             "url": "/auth/login",
             "method": "POST",
             "sortNum": 60000,
@@ -750,39 +862,12 @@
                     "action": "setto",
                     "value": "{{refresh_token}}"
                 }
-            ]
-        },
-        {
-            "_id": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
-            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
-            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
-            "name": "login as manager",
-            "url": "/auth/login",
-            "method": "POST",
-            "sortNum": 70000,
-            "created": "2023-12-12T06:51:59.087Z",
-            "modified": "2023-12-12T10:18:16.267Z",
-            "headers": [],
-            "params": [],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"username\": \"manager01\",\n  \"password\": \"trust@1234\"\n}",
-                "form": []
-            },
-            "tests": [
-                {
-                    "type": "set-env-var",
-                    "custom": "header.authorization",
-                    "action": "setto",
-                    "value": "{{access_token}}"
-                },
-                {
-                    "type": "set-env-var",
-                    "custom": "cookie.refresh_token",
-                    "action": "setto",
-                    "value": "{{refresh_token}}"
+            ],
+            "preReq": {
+                "options": {
+                    "skipRequest": true
                 }
-            ]
+            }
         },
         {
             "_id": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
@@ -814,7 +899,12 @@
                     "action": "setto",
                     "value": "{{refresh_token}}"
                 }
-            ]
+            ],
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
         },
         {
             "_id": "c0e48b7b-ad03-4901-9f60-cf18142d927c",
@@ -829,7 +919,12 @@
             "headers": [],
             "params": [],
             "tests": [],
-            "docs": "## [권한] 이름\n\n### URI\nHTTP METHOD url\n\n### Description\n간단한 설명\n\n### Query String?\n|Name|Type|Description|\n|---|----|-------|\n\n### Query Parameter?\n|Name|Type|Description|\n|---|----|-------|\n\n### Body\n**void**\nor\n|Name|Type|Description|\n|---|----|-------|\n\n### Return Type\n**void**\nor\n|Name|Type|Description|\n|---|----|-------|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n\n### Others?\n기타 사항"
+            "docs": "## [권한] 이름\n\n### URI\nHTTP METHOD url\n\n### Description\n간단한 설명\n\n### Query String?\n|Name|Type|Description|\n|---|----|-------|\n\n### Query Parameter?\n|Name|Type|Description|\n|---|----|-------|\n\n### Body\n**void**\nor\n|Name|Type|Description|\n|---|----|-------|\n\n### Return Type\n**void**\nor\n|Name|Type|Description|\n|---|----|-------|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n\n### Others?\n기타 사항",
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
         },
         {
             "_id": "d00a2af7-68bc-412b-b89b-0b821f764a8e",
@@ -840,7 +935,7 @@
             "method": "POST",
             "sortNum": 100000,
             "created": "2023-12-12T07:27:22.791Z",
-            "modified": "2023-12-12T15:22:37.268Z",
+            "modified": "2023-12-29T08:31:03.947Z",
             "headers": [],
             "params": [],
             "body": {
@@ -848,8 +943,37 @@
                 "raw": "{\n  \"name\": \"test_user\",\n  \"username\": \"test01\",\n  \"password\": \"trust@1234\",\n  \"email\": \"toby.park@humantrust.one\"\n}",
                 "form": []
             },
-            "tests": [],
-            "docs": "## [Public] RegisterAccount\n\n### URI\nPOST /account\n\n### Description\n회원가입을 진행합니다.   \n*주의* Staging 환경에서 테스트시 전달한 이메일 주소로 인증메일이 발송됩니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name|string|이름|\n|username|string|아이디|\n|password|string|비밀번호|\n|email|string|이메일|\n\n### Return Type\n|name|type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|이름|\n|email|string|이메일|\n|profileImageUrl|string|프로필 이미지 주소|\n|role|string|권한|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|비밀번호 규칙 또는 아이디 규칙을 만족하지 못할 경우 발생|\n|409|Conflict|이미 존재하는 username 이나 email 을 전달한 경우 발생|\n\n### Others\n**비밀번호 규칙**\n- 8글자 이상\n- 숫자, 특수문자, 영문자 최소 1개 이상씩 포함\n\n**아이디 규칙**\n- 숫자와 영문자만으로 구성된 문자열"
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.name",
+                    "action": "equal",
+                    "value": "test_user"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.email",
+                    "action": "equal",
+                    "value": "toby.park@humantrust.one"
+                }
+            ],
+            "docs": "## [Public] RegisterAccount\n\n### URI\nPOST /account\n\n### Description\n회원가입을 진행합니다.   \n*주의* Staging 환경에서 테스트시 전달한 이메일 주소로 인증메일이 발송됩니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name|string|이름|\n|username|string|아이디|\n|password|string|비밀번호|\n|email|string|이메일|\n\n### Return Type\n|name|type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|이름|\n|email|string|이메일|\n|profileImageUrl|string|프로필 이미지 주소|\n|role|string|권한|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|비밀번호 규칙 또는 아이디 규칙을 만족하지 못할 경우 발생|\n|409|Conflict|이미 존재하는 username 이나 email 을 전달한 경우 발생|\n\n### Others\n**비밀번호 규칙**\n- 8글자 이상\n- 숫자, 특수문자, 영문자 최소 1개 이상씩 포함\n\n**아이디 규칙**\n- 숫자와 영문자만으로 구성된 문자열",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
         },
         {
             "_id": "7c231e46-9512-498e-9c33-90983014ab57",
@@ -886,12 +1010,12 @@
             "method": "POST",
             "sortNum": 120000,
             "created": "2023-12-12T08:19:30.909Z",
-            "modified": "2023-12-12T08:22:16.713Z",
+            "modified": "2023-12-29T08:31:39.304Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"test_user\",\n  \"username\": \"test01\",\n  \"password\": \"trust@1234\",\n  \"email\": \"toby.park@humantrust.one\"\n}",
+                "raw": "{\n  \"name\": \"test_user\",\n  \"username\": \"test01\",\n  \"password\": \"trust@1234\",\n  \"email\": \"user01@example.com\"\n}",
                 "form": []
             },
             "tests": [
@@ -905,7 +1029,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "d00a2af7-68bc-412b-b89b-0b821f764a8e",
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -1006,7 +1130,8 @@
                     }
                 ],
                 "options": {
-                    "clearCookies": true
+                    "clearCookies": true,
+                    "skipRequest": true
                 }
             }
         },
@@ -1232,7 +1357,10 @@
                         "triggerCondition": "run-always",
                         "triggerValue": ""
                     }
-                ]
+                ],
+                "options": {
+                    "skipRequest": true
+                }
             }
         },
         {
@@ -1689,7 +1817,7 @@
             "method": "DELETE",
             "sortNum": 330000,
             "created": "2023-12-12T10:39:41.304Z",
-            "modified": "2023-12-12T10:47:52.674Z",
+            "modified": "2023-12-29T05:14:50.067Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -1701,54 +1829,22 @@
                 },
                 {
                     "type": "json-query",
-                    "custom": "json.name",
+                    "custom": "json.id",
                     "action": "equal",
-                    "value": "user02"
+                    "value": "10"
                 }
             ],
             "docs": "## [User+] WithdrawAccount\n\n### URI\nDELETE /account\n\n### Description\n현재 로그인한 계정을 삭제합니다.\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|이름|\n|email|string|이메일 주소|\n|profileImgUrl|string?|프로필 이미지 주소|\n|role|string|권한|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태에서 요청을 전송한 경우 발생|\n\n### Others\n**Soft delete**  \n- 실제로 삭제되지 않고 계정을 비활성화 상태로 전환합니다.",
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "48e6bd8a-1000-4544-99dc-5920ad699726",
+                        "reqId": "5440a336-9176-47c0-a197-29e60e51122c",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
                     }
                 ]
             }
-        },
-        {
-            "_id": "48e6bd8a-1000-4544-99dc-5920ad699726",
-            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
-            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
-            "name": "login as user for delete test",
-            "url": "/auth/login",
-            "method": "POST",
-            "sortNum": 65000,
-            "created": "2023-12-12T10:42:44.529Z",
-            "modified": "2023-12-12T10:43:41.222Z",
-            "headers": [],
-            "params": [],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"username\": \"user02\",\n  \"password\": \"trust@1234\"\n}",
-                "form": []
-            },
-            "tests": [
-                {
-                    "type": "set-env-var",
-                    "custom": "header.authorization",
-                    "action": "setto",
-                    "value": "{{access_token}}"
-                },
-                {
-                    "type": "set-env-var",
-                    "custom": "cookie.refresh_token",
-                    "action": "setto",
-                    "value": "{{refresh_token}}"
-                }
-            ]
         },
         {
             "_id": "f1ace086-3568-441e-be8f-cda5fd87c900",
@@ -1939,7 +2035,7 @@
             "method": "GET",
             "sortNum": 400000,
             "created": "2023-12-12T13:04:39.806Z",
-            "modified": "2023-12-12T13:08:50.292Z",
+            "modified": "2023-12-29T03:51:45.318Z",
             "headers": [],
             "params": [
                 {
@@ -1953,7 +2049,14 @@
                     "isPath": false
                 }
             ],
-            "tests": []
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ]
         },
         {
             "_id": "6f4a6840-baa3-4583-b9aa-d6c5dce5fa60",
@@ -2055,7 +2158,7 @@
             "method": "POST",
             "sortNum": 460000,
             "created": "2023-12-12T13:23:27.147Z",
-            "modified": "2023-12-12T13:25:50.774Z",
+            "modified": "2023-12-29T08:25:10.320Z",
             "headers": [],
             "params": [],
             "body": {
@@ -2063,7 +2166,14 @@
                 "raw": "{\n  \"name\": \"association test\",\n  \"globalName\": \"association test\",\n  \"initial\": \"TEST\"\n}",
                 "form": []
             },
-            "tests": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
             "preReq": {
                 "runRequests": [
                     {
@@ -2152,11 +2262,11 @@
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "8ef8d8c8-949b-4d8e-aea9-c8a207e07d04",
             "name": "Success",
-            "url": "/admin/associations/2",
+            "url": "/admin/associations/7",
             "method": "PUT",
             "sortNum": 490000,
             "created": "2023-12-12T13:28:12.144Z",
-            "modified": "2023-12-12T13:39:43.494Z",
+            "modified": "2023-12-29T03:55:51.268Z",
             "headers": [],
             "params": [],
             "body": {
@@ -2182,7 +2292,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "reqId": "6f4a6840-baa3-4583-b9aa-d6c5dce5fa60",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -2271,7 +2381,7 @@
             "method": "PUT",
             "sortNum": 520000,
             "created": "2023-12-12T13:34:28.524Z",
-            "modified": "2023-12-12T13:36:47.815Z",
+            "modified": "2023-12-29T03:53:36.753Z",
             "headers": [],
             "params": [],
             "body": {
@@ -2290,7 +2400,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -2307,7 +2417,7 @@
             "method": "PUT",
             "sortNum": 530000,
             "created": "2023-12-12T13:34:38.158Z",
-            "modified": "2023-12-12T13:37:10.316Z",
+            "modified": "2023-12-29T08:25:34.333Z",
             "headers": [],
             "params": [],
             "body": {
@@ -2315,7 +2425,14 @@
                 "raw": "{\n  \"parentId\": 1000\n}",
                 "form": []
             },
-            "tests": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
             "preReq": {
                 "runRequests": [
                     {
@@ -2332,11 +2449,11 @@
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "44af70c6-2a02-488e-bca1-c559cb9d32b7",
             "name": "Success",
-            "url": "/admin/associations/4",
+            "url": "/admin/associations/7",
             "method": "DELETE",
             "sortNum": 540000,
             "created": "2023-12-12T13:37:47.150Z",
-            "modified": "2023-12-12T13:40:42.994Z",
+            "modified": "2023-12-29T03:56:17.878Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -2348,9 +2465,9 @@
                 },
                 {
                     "type": "json-query",
-                    "custom": "json.name",
+                    "custom": "json.id",
                     "action": "equal",
-                    "value": "association test"
+                    "value": "7"
                 }
             ],
             "docs": "## [Admin] DeleteAssociation\n\n### URI\nDELETE /associations/[:id]\n\n### Description\n\b협회를 삭제합니다.\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|id|number|협회 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|식별자|\n|name|string|협회 이름|\n|globalName|string|협회 영어 이름|\n|initial|string|협회 이니셜|\n|profileImgUrl|string?|협회 프로필 이미지 주소|\n|parentId|number?|상위 협회 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|id 쿼리 파라미터에 올바르지 않은 값이 포함된 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태에서 해당 요청을 보낼 시 발생|\n|403|Forbidden|Admin 권한이 아닌 계정으로 해당 요청을 보낼 시 발생|\n|404|Not Found|존재하지 않는 협회의 식별자를 부모 협회 식별자로 전달한 경우 발생|",
@@ -2436,7 +2553,7 @@
             "method": "DELETE",
             "sortNum": 570000,
             "created": "2023-12-12T13:41:14.608Z",
-            "modified": "2023-12-12T13:43:37.018Z",
+            "modified": "2023-12-29T03:57:04.238Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -2450,7 +2567,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -2684,7 +2801,7 @@
             "method": "GET",
             "sortNum": 640000,
             "created": "2023-12-12T14:35:59.651Z",
-            "modified": "2023-12-12T14:48:29.110Z",
+            "modified": "2023-12-29T08:49:50.920Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -2698,7 +2815,7 @@
                     "type": "json-query",
                     "custom": "json",
                     "action": "count",
-                    "value": "3"
+                    "value": "6"
                 }
             ],
             "docs": "## [Public] GetTeamsByLeagueId\n\n### URI\nGET /teams/leagues/[:leagueId]\n\n### Description\n해당 리그에 참여중인 팀 목록을 불러옵니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|globalName|string|팀 영문 이름|\n|hometown|string|팀 연고지|\n|initial|string|팀 이니셜|\n|establisehdAt|Date|팀 설립연도|\n|color|string|팀 메인컬리|\n|subColor|string?|팀 서브컬러|\n|profileImgUrl|팀 프로필 이미지 주소|string?|\n|backgroundImgUrl|팀 배경 이미지 주소|string?|\n|deletedAt|Date?|팀 삭제 날짜|\n|status|string|팀 상태|\n|createdAt|Date|팀 객체 등록 날짜|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|leagueId 쿼리 파라미터로 유효하지 않은 값을 전달할 경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 전달할 경우 발생|\n\n### Others\nstatus -  팀 활성화 상태를 나타냅니다\n- Enabled\n- Disabled",
@@ -2784,7 +2901,7 @@
             "method": "GET",
             "sortNum": 670000,
             "created": "2023-12-12T14:49:45.112Z",
-            "modified": "2023-12-12T14:54:04.330Z",
+            "modified": "2023-12-29T08:50:01.644Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -2798,7 +2915,7 @@
                     "type": "json-query",
                     "custom": "json",
                     "action": "count",
-                    "value": "4"
+                    "value": "6"
                 }
             ],
             "docs": "## [Public] GetTeamsByAssociationId\n\n### URI\nGET /teams/leagues/[:associationId]\n\n### Description\n해당 협회에 소속된 팀 목록을 불러옵니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|associationId|number|리그 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|globalName|string|팀 영문 이름|\n|hometown|string|팀 연고지|\n|initial|string|팀 이니셜|\n|establisehdAt|Date|팀 설립연도|\n|color|string|팀 메인컬리|\n|subColor|string?|팀 서브컬러|\n|profileImgUrl|팀 프로필 이미지 주소|string?|\n|backgroundImgUrl|팀 배경 이미지 주소|string?|\n|deletedAt|Date?|팀 삭제 날짜|\n|status|string|팀 상태|\n|createdAt|Date|팀 객체 등록 날짜|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|associationId 쿼리 파라미터로 유효하지 않은 값을 전달할 경우 발생|\n|404|Not Found|존재하지 않는 협회의 식별자를 전달할 경우 발생|\n\n### Others\nstatus -  팀 활성화 상태를 나타냅니다\n- Enabled\n- Disabled",
@@ -2876,38 +2993,6 @@
             }
         },
         {
-            "_id": "84d653b9-5667-4a34-8953-2aed0e2b1463",
-            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
-            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
-            "name": "login as user for create-team-request",
-            "url": "/auth/login",
-            "method": "POST",
-            "sortNum": 67500,
-            "created": "2023-12-12T14:56:53.608Z",
-            "modified": "2023-12-12T14:58:35.670Z",
-            "headers": [],
-            "params": [],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"username\": \"user03\",\n  \"password\": \"trust@1234\"\n}",
-                "form": []
-            },
-            "tests": [
-                {
-                    "type": "set-env-var",
-                    "custom": "header.authorization",
-                    "action": "setto",
-                    "value": "{{access_token}}"
-                },
-                {
-                    "type": "set-env-var",
-                    "custom": "cookie.refresh_token",
-                    "action": "setto",
-                    "value": "{{refresh_token}}"
-                }
-            ]
-        },
-        {
             "_id": "a238f681-cc75-48dc-91b2-96fafdc20934",
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "f66c0790-3904-4b37-aef2-aa1fc54a1037",
@@ -2916,7 +3001,7 @@
             "method": "GET",
             "sortNum": 710000,
             "created": "2023-12-12T15:02:48.186Z",
-            "modified": "2023-12-13T08:17:04.426Z",
+            "modified": "2023-12-29T08:51:44.032Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -2930,7 +3015,7 @@
                     "type": "json-query",
                     "custom": "json",
                     "action": "count",
-                    "value": "3"
+                    "value": "1"
                 }
             ],
             "docs": "## [User] GetAccountRegisterTeamRequests\n\n### URI\nGET /teams/requests\n\n### Description\n현재 로그인한 계정에서 신청한 팀 생성 요청 목록을 불러옵니다.\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 등록 요청 식별자|\n|accountId|number|팀 등록 요청 생성 계정 식별자|\n|username|string|희망하는 팀 계정 아이디|\n|data|*TeamDTO|등록할 팀 정보|\n|createdAt|Date|팀 등록 요청 생성 시간|\n|rejectReason|string?|팀 등록 요청 반려 사유|\n|status|string|팀 등록 요청 처리 상태|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n\n### Ohters\n**status**: 팀 등록 요청 처리 상태를 나타냅니다.\n- Approved: 승인됨\n- Rejected: 반려됨\n- Received: 접수됨\n\n**TeamDTO**\n|Name|Type|Description|\n|---|----|-------|\n|associationId|number|소속된 협회 식별자|\n|name|string|팀 명|\n|globalName|string|팀 영문 명|\n|hometown|string|팀 연고지|\n|initial|string|팀 영문 이니셜|\n|establishedAt|Date|팀 창단연도|\n|color|string|팀 메인 컬러|\n|subColor?|string|팀 서브 컬러|",
@@ -2977,38 +3062,6 @@
             }
         },
         {
-            "_id": "d1f4650d-fb97-4bc0-992a-f2e751962712",
-            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
-            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
-            "name": "login as unverified user for create-team-request",
-            "url": "/auth/login",
-            "method": "POST",
-            "sortNum": 68750,
-            "created": "2023-12-12T15:23:05.706Z",
-            "modified": "2023-12-12T15:23:33.288Z",
-            "headers": [],
-            "params": [],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"username\": \"user04\",\n  \"password\": \"trust@1234\"\n}",
-                "form": []
-            },
-            "tests": [
-                {
-                    "type": "set-env-var",
-                    "custom": "header.authorization",
-                    "action": "setto",
-                    "value": "{{access_token}}"
-                },
-                {
-                    "type": "set-env-var",
-                    "custom": "cookie.refresh_token",
-                    "action": "setto",
-                    "value": "{{refresh_token}}"
-                }
-            ]
-        },
-        {
             "_id": "1912a6bb-fb11-49cd-bbca-43ad75b8ac31",
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "88751974-ca2a-43fe-bf52-5920638352ba",
@@ -3017,7 +3070,7 @@
             "method": "POST",
             "sortNum": 730000,
             "created": "2023-12-13T05:18:02.846Z",
-            "modified": "2023-12-13T07:44:17.347Z",
+            "modified": "2023-12-29T08:53:21.585Z",
             "headers": [],
             "params": [],
             "body": {
@@ -3036,7 +3089,7 @@
                     "type": "json-query",
                     "custom": "json.username",
                     "action": "equal",
-                    "value": "team1234"
+                    "value": "test1234"
                 },
                 {
                     "type": "json-query",
@@ -3049,7 +3102,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "84d653b9-5667-4a34-8953-2aed0e2b1463",
+                        "reqId": "2c00d407-4395-46da-b2da-711e8512625d",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -3066,7 +3119,7 @@
             "method": "POST",
             "sortNum": 740000,
             "created": "2023-12-13T05:58:49.075Z",
-            "modified": "2023-12-13T05:59:40.631Z",
+            "modified": "2023-12-29T08:53:43.333Z",
             "headers": [],
             "params": [],
             "body": {
@@ -3085,7 +3138,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "84d653b9-5667-4a34-8953-2aed0e2b1463",
+                        "reqId": "2c00d407-4395-46da-b2da-711e8512625d",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -3102,7 +3155,7 @@
             "method": "POST",
             "sortNum": 750000,
             "created": "2023-12-13T06:01:32.752Z",
-            "modified": "2023-12-13T06:02:14.229Z",
+            "modified": "2023-12-29T08:54:07.787Z",
             "headers": [],
             "params": [],
             "body": {
@@ -3121,7 +3174,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "d1f4650d-fb97-4bc0-992a-f2e751962712",
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -3138,7 +3191,7 @@
             "method": "POST",
             "sortNum": 760000,
             "created": "2023-12-13T06:02:28.940Z",
-            "modified": "2023-12-13T06:03:59.286Z",
+            "modified": "2023-12-29T08:54:31.208Z",
             "headers": [],
             "params": [],
             "body": {
@@ -3157,7 +3210,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "84d653b9-5667-4a34-8953-2aed0e2b1463",
+                        "reqId": "a62ee115-9863-44ee-a682-0fb8ec3a3d32",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -3174,7 +3227,7 @@
             "method": "POST",
             "sortNum": 770000,
             "created": "2023-12-13T06:03:34.308Z",
-            "modified": "2023-12-13T06:04:37.991Z",
+            "modified": "2023-12-29T08:54:43.557Z",
             "headers": [],
             "params": [],
             "body": {
@@ -3193,7 +3246,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "84d653b9-5667-4a34-8953-2aed0e2b1463",
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -3210,7 +3263,7 @@
             "method": "PUT",
             "sortNum": 750000,
             "created": "2023-12-13T06:05:26.187Z",
-            "modified": "2023-12-13T06:19:02.120Z",
+            "modified": "2023-12-29T08:55:43.503Z",
             "headers": [],
             "params": [],
             "body": {
@@ -3242,7 +3295,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -3259,7 +3312,7 @@
             "method": "PUT",
             "sortNum": 760000,
             "created": "2023-12-13T06:19:23.574Z",
-            "modified": "2023-12-13T06:20:23.560Z",
+            "modified": "2023-12-29T08:56:50.498Z",
             "headers": [],
             "params": [],
             "body": {
@@ -3278,7 +3331,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -3525,7 +3578,7 @@
             "method": "PUT",
             "sortNum": 820000,
             "created": "2023-12-13T07:09:39.194Z",
-            "modified": "2023-12-13T08:30:37.334Z",
+            "modified": "2023-12-29T09:07:38.238Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -3539,7 +3592,7 @@
                     "type": "json-query",
                     "custom": "json.name",
                     "action": "equal",
-                    "value": "team_r_03"
+                    "value": "team request three"
                 },
                 {
                     "type": "json-query",
@@ -4629,7 +4682,7 @@
             "method": "POST",
             "sortNum": 1050000,
             "created": "2023-12-13T09:41:44.183Z",
-            "modified": "2023-12-13T09:42:05.465Z",
+            "modified": "2023-12-29T08:12:38.917Z",
             "headers": [],
             "params": [],
             "body": {
@@ -4642,7 +4695,7 @@
                     "type": "res-code",
                     "custom": "",
                     "action": "equal",
-                    "value": "403"
+                    "value": "404"
                 }
             ],
             "preReq": {
@@ -4941,11 +4994,11 @@
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "4844e1c9-50ad-4dd2-b748-722f14fa5402",
             "name": "Success",
-            "url": "/admin/leagues/1",
+            "url": "/admin/leagues/9",
             "method": "DELETE",
             "sortNum": 1070000,
             "created": "2023-12-13T10:37:58.933Z",
-            "modified": "2023-12-13T10:53:58.650Z",
+            "modified": "2023-12-29T08:16:32.076Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -4959,7 +5012,7 @@
                     "type": "json-query",
                     "custom": "json.id",
                     "action": "equal",
-                    "value": "1"
+                    "value": "9"
                 }
             ],
             "docs": "## [Admin] DeleteLeague\n\n### URI\nDELETE /admin/leagues/[:leagueId]\n\n### Description\n리그를 삭제 합니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그 명|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|associationId|number|리그를 주최하는 협회의 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값을 보낸 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태에서 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 전달할 경우 발생|",
@@ -5311,7 +5364,7 @@
             "name": "403: Forbidden",
             "url": "/admin/leagues/1",
             "method": "DELETE",
-            "sortNum": 1120000,
+            "sortNum": 1110000,
             "created": "2023-12-13T10:55:27.681Z",
             "modified": "2023-12-13T10:55:42.347Z",
             "headers": [],
@@ -5883,7 +5936,7 @@
             "method": "PUT",
             "sortNum": 1270000,
             "created": "2023-12-13T11:44:51.100Z",
-            "modified": "2023-12-13T11:45:16.349Z",
+            "modified": "2023-12-29T08:20:52.062Z",
             "headers": [],
             "params": [],
             "body": {
@@ -5902,7 +5955,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -6017,7 +6070,38 @@
             "method": "DELETE",
             "sortNum": 1280000,
             "created": "2023-12-13T11:48:43.073Z",
-            "modified": "2023-12-13T11:49:34.237Z",
+            "modified": "2023-12-29T08:21:41.995Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "72a4ed5b-d6f7-4002-80ee-a848d1d28d21",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "ebcf58b6-cab4-415b-b7f2-7d090a7829b6",
+            "name": "404: Not Found",
+            "url": "/admin/sponsers/1000",
+            "method": "DELETE",
+            "sortNum": 1290000,
+            "created": "2023-12-13T11:49:16.775Z",
+            "modified": "2023-12-29T08:50:41.754Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -6032,37 +6116,6 @@
                 "runRequests": [
                     {
                         "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
-                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
-                        "triggerCondition": "run-always",
-                        "triggerValue": ""
-                    }
-                ]
-            }
-        },
-        {
-            "_id": "72a4ed5b-d6f7-4002-80ee-a848d1d28d21",
-            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
-            "containerId": "ebcf58b6-cab4-415b-b7f2-7d090a7829b6",
-            "name": "404: Not Found",
-            "url": "/admin/sponsers/1",
-            "method": "DELETE",
-            "sortNum": 1290000,
-            "created": "2023-12-13T11:49:16.775Z",
-            "modified": "2023-12-13T11:49:16.775Z",
-            "headers": [],
-            "params": [],
-            "tests": [
-                {
-                    "type": "res-code",
-                    "custom": "",
-                    "action": "equal",
-                    "value": "403"
-                }
-            ],
-            "preReq": {
-                "runRequests": [
-                    {
-                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -6513,11 +6566,11 @@
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "7c48f912-8708-404c-9bf9-8d4272f5cc2a",
             "name": "Success",
-            "url": "/admin/games/4/score",
+            "url": "/admin/games/6/score",
             "method": "POST",
             "sortNum": 1440000,
             "created": "2023-12-18T07:08:34.444Z",
-            "modified": "2023-12-18T08:09:05.746Z",
+            "modified": "2023-12-29T08:47:44.237Z",
             "headers": [],
             "params": [],
             "body": {
@@ -6536,7 +6589,7 @@
                     "type": "json-query",
                     "custom": "json.gameId",
                     "action": "equal",
-                    "value": "4"
+                    "value": "6"
                 }
             ],
             "docs": "## [Admin] CreateScore\n\n### URI\nPOST /admin/games/[:gameId]/score\n\n### Description\n경기의 점수를 생성합니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|점수를 생성할 게임의 식별자|\n\n### Body\n**void**\n\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|경기의 식별자|\n|homeTeamScore|number?|홈 팀의 총점|\n|homeTeamQuarterScores|number[]|홈 팀의 쿼터별 점수|\n|awayTeamScore|number?|어웨이 팀의 총점|\n|awayTeamQuarterScores|number[]|어웨이 팀의 쿼터별 점수|\n|overtime|boolean?|연장 여부|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 잘못된 값이 있을 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 경기의 식별자를 전달할 경우 발생|\n|409|Conflict|이미 점수가 생성된 경기에 중복으로 해당 요청을 보낼 경우 발생|",
@@ -6560,12 +6613,12 @@
             "method": "PUT",
             "sortNum": 1460000,
             "created": "2023-12-18T07:46:23.391Z",
-            "modified": "2023-12-18T07:53:13.150Z",
+            "modified": "2023-12-29T08:03:20.235Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"leagueId\": 2,\n  \"stadium\": \"update test\",\n  \"result\": \"Draw\"\n}",
+                "raw": "{\n  \"leagueId\": 4,\n  \"stadium\": \"update test\",\n  \"result\": \"Draw\"\n}",
                 "form": []
             },
             "tests": [
@@ -6585,7 +6638,7 @@
                     "type": "json-query",
                     "custom": "json.leagueId",
                     "action": "equal",
-                    "value": "2"
+                    "value": "4"
                 },
                 {
                     "type": "json-query",
@@ -6621,7 +6674,7 @@
             "method": "PUT",
             "sortNum": 1470000,
             "created": "2023-12-18T07:53:41.370Z",
-            "modified": "2023-12-18T08:08:25.349Z",
+            "modified": "2023-12-29T08:48:23.638Z",
             "headers": [],
             "params": [],
             "body": {
@@ -6659,7 +6712,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "c959d7ca-5d84-4207-b38f-3f2908c6f6c2",
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -6672,11 +6725,11 @@
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "5c28607e-ab95-4e36-b686-99afd7dcfe8f",
             "name": "Success",
-            "url": "/admin/games/4",
+            "url": "/admin/games/7",
             "method": "DELETE",
             "sortNum": 1480000,
             "created": "2023-12-18T07:57:48.039Z",
-            "modified": "2023-12-18T08:28:28.800Z",
+            "modified": "2023-12-29T08:05:27.700Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -6690,7 +6743,7 @@
                     "type": "json-query",
                     "custom": "json.id",
                     "action": "equal",
-                    "value": "4"
+                    "value": "7"
                 }
             ],
             "docs": "## [Admin] DeleteGame\n\n### URI\nDELETE /admin/games/[:gameId]\n\n### Description\n경기를 삭제합니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|삭제할 경기의 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 포함될 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 전달할 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
@@ -6750,7 +6803,7 @@
             "method": "POST",
             "sortNum": 1500000,
             "created": "2023-12-18T08:14:52.826Z",
-            "modified": "2023-12-18T08:15:41.526Z",
+            "modified": "2023-12-29T08:32:27.825Z",
             "headers": [],
             "params": [],
             "body": {
@@ -6769,7 +6822,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -6957,11 +7010,11 @@
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "7c48f912-8708-404c-9bf9-8d4272f5cc2a",
             "name": "403: Forbidden",
-            "url": "/admin/games/abc/score",
+            "url": "/admin/games/1/score",
             "method": "POST",
             "sortNum": 1530000,
             "created": "2023-12-18T08:19:18.983Z",
-            "modified": "2023-12-18T08:19:34.411Z",
+            "modified": "2023-12-29T08:48:03.536Z",
             "headers": [],
             "params": [],
             "body": {
@@ -6980,7 +7033,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -7100,7 +7153,7 @@
             "method": "PUT",
             "sortNum": 1520000,
             "created": "2023-12-18T08:24:32.825Z",
-            "modified": "2023-12-18T08:24:46.466Z",
+            "modified": "2023-12-29T08:03:47.684Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -7114,7 +7167,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -7234,12 +7287,12 @@
             "_id": "a9974162-915e-4811-bb19-3c599553f1c4",
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "aca7aeb5-905c-45f6-9fbe-6abf4e2563e3",
-            "name": "403: Bad Request",
+            "name": "403: Forbidden",
             "url": "/admin/games/1/score",
             "method": "PUT",
             "sortNum": 1540000,
             "created": "2023-12-18T08:27:08.030Z",
-            "modified": "2023-12-18T08:27:30.030Z",
+            "modified": "2023-12-29T08:49:17.872Z",
             "headers": [],
             "params": [],
             "body": {
@@ -7258,7 +7311,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -7373,7 +7426,7 @@
             "method": "DELETE",
             "sortNum": 1550000,
             "created": "2023-12-18T08:29:52.731Z",
-            "modified": "2023-12-18T08:30:06.984Z",
+            "modified": "2023-12-29T08:04:23.926Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -7387,7 +7440,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "607efccd-e6b3-438d-bcc0-8e4fb99201a1",
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -7435,14 +7488,27 @@
             "method": "GET",
             "sortNum": 1570000,
             "created": "2023-12-20T14:45:49.071Z",
-            "modified": "2023-12-20T15:16:22.514Z",
+            "modified": "2023-12-29T05:15:39.839Z",
             "headers": [],
             "params": [],
-            "tests": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.accountId",
+                    "action": "equal",
+                    "value": "1"
+                }
+            ],
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "1f195351-b7da-4054-a27d-374fbd0edb56",
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -7459,7 +7525,7 @@
             "method": "POST",
             "sortNum": 1590000,
             "created": "2023-12-20T14:57:07.133Z",
-            "modified": "2023-12-20T14:59:18.740Z",
+            "modified": "2023-12-29T08:26:59.882Z",
             "headers": [],
             "params": [],
             "body": {
@@ -7473,7 +7539,20 @@
                     }
                 ]
             },
-            "tests": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.accountId",
+                    "action": "equal",
+                    "value": "1"
+                }
+            ],
             "preReq": {
                 "runRequests": [
                     {
@@ -7634,7 +7713,7 @@
             "method": "POST",
             "sortNum": 1660000,
             "created": "2023-12-21T09:07:50.919Z",
-            "modified": "2023-12-21T09:11:22.711Z",
+            "modified": "2023-12-29T07:50:43.823Z",
             "headers": [],
             "params": [],
             "body": {
@@ -7683,7 +7762,7 @@
             "method": "POST",
             "sortNum": 1670000,
             "created": "2023-12-21T09:13:48.332Z",
-            "modified": "2023-12-21T09:36:53.837Z",
+            "modified": "2023-12-29T07:52:26.116Z",
             "headers": [],
             "params": [],
             "body": {
@@ -7715,7 +7794,7 @@
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "6e8bb560-c722-470e-a16f-be0c3ea50822",
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -7773,15 +7852,936 @@
             }
         },
         {
-            "_id": "6e8bb560-c722-470e-a16f-be0c3ea50822",
+            "_id": "63f87b76-7200-4ab3-8a50-0a897f9a7d7b",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c08cf838-0382-4972-8da8-392528cd0eea",
+            "name": "Success",
+            "url": "/rosters/1",
+            "method": "GET",
+            "sortNum": 1700000,
+            "created": "2023-12-21T17:14:45.748Z",
+            "modified": "2024-01-02T09:25:47.260Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.id",
+                    "action": "equal",
+                    "value": "1"
+                }
+            ],
+            "docs": "## [Public] getRoster\n\n### URI\nGET /rosters/:rosterId\n\n### Description\n로스터 정보를 조회합니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|rosterId|number|조회할 로스터의 식별자|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문 이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n|rosterType|*RosterType|로스터 종류|\n|Athlete|*AthleteInfo?|선수 정보|\n|Team|*TeamInfo|팀 정보|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface AthteleInfo**\n|Name|Type|Description|\n|---|----|-------|\n|position|*PositionType|포지션 정보|\n|backNumber|number|등번호|\n|weight|number|몸무게(kg)|\n|height|number|키(cm)|\n\n**Interface PositionType**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n**Interface TeamInfo**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|profileImgUrl|string?|팀 프로필 이미지 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 포함될 경우 발생|\n|404|Not Found|존재하지 않는 로스터의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ],
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "5374337b-ba66-49d6-948f-1805f91e057a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "35d0a883-069b-4fa7-b413-95d5c6c7cd25",
+            "name": "Success",
+            "url": "/rosters/leagues/1/teams/1",
+            "method": "GET",
+            "sortNum": 1720000,
+            "created": "2023-12-21T17:15:57.468Z",
+            "modified": "2024-01-02T09:38:54.891Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ],
+            "docs": "## [Public] getTeamRostersByLeagueId\n\n### URI\nGET /rosters/leagues/[leagueId]/teams/[teamId]\n\n### Description\n특정 팀의 특정 리그에서의 로스터 목록을 조회합니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|조회할 리그의 식별자|\n|teamId|number|조회할 팀의 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문 이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n|rosterType|*RosterType|로스터 종류|\n|Athlete|*AthleteInfo?|선수 정보|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface AthteleInfo**\n|Name|Type|Description|\n|---|----|-------|\n|position|*PositionType|포지션 정보|\n|backNumber|number|등번호|\n\n**Interface PositionType**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 포함될 경우 발생|\n|404|Not Found|존재하지 않는 팀 또는 리그의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "3137f358-903f-4e16-bc04-c5550e15735a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0b5bb7b1-9d43-4a6a-b5f0-542a91dc6d1c",
+            "name": "Success (Roster)",
+            "url": "/rosters",
+            "method": "POST",
+            "sortNum": 1730000,
+            "created": "2023-12-26T08:02:11.748Z",
+            "modified": "2024-01-02T12:14:42.606Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"홍길순\",\n  \"globalName\": \"Hong Gilsoon\",\n  \"teamId\": 1,\n  \"registerYear\": 2020,\n  \"rosterType\": \"Staff\",\n  \"birthday\": \"2000-01-01\",\n  \"gender\": \"Female\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                }
+            ],
+            "docs": "## [Manager] CreateRoster\n\n### URI\nPOST /rosters\n\n### Description\n팀에 로스터를 생성하고 생성된 로스터를 반환합니다\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name|string|이름|\n|globalName|string|영문 이름|\n|teamId|number|팀 식별자|\n|registerYear|number|입부년도|\n|rosterType|*RosterType|로스터 종류|\n|birthday|DateTime|생년월일|\n|gender|*GenderType|성별|\n|position?|*Position|포지션 정보|\n|height?|number|키(cm)|\n|weight?|number|몸무게(kg)|\n|backNumber?|number|등 번호|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문이름|\n|rosterType|*RosterType|로스터 종류|\n|teamId|number|팀 식별자|\n|accountId|number|연결된 개인 계정 식별자|\n|registerYear|Date|입부년도|\n|profileImgUrl|string?|프로필 이미지 주소|\n|status|*RosterStatus|로스터 상태|\n\n**Enum GenderType**\n- Male (남성)\n- Female (여성)\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface Position**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|요청 Body에 유효하지 않은 값이 포함된 경우 발생|\n|401|Unauthorized|로그인하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정이나 다른팀의 식별자로 해당 요청을 보낼 경우 발생|\n\n### Others\n해당 API로 생성된 로스터는 **connectRoster** API 호출을 통해 개인 계정과 연결할 수 있습니다",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "9d4b8e2e-3947-449a-9a9c-1c0fd28b4792",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0b5bb7b1-9d43-4a6a-b5f0-542a91dc6d1c",
+            "name": "Success (Athlete)",
+            "url": "/rosters",
+            "method": "POST",
+            "sortNum": 1740000,
+            "created": "2023-12-26T08:02:19.819Z",
+            "modified": "2024-01-02T12:10:04.719Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"홍길동\",\n  \"globalName\": \"Hong Gildong\",\n  \"teamId\": 1,\n  \"registerYear\": 2019,\n  \"rosterType\": \"Athlete\",\n  \"birthday\": \"2000-01-01\",\n  \"gender\": \"Male\",\n  \"position\": {\n    \"offence\": \"QB\"\n  },\n  \"weight\": 92,\n  \"height\": 176,\n  \"backNumber\": 11\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "fedb6034-055f-4305-9fc8-87ba487240f1",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c41e8d2c-31b0-4dff-8284-d399464124ce",
+            "name": "Success",
+            "url": "/rosters/teams/1?page=1&limit=3",
+            "method": "GET",
+            "sortNum": 1770000,
+            "created": "2023-12-27T12:17:40.451Z",
+            "modified": "2024-01-02T09:37:57.641Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json",
+                    "action": "count",
+                    "value": "3"
+                }
+            ],
+            "docs": "## [Public] getTeamRosters\n\n### URI\nGET /rosters/teams/[:teamId]\n\n### Description\n특정 팀의\b 로스터 명단을 조회합니다\n**offset based pagination**이 적용되어 있습니다\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page|number|조회할 페이지 ( >= 1)|\n|limit?|number|한 번에 불러올 로스터 수 (default 10, >= 1)|\n|option?|*RosterStatus|조회할 로스터 상태 (default Enabled)|\n\n**Enum RosterStatus**\n- Enabled (활성화)\n- Graduate (졸업생)\n- Disabled (비활성화)\n- Verifying (등록 심사 중)\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|teamId|number|조회할 팀의 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문 이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n|rosterType|*RosterType|로스터 종류|\n|Athlete|*AthleteInfo?|선수 정보|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface AthteleInfo**\n|Name|Type|Description|\n|---|----|-------|\n|position|*PositionType|포지션 정보|\n|backNumber|number|등번호|\n\n**Interface PositionType**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|400|Bad Request|쿼리 파라미터 또는 쿼리 스트링에 유효하지 않은 값이 포함될 경우 발생|\n|404|Not Found|존재하지 않는 팀의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ],
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "7ebdba43-b58e-4ac9-a436-df1fdd62fd81",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "3a0f053a-8178-4427-ba0a-e58a85a4cc83",
+            "name": "Success",
+            "url": "/rosters/connectable",
+            "method": "GET",
+            "sortNum": 1780000,
+            "created": "2023-12-27T12:17:44.950Z",
+            "modified": "2024-01-02T11:27:04.825Z",
+            "headers": [],
+            "params": [],
+            "tests": [],
+            "docs": "## [Normal] getConnectableRosters\n\n### URI\nGET /rosters/connectable\n\n### Description\n\b현재 로그인한 개인 계정에서 연결 가능한 로스터 목록을 불러옵니다\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문 이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n|rosterType|*RosterType|로스터 종류|\n|Athlete|*AthleteInfo?|선수 정보|\n|Team|*TeamInfo|팀 정보|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface AthteleInfo**\n|Name|Type|Description|\n|---|----|-------|\n|position|*PositionType|포지션 정보|\n|backNumber|number|등번호|\n|weight|number|몸무게(kg)|\n|height|number|키(cm)|\n\n**Interface PositionType**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n**Interface TeamInfo**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|profileImgUrl|string?|팀 프로필 이미지 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|개인정보 인증을 완료하지 않은 계정에서 해당 요청을 보낼 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "2c00d407-4395-46da-b2da-711e8512625d",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ],
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "18000e1a-e5ab-4805-b708-fdf0abff5519",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4767d849-34da-4356-b682-bce85cf14ca0",
+            "name": "Success",
+            "url": "/rosters/7/connect",
+            "method": "POST",
+            "sortNum": 1790000,
+            "created": "2023-12-27T12:17:49.186Z",
+            "modified": "2024-01-02T11:29:22.897Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                }
+            ],
+            "docs": "## [Normal] \bconnectRoster\n\n### URI\nPOST /rosters/[:rosterId]/connect\n\n### Description\n\b현재 로그인한 개인 계정에 로스터 정보를 연결하고 연결된 로스터 정보를 불러옵니다\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문 이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n|rosterType|*RosterType|로스터 종류|\n|Athlete|*AthleteInfo?|선수 정보|\n|Team|*TeamInfo|팀 정보|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface AthteleInfo**\n|Name|Type|Description|\n|---|----|-------|\n|position|*PositionType|포지션 정보|\n|backNumber|number|등번호|\n|weight|number|몸무게(kg)|\n|height|number|키(cm)|\n\n**Interface PositionType**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n**Interface TeamInfo**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|profileImgUrl|string?|팀 프로필 이미지 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 포함될 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|개인정보 인증을 완료하지 않은 계정 또는 연결할 수 없는 로스터의 식별자로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 로스터의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "2c00d407-4395-46da-b2da-711e8512625d",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ],
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "7320c5fd-9f22-48cc-a8ab-07ad8b475d4d",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f166c36b-72cf-4935-a3e8-1cef1eaeeb7f",
+            "name": "Success",
+            "url": "/rosters/request",
+            "method": "POST",
+            "sortNum": 1800000,
+            "created": "2023-12-27T12:17:52.682Z",
+            "modified": "2024-01-02T11:53:39.784Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"globalName\": \"test\",\n  \"teamId\": 6,\n  \"registerYear\": 2022,\n  \"rosterType\": \"Athlete\",\n  \"position\": {\n    \"offence\": \"QB\"\n  },\n  \"height\": 180,\n  \"weight\": 70,\n  \"backNumber\": 15\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "created"
+                }
+            ],
+            "docs": "## [Normal] requestCreateRoster\n\n### URI\nPOST /rosters/request\n\n### Description\n팀에 로스터 생성을 요청하고 요청 생성 성공여부를 불러옵니다\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|globalName|string|영문이름|\n|teamId|number|팀 식별자|\n|registerYear|number|입부년도|\n|rosterType|*RosterType|로스터 종류|\n|position?|*Postion|포지션|\n|height?|number|키(cm)|\n|weight?|number|몸무게(kg)|\n|backNumber|number|등 번호|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface PositionType**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n||string|요청 성공여부|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|400|Bad Request|요청 Body에 유효하지 않은 값이 포함될 경우 발생|\n|401|Unauthorized|로그인하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|개인정보 인증을 완료하지 않은 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 팀의 식별자를 전달할 경우 발생|\n|409|Conflict|중복된 생성 요청을 보낼 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ],
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "63b8ce54-b0f3-4e30-8a1f-7c935a889fb5",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7733569c-f8bc-4560-aa3e-75f2ebe21a55",
+            "name": "Success",
+            "url": "/rosters/1",
+            "method": "PUT",
+            "sortNum": 1810000,
+            "created": "2023-12-27T12:18:01.794Z",
+            "modified": "2024-01-02T12:39:31.841Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"로스터01\",\n  \"globalName\": \"roster\",\n  \"registerYear\": 2018,\n  \"rosterType\": \"Athlete\",\n  \"position\": {\n    \"offence\": \"QB\",\n    \"defense\": \"DB\"\n  },\n  \"backNumber\": 1,\n  \"weight\": 92,\n  \"height\": 183\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.id",
+                    "action": "equal",
+                    "value": "1"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.globalName",
+                    "action": "equal",
+                    "value": "roster"
+                }
+            ],
+            "docs": "## [Manager] UpdateRoster\n\n### URI\nPUT /rosters/[:rosterId]\n\n### Description\n로스터 정보를 업데이트하고 업데이트된 로스터 정보를 불러옵니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|rosterId|number|업데이트할 로스터의 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name|string|이름|\n|globalName|string|영문 이름|\n|registerYear|number|입부년도|\n|rosterType|*RosterType|로스터 종류|\n|position?|*Position|포지션 정보|\n|height?|number|키(cm)|\n|weight?|number|몸무게(kg)|\n|backNumber?|number|등 번호|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문이름|\n|rosterType|*RosterType|로스터 종류|\n|teamId|number|팀 식별자|\n|accountId|number|연결된 개인 계정 식별자|\n|registerYear|Date|입부년도|\n|profileImgUrl|string?|프로필 이미지 주소|\n|status|*RosterStatus|로스터 상태|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface Position**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 또는 요청 Body에 유효하지 않은 값이 포함된 경우 발생|\n|401|Unauthorized|로그인하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정으로 해당 요청을 보낼 경우 또는 다른팀의 로스터의 식별자를 보낼 경우 발생|\n|404|Not Found|존재하지 않는 로스터의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "8186d8fb-8637-41b6-85f1-224b8e414262",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "173304dd-4e99-40a4-bec3-a35eca013088",
+            "name": "Success",
+            "url": "/rosters/2",
+            "method": "DELETE",
+            "sortNum": 1820000,
+            "created": "2023-12-27T12:18:06.090Z",
+            "modified": "2024-01-02T12:40:43.040Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.id",
+                    "action": "equal",
+                    "value": "2"
+                }
+            ],
+            "docs": "## [Manager] DeleteRoster\n\n### URI\nDELETE /rosters/[:rosterId]\n\n### Description\n로스터 정보를 삭제하고 삭제된 로스터를 반환합니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|rosterId|number|삭제할 로스터의 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문이름|\n|rosterType|*RosterType|로스터 종류|\n|teamId|number|팀 식별자|\n|accountId|number|연결된 개인 계정 식별자|\n|registerYear|Date|입부년도|\n|profileImgUrl|string?|프로필 이미지 주소|\n|status|*RosterStatus|로스터 상태|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface Position**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 포함된 경우 발생|\n|401|Unauthorized|로그인하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정으로 해당 요청을 보낼 경우 또는 다른 팀의 로스터 식별자를 보낼 경우 발생|\n|404|Not Found|존재하지 않는 로스터의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "5b3dcef4-2eac-4ea6-bc92-2e40a7725807",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f9fa2b14-4e3e-4deb-a621-c5f34d622d94",
+            "name": "Success",
+            "url": "/rosters/requests",
+            "method": "GET",
+            "sortNum": 1830000,
+            "created": "2023-12-27T12:18:10.811Z",
+            "modified": "2024-01-02T12:49:39.158Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json[0].Team.id",
+                    "action": "equal",
+                    "value": "2"
+                }
+            ],
+            "docs": "## [Manager] GetCreateRosterRequests\n\n### URI\nGET /rosters/requests\n\n### Description\n\b현재 로그인한 매니저 계정의 팀에 생성된 로스터 연결 요청 목록을 불러옵니다\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문 이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n|rosterType|*RosterType|로스터 종류|\n|Athlete|*AthleteInfo?|선수 정보|\n|Team|*TeamInfo|팀 정보|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface AthteleInfo**\n|Name|Type|Description|\n|---|----|-------|\n|position|*PositionType|포지션 정보|\n|backNumber|number|등번호|\n|weight|number|몸무게(kg)|\n|height|number|키(cm)|\n\n**Interface PositionType**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n**Interface TeamInfo**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|profileImgUrl|string?|팀 프로필 이미지 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "688de02f-ed3a-4681-a8e7-1d0eababe661",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "3fc43c6f-9f10-4298-8381-e672ca591384",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "6153755c-7c70-4619-b3da-68346b22d228",
+            "name": "Success",
+            "url": "/rosters/5/approve",
+            "method": "POST",
+            "sortNum": 1840000,
+            "created": "2023-12-27T12:18:15.197Z",
+            "modified": "2024-01-02T13:18:24.078Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "success"
+                }
+            ],
+            "docs": "## [Manager] ApproveCreateRosterRequest\n\n### URI\nPOST /rosters/[:rosterId]/approve\n\n### Description\n로스터 생성 요청을 승인하고 처리 성공 여부를 반환합니다\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|rosterId|number|승인할 로스터의 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n||string|성공 여부|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 있을 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정으로 해당 요청을 보낼 경우 또는 다른 팀의 로스터에 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 로스터의 식별자를 보낼 경우 발생|\n|409|Conflict|이미 처리가 완료된 로스터에 대해 해당 요청을 보낼 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "688de02f-ed3a-4681-a8e7-1d0eababe661",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "feea185d-d797-4466-b988-f661dfe23728",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "d6c0d6df-c357-41f6-a77f-abdcb878fb84",
+            "name": "Success",
+            "url": "/rosters/6/reject",
+            "method": "POST",
+            "sortNum": 1850000,
+            "created": "2023-12-27T12:18:19.650Z",
+            "modified": "2024-01-02T13:19:43.897Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "res-body",
+                    "custom": "",
+                    "action": "contains",
+                    "value": "success"
+                }
+            ],
+            "docs": "## [Manager] RejectCreateRosterRequest\n\n### URI\nPOST /rosters/[:rosterId]/reject\n\n### Description\n로스터 생성 요청을 반려하고 처리 성공 여부를 반환합니다\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|rosterId|number|반려할 로스터의 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n||string|성공 여부|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 있을 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정으로 해당 요청을 보낼 경우 또는 다른 팀의 로스터에 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 로스터의 식별자를 보낼 경우 발생|\n|409|Conflict|이미 처리가 완료된 로스터에 대해 해당 요청을 보낼 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "688de02f-ed3a-4681-a8e7-1d0eababe661",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "0ce2c4ac-d7da-43ca-8e19-6dfff8588fee",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "ce98c588-906e-41b3-a929-f637c606b1b1",
+            "name": "Success",
+            "url": "/leagues/validation",
+            "method": "GET",
+            "sortNum": 1870000,
+            "created": "2023-12-28T09:01:51.817Z",
+            "modified": "2023-12-29T08:10:27.394Z",
+            "headers": [],
+            "params": [],
+            "tests": [],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "c3a7c3e4-1c13-402b-a8dc-043bd704de25",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0ede2ba7-f879-4b21-b89d-f4caebab38df",
+            "name": "Success",
+            "url": "/leagues/8/request-join",
+            "method": "POST",
+            "sortNum": 1880000,
+            "created": "2023-12-28T09:01:56.710Z",
+            "modified": "2023-12-29T08:11:53.291Z",
+            "headers": [],
+            "params": [],
+            "tests": [],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a62ee115-9863-44ee-a682-0fb8ec3a3d32",
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
-            "name": "login as manager for image test",
+            "name": "login as user02",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2023-12-29T03:45:47.163Z",
+            "modified": "2023-12-29T03:47:48.240Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user02\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ],
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "2c00d407-4395-46da-b2da-711e8512625d",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as user03",
             "url": "/auth/login",
             "method": "POST",
             "sortNum": 75000,
-            "created": "2023-12-21T09:32:20.306Z",
-            "modified": "2023-12-21T09:35:28.284Z",
+            "created": "2023-12-29T03:45:48.902Z",
+            "modified": "2023-12-29T03:47:51.023Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user03\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ],
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "a65e9472-0c76-4121-8e79-5b84f22111fd",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as user04",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 77500,
+            "created": "2023-12-29T03:46:04.555Z",
+            "modified": "2023-12-29T03:47:53.890Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user04\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ],
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "9c1ee4f8-f66d-415e-b158-c73712398379",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as user05",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 78750,
+            "created": "2023-12-29T03:46:06.396Z",
+            "modified": "2023-12-29T03:47:56.742Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user05\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ],
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "ed231ed5-57b6-4c93-b447-0cef04b72e99",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as user06",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 79375,
+            "created": "2023-12-29T03:46:08.316Z",
+            "modified": "2023-12-29T03:48:00.084Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user06\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ],
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "b3d79a51-3d92-4b81-8970-abf0f0880b48",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as user07",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 79687.5,
+            "created": "2023-12-29T03:46:29.611Z",
+            "modified": "2023-12-29T03:48:04.168Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user07\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ],
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "87605ff0-0329-40dc-88b7-b31522bb4987",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as user08",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 79843.8,
+            "created": "2023-12-29T03:46:46.894Z",
+            "modified": "2023-12-29T03:48:07.167Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user08\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ],
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "bedb42c7-85c4-41fe-acd3-9a7475af82e5",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as user09",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 79921.9,
+            "created": "2023-12-29T03:46:48.565Z",
+            "modified": "2023-12-29T03:48:16.437Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user09\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ],
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "5440a336-9176-47c0-a197-29e60e51122c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as user10",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 79960.9,
+            "created": "2023-12-29T03:47:01.271Z",
+            "modified": "2023-12-29T03:48:19.755Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"user10\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ],
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "0b80feba-d520-475e-8102-894f8bdca7c2",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as manager01",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 79980.4,
+            "created": "2023-12-29T03:47:08.762Z",
+            "modified": "2023-12-29T03:48:25.783Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"manager01\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ],
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "688de02f-ed3a-4681-a8e7-1d0eababe661",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as manager02",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 79990.2,
+            "created": "2023-12-29T03:47:29.998Z",
+            "modified": "2023-12-29T03:48:33.463Z",
             "headers": [],
             "params": [],
             "body": {
@@ -7804,9 +8804,1401 @@
                 }
             ],
             "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "eb898c92-3437-4830-9306-fd9aa6d9cb81",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "9b730b85-71a6-4d9b-9ff9-3b642f8a2e2a",
+            "name": "login as manager03",
+            "url": "/auth/login",
+            "method": "POST",
+            "sortNum": 79995.1,
+            "created": "2023-12-29T03:47:31.994Z",
+            "modified": "2023-12-29T03:48:39.839Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"manager03\",\n  \"password\": \"trust@1234\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "header.authorization",
+                    "action": "setto",
+                    "value": "{{access_token}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "cookie.refresh_token",
+                    "action": "setto",
+                    "value": "{{refresh_token}}"
+                }
+            ],
+            "preReq": {
+                "options": {
+                    "skipRequest": true
+                }
+            }
+        },
+        {
+            "_id": "2aac8e7e-8d13-4dc0-9e03-f4c81aa35a74",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e037d364-9c79-41cb-8f36-c95f5cd335db",
+            "name": "401: Unauthorized",
+            "url": "/account/certification",
+            "method": "GET",
+            "sortNum": 1580000,
+            "created": "2023-12-29T05:16:13.691Z",
+            "modified": "2023-12-29T05:16:30.142Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
                 "runRequests": [
                     {
                         "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "bcf50b52-702d-47a6-9640-d369ba4d674e",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e037d364-9c79-41cb-8f36-c95f5cd335db",
+            "name": "404: Not Found",
+            "url": "/account/certification",
+            "method": "GET",
+            "sortNum": 1590000,
+            "created": "2023-12-29T05:16:16.455Z",
+            "modified": "2023-12-29T05:17:28.697Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "bedb42c7-85c4-41fe-acd3-9a7475af82e5",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "31f250f7-55ea-44e7-8b3e-3faceadeedf5",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c08cf838-0382-4972-8da8-392528cd0eea",
+            "name": "404: Not Found",
+            "url": "/rosters/10000",
+            "method": "GET",
+            "sortNum": 1890000,
+            "created": "2024-01-02T09:17:59.865Z",
+            "modified": "2024-01-02T09:18:17.737Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "48d77c77-a523-4a92-8035-1db359ce1519",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "35d0a883-069b-4fa7-b413-95d5c6c7cd25",
+            "name": "404: Not Found",
+            "url": "/rosters/leagues/1/teams/100",
+            "method": "GET",
+            "sortNum": 1900000,
+            "created": "2024-01-02T09:24:26.166Z",
+            "modified": "2024-01-02T09:25:09.137Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "1507d2a9-5bc6-48fb-a9bd-f513ba1f0d5a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "35d0a883-069b-4fa7-b413-95d5c6c7cd25",
+            "name": "400: Bad Request",
+            "url": "/rosters/leagues/1/teams/abc",
+            "method": "GET",
+            "sortNum": 1810000,
+            "created": "2024-01-02T09:25:59.110Z",
+            "modified": "2024-01-02T09:26:25.968Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "3a5c0bef-3198-40c3-8206-a30e8f83038c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c08cf838-0382-4972-8da8-392528cd0eea",
+            "name": "400: Bad Request",
+            "url": "/rosters/abc",
+            "method": "GET",
+            "sortNum": 1795000,
+            "created": "2024-01-02T09:26:53.799Z",
+            "modified": "2024-01-02T09:27:19.504Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "da24a05e-716a-435f-898a-53cb7f532329",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c41e8d2c-31b0-4dff-8284-d399464124ce",
+            "name": "400: Bad Request",
+            "url": "/rosters/teams/1?page=abc&limit=3",
+            "method": "GET",
+            "sortNum": 1910000,
+            "created": "2024-01-02T09:38:03.907Z",
+            "modified": "2024-01-02T09:40:01.812Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "abc",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "87d2dac4-453b-4ae6-b5c3-4f83e4016b29",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c41e8d2c-31b0-4dff-8284-d399464124ce",
+            "name": "404: Not Found",
+            "url": "/rosters/teams/10000?page=1&limit=3",
+            "method": "GET",
+            "sortNum": 1920000,
+            "created": "2024-01-02T09:38:14.555Z",
+            "modified": "2024-01-02T09:38:39.791Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "3",
+                    "isPath": false
+                }
+            ],
+            "tests": [],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "f4f95a79-a02f-453c-8f90-ebbd491ce54a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "3a0f053a-8178-4427-ba0a-e58a85a4cc83",
+            "name": "401: Unauthorized",
+            "url": "/rosters/connectable",
+            "method": "GET",
+            "sortNum": 1930000,
+            "created": "2024-01-02T11:26:28.497Z",
+            "modified": "2024-01-02T11:27:50.195Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "d1e2153f-80a8-43a5-be59-ca9cde0150b8",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "3a0f053a-8178-4427-ba0a-e58a85a4cc83",
+            "name": "403: Forbidden",
+            "url": "/rosters/connectable",
+            "method": "GET",
+            "sortNum": 1940000,
+            "created": "2024-01-02T11:26:38.396Z",
+            "modified": "2024-01-02T11:28:12.043Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "bedb42c7-85c4-41fe-acd3-9a7475af82e5",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "1f46956e-7bc2-4469-a376-6f9eb8e59ead",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4767d849-34da-4356-b682-bce85cf14ca0",
+            "name": "400: Bad Request",
+            "url": "/rosters/abc/connect",
+            "method": "POST",
+            "sortNum": 1950000,
+            "created": "2024-01-02T11:47:20.228Z",
+            "modified": "2024-01-02T11:47:43.508Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4a181943-8762-432b-b73e-8da9edeffd45",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4767d849-34da-4356-b682-bce85cf14ca0",
+            "name": "401: Unauthorized",
+            "url": "/rosters/abc/connect",
+            "method": "POST",
+            "sortNum": 1960000,
+            "created": "2024-01-02T11:47:53.364Z",
+            "modified": "2024-01-02T11:48:11.552Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "55abcda0-af56-45f5-a5c2-16b5e4d8e768",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4767d849-34da-4356-b682-bce85cf14ca0",
+            "name": "403: Forbidden",
+            "url": "/rosters/1/connect",
+            "method": "POST",
+            "sortNum": 1960000,
+            "created": "2024-01-02T11:48:19.566Z",
+            "modified": "2024-01-02T11:48:41.716Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "87605ff0-0329-40dc-88b7-b31522bb4987",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "441e1cd5-a58a-45dd-a041-4eafe9a7afa0",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "4767d849-34da-4356-b682-bce85cf14ca0",
+            "name": "404: Not Found",
+            "url": "/rosters/10000/connect",
+            "method": "POST",
+            "sortNum": 1970000,
+            "created": "2024-01-02T11:48:54.646Z",
+            "modified": "2024-01-02T11:49:11.744Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "44ecbc63-58ef-4a91-a830-49ee5051f750",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f166c36b-72cf-4935-a3e8-1cef1eaeeb7f",
+            "name": "400: Bad Request",
+            "url": "/rosters/request",
+            "method": "POST",
+            "sortNum": 1970000,
+            "created": "2024-01-02T11:49:43.003Z",
+            "modified": "2024-01-02T11:50:15.845Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"globalName\": \"test\",\n  \"teamId\": 6,\n  \"registerYear\": 2022,\n  \"rosterType\": \"Athlete\",\n  \"position\": {\n    \"offence\": \"QB\"\n  }\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "e0e47523-75a7-4e10-a136-8f846084ca0f",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f166c36b-72cf-4935-a3e8-1cef1eaeeb7f",
+            "name": "403: Forbidden",
+            "url": "/rosters/request",
+            "method": "POST",
+            "sortNum": 1980000,
+            "created": "2024-01-02T11:50:35.599Z",
+            "modified": "2024-01-02T11:50:57.538Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"globalName\": \"test\",\n  \"teamId\": 6,\n  \"registerYear\": 2022,\n  \"rosterType\": \"Athlete\",\n  \"position\": {\n    \"offence\": \"QB\"\n  }\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "87605ff0-0329-40dc-88b7-b31522bb4987",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "3d276830-49c4-4749-bc2e-9dc025fd3216",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f166c36b-72cf-4935-a3e8-1cef1eaeeb7f",
+            "name": "409: Conflict",
+            "url": "/rosters/request",
+            "method": "POST",
+            "sortNum": 1990000,
+            "created": "2024-01-02T11:51:15.482Z",
+            "modified": "2024-01-02T11:51:44.386Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"globalName\": \"test\",\n  \"teamId\": 1,\n  \"registerYear\": 2022,\n  \"rosterType\": \"Coach\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "409"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "94e8fe1e-190c-4dec-a760-135749ae70f9",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f166c36b-72cf-4935-a3e8-1cef1eaeeb7f",
+            "name": "404: Not Found",
+            "url": "/rosters/request",
+            "method": "POST",
+            "sortNum": 1985000,
+            "created": "2024-01-02T11:51:54.879Z",
+            "modified": "2024-01-02T11:52:24.538Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"globalName\": \"test\",\n  \"teamId\": 10000,\n  \"registerYear\": 2022,\n  \"rosterType\": \"Coach\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "90fa8719-9bbb-41cc-9dce-2a367c930524",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f166c36b-72cf-4935-a3e8-1cef1eaeeb7f",
+            "name": "401: Unauthorized",
+            "url": "/rosters/request",
+            "method": "POST",
+            "sortNum": 1975000,
+            "created": "2024-01-02T11:52:34.615Z",
+            "modified": "2024-01-02T11:52:50.030Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "15d3d250-18af-46c7-bf61-08e533e6fb9d",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0b5bb7b1-9d43-4a6a-b5f0-542a91dc6d1c",
+            "name": "400: Bad Request",
+            "url": "/rosters",
+            "method": "POST",
+            "sortNum": 1990000,
+            "created": "2024-01-02T12:12:31.822Z",
+            "modified": "2024-01-02T12:13:06.687Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"홍길동\",\n  \"globalName\": \"Hong Gildong\",\n  \"teamId\": 1,\n  \"registerYear\": 2019,\n  \"rosterType\": \"Athlete\",\n  \"birthday\": \"2000-01-01\",\n  \"gender\": \"Male\",\n  \"position\": {\n    \"offence\": \"QB\"\n  }\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "435ad41b-6440-4fa7-852e-1093e5b7a501",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0b5bb7b1-9d43-4a6a-b5f0-542a91dc6d1c",
+            "name": "401: Unauthorized",
+            "url": "/rosters",
+            "method": "POST",
+            "sortNum": 2000000,
+            "created": "2024-01-02T12:13:13.282Z",
+            "modified": "2024-01-02T12:13:26.473Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"홍길동\",\n  \"globalName\": \"Hong Gildong\",\n  \"teamId\": 1,\n  \"registerYear\": 2019,\n  \"rosterType\": \"Athlete\",\n  \"birthday\": \"2000-01-01\",\n  \"gender\": \"Male\",\n  \"position\": {\n    \"offence\": \"QB\"\n  }\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "d808600e-a82b-4865-adc3-040c0cb5a69a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0b5bb7b1-9d43-4a6a-b5f0-542a91dc6d1c",
+            "name": "403: Forbidden",
+            "url": "/rosters",
+            "method": "POST",
+            "sortNum": 2010000,
+            "created": "2024-01-02T12:13:32.849Z",
+            "modified": "2024-01-02T12:14:06.013Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"홍길동\",\n  \"globalName\": \"Hong Gildong\",\n  \"teamId\": 2,\n  \"registerYear\": 2010,\n  \"rosterType\": \"Coach\",\n  \"birthday\": \"2000-01-01\",\n  \"gender\": \"Male\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "163dc8cf-51f0-49cf-bd1d-2b9c37964df6",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7733569c-f8bc-4560-aa3e-75f2ebe21a55",
+            "name": "400: Bad Request",
+            "url": "/rosters/1",
+            "method": "PUT",
+            "sortNum": 2000000,
+            "created": "2024-01-02T12:35:09.506Z",
+            "modified": "2024-01-02T12:35:41.933Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"로스터01\",\n  \"globalName\": \"roster\",\n  \"registerYear\": 2018,\n  \"rosterType\": \"Athlete\",\n  \"position\": {\n    \"offence\": \"QB\",\n    \"defense\": \"DB\"\n  }\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "5112c586-7a7c-4882-8fdf-5a0eb11e5e3e",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7733569c-f8bc-4560-aa3e-75f2ebe21a55",
+            "name": "401: Unauthorized",
+            "url": "/rosters/1",
+            "method": "PUT",
+            "sortNum": 2010000,
+            "created": "2024-01-02T12:35:51.552Z",
+            "modified": "2024-01-02T12:37:17.008Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "8165131b-c045-43fe-b5a7-d4cd92e382cc",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7733569c-f8bc-4560-aa3e-75f2ebe21a55",
+            "name": "403: Forbidden",
+            "url": "/rosters/5",
+            "method": "PUT",
+            "sortNum": 2020000,
+            "created": "2024-01-02T12:36:16.612Z",
+            "modified": "2024-01-02T12:37:08.284Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"로스터05\",\n  \"globalName\": \"roster\",\n  \"registerYear\": 2018,\n  \"rosterType\": \"Athlete\",\n  \"position\": {\n    \"offence\": \"QB\",\n    \"defense\": \"DB\"\n  },\n  \"backNumber\": 1,\n  \"weight\": 92,\n  \"height\": 183\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "67357527-ba01-4084-aba1-a3519304653c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7733569c-f8bc-4560-aa3e-75f2ebe21a55",
+            "name": "404: Not Found",
+            "url": "/rosters/10000",
+            "method": "PUT",
+            "sortNum": 2030000,
+            "created": "2024-01-02T12:37:22.804Z",
+            "modified": "2024-01-02T12:37:48.361Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"로스터05\",\n  \"globalName\": \"roster\",\n  \"registerYear\": 2018,\n  \"rosterType\": \"Athlete\",\n  \"position\": {\n    \"offence\": \"QB\",\n    \"defense\": \"DB\"\n  },\n  \"backNumber\": 1,\n  \"weight\": 92,\n  \"height\": 183\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "ff648013-2887-49d8-98a1-29ad23ea46fd",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "173304dd-4e99-40a4-bec3-a35eca013088",
+            "name": "400: Bad Request",
+            "url": "/rosters/abc",
+            "method": "DELETE",
+            "sortNum": 2020000,
+            "created": "2024-01-02T12:41:38.897Z",
+            "modified": "2024-01-02T12:41:57.729Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "f8742076-367c-43cc-b5a3-a1a470fe8727",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "173304dd-4e99-40a4-bec3-a35eca013088",
+            "name": "401: Unauthorized",
+            "url": "/rosters/5",
+            "method": "DELETE",
+            "sortNum": 2030000,
+            "created": "2024-01-02T12:42:00.837Z",
+            "modified": "2024-01-02T12:42:51.936Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "7e13f833-4e06-4571-b58c-5eedf72aa836",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "173304dd-4e99-40a4-bec3-a35eca013088",
+            "name": "403: Forbidden",
+            "url": "/rosters/5",
+            "method": "DELETE",
+            "sortNum": 2040000,
+            "created": "2024-01-02T12:42:18.916Z",
+            "modified": "2024-01-02T12:42:35.443Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "f1a64a5a-cd23-48d3-888d-11b5e5ad4c0c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "173304dd-4e99-40a4-bec3-a35eca013088",
+            "name": "404: Not Found",
+            "url": "/rosters/10000",
+            "method": "DELETE",
+            "sortNum": 2050000,
+            "created": "2024-01-02T12:44:46.643Z",
+            "modified": "2024-01-02T12:45:08.942Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b1fc2466-a9d3-48d1-ad15-4c9bb632b180",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f9fa2b14-4e3e-4deb-a621-c5f34d622d94",
+            "name": "401: Unauthorized",
+            "url": "/rosters/requests",
+            "method": "GET",
+            "sortNum": 2030000,
+            "created": "2024-01-02T12:50:03.613Z",
+            "modified": "2024-01-02T12:50:55.827Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "acd8316c-039f-43cb-85c8-30ad04173920",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f9fa2b14-4e3e-4deb-a621-c5f34d622d94",
+            "name": "403: Forbidden",
+            "url": "/rosters/requests",
+            "method": "GET",
+            "sortNum": 2040000,
+            "created": "2024-01-02T12:50:59.898Z",
+            "modified": "2024-01-02T12:51:13.284Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "0e17fee6-9929-4944-9b19-acee06cdf855",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "6153755c-7c70-4619-b3da-68346b22d228",
+            "name": "400: Bad Request",
+            "url": "/rosters/abc/approve",
+            "method": "POST",
+            "sortNum": 2040000,
+            "created": "2024-01-02T13:12:04.449Z",
+            "modified": "2024-01-02T13:16:32.537Z",
+            "headers": [],
+            "params": [],
+            "tests": [],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "0d245ed0-5873-4dae-8067-68dad700c2d4",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "6153755c-7c70-4619-b3da-68346b22d228",
+            "name": "401: Unauthorized",
+            "url": "/rosters/5/approve",
+            "method": "POST",
+            "sortNum": 2050000,
+            "created": "2024-01-02T13:16:40.580Z",
+            "modified": "2024-01-02T13:17:03.511Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "75c57760-cc2b-40ee-a81f-12be532fb2ae",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "6153755c-7c70-4619-b3da-68346b22d228",
+            "name": "403: Forbidden",
+            "url": "/rosters/9/approve",
+            "method": "POST",
+            "sortNum": 2060000,
+            "created": "2024-01-02T13:17:14.077Z",
+            "modified": "2024-01-02T13:17:54.543Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "0de3a888-d57c-4c60-af8c-b1380fe673a5",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "6153755c-7c70-4619-b3da-68346b22d228",
+            "name": "404: Not Found",
+            "url": "/rosters/1000/approve",
+            "method": "POST",
+            "sortNum": 2070000,
+            "created": "2024-01-02T13:18:26.760Z",
+            "modified": "2024-01-02T13:18:40.468Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a509a7ba-ea6d-4ec5-9cde-8ea0b03ecc94",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "6153755c-7c70-4619-b3da-68346b22d228",
+            "name": "409: Conflict",
+            "url": "/rosters/1/approve",
+            "method": "POST",
+            "sortNum": 2080000,
+            "created": "2024-01-02T13:18:43.500Z",
+            "modified": "2024-01-02T13:19:03.754Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "409"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "e6637ab3-81e1-48c9-a283-c26ab3d8473c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "d6c0d6df-c357-41f6-a77f-abdcb878fb84",
+            "name": "400: Bad Request",
+            "url": "/rosters/abc/reject",
+            "method": "POST",
+            "sortNum": 2070000,
+            "created": "2024-01-02T13:19:56.798Z",
+            "modified": "2024-01-02T13:20:18.303Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "47b62230-cad7-4e6e-ae5d-ee8005285715",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "d6c0d6df-c357-41f6-a77f-abdcb878fb84",
+            "name": "401: Unauthorized",
+            "url": "/rosters/abc/reject",
+            "method": "POST",
+            "sortNum": 2080000,
+            "created": "2024-01-02T13:20:25.246Z",
+            "modified": "2024-01-02T13:20:39.154Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a20b7cd4-4bce-471d-94e9-143e39fb7878",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "d6c0d6df-c357-41f6-a77f-abdcb878fb84",
+            "name": "403: Forbidden",
+            "url": "/rosters/9/reject",
+            "method": "POST",
+            "sortNum": 2090000,
+            "created": "2024-01-02T13:20:43.916Z",
+            "modified": "2024-01-02T13:21:08.557Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4cb85763-1109-4b2f-b620-9ef3e1d885f9",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "d6c0d6df-c357-41f6-a77f-abdcb878fb84",
+            "name": "404: Not Found",
+            "url": "/rosters/10000/reject",
+            "method": "POST",
+            "sortNum": 2100000,
+            "created": "2024-01-02T13:21:15.351Z",
+            "modified": "2024-01-02T13:21:50.257Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "05d4dd6c-4ac0-4de1-9a88-340a7b1b82c1",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "d6c0d6df-c357-41f6-a77f-abdcb878fb84",
+            "name": "409: Conflict",
+            "url": "/rosters/1/reject",
+            "method": "POST",
+            "sortNum": 2110000,
+            "created": "2024-01-02T13:22:15.318Z",
+            "modified": "2024-01-02T13:22:45.840Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "409"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -7824,6 +10216,11 @@
         "options": {
             "baseUrl": "{{host}}"
         },
-        "envId": "25a07e1f-107b-443c-915b-6339acf361a0"
+        "envId": "25a07e1f-107b-443c-915b-6339acf361a0",
+        "runOptions": {
+            "delay": 100,
+            "iterations": 1,
+            "dataFilePath": ""
+        }
     }
 }
