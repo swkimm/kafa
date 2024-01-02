@@ -1,16 +1,13 @@
 import type React from 'react'
 
 interface NoticeNarrowProps {
-  id: number
   cardName: string
   onClick?: (id: number) => void
   children?: React.ReactNode // children prop을 추가합니다.
 }
 
 const NoticeNarrow: React.FC<NoticeNarrowProps> = ({
-  id,
   cardName,
-  onClick,
   children // children을 받아옵니다.
 }) => {
   return (
@@ -29,7 +26,6 @@ const NoticeNarrow: React.FC<NoticeNarrowProps> = ({
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
-              onClick={() => onClick?.(id)}
             >
               <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
             </svg>

@@ -2,7 +2,7 @@
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import type React from 'react'
-import { useState, Fragment } from 'react'
+import { useState, Fragment, useEffect } from 'react'
 
 interface Option {
   id: string | number
@@ -26,6 +26,12 @@ const DropdownLeft: React.FC<SimpleProps> = ({
 }) => {
   const [selectedOption, setSelectedOption] = useState(optionName) // State to track the selected option
 
+  useEffect(() => {
+    if (optionName) {
+      setSelectedOption(optionName)
+    }
+  }, [optionName])
+
   const handleSelect = (optionName: string) => {
     setSelectedOption(optionName) // Update the state when an option is selected
     onSelect(optionName) // Call the onSelect prop with the new optionName
@@ -34,7 +40,7 @@ const DropdownLeft: React.FC<SimpleProps> = ({
     <Menu as="div" className="relative inline-table text-left">
       <div>
         <Menu.Button className="inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-          {selectedOption} {/* Display the selected option */}
+          {selectedOption || '선택하세요'}
           <ChevronDownIcon
             className="-mr-1 h-5 w-5 text-gray-400"
             aria-hidden="true"

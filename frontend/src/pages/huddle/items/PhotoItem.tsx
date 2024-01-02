@@ -66,9 +66,13 @@ const PhotoItem = () => {
 
   // const gallery = result[selectedLeague] || []
 
-  const handleSelect = (selected: string) => {
-    setSelectedLeague(selected)
-    console.log(selected)
+  const handleSelect = (selected: number) => {
+    // Change to number
+    const selectedLeagueName = leagueOptions.find(
+      (option) => option.id === selected
+    )?.name
+    setSelectedLeague(selectedLeagueName || '제00회 타이거볼')
+    console.log(selectedLeagueName)
   }
 
   const goToGallery = () => {

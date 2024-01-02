@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
   }
   return (
     <footer
-      className={`inset-x-0 bottom-0 z-50 bg-gray-800 p-4 text-center text-white`}
+      className={`inset-x-0 bottom-0 z-50 bg-gray-900 p-4 text-center text-white`}
       style={mainContentStyle}
     >
       <nav>

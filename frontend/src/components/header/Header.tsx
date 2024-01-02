@@ -61,6 +61,10 @@ const Header = () => {
     navigate('/association')
   }
 
+  const gotoNationalPage = () => {
+    navigate('/national')
+  }
+
   const gotoBoard = () => {
     navigate('/board')
   }
@@ -136,12 +140,13 @@ const Header = () => {
                   >
                     협회정보
                   </Disclosure.Button>
-                  <a
-                    href="#"
+                  <Disclosure.Button
+                    as="button"
+                    onClick={gotoNationalPage}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     국가대표
-                  </a>
+                  </Disclosure.Button>
                   <a
                     href="#"
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"

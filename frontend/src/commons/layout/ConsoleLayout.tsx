@@ -1,6 +1,6 @@
 // ConsoleLayout.tsx
-import Sidebar from '@/components/\bsidebar/Sidebar'
 import ConsoleHeader from '@/components/header/ConsoleHeader'
+import Sidebar from '@/components/sidebar/Sidebar'
 import { Outlet } from 'react-router-dom'
 
 const ConsoleLayout: React.FC = () => {

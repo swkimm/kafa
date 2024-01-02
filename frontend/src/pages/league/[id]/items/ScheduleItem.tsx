@@ -1,181 +1,236 @@
 // ScheduleItem.tsx
+import axiosInstance from '@/commons/axios'
+import type { Game } from '@/commons/interfaces/game/game'
 import DropdownSimple from '@/components/dropdown/DropdownLeft'
 import DefaultTable from '@/components/tables/DefaultTable'
-import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-interface Game {
-  id: number
-  homeTeam: string
-  homeTeamLogo: string
-  awayTeam: string
-  awayTeamLogo: string
+interface GameScore {
   homeScore: number
   awayScore: number
-  date: string
-  location: string
 }
 
-interface GamesData {
-  [key: string]: Game[]
+interface ExtendedGame extends Game {
+  homeTeamInfo?: {
+    name: string
+    initial: string
+    profileImgUrl: string
+  }
+  awayTeamInfo?: {
+    name: string
+    initial: string
+    profileImgUrl: string
+  }
+  score?: GameScore
 }
 
-interface Option {
-  id: string | number
-  name: string
+const findEarliestDate = (games: ExtendedGame[]): Date => {
+  return new Date(
+    Math.min(...games.map((game) => new Date(game.startedAt).getTime()))
+  )
 }
 
-const gamesData: GamesData = {
-  Week1: [
-    {
-      id: 1,
-      homeTeam: 'TBD',
-      homeTeamLogo: '/logo/KAFA_OG.png',
-      homeScore: 0,
-      awayTeam: 'TBD',
-      awayTeamLogo: '/logo/KAFA_OG.png',
-      awayScore: 0,
-      date: '00/00 PM 12:00',
-      location: '홈 스타디움'
-    },
-    {
-      id: 2,
-      homeTeam: 'TBD',
-      homeTeamLogo: '/logo/KAFA_OG.png',
-      homeScore: 0,
-      awayTeam: 'TBD',
-      awayTeamLogo: '/logo/KAFA_OG.png',
-      awayScore: 0,
-      date: '00/00 PM 12:00',
-      location: '홈 스타디움'
+// Modified getWeekNumber function
+const getWeekNumber = (d: Date, startDate: Date): number => {
+  // Calculate difference in days from the start date
+  const differenceInTime = d.getTime() - startDate.getTime()
+  const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24))
+  // Calculate week number
+  return Math.floor(differenceInDays / 7) + 1
+}
+
+// Modified groupByWeek function
+const groupByWeek = (
+  data: ExtendedGame[],
+  startDate: Date
+): Map<number, ExtendedGame[]> => {
+  const groupedByWeek = new Map<number, ExtendedGame[]>()
+
+  for (const item of data) {
+    const date = new Date(item.startedAt)
+    const weekNumber = getWeekNumber(date, startDate)
+
+    if (!groupedByWeek.has(weekNumber)) {
+      groupedByWeek.set(weekNumber, [])
     }
-  ],
-  Week2: [
-    {
-      id: 3,
-      homeTeam: 'TBD',
-      homeTeamLogo: '/logo/KAFA_OG.png',
-      homeScore: 0,
-      awayTeam: 'TBD',
-      awayTeamLogo: '/logo/KAFA_OG.png',
-      awayScore: 0,
-      date: '00/00 PM 12:00',
-      location: '홈 스타디움'
-    },
-    {
-      id: 4,
-      homeTeam: 'TBD',
-      homeTeamLogo: '/logo/KAFA_OG.png',
-      homeScore: 0,
-      awayTeam: 'TBD',
-      awayTeamLogo: '/logo/KAFA_OG.png',
-      awayScore: 0,
-      date: '00/00 PM 12:00',
-      location: '홈 스타디움'
-    }
-  ]
-}
 
-const options: Option[] = [
-  { id: '1', name: 'Week1' },
-  { id: '2', name: 'Week2' },
-  { id: '3', name: 'Week3' },
-  { id: '4', name: 'Week4' }
-]
+    groupedByWeek.get(weekNumber)?.push(item)
+  }
+
+  return groupedByWeek
+}
 
 const ScheduleItem = () => {
   const { leagueId } = useParams()
-  const [selectedWeek, setSelectedWeek] = useState('Week1')
+  const [games, setGames] = useState<ExtendedGame[]>([])
+  const [selectedWeek, setSelectedWeek] = useState<number>()
+  const [groupedGames, setGroupedGames] = useState<Map<number, ExtendedGame[]>>(
+    new Map()
+  )
 
-  const navigate = useNavigate()
+  console.log(games)
 
-  const navigateToGame = (gameId: number) => {
-    navigate(`/league/${leagueId}/schedule/${gameId}`)
+  const fetchScoreInfo = async (gameId: number) => {
+    try {
+      const response = await axiosInstance.get(`/games/${gameId}/score`)
+      return response.data
+    } catch (error) {
+      return { homeTeamScore: '', awayTeamScore: '' }
+    }
   }
 
-  const selectedOption = options.find((option) => option.name === selectedWeek)
-  const tableTitle = selectedOption ? selectedOption.name : 'Week1'
-
-  const currentGamesData = gamesData[selectedWeek] || []
-
-  const handleSelect = (selected: string) => {
-    setSelectedWeek(selected)
+  const fetchHomeTeamInfo = async (homeTeamId: number) => {
+    const response = await axiosInstance.get(`/teams/${homeTeamId}`)
+    return response.data
   }
+
+  const fetchAwayTeamInfo = async (awayTeamId: number) => {
+    const response = await axiosInstance.get(`/teams/${awayTeamId}`)
+    return response.data
+  }
+
+  const getGames = useCallback(async (leagueId: number) => {
+    const cursor = 0
+    const limit = 3
+    console.log(leagueId)
+
+    try {
+      const response = await axiosInstance.get<Game[]>(
+        `/games/leagues/${leagueId}?cursor=${cursor}&limit=${limit}`
+      )
+
+      const gamesByLeagueIdWithScore = await Promise.all(
+        response.data.map(async (game) => {
+          const scoreInfo = game.id
+            ? await fetchScoreInfo(game.id)
+            : { homeTeamScore: 'N/A', awayTeamScore: 'N/A' }
+
+          const homeTeamInfo = game.homeTeamId
+            ? await fetchHomeTeamInfo(game.homeTeamId)
+            : { name: 'N/A' }
+
+          const awayTeamInfo = game.awayTeamId
+            ? await fetchAwayTeamInfo(game.awayTeamId)
+            : { name: 'N/A' }
+
+          return {
+            ...game, // Game 객체의 속성들을 펼침
+            scoreInfo, // scoreInfo 추가
+            homeTeamInfo,
+            awayTeamInfo
+          }
+        })
+      )
+      setGames(gamesByLeagueIdWithScore as ExtendedGame[])
+
+      const earliestDate = findEarliestDate(gamesByLeagueIdWithScore)
+      const grouped = groupByWeek(gamesByLeagueIdWithScore, earliestDate)
+      setGroupedGames(grouped)
+
+      // Generate week options for the dropdown
+      const weekOptions = Array.from(grouped.keys())
+        .sort((a, b) => a - b)
+        .map((week) => ({ id: week, name: `Week ${week}` }))
+      // Set the first available week as the selected week
+      setSelectedWeek(weekOptions[0]?.id)
+    } catch (error) {
+      alert(error)
+    }
+  }, [])
+
+  const weekOptions = useMemo(() => {
+    const weeks = Array.from(groupedGames.keys()).sort()
+    return weeks.map((week) => ({
+      id: week,
+      name: `Week ${week}`
+    }))
+  }, [groupedGames])
+
+  // Function to handle week selection
+  const handleWeekSelect = (weekNumber: number) => {
+    setSelectedWeek(weekNumber)
+  }
+
+  const gamesForSelectedWeek = useMemo(() => {
+    if (selectedWeek !== undefined) {
+      return groupedGames.get(selectedWeek) || []
+    }
+    return []
+  }, [groupedGames, selectedWeek])
+
+  useEffect(() => {
+    getGames(Number(leagueId))
+  }, [leagueId, getGames, selectedWeek])
 
   const gameColumns = [
     {
       title: 'HOME',
-      render: (game: Game) => (
-        <div
-          onClick={() => navigateToGame(game.id)}
-          className="flex cursor-pointer items-center"
-        >
-          <img
-            src={game.homeTeamLogo}
-            alt={game.homeTeam}
-            className="mr-2 w-8"
-          />
-          <span>{game.homeTeam}</span>
+      render: (game: ExtendedGame) => (
+        <div className="flex items-center">
+          {game.homeTeamInfo?.profileImgUrl ? (
+            <img
+              src={game.homeTeamInfo.profileImgUrl}
+              alt={game.homeTeamInfo.initial}
+              className="mr-2 w-8"
+            />
+          ) : (
+            <img src="/logo/KAFA_OG.png" alt="" className="mr-2 w-8" />
+          )}
+          <span>{game.homeTeamInfo?.name}</span>
         </div>
       )
     },
     {
       title: '',
-      render: (game: Game) => (
-        <div
-          onClick={() => navigateToGame(game.id)}
-          className="flex cursor-pointer items-center"
-        >
-          <span>{game.homeScore}</span>
-        </div>
-      )
+      render: (game: ExtendedGame) => <span>{game.score?.homeScore}</span>
     },
     {
       title: 'AWAY',
-      render: (game: Game) => (
-        <div
-          onClick={() => navigateToGame(game.id)}
-          className="flex cursor-pointer items-center"
-        >
-          <img
-            src={game.awayTeamLogo}
-            alt={game.awayTeam}
-            className="mr-2 w-8"
-          />
-          <span>{game.awayTeam}</span>
+      render: (game: ExtendedGame) => (
+        <div className="flex items-center">
+          {game.awayTeamInfo?.profileImgUrl ? (
+            <img
+              src={game.awayTeamInfo.profileImgUrl}
+              alt={game.awayTeamInfo.initial}
+              className="mr-2 w-8"
+            />
+          ) : (
+            <img src="/logo/KAFA_OG.png" alt="" className="mr-2 w-8" />
+          )}
+          <span>{game.awayTeamInfo?.name}</span>
         </div>
       )
     },
     {
       title: '',
-      render: (game: Game) => (
-        <div
-          onClick={() => navigateToGame(game.id)}
-          className="flex cursor-pointer items-center"
-        >
-          <span>{game.awayScore}</span>
-        </div>
-      )
+      render: (game: ExtendedGame) => <span>{game.score?.awayScore}</span>
     },
     {
       title: 'DATE',
-      render: (game: Game) => (
-        <div
-          onClick={() => navigateToGame(game.id)}
-          className="flex cursor-pointer items-center"
-        >
-          <span>{game.date}</span>,
-        </div>
-      )
+      render: (game: ExtendedGame) => {
+        const date = game.startedAt ? new Date(game.startedAt) : null
+        const formattedDate = date
+          ? `${date.getMonth() + 1}/${date.getDate()} ${
+              date.getHours() >= 12 ? 'PM' : 'AM'
+            } ${date.getHours() % 12 === 0 ? 12 : date.getHours() % 12}:${date
+              .getMinutes()
+              .toString()
+              .padStart(2, '0')}`
+          : 'N/A'
+
+        return (
+          <div>
+            <span>{formattedDate}</span>
+          </div>
+        )
+      }
     },
     {
       title: 'LOCATION',
-      render: (game: Game) => (
-        <div
-          onClick={() => navigateToGame(game.id)}
-          className="flex cursor-pointer items-center"
-        >
-          <span>{game.location}</span>,
+      render: (game: ExtendedGame) => (
+        <div>
+          <span>{game.stadium}</span>
         </div>
       )
     }
@@ -184,16 +239,16 @@ const ScheduleItem = () => {
     <div className="container mx-auto my-5 grid max-w-screen-2xl grid-cols-1 sm:grid-cols-3">
       <div className="order-2 col-span-1 mx-5 sm:order-1 sm:col-span-2">
         <DefaultTable
-          title={tableTitle}
-          data={currentGamesData}
+          title={`Week ${selectedWeek || 1}`}
+          data={gamesForSelectedWeek}
           columns={gameColumns}
         />
       </div>
       <div className="order-1 col-span-1 mx-5 mb-5 sm:order-2">
         <DropdownSimple
-          optionName="Week"
-          optionList={options}
-          onSelect={handleSelect}
+          optionName={`Week ${selectedWeek || 1}`}
+          optionList={weekOptions}
+          onSelect={(weekNumber) => handleWeekSelect(Number(weekNumber))}
         />{' '}
       </div>
     </div>

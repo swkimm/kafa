@@ -12,7 +12,7 @@ interface Option {
 interface SimpleProps {
   optionName?: string
   optionList?: Option[]
-  onSelect?: (selected: string) => void
+  onSelect?: (selected: number) => void
 }
 
 const classNames = (...classes: unknown[]): string => {
@@ -26,10 +26,13 @@ const DropdownTransparent: React.FC<SimpleProps> = ({
 }) => {
   const [selectedOption, setSelectedOption] = useState(optionName) // State to track the selected option
 
-  const handleSelect = (optionName: string) => {
-    setSelectedOption(optionName) // Update the state when an option is selected
-    onSelect(optionName) // Call the onSelect prop with the new optionName
+  const handleSelect = (optionId: number) => {
+    const selectedOptionName =
+      optionList.find((option) => option.id === optionId)?.name || 'Unknown'
+    setSelectedOption(selectedOptionName) // 선택된 옵션의 이름으로 상태 업데이트
+    onSelect(optionId) // onSelect prop에 optionId를 직접 전달
   }
+
   return (
     <Menu as="div" className="relative inline-table w-full text-left">
       <div>
@@ -56,10 +59,17 @@ const DropdownTransparent: React.FC<SimpleProps> = ({
           <div className="py-1">
             {optionList?.length > 0 ? (
               optionList.map((option) => (
-                <Menu.Item key={option.id}>
+                <Menu.Item key={option.id.toString()}>
                   {({ active }) => (
                     <div
-                      onClick={() => handleSelect(option.name)}
+                      onClick={() => {
+                        const id = parseInt(option.id.toString(), 10)
+                        if (!isNaN(id)) {
+                          handleSelect(id)
+                        } else {
+                          console.error('Invalid option ID:', option.id)
+                        }
+                      }}
                       className={classNames(
                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                         'block cursor-pointer px-4 py-2 text-sm'

@@ -1,13 +1,49 @@
+import axiosInstance from '@/commons/axios'
+import type { Association } from '@/commons/interfaces/association/association'
+import type { Game } from '@/commons/interfaces/game/game'
+import type { GetLeagues } from '@/commons/interfaces/league/getLeagues'
+import type { Sponser } from '@/commons/interfaces/sponser/sponser'
 import type { NewsCardProps } from '@/components/cards/NewsCard'
 import NoticeNarrow from '@/components/cards/NoticeNarrowCard'
 import NoticeWideCard from '@/components/cards/NoticeWideCard'
 import LeagueList from '@/components/stackedList/LeagueList'
 import NoticeList from '@/components/stackedList/NoticeList'
 import GameTable from '@/components/tables/GameTable'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+interface ExtendedLeague extends GetLeagues {
+  associationInfo?: {
+    name: string
+  }
+}
+
+export interface ExtendedGame extends Game {
+  homeTeamInfo?: {
+    id: number
+    name: string
+    profileImgUrl: string
+  }
+  awayTeamInfo?: {
+    id: number
+    name: string
+    profileImgUrl: string
+  }
+  leagueInfo?: {
+    name: string
+  }
+  scoreInfo?: {
+    homeTeamScore: number
+    awayTeamScore: number
+  }
+}
 
 const HomeItem = () => {
   const navigate = useNavigate()
+  const [leagues, setLeagues] = useState<ExtendedLeague[]>([])
+  const [sponsers, setSponsers] = useState<Sponser[]>([])
+  const [associations, setAssociations] = useState<Association[]>([])
+  const [upcommingGames, setUpcommingGames] = useState<ExtendedGame[]>([])
   const goToNews = (id: number) => {
     console.log('Card clicked:', id)
   }
@@ -32,79 +68,159 @@ const HomeItem = () => {
     console.log(id)
   }
 
-  const gamesData = [
-    {
-      leagueName: '제 00회 KFNL 00 경기',
-      date: '2023-11-03',
-      homeTeam: {
-        id: 1,
-        logo: 'HomeLogo',
-        name: 'Home Team',
-        score: 12
-      },
-      awayTeam: {
-        id: 2,
-        logo: 'AwayLogo',
-        name: 'Away Team',
-        score: 8
+  const getAssociations = async () => {
+    const page = 1
+    const limit = 100
+    try {
+      const response = await axiosInstance.get(
+        `/associations?page=${page}&limit=${limit}`
+      )
+      console.log(response.data)
+      setAssociations(response.data)
+    } catch (error) {
+      alert(error)
+    }
+  }
+
+  useEffect(() => {
+    getAssociations()
+  }, [])
+
+  const fetchScoreInfo = async (gameId: number) => {
+    try {
+      const response = await axiosInstance.get(`/games/${gameId}/score`)
+      return response.data
+    } catch (error) {
+      return { homeTeamScore: '', awayTeamScore: '' }
+    }
+  }
+
+  const fetchLeagueInfo = async (leagueId: number) => {
+    const response = await axiosInstance.get(`/leagues/${leagueId}`)
+    return response.data
+  }
+
+  const fetchHomeTeamInfo = async (homeTeamId: number) => {
+    const response = await axiosInstance.get(`/teams/${homeTeamId}`)
+    return response.data
+  }
+
+  const fetchAwayTeamInfo = async (awayTeamId: number) => {
+    const response = await axiosInstance.get(`/teams/${awayTeamId}`)
+    return response.data
+  }
+
+  useEffect(() => {
+    const getUpcommingGames = async () => {
+      const cursor = 0
+      const limit = 3
+      try {
+        const response = await axiosInstance.get<Game[]>(
+          `/games?cursor=${cursor}&limit=${limit}`
+        )
+        const upcommingGamesWithScore = await Promise.all(
+          response.data.map(async (game) => {
+            const scoreInfo = game.id
+              ? await fetchScoreInfo(game.id)
+              : { homeTeamScore: 'N/A', awayTeamScore: 'N/A' }
+
+            const leagueInfo = game.leagueId
+              ? await fetchLeagueInfo(game.leagueId)
+              : { name: 'N/A' }
+
+            const homeTeamInfo = game.homeTeamId
+              ? await fetchHomeTeamInfo(game.homeTeamId)
+              : { name: 'N/A' }
+
+            const awayTeamInfo = game.awayTeamId
+              ? await fetchAwayTeamInfo(game.awayTeamId)
+              : { name: 'N/A' }
+
+            return {
+              ...game, // Game 객체의 속성들을 펼침
+              scoreInfo, // scoreInfo 추가
+              leagueInfo, // leagueInfo 추가
+              homeTeamInfo,
+              awayTeamInfo
+            }
+          })
+        )
+
+        setUpcommingGames(upcommingGamesWithScore as ExtendedGame[])
+        // console.log(upcommingGames)
+      } catch (error) {
+        alert(error)
       }
     }
-    // Add more dummy game objects as needed for the story
-  ]
+    getUpcommingGames()
+  }, [])
 
-  const leagues = [
-    {
-      leagueId: 1,
-      leagueName: '제 28회 KNFL',
-      status: '진행중',
-      conference: '사회인연맹',
-      period: '2023/01/01 ~ 2023/01/13',
-      onClick: { goToLeague }
-    },
-    {
-      leagueId: 2,
-      leagueName: '제 28회 KNFL',
-      status: '종료됨',
-      conference: '사회인연맹',
-      period: '2023/01/01 ~ 2023/01/13',
-      onClick: { goToLeague }
-    },
-    {
-      leagueId: 3,
-      leagueName: '제 28회 KNFL',
-      status: '진행중',
-      conference: '사회인연맹',
-      period: '2023/01/01 ~ 2023/01/13',
-      onClick: { goToLeague }
-    },
-    {
-      leagueId: 4,
-      leagueName: '제 28회 KNFL',
-      status: '종료됨',
-      conference: '사회인연맹',
-      period: '2023/01/01 ~ 2023/01/13',
-      onClick: { goToLeague }
-    },
-    {
-      leagueId: 5,
-      leagueName: '제 28회 KNFL',
-      status: '진행중',
-      conference: '사회인연맹',
-      period: '2023/01/01 ~ 2023/01/13',
-      onClick: { goToLeague }
-    }
-  ]
+  const notFinishedGames = upcommingGames.filter(
+    (game) => game.result === 'NotFinished'
+  )
 
-  const partnerLogos = [
-    {
-      src: 'https://i.namu.wiki/i/BoeCB4TIQdrkDq2nvIoJjsP_vfA1u0EANezgLYbfvaCmdk-2cQEn5w5atSzJaCGnGxFyuC_VJMBLOhGFRhqDSA.svg',
-      alt: 'Partner 1 Logo'
-    },
-    {
-      src: 'https://i.namu.wiki/i/7odiKOobwcRn3h5h_Qj63poBcBpLas3nOiDi1T2MpFPACvELiPckUz1sand2gAyOx9hQMn3IQ9HgH_cAtFsokg.svg',
-      alt: 'Partner 2 Logo'
+  const finishedGames = upcommingGames.filter(
+    (game) => game.result !== 'NotFinished'
+  )
+
+  const fetchAssociationInfo = async (associationId: number) => {
+    const response = await axiosInstance.get(`/associations/${associationId}`)
+    return response.data
+  }
+
+  useEffect(() => {
+    const getLeaguesWithAssociation = async () => {
+      const limit = 5
+      const page = 1
+      try {
+        const response = await axiosInstance.get<GetLeagues[]>(
+          `/leagues?page=${page}&limit=${limit}`
+        )
+        const leaguesWithAssociation = await Promise.all(
+          response.data.map(async (league) => {
+            let associationInfo
+            if (league.associationId) {
+              // null이나 undefined가 아닐 경우
+              associationInfo = await fetchAssociationInfo(league.associationId)
+            } else {
+              // 유효하지 않은 associationId에 대한 처리
+              associationInfo = { name: 'Unknown' }
+            }
+            return {
+              ...league,
+              associationInfo
+            }
+          })
+        )
+        setLeagues(leaguesWithAssociation)
+      } catch (error) {
+        alert(error)
+      }
     }
-  ]
+
+    getLeaguesWithAssociation()
+  }, [])
+
+  const getSponser = async () => {
+    const page = 1
+    const limit = 100
+    try {
+      const response = await axiosInstance.get<Sponser[]>(
+        `/sponsers?page=${page}&limit=${limit}`
+      )
+      setSponsers(response.data)
+    } catch (error) {
+      alert(error)
+    }
+  }
+
+  useEffect(() => {
+    getSponser()
+  }, [])
+
+  const goToSponserWeb = (websiteUrl: string) => {
+    navigate(websiteUrl)
+  }
 
   const newsData: NewsCardProps[] = [
     {
@@ -144,10 +260,14 @@ const HomeItem = () => {
         <div className="overflow-x-auto md:col-span-2">
           <div className="md:flex md:flex-row">
             <div className="flex-grow overflow-x-auto p-3">
-              <GameTable title="대진표1" games={gamesData} />
+              {associations.length > 1 && (
+                <GameTable title="다가오는 경기" games={notFinishedGames} />
+              )}
             </div>
             <div className="flex-grow overflow-x-auto p-3">
-              <GameTable title="대진표2" games={gamesData} />
+              {associations.length > 1 && (
+                <GameTable title="최근 경기 결과" games={finishedGames} />
+              )}
             </div>
           </div>
           <div className="p-3 sm:w-full ">
@@ -210,7 +330,7 @@ const HomeItem = () => {
             </div>
           </div>
           <div className="p-3 sm:w-full">
-            <NoticeNarrow id={123} cardName="NOTICE" onClick={goToNotice}>
+            <NoticeNarrow cardName="NOTICE" onClick={goToNotice}>
               <NoticeList
                 id={1}
                 noticeName="공지사항 1"
@@ -236,31 +356,37 @@ const HomeItem = () => {
             </NoticeNarrow>{' '}
           </div>
           <div className="p-3 sm:w-full">
-            <NoticeNarrow id={2} cardName="LEAGUES" onClick={goToLeague}>
+            <NoticeNarrow cardName="LEAGUES" onClick={goToLeague}>
               {leagues.map((league) => (
                 <LeagueList
-                  key={league.leagueId}
-                  leagueId={league.leagueId}
-                  leagueName={league.leagueName}
-                  status={league.status}
-                  conference={league.conference}
-                  period={league.period}
-                  onClick={goToLeague}
+                  key={league.id}
+                  id={league.id}
+                  name={league.name}
+                  associationName={
+                    league.associationInfo?.name || 'Unknown Association'
+                  }
+                  startedAt={league.startedAt}
+                  endedAt={league.endedAt}
                 />
               ))}
             </NoticeNarrow>
           </div>
           <div className="p-3">
-            <NoticeNarrow id={123} cardName="PARTNERS" onClick={goToPartners}>
+            <NoticeNarrow cardName="SPONSER" onClick={goToPartners}>
               {Array.from({ length: 3 }, (_, index) => (
                 <div key={index} className="border-b p-3">
-                  <div className="flex justify-between">
-                    {partnerLogos.map((logo, logoIndex) => (
+                  <div className="flex items-center  justify-between">
+                    {sponsers.map((sponser) => (
                       <img
-                        key={logoIndex}
-                        className={`h-10 ${logoIndex > 0 ? 'ml-5' : ''}`} // Add margin-left if it's not the first logo
-                        src={logo.src}
-                        alt={logo.alt}
+                        key={sponser.id}
+                        className={`h-10 ${sponser.id > 0 ? '' : ''}`} // Add margin-left if it's not the first logo
+                        src={
+                          sponser.profileImgUrl
+                            ? sponser.profileImgUrl
+                            : '/logo/KAFA_OG.png'
+                        }
+                        alt={sponser.name}
+                        onClick={() => goToSponserWeb(sponser.websiteUrl)}
                       />
                     ))}
                   </div>

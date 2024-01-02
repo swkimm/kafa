@@ -25,8 +25,8 @@ const Sidebar = () => {
       name: '대회정보',
       current: true,
       children: [
-        { name: '대회 등록', href: '/console/registerLeague' },
-        { name: '대회 관리', href: '#' }
+        { name: '대회 등록', href: '/console/createLeague' },
+        { name: '대회 관리', href: '/console/manageLeague' }
       ]
     },
     {
@@ -47,7 +47,7 @@ const Sidebar = () => {
     },
     { name: '협회 정보', href: '#', current: false },
     { name: '심판', href: '#', current: false },
-    { name: '국가대표', href: '#', current: false },
+    { name: '국가대표', href: '/console/createNational', current: false },
     { name: '자료실', href: '#', current: false },
     { name: 'NOTICE', href: '#', current: false },
     { name: '신문고', href: '#', current: false },

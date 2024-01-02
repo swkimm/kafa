@@ -7,8 +7,7 @@ const meta = {
   component: NoticeNarrowCard,
   parameters: {},
   argTypes: {
-    cardName: { control: 'text' },
-    onClick: { control: 'action' }
+    cardName: { control: 'text' }
   },
   tags: ['autodocs']
 } satisfies Meta<typeof NoticeNarrowCard>

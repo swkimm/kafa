@@ -13,14 +13,17 @@ import SignUp from './pages/auth/SignUp.tsx'
 import BoardHome from './pages/board/BoardHome.tsx'
 import Calendar from './pages/calendar/Calendar.tsx'
 import ConsoleHome from './pages/console/ConsoleHome.tsx'
-// import ManageLeague from './pages/console/admin/league/ManageLeague.tsx'
-import RegisterLeague from './pages/console/admin/league/RegisterLeague.tsx'
+import CreateGame from './pages/console/admin/game/CreateGame.tsx'
+import CreateLeague from './pages/console/admin/league/CreateLeague.tsx'
+import ManageLeague from './pages/console/admin/league/ManageLeague.tsx'
+import CreateNational from './pages/console/admin/national/CreateNational.tsx'
 import Home from './pages/huddle/Home.tsx'
 import League from './pages/league/League.tsx'
 import LeagueDetail from './pages/league/[id]/LeagueDetail.tsx'
 import ScheduleDetail from './pages/league/[id]/schedule/[id]/ScheduleDetail.tsx'
 import TeamDetail from './pages/league/[id]/team/[id]/TeamDetail.tsx'
 import MemberDetail from './pages/league/[id]/team/[id]/member/[id]/MemberDetail.tsx'
+import National from './pages/national/National.tsx'
 import Notice from './pages/notice/Notice.tsx'
 import PastLeague from './pages/pastLeague/PastLeague.tsx'
 import PastLeagueDetail from './pages/pastLeague/[id]/PastLeagueDetail.tsx'
@@ -44,6 +47,7 @@ const App = () => {
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/national" element={<National />} />
           <Route path="/notice" element={<Notice />} />
           <Route path="/board" element={<BoardHome />} />
           <Route path="/appeal" element={<AppealItem />} />
@@ -91,11 +95,16 @@ const App = () => {
         </Route>
         <Route element={<PrivateRoute allowedRoles={['Admin']} />}>
           <Route element={<ConsoleLayout />}>
+            <Route path="/console/createLeague" element={<CreateLeague />} />
+            <Route path="/console/manageLeague" element={<ManageLeague />} />
             <Route
-              path="/console/registerLeague"
-              element={<RegisterLeague />}
+              path="/console/league/:leagueId/createGame"
+              element={<CreateGame />}
             />
-            {/* <Route path="/console/manageLeague" element={<ManageLeague />} /> */}
+            <Route
+              path="/console/createNational"
+              element={<CreateNational />}
+            />
           </Route>
         </Route>
       </Routes>

@@ -17,8 +17,7 @@ const ConsoleHome = () => {
   useEffect(() => {
     const getRole = async () => {
       try {
-        const response = await axiosInstance.get('account/role')
-        console.log(response.data)
+        await axiosInstance.get('account/role')
       } catch (error) {
         console.error('Error', error)
       }
@@ -27,7 +26,6 @@ const ConsoleHome = () => {
     const getProfile = async () => {
       try {
         const response = await axiosInstance.get('/account/profile')
-        console.log(response.data)
         setProfile(response.data)
       } catch (error) {
         console.error('Error', error)

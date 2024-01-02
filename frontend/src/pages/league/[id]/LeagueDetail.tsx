@@ -1,5 +1,4 @@
 // LeagueDetail.tsx
-// import { useNavigate } from 'react-router-dom'
 import axiosInstance from '@/commons/axios'
 import type { Association } from '@/commons/interfaces/association/association'
 import type { League } from '@/commons/interfaces/league/league'
@@ -10,17 +9,9 @@ import { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import LeagueHomeItem from './items/LeagueHomeItem'
 import TeamItem from './items/LeagueTeamItem'
-import MediaItem from './items/MediaItem'
+// import MediaItem from './items/MediaItem'
 import ScheduleItem from './items/ScheduleItem'
 import StatsItem from './items/StatsItem'
-
-// const league = {
-//   id: 1,
-//   logo: '/logo/KAFA_OG.png',
-//   assosiation: '대한미식축구협회',
-//   leagueName: '제 00회 타이거볼',
-//   isFinished: false
-// }
 
 const LeagueDetail = () => {
   const { leagueId } = useParams<{ leagueId: string }>() // useParams에서 leagueId 파라미터 추출
@@ -50,9 +41,10 @@ const LeagueDetail = () => {
       return <ScheduleItem />
     } else if (currentComponent === 'STATS') {
       return <StatsItem />
-    } else if (currentComponent === 'MEDIA') {
-      return <MediaItem />
     }
+    // else if (currentComponent === 'MEDIA') {
+    //   return <MediaItem />
+    // }
   }
 
   const isDatePast = (dateString: Date) => {
@@ -143,7 +135,7 @@ const LeagueDetail = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'HOME'
                           ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent hover:border-white '
                       }`}
                       onClick={() => setCurrentComponent('HOME')}
                     >
@@ -154,7 +146,7 @@ const LeagueDetail = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'TEAMS'
                           ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent hover:border-white '
                       }`}
                       onClick={() => setCurrentComponent('TEAMS')}
                     >
@@ -165,7 +157,7 @@ const LeagueDetail = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'SCHEDULE'
                           ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent hover:border-white '
                       }`}
                       onClick={() => setCurrentComponent('SCHEDULE')}
                     >
@@ -176,23 +168,23 @@ const LeagueDetail = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'STATS'
                           ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent hover:border-white '
                       }`}
                       onClick={() => setCurrentComponent('STATS')}
                     >
                       STATS
                     </Disclosure.Button>
-                    <Disclosure.Button
+                    {/* <Disclosure.Button
                       as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'MEDIA'
                           ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent hover:border-white '
                       }`}
                       onClick={() => setCurrentComponent('MEDIA')}
                     >
                       MEDIA
-                    </Disclosure.Button>
+                    </Disclosure.Button> */}
                   </div>
                 </div>
                 <div className="-mr-2 flex items-center sm:hidden">
@@ -211,42 +203,42 @@ const LeagueDetail = () => {
             </div>
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 pb-3 pt-2">
-                {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
+                {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 " */}
                 <Disclosure.Button
                   as="button"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 "
                   onClick={() => setCurrentComponent('HOME')}
                 >
                   HOME
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="button"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 "
                   onClick={() => setCurrentComponent('TEAMS')}
                 >
                   TEAMS
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="button"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 "
                   onClick={() => setCurrentComponent('SCHEDULE')}
                 >
                   SCHEDULE
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="button"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 "
                   onClick={() => setCurrentComponent('STATS')}
                 >
                   STATS
                 </Disclosure.Button>
-                <Disclosure.Button
+                {/* <Disclosure.Button
                   as="button"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 "
                   onClick={() => setCurrentComponent('MEDIA')}
                 >
                   MEDIA
-                </Disclosure.Button>
+                </Disclosure.Button> */}
               </div>
             </Disclosure.Panel>
           </>

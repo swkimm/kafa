@@ -6,6 +6,7 @@ import MyNotification from '@/components/notifications/Notification'
 import { useEffect, useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import { useNavigate } from 'react-router-dom'
 
 interface RegisterLeague {
   name: string
@@ -15,6 +16,7 @@ interface RegisterLeague {
 }
 
 const RegisterLeague = () => {
+  const navigate = useNavigate()
   const [associations, setAssociations] = useState<Association[]>([])
   const [selectedAssociationId, setSelectedAssociationId] = useState<
     number | null
@@ -32,7 +34,7 @@ const RegisterLeague = () => {
   const getAssociations = async () => {
     try {
       const response = await axiosInstance.get<Association[]>(
-        '/associations?page=1&limit=3'
+        '/associations?page=1&limit=100'
       )
       setAssociations(response.data)
     } catch (error) {
@@ -81,15 +83,18 @@ const RegisterLeague = () => {
         endedAt: formatDate(endedAt),
         associationId: selectedAssociationId
       }
-      await axiosInstance.post('/admin/leagues', postData)
+      const response = await axiosInstance.post('/admin/leagues', postData)
       console.log('대회 등록 성공')
       showAlert(
         'notification',
         '등록 성공',
         '대회가 성공적으로 등록되었습니다.'
       )
+      console.log(response.data.id)
+
+      navigate(`/console/league/${response.data.id}/createGame`)
     } catch (error) {
-      showAlert('alert', '등록 실패', '대회 등록에 실패했습니다.')
+      showAlert('alert', '등록 실패', '대회 등록 실패')
     }
   }
 

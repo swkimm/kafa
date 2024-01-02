@@ -7,12 +7,11 @@ const meta = {
   component: LeagueList,
   parameters: {},
   argTypes: {
-    leagueId: { control: 'number' },
-    leagueName: { control: 'text' },
-    status: { control: 'text' },
-    conference: { control: 'text' },
-    period: { control: 'text' },
-    isInProgress: { action: 'boolean' },
+    id: { control: 'number' },
+    name: { control: 'text' },
+    associationName: { control: 'text' },
+    startedAt: { control: 'date' },
+    endedAt: { control: 'date' },
     onClick: { control: 'clicked' }
   },
   tags: ['autodocs']
@@ -22,11 +21,11 @@ export default meta
 type Story = StoryObj<typeof LeagueList>
 
 export const Default: Story = {
-  args: {
-    leagueId: 1,
-    leagueName: '제 28회 KNFL',
-    status: '종료됨',
-    conference: '사회인연맹',
-    period: '2023/01/01 ~ 2023/01/13'
-  }
+  // args: {
+  //   leagueId: 1,
+  //   leagueName: '제 28회 KNFL',
+  //   status: '종료됨',
+  //   conference: '사회인연맹',
+  //   period: '2023/01/01 ~ 2023/01/13'
+  // }
 }
