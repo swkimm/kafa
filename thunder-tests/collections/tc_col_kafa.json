@@ -738,6 +738,76 @@
             "containerId": "7766f44c-7107-4380-bf67-81af5b2b4d45",
             "created": "2023-12-28T09:01:47.087Z",
             "sortNum": 1100000
+        },
+        {
+            "_id": "bbfdf3d2-6494-4710-81b1-45beac68b38a",
+            "name": "getJoinableLeagues",
+            "containerId": "7766f44c-7107-4380-bf67-81af5b2b4d45",
+            "created": "2024-01-02T15:14:33.584Z",
+            "sortNum": 1095000
+        },
+        {
+            "_id": "027d7bc7-4e65-4242-ae4c-27380c5836f3",
+            "name": "getTeamJoinLeagueRequests",
+            "containerId": "7766f44c-7107-4380-bf67-81af5b2b4d45",
+            "created": "2024-01-02T15:15:53.912Z",
+            "sortNum": 1120000
+        },
+        {
+            "_id": "e12e1da1-5e46-4b58-92bb-1b7f79f98120",
+            "name": "retryJoinLeague",
+            "containerId": "7766f44c-7107-4380-bf67-81af5b2b4d45",
+            "created": "2024-01-02T15:16:12.418Z",
+            "sortNum": 1130000
+        },
+        {
+            "_id": "b12b34b1-327c-404f-bc05-1e09a799fcc7",
+            "name": "getJoinLeagueRequest",
+            "containerId": "279557a6-01f9-421b-9f56-16cc83ae86eb",
+            "created": "2024-01-03T06:22:30.181Z",
+            "sortNum": 1140000
+        },
+        {
+            "_id": "7a95742d-d6eb-4282-958b-77fa4b102e74",
+            "name": "getJoinLeagueRequestInfo",
+            "containerId": "279557a6-01f9-421b-9f56-16cc83ae86eb",
+            "created": "2024-01-03T06:22:39.215Z",
+            "sortNum": 1150000
+        },
+        {
+            "_id": "f7c4b55e-3c37-4d21-9f77-eee584e9aeb6",
+            "name": "approveJoinLeague",
+            "containerId": "279557a6-01f9-421b-9f56-16cc83ae86eb",
+            "created": "2024-01-03T06:23:04.328Z",
+            "sortNum": 1160000
+        },
+        {
+            "_id": "1f283b49-f05a-4440-a7d9-edfa928d890d",
+            "name": "rejectJoinLeague",
+            "containerId": "279557a6-01f9-421b-9f56-16cc83ae86eb",
+            "created": "2024-01-03T06:24:03.044Z",
+            "sortNum": 1170000
+        },
+        {
+            "_id": "7bdd243d-c90f-4672-87ad-c270bccaca82",
+            "name": "Admin",
+            "containerId": "e689668e-d151-4ebe-9316-4cc40c585435",
+            "created": "2024-01-03T09:07:18.024Z",
+            "sortNum": 1180000
+        },
+        {
+            "_id": "2877f5c3-8916-48be-8295-8dfd8261c3c7",
+            "name": "getAllCertificationAccessToken",
+            "containerId": "7bdd243d-c90f-4672-87ad-c270bccaca82",
+            "created": "2024-01-03T09:08:40.250Z",
+            "sortNum": 1200000
+        },
+        {
+            "_id": "17270aee-a0f8-446d-8c37-574a0d2d4d40",
+            "name": "getCertificationAccessToken",
+            "containerId": "e22477f7-dcc5-4b35-a3b7-f05b0c526738",
+            "created": "2024-01-03T09:30:22.801Z",
+            "sortNum": 1210000
         }
     ],
     "requests": [
@@ -7886,10 +7956,7 @@
                         "triggerCondition": "run-always",
                         "triggerValue": ""
                     }
-                ],
-                "options": {
-                    "skipRequest": true
-                }
+                ]
             }
         },
         {
@@ -7912,12 +7979,7 @@
                     "value": "200"
                 }
             ],
-            "docs": "## [Public] getTeamRostersByLeagueId\n\n### URI\nGET /rosters/leagues/[leagueId]/teams/[teamId]\n\n### Description\n특정 팀의 특정 리그에서의 로스터 목록을 조회합니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|조회할 리그의 식별자|\n|teamId|number|조회할 팀의 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문 이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n|rosterType|*RosterType|로스터 종류|\n|Athlete|*AthleteInfo?|선수 정보|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface AthteleInfo**\n|Name|Type|Description|\n|---|----|-------|\n|position|*PositionType|포지션 정보|\n|backNumber|number|등번호|\n\n**Interface PositionType**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 포함될 경우 발생|\n|404|Not Found|존재하지 않는 팀 또는 리그의 식별자를 전달할 경우 발생|",
-            "preReq": {
-                "options": {
-                    "skipRequest": true
-                }
-            }
+            "docs": "## [Public] getTeamRostersByLeagueId\n\n### URI\nGET /rosters/leagues/[leagueId]/teams/[teamId]\n\n### Description\n특정 팀의 특정 리그에서의 로스터 목록을 조회합니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|조회할 리그의 식별자|\n|teamId|number|조회할 팀의 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문 이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n|rosterType|*RosterType|로스터 종류|\n|Athlete|*AthleteInfo?|선수 정보|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface AthteleInfo**\n|Name|Type|Description|\n|---|----|-------|\n|position|*PositionType|포지션 정보|\n|backNumber|number|등번호|\n\n**Interface PositionType**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 포함될 경우 발생|\n|404|Not Found|존재하지 않는 팀 또는 리그의 식별자를 전달할 경우 발생|"
         },
         {
             "_id": "3137f358-903f-4e16-bc04-c5550e15735a",
@@ -8038,10 +8100,7 @@
                         "triggerCondition": "run-always",
                         "triggerValue": ""
                     }
-                ],
-                "options": {
-                    "skipRequest": true
-                }
+                ]
             }
         },
         {
@@ -8053,10 +8112,17 @@
             "method": "GET",
             "sortNum": 1780000,
             "created": "2023-12-27T12:17:44.950Z",
-            "modified": "2024-01-02T11:27:04.825Z",
+            "modified": "2024-01-03T06:18:14.776Z",
             "headers": [],
             "params": [],
-            "tests": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ],
             "docs": "## [Normal] getConnectableRosters\n\n### URI\nGET /rosters/connectable\n\n### Description\n\b현재 로그인한 개인 계정에서 연결 가능한 로스터 목록을 불러옵니다\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문 이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n|rosterType|*RosterType|로스터 종류|\n|Athlete|*AthleteInfo?|선수 정보|\n|Team|*TeamInfo|팀 정보|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface AthteleInfo**\n|Name|Type|Description|\n|---|----|-------|\n|position|*PositionType|포지션 정보|\n|backNumber|number|등번호|\n|weight|number|몸무게(kg)|\n|height|number|키(cm)|\n\n**Interface PositionType**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n**Interface TeamInfo**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|profileImgUrl|string?|팀 프로필 이미지 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|개인정보 인증을 완료하지 않은 계정에서 해당 요청을 보낼 경우 발생|",
             "preReq": {
                 "runRequests": [
@@ -8066,10 +8132,7 @@
                         "triggerCondition": "run-always",
                         "triggerValue": ""
                     }
-                ],
-                "options": {
-                    "skipRequest": true
-                }
+                ]
             }
         },
         {
@@ -8101,10 +8164,7 @@
                         "triggerCondition": "run-always",
                         "triggerValue": ""
                     }
-                ],
-                "options": {
-                    "skipRequest": true
-                }
+                ]
             }
         },
         {
@@ -8147,10 +8207,7 @@
                         "triggerCondition": "run-always",
                         "triggerValue": ""
                     }
-                ],
-                "options": {
-                    "skipRequest": true
-                }
+                ]
             }
         },
         {
@@ -8359,14 +8416,22 @@
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "ce98c588-906e-41b3-a929-f637c606b1b1",
             "name": "Success",
-            "url": "/leagues/validation",
+            "url": "/leagues/rosters/validation",
             "method": "GET",
             "sortNum": 1870000,
             "created": "2023-12-28T09:01:51.817Z",
-            "modified": "2023-12-29T08:10:27.394Z",
+            "modified": "2024-01-03T05:33:27.767Z",
             "headers": [],
             "params": [],
-            "tests": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ],
+            "docs": "## [Manager] CheckTeamRosterCertification\n\n### URI\nGET /leagues/rosters/validation\n\n### Description\n팀 로스터 명단이 리그 신청과 관련하여 문제가 없는 지 검사 결과를 반환합니다\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|valid|boolean|리그 신청 가능 여부|\n|reason|string[]|검사 불합격 목록|\n|rosters|*RosterAvaliability[]|로스터 상태 목록|\n\n**Type RosterAvaliability**\n|Name|Type|Description|\n|---|----|-------|\n|name|string|이름|\n|profileImgUrl|string?|로스터 프로필 이미지 주소|\n|rosterType|*RosterType|로스터 종류|\n|position?|*Position|포지션|\n|backNumber?|number|등 번호|\n|avaliability|*RosterAvaliability|로스터 유효성|\n\n**Type Position**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스|\n|defense?|string|디펜스|\n|special?|string|스페셜|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach(감독)\n\n**Enum RosterAvaliability**\n- Verified (증명서 업로드 됨)\n- Unverified (증명서 업로드 안됨)\n- Exemption (증명서 면제, 매니저 코치 감독)\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|",
             "preReq": {
                 "runRequests": [
                     {
@@ -8383,18 +8448,38 @@
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "0ede2ba7-f879-4b21-b89d-f4caebab38df",
             "name": "Success",
-            "url": "/leagues/8/request-join",
+            "url": "/leagues/9/join",
             "method": "POST",
             "sortNum": 1880000,
             "created": "2023-12-28T09:01:56.710Z",
-            "modified": "2023-12-29T08:11:53.291Z",
+            "modified": "2024-01-02T15:42:27.433Z",
             "headers": [],
             "params": [],
-            "tests": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.leagueId",
+                    "action": "equal",
+                    "value": "9"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.applyStatus",
+                    "action": "equal",
+                    "value": "Received"
+                }
+            ],
+            "docs": "## [Manager] RequestJoinLeague\n\n### URI\nPOST /leagues/[:leagueId]/request\n\n### Description\n리그에 참여 신청하고 신청 정보를 반환합니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|teamId|number|팀의 식별자|\n|leagueId|number|리그의 식별자|\n|rank|number?|해당 리그에서 팀의 순위|\n|applyStatus|*ApplyStatus|리그 신청 상태|\n|reason|string?|리그 참여 신청 보류 또는 반려 사유|\n\n**Enum ApplyStatus**\n- Approved (승인됨)\n- Hold (보류됨)\n- Rejected (반려됨)\n- Received (접수됨)\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 올바르지 않은 값이 있을 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 전달한 경우 발생|\n|409|Conflict|중복된 신청을 할 경우 발생|\n|422|Unprocessable Entity|참가를 신청하는 팀 로스터에 인증되지 않은 로스터가 존재할 경우 발생|",
             "preReq": {
                 "runRequests": [
                     {
-                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "reqId": "688de02f-ed3a-4681-a8e7-1d0eababe661",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""
@@ -9083,7 +9168,7 @@
             "method": "GET",
             "sortNum": 1920000,
             "created": "2024-01-02T09:38:14.555Z",
-            "modified": "2024-01-02T09:38:39.791Z",
+            "modified": "2024-01-03T06:18:04.135Z",
             "headers": [],
             "params": [
                 {
@@ -9097,7 +9182,14 @@
                     "isPath": false
                 }
             ],
-            "tests": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
             "preReq": {
                 "runRequests": [
                     {
@@ -9912,10 +10004,17 @@
             "method": "POST",
             "sortNum": 2040000,
             "created": "2024-01-02T13:12:04.449Z",
-            "modified": "2024-01-02T13:16:32.537Z",
+            "modified": "2024-01-03T06:16:28.025Z",
             "headers": [],
             "params": [],
-            "tests": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
             "preReq": {
                 "runRequests": [
                     {
@@ -10205,6 +10304,1572 @@
                     }
                 ]
             }
+        },
+        {
+            "_id": "66f50e8a-98aa-4360-b044-6cab93bb0845",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "bbfdf3d2-6494-4710-81b1-45beac68b38a",
+            "name": "Success",
+            "url": "/leagues/joinable",
+            "method": "GET",
+            "sortNum": 2120000,
+            "created": "2024-01-02T15:28:48.977Z",
+            "modified": "2024-01-02T15:32:29.270Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ],
+            "docs": "## [Manager] GetJoinableLeagues\n\n### URI\nGET /leagues/joinable\n\n### Description\n현재 신청 가능한 리그 목록을 반환합니다\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그명|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|Association|*Association|주관 협회|\n\n**Type Association**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|협회 식별자|\n|name|string|협회명|\n|profileImgUrl|string?|협회 프로필 사진 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "8e78dc04-d765-469a-8398-5b53e9624b19",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "027d7bc7-4e65-4242-ae4c-27380c5836f3",
+            "name": "Success",
+            "url": "/leagues/requests",
+            "method": "GET",
+            "sortNum": 2140000,
+            "created": "2024-01-02T15:42:48.365Z",
+            "modified": "2024-01-03T06:20:14.809Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json[0].teamId",
+                    "action": "equal",
+                    "value": "1"
+                }
+            ],
+            "docs": "## [Manager] GetTeamJoinLeagueRequests\n\n### URI\nGET /leagues/requests\n\n### Description\n팀에서 신청한 리그 참여 요청 목록을 불러옵니다\n\n### Body\n**void**\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|teamId|number|팀의 식별자|\n|leagueId|number|리그의 식별자|\n|rank|number?|해당 리그에서 팀의 순위|\n|applyStatus|*ApplyStatus|리그 신청 상태|\n|reason|string?|리그 참여 신청 보류 또는 반려 사유|\n\n**Enum ApplyStatus**\n- Approved (승인됨)\n- Hold (보류됨)\n- Rejected (반려됨)\n- Received (접수됨)\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "cd730178-ea79-44e4-8e3e-fcdfbe46a9c4",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e12e1da1-5e46-4b58-92bb-1b7f79f98120",
+            "name": "Success",
+            "url": "/leagues/7/join/retry",
+            "method": "POST",
+            "sortNum": 2150000,
+            "created": "2024-01-02T15:45:07.486Z",
+            "modified": "2024-01-03T06:09:16.861Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.leagueId",
+                    "action": "equal",
+                    "value": "7"
+                }
+            ],
+            "docs": "## [Manager] RetryJoinLeague\n\n### URI\nPOST /leagues/[:leagueId]/request\n\n### Description\n보류된 리그 참여 요청에 대해 다시 신청합니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|teamId|number|팀의 식별자|\n|leagueId|number|리그의 식별자|\n|rank|number?|해당 리그에서 팀의 순위|\n|applyStatus|*ApplyStatus|리그 신청 상태|\n|reason|string?|리그 참여 신청 보류 또는 반려 사유|\n\n**Enum ApplyStatus**\n- Approved (승인됨)\n- Hold (보류됨)\n- Rejected (반려됨)\n- Received (접수됨)\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 올바르지 않은 값이 있을 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 전달한 경우 발생|\n|409|Conflict|보류되지 않은 요청에대해 해당 요청을 보낼 경우 발생|\n|422|Unprocessable Entity|참가를 신청하는 팀 로스터에 인증되지 않은 로스터가 존재할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a3ce8d63-ad4d-4199-a5ab-d1a5c13b2a39",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "ce98c588-906e-41b3-a929-f637c606b1b1",
+            "name": "401: Unauthorized",
+            "url": "/leagues/rosters/validation",
+            "method": "GET",
+            "sortNum": 2160000,
+            "created": "2024-01-03T05:27:37.131Z",
+            "modified": "2024-01-03T05:28:08.050Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "ae57e1b1-acfe-41e2-89eb-febb9edc2286",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "ce98c588-906e-41b3-a929-f637c606b1b1",
+            "name": "403: Forbidden",
+            "url": "/leagues/rosters/validation",
+            "method": "GET",
+            "sortNum": 2170000,
+            "created": "2024-01-03T05:27:49.986Z",
+            "modified": "2024-01-03T05:28:25.379Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "3474e1fe-4c51-4cbd-84b6-9bcd17c9e1b0",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "bbfdf3d2-6494-4710-81b1-45beac68b38a",
+            "name": "401: Unauthorized",
+            "url": "/leagues/joinable",
+            "method": "GET",
+            "sortNum": 2130000,
+            "created": "2024-01-03T05:28:55.112Z",
+            "modified": "2024-01-03T05:29:42.511Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "fa628161-f238-409f-a10d-ce309262a66a",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "bbfdf3d2-6494-4710-81b1-45beac68b38a",
+            "name": "403: Forbidden",
+            "url": "/leagues/joinable",
+            "method": "GET",
+            "sortNum": 2140000,
+            "created": "2024-01-03T05:29:01.659Z",
+            "modified": "2024-01-03T05:29:50.059Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "6edbb31f-5af4-4df6-94cb-fbb762fcedbc",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0ede2ba7-f879-4b21-b89d-f4caebab38df",
+            "name": "400: Bad Request",
+            "url": "/leagues/abc/join",
+            "method": "POST",
+            "sortNum": 2200000,
+            "created": "2024-01-03T05:30:12.744Z",
+            "modified": "2024-01-03T05:30:36.474Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b5389db5-c641-415b-b27a-ac9ae785fc12",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0ede2ba7-f879-4b21-b89d-f4caebab38df",
+            "name": "401: Unauthorized",
+            "url": "/leagues/1/join",
+            "method": "POST",
+            "sortNum": 2210000,
+            "created": "2024-01-03T05:30:41.421Z",
+            "modified": "2024-01-03T05:31:00.055Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "fc57dd69-3100-47e9-a6cd-d08752a67eef",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0ede2ba7-f879-4b21-b89d-f4caebab38df",
+            "name": "403: Forbidden",
+            "url": "/leagues/1/join",
+            "method": "POST",
+            "sortNum": 2220000,
+            "created": "2024-01-03T05:31:02.948Z",
+            "modified": "2024-01-03T05:31:16.899Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4db9c08c-3d8f-42f4-8d87-d49fb3a39999",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0ede2ba7-f879-4b21-b89d-f4caebab38df",
+            "name": "404: Not Found",
+            "url": "/leagues/10000/join",
+            "method": "POST",
+            "sortNum": 2210000,
+            "created": "2024-01-03T05:31:31.737Z",
+            "modified": "2024-01-03T05:31:55.098Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "0fa8f8a0-191f-45a8-8de7-5e70bc5d986d",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0ede2ba7-f879-4b21-b89d-f4caebab38df",
+            "name": "409: Conflict",
+            "url": "/leagues/1/join",
+            "method": "POST",
+            "sortNum": 2220000,
+            "created": "2024-01-03T05:32:10.270Z",
+            "modified": "2024-01-03T05:32:35.322Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "409"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "6e0734d0-6c88-47d4-89a7-ffa5ad564bfb",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "0ede2ba7-f879-4b21-b89d-f4caebab38df",
+            "name": "422: Unprocessable Entity",
+            "url": "/leagues/9/join",
+            "method": "POST",
+            "sortNum": 2230000,
+            "created": "2024-01-03T05:32:52.023Z",
+            "modified": "2024-01-03T05:33:36.012Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "422"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "eb898c92-3437-4830-9306-fd9aa6d9cb81",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "8684b430-3872-4501-b400-90aba14acaa2",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "027d7bc7-4e65-4242-ae4c-27380c5836f3",
+            "name": "401: Unauthorized",
+            "url": "/leagues/requests",
+            "method": "GET",
+            "sortNum": 2240000,
+            "created": "2024-01-03T05:36:06.778Z",
+            "modified": "2024-01-03T05:36:34.395Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "59e2fa63-c80c-4cb8-9ff4-af457b9c1aeb",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "027d7bc7-4e65-4242-ae4c-27380c5836f3",
+            "name": "403: Forbidden",
+            "url": "/leagues/requests",
+            "method": "GET",
+            "sortNum": 2250000,
+            "created": "2024-01-03T05:36:12.044Z",
+            "modified": "2024-01-03T05:36:45.775Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "43b25a99-8eec-4bbc-9d65-17b755cae2e1",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e12e1da1-5e46-4b58-92bb-1b7f79f98120",
+            "name": "400: Bad Request",
+            "url": "/leagues/abc/join/retry",
+            "method": "POST",
+            "sortNum": 2260000,
+            "created": "2024-01-03T05:37:10.951Z",
+            "modified": "2024-01-03T05:37:42.444Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "be565bd9-c5e1-47e7-943e-338c2f715485",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e12e1da1-5e46-4b58-92bb-1b7f79f98120",
+            "name": "401: Unauthorized",
+            "url": "/leagues/7/join/retry",
+            "method": "POST",
+            "sortNum": 2270000,
+            "created": "2024-01-03T05:37:50.136Z",
+            "modified": "2024-01-03T05:38:11.685Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "8ab58557-b4b5-4595-b009-6cf4b28b8975",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e12e1da1-5e46-4b58-92bb-1b7f79f98120",
+            "name": "403: Forbidden",
+            "url": "/leagues/7/join/retry",
+            "method": "POST",
+            "sortNum": 2280000,
+            "created": "2024-01-03T05:38:20.495Z",
+            "modified": "2024-01-03T05:38:38.789Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "281e7f3c-0843-4680-bac4-7a8a05b960b2",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e12e1da1-5e46-4b58-92bb-1b7f79f98120",
+            "name": "404: Not Found",
+            "url": "/leagues/10000/join/retry",
+            "method": "POST",
+            "sortNum": 2290000,
+            "created": "2024-01-03T05:39:14.376Z",
+            "modified": "2024-01-03T05:39:32.496Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b32233c6-e494-4500-9714-b69f49db57d1",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e12e1da1-5e46-4b58-92bb-1b7f79f98120",
+            "name": "409: Conflict",
+            "url": "/leagues/1/join/retry",
+            "method": "POST",
+            "sortNum": 2300000,
+            "created": "2024-01-03T05:39:44.172Z",
+            "modified": "2024-01-03T05:40:09.735Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "409"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "84887e6b-3092-4a79-bd71-618e011bae6b",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "e12e1da1-5e46-4b58-92bb-1b7f79f98120",
+            "name": "422: Unprocessable Entity",
+            "url": "/leagues/7/join/retry",
+            "method": "POST",
+            "sortNum": 2310000,
+            "created": "2024-01-03T05:40:27.460Z",
+            "modified": "2024-01-03T06:12:38.732Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "422"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "eb898c92-3437-4830-9306-fd9aa6d9cb81",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "e6b6a389-98d1-4661-a003-7090f5ebfb86",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "b12b34b1-327c-404f-bc05-1e09a799fcc7",
+            "name": "Success",
+            "url": "/admin/leagues/8/requests",
+            "method": "GET",
+            "sortNum": 2320000,
+            "created": "2024-01-03T06:25:01.109Z",
+            "modified": "2024-01-03T08:11:53.013Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json[0].leagueId",
+                    "action": "equal",
+                    "value": "8"
+                }
+            ],
+            "docs": "## [Admin] GetJoinLeagueRequests\n\n### URI\nGET /admin/leagues/[:leagueId]/requests\n\n### Description\n특정 리그의 참여 신청 목록을 불러옵니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|teamId|number|팀 식별자|\n|leagueId|number|리그 식별자|\n|rank|number?|리그 순위|\n|applyStatus|*ApplyStatus|등록 상태|\n|reason|string?|반려 또는 보류 사유|\n\n**Enum ApplyStatus**\n- Approved (승인)\n- Rejected (반려)\n- Hold (보류)\n- Received (접수)\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 있을경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 보낼 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "bbf093b0-be88-4057-a968-3aed4123a6d7",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7a95742d-d6eb-4282-958b-77fa4b102e74",
+            "name": "Success",
+            "url": "/admin/leagues/1/teams/1/request",
+            "method": "GET",
+            "sortNum": 2330000,
+            "created": "2024-01-03T06:25:04.730Z",
+            "modified": "2024-01-03T08:33:19.102Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ],
+            "docs": "## [Admin] GetJoinLeagueRequestInfo\n\n### URI\nGET /admin/leagues/[:leagueId]/teams/[:teamId]/request\n\n### Description\n특정 팀의 리그 참여 요청 정보를 불러옵니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n|teamId|number|팀 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|rejectReason|string?|반려 또는 보류 사유|\n|rosters|*Roster[]|로스터 명단|\n\n**Type Roster**\n|Name|Type|Description|\n|---|----|-------|\n|name|string|이름|\n|profileImgUrl|string?|프로필 이미지 주소|\n|rosterType|*RosterType|로스터 종류|\n|position|*Postion?|포지션|\n|backNumber|number?|등 번호|\n|birthday|Date?|생일|\n|gender|*GenderType|성별|\n|certificationUrl|string?|증명서 링크|\n\n**Enum ApplyStatus**\n- Approved (승인)\n- Rejected (반려)\n- Hold (보류)\n- Received (접수)\n\n**Enum RosterType**\n- Athlete\n- Staff\n- Coach\n- HeadCoach\n\n**Type Position**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스|\n|defense?|string|디펜스|\n|special?|string|스페셜|\n\n**Enum GenderType**\n- Male\n- Female\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 있을경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 리그 또는 팀의 식별자를 보낼 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "154ab305-85ab-4106-b65b-5a69b1239f95",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f7c4b55e-3c37-4d21-9f77-eee584e9aeb6",
+            "name": "Success",
+            "url": "/admin/leagues/7/teams/1/approve",
+            "method": "POST",
+            "sortNum": 2340000,
+            "created": "2024-01-03T06:25:08.583Z",
+            "modified": "2024-01-03T07:42:44.550Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "201"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.teamId",
+                    "action": "equal",
+                    "value": "1"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.leagueId",
+                    "action": "equal",
+                    "value": "7"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.applyStatus",
+                    "action": "equal",
+                    "value": "Approved"
+                }
+            ],
+            "docs": "## [Admin] ApproveJoinLeague\n\n### URI\nPOST /admin/leagues/[:leagueId]/teams/[:teamId]/approve\n\n### Description\n팀의 리그 참여를 승인합니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n|teamId|number|팀 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|teamId|number|팀 식별자|\n|leagueId|number|리그 식별자|\n|rank|number?|리그 순위|\n|applyStatus|*ApplyStatus|등록 상태|\n|reason|string?|반려 또는 보류 사유|\n\n**Enum ApplyStatus**\n- Approved (승인)\n- Rejected (반려)\n- Hold (보류)\n- Received (접수)\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 있을경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 리그 또는 팀의 식별자를 보낼 경우 발생|\n|409|Conflict|이미 승인 또는 반려 처리된 요청에 대해 해당 요청을 보낼 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a5cf2edb-9e61-446c-a1cb-5b634158aa69",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "1f283b49-f05a-4440-a7d9-edfa928d890d",
+            "name": "Success",
+            "url": "/admin/leagues/7/teams/4/join",
+            "method": "PUT",
+            "sortNum": 2350000,
+            "created": "2024-01-03T06:25:12.240Z",
+            "modified": "2024-01-03T07:49:49.062Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"type\": \"Hold\",\n  \"reason\": \"hold test\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.teamId",
+                    "action": "equal",
+                    "value": "4"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.leagueId",
+                    "action": "equal",
+                    "value": "7"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.applyStatus",
+                    "action": "equal",
+                    "value": "Hold"
+                }
+            ],
+            "docs": "## [Admin] RejectJoinLeague\n\n### URI\nPUT /admin/leagues/[:leagueId]/teams/[:teamId]/join\n\n### Description\n팀의 리그 참여를 반려 또는 보류합니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n|teamId|number|팀 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|type|*ApplyStatus|반려 또는 보류 여부|\n|reason|string|반려 또는 보류 사유|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|teamId|number|팀 식별자|\n|leagueId|number|리그 식별자|\n|rank|number?|리그 순위|\n|applyStatus|*ApplyStatus|등록 상태|\n|reason|string?|반려 또는 보류 사유|\n\n**Enum ApplyStatus**\n- Approved (승인)\n- Rejected (반려)\n- Hold (보류)\n- Received (접수)\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 또는 요청 Body에 유효하지 않은 값이 있을경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 리그 또는 팀의 식별자를 보낼 경우 발생|\n|409|Conflict|이미 승인 또는 반려 처리된 요청에 대해 해당 요청을 보낼 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "c5874c7d-83c6-4cb4-adba-0f208b242c50",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "b12b34b1-327c-404f-bc05-1e09a799fcc7",
+            "name": "400: Bad Request",
+            "url": "/admin/leagues/abc/requests",
+            "method": "GET",
+            "sortNum": 2360000,
+            "created": "2024-01-03T07:50:46.005Z",
+            "modified": "2024-01-03T08:12:21.913Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "dd3d37d1-9c50-42ed-aff4-8198d8c06a25",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "b12b34b1-327c-404f-bc05-1e09a799fcc7",
+            "name": "401: Unauthorized",
+            "url": "/admin/leagues/8/requests",
+            "method": "GET",
+            "sortNum": 2370000,
+            "created": "2024-01-03T07:50:52.128Z",
+            "modified": "2024-01-03T08:12:36.106Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "3a50472a-f31e-4ebb-a538-bc9484730351",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "b12b34b1-327c-404f-bc05-1e09a799fcc7",
+            "name": "403: Forbidden",
+            "url": "/admin/leagues/8/requests",
+            "method": "GET",
+            "sortNum": 2380000,
+            "created": "2024-01-03T07:50:56.976Z",
+            "modified": "2024-01-03T08:12:54.740Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "5c37dd91-63a2-46e2-b16a-3f404407e472",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "b12b34b1-327c-404f-bc05-1e09a799fcc7",
+            "name": "404: Not Found",
+            "url": "/admin/leagues/10000/requests",
+            "method": "GET",
+            "sortNum": 2390000,
+            "created": "2024-01-03T07:51:03.111Z",
+            "modified": "2024-01-03T08:13:39.275Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "7f2e5956-1846-4a22-a4ac-35210328d452",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7a95742d-d6eb-4282-958b-77fa4b102e74",
+            "name": "400: Bad Request",
+            "url": "/admin/leagues/1a/teams/1b/request",
+            "method": "GET",
+            "sortNum": 2400000,
+            "created": "2024-01-03T08:13:53.480Z",
+            "modified": "2024-01-03T08:14:37.631Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "43bcb354-9bcd-4c03-80cd-5af77e80c1e8",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7a95742d-d6eb-4282-958b-77fa4b102e74",
+            "name": "401: Unauthorized",
+            "url": "/admin/leagues/1/teams/1/request",
+            "method": "GET",
+            "sortNum": 2410000,
+            "created": "2024-01-03T08:14:04.829Z",
+            "modified": "2024-01-03T08:14:50.890Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "f2a5e6a8-2f63-404f-a626-8bd3e947b43c",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7a95742d-d6eb-4282-958b-77fa4b102e74",
+            "name": "403: Forbidden",
+            "url": "/admin/leagues/1/teams/1/request",
+            "method": "GET",
+            "sortNum": 2420000,
+            "created": "2024-01-03T08:14:09.915Z",
+            "modified": "2024-01-03T08:15:08.868Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "7f6638d7-9cd4-48f7-bc67-d2017a66ed5d",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "7a95742d-d6eb-4282-958b-77fa4b102e74",
+            "name": "404: Not Found",
+            "url": "/admin/leagues/1/teams/10000/request",
+            "method": "GET",
+            "sortNum": 2430000,
+            "created": "2024-01-03T08:14:16.985Z",
+            "modified": "2024-01-03T08:15:23.623Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "e713ffd1-1080-453f-a4c2-84ba51ad0b47",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f7c4b55e-3c37-4d21-9f77-eee584e9aeb6",
+            "name": "400: Bad Request",
+            "url": "/admin/leagues/abc/teams/1/approve",
+            "method": "POST",
+            "sortNum": 2440000,
+            "created": "2024-01-03T08:16:28.718Z",
+            "modified": "2024-01-03T08:18:40.755Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "78e14c02-f2f9-4def-a513-440341ef1b1e",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f7c4b55e-3c37-4d21-9f77-eee584e9aeb6",
+            "name": "401: Unauthorized",
+            "url": "/admin/leagues/7/teams/1/approve",
+            "method": "POST",
+            "sortNum": 2450000,
+            "created": "2024-01-03T08:16:39.086Z",
+            "modified": "2024-01-03T08:18:52.999Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "1513d01c-1873-445d-84af-6d9e2271620b",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f7c4b55e-3c37-4d21-9f77-eee584e9aeb6",
+            "name": "403: Forbidden",
+            "url": "/admin/leagues/7/teams/1/approve",
+            "method": "POST",
+            "sortNum": 2460000,
+            "created": "2024-01-03T08:16:47.904Z",
+            "modified": "2024-01-03T08:19:21.766Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "187c0835-2e6a-4a33-a751-8a266fa0dfdd",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f7c4b55e-3c37-4d21-9f77-eee584e9aeb6",
+            "name": "404: Not Found",
+            "url": "/admin/leagues/7/teams/10000/approve",
+            "method": "POST",
+            "sortNum": 2470000,
+            "created": "2024-01-03T08:16:56.569Z",
+            "modified": "2024-01-03T08:19:38.739Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a6da6ac3-1c9e-4045-8ab2-4dd1e1b31406",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "f7c4b55e-3c37-4d21-9f77-eee584e9aeb6",
+            "name": "409: Conflict",
+            "url": "/admin/leagues/1/teams/1/approve",
+            "method": "POST",
+            "sortNum": 2480000,
+            "created": "2024-01-03T08:17:04.494Z",
+            "modified": "2024-01-03T08:19:59.854Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "409"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "75021685-d09d-4bf2-8122-4b1fefd461b8",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "1f283b49-f05a-4440-a7d9-edfa928d890d",
+            "name": "400: Bad Request",
+            "url": "/admin/leagues/7/teams/4/join",
+            "method": "PUT",
+            "sortNum": 2490000,
+            "created": "2024-01-03T08:27:30.105Z",
+            "modified": "2024-01-03T08:28:24.533Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "400"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "d2d6ac72-15e9-4959-9966-3cd637ccb027",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "1f283b49-f05a-4440-a7d9-edfa928d890d",
+            "name": "401: Unauthorized",
+            "url": "/admin/leagues/7/teams/4/join",
+            "method": "PUT",
+            "sortNum": 2500000,
+            "created": "2024-01-03T08:27:37.774Z",
+            "modified": "2024-01-03T08:28:53.073Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "b11a77ea-3c1d-482c-9653-ee6ba707743d",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "1f283b49-f05a-4440-a7d9-edfa928d890d",
+            "name": "403: Forbidden",
+            "url": "/admin/leagues/7/teams/4/join",
+            "method": "PUT",
+            "sortNum": 2510000,
+            "created": "2024-01-03T08:27:42.916Z",
+            "modified": "2024-01-03T08:29:17.855Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4119fbf3-e989-40cc-955e-72fc0fa59c2e",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "1f283b49-f05a-4440-a7d9-edfa928d890d",
+            "name": "404: Not Found",
+            "url": "/admin/leagues/7/teams/10000/join",
+            "method": "PUT",
+            "sortNum": 2520000,
+            "created": "2024-01-03T08:27:48.752Z",
+            "modified": "2024-01-03T08:29:51.892Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"type\": \"Hold\",\n  \"reason\": \"hold test\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "404"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "e9c61928-4585-4008-90e4-ba07c0977ead",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "1f283b49-f05a-4440-a7d9-edfa928d890d",
+            "name": "409: Conflict",
+            "url": "/admin/leagues/7/teams/1/join",
+            "method": "PUT",
+            "sortNum": 2530000,
+            "created": "2024-01-03T08:27:53.915Z",
+            "modified": "2024-01-03T08:30:27.388Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"type\": \"Hold\",\n  \"reason\": \"hold test\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "409"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "4557fae5-be8e-4b14-8c8e-6f4c48878412",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "2877f5c3-8916-48be-8295-8dfd8261c3c7",
+            "name": "Success",
+            "url": "/auth/certification/all",
+            "method": "GET",
+            "sortNum": 2540000,
+            "created": "2024-01-03T09:08:44.807Z",
+            "modified": "2024-01-03T09:34:02.051Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ],
+            "docs": "## [Admin] GetAllCretificationAccessToken\n\n### URI\nGET /auth/certification/all\n\n### Description\n모든 개인 증명서 파일에 접근하기 위한 토큰을 받아옵니다.\n토근은 Set-Cookie 헤더를 통해 전달됩니다\n\n### Return Type\n**void**\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인하지 않은 상태로 해당 요청을 보낼 시 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 시 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "a33b69dc-c578-4c81-9c70-f9bccde64b5e",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "21913a04-c047-48bd-9097-76a94470d291",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "17270aee-a0f8-446d-8c37-574a0d2d4d40",
+            "name": "Success",
+            "url": "/auth/certification",
+            "method": "GET",
+            "sortNum": 2560000,
+            "created": "2024-01-03T09:30:28.706Z",
+            "modified": "2024-01-03T09:33:15.144Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ],
+            "docs": "## [Normal] GetCretificationAccessToken\n\n### URI\nGET /auth/certification\n\n### Description\n개인 증명서 파일에 접근하기 위한 토큰을 받아옵니다.\n토근은 Set-Cookie 헤더를 통해 전달됩니다\n\n### Return Type\n**void**\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인하지 않은 상태로 해당 요청을 보낼 시 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "1367502a-750b-4703-b4a5-14b698a8db06",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "17270aee-a0f8-446d-8c37-574a0d2d4d40",
+            "name": "401: Unauthorized",
+            "url": "/auth/certification",
+            "method": "GET",
+            "sortNum": 2570000,
+            "created": "2024-01-03T09:34:11.230Z",
+            "modified": "2024-01-03T09:35:20.001Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "0b1a3931-612e-4b9a-91f4-9cafe6e40582",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "2877f5c3-8916-48be-8295-8dfd8261c3c7",
+            "name": "401: Unauthorized",
+            "url": "/auth/certification/all",
+            "method": "GET",
+            "sortNum": 2580000,
+            "created": "2024-01-03T09:34:20.409Z",
+            "modified": "2024-01-03T09:34:42.731Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "39f955e4-9a99-414a-9e2c-d223dd39bd05",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "2877f5c3-8916-48be-8295-8dfd8261c3c7",
+            "name": "403: Forbidden",
+            "url": "/auth/certification/all",
+            "method": "GET",
+            "sortNum": 2590000,
+            "created": "2024-01-03T09:34:24.954Z",
+            "modified": "2024-01-03T09:35:03.909Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "403"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "0b80feba-d520-475e-8102-894f8bdca7c2",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
         }
     ],
     "settings": {
@@ -10218,7 +11883,7 @@
         },
         "envId": "25a07e1f-107b-443c-915b-6339acf361a0",
         "runOptions": {
-            "delay": 100,
+            "delay": 50,
             "iterations": 1,
             "dataFilePath": ""
         }

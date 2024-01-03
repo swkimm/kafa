@@ -38,12 +38,11 @@ export class AdminLeagueController {
     try {
       return await this.leagueService.getJoinLeagueRequests(leagueId)
     } catch (error) {
-      console.log(error)
       businessExceptionBinder(error)
     }
   }
 
-  @Get(':leagueId/teams/:teamId/join-request')
+  @Get(':leagueId/teams/:teamId/request')
   async getJoinLeagueRequestInfo(
     @Param('leagueId', ParseIntPipe) leagueId: number,
     @Param('teamId', ParseIntPipe) teamId: number
@@ -54,7 +53,6 @@ export class AdminLeagueController {
         leagueId
       )
     } catch (error) {
-      console.log(error)
       businessExceptionBinder(error)
     }
   }
@@ -69,20 +67,19 @@ export class AdminLeagueController {
   }
 
   @Post(':leagueId/teams/:teamId/approve')
-  async approveRegisterLeague(
+  async approveJoinLeague(
     @Param('leagueId', ParseIntPipe) leagueId: number,
     @Param('teamId', ParseIntPipe) teamId: number
   ): Promise<TeamLeague> {
     try {
       return await this.leagueService.approveRegisterLeague(teamId, leagueId)
     } catch (error) {
-      console.log(error)
       businessExceptionBinder(error)
     }
   }
 
-  @Post(':leagueId/teams/:teamId/reject')
-  async rejectRegisterLeague(
+  @Put(':leagueId/teams/:teamId/join')
+  async rejectJoinLeague(
     @Param('leagueId', ParseIntPipe) leagueId: number,
     @Param('teamId', ParseIntPipe) teamId: number,
     @Body() leagueDTO: RejectReasonDTO
@@ -95,7 +92,6 @@ export class AdminLeagueController {
         leagueDTO.type
       )
     } catch (error) {
-      console.log(error)
       businessExceptionBinder(error)
     }
   }

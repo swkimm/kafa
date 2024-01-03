@@ -40,6 +40,7 @@ export interface JoinLeagueService<T extends TeamLeague> {
    * @param {number} leagueId - 참여를 승인할 리그의 Id
    * @returns {Promise<T>} 승인된 팀의 리그 참여 정보
    * @throws {EntityNotExistException} 존재하지 않는 팀 또는 리그의 Id를 전달하거나, 해당하는 신청 정보가 없을 때 발생
+   * @throws {ConflictFoundException} 이미 처리가 완료된 참여 요청에 대해 해당 함수를 호출할 경우 발생
    */
   approveRegisterLeague(teamId: number, leagueId: number): Promise<T>
 

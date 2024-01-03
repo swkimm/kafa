@@ -15,10 +15,13 @@ import {
   REFRESH_TOKEN_COOKIE_OPTIONS
 } from '@/common/constant/time.constants'
 import { Public } from '@/common/decorator/guard.decorator'
+import { Roles } from '@/common/decorator/roles.decorator'
+import { businessExceptionBinder } from '@/common/exception/business-exception.binder'
 import {
   InvalidJwtTokenException,
   UnidentifiedException
 } from '@/common/exception/business.exception'
+import { Role } from '@prisma/client'
 import { Request, Response } from 'express'
 import { AuthService } from './auth.service.interface'
 import { CloudFrontAuthService } from './cloudfront-auth.service.interface'
@@ -30,7 +33,7 @@ export class AuthController {
   constructor(
     @Inject('AuthService') private readonly authService: AuthService,
     @Inject('CloudFrontAuthService')
-    private readonly test: CloudFrontAuthService
+    private readonly cloudFrontAuthService: CloudFrontAuthService
   ) {}
 
   setJwtResponse = (res: Response, jwtTokens: JwtTokens) => {
@@ -92,31 +95,47 @@ export class AuthController {
     }
   }
 
-  @Public()
-  @Get('test')
-  async hello(@Res({ passthrough: true }) res: Response) {
-    const cookies = this.test.issueCookies('https://cdn.kafa.one/secret/logo')
-
-    for (const cookieKey in cookies) {
-      res.cookie(
-        cookieKey,
-        cookies[cookieKey],
-        CLOUDFRONT_SIGNED_COOKIE_OPTIONS
+  @Get('certification')
+  async getCertificaitonAccessToken(
+    @Req() req: AuthenticatedRequest,
+    @Res({ passthrough: true }) res: Response
+  ) {
+    try {
+      const cookies = this.cloudFrontAuthService.issueCookies(
+        `https://cdn.kafa.one/secret/${req.user.id}/certificaiton-file/*`
       )
+
+      for (const cookieKey in cookies) {
+        res.cookie(
+          cookieKey,
+          cookies[cookieKey],
+          CLOUDFRONT_SIGNED_COOKIE_OPTIONS
+        )
+      }
+    } catch (error) {
+      businessExceptionBinder(error)
     }
   }
 
-  @Public()
-  @Get('test/all')
-  async testAll(@Res({ passthrough: true }) res: Response) {
-    const cookies = this.test.issueCookies('https://cdn.kafa.one/secret/*')
-
-    for (const cookieKey in cookies) {
-      res.cookie(
-        cookieKey,
-        cookies[cookieKey],
-        CLOUDFRONT_SIGNED_COOKIE_OPTIONS
+  @Roles(Role.Admin)
+  @Get('certification/all')
+  async getAllCertificaitonAccessToken(
+    @Res({ passthrough: true }) res: Response
+  ) {
+    try {
+      const cookies = this.cloudFrontAuthService.issueCookies(
+        'https://cdn.kafa.one/secret/*'
       )
+
+      for (const cookieKey in cookies) {
+        res.cookie(
+          cookieKey,
+          cookies[cookieKey],
+          CLOUDFRONT_SIGNED_COOKIE_OPTIONS
+        )
+      }
+    } catch (error) {
+      businessExceptionBinder(error)
     }
   }
 }

@@ -163,6 +163,18 @@ export class JoinLeagueServiceImpl implements JoinLeagueService<TeamLeague> {
     leagueId: number
   ): Promise<TeamLeague> {
     try {
+      const teamLeague = await this.teamLeagueService.getTeamLeague(
+        teamId,
+        leagueId
+      )
+
+      if (
+        teamLeague.applyStatus === LeagueApplyStatus.Approved ||
+        teamLeague.applyStatus === LeagueApplyStatus.Rejected
+      ) {
+        throw new ConflictFoundException('이미 처리된 요청입니다')
+      }
+
       const rosters = await this.rosterService.getTeamRosters(
         teamId,
         1,
@@ -205,8 +217,8 @@ export class JoinLeagueServiceImpl implements JoinLeagueService<TeamLeague> {
         leagueId
       )
 
-      if (teamLeague.applyStatus === LeagueApplyStatus.Approved) {
-        throw new ConflictFoundException('이미 참여가 승인된 팀입니다')
+      if (teamLeague.applyStatus !== LeagueApplyStatus.Received) {
+        throw new ConflictFoundException('이미 처리가 완료된 요청입니다')
       }
 
       return await this.teamLeagueService.updateTeamLeague({
@@ -338,7 +350,7 @@ export class JoinLeagueServiceImpl implements JoinLeagueService<TeamLeague> {
           backNumber: roster.Athlete?.backNumber
         }
 
-        if (roster.rosterType === RosterType.Athlete) {
+        if (roster.rosterType === RosterType.Athlete && roster.accountId) {
           const accountCredential =
             await this.accountCredentialService.getCredential(roster.accountId)
           const accountCertification =
@@ -371,8 +383,8 @@ export class JoinLeagueServiceImpl implements JoinLeagueService<TeamLeague> {
       const { teamId } = await this.accountService.getAccountProfile(managerId)
 
       const teamLeague = await this.teamLeagueService.getTeamLeague(
-        leagueId,
-        teamId
+        teamId,
+        leagueId
       )
 
       if (teamLeague.applyStatus !== 'Hold') {

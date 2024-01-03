@@ -15,6 +15,10 @@ export class CloudFrontAuthServiceImpl implements CloudFrontAuthService {
     this.keyPairId = this.config.get('CLOUDFRONT_ID_KEY')
     this.privateKey = this.config.get('CLOUDFRONT_SECRET_KEY')
 
+    if (this.config.get('NODE_ENV') === 'development') {
+      this.privateKey = this.privateKey.replace(/\\n/g, '\n')
+    }
+
     if (
       (!this.keyPairId || !this.privateKey) &&
       (this.config.get('NODE_ENV') === 'staging' ||

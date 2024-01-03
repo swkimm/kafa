@@ -43,7 +43,7 @@ export class LeagueController {
   }
 
   @Roles(Role.Manager)
-  @Get('validation')
+  @Get('rosters/validation')
   async checkTeamRosterCertifications(
     @Req() req: AuthenticatedRequest
   ): Promise<RegisterLeagueAvaliabilityDTO> {
@@ -131,7 +131,7 @@ export class LeagueController {
   }
 
   @Roles(Role.Manager)
-  @Post(':leagueId/request-join')
+  @Post(':leagueId/join')
   async requestJoinLeague(
     @Req() req: AuthenticatedRequest,
     @Param('leagueId', ParseIntPipe) leagueId: number
@@ -145,7 +145,7 @@ export class LeagueController {
   }
 
   @Roles(Role.Manager)
-  @Post(':leagueId/retry-join')
+  @Post(':leagueId/join/retry')
   async retryJoinLeague(
     @Req() req: AuthenticatedRequest,
     @Param('leagueId', ParseIntPipe) leagueId: number

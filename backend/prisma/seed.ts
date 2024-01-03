@@ -684,6 +684,11 @@ const main = async function () {
       applyStatus: LeagueApplyStatus.Hold,
       rejectReason: 'holded request'
     },
+    {
+      leagueId: 7,
+      teamId: 3,
+      applyStatus: LeagueApplyStatus.Hold
+    },
     /**
      * 신청 후 반려된 팀
      */
@@ -691,16 +696,20 @@ const main = async function () {
       leagueId: 7,
       teamId: 2,
       applyStatus: LeagueApplyStatus.Rejected,
-      rejectReason: 'rejectd request'
+      rejectReason: 'rejected request'
     },
     /**
      * 신청 중인 팀
      */
     {
       leagueId: 7,
-      teamId: 3,
+      teamId: 4,
       applyStatus: LeagueApplyStatus.Received
-    }
+    },
+    { leagueId: 8, teamId: 1, applyStatus: LeagueApplyStatus.Received },
+    { leagueId: 8, teamId: 2, applyStatus: LeagueApplyStatus.Received },
+    { leagueId: 8, teamId: 3, applyStatus: LeagueApplyStatus.Received },
+    { leagueId: 8, teamId: 4, applyStatus: LeagueApplyStatus.Received }
   ]
 
   await prisma.teamLeague.createMany({
