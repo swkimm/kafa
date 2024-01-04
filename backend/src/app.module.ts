@@ -19,6 +19,7 @@ import { LeagueSponserModule } from './league-sponser/league-sponser.module'
 import { LeagueModule } from './league/league.module'
 import { PrismaModule } from './prisma/prisma.module'
 import { ProfileModule } from './profile/profile.module'
+import { RecordModule } from './record/record.module'
 import { RosterModule } from './roster/roster.module'
 import { ScoreModule } from './score/score.module'
 import { SponserModule } from './sponser/sponser.module'
@@ -57,7 +58,8 @@ import { TeamModule } from './team/team.module'
     GameModule,
     ScoreModule,
     ProfileModule,
-    RosterModule
+    RosterModule,
+    RecordModule
   ]
 })
 export class AppModule {}

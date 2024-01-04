@@ -9,7 +9,8 @@ import {
   GameResult,
   RosterType,
   RosterStatus,
-  GenderType
+  GenderType,
+  RecordType
 } from '@prisma/client'
 import { hash } from 'argon2'
 
@@ -1139,6 +1140,58 @@ const main = async function () {
 
   await prisma.rosterCredentials.createMany({
     data: rosterCredentials
+  })
+
+  /**
+   * 경기 기록 데이터
+   */
+  const records: Prisma.RecordCreateManyInput[] = [
+    {
+      gameId: 1,
+      rosterId: 1,
+      score: 2,
+      type: RecordType.Passer,
+      unit: 'TouchDown'
+    },
+    {
+      gameId: 1,
+      rosterId: 1,
+      score: 4,
+      type: RecordType.Kicker,
+      unit: 'PAT'
+    },
+    {
+      gameId: 1,
+      rosterId: 1,
+      score: 1,
+      type: RecordType.Kicker,
+      unit: 'FieldGoal'
+    },
+    {
+      gameId: 2,
+      rosterId: 1,
+      score: 2,
+      type: RecordType.Passer,
+      unit: 'TouchDown'
+    },
+    {
+      gameId: 2,
+      rosterId: 1,
+      score: 4,
+      type: RecordType.Kicker,
+      unit: 'PAT'
+    },
+    {
+      gameId: 2,
+      rosterId: 1,
+      score: 1,
+      type: RecordType.Kicker,
+      unit: 'FieldGoal'
+    }
+  ]
+
+  await prisma.record.createMany({
+    data: records
   })
 }
 

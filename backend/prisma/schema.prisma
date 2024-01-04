@@ -17,13 +17,8 @@ enum AccountStatus {
 }
 
 enum OAuthProvider {
-  Google
-}
-
-enum RefereeClass {
-  A
-  B
-  C
+  Naver
+  Kakao
 }
 
 enum RosterStatus {
@@ -45,16 +40,6 @@ enum GameResult {
   AwayWin
   Draw
   NotFinished
-}
-
-enum RefereePosition {
-  Referee
-  SideJudge
-  LineJudge
-  BackJudge
-  FieldJudge
-  Umpire
-  DownJudge
 }
 
 enum Role {
@@ -87,9 +72,12 @@ enum GenderType {
   Others
 }
 
-enum MembershipType {
-  Basic
-  Pro
+enum RecordType {
+  Passer
+  Rusher
+  Receiver
+  Kicker
+  Safety
 }
 
 // Account Module
@@ -108,17 +96,12 @@ model Account {
   lastPasswordChanged  DateTime              @default(now()) @map("last_password_changed")
   lastLogin            DateTime              @default(now()) @map("last_login")
   OAuths               OAuth[]
-  Referee              Referee?
-  Press                Press?
-  Notifications        Notification[]
-  NotificationAllow    NotificationAllow?
   Posts                Post[]
   Comments             Comment[]
   Rosters              Roster[]
   RegisterTeamRequest  RegisterTeamRequest[]
   Team                 Team?                 @relation(fields: [teamId], references: [id])
   AccountCreadential   AccountCredential?
-  Membership           Membership?
   AccountCertification AccountCertification?
 
   @@unique([email, role])
@@ -141,15 +124,6 @@ model AccountCredential {
   Account   Account    @relation(fields: [accountId], references: [id])
 }
 
-model Membership {
-  accountId Int            @id @map("account_id")
-  type      MembershipType
-  createdAt DateTime       @default(now()) @map("created_at")
-  updatedAt DateTime       @updatedAt @map("updated_at")
-  endedAt   DateTime       @map("ended_at")
-  Account   Account        @relation(fields: [accountId], references: [id])
-}
-
 model OAuth {
   accountId    Int           @id @map("account_id")
   providerId   String        @map("provider_id") @db.VarChar(256)
@@ -157,39 +131,6 @@ model OAuth {
   Account      Account       @relation(fields: [accountId], references: [id])
 
   @@unique([providerId, providerType])
-}
-
-model Referee {
-  accountId    Int           @id @map("account_id")
-  registeredAt DateTime      @default(now()) @map("registered_at")
-  RefereeGames RefereeGame[]
-  class        RefereeClass  @default(C)
-  Account      Account       @relation(fields: [accountId], references: [id])
-}
-
-model Press {
-  accountId       Int         @id @map("account_id")
-  association     String      @db.VarChar(128)
-  cellPhoneNumber String      @map("cell_phone_number") @db.VarChar(64)
-  PressGames      PressGame[]
-  Account         Account     @relation(fields: [accountId], references: [id])
-}
-
-// Notification Module
-model Notification {
-  id        Int      @id @default(autoincrement())
-  accountId Int      @map("account_id")
-  content   String   @db.Text
-  createdAt DateTime @default(now()) @map("created_at")
-  read      Boolean  @default(false)
-  Account   Account  @relation(fields: [accountId], references: [id])
-}
-
-model NotificationAllow {
-  accountId Int      @id @map("account_id")
-  agree     Boolean
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-  Account   Account  @relation(fields: [accountId], references: [id])
 }
 
 // Post Module
@@ -372,40 +313,18 @@ model Athlete {
 
 // Game Module
 model Game {
-  id           Int           @id @default(autoincrement())
-  leagueId     Int           @map("league_id")
-  startedAt    DateTime      @map("started_at")
-  homeTeamId   Int           @map("home_team_id")
-  awayTeamId   Int           @map("away_team_id")
-  stadium      String        @db.VarChar(256)
-  result       GameResult
-  homeTeam     Team          @relation("homeTeam", fields: [homeTeamId], references: [id])
-  awayTeam     Team          @relation("awayTeam", fields: [awayTeamId], references: [id])
-  League       League        @relation(fields: [leagueId], references: [id])
-  score        Score?
-  RefereeGames RefereeGame[]
-  PressGames   PressGame[]
-  Records      Record[]
-}
-
-model RefereeGame {
-  refereeId Int             @map("referee_id")
-  gameId    Int             @map("game_id")
-  position  RefereePosition
-  Referee   Referee         @relation(fields: [refereeId], references: [accountId])
-  Game      Game            @relation(fields: [gameId], references: [id])
-
-  @@unique([refereeId, gameId])
-}
-
-model PressGame {
-  pressId  Int     @map("press_id")
-  gameId   Int     @map("game_id")
-  Game     Game    @relation(fields: [gameId], references: [id])
-  Press    Press   @relation(fields: [pressId], references: [accountId])
-  approved Boolean
-
-  @@unique([pressId, gameId])
+  id         Int        @id @default(autoincrement())
+  leagueId   Int        @map("league_id")
+  startedAt  DateTime   @map("started_at")
+  homeTeamId Int        @map("home_team_id")
+  awayTeamId Int        @map("away_team_id")
+  stadium    String     @db.VarChar(256)
+  result     GameResult
+  homeTeam   Team       @relation("homeTeam", fields: [homeTeamId], references: [id])
+  awayTeam   Team       @relation("awayTeam", fields: [awayTeamId], references: [id])
+  League     League     @relation(fields: [leagueId], references: [id])
+  score      Score?
+  Records    Record[]
 }
 
 model Score {
@@ -420,20 +339,12 @@ model Score {
 
 // Record module
 model Record {
-  id               Int            @id @default(autoincrement())
-  athleteId        Int            @map("athlete_id")
-  recordArgumentId Int            @map("record_argument_id")
-  gameId           Int            @map("game_id")
-  score            Int
-  Game             Game           @relation(fields: [gameId], references: [id])
-  Athlete          Athlete        @relation(fields: [athleteId], references: [rosterId])
-  RecordArgument   RecordArgument @relation(fields: [recordArgumentId], references: [id])
-}
-
-model RecordArgument {
-  id      Int      @id @default(autoincrement())
-  name    String   @db.VarChar(64)
-  unit    String   @db.VarChar(32)
-  version Int      @db.SmallInt
-  Records Record[]
+  id       Int        @id @default(autoincrement())
+  rosterId Int        @map("roster_id")
+  gameId   Int        @map("game_id")
+  score    Int
+  type     RecordType
+  unit     String     @db.VarChar(32)
+  Game     Game       @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  Athlete  Athlete    @relation(fields: [rosterId], references: [rosterId], onDelete: Cascade)
 }

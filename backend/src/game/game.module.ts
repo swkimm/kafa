@@ -33,6 +33,12 @@ import { UpdateGameServiceImpl } from './service/update-game.service'
       provide: 'GameService',
       useClass: GameServiceImpl
     }
+  ],
+  exports: [
+    {
+      provide: 'GameService',
+      useClass: GameServiceImpl
+    }
   ]
 })
 export class GameModule {}
