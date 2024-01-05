@@ -1,58 +1,50 @@
 // RosterItem.tsx
+import axiosInstance from '@/commons/axios'
+import type { Roster } from '@/commons/interfaces/roster/roster'
 import PlayerCard from '@/components/cards/PlayerCard'
+import { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-interface Member {
-  id: number
-  category: string
-  profile: string
-  name: string
-  backNumber: number
-  offPosition: string
-  defPosition: string
-  onClick?: (id: number) => void
-}
-
-const members: Member[] = []
-
-for (let i = 1; i <= 20; i++) {
-  members.push({
-    id: i,
-    category: '스테프',
-    profile: 'https://cdn.playprove.one/default/people_alt.webp',
-    name: `Member ${i}`,
-    backNumber: i + 30,
-    offPosition: 'Linebacker',
-    defPosition: 'Linebacker'
-  })
-}
-
 const RosterItem = () => {
-  const params = useParams()
+  const { leagueId, teamId } = useParams()
   const navigate = useNavigate()
+  const [roster, setRoster] = useState<Roster[]>([])
+
+  const getRoster = useCallback(async () => {
+    try {
+      const response = await axiosInstance.get<Roster[]>(
+        `/rosters/leagues/${leagueId}/teams/${teamId}`
+      )
+      setRoster(response.data)
+      console.log(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }, [leagueId, teamId])
+
+  useEffect(() => {
+    getRoster()
+  }, [getRoster])
+
   const goToMemberInfo = (memberId: number) => {
-    navigate(
-      `/league/${params.leagueId}/team/${params.teamId}/member/${memberId}`
-    )
+    navigate(`/league/${leagueId}/team/${teamId}/member/${memberId}`)
   }
   return (
     <div className="container mx-auto mb-10 grid max-w-screen-2xl grid-cols-2 sm:grid-cols-4">
-      {members.map((member) => (
-        <div
-          key={member.id}
-          className="col-span-1 my-5"
-          onClick={() => goToMemberInfo(member.id)}
-        >
-          <PlayerCard
-            id={member.id}
-            name={member.name}
-            profileImgUrl={member.profile}
-            backNumber={member.backNumber}
-            position={[member.offPosition, member.defPosition]}
-            onClick={goToMemberInfo}
-          />
-        </div>
-      ))}
+      {roster &&
+        roster.map((member) => (
+          <div
+            key={member.id}
+            className="col-span-1 my-5"
+            onClick={() => goToMemberInfo(member.id)}
+          >
+            <PlayerCard
+              key={member.id}
+              playerData={member}
+              onClick={goToMemberInfo}
+            />
+          </div>
+        ))}
     </div>
   )
 }

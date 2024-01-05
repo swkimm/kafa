@@ -2,7 +2,7 @@ import type { RootState } from '@/app/store'
 import { Disclosure } from '@headlessui/react'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 type NavigationItem = {
   name: string
@@ -17,7 +17,10 @@ const classNames = (...classes: string[]) => {
 
 const Sidebar = () => {
   const navigate = useNavigate()
+  const location = useLocation()
   const userRole = useSelector((state: RootState) => state.auth.role)
+
+  let navigation: NavigationItem[]
 
   // 각 역할에 따른 다른 네비게이션 구조 정의
   const adminNavigation: NavigationItem[] = [
@@ -33,8 +36,8 @@ const Sidebar = () => {
       name: '기록실',
       current: false,
       children: [
-        { name: '기록 입력', href: '#' },
-        { name: '기록 관리', href: '#' }
+        { name: '기록 입력', href: '/console/createRecode' },
+        { name: '기록 관리', href: '/console/manageRecode' }
       ]
     },
     {
@@ -52,22 +55,21 @@ const Sidebar = () => {
     { name: 'NOTICE', href: '#', current: false },
     { name: '신문고', href: '#', current: false },
     { name: 'Calendar', href: '#', current: false },
+    { name: '팀 관리', href: '/console/manageTeams', current: false },
     { name: '회원 관리', href: '#', current: false }
   ]
   const userNavigation: NavigationItem[] = [
     { name: 'HOME', href: '#', current: true },
+    { name: '프로필', href: '#', current: false },
     { name: '자료 제출', href: '#', current: false },
-    { name: '팀 신청', href: '#', current: false },
-    { name: 'QR 코드', href: '#', current: false }
+    { name: '로스터 불러오기', href: '/console/loadRoster', current: false }
   ]
   const managerNavigation: NavigationItem[] = [
     { name: 'HOME', href: '#', current: true },
-    { name: '참가신청', href: '#', current: false },
     { name: '팀 정보 관리', href: '#', current: false },
-    { name: '선수 관리', href: '#', current: false }
+    { name: '선수 관리', href: '#', current: false },
+    { name: '참가 신청', href: '/console/enroll', current: false }
   ]
-
-  let navigation: NavigationItem[]
 
   switch (userRole) {
     case 'Admin':
@@ -82,6 +84,18 @@ const Sidebar = () => {
     default:
       navigation = [] // 역할이 인식되지 않을 경우 기본 네비게이션
   }
+
+  const getUpdatedNavigation = (
+    navItems: NavigationItem[]
+  ): NavigationItem[] => {
+    return navItems.map((item) => ({
+      ...item,
+      current: item.href === location.pathname,
+      children: item.children ? getUpdatedNavigation(item.children) : undefined
+    }))
+  }
+
+  navigation = getUpdatedNavigation(navigation)
 
   // 메뉴 클릭 핸들러
   const handleMenuClick = (href?: string) => {

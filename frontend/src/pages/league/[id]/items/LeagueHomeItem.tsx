@@ -124,8 +124,6 @@ const LeagueHomeItem = () => {
   const getGamesWithTeamInfo = useCallback(async () => {
     try {
       const response = await axiosInstance.get(`/games/leagues/${leagueId}`)
-      console.log(response.data)
-
       const allGames = response.data
 
       const unfinishedGames = allGames.filter(

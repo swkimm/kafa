@@ -95,7 +95,7 @@ const TeamHomeItem = () => {
   const fetchTeamInfo = async (teamId: number) => {
     try {
       const response = await axiosInstance.get(`/teams/${teamId}`)
-      return response.data // { name, initial, profileImgUrl } 포함 응답 가정
+      return response.data
     } catch (error) {
       console.error('Error fetching team info:', error)
       return null // 오류 발생시 null 반환
@@ -105,8 +105,6 @@ const TeamHomeItem = () => {
   const getGameScores = async (gameId: number): Promise<GameScore | null> => {
     try {
       const response = await axiosInstance.get(`/games/${gameId}/score`)
-      console.log(response.data)
-
       return response.data // { homeScore, awayScore } 포함 가정
     } catch (error) {
       console.error('Error fetching game scores:', error)
@@ -135,8 +133,8 @@ const TeamHomeItem = () => {
 
           return {
             ...game,
-            homeTeamInfo, // { name, initial, profileImgUrl }
-            awayTeamInfo, // { name, initial, profileImgUrl }
+            homeTeamInfo,
+            awayTeamInfo,
             score
           }
         })
@@ -152,7 +150,7 @@ const TeamHomeItem = () => {
     getGamesWithTeamInfo()
   }, [getGamesWithTeamInfo])
 
-  const GamesColumns = [
+  const gamesColumns = [
     {
       title: 'HOME',
       render: (game: ExtendedGame) => (
@@ -236,7 +234,7 @@ const TeamHomeItem = () => {
     <div className="container mx-auto my-5 grid max-w-screen-2xl grid-cols-1 px-5 sm:grid-cols-3">
       <div className="col-span-2">
         <div className="my-5">
-          <DefaultTable title="경기일정" data={games} columns={GamesColumns} />
+          <DefaultTable title="경기일정" data={games} columns={gamesColumns} />
         </div>
         <div className="my-5">
           <NoticeWideCard

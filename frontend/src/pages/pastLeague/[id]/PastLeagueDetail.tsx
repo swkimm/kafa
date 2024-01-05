@@ -1,35 +1,67 @@
+import axiosInstance from '@/commons/axios'
+import type { GetLeagues } from '@/commons/interfaces/league/getLeagues'
 import Button from '@/components/buttons/Button'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import PastLeagueHomeItem from './items/PastLeagueHomeItem'
 import PastLeagueStatsItem from './items/PastLeagueStatsItem'
 import PastLeagueTeamItem from './items/PastLeagueTeamItem'
 
-const pastLeague = {
-  id: 1,
-  associationId: 1,
-  associationName: '사회인연맹',
-  associationLogo: '/logo/KAFA_OG.png',
-  leagueId: 1,
-  leagueName: '제 00회 광개토볼',
-  startedAt: '2022-01-01',
-  endedAt: '2022-12-31'
+interface ExtendedLeague extends GetLeagues {
+  associationInfo?: {
+    name: string
+    profileImgUrl: string | null
+  }
 }
 
 const PastLeagueDetail = () => {
   const [currentComponent, setCurrentComponent] = useState<string | null>(
     'HOME'
   )
-  const location = useLocation()
+  const [pastLeague, setPastLeague] = useState<ExtendedLeague>()
+  const { pastLeagueId } = useParams()
   // const navigate = useNavigate()
 
-  const goToNotice = (id: number) => {
-    // navigate(`/league/`)
-    console.log(id)
-    console.log(location)
+  // const goToNotice = (id: number) => {
+  //   // navigate(`/league/`)
+  //   console.log(id)
+  // }
+
+  const fetchAssociationInfo = async (associationId: number) => {
+    const response = await axiosInstance.get(`/associations/${associationId}`)
+    return response.data
   }
+
+  useEffect(() => {
+    const getLeague = async () => {
+      try {
+        const response = await axiosInstance.get<GetLeagues>(
+          `/leagues/${pastLeagueId}`
+        )
+        const league = response.data
+
+        let associationInfo
+        if (league.associationId) {
+          associationInfo = await fetchAssociationInfo(league.associationId)
+        } else {
+          associationInfo = { name: 'Unknown', profileImgUrl: null }
+        }
+
+        const leagueWithAssociation = {
+          ...league,
+          associationInfo
+        }
+
+        setPastLeague(leagueWithAssociation)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    getLeague()
+  }, [pastLeagueId])
 
   const renderComponent = () => {
     if (currentComponent === 'HOME') {
@@ -45,21 +77,29 @@ const PastLeagueDetail = () => {
     <div className="">
       <div className="max-w-screen">
         <div
-          key={pastLeague.id}
-          className="flex justify-between bg-gray-800 p-5 lg:p-7"
+          key={pastLeague?.id}
+          className="flex justify-between bg-gray-600 p-5 lg:p-7"
         >
           <div className="flex text-white">
-            <img
-              src={pastLeague.associationLogo}
-              alt="KAFA Logo"
-              className="h-auto w-16 sm:w-32"
-            />
+            {pastLeague?.associationInfo?.profileImgUrl ? (
+              <img
+                src={pastLeague?.associationInfo?.profileImgUrl}
+                alt="KAFA Logo"
+                className="h-auto w-16 sm:w-32"
+              />
+            ) : (
+              <img
+                src="/logo/KAFA_OG.png"
+                alt=""
+                className="h-auto w-16 sm:w-32"
+              />
+            )}
             <div className="ml-3 flex flex-col justify-center gap-4 lg:ml-10">
               <div className="text-gray-250 text-xl font-semibold">
-                {pastLeague.associationName}
+                {pastLeague?.associationInfo?.name}
               </div>
               <div className="text-white-900 text-md font-bold sm:text-2xl">
-                {pastLeague.leagueName}
+                {pastLeague?.name}
               </div>
             </div>
           </div>
@@ -68,7 +108,7 @@ const PastLeagueDetail = () => {
               <Button
                 variant="outlineWhiteText"
                 label="대회요강"
-                onClick={() => goToNotice(pastLeague.id)}
+                // onClick={() => goToNotice(pastLeague.id)}
               />
             </div>
           </div>
@@ -86,7 +126,7 @@ const PastLeagueDetail = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'HOME'
                           ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent hover:border-white'
                       }`}
                       onClick={() => setCurrentComponent('HOME')}
                     >
@@ -97,7 +137,7 @@ const PastLeagueDetail = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'TEAMS'
                           ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent hover:border-white'
                       }`}
                       onClick={() => setCurrentComponent('TEAMS')}
                     >
@@ -108,7 +148,7 @@ const PastLeagueDetail = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'STATS'
                           ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent hover:border-white'
                       }`}
                       onClick={() => setCurrentComponent('STATS')}
                     >
@@ -135,14 +175,14 @@ const PastLeagueDetail = () => {
                 {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
                 <Disclosure.Button
                   as="button"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-300"
                   onClick={() => setCurrentComponent('HOME')}
                 >
                   HOME
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="button"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-300"
                   onClick={() => setCurrentComponent('TEAMS')}
                 >
                   TEAMS
@@ -150,7 +190,7 @@ const PastLeagueDetail = () => {
 
                 <Disclosure.Button
                   as="button"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-300"
                   onClick={() => setCurrentComponent('STATS')}
                 >
                   STATS

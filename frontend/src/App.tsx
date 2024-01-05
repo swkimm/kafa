@@ -17,6 +17,11 @@ import CreateGame from './pages/console/admin/game/CreateGame.tsx'
 import CreateLeague from './pages/console/admin/league/CreateLeague.tsx'
 import ManageLeague from './pages/console/admin/league/ManageLeague.tsx'
 import CreateNational from './pages/console/admin/national/CreateNational.tsx'
+import CreateRecode from './pages/console/admin/recode/CreateRecode.tsx'
+import ManageRecode from './pages/console/admin/recode/ManageRecode.tsx'
+import EnrollLeague from './pages/console/manager/league/EnrollLeague.tsx'
+import LoadRoster from './pages/console/user/roster/LoadRoster.tsx'
+import ApplyTeam from './pages/console/user/team/ApplyTeam.tsx'
 import Home from './pages/huddle/Home.tsx'
 import League from './pages/league/League.tsx'
 import LeagueDetail from './pages/league/[id]/LeagueDetail.tsx'
@@ -93,6 +98,7 @@ const App = () => {
             <Route path="/console" element={<ConsoleHome />} />
           </Route>
         </Route>
+
         <Route element={<PrivateRoute allowedRoles={['Admin']} />}>
           <Route element={<ConsoleLayout />}>
             <Route path="/console/createLeague" element={<CreateLeague />} />
@@ -101,10 +107,26 @@ const App = () => {
               path="/console/league/:leagueId/createGame"
               element={<CreateGame />}
             />
+            <Route path="/console/createRecode" element={<CreateRecode />} />
+            <Route path="/console/manageRecode" element={<ManageRecode />} />
+
             <Route
               path="/console/createNational"
               element={<CreateNational />}
             />
+          </Route>
+        </Route>
+
+        <Route element={<PrivateRoute allowedRoles={['User']} />}>
+          <Route element={<ConsoleLayout />}>
+            <Route path="/console/applyTeam" element={<ApplyTeam />} />
+            <Route path="/console/loadRoster" element={<LoadRoster />} />
+          </Route>
+        </Route>
+
+        <Route element={<PrivateRoute allowedRoles={['Manager']} />}>
+          <Route element={<ConsoleLayout />}>
+            <Route path="/console/enroll" element={<EnrollLeague />} />
           </Route>
         </Route>
       </Routes>

@@ -1,34 +1,44 @@
 // PastTeamDetail.tsx
 // import { useParams } from 'react-router-dom'
+import axiosInstance from '@/commons/axios'
 import type { TeamComplication } from '@/commons/interfaces/team/teamComplication'
 import TeamBanner from '@/components/cards/TeamBanner'
+import Alert from '@/components/notifications/Alert'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import PastTeamHomeItem from './[id]/items/PastTeamHomeItem'
-import PastTeamPhotoItem from './[id]/items/PastTeamPhotoItem'
 import PastTeamRosterItem from './[id]/items/PastTeamRosterItem'
 import PastTeamStatsItem from './[id]/items/PastTeamStatsItem'
 
-const team: TeamComplication = {
-  id: 1,
-  name: 'TBD',
-  globalName: 'To be determined',
-  hometown: 'TBD',
-  initial: 'TBD',
-  establisehdAt: new Date(),
-  color: '#000000',
-  subColor: '#ffffff',
-  profileImgUrl: '/logo/KAFA_OG.png',
-  backgroundImgUrl: '#ffffff',
-  status: '',
-  createdAt: new Date()
-}
-
 const PastTeamDetail = () => {
+  const { teamId } = useParams()
   const [currentComponent, setCurrentComponent] = useState<string | null>(
     'HOME'
   )
+  const [team, setTeam] = useState<TeamComplication>()
+  const [alert, setAlert] = useState<{
+    title: string
+    content?: string
+  } | null>(null)
+
+  useEffect(() => {
+    const getTeam = async () => {
+      try {
+        const response = await axiosInstance.get(`/teams/${teamId}`)
+        setTeam(response.data)
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setAlert({ title: 'Error', content: error.message })
+        } else {
+          // Handle cases where error is not an instance of Error
+          setAlert({ title: 'Error', content: 'An unknown error occurred' })
+        }
+      }
+    }
+    getTeam()
+  }, [teamId])
 
   const renderComponent = () => {
     if (currentComponent === 'HOME') {
@@ -37,14 +47,25 @@ const PastTeamDetail = () => {
       return <PastTeamRosterItem />
     } else if (currentComponent === 'STATS') {
       return <PastTeamStatsItem />
-    } else if (currentComponent === 'PHOTO') {
-      return <PastTeamPhotoItem />
     }
   }
 
   return (
     <div className="">
-      <TeamBanner {...team} />
+      {team && (
+        <TeamBanner
+          id={team.id}
+          name={team.name}
+          globalName={team.globalName}
+          hometown={team.hometown}
+          initial={team.initial}
+          establisehdAt={new Date(team.establisehdAt)}
+          color={team.color}
+          profileImgUrl={team.profileImgUrl}
+          status={team.status}
+          createdAt={team.createdAt}
+        />
+      )}
       <Disclosure as="nav" className="w-full bg-indigo-800 shadow">
         {({ open }) => (
           <>
@@ -57,7 +78,7 @@ const PastTeamDetail = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'HOME'
                           ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent hover:border-white'
                       }`}
                       onClick={() => setCurrentComponent('HOME')}
                     >
@@ -68,7 +89,7 @@ const PastTeamDetail = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'ROSTER'
                           ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent hover:border-white'
                       }`}
                       onClick={() => setCurrentComponent('ROSTER')}
                     >
@@ -84,17 +105,6 @@ const PastTeamDetail = () => {
                       onClick={() => setCurrentComponent('STATS')}
                     >
                       STATS
-                    </Disclosure.Button>
-                    <Disclosure.Button
-                      as="button"
-                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
-                        currentComponent === 'PHOTO'
-                          ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
-                      }`}
-                      onClick={() => setCurrentComponent('PHOTO')}
-                    >
-                      PHOTO
                     </Disclosure.Button>
                   </div>
                 </div>
@@ -118,36 +128,31 @@ const PastTeamDetail = () => {
                 <Disclosure.Button
                   as="button"
                   onClick={() => setCurrentComponent('HOME')}
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-300"
                 >
                   HOME
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="button"
                   onClick={() => setCurrentComponent('ROSTER')}
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-300"
                 >
                   ROSTER
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="button"
                   onClick={() => setCurrentComponent('STATS')}
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-300"
                 >
                   STATS
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="button"
-                  onClick={() => setCurrentComponent('PHOTO')}
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  PHOTO
                 </Disclosure.Button>
               </div>
             </Disclosure.Panel>
           </>
         )}
       </Disclosure>
+      {alert && <Alert title={alert.title} content={alert.content} />}
+
       {renderComponent()}
     </div>
   )

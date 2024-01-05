@@ -1,26 +1,30 @@
+import type { Roster } from '@/commons/interfaces/roster/roster'
 import type React from 'react'
 
 interface PlayerCardProps {
-  id: number
-  name: string
-  profileImgUrl: string | null
-  backNumber: number
-  position: string[] // Assuming position is an array of strings
-  onClick: (id: number) => void // Function to handle click events
+  playerData: Roster
+  onClick: (id: number) => void
 }
 
-const PlayerCard: React.FC<PlayerCardProps> = ({
-  id,
-  name,
-  profileImgUrl,
-  backNumber,
-  position,
-  onClick
-}) => {
+const PlayerCard: React.FC<PlayerCardProps> = ({ playerData, onClick }) => {
+  if (!playerData) {
+    return null
+  }
+  const { id, name, profileImgUrl, Athlete } = playerData
   const profileImage =
     profileImgUrl || 'https://cdn.playprove.one/default/people_alt.webp'
+
+  // Convert the athlete's position object to a string
   const positionText =
-    position && position.length > 0 ? position.join('/') : 'N/A'
+    Athlete && Athlete.position
+      ? [
+          Athlete.position.offence ? `${Athlete.position.offence}` : '',
+          Athlete.position.defense ? `${Athlete.position.defense}` : '',
+          Athlete.position.special ? `${Athlete.position.special}` : ''
+        ]
+          .filter(Boolean)
+          .join(' / ')
+      : 'N/A'
 
   return (
     <div className="group relative">
@@ -37,7 +41,11 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
       <div className="p-4 sm:px-16">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold text-gray-700">{name}</h3>
-          <p className="text-lg font-medium text-gray-900">{backNumber}</p>
+          {Athlete && (
+            <p className="text-lg font-medium text-gray-900">
+              {Athlete.backNumber}
+            </p>
+          )}
         </div>
         <p className="text-sm font-normal text-gray-500">{positionText}</p>
       </div>

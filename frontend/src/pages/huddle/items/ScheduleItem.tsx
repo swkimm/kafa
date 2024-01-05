@@ -66,10 +66,17 @@ const ScheduleItem = () => {
   const [games, setGames] = useState<ExtendedGame[]>([])
   const [selectedAssociationId, setSelectedAssociationId] = useState<number>(1)
   const [selectedLeagueId, setSelectedLeagueId] = useState<number>(1)
-  const [selectedWeek, setSelectedWeek] = useState<number>()
+  const [selectedWeek, setSelectedWeek] = useState<number>(1)
   const [groupedGames, setGroupedGames] = useState<Map<number, ExtendedGame[]>>(
     new Map()
   )
+  const selectedAssociationName =
+    associations.find((assoc) => assoc.id === selectedAssociationId)?.name ||
+    'Select Association'
+
+  const selectedLeagueName = leagues.find(
+    (league) => league.id === selectedLeagueId
+  )?.name
 
   useEffect(() => {
     getAssociations()
@@ -77,8 +84,6 @@ const ScheduleItem = () => {
       getLeagues(selectedAssociationId)
     }
   }, [selectedAssociationId])
-
-  console.log(games)
 
   const handleAssociationSelect = (associationId: number) => {
     setSelectedAssociationId(associationId)
@@ -106,7 +111,7 @@ const ScheduleItem = () => {
 
   const getLeagues = async (associationId: number) => {
     const page = 1
-    const limit = 3
+    const limit = 100
     try {
       const response = await axiosInstance.get(
         `/leagues/associations/${associationId}?page=${page}&limit=${limit}`
@@ -138,7 +143,7 @@ const ScheduleItem = () => {
 
   const getGames = useCallback(async (leagueId: number) => {
     const cursor = 0
-    const limit = 3
+    const limit = 100
     try {
       const response = await axiosInstance.get<Game[]>(
         `/games/leagues/${leagueId}?cursor=${cursor}&limit=${limit}`
@@ -172,16 +177,15 @@ const ScheduleItem = () => {
       const grouped = groupByWeek(gamesByLeagueIdWithScore, earliestDate)
       setGroupedGames(grouped)
 
-      // Generate week options for the dropdown
       const weekOptions = Array.from(grouped.keys())
         .sort((a, b) => a - b)
         .map((week) => ({ id: week, name: `Week ${week}` }))
-      // Set the first available week as the selected week
       setSelectedWeek(weekOptions[0]?.id)
     } catch (error) {
       alert(error)
     }
   }, [])
+  console.log(games)
 
   const weekOptions = useMemo(() => {
     const weeks = Array.from(groupedGames.keys()).sort()
@@ -191,7 +195,6 @@ const ScheduleItem = () => {
     }))
   }, [groupedGames])
 
-  // Function to handle week selection
   const handleWeekSelect = (weekNumber: number) => {
     setSelectedWeek(weekNumber)
   }
@@ -288,7 +291,7 @@ const ScheduleItem = () => {
         {associations.length > 0 && (
           <div className="mb-2 sm:mr-5">
             <DropdownTransparent
-              optionName={associations[0].name}
+              optionName={selectedAssociationName}
               optionList={associations.map((association) => ({
                 id: association.id, // 'string | number' 타입의 id
                 name: association.name
@@ -299,10 +302,10 @@ const ScheduleItem = () => {
             />
           </div>
         )}
-        {leagues.length > 0 && (
+        {leagues && leagues.length > 0 && (
           <div className="mb-2 sm:mr-5">
             <DropdownTransparent
-              optionName={leagues[2].name}
+              optionName={selectedLeagueName}
               optionList={leagues.map((league) => ({
                 id: league.id, // 'string | number' 타입의 id
                 name: league.name
@@ -313,14 +316,18 @@ const ScheduleItem = () => {
             />
           </div>
         )}
-        <DropdownTransparent
-          optionName={`Week ${selectedWeek || 1}`}
-          optionList={weekOptions}
-          onSelect={(weekNumber) => handleWeekSelect(Number(weekNumber))}
-        />
+        {weekOptions && weekOptions.length > 0 && (
+          <div className="mb-2 sm:mr-5">
+            <DropdownTransparent
+              optionName={`Week ${selectedWeek || 1}`}
+              optionList={weekOptions}
+              onSelect={(weekNumber) => handleWeekSelect(Number(weekNumber))}
+            />
+          </div>
+        )}
       </div>
       <div className="container mx-auto mt-5">
-        <div className="mx-5 mb-3">
+        <div className="mx-5 mb-48">
           <DefaultTable
             title={`Week ${selectedWeek || 1}`}
             data={gamesForSelectedWeek}

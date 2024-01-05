@@ -1,7 +1,7 @@
 // MemberDetail.tsx
+import MemberBanner from '@/components/cards/MemberBanner'
 import DropdownSimple from '@/components/dropdown/DropdownLeft'
 import WithSubtitleTable from '@/components/tables/WithSubtitleTable'
-import MemberBanner from './items/MemberBanner'
 
 const member = {
   teamLogo: '/logo/KAFA_OG.png',

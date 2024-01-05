@@ -93,7 +93,6 @@ const ScheduleItem = () => {
   const getGames = useCallback(async (leagueId: number) => {
     const cursor = 0
     const limit = 3
-    console.log(leagueId)
 
     try {
       const response = await axiosInstance.get<Game[]>(
@@ -249,7 +248,7 @@ const ScheduleItem = () => {
           optionName={`Week ${selectedWeek || 1}`}
           optionList={weekOptions}
           onSelect={(weekNumber) => handleWeekSelect(Number(weekNumber))}
-        />{' '}
+        />
       </div>
     </div>
   )

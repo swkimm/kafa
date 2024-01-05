@@ -1,8 +1,11 @@
 // PlayerCard.stories.ts
+import { RosterType } from '@/commons/interfaces/roster/roster'
 import type { Meta, StoryObj } from '@storybook/react'
 import PlayerCard from './PlayerCard'
 
-const meta = {
+// Ensure this path is correct
+
+const meta: Meta = {
   title: 'Components/PlayerCard',
   component: PlayerCard,
   parameters: {
@@ -14,24 +17,38 @@ const meta = {
     }
   },
   argTypes: {
-    id: { control: 'number' },
-    profileImgUrl: { control: 'text' },
-    name: { control: 'text' },
-    backNumber: { control: 'number' },
-    position: { control: 'text' }
+    playerData: {
+      control: 'object',
+      description: 'Data for the player card'
+    },
+    onClick: {
+      action: 'clicked',
+      description: 'Function to handle click events'
+    }
   },
   tags: ['autodocs']
-} satisfies Meta<typeof PlayerCard>
+}
 
 export default meta
 type Story = StoryObj<typeof PlayerCard>
 
 export const Default: Story = {
   args: {
-    id: 1,
-    profileImgUrl: '/people_alt.webp',
-    name: '홍길동',
-    backNumber: 0,
-    position: []
+    playerData: {
+      id: 1,
+      name: '홍길동',
+      globalName: 'Hong Gildong',
+      profileImgUrl: '/people_alt.webp',
+      rosterType: RosterType.Athlete, // Use enum value here
+      Athlete: {
+        backNumber: 10,
+        position: {
+          offence: 'Striker',
+          defense: 'Goalkeeper',
+          special: 'Captain'
+        }
+      }
+    },
+    onClick: () => console.log('Player clicked')
   }
 }

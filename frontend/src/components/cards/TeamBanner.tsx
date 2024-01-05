@@ -51,9 +51,9 @@ const TeamBanner: React.FC<TeamComplication> = ({
           </div>
           <div className="basis-1/3">
             <img
-              src={profileImgUrl}
+              src={profileImgUrl || '/logo/KAFA_OG.png'}
               alt={globalName}
-              className="block items-center sm:block sm:h-32 sm:w-32 md:block md:h-32 md:w-32 lg:hidden"
+              className="block items-center sm:block sm:h-24 sm:w-24 md:block md:h-32 md:w-32 lg:hidden"
             />
           </div>
         </div>
@@ -87,19 +87,19 @@ const TeamBanner: React.FC<TeamComplication> = ({
             </div>
           </div>
         </div>
-        <div
-          className="flex flex-row justify-center py-3"
-          style={{ backgroundColor: darkenColor(color, 20) }} // `darkenColor` 함수 구현 필요
-        >
-          <div className="flex flex-row">
-            <a href="#" className="">
-              <i
-                className="fa-brands fa-instagram fa-xl mx-1 align-middle"
-                style={{ color: '#ffffff' }}
-              ></i>
-            </a>
-            <div className="align-middle text-sm text-white">@insta</div>
-          </div>
+      </div>
+      <div
+        className="flex flex-row justify-center py-3"
+        style={{ backgroundColor: darkenColor(color, 20) }} // `darkenColor` 함수 구현 필요
+      >
+        <div className="flex flex-row">
+          <a href="#" className="">
+            <i
+              className="fa-brands fa-instagram fa-xl mx-1 align-middle"
+              style={{ color: '#ffffff' }}
+            ></i>
+          </a>
+          <div className="align-middle text-sm text-white">@insta</div>
         </div>
       </div>
     </div>

@@ -70,7 +70,7 @@ const League = () => {
           <div
             key={league?.id}
             className={`mx-3 my-5 mt-5 flex justify-between rounded-md lg:mx-10 ${
-              league?.endedAt && new Date(league.endedAt) >= new Date()
+              league?.endedAt && new Date(league.endedAt) <= new Date()
                 ? 'bg-gray-500'
                 : 'bg-gray-800'
             } p-5 lg:p-10`}
@@ -99,14 +99,14 @@ const League = () => {
                 </div>
                 <div
                   className={`text-md font-bold sm:text-lg lg:text-2xl ${
-                    league?.endedAt && new Date(league.endedAt) >= new Date()
+                    league?.endedAt && new Date(league.endedAt) <= new Date()
                       ? 'text-white-900'
                       : ''
                   }`}
                 >
                   {league?.name}
                   {league?.endedAt &&
-                    new Date(league.endedAt) >= new Date() &&
+                    new Date(league.endedAt) <= new Date() &&
                     ' (종료됨)'}
                 </div>
                 <div className="text-sm sm:text-lg">

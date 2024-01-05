@@ -1,54 +1,44 @@
 // PastTeamRosterItem.tsx
+import axiosInstance from '@/commons/axios'
+import type { Roster } from '@/commons/interfaces/roster/roster'
 import PlayerCard from '@/components/cards/PlayerCard'
+import { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-interface Member {
-  id: number
-  category: string
-  profile: string
-  name: string
-  backNumber: number
-  offPosition: string
-  defPosition: string
-  onClick?: (id: number) => void
-}
-
-const members: Member[] = []
-
-for (let i = 1; i <= 20; i++) {
-  members.push({
-    id: i,
-    category: '스테프',
-    profile: 'https://cdn.playprove.one/default/people_alt.webp',
-    name: `Member ${i}`,
-    backNumber: i + 30,
-    offPosition: 'Linebacker',
-    defPosition: 'Linebacker'
-  })
-}
-
 const PastTeamRosterItem = () => {
-  const params = useParams()
+  const { pastLeagueId, teamId } = useParams()
   const navigate = useNavigate()
+  const [roster, setRoster] = useState<Roster[]>([])
+
+  const getRoster = useCallback(async () => {
+    try {
+      const response = await axiosInstance.get<Roster[]>(
+        `/rosters/leagues/${pastLeagueId}/teams/${teamId}`
+      )
+      setRoster(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }, [pastLeagueId, teamId])
+
+  useEffect(() => {
+    getRoster()
+  }, [getRoster])
+
   const goToMemberInfo = (memberId: number) => {
-    navigate(
-      `/pastLeague/${params.pastLeagueId}/team/${params.teamId}/member/${memberId}`
-    )
+    navigate(`/pastLeague/${pastLeagueId}/team/${teamId}/member/${memberId}`)
   }
   return (
     <div className="container mx-auto mb-10 grid max-w-screen-2xl grid-cols-2 sm:grid-cols-4">
-      {members.map((member) => (
+      {roster.map((member) => (
         <div
           key={member.id}
           className="col-span-1 my-5"
           onClick={() => goToMemberInfo(member.id)}
         >
           <PlayerCard
-            id={member.id}
-            name={member.name}
-            profileImgUrl={member.profile}
-            backNumber={member.backNumber}
-            position={[member.offPosition, member.defPosition]}
+            key={member.id}
+            playerData={member}
             onClick={goToMemberInfo}
           />
         </div>
