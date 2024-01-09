@@ -20,6 +20,8 @@ import CreateNational from './pages/console/admin/national/CreateNational.tsx'
 import CreateRecode from './pages/console/admin/recode/CreateRecode.tsx'
 import ManageRecode from './pages/console/admin/recode/ManageRecode.tsx'
 import EnrollLeague from './pages/console/manager/league/EnrollLeague.tsx'
+import ManageRequestRoster from './pages/console/manager/team/ManageRequestRoster.tsx'
+import ManageTeamRoster from './pages/console/manager/team/ManageTeamRoster.tsx'
 import LoadRoster from './pages/console/user/roster/LoadRoster.tsx'
 import ApplyTeam from './pages/console/user/team/ApplyTeam.tsx'
 import Home from './pages/huddle/Home.tsx'
@@ -126,6 +128,14 @@ const App = () => {
 
         <Route element={<PrivateRoute allowedRoles={['Manager']} />}>
           <Route element={<ConsoleLayout />}>
+            <Route
+              path="/console/manageRequest"
+              element={<ManageRequestRoster />}
+            />
+            <Route
+              path="/console/manageRoster"
+              element={<ManageTeamRoster />}
+            />
             <Route path="/console/enroll" element={<EnrollLeague />} />
           </Route>
         </Route>

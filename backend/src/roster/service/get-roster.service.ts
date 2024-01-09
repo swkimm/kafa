@@ -48,6 +48,7 @@ export class GetRosterServiceImpl implements GetRosterService {
           globalName: true,
           profileImgUrl: true,
           rosterType: true,
+          registerYear: true,
           Athlete: {
             select: {
               position: true,

@@ -101,13 +101,6 @@ const CreateGameModal: React.FC<CreateGameModalProps> = ({
     } catch (error) {
       alert(error)
     }
-
-    console.log('leagueId', leagueId)
-    console.log('result', result)
-    console.log('homeTeamId', homeTeamId)
-    console.log('awayTeamId', awayTeamId)
-    console.log('statdium', stadium)
-    console.log('selectedDate', selectedDate)
   }
 
   return (

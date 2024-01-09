@@ -13,6 +13,7 @@ interface SimpleProps {
   optionName?: string
   optionList?: Option[]
   onSelect?: (selected: string) => void
+  initialSelectedOption?: string
 }
 
 const classNames = (...classes: unknown[]): string => {
@@ -22,9 +23,12 @@ const classNames = (...classes: unknown[]): string => {
 const DropdownRight: React.FC<SimpleProps> = ({
   optionName = 'Options',
   optionList = [],
-  onSelect = () => {}
+  onSelect = () => {},
+  initialSelectedOption
 }) => {
-  const [selectedOption, setSelectedOption] = useState(optionName) // State to track the selected option
+  const [selectedOption, setSelectedOption] = useState(
+    initialSelectedOption || optionName
+  )
 
   const handleSelect = (optionName: string) => {
     setSelectedOption(optionName) // Update the state when an option is selected

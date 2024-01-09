@@ -24,6 +24,7 @@ const Sidebar = () => {
 
   // 각 역할에 따른 다른 네비게이션 구조 정의
   const adminNavigation: NavigationItem[] = [
+    { name: 'HOME', href: '/console', current: true },
     {
       name: '대회정보',
       current: true,
@@ -59,15 +60,22 @@ const Sidebar = () => {
     { name: '회원 관리', href: '#', current: false }
   ]
   const userNavigation: NavigationItem[] = [
-    { name: 'HOME', href: '#', current: true },
-    { name: '프로필', href: '#', current: false },
+    { name: 'HOME', href: '/console', current: true },
+    { name: '프로필', href: '/console/profile', current: false },
     { name: '자료 제출', href: '#', current: false },
     { name: '로스터 불러오기', href: '/console/loadRoster', current: false }
   ]
   const managerNavigation: NavigationItem[] = [
-    { name: 'HOME', href: '#', current: true },
+    { name: 'HOME', href: '/console', current: true },
     { name: '팀 정보 관리', href: '#', current: false },
-    { name: '선수 관리', href: '#', current: false },
+    {
+      name: '로스터 관리',
+      current: false,
+      children: [
+        { name: '로스터 관리', href: '/console/manageRoster' },
+        { name: '연결 요청', href: '/console/manageRequest' }
+      ]
+    },
     { name: '참가 신청', href: '/console/enroll', current: false }
   ]
 

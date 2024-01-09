@@ -10,6 +10,7 @@ export interface RosterDTO {
 }
 
 export interface RosterWithAthleteDTO extends RosterDTO {
+  registerYear: Date
   Athlete: {
     position: JsonValue
     backNumber: number

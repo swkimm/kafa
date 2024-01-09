@@ -46,7 +46,9 @@ export const Default: Story = {
           offence: 'Striker',
           defense: 'Goalkeeper',
           special: 'Captain'
-        }
+        },
+        weight: 80,
+        height: 180
       }
     },
     onClick: () => console.log('Player clicked')

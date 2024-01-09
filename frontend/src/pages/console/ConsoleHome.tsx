@@ -6,6 +6,7 @@ import { ArrowTrendingUpIcon } from '@heroicons/react/20/solid'
 import { CalendarIcon } from '@heroicons/react/20/solid'
 import { DocumentCheckIcon } from '@heroicons/react/20/solid'
 import { DocumentTextIcon } from '@heroicons/react/20/solid'
+import { UserGroupIcon } from '@heroicons/react/24/solid'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -54,6 +55,10 @@ const ConsoleHome = () => {
 
   const goToManagerEnroll = () => {
     navigate('/console/enroll')
+  }
+
+  const goToManageRoster = () => {
+    navigate('/console/manageRoster')
   }
 
   return (
@@ -197,15 +202,18 @@ const ConsoleHome = () => {
                 <div className="text-xs">팀 정보 관리 페이지로 이동합니다.</div>
               </div>
             </div>
-            <div className="col-span-1 bg-white shadow-md">
+            <div
+              className="col-span-1 bg-white shadow-md"
+              onClick={goToManageRoster}
+            >
               <div className="mt-12 flex items-center justify-center">
-                <DocumentTextIcon className="h-auto w-44 text-blue-950" />
+                <UserGroupIcon className="h-auto w-44 text-blue-950" />
               </div>
               <div className="mb-3 flex items-center justify-center">
-                <div>선수 관리</div>
+                <div>로스터 관리</div>
               </div>
               <div className="mb-5 flex items-center justify-center">
-                <div className="text-xs">선수 관리 페이지로 이동합니다.</div>
+                <div className="text-xs">로스터 관리 페이지로 이동합니다.</div>
               </div>
             </div>
             <div
