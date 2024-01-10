@@ -80,6 +80,12 @@ enum RecordType {
   Safety
 }
 
+enum PostType {
+  Notice
+  Normal
+  Secret
+}
+
 // Account Module
 model Account {
   id                   Int                   @id @default(autoincrement())
@@ -139,28 +145,19 @@ model Post {
   title       String       @db.VarChar(256)
   content     String       @db.Text
   accountId   Int          @map("account_id")
-  postTypeId  Int          @map("post_type_id")
+  type        PostType
   createdAt   DateTime     @default(now()) @map("created_at")
   updatedAt   DateTime     @default(now()) @updatedAt @map("updated_at")
   Account     Account      @relation(fields: [accountId], references: [id])
-  PostType    PostType     @relation(fields: [postTypeId], references: [id])
   Attachments Attachment[]
   Comments    Comment[]
 }
 
-model PostType {
-  id    Int    @id @default(autoincrement())
-  name  String @db.VarChar(64)
-  Posts Post[]
-}
-
 model Attachment {
-  id       Int    @id @default(autoincrement())
-  postId   Int    @map("post_id")
-  fileUrl  String @map("file_url") @db.Text
-  fileName String @map("file_name") @db.VarChar(256)
-  fileType String @map("file_type") @db.VarChar(64)
-  Post     Post   @relation(fields: [postId], references: [id])
+  id      Int    @id @default(autoincrement())
+  postId  Int    @map("post_id")
+  fileUrl String @map("file_url") @db.Text
+  Post    Post   @relation(fields: [postId], references: [id])
 }
 
 model Comment {

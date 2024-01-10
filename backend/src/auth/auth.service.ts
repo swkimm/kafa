@@ -98,7 +98,6 @@ export class JwtAuthService implements AuthService {
     const refreshToken = await this.jwtService.signAsync(payload, {
       expiresIn: REFRESH_TOKEN_EXPIRE_TIME
     })
-
     await this.cacheManager.set(
       refreshTokenCacheKey(userId),
       refreshToken,

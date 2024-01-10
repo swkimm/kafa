@@ -36,12 +36,17 @@ export const loginUser = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const response = await axiosInstance.post('/auth/login', {
-        username,
-        password
-      })
-      const token = response.headers.authorization.split(' ')[1]
-      // 로컬 스토리지에 토큰 저장
+      const response = await axiosInstance.post(
+        '/auth/login',
+        {
+          username,
+          password
+        },
+        {
+          withCredentials: true
+        }
+      )
+      const token = response.headers.authorization
       localStorage.setItem('token', token)
       return { token }
     } catch (error) {
@@ -61,14 +66,11 @@ export const getRole = createAsyncThunk(
   async (_, { getState, rejectWithValue }) => {
     try {
       const state = getState() as RootState
-      console.log('Current state:', state)
       const token = state.auth.token
-      console.log('Token:', token)
 
       const response = await axiosInstance.get('/account/role', {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { authorization: token }
       })
-      console.log(response)
 
       return response.data.role
     } catch (error) {
@@ -95,13 +97,8 @@ export const reissueToken = createAsyncThunk(
     try {
       const response = await axiosInstance.get('/auth/reissue')
       const newAccessToken = response.data.accessToken
-      const newRefreshToken = response.data.refreshToken // 새로운 리프레시 토큰 추출
 
-      // 새로운 액세스 토큰과 리프레시 토큰을 반환합니다.
-      return {
-        token: newAccessToken,
-        refreshToken: newRefreshToken
-      }
+      localStorage.setItem('token', newAccessToken)
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         return rejectWithValue(error.response.data.message)
@@ -156,6 +153,7 @@ export const logoutUser = () => (dispatch: AppDispatch) => {
   localStorage.removeItem('token')
   dispatch(logout())
 }
+
 export const { logout, setLoginState } = authSlice.actions
 
 export default authSlice.reducer

@@ -10,7 +10,8 @@ import {
   RosterType,
   RosterStatus,
   GenderType,
-  RecordType
+  RecordType,
+  PostType
 } from '@prisma/client'
 import { hash } from 'argon2'
 
@@ -1192,6 +1193,121 @@ const main = async function () {
 
   await prisma.record.createMany({
     data: records
+  })
+
+  const posts: Prisma.PostCreateManyInput[] = [
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test post',
+      accountId: 1,
+      type: PostType.Normal,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    },
+    {
+      title: 'test notice',
+      accountId: 14,
+      type: PostType.Notice,
+      content: `<p>Break</p><p>&nbsp;</p><figure class="image"><img style="aspect-ratio:159/182;" src="http://127.0.0.1:9000/kafa-cdn-bucket/board/images/96deaba0-6ed3-4de6-a8ff-918406554c68.png" width="159" height="182"></figure><p>&nbsp;</p><p>Check</p><p>&nbsp;</p><p><strong>TEST</strong></p><p>&nbsp;</p><ul><li>1</li><li>2</li><li>3</li></ul><ol><li>a</li><li>b</li><li>c</li></ol><p>&nbsp;</p><figure class="table"><table><tbody><tr><td>HELLO</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table></figure>`
+    }
+  ]
+
+  await prisma.post.createMany({
+    data: posts
   })
 }
 

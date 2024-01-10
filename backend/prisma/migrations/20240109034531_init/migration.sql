@@ -31,6 +31,9 @@ CREATE TYPE "GenderType" AS ENUM ('Male', 'Female', 'Others');
 -- CreateEnum
 CREATE TYPE "RecordType" AS ENUM ('Passer', 'Rusher', 'Receiver', 'Kicker', 'Safety');
 
+-- CreateEnum
+CREATE TYPE "PostType" AS ENUM ('Notice', 'Normal', 'Secret');
+
 -- CreateTable
 CREATE TABLE "Account" (
     "id" SERIAL NOT NULL,
@@ -86,7 +89,7 @@ CREATE TABLE "Post" (
     "title" VARCHAR(256) NOT NULL,
     "content" TEXT NOT NULL,
     "account_id" INTEGER NOT NULL,
-    "post_type_id" INTEGER NOT NULL,
+    "type" "PostType" NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -94,20 +97,10 @@ CREATE TABLE "Post" (
 );
 
 -- CreateTable
-CREATE TABLE "PostType" (
-    "id" SERIAL NOT NULL,
-    "name" VARCHAR(64) NOT NULL,
-
-    CONSTRAINT "PostType_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Attachment" (
     "id" SERIAL NOT NULL,
     "post_id" INTEGER NOT NULL,
     "file_url" TEXT NOT NULL,
-    "file_name" VARCHAR(256) NOT NULL,
-    "file_type" VARCHAR(64) NOT NULL,
 
     CONSTRAINT "Attachment_pkey" PRIMARY KEY ("id")
 );
@@ -319,9 +312,6 @@ ALTER TABLE "OAuth" ADD CONSTRAINT "OAuth_account_id_fkey" FOREIGN KEY ("account
 
 -- AddForeignKey
 ALTER TABLE "Post" ADD CONSTRAINT "Post_account_id_fkey" FOREIGN KEY ("account_id") REFERENCES "Account"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Post" ADD CONSTRAINT "Post_post_type_id_fkey" FOREIGN KEY ("post_type_id") REFERENCES "PostType"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Attachment" ADD CONSTRAINT "Attachment_post_id_fkey" FOREIGN KEY ("post_id") REFERENCES "Post"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

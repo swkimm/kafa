@@ -13,11 +13,20 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn'
+    'react-hooks/exhaustive-deps': 'warn',
+    'react/prop-types': 'off'
   },
   settings: {
     react: {
       version: 'detect'
     }
-  }
+  },
+  overrides: [
+    {
+      files: ['*.tsx'],
+      rules: {
+        'react/prop-types': 'off'
+      }
+    }
+  ]
 }

@@ -871,6 +871,13 @@
             "containerId": "4062281c-78d6-47d9-bc5c-a45a1b0a6921",
             "created": "2024-01-04T10:37:31.510Z",
             "sortNum": 1310000
+        },
+        {
+            "_id": "51be0ded-e1bb-4fae-aa48-6237215db6b6",
+            "name": "Board",
+            "containerId": "",
+            "created": "2024-01-09T03:49:35.206Z",
+            "sortNum": 86875
         }
     ],
     "requests": [
@@ -942,7 +949,7 @@
             "method": "GET",
             "sortNum": 10000,
             "created": "2023-12-12T06:08:21.724Z",
-            "modified": "2023-12-29T08:25:21.901Z",
+            "modified": "2024-01-10T07:00:31.802Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -12742,6 +12749,20 @@
                     }
                 ]
             }
+        },
+        {
+            "_id": "48593bb6-ad6e-4685-94e2-b406a1b458eb",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "51be0ded-e1bb-4fae-aa48-6237215db6b6",
+            "name": "getPost",
+            "url": "/boards/posts/1",
+            "method": "GET",
+            "sortNum": 2820000,
+            "created": "2024-01-09T03:49:46.649Z",
+            "modified": "2024-01-09T03:49:53.556Z",
+            "headers": [],
+            "params": [],
+            "tests": []
         }
     ],
     "settings": {

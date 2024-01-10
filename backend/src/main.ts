@@ -10,13 +10,12 @@ const bootstrap = async () => {
   })
 
   const configService = app.get(ConfigService)
-
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
   app.use(cookieParser())
   app.enableCors({
-    allowedHeaders: ['*'],
-    exposedHeaders: ['authorization'],
-    credentials: true
+    exposedHeaders: ['authorization', 'Authorization'],
+    credentials: true,
+    origin: ['http://localhost:5173']
   })
 
   if (

@@ -11,6 +11,8 @@ import AppealItem from './pages/association/items/AppealItem.tsx'
 import Login from './pages/auth/Login.tsx'
 import SignUp from './pages/auth/SignUp.tsx'
 import BoardHome from './pages/board/BoardHome.tsx'
+import Post from './pages/board/[id]/Post.tsx'
+import CreateNewPost from './pages/board/new/CreateNewPost.tsx'
 import Calendar from './pages/calendar/Calendar.tsx'
 import ConsoleHome from './pages/console/ConsoleHome.tsx'
 import CreateGame from './pages/console/admin/game/CreateGame.tsx'
@@ -57,6 +59,8 @@ const App = () => {
           <Route path="/national" element={<National />} />
           <Route path="/notice" element={<Notice />} />
           <Route path="/board" element={<BoardHome />} />
+          <Route path="/board/posts/new" element={<CreateNewPost />} />
+          <Route path="/board/posts/:id" element={<Post />} />
           <Route path="/appeal" element={<AppealItem />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/leagues" element={<League />} />

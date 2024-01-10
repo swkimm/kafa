@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Get,
@@ -7,7 +8,8 @@ import {
   Post,
   Req,
   Res,
-  UnauthorizedException
+  UnauthorizedException,
+  UnprocessableEntityException
 } from '@nestjs/common'
 import { AuthenticatedRequest } from '@/common/class/authenticated-request.interface'
 import {
@@ -82,14 +84,13 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response
   ): Promise<void> {
     const refreshToken = req.cookies['refresh_token']
-    if (!refreshToken) throw new UnauthorizedException('Invalid Token')
-
+    if (!refreshToken) throw new BadRequestException('Invalid Token')
     try {
       const newJwtTokens = await this.authService.updateJwtTokens(refreshToken)
       this.setJwtResponse(res, newJwtTokens)
     } catch (error) {
       if (error instanceof InvalidJwtTokenException) {
-        throw new UnauthorizedException(error.message)
+        throw new UnprocessableEntityException(error.message)
       }
       throw new InternalServerErrorException('Failed to reissue tokens')
     }
