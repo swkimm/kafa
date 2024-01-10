@@ -5,14 +5,14 @@ const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_SERVER_DOMAIN
 })
 
-axiosInstance.interceptors.request.use((config) => {
+axiosInstance.interceptors.request.use((request) => {
   const token = localStorage.getItem('token')
 
   if (token) {
-    config.headers.authorization = token
+    request.headers.authorization = token
   }
 
-  return config
+  return request
 })
 
 axiosInstance.interceptors.response.use(

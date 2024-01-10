@@ -12,15 +12,10 @@ export const REFRESH_TOKEN_EXPIRE_TIME = '28d'
 export const REFRESH_TOKEN_COOKIE_OPTIONS: CookieOptions = {
   maxAge: 14 * SECONDS_PER_DAY * SECONDS_TO_MILLISECONDS,
   httpOnly: true,
-  secure: true,
-  sameSite:
-    process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging'
-      ? 'strict'
-      : 'none',
-  path:
-    process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging'
-      ? '/api/auth/reissue'
-      : '/auth/reissue'
+  secure:
+    process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging',
+  sameSite: 'strict',
+  path: '/api/auth/reissue'
 }
 export const REFRESH_TOKEN_CACHE_EXIPRE_TIME =
   14 * SECONDS_PER_DAY * SECONDS_TO_MILLISECONDS

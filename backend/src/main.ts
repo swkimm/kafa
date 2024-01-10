@@ -13,17 +13,12 @@ const bootstrap = async () => {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
   app.use(cookieParser())
   app.enableCors({
+    allowedHeaders: ['*'],
     exposedHeaders: ['authorization', 'Authorization'],
-    credentials: true,
-    origin: ['http://localhost:5173']
+    credentials: true
   })
 
-  if (
-    process.env.NODE_ENV === 'production' ||
-    process.env.NODE_ENV === 'staging'
-  ) {
-    app.setGlobalPrefix('api')
-  }
+  app.setGlobalPrefix('api')
 
   await app.listen(configService.get<number>('PORT') || 4000)
 }
