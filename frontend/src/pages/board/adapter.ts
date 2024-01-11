@@ -31,31 +31,11 @@ export class CustomUploadAdapter implements UploadAdapter {
           })
           .then((result) => result.data)
 
-        const checkResponseStatus = async (
-          url: string,
-          retries = 5,
-          interval = 250
-        ): Promise<{ default: string }> => {
-          try {
-            const result = await axiosInstance.get(url)
-            if (result.status === 200) {
-              return { default: url }
-            } else if (retries > 0) {
-              await new Promise((resolve) => setTimeout(resolve, interval))
-              return checkResponseStatus(url, retries - 1, interval)
-            } else {
-              throw new Error('이미지 로드 실패')
-            }
-          } catch (error) {
-            if (retries > 0) {
-              await new Promise((resolve) => setTimeout(resolve, interval))
-              return checkResponseStatus(url, retries - 1, interval)
-            }
-            throw error
-          }
-        }
+        await new Promise((resolve) => setTimeout(resolve, 1500))
 
-        return await checkResponseStatus(result.default)
+        return {
+          default: result.default
+        }
       })
       .catch((error) => {
         throw error
