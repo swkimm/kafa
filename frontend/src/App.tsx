@@ -12,6 +12,7 @@ import Login from './pages/auth/Login.tsx'
 import SignUp from './pages/auth/SignUp.tsx'
 import BoardHome from './pages/board/BoardHome.tsx'
 import Post from './pages/board/[id]/Post.tsx'
+import EditPost from './pages/board/[id]/edit/EditPost.tsx'
 import CreateNewPost from './pages/board/new/CreateNewPost.tsx'
 import Calendar from './pages/calendar/Calendar.tsx'
 import ConsoleHome from './pages/console/ConsoleHome.tsx'
@@ -61,6 +62,7 @@ const App = () => {
           <Route path="/board" element={<BoardHome />} />
           <Route path="/board/posts/new" element={<CreateNewPost />} />
           <Route path="/board/posts/:id" element={<Post />} />
+          <Route path="/board/posts/:id/edit" element={<EditPost />} />
           <Route path="/appeal" element={<AppealItem />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/leagues" element={<League />} />

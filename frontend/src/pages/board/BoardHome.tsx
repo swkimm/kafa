@@ -66,15 +66,15 @@ export const BoardHome: React.FC<BoardHomeProps> = () => {
 
   return (
     <>
-      <div className="mx-auto flex max-w-screen-sm flex-col px-4 sm:max-w-screen-xl sm:px-20">
-        <div className="flex justify-between py-8">
+      <div className="mx-auto flex max-w-screen-sm flex-col px-4 py-8 sm:max-w-screen-xl sm:px-20">
+        <div className="flex justify-between pb-8">
           <h1 className="text-xl font-bold sm:text-2xl">전체 게시판</h1>
           <button
             onClick={handleCreatePostClick}
-            className="inline-flex items-center rounded-md bg-white px-3 py-2 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:text-sm"
+            className="inline-flex items-center rounded-md bg-indigo-950 px-3.5 py-2.5 text-xs font-semibold text-white shadow-xl hover:bg-indigo-900 sm:text-sm"
           >
             <PencilIcon
-              className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
+              className="-ml-0.5 mr-1.5 h-3 w-3 text-white sm:h-4 sm:w-4"
               aria-hidden="true"
             />
             글쓰기

@@ -7,7 +7,7 @@ const SECONDS_PER_DAY = 24 * SECONDS_PER_HOUR
 const SECONDS_TO_MILLISECONDS = 1000
 
 /** JWT Token Expiration Settings */
-export const ACCESS_TOKEN_EXPIRE_TIME = '10s'
+export const ACCESS_TOKEN_EXPIRE_TIME = '10m'
 export const REFRESH_TOKEN_EXPIRE_TIME = '28d'
 export const REFRESH_TOKEN_COOKIE_OPTIONS: CookieOptions = {
   maxAge: 14 * SECONDS_PER_DAY * SECONDS_TO_MILLISECONDS,

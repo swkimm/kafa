@@ -1309,6 +1309,38 @@ const main = async function () {
   await prisma.post.createMany({
     data: posts
   })
+
+  const comments: Prisma.CommentCreateManyInput[] = [
+    {
+      accountId: 1,
+      content: 'comment 01',
+      postId: 1
+    },
+    {
+      accountId: 1,
+      content: 'comment 02',
+      postId: 1
+    },
+    {
+      accountId: 1,
+      content: 'comment 03',
+      postId: 1
+    },
+    {
+      accountId: 1,
+      content: 'comment 04',
+      postId: 1
+    },
+    {
+      accountId: 1,
+      content: 'comment 05',
+      postId: 1
+    }
+  ]
+
+  await prisma.comment.createMany({
+    data: comments
+  })
 }
 
 main()

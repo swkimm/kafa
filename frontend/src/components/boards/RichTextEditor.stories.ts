@@ -21,13 +21,15 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     role: 'Normal',
-    content: ''
+    content: '',
+    mode: 'create'
   }
 }
 
 export const Admin: Story = {
   args: {
     role: 'Admin',
-    content: ''
+    content: '',
+    mode: 'create'
   }
 }

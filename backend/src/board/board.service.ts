@@ -144,6 +144,30 @@ export class BoardService {
     }
   }
 
+  async updatePost(
+    accountId: number,
+    postId: number,
+    postDTO: CreatePostDTO
+  ): Promise<Post> {
+    try {
+      await this.checkUpdatePostRole(accountId, postId, postDTO)
+
+      return await this.prismaService.post.update({
+        where: {
+          id: postId
+        },
+        data: {
+          ...postDTO
+        }
+      })
+    } catch (error) {
+      if (error instanceof BusinessException) {
+        throw error
+      }
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
   async deletePost(postId: number, accountId: number): Promise<Post> {
     try {
       await this.checkPostDeleteRole(postId, accountId)
@@ -165,17 +189,21 @@ export class BoardService {
     accountId: number,
     postDTO: CreatePostDTO
   ): Promise<void> {
-    const credential =
-      await this.accountCredentialService.checkCredential(accountId)
+    const account = await this.accountService.getAccountProfile(accountId)
 
-    if (!credential) {
-      throw new ForbiddenAccessException('본인인증 후 게시글 작성이 가능합니다')
+    if (account.role === Role.User) {
+      const credential =
+        await this.accountCredentialService.checkCredential(accountId)
+
+      if (!credential) {
+        throw new ForbiddenAccessException(
+          '본인인증 후 게시글 작성이 가능합니다'
+        )
+      }
     }
 
     if (postDTO.type === PostType.Notice) {
-      const { role } = await this.accountService.getAccountRole(accountId)
-
-      if (role !== Role.Admin) {
+      if (account.role !== Role.Admin) {
         throw new ForbiddenAccessException(
           '공지사항은 관리자만 작성할 수 있습니다'
         )
@@ -183,9 +211,35 @@ export class BoardService {
     }
   }
 
-  private async checkPostDeleteRole(
+  private async checkUpdatePostRole(
     accountId: number,
-    postId: number
+    postId: number,
+    postDTO: CreatePostDTO
+  ): Promise<void> {
+    const account = await this.accountService.getAccountProfile(accountId)
+
+    if (account.role === Role.Admin) {
+      return
+    }
+
+    const post = await this.getPost(postId)
+
+    if (post.Account.id !== accountId) {
+      throw new ForbiddenAccessException(
+        '다른 사람이 작성한 글은 수정할 수 없습니다'
+      )
+    }
+
+    if (postDTO.type === PostType.Notice) {
+      throw new ForbiddenAccessException(
+        '공지사항은 관리자만 작성할 수 있습니다'
+      )
+    }
+  }
+
+  private async checkPostDeleteRole(
+    postId: number,
+    accountId: number
   ): Promise<void> {
     const { role } = await this.accountService.getAccountRole(accountId)
 

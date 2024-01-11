@@ -86,10 +86,20 @@ const PostList: React.FC<PostListProps> = ({
                           onClick={() => onPostClick(post.id)}
                         >
                           <td className="whitespace-nowrap py-4 pl-4 pr-3 text-xs font-medium text-gray-900 sm:pl-6 sm:text-sm">
-                            {post.id}
+                            {post.type === 'Notice' ? (
+                              <strong className="text-red-700">공지</strong>
+                            ) : (
+                              post.id
+                            )}
                           </td>
                           <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500 sm:text-sm">
-                            {post.title}
+                            {post.type === 'Notice' ? (
+                              <strong className="text-gray-600">
+                                {post.title}
+                              </strong>
+                            ) : (
+                              post.title
+                            )}
                           </td>
                           <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500 sm:text-sm">
                             <div className="flex items-center">
