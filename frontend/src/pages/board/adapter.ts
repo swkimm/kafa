@@ -31,7 +31,7 @@ export class CustomUploadAdapter implements UploadAdapter {
           })
           .then((result) => result.data)
 
-        await new Promise((resolve) => setTimeout(resolve, 1500))
+        await new Promise((resolve) => setTimeout(resolve, 3000))
 
         return {
           default: result.default
