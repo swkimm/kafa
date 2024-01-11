@@ -48,6 +48,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
   const [isNotice, setIsNotice] = useState(false)
   const navigate = useNavigate()
   const params = useParams()
+  const [isSubmitting, setIsSubmitting] = useState(false)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [fileOne, setFileOne] = useState<any>(null)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -119,6 +120,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
 
   const handleSubmit = async () => {
     try {
+      setIsSubmitting(true)
       if (mode === 'create') {
         const post: BasicPost = await axiosInstance
           .post('/boards/posts', {
@@ -145,6 +147,8 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       alert(error?.response.data.message)
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -249,6 +253,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
           data={editorData}
           onReady={onEditorReady}
           onChange={onEditorChange}
+          disabled={isSubmitting}
         />
       </div>
       <div className="pt-10">
@@ -266,6 +271,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
             id="file_input"
             type="file"
             onChange={handleFileChangeOne}
+            disabled={isSubmitting}
           />
           <p className="mt-1 text-sm text-gray-500 " id="file_input_help">
             docs, txt, pdf, xlsx, hwp 형식의 파일만 업로드 가능합니다
@@ -284,6 +290,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
             id="file_input"
             type="file"
             onChange={handleFileChangeTwo}
+            disabled={isSubmitting}
           />
           <p className="mt-1 text-sm text-gray-500 " id="file_input_help">
             docs, txt, pdf, xlsx, hwp 형식의 파일만 업로드 가능합니다
@@ -302,6 +309,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
             id="file_input"
             type="file"
             onChange={handleFileChangeThree}
+            disabled={isSubmitting}
           />
           <p className="mt-1 text-sm text-gray-500 " id="file_input_help">
             docs, txt, pdf, xlsx, hwp 형식의 파일만 업로드 가능합니다
@@ -321,6 +329,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
                 onChange={handleNoticeChange}
                 type="checkbox"
                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                disabled={isSubmitting}
               />
             </div>
             <div className="text-xs leading-6 sm:text-sm">
@@ -336,6 +345,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
         <button
           className="inline-flex items-center rounded-md bg-indigo-950 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xl hover:bg-indigo-900"
           onClick={handleSubmit}
+          disabled={isSubmitting}
         >
           <ArrowUpOnSquareIcon
             className="mr-1.5 h-5 w-5 flex-shrink-0"
@@ -346,6 +356,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
         <button
           className="ml-1.5 inline-flex items-center rounded-md bg-indigo-950 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xl hover:bg-indigo-900"
           onClick={() => navigate(-1)}
+          disabled={isSubmitting}
         >
           <ArrowUturnLeftIcon
             className="mr-1.5 h-5 w-5 flex-shrink-0"

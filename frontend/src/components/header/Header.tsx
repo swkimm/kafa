@@ -293,7 +293,7 @@ const Header = () => {
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
-                href="#"
+                onClick={gotoBoard}
                 className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
               >
                 게시판
