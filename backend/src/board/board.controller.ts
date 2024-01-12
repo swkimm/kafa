@@ -202,6 +202,23 @@ export class BoardController {
     }
   }
 
+  @Delete('posts/:postId/attachments/:attachmentId')
+  async deletePostAttachment(
+    @Param('postId', ParseIntPipe) postId: number,
+    @Param('attachmentId', ParseIntPipe) attachmentId: number,
+    @Req() req: AuthenticatedRequest
+  ): Promise<Attachment> {
+    try {
+      return await this.attachmentService.deletePostAttachment(
+        postId,
+        req.user.id,
+        attachmentId
+      )
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
   @Post('posts')
   async createPost(
     @Body() postDTO: CreatePostDTO,

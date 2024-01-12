@@ -1,4 +1,5 @@
 import axiosInstance from '@/commons/axios'
+import type { Editor } from '@ckeditor/ckeditor5-core'
 import type { FileLoader, UploadAdapter } from '@ckeditor/ckeditor5-upload'
 
 export class CustomUploadAdapter implements UploadAdapter {
@@ -57,5 +58,14 @@ export class CustomUploadAdapter implements UploadAdapter {
 
   abort() {
     return null
+  }
+}
+
+// eslint-disable-next-line func-style
+export function CustomUploadAdapterPlugin(editor: Editor) {
+  editor.plugins.get('FileRepository').createUploadAdapter = (
+    loader: FileLoader
+  ) => {
+    return new CustomUploadAdapter(loader)
   }
 }

@@ -4,7 +4,7 @@ import type { Attachment } from '@/commons/interfaces/attachment/attachment.type
 import type { DetailPost } from '@/commons/interfaces/board/board.type'
 import type { Comment } from '@/commons/interfaces/comment/comment.type'
 import CommentEditor from '@/components/boards/CommentEditor'
-import PostViewer from '@/components/boards/PostViewer'
+import TextEditor from '@/components/boards/TextEditor'
 import {
   CalendarIcon,
   PencilIcon,
@@ -15,6 +15,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { CustomUploadAdapterPlugin } from '../adapter'
 import CommentList from './CommentList'
 
 interface PostProps {}
@@ -181,9 +182,18 @@ const Post: React.FC<PostProps> = () => {
             ) : null}
           </div>
           <div className="border-t border-gray-400 py-3"></div>
-          <div className="px-1 pb-10">
-            {post ? <PostViewer content={post.content}></PostViewer> : null}
-            {attachments ? <div className="mt-5"></div> : null}
+          <div className="px-1 pb-2">
+            {post ? (
+              <TextEditor
+                content={post.content}
+                mode="view"
+                CustomUploadAdapterPlugin={CustomUploadAdapterPlugin}
+                disabled={true}
+                onContentChange={() => []}
+                removeImage={() => []}
+              ></TextEditor>
+            ) : null}
+            {attachments ? <div className="mt-1.5"></div> : null}
             {attachments
               ? attachments.map((attachment) => {
                   return (
