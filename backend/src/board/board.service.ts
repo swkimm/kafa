@@ -17,6 +17,7 @@ import {
   Role,
   Prisma
 } from '@prisma/client'
+import axios from 'axios'
 import type { CreatePostDTO } from './dto/create-post.dto'
 import type { BasicPost, DetailPost } from './dto/post.dto'
 
@@ -110,6 +111,16 @@ export class BoardService {
         throw error
       }
       throw new UnexpectedException(error, error.stack)
+    }
+  }
+
+  async checkImageUploadStatus(url: string): Promise<boolean> {
+    try {
+      const result = await axios.get(url)
+
+      return result.status === 200
+    } catch (error) {
+      return false
     }
   }
 

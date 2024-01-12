@@ -37,6 +37,15 @@ export class BoardController {
     private readonly attachmentService: AttachmentService
   ) {}
 
+  @Get('posts/image/upload-status')
+  async checkImageUploadStatus(@Query('url') url: string): Promise<boolean> {
+    try {
+      return await this.boardService.checkImageUploadStatus(url)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
   @Public()
   @Get('posts/counts')
   async getTotalPostCounts(): Promise<{ counts: number }> {
