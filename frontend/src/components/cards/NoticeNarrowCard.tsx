@@ -3,13 +3,10 @@ import type React from 'react'
 interface NoticeNarrowProps {
   cardName: string
   onClick?: (id: number) => void
-  children?: React.ReactNode // children prop을 추가합니다.
+  children?: React.ReactNode
 }
 
-const NoticeNarrow: React.FC<NoticeNarrowProps> = ({
-  cardName,
-  children // children을 받아옵니다.
-}) => {
+const NoticeNarrow: React.FC<NoticeNarrowProps> = ({ cardName, children }) => {
   return (
     <div className="border bg-white">
       <div className="mb-3 border-b bg-white px-4 py-5 sm:px-6">
@@ -32,9 +29,7 @@ const NoticeNarrow: React.FC<NoticeNarrowProps> = ({
           </div>
         </div>
       </div>
-      <div className="mb-3 overflow-auto">
-        {children} {/* children을 렌더링합니다. */}
-      </div>
+      <div className="mb-3 overflow-auto">{children}</div>
     </div>
   )
 }

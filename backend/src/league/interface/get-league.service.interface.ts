@@ -1,4 +1,5 @@
 import type { League, Sponser } from '@prisma/client'
+import type { LeagueWithAssociationDTO } from '../dto/league-with-association.dto'
 
 /**
  * 리그 정보 조회와 관련된 서비스 모음
@@ -22,6 +23,20 @@ export interface GetLeagueService<T extends League, V extends Sponser> {
    * @returns {Promise<T[]>} 리그 목록
    */
   getLeagues(page: number, limit?: number): Promise<T[]>
+
+  /**
+   * 특정 연도의 리그 목록을 반환합니다.
+   *
+   * @param {number} year 조회할 연도
+   * @param {number} page 조회할 페이지
+   * @param {number} [limit=10] 한 번에 불러올 리그 수
+   * @returns {LeagueWithAssociationDTO[]} 리그 목록
+   */
+  getLeaguesByYear(
+    year: number,
+    page: number,
+    limit?: number
+  ): Promise<LeagueWithAssociationDTO[]>
 
   /**
    * 특정 협회의 리그 목록을 반환합니다.

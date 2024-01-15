@@ -135,6 +135,7 @@ CREATE TABLE "League" (
     "id" SERIAL NOT NULL,
     "name" VARCHAR(256) NOT NULL,
     "started_at" TIMESTAMP(3) NOT NULL,
+    "started_year" INTEGER NOT NULL,
     "ended_at" TIMESTAMP(3) NOT NULL,
     "association_id" INTEGER,
 
@@ -316,7 +317,7 @@ ALTER TABLE "OAuth" ADD CONSTRAINT "OAuth_account_id_fkey" FOREIGN KEY ("account
 ALTER TABLE "Post" ADD CONSTRAINT "Post_account_id_fkey" FOREIGN KEY ("account_id") REFERENCES "Account"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Attachment" ADD CONSTRAINT "Attachment_post_id_fkey" FOREIGN KEY ("post_id") REFERENCES "Post"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Attachment" ADD CONSTRAINT "Attachment_post_id_fkey" FOREIGN KEY ("post_id") REFERENCES "Post"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Comment" ADD CONSTRAINT "Comment_post_id_fkey" FOREIGN KEY ("post_id") REFERENCES "Post"("id") ON DELETE CASCADE ON UPDATE CASCADE;

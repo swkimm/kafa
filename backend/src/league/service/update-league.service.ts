@@ -37,14 +37,24 @@ export class UpdateLeagueServiceImpl implements UpdateLeagueService<League> {
     try {
       await this.checkDate(leagueId, leagueDTO)
 
-      return await this.prismaService.league.update({
-        where: {
-          id: leagueId
-        },
-        data: {
-          ...leagueDTO
-        }
-      })
+      return leagueDTO.startedAt
+        ? await this.prismaService.league.update({
+            where: {
+              id: leagueId
+            },
+            data: {
+              ...leagueDTO,
+              startedYear: leagueDTO.startedAt.getFullYear()
+            }
+          })
+        : await this.prismaService.league.update({
+            where: {
+              id: leagueId
+            },
+            data: {
+              ...leagueDTO
+            }
+          })
     } catch (error) {
       if (error instanceof BusinessException) {
         throw error

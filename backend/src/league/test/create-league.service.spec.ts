@@ -19,7 +19,8 @@ describe('CreateLeagueService', () => {
     name: 'league01',
     associationId: 1,
     endedAt: new Date('2023-12-31'),
-    startedAt: new Date('2023-01-01')
+    startedAt: new Date('2023-01-01'),
+    startedYear: 2023
   }
 
   const createLeagueDTO: CreateLeagueDTO = {
@@ -95,7 +96,8 @@ describe('CreateLeagueService', () => {
       expect(
         db.league.create.calledOnceWith({
           data: {
-            ...createLeagueDTO
+            ...createLeagueDTO,
+            startedYear: createLeagueDTO.startedAt.getFullYear()
           }
         })
       ).to.be.true

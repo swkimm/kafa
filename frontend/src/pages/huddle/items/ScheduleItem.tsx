@@ -286,48 +286,50 @@ const ScheduleItem = () => {
   ]
 
   return (
-    <div className="">
-      <div className="bg-blue-950 p-5 sm:flex">
-        {associations.length > 0 && (
-          <div className="mb-2 sm:mr-5">
-            <DropdownTransparent
-              optionName={selectedAssociationName}
-              optionList={associations.map((association) => ({
-                id: association.id, // 'string | number' 타입의 id
-                name: association.name
-              }))}
-              onSelect={(id) => {
-                handleAssociationSelect(id) // 이미 number 타입이므로 추가 변환 없이 직접 사용
-              }}
-            />
-          </div>
-        )}
-        {leagues && leagues.length > 0 && (
-          <div className="mb-2 sm:mr-5">
-            <DropdownTransparent
-              optionName={selectedLeagueName}
-              optionList={leagues.map((league) => ({
-                id: league.id, // 'string | number' 타입의 id
-                name: league.name
-              }))}
-              onSelect={(id) => {
-                handleLeagueSelect(id) // 이미 number 타입이므로 추가 변환 없이 직접 사용
-              }}
-            />
-          </div>
-        )}
-        {weekOptions && weekOptions.length > 0 && (
-          <div className="mb-2 sm:mr-5">
-            <DropdownTransparent
-              optionName={`Week ${selectedWeek || 1}`}
-              optionList={weekOptions}
-              onSelect={(weekNumber) => handleWeekSelect(Number(weekNumber))}
-            />
-          </div>
-        )}
+    <div className="w-full">
+      <div className="bg-blue-950 py-5">
+        <div className="mx-auto max-w-screen-xl px-4 sm:flex lg:px-20">
+          {associations.length > 0 && (
+            <div className="mb-2 sm:mr-5">
+              <DropdownTransparent
+                optionName={selectedAssociationName}
+                optionList={associations.map((association) => ({
+                  id: association.id, // 'string | number' 타입의 id
+                  name: association.name
+                }))}
+                onSelect={(id) => {
+                  handleAssociationSelect(id)
+                }}
+              />
+            </div>
+          )}
+          {leagues && leagues.length > 0 && (
+            <div className="mb-2 sm:mr-5">
+              <DropdownTransparent
+                optionName={selectedLeagueName}
+                optionList={leagues.map((league) => ({
+                  id: league.id, // 'string | number' 타입의 id
+                  name: league.name
+                }))}
+                onSelect={(id) => {
+                  handleLeagueSelect(id)
+                }}
+              />
+            </div>
+          )}
+          {weekOptions && weekOptions.length > 0 && (
+            <div className="mb-2 sm:mr-5">
+              <DropdownTransparent
+                optionName={`Week ${selectedWeek || 1}`}
+                optionList={weekOptions}
+                onSelect={(weekNumber) => handleWeekSelect(Number(weekNumber))}
+              />
+            </div>
+          )}
+        </div>
       </div>
-      <div className="container mx-auto mt-5">
-        <div className="mx-5 mb-48">
+      <div className="container mx-auto mt-5 max-w-screen-xl px-4 lg:px-20">
+        <div className="mb-48">
           <DefaultTable
             title={`Week ${selectedWeek || 1}`}
             data={gamesForSelectedWeek}

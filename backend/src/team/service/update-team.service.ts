@@ -104,15 +104,11 @@ export class UpdateTeamServiceImpl
       const team =
         await this.registerTeamService.registerTeam(registerTeamRequest)
 
-      if (
-        this.configService.get('NODE_ENV') === 'staging' ||
-        this.configService.get('NODE_ENV') === 'production'
+      await this.emailService.sendTeamRegisterMail(
+        managerAccount.email,
+        username,
+        password
       )
-        await this.emailService.sendTeamRegisterMail(
-          managerAccount.email,
-          username,
-          password
-        )
 
       await this.accountService.mappingManagerAccount(
         managerAccount.id,

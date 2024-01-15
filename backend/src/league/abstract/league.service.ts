@@ -60,6 +60,22 @@ export abstract class LeagueService<
   }
 
   /**
+   * 특정 연도의 리그 목록을 반환합니다.
+   *
+   * @param {number} year 조회할 연도
+   * @param {number} page 조회할 페이지
+   * @param {number} [limit=10] 한 번에 불러올 리그 수
+   * @returns {Promise<LeagueWithAssociationDTO[]>} 리그 목록
+   */
+  async getLeaguesByYear(
+    year: number,
+    page: number,
+    limit?: number
+  ): Promise<LeagueWithAssociationDTO[]> {
+    return await this.getLeagueService.getLeaguesByYear(year, page, limit)
+  }
+
+  /**
    * 특정 협회의 리그 목록을 반환합니다.
    *
    * @param {number} associationId 리그 목록을 조회할 협회의 Id

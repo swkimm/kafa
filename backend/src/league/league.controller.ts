@@ -42,6 +42,20 @@ export class LeagueController {
     }
   }
 
+  @Public()
+  @Get('years/:year')
+  async getLeaguesByYear(
+    @Param('year', ParseIntPipe) year: number,
+    @Query('page', ParseIntPipe) page: number,
+    @Query('limit', new ParseIntPipe({ optional: true })) limit?: number
+  ): Promise<LeagueWithAssociationDTO[]> {
+    try {
+      return await this.leagueService.getLeaguesByYear(year, page, limit)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
   @Roles(Role.Manager)
   @Get('rosters/validation')
   async checkTeamRosterCertifications(

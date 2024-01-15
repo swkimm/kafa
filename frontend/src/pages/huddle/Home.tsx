@@ -60,10 +60,10 @@ const Home = () => {
           />
         </div>
       </div>
-      <Disclosure as="nav" className="w-full bg-indigo-800 shadow">
+      <Disclosure as="nav" className="w-full bg-indigo-800">
         {({ open }) => (
           <>
-            <div className="px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-screen-xl px-4 lg:px-20">
               <div className="flex h-20 justify-between">
                 <div className="flex">
                   <div className="font-lg flex flex-shrink-0 items-center font-bold text-white">
@@ -143,7 +143,6 @@ const Home = () => {
             </div>
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 pb-3 pt-2">
-                {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
                 <Disclosure.Button
                   as="button"
                   onClick={() => setCurrentComponent('NOTICE')}

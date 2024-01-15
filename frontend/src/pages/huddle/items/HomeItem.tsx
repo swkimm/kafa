@@ -7,7 +7,6 @@ import type { NewsCardProps } from '@/components/cards/NewsCard'
 import NoticeNarrow from '@/components/cards/NoticeNarrowCard'
 import NoticeWideCard from '@/components/cards/NoticeWideCard'
 import LeagueList from '@/components/stackedList/LeagueList'
-import NoticeList from '@/components/stackedList/NoticeList'
 import GameTable from '@/components/tables/GameTable'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -52,14 +51,6 @@ const HomeItem = () => {
     console.log(id)
   }
 
-  const goToNoticeById = (id: number) => {
-    console.log(id)
-  }
-
-  const goToNotice = () => {
-    navigate('/notice')
-  }
-
   const goToLeague = () => {
     navigate('/league')
   }
@@ -75,7 +66,6 @@ const HomeItem = () => {
       const response = await axiosInstance.get(
         `/associations?page=${page}&limit=${limit}`
       )
-      console.log(response.data)
       setAssociations(response.data)
     } catch (error) {
       alert(error)
@@ -235,7 +225,6 @@ const HomeItem = () => {
       description: 'Description 2',
       variant: 'wide'
     }
-    // ...more news items
   ]
 
   const galleryData: NewsCardProps[] = [
@@ -251,26 +240,25 @@ const HomeItem = () => {
       description: 'Gallery Description 2',
       variant: 'wide'
     }
-    // ...more gallery items
   ]
 
   return (
-    <div className="mx-auto">
-      <div className="grid max-w-screen-2xl gap-4 px-5 sm:grid-cols-1 md:grid-cols-3">
-        <div className="overflow-x-auto md:col-span-2">
-          <div className="md:flex md:flex-row">
-            <div className="flex-grow overflow-x-auto p-3">
+    <div className="mb-10 w-full">
+      <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-x-3 px-4 md:grid-cols-3 lg:px-20">
+        <div className="col-span-2 w-full">
+          <div className="grid w-full grid-cols-4 gap-x-2">
+            <div className="col-span-4 w-full pb-1 pt-5 lg:col-span-2">
               {associations.length > 1 && (
                 <GameTable title="다가오는 경기" games={notFinishedGames} />
               )}
             </div>
-            <div className="flex-grow overflow-x-auto p-3">
+            <div className="col-span-4 w-full pb-1 pt-1 lg:col-span-2 lg:pt-5">
               {associations.length > 1 && (
                 <GameTable title="최근 경기 결과" games={finishedGames} />
               )}
             </div>
           </div>
-          <div className="p-3 sm:w-full ">
+          <div className="py-1.5">
             <NoticeWideCard
               id={1}
               cardName="NEWS"
@@ -278,7 +266,7 @@ const HomeItem = () => {
               newsCardPropsArray={newsData}
             />
           </div>
-          <div className="p-3 sm:w-full">
+          <div className="py-1.5">
             <NoticeWideCard
               id={2}
               cardName="GALLERY"
@@ -287,75 +275,55 @@ const HomeItem = () => {
             />
           </div>
         </div>
-        <div className="overflow-x-auto md:col-span-1">
-          <div className="w-full p-3">
-            <div className="mb-3 flex items-center justify-center bg-blue-950 p-5">
+        <div className="md:col-span-1">
+          <div className="mb-3 w-full pt-5">
+            <div className="mb-1.5 flex items-center justify-center bg-blue-950 p-5">
               <img
                 src="/logo/KAFA_OG.png"
                 alt=""
-                className="w-16 justify-center"
+                className="w-10 justify-center object-contain lg:w-12"
               />
               <div className="ml-5 items-center text-white">
-                <div className="text-xl font-bold text-gray-500">
+                <div className="text-xs font-normal text-gray-400 lg:text-sm">
                   대한미식축구협회
                 </div>
-                <div>제00회 타이거볼</div>
+                <div className="text-sm font-bold sm:text-base">
+                  제00회 타이거볼
+                </div>
               </div>
             </div>
-            <div className="mb-3 flex items-center justify-center bg-blue-950 p-5">
+            <div className="mb-1.5 flex items-center justify-center bg-blue-950 p-5">
               <img
                 src="/logo/KAFA_OG.png"
                 alt=""
-                className="w-16 justify-center"
+                className="w-10 justify-center object-contain lg:w-12"
               />
               <div className="ml-5 items-center text-white">
-                <div className="text-xl font-bold text-gray-500">
+                <div className="text-xs font-normal text-gray-400 lg:text-sm">
                   대한미식축구협회
                 </div>
-                <div>제00회 타이거볼</div>
+                <div className="text-sm font-bold sm:text-base">
+                  제00회 타이거볼
+                </div>
               </div>
             </div>
-            <div className="mb-3 flex items-center justify-center bg-blue-950 p-5">
+            <div className="mb-1.5 flex items-center justify-center bg-blue-950 p-5">
               <img
                 src="/logo/KAFA_OG.png"
                 alt=""
-                className="w-16 justify-center"
+                className="w-10 justify-center object-contain lg:w-12"
               />
               <div className="ml-5 items-center text-white">
-                <div className="text-xl font-bold text-gray-500">
+                <div className="text-xs font-normal text-gray-400 lg:text-sm">
                   대한미식축구협회
                 </div>
-                <div>제00회 타이거볼</div>
+                <div className="text-sm font-bold sm:text-base">
+                  제00회 타이거볼
+                </div>
               </div>
             </div>
           </div>
-          <div className="p-3 sm:w-full">
-            <NoticeNarrow cardName="NOTICE" onClick={goToNotice}>
-              <NoticeList
-                id={1}
-                noticeName="공지사항 1"
-                writer="관리자"
-                period="2023/01/01 13:00"
-                onClick={() => goToNoticeById(1)}
-              />
-              <NoticeList
-                id={2}
-                noticeName="공지사항 2"
-                writer="관리자"
-                period="2023/01/02 13:00"
-                onClick={() => goToNoticeById(2)}
-              />
-              <NoticeList
-                id={3}
-                noticeName="공지사항 3"
-                writer="관리자"
-                period="2023/01/03 13:00"
-                onClick={() => goToNoticeById(3)}
-              />
-              {/* 추가 NoticeList 컴포넌트들을 넣을 수 있습니다. */}
-            </NoticeNarrow>{' '}
-          </div>
-          <div className="p-3 sm:w-full">
+          <div className="mb-3 w-full">
             <NoticeNarrow cardName="LEAGUES" onClick={goToLeague}>
               {leagues.map((league) => (
                 <LeagueList
@@ -371,7 +339,7 @@ const HomeItem = () => {
               ))}
             </NoticeNarrow>
           </div>
-          <div className="p-3">
+          <div className="w-full">
             <NoticeNarrow cardName="SPONSER" onClick={goToPartners}>
               {Array.from({ length: 3 }, (_, index) => (
                 <div key={index} className="border-b p-3">
@@ -379,7 +347,7 @@ const HomeItem = () => {
                     {sponsers.map((sponser) => (
                       <img
                         key={sponser.id}
-                        className={`h-10 ${sponser.id > 0 ? '' : ''}`} // Add margin-left if it's not the first logo
+                        className={`h-10 ${sponser.id > 0 ? '' : ''}`}
                         src={
                           sponser.profileImgUrl
                             ? sponser.profileImgUrl

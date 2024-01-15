@@ -71,7 +71,7 @@ const Header = () => {
                   <Disclosure.Button
                     as="button"
                     onClick={() => navigate('/leagues')}
-                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
+                    className="inline-flex items-center pl-5 pr-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     대회정보
                   </Disclosure.Button>
@@ -95,13 +95,6 @@ const Header = () => {
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     협회정보
-                  </Disclosure.Button>
-                  <Disclosure.Button
-                    as="button"
-                    onClick={() => navigate('/')}
-                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
-                  >
-                    국가대표
                   </Disclosure.Button>
                   <a
                     href="#"
@@ -232,13 +225,6 @@ const Header = () => {
                 className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
               >
                 협회정보
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="#"
-                className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
-              >
-                국가대표
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"

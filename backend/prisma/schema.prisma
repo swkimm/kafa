@@ -192,6 +192,7 @@ model League {
   id             Int             @id @default(autoincrement())
   name           String          @db.VarChar(256)
   startedAt      DateTime        @map("started_at")
+  startedYear    Int             @map("started_year")
   endedAt        DateTime        @map("ended_at")
   associationId  Int?            @map("association_id")
   LeagueSponsers LeagueSponser[]

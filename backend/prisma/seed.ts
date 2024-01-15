@@ -535,18 +535,21 @@ const main = async function () {
     {
       name: 'league01',
       startedAt: threeMonthAgo,
+      startedYear: threeMonthAgo.getFullYear(),
       endedAt: oneMonthAgo,
       associationId: 1
     },
     {
       name: 'league02',
       startedAt: threeMonthAgo,
+      startedYear: threeMonthAgo.getFullYear(),
       endedAt: oneMonthAgo,
       associationId: 1
     },
     {
       name: 'league03',
       startedAt: threeMonthAgo,
+      startedYear: threeMonthAgo.getFullYear(),
       endedAt: oneMonthAgo,
       associationId: 1
     },
@@ -556,18 +559,21 @@ const main = async function () {
     {
       name: 'league04',
       startedAt: oneMonthAgo,
+      startedYear: oneMonthAgo.getFullYear(),
       endedAt: oneMonthLater,
       associationId: 1
     },
     {
       name: 'league05',
       startedAt: oneMonthAgo,
+      startedYear: oneMonthAgo.getFullYear(),
       endedAt: oneMonthLater,
       associationId: 1
     },
     {
       name: 'league06',
       startedAt: oneMonthAgo,
+      startedYear: oneMonthAgo.getFullYear(),
       endedAt: oneMonthLater,
       associationId: 1
     },
@@ -577,18 +583,21 @@ const main = async function () {
     {
       name: 'league07',
       startedAt: oneMonthLater,
+      startedYear: oneMonthLater.getFullYear(),
       endedAt: threeMonthLater,
       associationId: 1
     },
     {
       name: 'league08',
       startedAt: oneMonthLater,
+      startedYear: oneMonthLater.getFullYear(),
       endedAt: threeMonthLater,
       associationId: 1
     },
     {
       name: 'league09',
       startedAt: oneMonthLater,
+      startedYear: oneMonthLater.getFullYear(),
       endedAt: threeMonthLater,
       associationId: 1
     }

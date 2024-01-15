@@ -23,7 +23,8 @@ export class CreateLeagueServiceImpl implements CreateLeagueService<League> {
 
       return await this.prismaService.league.create({
         data: {
-          ...leagueDTO
+          ...leagueDTO,
+          startedYear: leagueDTO.startedAt.getFullYear()
         }
       })
     } catch (error) {

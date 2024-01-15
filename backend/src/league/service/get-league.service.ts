@@ -16,6 +16,7 @@ import {
   type Sponser,
   type LeagueSponser
 } from '@prisma/client'
+import type { LeagueWithAssociationDTO } from '../dto/league-with-association.dto'
 import type { GetLeagueService } from '../interface/get-league.service.interface'
 
 /**
@@ -58,6 +59,36 @@ export class GetLeagueServiceImpl implements GetLeagueService<League, Sponser> {
         skip: calculateOffset(page, limit),
         orderBy: {
           startedAt: 'desc'
+        }
+      })
+    } catch (error) {
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
+  async getLeaguesByYear(
+    year: number,
+    page: number,
+    limit = 10
+  ): Promise<LeagueWithAssociationDTO[]> {
+    try {
+      return await this.prismaService.league.findMany({
+        where: {
+          startedYear: year
+        },
+        take: limit,
+        skip: calculateOffset(page, limit),
+        orderBy: {
+          startedAt: 'desc'
+        },
+        include: {
+          Association: {
+            select: {
+              id: true,
+              name: true,
+              profileImgUrl: true
+            }
+          }
         }
       })
     } catch (error) {
