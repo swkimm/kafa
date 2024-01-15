@@ -5,3 +5,10 @@ export interface Profile {
   profileImgUrl: string
   role: string
 }
+
+export enum Role {
+  Admin = 'Admin',
+  Manager = 'Manager',
+  User = 'User',
+  Public = 'Public'
+}

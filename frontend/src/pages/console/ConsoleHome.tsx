@@ -1,6 +1,6 @@
-import type { RootState } from '@/app/store'
 import axiosInstance from '@/commons/axios'
-import type { Profile } from '@/commons/interfaces/account/profile'
+import { Role, type Profile } from '@/commons/interfaces/account/profile'
+import { userState } from '@/state/userState'
 import { UserCircleIcon } from '@heroicons/react/20/solid'
 import { ArrowTrendingUpIcon } from '@heroicons/react/20/solid'
 import { CalendarIcon } from '@heroicons/react/20/solid'
@@ -8,32 +8,23 @@ import { DocumentCheckIcon } from '@heroicons/react/20/solid'
 import { DocumentTextIcon } from '@heroicons/react/20/solid'
 import { UserGroupIcon } from '@heroicons/react/24/solid'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
 
 const ConsoleHome = () => {
-  const { role } = useSelector((state: RootState) => state.auth)
+  const user = useRecoilValue(userState)
   const [profile, setProfile] = useState<Profile | null>(null)
   const navigate = useNavigate()
 
   useEffect(() => {
-    const getRole = async () => {
-      try {
-        await axiosInstance.get('account/role')
-      } catch (error) {
-        console.error('Error', error)
-      }
-    }
-
     const getProfile = async () => {
       try {
         const response = await axiosInstance.get('/account/profile')
         setProfile(response.data)
       } catch (error) {
-        console.error('Error', error)
+        console.error(error)
       }
     }
-    getRole()
     getProfile()
   }, [])
 
@@ -64,7 +55,7 @@ const ConsoleHome = () => {
   return (
     <div>
       {/* 로그인한 유저의 역할이 Admin인 경우 */}
-      {role === 'Admin' && (
+      {user.role === Role.Admin && (
         <div className="m-5">
           <div className="text-md mb-5 font-bold">HOME</div>
           <div className="grid grid-cols-3 gap-4">
@@ -132,7 +123,7 @@ const ConsoleHome = () => {
           </div>
         </div>
       )}
-      {role === 'User' && (
+      {user.role === Role.User && (
         <div className="m-5">
           <div className="text-md mb-5 font-bold">HOME</div>
           <div className="grid grid-cols-3 gap-4">
@@ -182,7 +173,7 @@ const ConsoleHome = () => {
           </div>
         </div>
       )}
-      {role === 'Manager' && (
+      {user.role === Role.Manager && (
         <div className="m-5">
           <div className="text-md mb-5 font-bold">HOME</div>
           <div className="grid grid-cols-3 gap-4">

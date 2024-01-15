@@ -20,6 +20,7 @@ import { FILE_OPTIONS } from '@/storage/option/file-option'
 import { type AccountCertification, Role } from '@prisma/client'
 import { AccountService } from './account.service.interface'
 import type { AccountDTO } from './dto/account.dto'
+import type { AccountCertificateStatus } from './dto/accountStatus.dto'
 import { RegisterAccountDTO } from './dto/registerAccount.dto'
 import { UpdateAccountProfileDTO } from './dto/updateAccount.dto'
 import { UpdateEmailDTO } from './dto/updateEmail.dto'
@@ -40,6 +41,19 @@ export class AccountController {
   ): Promise<{ role: Role }> {
     try {
       return await this.accountService.getAccountRole(req.user.id)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Get('status')
+  async getAccountCertificateStatus(
+    @Req() req: AuthenticatedRequest
+  ): Promise<AccountCertificateStatus> {
+    try {
+      return await this.accountCertificationService.checkAccountStatus(
+        req.user.id
+      )
     } catch (error) {
       businessExceptionBinder(error)
     }

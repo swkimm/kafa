@@ -13,6 +13,7 @@ import {
   type AccountCredential,
   Role
 } from '@prisma/client'
+import type { AccountCertificateStatus } from '../dto/accountStatus.dto'
 import type { AccountCertificationService } from '../interface/account-certification.service.interface'
 import { AccountCredentialService } from '../interface/account-credential.service.interface'
 
@@ -111,6 +112,43 @@ export class AccountCertificationServiceImpl
 
       return certification ? true : false
     } catch (error) {
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
+  async checkAccountStatus(
+    accountId: number
+  ): Promise<AccountCertificateStatus> {
+    try {
+      const account = await this.prismaService.account.findUniqueOrThrow({
+        where: {
+          id: accountId
+        },
+        select: {
+          status: true
+        }
+      })
+
+      const certification = await this.checkCertification(accountId)
+
+      const credential =
+        await this.accountCredentialService.checkCredential(accountId)
+
+      return {
+        certification,
+        credential,
+        email: account.status === 'Enable'
+      }
+    } catch (error) {
+      if (error instanceof BusinessException) {
+        throw error
+      }
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2025'
+      ) {
+        throw new EntityNotExistException('계정이 존재하지 않습니다')
+      }
       throw new UnexpectedException(error, error.stack)
     }
   }

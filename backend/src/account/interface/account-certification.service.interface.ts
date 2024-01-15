@@ -1,4 +1,5 @@
 import type { AccountCertification } from '@prisma/client'
+import type { AccountCertificateStatus } from '../dto/accountStatus.dto'
 
 /**
  * 계정의 인증서를 관리하는 서비스 인터페이스
@@ -27,8 +28,18 @@ export interface AccountCertificationService<T extends AccountCertification> {
 
   /**
    * 특정 계정의 인증서 존재 여부를 반환합니다.
+   *
    * @param {number} accountId - 인증서 존재 여부를 확인할 계정의 Id
    * @returns {boolean} 계정의 인증서 존재 여부
    */
   checkCertification(accountId: number): Promise<boolean>
+
+  /**
+   * 특정 계정의 인증 정보를 반환합니다.
+   *
+   * @param {number} accountId - 인증 정보를 확인할 계정의 Id
+   * @returns {AccountCertificateStatus} 계정의 인증 정보
+   * @throws {EntityNotExistException} 존재하지 않는 계정의 Id를 전달할 경우 발생
+   */
+  checkAccountStatus(accountId: number): Promise<AccountCertificateStatus>
 }

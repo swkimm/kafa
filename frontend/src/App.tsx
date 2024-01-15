@@ -1,11 +1,11 @@
 // App.tsx
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import PrivateRoute from './commons/PrivateRoute.tsx'
+import { Role } from './commons/interfaces/account/profile.ts'
 import ConsoleLayout from './commons/layout/ConsoleLayout.tsx'
 import MainLayout from './commons/layout/MainLayout.tsx'
-import { setLoginState } from './features/auth/authSlice.ts'
+import PrivateRoute from './commons/layout/PrivateRoute.tsx'
+import useAuth from './hooks/useAuth.ts'
 import AssociationHome from './pages/association/AssociationHome.tsx'
 import AppealItem from './pages/association/items/AppealItem.tsx'
 import Login from './pages/auth/Login.tsx'
@@ -41,16 +41,12 @@ import PastTeamDetail from './pages/pastLeague/[id]/team/PastTeamDetail.tsx'
 import PastMemberDetail from './pages/pastLeague/[id]/team/[id]/member/[id]/PastMemberDetail.tsx'
 
 const App = () => {
-  const dispatch = useDispatch()
+  const { reloadCredential } = useAuth()
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      dispatch(setLoginState({ isLoggedIn: true, token: token }))
-    } else {
-      dispatch(setLoginState({ isLoggedIn: false, token: null }))
-    }
-  }, [dispatch])
+    reloadCredential()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <BrowserRouter>
@@ -100,14 +96,18 @@ const App = () => {
         </Route>
 
         <Route
-          element={<PrivateRoute allowedRoles={['Admin', 'User', 'Manager']} />}
+          element={
+            <PrivateRoute
+              allowedRoles={[Role.Admin, Role.Manager, Role.User]}
+            />
+          }
         >
           <Route element={<ConsoleLayout />}>
             <Route path="/console" element={<ConsoleHome />} />
           </Route>
         </Route>
 
-        <Route element={<PrivateRoute allowedRoles={['Admin']} />}>
+        <Route element={<PrivateRoute allowedRoles={[Role.Admin]} />}>
           <Route element={<ConsoleLayout />}>
             <Route path="/console/createLeague" element={<CreateLeague />} />
             <Route path="/console/manageLeague" element={<ManageLeague />} />
@@ -125,14 +125,14 @@ const App = () => {
           </Route>
         </Route>
 
-        <Route element={<PrivateRoute allowedRoles={['User']} />}>
+        <Route element={<PrivateRoute allowedRoles={[Role.User]} />}>
           <Route element={<ConsoleLayout />}>
             <Route path="/console/applyTeam" element={<ApplyTeam />} />
             <Route path="/console/loadRoster" element={<LoadRoster />} />
           </Route>
         </Route>
 
-        <Route element={<PrivateRoute allowedRoles={['Manager']} />}>
+        <Route element={<PrivateRoute allowedRoles={[Role.Manager]} />}>
           <Route element={<ConsoleLayout />}>
             <Route
               path="/console/manageRequest"

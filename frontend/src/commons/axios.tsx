@@ -1,4 +1,3 @@
-//workspace/frontend/src/commons/axios.tsx
 import axios from 'axios'
 
 const axiosInstance = axios.create({
@@ -22,6 +21,7 @@ axiosInstance.interceptors.response.use(
 
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true
+
       try {
         const response = await axiosInstance.get('/auth/reissue', {
           withCredentials: true

@@ -93,7 +93,7 @@ model Account {
   email                String                @db.VarChar(128)
   username             String                @unique @db.VarChar(128)
   teamId               Int?                  @map("team_id")
-  password             String                @db.VarChar(128) // hashed password
+  password             String                @db.VarChar(128)
   status               AccountStatus         @default(Verifying)
   createdAt            DateTime              @default(now()) @map("created_at")
   deletedAt            DateTime?

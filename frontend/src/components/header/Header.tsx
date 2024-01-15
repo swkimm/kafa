@@ -1,19 +1,18 @@
-// Header.tsx
-import type { RootState } from '@/app/store'
-import { logout } from '@/features/auth/authSlice'
+import useAuth from '@/hooks/useAuth'
+import { userState } from '@/state/userState'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
 import Notification from '../notifications/Notification'
 import logo from '/logo/logo.png'
 
 const Header = () => {
-  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn)
+  const user = useRecoilValue(userState)
   const [showLogoutNotification, setShowLogoutNotification] = useState(false)
-  const dispatch = useDispatch()
+  const { logout } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const [isScrolled, setIsScrolled] = useState(false)
@@ -23,58 +22,14 @@ const Header = () => {
     paddingTop: headerHeight
   }
 
-  const handleLogout = () => {
-    dispatch(logout())
+  const handleLogout = async () => {
+    await logout()
     setShowLogoutNotification(true)
   }
 
   const handleScroll = () => {
-    const offset = window.pageYOffset
+    const offset = window.scrollY
     setIsScrolled(offset > 0)
-  }
-
-  const goToLeaguePage = () => {
-    navigate('/leagues')
-  }
-
-  const gotoPastLeaguePage = () => {
-    navigate('/pastLeague')
-  }
-
-  const gotoHuddlePage = () => {
-    navigate('/')
-  }
-
-  const goToHomePage = () => {
-    navigate('/')
-  }
-
-  const goToNoticePage = () => {
-    navigate('/notice')
-  }
-
-  const gotoLoginPage = () => {
-    navigate('/login')
-  }
-
-  const gotoAssociationPage = () => {
-    navigate('/association')
-  }
-
-  const gotoNationalPage = () => {
-    navigate('/national')
-  }
-
-  const gotoBoard = () => {
-    navigate('/board')
-  }
-
-  const goToAppealPage = () => {
-    navigate('/appeal')
-  }
-
-  const goToCalendar = () => {
-    navigate('/calendar')
   }
 
   useEffect(() => {
@@ -88,6 +43,7 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [location.pathname])
+
   return (
     <Disclosure
       as="nav"
@@ -105,7 +61,7 @@ const Header = () => {
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
                   <img
-                    onClick={goToHomePage}
+                    onClick={() => navigate('/')}
                     src={logo}
                     alt="KAFA Logo"
                     className="h-15 w-20"
@@ -114,35 +70,35 @@ const Header = () => {
                 <div className="hidden sm:ml-2 sm:flex sm:space-x-4">
                   <Disclosure.Button
                     as="button"
-                    onClick={goToLeaguePage}
+                    onClick={() => navigate('/leagues')}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     대회정보
                   </Disclosure.Button>
                   <Disclosure.Button
                     as="button"
-                    onClick={gotoPastLeaguePage}
+                    onClick={() => navigate('/pastLeague')}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     기록실
                   </Disclosure.Button>
                   <Disclosure.Button
                     as="button"
-                    onClick={gotoHuddlePage}
+                    onClick={() => navigate('/')}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     HUDDLE
                   </Disclosure.Button>
                   <Disclosure.Button
                     as="button"
-                    onClick={gotoAssociationPage}
+                    onClick={() => navigate('/association')}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     협회정보
                   </Disclosure.Button>
                   <Disclosure.Button
                     as="button"
-                    onClick={gotoNationalPage}
+                    onClick={() => navigate('/')}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     국가대표
@@ -155,7 +111,7 @@ const Header = () => {
                   </a>
                   <Disclosure.Button
                     as="button"
-                    onClick={gotoBoard}
+                    onClick={() => navigate('/board')}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     게시판
@@ -166,26 +122,26 @@ const Header = () => {
                 <div className="flex space-x-4">
                   <Disclosure.Button
                     as="button"
-                    onClick={goToNoticePage}
+                    onClick={() => navigate('/notice')}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     NOTICE
                   </Disclosure.Button>
                   <Disclosure.Button
                     as="button"
-                    onClick={goToAppealPage}
+                    onClick={() => navigate('/appeal')}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     신문고
                   </Disclosure.Button>
                   <Disclosure.Button
                     as="button"
-                    onClick={goToCalendar}
+                    onClick={() => navigate('/calendar')}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                   >
                     캘린더
                   </Disclosure.Button>
-                  {isLoggedIn ? (
+                  {user.isLoggedIn ? (
                     <Disclosure.Button
                       as="button"
                       onClick={handleLogout}
@@ -196,7 +152,7 @@ const Header = () => {
                   ) : (
                     <Disclosure.Button
                       as="button"
-                      onClick={gotoLoginPage}
+                      onClick={() => navigate('/login')}
                       className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-gray-700"
                     >
                       로그인
@@ -212,7 +168,7 @@ const Header = () => {
               </div>
               <div className="-mr-2 flex items-center pr-2 sm:hidden">
                 {/* Mobile menu button */}
-                {isLoggedIn ? (
+                {user.isLoggedIn ? (
                   <Disclosure.Button
                     as="button"
                     onClick={handleLogout}
@@ -223,7 +179,7 @@ const Header = () => {
                 ) : (
                   <Disclosure.Button
                     as="button"
-                    onClick={gotoLoginPage}
+                    onClick={() => navigate('/login')}
                     className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
                   >
                     로그인
@@ -251,21 +207,21 @@ const Header = () => {
             <div className="space-y-1 pb-3 pt-2">
               <Disclosure.Button
                 as="button"
-                onClick={goToLeaguePage}
+                onClick={() => navigate('/leagues')}
                 className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
               >
                 대회정보
               </Disclosure.Button>
               <Disclosure.Button
                 as="button"
-                onClick={gotoPastLeaguePage}
+                onClick={() => navigate('/pastLeague')}
                 className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
               >
                 기록실
               </Disclosure.Button>
               <Disclosure.Button
                 as="button"
-                onClick={gotoHuddlePage}
+                onClick={() => navigate('/')}
                 className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
               >
                 HUDDLE
@@ -293,7 +249,7 @@ const Header = () => {
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
-                onClick={gotoBoard}
+                onClick={() => navigate('/board')}
                 className="block py-2 pl-3 pr-4 text-base font-medium text-white hover:text-gray-700"
               >
                 게시판

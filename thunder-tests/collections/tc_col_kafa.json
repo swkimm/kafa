@@ -878,6 +878,13 @@
             "containerId": "",
             "created": "2024-01-09T03:49:35.206Z",
             "sortNum": 86875
+        },
+        {
+            "_id": "3bcb9e51-6bbc-4e1a-957c-e876e1ec4bbb",
+            "name": "checkAccountCertificateStatus",
+            "containerId": "bc951fe6-f3d0-4943-bc5a-047b0419c621",
+            "created": "2024-01-12T07:12:56.577Z",
+            "sortNum": 1320000
         }
     ],
     "requests": [
@@ -12763,6 +12770,69 @@
             "headers": [],
             "params": [],
             "tests": []
+        },
+        {
+            "_id": "7f8818c5-64a0-4b57-87b7-1e742b3f91c4",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "3bcb9e51-6bbc-4e1a-957c-e876e1ec4bbb",
+            "name": "Success",
+            "url": "/account/status",
+            "method": "GET",
+            "sortNum": 2830000,
+            "created": "2024-01-12T07:13:12.887Z",
+            "modified": "2024-01-12T07:18:07.270Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ],
+            "docs": "## [User] CheckAccountCertificateStatus\n\n### URI\nGET /account/status\n\n### Description\n현재 로그인한 계정의 인증 정보를 불러옵니다\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|email|bollean|이메일인증 여부|\n|certification|boolean|본인인증 여부|\n|credential|boolean|인증서 업로드 여부|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|401|Unauthorized|로그인 하지 않은 상태에서 요청을 전송한 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "80edb45c-4a5a-4419-b838-684a060b368b",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "3bcb9e51-6bbc-4e1a-957c-e876e1ec4bbb",
+            "name": "401: Unauthorized",
+            "url": "/account/status",
+            "method": "GET",
+            "sortNum": 2840000,
+            "created": "2024-01-12T07:19:10.480Z",
+            "modified": "2024-01-12T07:19:26.217Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "401"
+                }
+            ],
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
         }
     ],
     "settings": {
@@ -12774,7 +12844,7 @@
         "options": {
             "baseUrl": "{{host}}"
         },
-        "envId": "6676958f-134e-467f-b537-a9ff184a0242",
+        "envId": "25a07e1f-107b-443c-915b-6339acf361a0",
         "runOptions": {
             "delay": 25,
             "iterations": 1,
