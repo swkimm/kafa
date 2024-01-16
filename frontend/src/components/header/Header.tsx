@@ -54,39 +54,37 @@ const Header = () => {
     <Disclosure
       as="nav"
       className={`fixed left-0 top-0 z-10 w-full ${
-        isScrolled || location.pathname !== '/'
-          ? 'bg-indigo-950'
-          : 'bg-transparent'
+        isScrolled ? 'bg-indigo-950 opacity-95 shadow-md' : 'bg-transparent'
       }`}
       style={mainContentStyle}
     >
       {({ open }) => (
         <>
-          <div className="mx-auto sm:px-2 lg:px-4">
-            <div className="flex h-16 justify-between px-2">
+          <div className="mx-auto px-4">
+            <div className="flex h-16 justify-between px-2 lg:h-20">
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     onClick={() => navigate('/')}
                     src={logo}
                     alt="KAFA Logo"
-                    className="h-15 w-20"
+                    className="h-auto w-20 lg:w-24"
                   />
                 </div>
                 <div className="hidden lg:ml-2 lg:flex lg:space-x-4">
                   <Disclosure.Button
                     as="button"
-                    onClick={() => navigate('/leagues')}
+                    onClick={() => navigate('/')}
                     className="inline-flex items-center pl-5 pr-1 pt-1 text-sm font-medium text-gray-100 hover:border-gray-300 hover:text-gray-700"
                   >
-                    대회정보
+                    HUDDLE
                   </Disclosure.Button>
                   <Disclosure.Button
                     as="button"
-                    onClick={() => navigate('/')}
+                    onClick={() => navigate('/leagues')}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-100 hover:border-gray-300 hover:text-gray-700"
                   >
-                    HUDDLE
+                    대회정보
                   </Disclosure.Button>
                   <Disclosure.Button
                     as="button"
@@ -156,12 +154,11 @@ const Header = () => {
                 </div>
               </div>
               <div className="-mr-2 flex items-center lg:hidden">
-                {/* Mobile menu button */}
                 {user.isLoggedIn ? (
                   <Disclosure.Button
                     as="button"
                     onClick={() => navigate('console')}
-                    className="block py-2 pl-3 pr-4 text-base font-medium text-gray-100 hover:text-gray-700"
+                    className="block py-2 pl-3 pr-4 text-sm font-medium text-gray-100 hover:text-gray-700"
                   >
                     콘솔로 이동
                   </Disclosure.Button>
@@ -169,7 +166,7 @@ const Header = () => {
                   <Disclosure.Button
                     as="button"
                     onClick={() => navigate('/login')}
-                    className="block py-2 pl-3 pr-4 text-base font-medium text-gray-100 hover:text-gray-700"
+                    className="block py-2 pl-3 pr-4 text-sm font-medium text-gray-100 hover:text-gray-700"
                   >
                     로그인
                   </Disclosure.Button>
@@ -190,36 +187,36 @@ const Header = () => {
             <div className="space-y-1 px-2 pb-3 pt-2">
               <Disclosure.Button
                 as="button"
-                onClick={() => navigate('/leagues')}
-                className="block py-2 pl-3 pr-4 text-base font-medium text-gray-100 hover:text-gray-700"
-              >
-                대회정보
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="button"
                 onClick={() => navigate('/')}
-                className="block py-2 pl-3 pr-4 text-base font-medium text-gray-100 hover:text-gray-700"
+                className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
               >
                 HUDDLE
               </Disclosure.Button>
               <Disclosure.Button
+                as="button"
+                onClick={() => navigate('/leagues')}
+                className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
+              >
+                대회정보
+              </Disclosure.Button>
+              <Disclosure.Button
                 as="a"
                 href="#"
-                className="block py-2 pl-3 pr-4 text-base font-medium text-gray-100 hover:text-gray-700"
+                className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
               >
                 협회정보
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
                 href="#"
-                className="block py-2 pl-3 pr-4 text-base font-medium text-gray-100 hover:text-gray-700"
+                className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
               >
                 자료실
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
                 onClick={() => navigate('/board')}
-                className="block py-2 pl-3 pr-4 text-base font-medium text-gray-100 hover:text-gray-700"
+                className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
               >
                 게시판
               </Disclosure.Button>
@@ -229,14 +226,14 @@ const Header = () => {
                 <Disclosure.Button
                   as="a"
                   href="#"
-                  className="block py-2 pl-3 pr-4 text-base font-medium text-gray-100 hover:text-gray-700"
+                  className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
                 >
                   신문고
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="a"
                   href="#"
-                  className="block py-2 pl-3 pr-4 text-base font-medium text-gray-100 hover:text-gray-700"
+                  className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
                 >
                   캘린더
                 </Disclosure.Button>
@@ -244,7 +241,7 @@ const Header = () => {
                   <Disclosure.Button
                     as="button"
                     onClick={handleLogout}
-                    className="block py-2 pl-3 pr-4 text-base font-medium text-gray-100 hover:text-gray-700"
+                    className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
                   >
                     로그아웃
                   </Disclosure.Button>
@@ -252,7 +249,7 @@ const Header = () => {
                   <Disclosure.Button
                     as="button"
                     onClick={() => navigate('/login')}
-                    className="block py-2 pl-3 pr-4 text-base font-medium text-gray-100 hover:text-gray-700"
+                    className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
                   >
                     로그인
                   </Disclosure.Button>

@@ -10,7 +10,7 @@ const MainLayout: React.FC = () => {
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
       <Header />
-      <div className={`flex-grow ${isHomePage ? 'pt-0' : 'pt-16'}`}>
+      <div className={`flex-grow ${isHomePage ? 'pt-0' : 'pt-16 lg:pt-20'}`}>
         <Outlet />
       </div>
       <Footer />

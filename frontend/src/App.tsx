@@ -1,5 +1,5 @@
 // App.tsx
-import { useEffect } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import NotFound from './commons/error/NotFound.tsx'
 import { Role } from './commons/interfaces/account/profile.ts'
@@ -12,10 +12,6 @@ import AssociationHome from './pages/association/AssociationHome.tsx'
 import AppealItem from './pages/association/items/AppealItem.tsx'
 import Login from './pages/auth/Login.tsx'
 import SignUp from './pages/auth/SignUp.tsx'
-import BoardHome from './pages/board/BoardHome.tsx'
-import Post from './pages/board/[id]/Post.tsx'
-import EditPost from './pages/board/[id]/edit/EditPost.tsx'
-import CreateNewPost from './pages/board/new/CreateNewPost.tsx'
 import Calendar from './pages/calendar/Calendar.tsx'
 import ConsoleHome from './pages/console/ConsoleHome.tsx'
 import CreateGame from './pages/console/admin/game/CreateGame.tsx'
@@ -40,10 +36,19 @@ import ScheduleDetail from './pages/league/[id]/schedule/[id]/ScheduleDetail.tsx
 import TeamDetail from './pages/league/[id]/team/[id]/TeamDetail.tsx'
 import MemberDetail from './pages/league/[id]/team/[id]/member/[id]/MemberDetail.tsx'
 import National from './pages/national/National.tsx'
-import Notice from './pages/notice/Notice.tsx'
 
 const App = () => {
   const { reloadCredential } = useAuth()
+
+  // Dynamic imports
+  const BoardHome = React.lazy(() => import('./pages/board/BoardHome.tsx'))
+  const Post = React.lazy(() => import('./pages/board/[id]/Post.tsx'))
+  const EditPost = React.lazy(
+    () => import('./pages/board/[id]/edit/EditPost.tsx')
+  )
+  const CreateNewPost = React.lazy(
+    () => import('./pages/board/new/CreateNewPost.tsx')
+  )
 
   useEffect(() => {
     const init = async () => {
@@ -55,7 +60,7 @@ const App = () => {
   }, [])
 
   return (
-    <>
+    <div className="font-custom">
       {/* Global Toasts */}
       <NotificationToast />
 
@@ -65,11 +70,38 @@ const App = () => {
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/national" element={<National />} />
-            <Route path="/notice" element={<Notice />} />
-            <Route path="/board" element={<BoardHome />} />
-            <Route path="/board/posts/new" element={<CreateNewPost />} />
-            <Route path="/board/posts/:id" element={<Post />} />
-            <Route path="/board/posts/:id/edit" element={<EditPost />} />
+            <Route
+              path="/board"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <BoardHome />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/board/posts/new"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <CreateNewPost />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/board/posts/:id"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Post />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/board/posts/:id/edit"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <EditPost />
+                </Suspense>
+              }
+            />
             <Route path="/appeal" element={<AppealItem />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/leagues" element={<League />} />
@@ -154,7 +186,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   )
 }
 

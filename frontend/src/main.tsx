@@ -4,6 +4,7 @@ import { RecoilRoot } from 'recoil'
 import App from './App.tsx'
 import './styles/app.css'
 import './styles/ckeditor-reset.css'
+import './styles/font.css'
 
 const isDevMode = import.meta.env.MODE !== 'development'
 

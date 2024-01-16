@@ -411,7 +411,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
           </div>
         </div>
         <div className="bg-white lg:pl-72">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 px-5 shadow-sm">
+          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 px-5 opacity-95 shadow-md">
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
