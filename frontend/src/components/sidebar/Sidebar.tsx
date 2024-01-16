@@ -1,4 +1,6 @@
 import useAuth from '@/hooks/useAuth'
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
 import { userState } from '@/state/userState'
 import { Dialog, Disclosure, Transition } from '@headlessui/react'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
@@ -109,6 +111,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const navigate = useNavigate()
   const [navigation, setNavigation] = useState<NavigationItem[]>([])
+  const { showNotification } = useNotification()
 
   useEffect(() => {
     switch (user.role) {
@@ -128,7 +131,13 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
 
   const handleLogout = async () => {
     await logout()
-    navigate('/login')
+    showNotification(
+      NotificationType.Success,
+      '로그아웃 성공',
+      '로그아웃 되었습니다',
+      3000
+    )
+    navigate('/')
   }
 
   return (
@@ -285,7 +294,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                               className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white"
                               aria-hidden="true"
                             />
-                            로그아웃
+                            메인으로 이동
                           </button>
                         </li>
                       </ul>
@@ -394,15 +403,15 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                       className="h-6 w-6 shrink-0 text-indigo-200"
                       aria-hidden="true"
                     />
-                    <span aria-hidden="true">메인으로 가기</span>
+                    <span aria-hidden="true">메인으로 이동</span>
                   </button>
                 </li>
               </ul>
             </nav>
           </div>
         </div>
-        <div className="lg:pl-72">
-          <div className="bg- sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 px-6 shadow-sm">
+        <div className="bg-white lg:pl-72">
+          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 px-5 shadow-sm">
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
@@ -418,8 +427,11 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
             />
 
             <div className="flex flex-1 items-center justify-between gap-x-4 self-stretch">
-              <p className="text-xl font-bold">관리 콘솔</p>
-              <button className="text-base font-bold" onClick={handleLogout}>
+              <p className="text-base font-bold lg:text-xl">관리 콘솔</p>
+              <button
+                className="text-sm font-bold lg:text-base"
+                onClick={handleLogout}
+              >
                 로그아웃
               </button>
             </div>

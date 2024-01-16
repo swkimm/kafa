@@ -1,7 +1,5 @@
 import type React from 'react'
-import { Link } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
-import logo from '/logo/logo.png'
+import { Link, useNavigate } from 'react-router-dom'
 
 interface IconProps {
   className?: string
@@ -47,101 +45,84 @@ const YouTubeIcon: React.FC<IconProps> = (props) => {
 
 const navigation = {
   main: [
-    { name: 'KAFA MEDIA', to: '#' },
-    { name: 'AFKN', to: '#' },
-    { name: 'REFEREE', to: '#' },
-    { name: 'KAFAS', to: '#' }
+    { name: '대회정보', to: '/leagues' },
+    { name: '협회정보', to: '/association' },
+    { name: 'HUDDLE', to: '/' },
+    { name: '자료실', to: '#' },
+    { name: '게시판', to: '/board' }
   ],
   sub: [
     { name: '이용약관', to: '#' },
-    { name: '개인정보 처리방침', to: '#' },
-    { name: '파트너', to: '#' }
+    { name: '개인정보 처리방침', to: '#' }
   ],
   social: [
     {
       name: 'Instagram',
-      to: '#',
+      to: 'https://www.instagram.com/kafa.org.official',
       icon: InstagramIcon
     },
     {
       name: 'Facebook',
-      to: '#',
+      to: 'https://www.facebook.com/KAFA.org',
       icon: FacebookIcon
     },
     {
       name: 'YouTube',
-      to: '#',
+      to: 'https://www.youtube.com/@afkn9686',
       icon: YouTubeIcon
     }
   ]
 }
 
-const halfLength = Math.ceil(navigation.main.length / 2)
-const firstHalf = navigation.main.slice(0, halfLength)
-const secondHalf = navigation.main.slice(halfLength)
-
 const Footer: React.FC = () => {
-  const location = useLocation()
-  const isHome = location.pathname === '/'
-  const footerHeight = '' // Set this to the height of your footer
-
-  const mainContentStyle = {
-    paddingBottom: isHome ? '0px' : footerHeight
-  }
+  const navigate = useNavigate()
   return (
     <footer
-      className={`inset-x-0 bottom-0 z-50 bg-gray-900 p-4 text-center text-white`}
-      style={mainContentStyle}
+      className={`inset-x-0 bottom-0 z-50 bg-gray-950 px-4 py-10 text-center text-white`}
     >
-      <nav>
-        <div className="flex items-center font-semibold text-white lg:justify-between">
-          <div className="mr-3 flex flex-1 justify-between md:justify-end">
-            {firstHalf.map((item, index) => (
-              <Link key={index} to={item.to} className="ml-2 md:ml-10">
-                {item.name}
-              </Link>
-            ))}
+      <nav
+        className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12"
+        aria-label="Footer"
+      >
+        {navigation.main.map((item) => (
+          <div key={item.name} className="pb-6">
+            <button
+              onClick={() => navigate(item.to)}
+              className="text-sm leading-6 text-gray-100 hover:text-gray-300"
+            >
+              {item.name}
+            </button>
           </div>
-
-          {/* Logo container; hidden on mobile, displayed on medium screens and up */}
-          <div className="hidden flex-initial justify-center md:flex lg:mx-10">
-            <img src={logo} alt="KAFA Logo" className="h-15 w-28" />
-          </div>
-
-          {/* Container for the second half of the nav items */}
-          <div className="ml-3 flex flex-1 justify-between md:justify-start ">
-            {secondHalf.map((item, index) => (
-              <Link key={index} to={item.to} className="mr-2 md:mr-10">
-                {item.name}
-              </Link>
-            ))}
-          </div>
-        </div>
+        ))}
       </nav>
-
       <div className="mt-8 flex justify-center space-x-5">
         {navigation.social.map((item) => (
           <Link
             key={item.name}
             to={item.to}
-            className="text-gray-400 hover:text-gray-500"
+            className="text-gray-100 hover:text-gray-300"
           >
             <span className="sr-only">{item.name}</span>
-            <item.icon className="h-6 w-6" aria-hidden="true" />
+            <item.icon
+              className="hover:text-gray-30 h-6 w-6 text-gray-100"
+              aria-hidden="true"
+            />
           </Link>
         ))}
       </div>
-
-      <div className="mt-8 flex justify-center space-x-10 text-sm text-white">
+      <div className="mt-8 flex justify-center space-x-10 text-sm ">
         {navigation.sub.map((item) => (
-          <Link key={item.name} to={item.to}>
+          <Link
+            className="text-gray-100 hover:text-gray-300"
+            key={item.name}
+            to={item.to}
+          >
             {item.name}
           </Link>
         ))}
       </div>
-
-      <p className="mt-8 text-center text-xs leading-5 text-gray-500">
-        © 2023 KAFA CO.,LTD ALL Rights Reserved
+      <p className="mt-8 text-center text-xs leading-5 text-gray-400 lg:text-sm">
+        © {new Date().getFullYear()} KAFA CO.,LTD ALL Rights Reserved
       </p>
     </footer>
   )

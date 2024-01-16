@@ -1,37 +1,8 @@
-// import { Loader } from '@googlemaps/js-api-loader'
-import { useRef } from 'react'
-
 const Outline = () => {
-  const mapRef = useRef<HTMLDivElement | null>(null)
-  // const associationLocation = useMemo(
-  //   () => ({ lat: 37.5485632, lng: 126.9246418 }),
-  //   []
-  // )
-
-  // useEffect(() => {
-  //   const loader = new Loader({
-  //     apiKey: 'AIzaSyA09pHUVw00qI6l1QNxGoWIUPyn339rvAE', // 발급받은 API 키로 교체
-  //     version: 'weekly'
-  //   })
-  //   loader.load().then(() => {
-  //     if (mapRef.current) {
-  //       const map = new window.google.maps.Map(mapRef.current, {
-  //         center: associationLocation,
-  //         zoom: 15
-  //       })
-  //       new window.google.maps.Marker({
-  //         position: associationLocation,
-  //         map: map,
-  //         title: '대한미식축구협회'
-  //       })
-  //     }
-  //   })
-  // }, [associationLocation]) // associationLocation 의존성 유지
-
   return (
-    <div className="container mx-auto mt-5">
-      <div className="mb-5 text-2xl font-bold">개요</div>
-      <p>
+    <div className="container mx-auto max-w-screen-xl px-4 py-5 lg:px-20 lg:py-10">
+      <div className="mb-3 text-lg font-bold lg:text-2xl">개요</div>
+      <p className="text-sm font-normal lg:text-base">
         대한미식축구협회(KAFA, Korea American Football Association) 우리나라의
         미식축구는 1945년 광복과 함께 도입되었다. 그해 12월 6일 초대 대한민국
         IOC 위원이신 故 정경무 님이 초대 대한 미식축구협회 회장으로 취임하셨으며
@@ -63,9 +34,9 @@ const Outline = () => {
         출전권획득, 국제 대학스포츠연맹 FISU 대회, 유소년의 미식축구 보급을 위한
         플래그 풋볼 도입등 국제 무대에서의 지위를 넓히고 있다.
       </p>
-      <div className="mt-5 text-2xl font-bold">일반</div>
-      <div className="grid grid-cols-2">
-        <div className="mr-10 text-right">
+      <div className="mt-5 text-lg font-bold lg:mt-8 lg:text-2xl">일반</div>
+      <div className="mt-3 grid grid-cols-2">
+        <div className="text-left">
           <div>창립</div>
           <div>회장</div>
           <div>주소</div>
@@ -74,7 +45,7 @@ const Outline = () => {
           <div>홈페이지</div>
         </div>
         <div className="">
-          <div>창립</div>
+          <div>1945년</div>
           <div>김호원</div>
           <div>서울특별시 마포구 독막로 101(상수동 141-1)</div>
           <div>대표 전화</div>
@@ -83,13 +54,12 @@ const Outline = () => {
         </div>
       </div>
 
-      <div className="mt-5 text-2xl font-bold">찾아오시는 길</div>
-      <div>주소: 서울특별시 마포구 독막로 101(상수동 141-1)</div>
-      <div
-        className="map mb-5"
-        style={{ width: '750px', height: '500px' }}
-        ref={mapRef}
-      ></div>
+      <div className="mt-5 text-lg font-bold lg:mt-8 lg:text-2xl">
+        찾아오시는 길
+      </div>
+      <div className="mt-3">
+        주소: 서울특별시 마포구 독막로 101(상수동 141-1)
+      </div>
     </div>
   )
 }

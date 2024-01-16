@@ -68,7 +68,7 @@ const HomeItem = () => {
       )
       setAssociations(response.data)
     } catch (error) {
-      alert(error)
+      console.error(error)
     }
   }
 
@@ -127,9 +127,9 @@ const HomeItem = () => {
               : { name: 'N/A' }
 
             return {
-              ...game, // Game 객체의 속성들을 펼침
-              scoreInfo, // scoreInfo 추가
-              leagueInfo, // leagueInfo 추가
+              ...game,
+              scoreInfo,
+              leagueInfo,
               homeTeamInfo,
               awayTeamInfo
             }
@@ -137,9 +137,8 @@ const HomeItem = () => {
         )
 
         setUpcommingGames(upcommingGamesWithScore as ExtendedGame[])
-        // console.log(upcommingGames)
       } catch (error) {
-        alert(error)
+        console.error(error)
       }
     }
     getUpcommingGames()
@@ -184,7 +183,7 @@ const HomeItem = () => {
         )
         setLeagues(leaguesWithAssociation)
       } catch (error) {
-        alert(error)
+        console.error(error)
       }
     }
 
@@ -200,7 +199,7 @@ const HomeItem = () => {
       )
       setSponsers(response.data)
     } catch (error) {
-      alert(error)
+      console.error(error)
     }
   }
 
@@ -277,13 +276,13 @@ const HomeItem = () => {
         </div>
         <div className="md:col-span-1">
           <div className="mb-3 w-full pt-5">
-            <div className="mb-1.5 flex items-center justify-center bg-blue-950 p-5">
+            <div className="mb-1.5 flex items-center justify-center rounded-xl bg-indigo-950 p-5 shadow-lg">
               <img
                 src="/logo/KAFA_OG.png"
                 alt=""
                 className="w-10 justify-center object-contain lg:w-12"
               />
-              <div className="ml-5 items-center text-white">
+              <div className="ml-5 items-center text-gray-50">
                 <div className="text-xs font-normal text-gray-400 lg:text-sm">
                   대한미식축구협회
                 </div>
@@ -292,13 +291,13 @@ const HomeItem = () => {
                 </div>
               </div>
             </div>
-            <div className="mb-1.5 flex items-center justify-center bg-blue-950 p-5">
+            <div className="mb-1.5 flex items-center justify-center rounded-xl bg-indigo-950 p-5 shadow-lg">
               <img
                 src="/logo/KAFA_OG.png"
                 alt=""
                 className="w-10 justify-center object-contain lg:w-12"
               />
-              <div className="ml-5 items-center text-white">
+              <div className="ml-5 items-center text-gray-50">
                 <div className="text-xs font-normal text-gray-400 lg:text-sm">
                   대한미식축구협회
                 </div>
@@ -307,13 +306,13 @@ const HomeItem = () => {
                 </div>
               </div>
             </div>
-            <div className="mb-1.5 flex items-center justify-center bg-blue-950 p-5">
+            <div className="mb-1.5 flex items-center justify-center rounded-xl bg-indigo-950 p-5 shadow-lg">
               <img
                 src="/logo/KAFA_OG.png"
                 alt=""
                 className="w-10 justify-center object-contain lg:w-12"
               />
-              <div className="ml-5 items-center text-white">
+              <div className="ml-5 items-center text-gray-50">
                 <div className="text-xs font-normal text-gray-400 lg:text-sm">
                   대한미식축구협회
                 </div>

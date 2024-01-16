@@ -12,7 +12,10 @@ const useAuth = () => {
       setUser({ ...user, isRoleLoaded: false })
       const storedToken = localStorage.getItem('token')
 
-      if (!storedToken) return
+      if (!storedToken) {
+        resetUserState()
+        return
+      }
 
       const credentialResponse = await axiosInstance.get('/auth/reissue', {
         withCredentials: true
@@ -58,6 +61,7 @@ const useAuth = () => {
       })
     } catch (error) {
       resetUserState()
+      throw error
     }
   }
 
@@ -67,10 +71,10 @@ const useAuth = () => {
       await axiosInstance.post('/auth/logout', undefined, {
         withCredentials: true
       })
-    } catch (error) {
-      alert('로그아웃 과정에서 오류가 발생했습니다')
-    } finally {
       resetUserState()
+    } catch (error) {
+      resetUserState()
+      throw error
     }
   }
 

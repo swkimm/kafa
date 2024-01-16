@@ -180,9 +180,9 @@ const histories: History[] = [
 
 const HistoryItem = () => {
   return (
-    <div className="container mx-auto mt-5">
-      <div className="text-2xl font-bold">연혁</div>
-      <p className="my-5">
+    <div className="container mx-auto max-w-screen-xl px-4 py-5 lg:px-20 lg:py-10">
+      <div className="mb-3 text-lg font-bold lg:text-2xl">연혁</div>
+      <p className="text-sm font-normal lg:text-base">
         한국의 미식축구 역사는 미군정과 당시 대학들로부터 시작되었다. 6.25 전쟁
         이후 주둔한 미군의 영향으로 1950년대부터 연세대 등 미국 선교사들의
         영향이 짙었던 대학들을 위주로 빠르게 대학팀이 생겨 점차 전국으로
@@ -190,12 +190,14 @@ const HistoryItem = () => {
         역사를 자랑한다. 이들 대학 팀들은 미8군과 교류전을 가지기도 했고
         1954년부터 1960년까지는 놀랍게도 전국체전 시범 종목이기까지 했다.
       </p>
-      <div className="text-2xl font-bold">역대 회장</div>
+      <div className="mt-5 text-lg font-bold lg:mt-8 lg:text-2xl">
+        역대 회장
+      </div>
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="mt-5 flow-root">
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle">
-              <table className="mb-5 min-w-full divide-y divide-gray-300 bg-white">
+              <table className="mb-5 min-w-full divide-y divide-gray-300 rounded-xl bg-white">
                 <thead>
                   <tr>
                     <th

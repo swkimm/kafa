@@ -8,7 +8,7 @@ const MainLayout: React.FC = () => {
   const isHomePage = location.pathname === '/'
 
   return (
-    <div className="flex min-h-screen flex-col bg-gray-100">
+    <div className="flex min-h-screen flex-col bg-slate-50">
       <Header />
       <div className={`flex-grow ${isHomePage ? 'pt-0' : 'pt-16'}`}>
         <Outlet />

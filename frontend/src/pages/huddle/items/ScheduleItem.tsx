@@ -63,7 +63,7 @@ const groupByWeek = (
 const ScheduleItem = () => {
   const [associations, setAssociations] = useState<Association[]>([])
   const [leagues, setLeagues] = useState<League[]>([])
-  const [games, setGames] = useState<ExtendedGame[]>([])
+  const [, setGames] = useState<ExtendedGame[]>([])
   const [selectedAssociationId, setSelectedAssociationId] = useState<number>(1)
   const [selectedLeagueId, setSelectedLeagueId] = useState<number>(1)
   const [selectedWeek, setSelectedWeek] = useState<number>(1)
@@ -105,7 +105,7 @@ const ScheduleItem = () => {
       )
       setAssociations(response.data)
     } catch (error) {
-      alert(error)
+      console.error(error)
     }
   }
 
@@ -118,7 +118,7 @@ const ScheduleItem = () => {
       )
       setLeagues(response.data)
     } catch (error) {
-      alert(error)
+      console.error(error)
     }
   }
 
@@ -182,10 +182,9 @@ const ScheduleItem = () => {
         .map((week) => ({ id: week, name: `Week ${week}` }))
       setSelectedWeek(weekOptions[0]?.id)
     } catch (error) {
-      alert(error)
+      console.error(error)
     }
   }, [])
-  console.log(games)
 
   const weekOptions = useMemo(() => {
     const weeks = Array.from(groupedGames.keys()).sort()
@@ -294,7 +293,7 @@ const ScheduleItem = () => {
               <DropdownTransparent
                 optionName={selectedAssociationName}
                 optionList={associations.map((association) => ({
-                  id: association.id, // 'string | number' 타입의 id
+                  id: association.id,
                   name: association.name
                 }))}
                 onSelect={(id) => {
@@ -308,7 +307,7 @@ const ScheduleItem = () => {
               <DropdownTransparent
                 optionName={selectedLeagueName}
                 optionList={leagues.map((league) => ({
-                  id: league.id, // 'string | number' 타입의 id
+                  id: league.id,
                   name: league.name
                 }))}
                 onSelect={(id) => {

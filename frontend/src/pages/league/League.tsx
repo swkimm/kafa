@@ -75,7 +75,7 @@ const League = () => {
 
   return (
     <div className="">
-      <div className="bg-indigo-800 py-6 text-xl font-bold text-white">
+      <div className="bg-purple-950 py-6 text-xl font-bold text-gray-50">
         <div className="mx-auto flex max-w-screen-xl justify-between px-4 lg:px-20">
           <p>LEAGUES</p>
           <div className="text-xs text-white sm:text-base">

@@ -1,6 +1,8 @@
 import axiosInstance from '@/commons/axios'
 import type { BasicPost } from '@/commons/interfaces/board/board.type'
 import TextEditor, { type CustomEditor } from '@/components/boards/TextEditor'
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
 import {
   ArrowUpOnSquareIcon,
   ArrowUturnLeftIcon
@@ -25,6 +27,7 @@ const CreateNewPost: React.FC<CreateNewPostProps> = () => {
   const [fileTwo, setFileTwo] = useState<File | null>(null)
   const [fileThree, setFileThree] = useState<File | null>(null)
   const navigate = useNavigate()
+  const { showNotification } = useNotification()
 
   const uploadFiles = async (postId: number, file: File | null) => {
     if (!file) {
@@ -55,10 +58,18 @@ const CreateNewPost: React.FC<CreateNewPostProps> = () => {
       for (const file of files) {
         await uploadFiles(post.id, file)
       }
-      alert('게시물이 업로드 되었습니다')
+      showNotification(
+        NotificationType.Success,
+        '업로드 성공',
+        '게시물이 업로드 되었습니다'
+      )
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      alert(error.response.data.message ?? '게시글 업로드 실패')
+      showNotification(
+        NotificationType.Error,
+        '업로드 실패',
+        '게시물 업로드중 오류가 발생했습니다'
+      )
     } finally {
       setIsSubmitting(false)
       navigate('/board')
@@ -71,14 +82,19 @@ const CreateNewPost: React.FC<CreateNewPostProps> = () => {
         .get('/account/role')
         .then((result) => result.data)
         .catch(() => {
-          alert('로그인 하지 않았습니다')
-          navigate('/')
+          showNotification(
+            NotificationType.Warning,
+            '접근 불가',
+            '로그인 후 이용 가능합니다'
+          )
+          navigate('/board')
         })
 
       setRole(data.role)
     }
 
     getAccountRole()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate])
 
   return (

@@ -3,9 +3,7 @@ import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
 import HomeItem from './items/HomeItem'
-import MediaItem from './items/MediaItem'
 import NoticeItem from './items/NoticeItem'
-import PhotoItem from './items/PhotoItem'
 import ScheduleItem from './items/ScheduleItem'
 
 const Home = () => {
@@ -16,9 +14,10 @@ const Home = () => {
   const [videoSource, setVideoSource] = useState(
     'https://cdn.playprove.one/landing/desktop.mp4'
   )
+
   useEffect(() => {
     const updateVideoSource = () => {
-      const isMobile = window.innerWidth < 768 // 768px 미만을 모바일로 가정
+      const isMobile = window.innerWidth < 768
       if (isMobile) {
         setVideoSource('https://cdn.playprove.one/landing/mobile.mp4')
       } else {
@@ -39,10 +38,6 @@ const Home = () => {
       return <ScheduleItem />
     } else if (currentComponent === 'NOTICE') {
       return <NoticeItem />
-    } else if (currentComponent === 'MEDIA') {
-      return <MediaItem />
-    } else if (currentComponent === 'PHOTO') {
-      return <PhotoItem />
     }
   }
 
@@ -60,19 +55,19 @@ const Home = () => {
           />
         </div>
       </div>
-      <Disclosure as="nav" className="w-full bg-indigo-800">
+      <Disclosure as="nav" className="w-full bg-purple-950">
         {({ open }) => (
           <>
             <div className="mx-auto max-w-screen-xl px-4 lg:px-20">
               <div className="flex h-20 justify-between">
                 <div className="flex">
-                  <div className="font-lg flex flex-shrink-0 items-center font-bold text-white">
+                  <div className="font-lg flex flex-shrink-0 items-center font-bold text-gray-50">
                     HUDDLE
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     <Disclosure.Button
                       as="button"
-                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
+                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-50 ${
                         currentComponent === 'HOME'
                           ? 'border-b-2 border-white'
                           : 'border-b-2 border-transparent hover:border-white hover:text-black'
@@ -85,8 +80,8 @@ const Home = () => {
                       as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
                         currentComponent === 'SCHEDULE'
-                          ? 'border-b-2 border-white text-white'
-                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-black'
+                          ? 'border-b-2 border-white text-gray-50'
+                          : 'border-b-2 border-transparent text-gray-50 hover:border-white hover:text-black'
                       }`}
                       onClick={() => setCurrentComponent('SCHEDULE')}
                     >
@@ -96,34 +91,12 @@ const Home = () => {
                       as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
                         currentComponent === 'NOTICE'
-                          ? 'border-b-2 border-white text-white'
-                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-black'
+                          ? 'border-b-2 border-white text-gray-50'
+                          : 'border-b-2 border-transparent text-gray-50 hover:border-white hover:text-black'
                       }`}
                       onClick={() => setCurrentComponent('NOTICE')}
                     >
                       NOTICE
-                    </Disclosure.Button>
-                    <Disclosure.Button
-                      as="button"
-                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
-                        currentComponent === 'MEDIA'
-                          ? 'border-b-2 border-white text-white'
-                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-black'
-                      }`}
-                      onClick={() => setCurrentComponent('MEDIA')}
-                    >
-                      MEDIA
-                    </Disclosure.Button>
-                    <Disclosure.Button
-                      as="button"
-                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
-                        currentComponent === 'PHOTO'
-                          ? 'border-b-2 border-white text-white'
-                          : 'border-b-2 border-transparent text-white hover:border-white hover:text-black'
-                      }`}
-                      onClick={() => setCurrentComponent('PHOTO')}
-                    >
-                      PHOTO
                     </Disclosure.Button>
                   </div>
                 </div>
@@ -163,20 +136,6 @@ const Home = () => {
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
                   NOTICE
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="button"
-                  onClick={() => setCurrentComponent('MEDIA')}
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  MEDIA
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="button"
-                  onClick={() => setCurrentComponent('PHOTO')}
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  PHOTO
                 </Disclosure.Button>
               </div>
             </Disclosure.Panel>

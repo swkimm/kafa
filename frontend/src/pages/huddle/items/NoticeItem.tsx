@@ -86,8 +86,8 @@ const noticeColumns = [
 const NoticeItem = () => {
   return (
     <div>
-      <div className="container mx-auto">
-        <div className="m-5">
+      <div className="container mx-auto max-w-screen-xl px-4 lg:px-20">
+        <div className="py-10">
           <DefaultTable
             title="공지사항"
             data={people}

@@ -5,7 +5,7 @@ import App from './App.tsx'
 import './styles/app.css'
 import './styles/ckeditor-reset.css'
 
-const isDevMode = import.meta.env.MODE === 'development'
+const isDevMode = import.meta.env.MODE !== 'development'
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 

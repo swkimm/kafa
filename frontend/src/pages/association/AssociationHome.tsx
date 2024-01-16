@@ -27,22 +27,22 @@ const AssociationHome = () => {
   }
   return (
     <div className="">
-      <Disclosure as="nav" className="w-full bg-indigo-800 shadow">
+      <Disclosure as="nav" className="w-full bg-purple-950 shadow">
         {({ open }) => (
           <>
-            <div className=" px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-screen-xl px-4 lg:px-20">
               <div className="flex h-20 justify-between">
                 <div className="flex">
-                  <div className="font-lg flex flex-shrink-0 items-center font-bold text-white">
+                  <div className="font-lg flex flex-shrink-0 items-center font-bold text-gray-50">
                     협회정보
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     <Disclosure.Button
                       as="button"
-                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
+                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-50 ${
                         currentComponent === '개요'
-                          ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white hover:text-black'
+                          ? 'border-b-2 border-gray-50'
+                          : 'border-b-2 border-transparent hover:border-gray-50 hover:text-black'
                       }`}
                       onClick={() => setCurrentComponent('개요')}
                     >
@@ -95,7 +95,6 @@ const AssociationHome = () => {
                   </div>
                 </div>
                 <div className="-mr-2 flex items-center sm:hidden">
-                  {/* Mobile menu button */}
                   <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                     <span className="absolute -inset-0.5" />
                     <span className="sr-only">Open main menu</span>
@@ -110,7 +109,6 @@ const AssociationHome = () => {
             </div>
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 pb-3 pt-2">
-                {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
                 <Disclosure.Button
                   as="button"
                   onClick={() => setCurrentComponent('NOTICE')}
