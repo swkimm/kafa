@@ -6,7 +6,7 @@ const TeamBanner: React.FC<TeamComplication> = ({
   name,
   globalName,
   initial,
-  establisehdAt,
+  establishedAt,
   color,
   profileImgUrl,
   isWhite = () => true
@@ -83,7 +83,7 @@ const TeamBanner: React.FC<TeamComplication> = ({
           >
             <div className="mb-2 text-xs">Established</div>
             <div className="font-bold sm:text-lg lg:text-2xl">
-              {getYear(establisehdAt)}
+              {getYear(establishedAt)}
             </div>
           </div>
         </div>

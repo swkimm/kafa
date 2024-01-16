@@ -52,6 +52,10 @@ const ConsoleHome = () => {
     navigate('/console/manageRoster')
   }
 
+  const goToProfile = () => {
+    navigate('/console/profile')
+  }
+
   return (
     <div>
       {/* 로그인한 유저의 역할이 Admin인 경우 */}
@@ -59,7 +63,10 @@ const ConsoleHome = () => {
         <div className="m-5">
           <div className="text-md mb-5 font-bold">HOME</div>
           <div className="grid grid-cols-3 gap-4">
-            <div className="col-span-1 bg-white shadow-md">
+            <div
+              className="col-span-1 cursor-pointer bg-white shadow-md"
+              onClick={goToProfile}
+            >
               <div className="m-3">My Profile</div>
               <div className="flex items-center justify-center">
                 {!profile?.profileImgUrl ? (
@@ -127,7 +134,10 @@ const ConsoleHome = () => {
         <div className="m-5">
           <div className="text-md mb-5 font-bold">HOME</div>
           <div className="grid grid-cols-3 gap-4">
-            <div className="col-span-1 bg-white shadow-md">
+            <div
+              className="col-span-1 cursor-pointer bg-white shadow-md"
+              onClick={goToProfile}
+            >
               <div className="m-3">My Profile</div>
               <div className="flex items-center justify-center">
                 {!profile?.profileImgUrl ? (
@@ -140,10 +150,10 @@ const ConsoleHome = () => {
                 <div>{profile?.name}</div>
               </div>
               <div className="mb-5 flex items-center justify-center">
-                <div className="text-xs">QR 코드 페이지로 이동합니다.</div>
+                <div className="text-xs">프로필 페이지로 이동합니다.</div>
               </div>
             </div>
-            <div className="col-span-1 bg-white shadow-md">
+            <div className="col-span-1 cursor-pointer bg-white shadow-md">
               <div className="mt-12 flex items-center justify-center">
                 <DocumentTextIcon className="h-auto w-44 text-blue-950" />
               </div>
@@ -155,7 +165,7 @@ const ConsoleHome = () => {
               </div>
             </div>
             <div
-              className="col-span-1 bg-white shadow-md"
+              className="col-span-1 cursor-pointer bg-white shadow-md"
               onClick={goToLoadRoster}
             >
               <div className="mt-12 flex items-center justify-center">
@@ -177,7 +187,10 @@ const ConsoleHome = () => {
         <div className="m-5">
           <div className="text-md mb-5 font-bold">HOME</div>
           <div className="grid grid-cols-3 gap-4">
-            <div className="col-span-1 bg-white shadow-md">
+            <div
+              className="col-span-1 bg-white shadow-md"
+              onClick={goToProfile}
+            >
               <div className="m-3">My Profile</div>
               <div className="flex items-center justify-center">
                 {!profile?.profileImgUrl ? (
@@ -190,7 +203,7 @@ const ConsoleHome = () => {
                 <div>{profile?.name}</div>
               </div>
               <div className="mb-5 flex items-center justify-center">
-                <div className="text-xs">팀 정보 관리 페이지로 이동합니다.</div>
+                <div className="text-xs">프로필 페이지로 이동합니다.</div>
               </div>
             </div>
             <div

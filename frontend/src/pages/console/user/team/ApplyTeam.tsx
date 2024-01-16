@@ -77,8 +77,8 @@ const ApplyTeam = () => {
     {
       title: '창단년도',
       render: (team: TeamComplication) => {
-        if (team.establisehdAt) {
-          const year = team.establisehdAt.getFullYear()
+        if (team.establishedAt) {
+          const year = team.establishedAt.getFullYear()
           return <div>{year}</div>
         } else {
           return <div>년도 정보 없음</div>

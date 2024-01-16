@@ -39,7 +39,6 @@ const ManageTeamRoster = () => {
     }))
 
   const handleRosterTypeSelect = (selectedType: string) => {
-    console.log('Selected Roster Type:', selectedType)
     setSelectedRosterType(selectedType)
   }
 

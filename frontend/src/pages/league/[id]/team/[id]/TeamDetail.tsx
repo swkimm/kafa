@@ -77,7 +77,7 @@ const TeamDetail = () => {
           globalName={team.globalName}
           hometown={team.hometown}
           initial={team.initial}
-          establisehdAt={new Date(team.establisehdAt)}
+          establishedAt={new Date(team.establishedAt)}
           color={team.color}
           profileImgUrl={team.profileImgUrl}
           status={team.status}

@@ -4,7 +4,7 @@ export interface TeamComplication {
   globalName: string
   hometown: string
   initial: string
-  establisehdAt: Date
+  establishedAt: Date
   color: string
   subColor?: string
   profileImgUrl?: string

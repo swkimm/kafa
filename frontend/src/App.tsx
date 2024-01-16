@@ -22,8 +22,12 @@ import ManageLeague from './pages/console/admin/league/ManageLeague.tsx'
 import CreateNational from './pages/console/admin/national/CreateNational.tsx'
 import CreateRecode from './pages/console/admin/recode/CreateRecode.tsx'
 import ManageRecode from './pages/console/admin/recode/ManageRecode.tsx'
+import MyProfile from './pages/console/common/MyProfile.tsx'
 import EnrollLeague from './pages/console/manager/league/EnrollLeague.tsx'
+import ValidateCerti from './pages/console/manager/league/ValidateCerti.tsx'
 import ManageRequestRoster from './pages/console/manager/team/ManageRequestRoster.tsx'
+import ManageTeamInfo from './pages/console/manager/team/ManageTeamInfo.tsx'
+import ManageTeamLogo from './pages/console/manager/team/ManageTeamLogo.tsx'
 import ManageTeamRoster from './pages/console/manager/team/ManageTeamRoster.tsx'
 import LoadRoster from './pages/console/user/roster/LoadRoster.tsx'
 import ApplyTeam from './pages/console/user/team/ApplyTeam.tsx'
@@ -104,6 +108,7 @@ const App = () => {
         >
           <Route element={<ConsoleLayout />}>
             <Route path="/console" element={<ConsoleHome />} />
+            <Route path="/console/profile" element={<MyProfile />} />
           </Route>
         </Route>
 
@@ -134,6 +139,8 @@ const App = () => {
 
         <Route element={<PrivateRoute allowedRoles={[Role.Manager]} />}>
           <Route element={<ConsoleLayout />}>
+            <Route path="/console/manageTeam" element={<ManageTeamInfo />} />
+            <Route path="/console/manageLogo" element={<ManageTeamLogo />} />
             <Route
               path="/console/manageRequest"
               element={<ManageRequestRoster />}
@@ -143,6 +150,7 @@ const App = () => {
               element={<ManageTeamRoster />}
             />
             <Route path="/console/enroll" element={<EnrollLeague />} />
+            <Route path="/console/validateCerti" element={<ValidateCerti />} />
           </Route>
         </Route>
       </Routes>
