@@ -3,7 +3,16 @@ import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
 import { userState } from '@/state/userState'
 import { Dialog, Disclosure, Transition } from '@headlessui/react'
-import { ChevronRightIcon } from '@heroicons/react/20/solid'
+import {
+  ChevronRightIcon,
+  ClipboardDocumentListIcon,
+  UserGroupIcon,
+  WrenchScrewdriverIcon,
+  FunnelIcon,
+  FlagIcon,
+  TrophyIcon,
+  PencilSquareIcon
+} from '@heroicons/react/20/solid'
 import {
   ArrowLeftEndOnRectangleIcon,
   Bars3Icon,
@@ -53,24 +62,38 @@ const userNavigation: NavigationItem[] = [
 
 const managerNavigation: NavigationItem[] = [
   { name: 'HOME', href: '/console', icon: HomeIcon },
-  { name: '팀 정보 관리', href: '#', icon: HomeIcon },
+  {
+    name: '팀 정보 관리',
+    icon: WrenchScrewdriverIcon,
+    children: [
+      { name: '로고 관리', href: '/console/manageLogo' },
+      { name: '팀 정보 수정', href: '/console/manageTeam' }
+    ]
+  },
   {
     name: '로스터 관리',
-    icon: HomeIcon,
+    icon: UserGroupIcon,
     children: [
       { name: '로스터 관리', href: '/console/manageRoster' },
       { name: '연결 요청', href: '/console/manageRequest' }
     ]
   },
-  { name: '참가 신청', href: '/console/enroll', icon: HomeIcon }
+  {
+    name: '리그 참가 신청',
+    icon: ClipboardDocumentListIcon,
+    children: [
+      { name: '로스터 인증서 검증', href: '/console/validateCerti' },
+      { name: '리그 목록', href: '/console/leagueList' },
+      { name: '참가 신청 목록', href: '/console/applyLeagueList' }
+    ]
+  }
 ]
 
 const adminNavigation: NavigationItem[] = [
   { name: 'HOME', href: '/console', icon: HomeIcon },
   {
     name: '대회정보',
-    href: '#',
-    icon: HomeIcon,
+    icon: TrophyIcon,
     children: [
       { name: '대회 등록', href: '/console/createLeague' },
       { name: '대회 관리', href: '/console/manageLeague' }
@@ -78,31 +101,25 @@ const adminNavigation: NavigationItem[] = [
   },
   {
     name: '기록실',
-    href: '#',
-    icon: HomeIcon,
+    icon: PencilSquareIcon,
     children: [
       { name: '기록 입력', href: '/console/createRecode' },
       { name: '기록 관리', href: '/console/manageRecode' }
     ]
   },
-  {
-    name: 'HUDDLE',
-    href: '#',
-    icon: HomeIcon,
-    children: [
-      { name: 'Schedule', href: '#' },
-      { name: '기록 관리', href: '#' }
-    ]
-  },
-  { name: '협회 정보', href: '#', icon: HomeIcon },
-  { name: '심판', href: '#', icon: HomeIcon },
-  { name: '국가대표', href: '/console/createNational', icon: HomeIcon },
+  // {
+  //   name: 'HUDDLE',
+  //   icon: HomeIcon,
+  //   children: [
+  //     { name: 'Schedule', href: '#' },
+  //     { name: '기록 관리', href: '#' }
+  //   ]
+  // },
+  { name: '협회 정보', href: '/console/manageAssociation', icon: FlagIcon },
   { name: '자료실', href: '#', icon: HomeIcon },
-  { name: 'NOTICE', href: '#', icon: HomeIcon },
   { name: '신문고', href: '#', icon: HomeIcon },
   { name: 'Calendar', href: '#', icon: HomeIcon },
-  { name: '팀 관리', href: '/console/manageTeams', icon: HomeIcon },
-  { name: '회원 관리', href: '#', icon: HomeIcon }
+  { name: '팀 관리', href: '/console/manageTeams', icon: FunnelIcon }
 ]
 
 const Sidebar: React.FC<SidebarProps> = ({ children }) => {

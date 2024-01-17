@@ -9,6 +9,7 @@ export interface TeamComplication {
   subColor?: string
   profileImgUrl?: string
   backgroundImgUrl?: string
+  associationId?: number
   deletedAt?: Date
   status: string
   createdAt: Date

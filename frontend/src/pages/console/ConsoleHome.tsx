@@ -45,7 +45,7 @@ const ConsoleHome = () => {
   }
 
   const goToManagerEnroll = () => {
-    navigate('/console/enroll')
+    navigate('/console/leagueList')
   }
 
   const goToManageRoster = () => {
@@ -188,7 +188,7 @@ const ConsoleHome = () => {
           <div className="text-md mb-5 font-bold">HOME</div>
           <div className="grid grid-cols-3 gap-4">
             <div
-              className="col-span-1 bg-white shadow-md"
+              className="col-span-1 cursor-pointer bg-white shadow-md"
               onClick={goToProfile}
             >
               <div className="m-3">My Profile</div>
@@ -207,7 +207,7 @@ const ConsoleHome = () => {
               </div>
             </div>
             <div
-              className="col-span-1 bg-white shadow-md"
+              className="col-span-1 cursor-pointer bg-white shadow-md"
               onClick={goToManageRoster}
             >
               <div className="mt-12 flex items-center justify-center">
@@ -221,7 +221,7 @@ const ConsoleHome = () => {
               </div>
             </div>
             <div
-              className="col-span-1 bg-white shadow-md"
+              className="col-span-1 cursor-pointer bg-white shadow-md"
               onClick={goToManagerEnroll}
             >
               <div className="mt-12 flex items-center justify-center">

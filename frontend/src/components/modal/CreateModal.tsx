@@ -1,20 +1,20 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
-import PropTypes from 'prop-types'
 import { Fragment, type ReactNode, useRef } from 'react'
 
-interface ModifyModalProps {
+interface CreateModalProps {
   children: ReactNode
   onClose: () => void // onClose 프로퍼티 추가
   onSubmit: () => void // 새로운 prop 추가
 }
 
-const ModifyModal: React.FC<ModifyModalProps> = ({
+const CreateModal: React.FC<CreateModalProps> = ({
   children,
   onClose,
   onSubmit
 }) => {
   const cancelButtonRef = useRef(null)
+
   return (
     <div>
       <Transition.Root show={true} as={Fragment}>
@@ -63,7 +63,7 @@ const ModifyModal: React.FC<ModifyModalProps> = ({
                       className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"
                       onClick={onSubmit}
                     >
-                      수정
+                      생성
                     </button>
                     <button
                       type="button"
@@ -84,10 +84,4 @@ const ModifyModal: React.FC<ModifyModalProps> = ({
   )
 }
 
-ModifyModal.propTypes = {
-  children: PropTypes.node.isRequired,
-  onClose: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired
-}
-
-export default ModifyModal
+export default CreateModal

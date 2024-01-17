@@ -280,7 +280,6 @@ const ManageTeamRoster = () => {
 
       {showModifyModal && (
         <ModifyModal onClose={closeModifyModal} onSubmit={modifySubmit}>
-          {/* 여기에 ModifyModal의 내용을 넣습니다 */}
           <div className="mt-3 text-center sm:mt-5">
             <Dialog.Title
               as="h3"
@@ -417,7 +416,6 @@ const ManageTeamRoster = () => {
               </div>
             </div>
           </div>
-          {/* 예를 들어, selectedRoster의 데이터를 이용한 폼을 여기에 구현할 수 있습니다. */}
         </ModifyModal>
       )}
 

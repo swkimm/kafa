@@ -14,14 +14,16 @@ import Login from './pages/auth/Login.tsx'
 import SignUp from './pages/auth/SignUp.tsx'
 import Calendar from './pages/calendar/Calendar.tsx'
 import ConsoleHome from './pages/console/ConsoleHome.tsx'
+import ManageAssociation from './pages/console/admin/association/ManageAssociation.tsx'
 import CreateGame from './pages/console/admin/game/CreateGame.tsx'
 import CreateLeague from './pages/console/admin/league/CreateLeague.tsx'
 import ManageLeague from './pages/console/admin/league/ManageLeague.tsx'
-import CreateNational from './pages/console/admin/national/CreateNational.tsx'
 import CreateRecode from './pages/console/admin/recode/CreateRecode.tsx'
 import ManageRecode from './pages/console/admin/recode/ManageRecode.tsx'
+import ManageTeams from './pages/console/admin/team/ManageTeams.tsx'
 import MyProfile from './pages/console/common/MyProfile.tsx'
-import EnrollLeague from './pages/console/manager/league/EnrollLeague.tsx'
+import ApplyLeagueList from './pages/console/manager/league/ApplyLeagueList.tsx'
+import LeagueList from './pages/console/manager/league/LeagueList.tsx'
 import ValidateCerti from './pages/console/manager/league/ValidateCerti.tsx'
 import ManageRequestRoster from './pages/console/manager/team/ManageRequestRoster.tsx'
 import ManageTeamInfo from './pages/console/manager/team/ManageTeamInfo.tsx'
@@ -149,9 +151,10 @@ const App = () => {
               <Route path="/console/manageRecode" element={<ManageRecode />} />
 
               <Route
-                path="/console/createNational"
-                element={<CreateNational />}
+                path="/console/manageAssociation"
+                element={<ManageAssociation />}
               />
+              <Route path="/console/manageTeams" element={<ManageTeams />} />
             </Route>
           </Route>
 
@@ -174,10 +177,14 @@ const App = () => {
                 path="/console/manageRoster"
                 element={<ManageTeamRoster />}
               />
-              <Route path="/console/enroll" element={<EnrollLeague />} />
               <Route
                 path="/console/validateCerti"
                 element={<ValidateCerti />}
+              />
+              <Route path="/console/leagueList" element={<LeagueList />} />
+              <Route
+                path="/console/applyLeagueList"
+                element={<ApplyLeagueList />}
               />
             </Route>
           </Route>

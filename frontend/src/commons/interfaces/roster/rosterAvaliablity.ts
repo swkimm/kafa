@@ -26,7 +26,7 @@ export interface RosterWithAvailability {
   rosterType: RosterType
   position?: Position
   backNumber?: number
-  availability: RosterAvailability
+  avaliability: RosterAvailability
 }
 
 export interface ApiResponse {

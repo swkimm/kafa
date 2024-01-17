@@ -94,10 +94,8 @@ const CreateRosterModal: React.FC<CreateRosterModalProps> = ({
       weight: weight,
       backNumber: backNumber
     }
-    console.log(formData)
     try {
-      const response = await axiosInstance.post(`/rosters`, formData)
-      console.log(response.data)
+      await axiosInstance.post(`/rosters`, formData)
       onClose()
       onRosterAdded(teamId)
     } catch (error) {

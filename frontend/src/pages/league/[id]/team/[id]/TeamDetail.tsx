@@ -1,5 +1,4 @@
 // TeamDetail.tsx
-// import { useParams } from 'react-router-dom'
 import axiosInstance from '@/commons/axios'
 import type { TeamComplication } from '@/commons/interfaces/team/teamComplication'
 import TeamBanner from '@/components/cards/TeamBanner'
@@ -12,21 +11,6 @@ import BoardItem from './items/BoardItem'
 import RosterItem from './items/RosterItem'
 import StatsItem from './items/StatsItem'
 import TeamHomeItem from './items/TeamHomeItem'
-
-// const team: TeamComplication = {
-//   id: 1,
-//   name: 'TBD',
-//   globalName: 'To be determined',
-//   hometown: 'TBD',
-//   initial: 'TBD',
-//   establisehdAt: new Date(),
-//   color: '#000000',
-//   subColor: '#ffffff',
-//   profileImgUrl: '/logo/KAFA_OG.png',
-//   backgroundImgUrl: '#ffffff',
-//   status: '',
-//   createdAt: new Date()
-// }
 
 const TeamDetail = () => {
   const { teamId } = useParams()
