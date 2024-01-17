@@ -1,8 +1,8 @@
 export enum RosterType {
-  Athlete,
-  Staff,
-  Coach,
-  HeadCoach
+  Athlete = 'Athlete',
+  Staff = 'Staff',
+  Coach = 'Coach',
+  HeadCoach = 'HeadCoach'
 }
 
 export interface PositionType {

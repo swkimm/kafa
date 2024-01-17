@@ -44,6 +44,17 @@ export class RosterController {
     }
   }
 
+  @Get('account')
+  async getAccountRosters(
+    @Req() req: AuthenticatedRequest
+  ): Promise<RosterWithAthleteDTO[]> {
+    try {
+      return await this.rosterService.getAccountRosters(req.user.id)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
   @Get('connectable')
   async getConnectableRosters(
     @Req() req: AuthenticatedRequest

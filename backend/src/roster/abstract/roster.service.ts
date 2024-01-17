@@ -83,6 +83,16 @@ export abstract class RosterService<T extends Roster> {
   }
 
   /**
+   * 계정에 연결된 로스터 목록을 반환합니다.
+   *
+   * @param {number} accountId - 로스터 목록을 조회할 계정의 Id
+   * @returns {Promise<RosterWithAthleteDTO[]>} 계정에 연결된 로스터 목록
+   */
+  async getAccountRosters(accountId: number): Promise<RosterWithAthleteDTO[]> {
+    return await this.getRosterService.getAccountRosters(accountId)
+  }
+
+  /**
    * 로스터 및 선수 정보를 생성하고 생성된 로스터 정보를 반환합니다
    *
    * @param {CreateRosterDTO} rosterDTO - 생성할 로스터 정보가 담긴 객체

@@ -162,6 +162,7 @@ const App = () => {
             <Route element={<ConsoleLayout />}>
               <Route path="/console/applyTeam" element={<ApplyTeam />} />
               <Route path="/console/loadRoster" element={<LoadRoster />} />
+              <Route path="/console/createTeam" element={<ApplyTeam />} />
             </Route>
           </Route>
 

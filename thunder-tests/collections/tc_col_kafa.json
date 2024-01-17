@@ -93,7 +93,7 @@
             "name": "Public",
             "containerId": "b5dc313a-b19f-4915-9953-88906d7234e7",
             "created": "2023-12-12T07:26:13.760Z",
-            "sortNum": 55000
+            "sortNum": 107500
         },
         {
             "_id": "bc951fe6-f3d0-4943-bc5a-047b0419c621",
@@ -892,6 +892,13 @@
             "containerId": "50f8324d-03bb-42f1-9497-1789359f5e70",
             "created": "2024-01-15T11:46:53.834Z",
             "sortNum": 17500
+        },
+        {
+            "_id": "c3d5a8b4-4eef-4ca2-bbf0-d2a42b6f643c",
+            "name": "getAccountRosters",
+            "containerId": "14c6d020-9b9b-426b-9f80-e415a5b2fc74",
+            "created": "2024-01-17T13:48:27.517Z",
+            "sortNum": 1330000
         }
     ],
     "requests": [
@@ -12877,6 +12884,38 @@
                 "runRequests": [
                     {
                         "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "a95deb3f-4c3c-456e-9bef-352943d5c28b",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "c3d5a8b4-4eef-4ca2-bbf0-d2a42b6f643c",
+            "name": "Success",
+            "url": "/rosters/account",
+            "method": "GET",
+            "sortNum": 2850000,
+            "created": "2024-01-17T13:48:32.341Z",
+            "modified": "2024-01-17T13:49:52.025Z",
+            "headers": [],
+            "params": [],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ],
+            "docs": "## [Normal] getAccountRosters\n\n### URI\nGET /rosters/account\n\n### Description\n\b현재 로그인한 개인 계정에 연결된 로스터 목록을 불러옵니다\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문 이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n|rosterType|*RosterType|로스터 종류|\n|Athlete|*AthleteInfo?|선수 정보|\n|Team|*TeamInfo|팀 정보|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface AthteleInfo**\n|Name|Type|Description|\n|---|----|-------|\n|position|*PositionType|포지션 정보|\n|backNumber|number|등번호|\n|weight|number|몸무게(kg)|\n|height|number|키(cm)|\n\n**Interface PositionType**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n**Interface TeamInfo**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|profileImgUrl|string?|팀 프로필 이미지 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|개인정보 인증을 완료하지 않은 계정에서 해당 요청을 보낼 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "142ca2e0-3862-4835-8851-cabae72dc160",
                         "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
                         "triggerCondition": "run-always",
                         "triggerValue": ""

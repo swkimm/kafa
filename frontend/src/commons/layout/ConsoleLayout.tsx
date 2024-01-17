@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 const ConsoleLayout: React.FC = () => {
   return (
-    <div className="flex h-screen w-full">
+    <div className="flex min-h-screen w-full bg-gray-100/90">
       <Sidebar>
         <Outlet />
       </Sidebar>

@@ -1,133 +1,127 @@
 import axiosInstance from '@/commons/axios'
-import type { AthleteInfo } from '@/commons/interfaces/roster/roster'
-import type { RosterWithTeam } from '@/commons/interfaces/roster/rosterWithTeam'
-import RequestCreateRosterModal from '@/components/modal/RequestCreateRosterModal'
-import { UserCircleIcon } from '@heroicons/react/20/solid'
+import type { Roster } from '@/commons/interfaces/roster/roster'
+import ConsoleCard from '@/components/cards/ConsoleCard'
+import RosterCard from '@/components/cards/RosterCard'
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
 import { useCallback, useEffect, useState } from 'react'
 
 const LoadRoster = () => {
-  const [connectable, setConnectable] = useState<RosterWithTeam[]>([])
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [rosters, setRosters] = useState<Roster[]>([])
+  const [connectable, setConnectable] = useState<Roster[]>([])
+  const { showNotification } = useNotification()
 
   const getConnectableRosters = useCallback(async () => {
     try {
-      const response =
-        await axiosInstance.get<RosterWithTeam[]>(`/rosters/connectable`)
+      const response = await axiosInstance.get<Roster[]>(`/rosters/connectable`)
       setConnectable(response.data)
-      console.log(response.data)
     } catch (error) {
       console.log(error)
     }
   }, [])
 
+  const getRosters = useCallback(async () => {
+    const rosters: Roster[] = await axiosInstance
+      .get('/rosters/account')
+      .then((result) => result.data)
+
+    setRosters(rosters)
+  }, [])
+
   useEffect(() => {
     getConnectableRosters()
-  }, [getConnectableRosters])
-
-  const renderPosition = (athlete: AthleteInfo | undefined) => {
-    if (!athlete) return 'No Position'
-
-    const formatPositions = (position: string | string[]) => {
-      return Array.isArray(position) ? position.join(', ') : position
-    }
-
-    const positions = []
-    if (athlete.position.offence)
-      positions.push(`${formatPositions(athlete.position.offence)}`)
-    if (athlete.position.defense)
-      positions.push(`${formatPositions(athlete.position.defense)}`)
-    if (athlete.position.special)
-      positions.push(`${formatPositions(athlete.position.special)}`)
-
-    return positions.length > 0 ? positions.join('/') : 'Position Not Specified'
-  }
+    getRosters()
+  }, [getConnectableRosters, getRosters])
 
   const connectRoster = async (id: number) => {
     try {
-      const response = await axiosInstance.post(`/rosters/${id}/connect`)
-      console.log(response.data)
-      getConnectableRosters()
+      const connectedRoster: Roster = await axiosInstance
+        .post(`/rosters/${id}/connect`)
+        .then((result) => result.data)
+
+      setConnectable(
+        connectable.filter((item) => item.id !== connectedRoster.id)
+      )
+
+      showNotification(
+        NotificationType.Success,
+        '연결 성공',
+        '현재 계정에 로스터가 연결되었습니다'
+      )
     } catch (error) {
-      console.log(error)
+      showNotification(
+        NotificationType.Error,
+        '연결 실패',
+        '로스터 연결 과정에서 오류가 발생했습니다'
+      )
     }
   }
 
-  const openModal = () => setIsModalOpen(true)
-  const closeModal = () => setIsModalOpen(false)
-
   return (
-    <div className="m-5">
-      <div className="flex justify-between">
-        <h2 className="mb-5 text-lg font-bold text-gray-800">
-          로스터 불러오기
+    <div className="flex flex-col gap-y-3 sm:px-4">
+      <div className="flex items-center justify-between px-4 pt-3 sm:px-0">
+        <h2 className="text-base font-bold text-gray-800 sm:px-0">
+          로스터 관리
         </h2>
         <div>
-          <button
-            type="button"
-            onClick={openModal}
-            className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-          >
+          <button className="rounded-md bg-indigo-950 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-900">
             로스터 생성
           </button>
         </div>
       </div>
-      {connectable.length > 0 ? (
-        connectable.map((roster) => (
-          <div
-            className="px-18 mb-4 grid grid-cols-4 items-center rounded-lg bg-white p-4 shadow-lg"
-            key={roster.id}
-          >
-            <div className="flex justify-center">
-              {roster.profileImgUrl ? (
-                <img
-                  src={roster.profileImgUrl}
-                  alt={roster.name}
-                  className="h-24 w-24 rounded-full object-cover shadow-sm"
-                />
-              ) : (
-                <UserCircleIcon className="h-24 w-24 text-gray-400" />
-              )}
+      <ConsoleCard
+        title={'연결 가능한 로스터'}
+        subtitle={'개인정보가 일치하는 로스터 목록입니다'}
+      >
+        <div className="grid grid-cols-10 gap-x-3">
+          {connectable.length > 0 ? (
+            connectable.map((roster) => (
+              <div
+                key={roster.id}
+                className="col-span-5 sm:col-span-4 md:col-span-3 lg:col-span-2"
+              >
+                <RosterCard roster={roster} />
+                <button
+                  type="button"
+                  onClick={() => connectRoster(roster.id)}
+                  className="mt-5 rounded-md bg-indigo-950 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-900"
+                >
+                  연결하기
+                </button>
+              </div>
+            ))
+          ) : (
+            <div className="col-span-10 w-full text-center">
+              <span className="text-sm text-gray-800 sm:text-base">
+                불러올 수 있는 로스터가 없습니다
+              </span>
             </div>
-            <div className="flex flex-col justify-center">
-              <div className="text-gray-600">
-                팀명: <span className="text-gray-800">{roster.Team.name}</span>
-              </div>
-              <div className="text-gray-600">
-                이름: <span className="text-gray-800">{roster.name}</span>
-              </div>
-              <div className="text-gray-600">
-                구분: <span className="text-gray-800">{roster.rosterType}</span>
-              </div>
-              <div className="text-gray-600">
-                포지션:
-                <span className="text-gray-800">
-                  {renderPosition(roster.Athlete)}
-                </span>
-              </div>
-              <div className="text-gray-600">
-                백넘버:
-                <span className="text-gray-800">
-                  {roster.Athlete?.backNumber}
-                </span>
-              </div>
-              <div className="col-span-2 flex justify-center"></div>
-            </div>
-            <button
-              type="button"
-              onClick={() => connectRoster(roster.id)}
-              className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              연결하기
-            </button>
-          </div>
-        ))
-      ) : (
-        <div className="flex items-center justify-center rounded-lg bg-white p-8 shadow-lg">
-          <span className="text-gray-800">불러올 데이터가 없습니다.</span>
+          )}
         </div>
-      )}
-
-      <RequestCreateRosterModal isOpen={isModalOpen} onClose={closeModal} />
+      </ConsoleCard>
+      <ConsoleCard
+        title={'연결된 로스터'}
+        subtitle={'현재 계정과 연결된 로스터 목록입니다'}
+      >
+        <div className="grid grid-cols-10 gap-x-3">
+          {rosters.length > 0 ? (
+            rosters.map((roster) => (
+              <div
+                key={roster.id}
+                className="col-span-5 sm:col-span-4 md:col-span-3 lg:col-span-2"
+              >
+                <RosterCard roster={roster} />
+              </div>
+            ))
+          ) : (
+            <div className="col-span-10 w-full text-center">
+              <span className="text-sm text-gray-800 sm:text-base">
+                계정에 연결된 로스터가 없습니다
+              </span>
+            </div>
+          )}
+        </div>
+      </ConsoleCard>
     </div>
   )
 }

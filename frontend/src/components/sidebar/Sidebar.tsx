@@ -17,7 +17,9 @@ import {
   ArrowLeftEndOnRectangleIcon,
   Bars3Icon,
   HomeIcon,
-  TrashIcon,
+  LockClosedIcon,
+  UserCircleIcon,
+  WalletIcon,
   XMarkIcon
 } from '@heroicons/react/24/outline'
 import { Fragment, useEffect, useState } from 'react'
@@ -47,16 +49,21 @@ const classNames = (...classes: string[]) => {
 
 const userNavigation: NavigationItem[] = [
   { name: 'HOME', href: '/console', icon: HomeIcon },
-  { name: '프로필', href: '/console/profile', icon: TrashIcon },
+  { name: '계정 관리', href: '/console/profile', icon: UserCircleIcon },
   {
-    name: '자료 제출',
+    name: '인증 관리',
     href: '/console/certification',
-    icon: TrashIcon
+    icon: LockClosedIcon
   },
   {
-    name: '로스터 불러오기',
+    name: '로스터 관리',
     href: '/console/loadRoster',
-    icon: TrashIcon
+    icon: WalletIcon
+  },
+  {
+    name: '팀 생성',
+    href: '/console/createTeam',
+    icon: WalletIcon
   }
 ]
 
@@ -213,7 +220,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                       </button>
                     </div>
                   </Transition.Child>
-                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-900 px-6 pb-4">
+                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-950 px-6 pb-4">
                     <div className="flex h-16 shrink-0 items-center">
                       <img
                         className="h-8 w-auto"
@@ -231,17 +238,18 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                                   <NavLink
                                     to={item.href ?? '#'}
                                     end
+                                    onClick={() => setSidebarOpen(false)}
                                     className={({ isActive }) =>
                                       classNames(
                                         isActive
-                                          ? 'bg-indigo-800'
-                                          : 'hover:bg-indigo-800',
-                                        'group flex w-full gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200'
+                                          ? 'bg-indigo-900'
+                                          : 'hover:bg-indigo-900',
+                                        'group flex w-full gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-200'
                                       )
                                     }
                                   >
                                     <item.icon
-                                      className="h-6 w-6 shrink-0 text-indigo-200"
+                                      className="h-6 w-6 shrink-0 text-gray-200"
                                       aria-hidden="true"
                                     />
                                     {item.name}
@@ -253,11 +261,11 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                                         <Disclosure.Button
                                           className={classNames(
                                             'hover:bg-indigo-800',
-                                            'flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm font-semibold leading-6 text-indigo-200'
+                                            'flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm font-semibold leading-6 text-gray-200'
                                           )}
                                         >
                                           <item.icon
-                                            className="h-6 w-6 shrink-0 text-indigo-200"
+                                            className="h-6 w-6 shrink-0 text-gray-200"
                                             aria-hidden="true"
                                           />
                                           {item.name}
@@ -265,7 +273,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                                             className={classNames(
                                               open
                                                 ? 'rotate-90 text-indigo-200'
-                                                : 'text-indigo-200',
+                                                : 'text-gray-200',
                                               'ml-auto h-5 w-5 shrink-0'
                                             )}
                                             aria-hidden="true"
@@ -279,6 +287,9 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                                             <li key={subItem.name}>
                                               <NavLink
                                                 to={subItem.href ?? '#'}
+                                                onClick={() =>
+                                                  setSidebarOpen(false)
+                                                }
                                                 end
                                                 className={({ isActive }) =>
                                                   classNames(
@@ -325,7 +336,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
 
         {/* Desktop Version */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-900 px-6 pb-4">
+          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-950 px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
               <img
                 className="h-8 w-auto"
@@ -346,14 +357,14 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                             className={({ isActive }) =>
                               classNames(
                                 isActive
-                                  ? 'bg-indigo-800'
-                                  : 'hover:bg-indigo-800',
-                                'group flex w-full gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200'
+                                  ? 'bg-indigo-900'
+                                  : 'hover:bg-indigo-900',
+                                'group flex w-full gap-x-3 rounded-md p-2 text-sm font-medium leading-6 text-gray-200'
                               )
                             }
                           >
                             <item.icon
-                              className="h-6 w-6 shrink-0 text-indigo-200"
+                              className="h-6 w-6 shrink-0 text-gray-200"
                               aria-hidden="true"
                             />
                             {item.name}
@@ -365,11 +376,11 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                                 <Disclosure.Button
                                   className={classNames(
                                     'hover:bg-indigo-800',
-                                    'flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm font-semibold leading-6 text-indigo-200'
+                                    'flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm font-medium leading-6 text-gray-200'
                                   )}
                                 >
                                   <item.icon
-                                    className="h-6 w-6 shrink-0 text-indigo-200"
+                                    className="h-6 w-6 shrink-0 text-gray-200"
                                     aria-hidden="true"
                                   />
                                   {item.name}
@@ -392,8 +403,8 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                                         className={({ isActive }) =>
                                           classNames(
                                             isActive
-                                              ? 'bg-indigo-800'
-                                              : 'hover:bg-indigo-800',
+                                              ? 'bg-indigo-900'
+                                              : 'hover:bg-indigo-900',
                                             'block rounded-md py-2 pl-9 pr-2 text-sm leading-6 text-indigo-200'
                                           )
                                         }
@@ -414,10 +425,10 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                 <li className="-mx-6 mt-auto">
                   <button
                     onClick={() => navigate('/')}
-                    className="flex w-full items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-800"
+                    className="flex w-full items-center gap-x-4 px-6 py-3 text-sm font-medium leading-6 text-gray-200 hover:bg-indigo-900"
                   >
                     <ArrowLeftEndOnRectangleIcon
-                      className="h-6 w-6 shrink-0 text-indigo-200"
+                      className="h-6 w-6 shrink-0 text-gray-200"
                       aria-hidden="true"
                     />
                     <span aria-hidden="true">메인으로 이동</span>
@@ -427,8 +438,8 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
             </nav>
           </div>
         </div>
-        <div className="bg-white lg:pl-72">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 px-5 opacity-95 shadow-md">
+        <div className="lg:pl-72">
+          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-5 opacity-95 shadow-lg">
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
@@ -444,9 +455,9 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
             />
 
             <div className="flex flex-1 items-center justify-between gap-x-4 self-stretch">
-              <p className="text-base font-bold lg:text-xl">관리 콘솔</p>
+              <p className="text-sm font-bold lg:text-lg">관리 콘솔</p>
               <button
-                className="text-sm font-bold lg:text-base"
+                className="text-xs font-medium lg:text-base"
                 onClick={handleLogout}
               >
                 로그아웃
@@ -454,7 +465,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
             </div>
           </div>
 
-          <main className="h-full w-full">{children}</main>
+          <main className="h-full w-full pb-10">{children}</main>
         </div>
       </div>
     </>

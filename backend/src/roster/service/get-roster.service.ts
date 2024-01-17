@@ -154,6 +154,41 @@ export class GetRosterServiceImpl implements GetRosterService {
     }
   }
 
+  async getAccountRosters(accountId: number): Promise<RosterWithAthleteDTO[]> {
+    try {
+      return await this.prismaService.roster.findMany({
+        where: {
+          accountId
+        },
+        select: {
+          id: true,
+          name: true,
+          globalName: true,
+          profileImgUrl: true,
+          rosterType: true,
+          registerYear: true,
+          Athlete: {
+            select: {
+              position: true,
+              backNumber: true,
+              weight: true,
+              height: true
+            }
+          },
+          Team: {
+            select: {
+              id: true,
+              name: true,
+              profileImgUrl: true
+            }
+          }
+        }
+      })
+    } catch (error) {
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
   /**
    * 문자열을 RosterStatus Enum으로 변환합니다
    *

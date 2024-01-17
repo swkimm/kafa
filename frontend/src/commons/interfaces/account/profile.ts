@@ -3,7 +3,7 @@ export interface Profile {
   name: string
   email: string
   profileImgUrl: string
-  role: string
+  role: Role
 }
 
 export enum Role {

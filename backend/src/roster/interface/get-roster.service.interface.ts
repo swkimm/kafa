@@ -46,4 +46,12 @@ export interface GetRosterService {
     limit?: number,
     option?: string
   ): Promise<RosterWithAthleteManyDTO[]>
+
+  /**
+   * 계정에 연결된 로스터 목록을 반환합니다.
+   *
+   * @param {number} accountId - 로스터 목록을 조회할 계정의 Id
+   * @returns {Promise<RosterWithAthleteDTO[]>} 계정에 연결된 로스터 목록
+   */
+  getAccountRosters(accountId: number): Promise<RosterWithAthleteDTO[]>
 }
