@@ -53,9 +53,12 @@ export abstract class LeagueService<
    *
    * @param {number} page 불러올 페이지
    * @param {number} [limit=10] 한 번에 불러올 리그 수
-   * @returns {Promise<T[]>} 리그 목록
+   * @returns {Promise<LeagueWithAssociationDTO[]>} 리그 목록
    */
-  async getLeagues(page: number, limit?: number): Promise<T[]> {
+  async getLeagues(
+    page: number,
+    limit?: number
+  ): Promise<LeagueWithAssociationDTO[]> {
     return await this.getLeagueService.getLeagues(page, limit)
   }
 
@@ -73,6 +76,30 @@ export abstract class LeagueService<
     limit?: number
   ): Promise<LeagueWithAssociationDTO[]> {
     return await this.getLeagueService.getLeaguesByYear(year, page, limit)
+  }
+
+  /**
+   * 특정 팀이 특정 연도에 참가한 리그 목록을 반환합니다.
+   *
+   * @param {number} teamId 조회할 팀의 식별자
+   * @param {number} year 조회할 연도
+   * @param {number} page 조회할 페이지
+   * @param {number} [limit=10] 한 번에 불러올 리그 수
+   * @returns {LeagueWithAssociationDTO[]} 리그 목록
+   * @throws {EntityNotExistException} 존재하지 않는 팀의 Id를 전달할 경우 발생
+   */
+  async getLeaguesByTeamAndYear(
+    teamId: number,
+    year: number,
+    page: number,
+    limit?: number
+  ): Promise<LeagueWithAssociationDTO[]> {
+    return await this.getLeagueService.getLeaguesByTeamAndYear(
+      teamId,
+      year,
+      page,
+      limit
+    )
   }
 
   /**

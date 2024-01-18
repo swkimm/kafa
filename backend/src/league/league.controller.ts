@@ -34,7 +34,7 @@ export class LeagueController {
   async getLeagues(
     @Query('page', ParseIntPipe) page: number,
     @Query('limit', new ParseIntPipe({ optional: true })) limit?: number
-  ): Promise<League[]> {
+  ): Promise<LeagueWithAssociationDTO[]> {
     try {
       return await this.leagueService.getLeagues(page, limit)
     } catch (error) {
@@ -56,6 +56,26 @@ export class LeagueController {
     }
   }
 
+  @Public()
+  @Get('teams/:teamId/years/:year')
+  async getLeaguesByTeamAndYear(
+    @Param('teamId', ParseIntPipe) teamId: number,
+    @Param('year', ParseIntPipe) year: number,
+    @Query('page', ParseIntPipe) page: number,
+    @Query('limit', new ParseIntPipe({ optional: true })) limit?: number
+  ): Promise<LeagueWithAssociationDTO[]> {
+    try {
+      return await this.leagueService.getLeaguesByTeamAndYear(
+        teamId,
+        year,
+        page,
+        limit
+      )
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
   @Roles(Role.Manager)
   @Get('rosters/validation')
   async checkTeamRosterCertifications(
@@ -64,7 +84,6 @@ export class LeagueController {
     try {
       return await this.leagueService.checkTeamRosterCertifications(req.user.id)
     } catch (error) {
-      console.log(error)
       businessExceptionBinder(error)
     }
   }
@@ -77,7 +96,6 @@ export class LeagueController {
     try {
       return await this.leagueService.getJoinableLeagues(limit)
     } catch (error) {
-      console.log(error)
       businessExceptionBinder(error)
     }
   }
@@ -90,7 +108,6 @@ export class LeagueController {
     try {
       return await this.leagueService.getTeamJoinLeagueRequests(req.user.id)
     } catch (error) {
-      console.log(error)
       businessExceptionBinder(error)
     }
   }

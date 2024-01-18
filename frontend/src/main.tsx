@@ -5,6 +5,7 @@ import App from './App.tsx'
 import './styles/app.css'
 import './styles/ckeditor-reset.css'
 import './styles/font.css'
+import './styles/scrollbar.css'
 
 const isDevMode = import.meta.env.MODE !== 'development'
 

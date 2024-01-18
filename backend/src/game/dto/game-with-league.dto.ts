@@ -1,17 +1,7 @@
-interface GameBase {
+export interface GameWithLeagueDTO {
   id: number
   name: string
   startedAt: Date
-}
-
-export interface Game extends GameBase {
-  homeTeamId: number
-  awayTeamId: number
-  stadium: string
-  result?: string | null
-}
-
-export interface GameMany extends GameBase {
   homeTeam: {
     id: number
     name: string

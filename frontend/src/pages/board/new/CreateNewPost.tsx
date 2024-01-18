@@ -98,9 +98,9 @@ const CreateNewPost: React.FC<CreateNewPostProps> = () => {
   }, [navigate])
 
   return (
-    <div className="mx-auto my-0.5 flex max-w-screen-sm flex-col px-0 sm:my-8 sm:max-w-screen-xl sm:px-20">
+    <div className="mx-auto my-8 flex max-w-screen-sm flex-col px-4 sm:max-w-screen-xl sm:px-20">
       <div className="pb-8">
-        <p className="mb-4 text-xl font-bold">제목</p>
+        <p className="mb-4 text-base font-bold sm:text-xl">제목</p>
         <TitleHolder
           title={title}
           handleTitleChange={(event) => setTitle(event.target.value)}
@@ -108,7 +108,7 @@ const CreateNewPost: React.FC<CreateNewPostProps> = () => {
         ></TitleHolder>
       </div>
       <div className="pb-8">
-        <p className="mb-4 text-xl font-bold">내용</p>
+        <p className="mb-4 text-base font-bold sm:text-xl">내용</p>
         <div className="border-0 border-gray-300 bg-white ">
           <TextEditor
             content={content}
@@ -123,7 +123,7 @@ const CreateNewPost: React.FC<CreateNewPostProps> = () => {
         </div>
       </div>
       <div className="pb-4">
-        <p className="mb-4 text-xl font-bold">첨부 파일</p>
+        <p className="mb-4 text-base font-bold sm:text-xl">첨부 파일</p>
         <div className="mb-4">
           <FileHolder
             handleFileChange={(event) => {
@@ -157,7 +157,7 @@ const CreateNewPost: React.FC<CreateNewPostProps> = () => {
       </div>
       {role === 'Admin' ? (
         <div className="pb-4">
-          <p className="mb-4 text-xl font-bold">공지사항</p>
+          <p className="mb-4 text-base font-bold sm:text-xl">공지사항</p>
           <div>
             <NoticeHolder
               isNotice={isNotice}

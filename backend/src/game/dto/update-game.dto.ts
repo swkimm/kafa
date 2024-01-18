@@ -10,6 +10,10 @@ export class UpdateGameDTO {
   @IsOptional()
   leagueId?: number
 
+  @IsString()
+  @IsOptional()
+  name?: string
+
   @IsNumber()
   @IsOptional()
   homeTeamId?: number

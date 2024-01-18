@@ -23,7 +23,10 @@ const FileHolder: React.FC<FileHolderProps> = ({
         onChange={handleFileChange}
         disabled={disabled}
       />
-      <p className="mt-1 text-sm text-gray-500 " id="file_input_help">
+      <p
+        className="mt-1 text-xs text-gray-500 sm:text-sm "
+        id="file_input_help"
+      >
         docs, txt, pdf, xlsx, hwp 형식의 파일만 업로드 가능합니다
       </p>
     </div>

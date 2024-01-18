@@ -3,7 +3,6 @@ import type { Game } from '@/commons/interfaces/game/game'
 import type { TeamComplication } from '@/commons/interfaces/team/teamComplication'
 import { Dialog, Transition } from '@headlessui/react'
 import { PencilSquareIcon } from '@heroicons/react/20/solid'
-import PropTypes from 'prop-types'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -269,20 +268,6 @@ const ModifyGameModal: React.FC<ModifyGameModalProps> = ({
       </Transition.Root>
     </div>
   )
-}
-
-ModifyGameModal.propTypes = {
-  game: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    leagueId: PropTypes.number.isRequired,
-    startedAt: PropTypes.instanceOf(Date).isRequired,
-    homeTeamId: PropTypes.number.isRequired,
-    awayTeamId: PropTypes.number.isRequired,
-    stadium: PropTypes.string.isRequired,
-    result: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])])
-  }).isRequired,
-  leagueId: PropTypes.number.isRequired,
-  onClose: PropTypes.func.isRequired
 }
 
 export default ModifyGameModal

@@ -24,7 +24,8 @@ describe('DeleteGameService', () => {
     leagueId: 1,
     result: GameResult.HomeWin,
     stadium: 'seoul',
-    startedAt: new Date('2023-01-01')
+    startedAt: new Date('2023-01-01'),
+    name: 'game01'
   }
 
   let service: DeleteGameService<Game>

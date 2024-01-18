@@ -26,7 +26,8 @@ describe('GetGameService', () => {
       leagueId: 1,
       result: GameResult.HomeWin,
       stadium: 'seoul',
-      startedAt: new Date('2023-01-01')
+      startedAt: new Date('2023-01-01'),
+      name: 'game01'
     },
     {
       id: 2,
@@ -35,7 +36,8 @@ describe('GetGameService', () => {
       leagueId: 1,
       result: GameResult.HomeWin,
       stadium: 'seoul',
-      startedAt: new Date('2023-01-01')
+      startedAt: new Date('2023-01-01'),
+      name: 'game02'
     },
     {
       id: 3,
@@ -44,12 +46,17 @@ describe('GetGameService', () => {
       leagueId: 1,
       result: GameResult.HomeWin,
       stadium: 'seoul',
-      startedAt: new Date('2023-01-01')
+      startedAt: new Date('2023-01-01'),
+      name: 'game03'
     }
   ]
 
   const mockLeagueService = {
     getLeague: sinon.stub()
+  }
+
+  const mockTeamService = {
+    getTeam: sinon.stub()
   }
 
   let service: GetGameService<Game>
@@ -59,6 +66,7 @@ describe('GetGameService', () => {
       providers: [
         { provide: 'GetGameService', useClass: GetGameServiceImpl },
         { provide: 'LeagueService', useValue: mockLeagueService },
+        { provide: 'TeamService', useValue: mockTeamService },
         { provide: PrismaService, useValue: db }
       ]
     }).compile()

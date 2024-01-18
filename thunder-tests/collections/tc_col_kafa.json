@@ -454,7 +454,7 @@
         },
         {
             "_id": "be01d03e-f606-447d-88fc-ef5ff2f1d8e8",
-            "name": "Normal",
+            "name": "Public",
             "containerId": "4869dc11-bb35-48b3-9034-2fe551592667",
             "created": "2023-12-18T05:56:49.190Z",
             "sortNum": 680000
@@ -899,6 +899,20 @@
             "containerId": "14c6d020-9b9b-426b-9f80-e415a5b2fc74",
             "created": "2024-01-17T13:48:27.517Z",
             "sortNum": 1330000
+        },
+        {
+            "_id": "68494e0c-aed4-4e21-8451-85827feb7331",
+            "name": "getGamesByTeamId",
+            "containerId": "be01d03e-f606-447d-88fc-ef5ff2f1d8e8",
+            "created": "2024-01-18T11:30:01.360Z",
+            "sortNum": 725000
+        },
+        {
+            "_id": "b7c8b239-0d1f-4126-ac04-53a7012ecfd3",
+            "name": "getLeaguesByTeamAndYear",
+            "containerId": "50f8324d-03bb-42f1-9497-1789359f5e70",
+            "created": "2024-01-18T18:32:15.362Z",
+            "sortNum": 18750
         }
     ],
     "requests": [
@@ -6293,7 +6307,7 @@
             "method": "GET",
             "sortNum": 1310000,
             "created": "2023-12-18T06:07:53.254Z",
-            "modified": "2023-12-18T08:09:31.141Z",
+            "modified": "2024-01-18T09:05:28.762Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -6310,7 +6324,7 @@
                     "value": "1"
                 }
             ],
-            "docs": "## [Public] GetGame\n\n### URI\nGET /games/[:gameId]\n\n### Description\n경기 정보를 불러옵니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|불러올 게임의 식별자|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|BadRequest|쿼리 파라미터에 잘못된 값이 있을 경우 발생|\n|404|NotFound|존재하지 않는 경기의 식별자를 전달할 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
+            "docs": "## [Public] GetGame\n\n### URI\nGET /games/[:gameId]\n\n### Description\n경기 정보를 불러옵니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|불러올 게임의 식별자|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|name|string|경기명|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|BadRequest|쿼리 파라미터에 잘못된 값이 있을 경우 발생|\n|404|NotFound|존재하지 않는 경기의 식별자를 전달할 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
             "preReq": {
                 "runRequests": [
                     {
@@ -6331,7 +6345,7 @@
             "method": "GET",
             "sortNum": 1320000,
             "created": "2023-12-18T06:15:48.628Z",
-            "modified": "2023-12-18T06:19:42.877Z",
+            "modified": "2024-01-18T09:05:36.158Z",
             "headers": [],
             "params": [
                 {
@@ -6359,7 +6373,7 @@
                     "value": "3"
                 }
             ],
-            "docs": "## [Public] GetGames\n\n### URI\nGET /games\n\n### Description\n경기 목록을 불러옵니다.\nCursor Based Pagination이 적용되어있습니다.\n\n### \bQuery String\n|Name|Type|Description|\n|---|----|-------|\n|cursor?|number|현재 커서 (>= 0)|\n|limit?|number|한 번에 불러올 경기 수 (>= 1, default 10)|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|BadRequest|쿼리 스트링에 잘못된 값이 있을 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
+            "docs": "## [Public] GetGames\n\n### URI\nGET /games\n\n### Description\n경기 목록을 불러옵니다.\nCursor Based Pagination이 적용되어있습니다.\n\n### \bQuery String\n|Name|Type|Description|\n|---|----|-------|\n|cursor?|number|현재 커서 (>= 0)|\n|limit?|number|한 번에 불러올 경기 수 (>= 1, default 10)|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|name|string|경기명|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|BadRequest|쿼리 스트링에 잘못된 값이 있을 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
             "preReq": {
                 "runRequests": [
                     {
@@ -6380,7 +6394,7 @@
             "method": "GET",
             "sortNum": 1330000,
             "created": "2023-12-18T06:20:01.213Z",
-            "modified": "2023-12-18T06:23:17.119Z",
+            "modified": "2024-01-18T09:05:44.073Z",
             "headers": [],
             "params": [
                 {
@@ -6408,7 +6422,7 @@
                     "value": "3"
                 }
             ],
-            "docs": "## [Public] GetGamesByLeagueId\n\n### URI\nGET /games/leagues/[:leagueId]\n\n### Description\n특정 리그에 속한 경기 목록을 불러옵니다.\nCursor Based Pagination이 적용되어있습니다.\n\n### \bQuery Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|경기 목록을 조회할 리그의 식별자|\n\n### \bQuery String\n|Name|Type|Description|\n|---|----|-------|\n|cursor?|number|현재 커서 (>= 0)|\n|limit?|number|한 번에 불러올 경기 수 (>= 1, default 10)|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|BadRequest|쿼리 스트링 또는 쿼리 파라미터에 잘못된 값이 있을 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
+            "docs": "## [Public] GetGamesByLeagueId\n\n### URI\nGET /games/leagues/[:leagueId]\n\n### Description\n특정 리그에 속한 경기 목록을 불러옵니다.\nCursor Based Pagination이 적용되어있습니다.\n\n### \bQuery Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|경기 목록을 조회할 리그의 식별자|\n\n### \bQuery String\n|Name|Type|Description|\n|---|----|-------|\n|cursor?|number|현재 커서 (>= 0)|\n|limit?|number|한 번에 불러올 경기 수 (>= 1, default 10)|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|name|string|경기명|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|BadRequest|쿼리 스트링 또는 쿼리 파라미터에 잘못된 값이 있을 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
             "preReq": {
                 "runRequests": [
                     {
@@ -6429,7 +6443,7 @@
             "method": "GET",
             "sortNum": 1340000,
             "created": "2023-12-18T06:23:28.818Z",
-            "modified": "2023-12-18T08:09:14.093Z",
+            "modified": "2024-01-18T09:06:25.573Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -6676,12 +6690,12 @@
             "method": "POST",
             "sortNum": 1430000,
             "created": "2023-12-18T07:00:54.205Z",
-            "modified": "2023-12-18T07:08:13.241Z",
+            "modified": "2024-01-18T09:07:05.966Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"leagueId\": 1,\n  \"homeTeamId\": 1,\n  \"awayTeamId\": 2,\n  \"startedAt\": \"2023-12-31\",\n  \"result\": \"NotFinished\",\n  \"stadium\": \"test stadium\"\n}",
+                "raw": "{\n  \"leagueId\": 1,\n  \"homeTeamId\": 1,\n  \"awayTeamId\": 2,\n  \"startedAt\": \"2023-12-31\",\n  \"result\": \"NotFinished\",\n  \"stadium\": \"test stadium\",\n  \"name\": \"tigerbowl semifinals\"\n}",
                 "form": []
             },
             "tests": [
@@ -6710,7 +6724,7 @@
                     "value": "test stadium"
                 }
             ],
-            "docs": "## [Admin] CreateGame\n\n### URI\nPOST /admin/games\n\n### Description\n\b경기를 생성합니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|경기 생성 정보에 유효하지 않은 값이 포함될 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 경기 생성 정보에 포함하여 전달할 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
+            "docs": "## [Admin] CreateGame\n\n### URI\nPOST /admin/games\n\n### Description\n\b경기를 생성합니다.\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|name|string|경기명|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|name|string|경기명|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|경기 생성 정보에 유효하지 않은 값이 포함될 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 경기 생성 정보에 포함하여 전달할 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
             "preReq": {
                 "runRequests": [
                     {
@@ -6774,7 +6788,7 @@
             "method": "PUT",
             "sortNum": 1460000,
             "created": "2023-12-18T07:46:23.391Z",
-            "modified": "2023-12-29T08:03:20.235Z",
+            "modified": "2024-01-18T09:07:26.432Z",
             "headers": [],
             "params": [],
             "body": {
@@ -6814,7 +6828,7 @@
                     "value": "Draw"
                 }
             ],
-            "docs": "## [Admin] UpdateGame\n\n### URI\nPUT /admin/games/[:gameId]\n\n### Description\n경기 정보를 업데이트 합니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|정보를 업데이트할 게임의 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|leagueId?|number|경기가 속한 리그의 식별자|\n|startedAt?|Date|킥오프 시간|\n|homeTeamId?|number|홈 팀의 식별자|\n|awayTeamId?|number|어웨이 팀의 식별자|\n|stadium?|string|경기장|\n|*result?|string|경기 결과|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 또는 Body에 잘못된 값이 있을 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 경기의 식별자 또는 리그의 식별자를 전달할 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
+            "docs": "## [Admin] UpdateGame\n\n### URI\nPUT /admin/games/[:gameId]\n\n### Description\n경기 정보를 업데이트 합니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|정보를 업데이트할 게임의 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|leagueId?|number|경기가 속한 리그의 식별자|\n|startedAt?|Date|킥오프 시간|\n|homeTeamId?|number|홈 팀의 식별자|\n|awayTeamId?|number|어웨이 팀의 식별자|\n|stadium?|string|경기장|\n|*result?|string|경기 결과|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|name|string|경기명|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 또는 Body에 잘못된 값이 있을 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 경기의 식별자 또는 리그의 식별자를 전달할 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
             "preReq": {
                 "runRequests": [
                     {
@@ -6890,7 +6904,7 @@
             "method": "DELETE",
             "sortNum": 1480000,
             "created": "2023-12-18T07:57:48.039Z",
-            "modified": "2023-12-29T08:05:27.700Z",
+            "modified": "2024-01-18T09:07:46.857Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -6907,7 +6921,7 @@
                     "value": "7"
                 }
             ],
-            "docs": "## [Admin] DeleteGame\n\n### URI\nDELETE /admin/games/[:gameId]\n\n### Description\n경기를 삭제합니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|삭제할 경기의 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 포함될 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 전달할 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
+            "docs": "## [Admin] DeleteGame\n\n### URI\nDELETE /admin/games/[:gameId]\n\n### Description\n경기를 삭제합니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|삭제할 경기의 식별자|\n\n### Body\n**void**\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|name|string|경기명|\n|leagueId|number|경기가 속한 리그의 식별자|\n|startedAt|Date|킥오프 시간|\n|homeTeamId|number|홈 팀의 식별자|\n|awayTeamId|number|어웨이 팀의 식별자|\n|stadium|string|경기장|\n|*result|string|경기 결과|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 포함될 경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼경우 발생|\n|404|Not Found|존재하지 않는 리그의 식별자를 전달할 경우 발생|\n\n### Others\n**result**: 경기의 결과를 나타냅니다.\n- HomeWin: 홈 팀 승리\n- AwayWin: 어웨이 팀 승리\n- Draw: 무승부\n- NotFinished: 아직 끝나지 않음",
             "preReq": {
                 "runRequests": [
                     {
@@ -6964,12 +6978,12 @@
             "method": "POST",
             "sortNum": 1500000,
             "created": "2023-12-18T08:14:52.826Z",
-            "modified": "2023-12-29T08:32:27.825Z",
+            "modified": "2024-01-18T09:01:59.795Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"leagueId\": 1,\n  \"homeTeamId\": 1,\n  \"awayTeamId\": 2,\n  \"startedAt\": \"2023-12-31\",\n  \"result\": \"NotFinished\",\n  \"stadium\": \"test stadium\"\n}",
+                "raw": "{\n  \"leagueId\": 1,\n  \"homeTeamId\": 1,\n  \"awayTeamId\": 2,\n  \"startedAt\": \"2023-12-31\",\n  \"result\": \"NotFinished\",\n  \"stadium\": \"test stadium\",\n  \"name\": \"test\"\n}",
                 "form": []
             },
             "tests": [
@@ -7000,12 +7014,12 @@
             "method": "POST",
             "sortNum": 1510000,
             "created": "2023-12-18T08:15:45.186Z",
-            "modified": "2023-12-18T08:16:04.350Z",
+            "modified": "2024-01-18T09:01:48.447Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"leagueId\": 10000,\n  \"homeTeamId\": 1,\n  \"awayTeamId\": 2,\n  \"startedAt\": \"2023-12-31\",\n  \"result\": \"NotFinished\",\n  \"stadium\": \"test stadium\"\n}",
+                "raw": "{\n  \"leagueId\": 10000,\n  \"homeTeamId\": 1,\n  \"awayTeamId\": 2,\n  \"startedAt\": \"2023-12-31\",\n  \"result\": \"NotFinished\",\n  \"stadium\": \"test stadium\",\n  \"name\": \"test\"\n}",
                 "form": []
             },
             "tests": [
@@ -7734,7 +7748,7 @@
             "method": "GET",
             "sortNum": 1610000,
             "created": "2023-12-21T08:42:19.448Z",
-            "modified": "2023-12-21T08:46:02.331Z",
+            "modified": "2024-01-18T17:26:34.193Z",
             "headers": [],
             "params": [
                 {
@@ -7762,7 +7776,7 @@
                     "value": "3"
                 }
             ],
-            "docs": "## [Public] GetLeagues\n\n### URI\nGET /leagues\n\n### Description\n리그 목록을 시작 날짜가 늦은 순서대로 불러옵니다.\n**Offset Based Pagination**이 적용되어 있습니다.\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page|number|불러올 페이지 (>= 1)|\n|limit?|number|한 번에 불러올 리그 수 (default 10)|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그 명|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|associationId|number|리그 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 스트링에 유효하지 않은 값을 전달한 경우 발생|",
+            "docs": "## [Public] GetLeagues\n\n### URI\nGET /leagues\n\n### Description\n리그 목록을 시작 날짜가 늦은 순서대로 불러옵니다.\n**Offset Based Pagination**이 적용되어 있습니다.\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page|number|불러올 페이지 (>= 1)|\n|limit?|number|한 번에 불러올 리그 수 (default 10)|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그명|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|Association|*Association|주관 협회|\n\n**Type Association**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|협회 식별자|\n|name|string|협회명|\n|profileImgUrl|string?|협회 프로필 사진 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 스트링에 유효하지 않은 값을 전달한 경우 발생|",
             "preReq": {
                 "runRequests": [
                     {
@@ -12857,7 +12871,7 @@
             "method": "GET",
             "sortNum": 10000,
             "created": "2024-01-15T11:47:14.188Z",
-            "modified": "2024-01-15T11:52:32.468Z",
+            "modified": "2024-01-18T18:36:53.247Z",
             "headers": [],
             "params": [
                 {
@@ -12879,7 +12893,7 @@
                     "value": "200"
                 }
             ],
-            "docs": "## [Public] GetLeaguesByYear\n\n### URI\nGET /leagues/years/[:year]\n\n### Description\n리그 목록을 해당 연도의 시작 날짜가 늦은 순서대로 불러옵니다.\n**Offset Based Pagination**이 적용되어 있습니다.\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page|number|불러올 페이지 (>= 1)|\n|limit?|number|한 번에 불러올 리그 수 (default 10)|\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|year|number|조회할 연도|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그명|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|Association|*Association|주관 협회|\n\n**Type Association**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|협회 식별자|\n|name|string|협회명|\n|profileImgUrl|string?|협회 프로필 사진 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 스트링에 유효하지 않은 값을 전달한 경우 발생|",
+            "docs": "## [Public] GetLeaguesByYear\n\n### URI\nGET /leagues/years/[:year]\n\n### Description\n리그 목록을 해당 연도의 시작 날짜가 늦은 순서대로 불러옵니다.\n**Offset Based Pagination**이 적용되어 있습니다.\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page|number|불러올 페이지 (>= 1)|\n|limit?|number|한 번에 불러올 리그 수 (default 10)|\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|year|number|조회할 연도|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그명|\n|startedYear|number|시작 년도|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|Association|*Association|주관 협회|\n\n**Type Association**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|협회 식별자|\n|name|string|협회명|\n|profileImgUrl|string?|협회 프로필 사진 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 스트링에 유효하지 않은 값을 전달한 경우 발생|",
             "preReq": {
                 "runRequests": [
                     {
@@ -12922,6 +12936,75 @@
                     }
                 ]
             }
+        },
+        {
+            "_id": "f0470850-e126-45f5-8fde-db6f98420474",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "68494e0c-aed4-4e21-8451-85827feb7331",
+            "name": "Success",
+            "url": "/games/teams/1?page=1&limit=5",
+            "method": "GET",
+            "sortNum": 2860000,
+            "created": "2024-01-18T11:30:10.041Z",
+            "modified": "2024-01-18T11:44:30.997Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "5",
+                    "isPath": false
+                }
+            ],
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ],
+            "docs": "## [Public] GetGamesByTeamId\n\n### URI\nGET /games/teams/[:teamId]\n\n### Description\n특정 팀의 경기 목록을 불러옵니다.\nOffset Based Pagenation이 적용되어 있습니다\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page|number|조회할 페이지 넘버|\n|limit?|number|한 번에 불러올 경기 수|\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|teamId|number|팀 식별자|\n\n### Return Type(Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기 식별자|\n|name|string|경기 명|\n|startedAt|Date|경기 시작 시간|\n|homeTeam|*Team|홈 팀 정보|\n|awayTeam|*Team|어웨이 팀 정보|\n|League|*League|경기가 속한 리그 정보|\n|score|*Score|경기 스코어 정보|\n\n**Type Team**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|profileImgUrl|string?|팀 프로필 이미지 주소|\n\n**Type League**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그 이름|\n\n**Type Score**\n|Name|Type|Description|\n|---|----|-------|\n|homeTeamScore|number|홈 팀 점수|\n|awayTeamScore|number|어웨이 팀 점수|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리파라미터 또는 쿼리스트링에 유효하지 않은 값이 있을 경우 발생|\n|404|Not Found|존재하지 않는 팀의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "33a26fc9-c55e-4e52-9e44-06e2e668b1fb",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "b7c8b239-0d1f-4126-ac04-53a7012ecfd3",
+            "name": "Success",
+            "url": "/leagues/teams/1/years/2023?page=1&limit=5",
+            "method": "GET",
+            "sortNum": 2880000,
+            "created": "2024-01-18T18:32:21.245Z",
+            "modified": "2024-01-18T18:36:40.740Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "5",
+                    "isPath": false
+                }
+            ],
+            "tests": [],
+            "docs": "## [Public] GetLeaguesByYear\n\n### URI\nGET /leagues/teams/[:teamId]/years/[:year]\n\n### Description\n팀이 특정 연도에 참여한 리그 목록을 시작 날짜가 늦은 순서대로 불러옵니다.\n**Offset Based Pagination**이 적용되어 있습니다.\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page|number|불러올 페이지 (>= 1)|\n|limit?|number|한 번에 불러올 리그 수 (default 10)|\n\n### Query Parameters\n|Name|Type|Description|\n|---|----|-------|\n|teamId|number|조회할 팀의 식별자|\n|year|number|조회할 연도|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|리그 식별자|\n|name|string|리그명|\n|startedYear|number|시작 년도|\n|startedAt|Date|리그 시작 날짜|\n|endedAt|Date|리그 종료 날짜|\n|Association|*Association|주관 협회|\n\n**Type Association**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|협회 식별자|\n|name|string|협회명|\n|profileImgUrl|string?|협회 프로필 사진 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 스트링 또는 쿼리 파라미터에 유효하지 않은 값을 전달한 경우 발생|\n|404|Not Found|존재하지 않는 팀의 식별자를 전달할 경우 발생|"
         }
     ],
     "settings": {

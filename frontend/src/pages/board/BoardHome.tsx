@@ -66,8 +66,8 @@ export const BoardHome: React.FC<BoardHomeProps> = () => {
 
   return (
     <>
-      <div className="mx-auto flex max-w-screen-sm flex-col px-4 py-8 sm:max-w-screen-xl sm:px-20">
-        <div className="flex justify-between pb-8">
+      <div className="mx-auto flex max-w-screen-sm flex-col px-4 py-8 sm:max-w-screen-xl lg:px-20">
+        <div className="flex items-center justify-between pb-8">
           <h1 className="text-xl font-bold sm:text-2xl">전체 게시판</h1>
           <button
             onClick={handleCreatePostClick}

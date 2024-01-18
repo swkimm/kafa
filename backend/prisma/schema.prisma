@@ -314,6 +314,7 @@ model Athlete {
 // Game Module
 model Game {
   id         Int        @id @default(autoincrement())
+  name       String     @db.VarChar(256)
   leagueId   Int        @map("league_id")
   startedAt  DateTime   @map("started_at")
   homeTeamId Int        @map("home_team_id")

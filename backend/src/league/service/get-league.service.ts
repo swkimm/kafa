@@ -9,12 +9,15 @@ import { calculateOffset } from '@/common/pagination/calculate-offset'
 import { LeagueSponserService } from '@/league-sponser/league-sponser.service.interface'
 import { PrismaService } from '@/prisma/prisma.service'
 import { SponserService } from '@/sponser/abstract/sponser.service'
+import { TeamService } from '@/team/abstract/team.service'
 import {
   type League,
   Prisma,
   type Association,
   type Sponser,
-  type LeagueSponser
+  type LeagueSponser,
+  type Team,
+  type RegisterTeamRequest
 } from '@prisma/client'
 import type { LeagueWithAssociationDTO } from '../dto/league-with-association.dto'
 import type { GetLeagueService } from '../interface/get-league.service.interface'
@@ -31,7 +34,13 @@ export class GetLeagueServiceImpl implements GetLeagueService<League, Sponser> {
     @Inject('LeagueSponserService')
     private readonly leagueSponserService: LeagueSponserService<LeagueSponser>,
     @Inject('SponserService')
-    private readonly sponserService: SponserService<Sponser>
+    private readonly sponserService: SponserService<Sponser>,
+    @Inject('TeamService')
+    private readonly teamService: TeamService<
+      Team,
+      { result: string },
+      RegisterTeamRequest
+    >
   ) {}
 
   async getLeague(leagueId: number): Promise<League> {
@@ -52,13 +61,25 @@ export class GetLeagueServiceImpl implements GetLeagueService<League, Sponser> {
     }
   }
 
-  async getLeagues(page: number, limit = 10): Promise<League[]> {
+  async getLeagues(
+    page: number,
+    limit = 10
+  ): Promise<LeagueWithAssociationDTO[]> {
     try {
       return await this.prismaService.league.findMany({
         take: limit,
         skip: calculateOffset(page, limit),
         orderBy: {
           startedAt: 'desc'
+        },
+        include: {
+          Association: {
+            select: {
+              id: true,
+              name: true,
+              profileImgUrl: true
+            }
+          }
         }
       })
     } catch (error) {
@@ -92,6 +113,47 @@ export class GetLeagueServiceImpl implements GetLeagueService<League, Sponser> {
         }
       })
     } catch (error) {
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
+  async getLeaguesByTeamAndYear(
+    teamId: number,
+    year: number,
+    page: number,
+    limit = 10
+  ): Promise<LeagueWithAssociationDTO[]> {
+    try {
+      await this.teamService.getTeam(teamId)
+
+      return await this.prismaService.league.findMany({
+        where: {
+          startedYear: year,
+          TeamLeagues: {
+            some: {
+              teamId
+            }
+          }
+        },
+        take: limit,
+        skip: calculateOffset(page, limit),
+        orderBy: {
+          startedAt: 'desc'
+        },
+        include: {
+          Association: {
+            select: {
+              id: true,
+              name: true,
+              profileImgUrl: true
+            }
+          }
+        }
+      })
+    } catch (error) {
+      if (error instanceof BusinessException) {
+        throw error
+      }
       throw new UnexpectedException(error, error.stack)
     }
   }

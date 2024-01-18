@@ -91,6 +91,10 @@ describe('GetLeagueService', () => {
     getSponser: sinon.stub()
   }
 
+  const mockTeamService = {
+    getTeam: sinon.stub()
+  }
+
   let service: GetLeagueService<League, Sponser>
 
   beforeEach(async () => {
@@ -111,6 +115,10 @@ describe('GetLeagueService', () => {
         {
           provide: 'LeagueSponserService',
           useValue: mockLeagueSponserService
+        },
+        {
+          provide: 'TeamService',
+          useValue: mockTeamService
         },
         {
           provide: 'SponserService',
@@ -203,6 +211,15 @@ describe('GetLeagueService', () => {
           skip: calculateOffset(page, limit),
           orderBy: {
             startedAt: 'desc'
+          },
+          include: {
+            Association: {
+              select: {
+                id: true,
+                name: true,
+                profileImgUrl: true
+              }
+            }
           }
         })
       ).to.be.true

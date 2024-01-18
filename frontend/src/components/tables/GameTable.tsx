@@ -1,94 +1,123 @@
-// GameTable.tsx
-import type { ExtendedGame } from '@/pages/huddle/items/HomeItem'
+import type { GameMany } from '@/commons/interfaces/game/game'
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import type React from 'react'
-import { useNavigate } from 'react-router-dom'
 
 interface GameTableProps {
-  title: string
-  games: ExtendedGame[]
+  games: GameMany[]
 }
 
-const GameTable: React.FC<GameTableProps> = ({ title, games }) => {
-  const navigate = useNavigate()
-  const goToTeam = (leagueId: number, teamId: number) => {
-    navigate(`/league/${leagueId}/team/${teamId}`)
-  }
-
-  const formatDate = (dateString: Date) => {
-    const date = new Date(dateString)
-    const formatter = new Intl.DateTimeFormat('ko-KR', {
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false
-    })
-    return formatter.format(date).replace(/,/g, '').replace(/\./g, '')
-  }
+const GameTable: React.FC<GameTableProps> = ({ games }) => {
   return (
-    <div className="border bg-white">
-      <div className="border sm:flex sm:items-center">
-        <div className="border-b border-l-8 border-l-black p-5 sm:flex-auto">
-          <div className="flex items-center justify-between border-black text-base font-semibold leading-6 text-gray-900">
-            <div className="">{title}</div>
-          </div>
+    <div className="py-2.5">
+      <div className="custom-scroll-bar -mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="inline-block min-w-full py-2 align-middle">
+          <table className="min-w-full divide-y divide-gray-300">
+            <thead>
+              <tr>
+                <th
+                  scope="col"
+                  className="py-3.5 pl-4 pr-3 text-left text-xs text-gray-900 sm:pl-6 lg:pl-8"
+                >
+                  LEAGUE
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3.5 text-left text-xs text-gray-900"
+                >
+                  NAME
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3.5 text-left text-xs text-gray-900"
+                >
+                  HOME
+                </th>
+                <th
+                  scope="col"
+                  className="px-3 py-3.5 text-left text-xs text-gray-900"
+                >
+                  AWAY
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 bg-white">
+              {games.length > 1 ? (
+                games.map((game) => (
+                  <tr key={game.id}>
+                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-xs font-medium text-gray-900 sm:pl-6 lg:pl-8">
+                      {game.League.name}
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500">
+                      {game.name}
+                    </td>
+                    <td className="min-w-[125px] whitespace-nowrap px-3 py-4 text-xs text-gray-500">
+                      <div className="flex flex-nowrap items-center gap-x-2">
+                        {game.homeTeam.profileImgUrl ? (
+                          <img
+                            src={game.homeTeam.profileImgUrl}
+                            alt="logo"
+                            className="h-auto w-6"
+                          />
+                        ) : (
+                          <img
+                            src="/logo/KAFA_OG.png"
+                            alt="logo"
+                            className="h-auto w-6"
+                          />
+                        )}
+                        <p>{game.homeTeam.name}</p>
+                        {game.score ? (
+                          <p className="font-medium text-gray-900">
+                            {game.score.homeTeamScore}
+                          </p>
+                        ) : (
+                          <p className="font-medium text-gray-900">-</p>
+                        )}
+                      </div>
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500">
+                      <div className="flex min-w-[125px] items-center gap-x-2">
+                        {game.awayTeam.profileImgUrl ? (
+                          <img
+                            src={game.awayTeam.profileImgUrl}
+                            alt="logo"
+                            className="h-auto w-6"
+                          />
+                        ) : (
+                          <img
+                            src="/logo/KAFA_OG.png"
+                            alt="logo"
+                            className="h-auto w-6"
+                          />
+                        )}
+                        <p>{game.awayTeam.name}</p>
+                        {game.score ? (
+                          <p className="font-medium text-gray-900">
+                            {game.score.awayTeamScore}
+                          </p>
+                        ) : (
+                          <p className="font-medium text-gray-900">-</p>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr className="w-full">
+                  <td
+                    className="pt-3 text-sm font-medium text-gray-900"
+                    colSpan={5}
+                  >
+                    <div className="mx-auto flex w-full items-center justify-center">
+                      <ExclamationTriangleIcon className="h-6 w-6 pr-1.5 text-yellow-500" />
+                      <p>경기 목록이 없습니다</p>
+                    </div>
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
-      </div>
-      <div>
-        {games.map((game) => (
-          <div key={game.id} className="border-b">
-            <div className="p-2">
-              <div className="flex items-center justify-between p-2">
-                <div className="flex">{game.leagueInfo?.name}</div>
-                <div className="flex">{formatDate(game.startedAt)}</div>
-              </div>
-              <div className="flex items-center justify-between p-2">
-                <div
-                  className="flex cursor-pointer"
-                  onClick={() => {
-                    if (game.leagueId && game.homeTeamInfo?.id) {
-                      goToTeam(game.leagueId, game.homeTeamInfo.id)
-                    }
-                  }}
-                >
-                  {game.homeTeamInfo?.profileImgUrl !== null ? (
-                    <img
-                      src={game.homeTeamInfo?.profileImgUrl}
-                      alt={`${game.homeTeamInfo?.name}`}
-                      className="mr-2 h-6" // add some margin-right and control height if needed
-                    />
-                  ) : (
-                    <img src="/logo/KAFA_OG.png" alt="" className="mr-2 h-6" />
-                  )}
-                  <div className="ml-3">{game.homeTeamInfo?.name}</div>
-                </div>
-                <div>{game.scoreInfo?.homeTeamScore}</div>
-              </div>
-              <div className="flex items-center justify-between p-2">
-                <div
-                  className="flex cursor-pointer"
-                  onClick={() => {
-                    if (game.leagueId && game.awayTeamInfo?.id) {
-                      goToTeam(game.leagueId, game.awayTeamInfo.id)
-                    }
-                  }}
-                >
-                  {game.awayTeamInfo?.profileImgUrl !== null ? (
-                    <img
-                      src={game.awayTeamInfo?.profileImgUrl}
-                      alt={`${game.awayTeamInfo?.name}`}
-                      className="mr-2 h-6"
-                    />
-                  ) : (
-                    <img src="/logo/KAFA_OG.png" alt="" className="mr-2 h-6" />
-                  )}
-                  <div className="ml-3">{game.awayTeamInfo?.name}</div>
-                </div>
-                <div>{game.scoreInfo?.awayTeamScore}</div>
-              </div>
-            </div>
-          </div>
-        ))}
       </div>
     </div>
   )

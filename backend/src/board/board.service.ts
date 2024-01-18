@@ -5,6 +5,7 @@ import {
   BusinessException,
   EntityNotExistException,
   ForbiddenAccessException,
+  ParameterValidationException,
   UnexpectedException
 } from '@/common/exception/business.exception'
 import { calculateOffset } from '@/common/pagination/calculate-offset'
@@ -60,13 +61,22 @@ export class BoardService {
     }
   }
 
-  async getPosts(page: number, limit = 10): Promise<BasicPost[]> {
+  async getPosts(
+    page: number,
+    limit = 10,
+    option = 'Normal'
+  ): Promise<BasicPost[]> {
     try {
+      const postType = this.vaildateAndTransformPostType(option)
+
       return await this.prismaService.post.findMany({
         take: limit,
         skip: calculateOffset(page, limit),
         orderBy: {
           id: 'desc'
+        },
+        where: {
+          type: postType
         },
         select: {
           id: true,
@@ -83,6 +93,9 @@ export class BoardService {
         }
       })
     } catch (error) {
+      if (error instanceof BusinessException) {
+        throw error
+      }
       throw new UnexpectedException(error, error.stack)
     }
   }
@@ -263,5 +276,17 @@ export class BoardService {
     if (post.Account.id !== accountId) {
       throw new ForbiddenAccessException('타인의 게시물을 삭제할 수 없습니다')
     }
+  }
+
+  private vaildateAndTransformPostType(option?: string): PostType {
+    if (!option) {
+      return PostType.Normal
+    }
+
+    if (option === PostType.Secret || !(option in PostType)) {
+      throw new ParameterValidationException('올바르지 않은 옵션입니다')
+    }
+
+    return PostType[option]
   }
 }

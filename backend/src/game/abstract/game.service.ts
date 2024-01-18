@@ -1,5 +1,6 @@
 import type { Game } from '@prisma/client'
 import type { CreateGameDTO } from '../dto/create-game.dto'
+import type { GameWithLeagueDTO } from '../dto/game-with-league.dto'
 import type { UpdateGameDTO } from '../dto/update-game.dto'
 import type { CreateGameService } from '../interface/create-game.service.interface'
 import type { DeleteGameService } from '../interface/delete-game.service.interface'
@@ -58,6 +59,41 @@ export abstract class GameService<T extends Game> {
     limit?: number
   ): Promise<T[]> {
     return await this.getGameService.getGamesByLeagueId(leagueId, cursor, limit)
+  }
+
+  /**
+   * 최근 종료된 경기목록을 반환합니다
+   *
+   * @returns {Promise<GameWithLeagueDTO[]>} 최근 종료된 경기 목록
+   */
+  async getCurrentlyEndedGames(): Promise<GameWithLeagueDTO[]> {
+    return await this.getGameService.getCurrentlyEndedGames()
+  }
+
+  /**
+   * 다가오는 경기목록을 반환합니다
+   *
+   * @returns {Promise<GameWithLeagueDTO[]>} 다가오는 경기 목록
+   */
+  async getUpcommingGames(): Promise<GameWithLeagueDTO[]> {
+    return await this.getGameService.getUpcommingGames()
+  }
+
+  /**
+   * 특정 팀의 경기 목록을 반환합니다
+   *
+   * @param {number} teamId - 경기 목록을 조회할 팀의 Id
+   * @param {number} page - 불러올 페이지 번호
+   * @param {number} [limit=5] - 한 번에 불러올 경기 수
+   * @returns {Promise<GameWithLeagueDTO[]>} 팀의 경기 목록
+   * @throws {EntityNotExistException} 존재하지 않는 팀의 Id를 전달할 경우 발생
+   */
+  async getGamesByTeamId(
+    teamId: number,
+    page: number,
+    limit?: number
+  ): Promise<GameWithLeagueDTO[]> {
+    return await this.getGameService.getGamesByTeamId(teamId, page, limit)
   }
 
   /**

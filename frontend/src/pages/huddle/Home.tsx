@@ -2,14 +2,11 @@
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
-import HomeItem from './items/HomeItem'
-import NoticeItem from './items/NoticeItem'
-import ScheduleItem from './items/ScheduleItem'
+import HomeItem from './items/home/HomeItem'
+import ScheduleItem from './items/schedule/ScheduleItem'
 
 const Home = () => {
-  const [currentComponent, setCurrentComponent] = useState<string | null>(
-    'HOME'
-  )
+  const [currentComponent, setCurrentComponent] = useState<string>('HOME')
 
   const [videoSource, setVideoSource] = useState(
     'https://cdn.playprove.one/landing/desktop.mp4'
@@ -36,8 +33,6 @@ const Home = () => {
       return <HomeItem />
     } else if (currentComponent === 'SCHEDULE') {
       return <ScheduleItem />
-    } else if (currentComponent === 'NOTICE') {
-      return <NoticeItem />
     }
   }
 
@@ -87,17 +82,6 @@ const Home = () => {
                     >
                       SCHEDULE
                     </Disclosure.Button>
-                    <Disclosure.Button
-                      as="button"
-                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
-                        currentComponent === 'NOTICE'
-                          ? 'border-b-2 border-white text-gray-50'
-                          : 'border-b-2 border-transparent text-gray-50 hover:border-white hover:text-black'
-                      }`}
-                      onClick={() => setCurrentComponent('NOTICE')}
-                    >
-                      NOTICE
-                    </Disclosure.Button>
                   </div>
                 </div>
                 <div className="-mr-2 flex items-center sm:hidden">
@@ -118,7 +102,7 @@ const Home = () => {
               <div className="space-y-1 pb-3 pt-2">
                 <Disclosure.Button
                   as="button"
-                  onClick={() => setCurrentComponent('NOTICE')}
+                  onClick={() => setCurrentComponent('HOME')}
                   className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700"
                 >
                   HOME
@@ -129,13 +113,6 @@ const Home = () => {
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
                   SCHEDULE
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="button"
-                  onClick={() => setCurrentComponent('NOTICE')}
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  NOTICE
                 </Disclosure.Button>
               </div>
             </Disclosure.Panel>

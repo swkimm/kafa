@@ -96,10 +96,11 @@ export class BoardController {
   @Get('posts')
   async getPosts(
     @Query('page', ParseIntPipe) page: number,
-    @Query('limit', new ParseIntPipe({ optional: true })) limit?: number
+    @Query('limit', new ParseIntPipe({ optional: true })) limit?: number,
+    @Query('option') option?: string
   ): Promise<BasicPost[]> {
     try {
-      return await this.boardService.getPosts(page, limit)
+      return await this.boardService.getPosts(page, limit, option)
     } catch (error) {
       businessExceptionBinder(error)
     }

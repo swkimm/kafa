@@ -246,6 +246,7 @@ CREATE TABLE "Athlete" (
 -- CreateTable
 CREATE TABLE "Game" (
     "id" SERIAL NOT NULL,
+    "name" VARCHAR(256) NOT NULL,
     "league_id" INTEGER NOT NULL,
     "started_at" TIMESTAMP(3) NOT NULL,
     "home_team_id" INTEGER NOT NULL,

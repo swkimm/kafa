@@ -11,6 +11,7 @@ import { businessExceptionBinder } from '@/common/exception/business-exception.b
 import { ScoreService } from '@/score/abstract/score.service'
 import type { Game, Score } from '@prisma/client'
 import { GameService } from './abstract/game.service'
+import type { GameWithLeagueDTO } from './dto/game-with-league.dto'
 
 @Public()
 @Controller('games')
@@ -27,6 +28,37 @@ export class GameController {
   ): Promise<Game[]> {
     try {
       return await this.gameService.getGames(cursor, limit)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Get('currently-ended')
+  async getCurrentlyEndedGames(): Promise<GameWithLeagueDTO[]> {
+    try {
+      return await this.gameService.getCurrentlyEndedGames()
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Get('upcomming')
+  async getUpcommingGames(): Promise<GameWithLeagueDTO[]> {
+    try {
+      return await this.gameService.getUpcommingGames()
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Get('teams/:teamId')
+  async getGamesByTeamId(
+    @Param('teamId', ParseIntPipe) teamId: number,
+    @Query('page', ParseIntPipe) page: number,
+    @Query('limit', new ParseIntPipe({ optional: true })) limit?: number
+  ): Promise<GameWithLeagueDTO[]> {
+    try {
+      return await this.gameService.getGamesByTeamId(teamId, page, limit)
     } catch (error) {
       businessExceptionBinder(error)
     }

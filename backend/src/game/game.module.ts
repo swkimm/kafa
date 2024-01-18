@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { LeagueModule } from '@/league/league.module'
 import { ScoreModule } from '@/score/score.module'
+import { TeamModule } from '@/team/team.module'
 import { AdminGameController } from './admin-game.controller'
 import { GameController } from './game.controller'
 import { CreateGameServiceImpl } from './service/create-game.service'
@@ -10,7 +11,7 @@ import { GetGameServiceImpl } from './service/get-game.service'
 import { UpdateGameServiceImpl } from './service/update-game.service'
 
 @Module({
-  imports: [LeagueModule, ScoreModule],
+  imports: [LeagueModule, ScoreModule, TeamModule],
   controllers: [GameController, AdminGameController],
   providers: [
     {

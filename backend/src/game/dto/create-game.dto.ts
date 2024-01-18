@@ -10,6 +10,10 @@ export class CreateGameDTO {
   @IsNotEmpty()
   leagueId: number
 
+  @IsString()
+  @IsNotEmpty()
+  name: string
+
   @IsNumber()
   @IsNotEmpty()
   homeTeamId: number
