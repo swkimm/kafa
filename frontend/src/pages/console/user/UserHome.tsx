@@ -20,14 +20,13 @@ const UserHome: React.FC<UserHomeProps> = () => {
     useState<CertificationStatus>()
   const [rosters, setRosters] = useState<RosterWithTeam[]>([])
 
-  const goToProfile = () => navigate('/console/profile')
-  const goToLoadRoster = () => navigate('/console/loadRoster')
-
   useEffect(() => {
     const getProfile = async () => {
       const profile: Profile = await axiosInstance
         .get('/account/profile')
         .then((result) => result.data)
+
+      console.log(profile)
 
       setProfile(profile)
     }
@@ -63,7 +62,7 @@ const UserHome: React.FC<UserHomeProps> = () => {
           <ConsoleCard
             title="Profile"
             subtitle="계정 프로필"
-            more={goToProfile}
+            more={() => navigate('/console/profile')}
           >
             {profile ? <ProfileCard profile={profile} /> : null}
           </ConsoleCard>
@@ -72,7 +71,7 @@ const UserHome: React.FC<UserHomeProps> = () => {
           <ConsoleCard
             title="Authentication"
             subtitle="계정인증 정보 요약"
-            more={goToLoadRoster}
+            more={() => navigate('/console/certification')}
           >
             {certificationStatus ? (
               <AccountCertificationStatus status={certificationStatus} />
@@ -83,7 +82,7 @@ const UserHome: React.FC<UserHomeProps> = () => {
           <ConsoleCard
             title="Roster"
             subtitle="현재 계정에 연결된 로스터 목록"
-            more={goToLoadRoster}
+            more={() => navigate('/console/roster')}
           >
             {rosters ? <RosterList rosters={rosters} /> : null}
           </ConsoleCard>

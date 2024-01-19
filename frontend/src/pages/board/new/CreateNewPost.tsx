@@ -63,8 +63,7 @@ const CreateNewPost: React.FC<CreateNewPostProps> = () => {
         '업로드 성공',
         '게시물이 업로드 되었습니다'
       )
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
+    } catch (error) {
       showNotification(
         NotificationType.Error,
         '업로드 실패',

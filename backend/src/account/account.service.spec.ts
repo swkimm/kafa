@@ -7,6 +7,7 @@ import {
   ConflictFoundException,
   EntityNotExistException,
   UnidentifiedException,
+  UnprocessableDataException,
   UnverifiedException
 } from '@/common/exception/business.exception'
 import type { EmailService } from '@/email/email.service.interface'
@@ -279,13 +280,13 @@ describe('AccountService', () => {
       )
     })
 
-    it('should throw UnidentifiedException when invalid pin code passed', async () => {
+    it('should throw UnprocessableDataException when invalid pin code passed', async () => {
       // given
       mockEmailAuthService.verifyPin.resolves(false)
 
       // then
       await expect(service.verifyEmail(account.id)).to.be.rejectedWith(
-        UnidentifiedException
+        UnprocessableDataException
       )
     })
   })

@@ -8,8 +8,8 @@ interface ProfileCardProps {
 const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
   return (
     <div className="rounded-lg border border-gray-200/60 bg-gray-100 p-5">
-      <div className="mb-3">
-        <div className="inline-block h-8 w-8 overflow-hidden rounded-full bg-gray-50 sm:h-10 sm:w-10">
+      <div className="mb-3 border-b-2 border-gray-300 pb-2">
+        <div className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-50">
           {profile.profileImgUrl ? (
             <img className="h-full w-full" src={profile.profileImgUrl} />
           ) : (

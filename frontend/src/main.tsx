@@ -7,7 +7,7 @@ import './styles/ckeditor-reset.css'
 import './styles/font.css'
 import './styles/scrollbar.css'
 
-const isDevMode = import.meta.env.MODE !== 'development'
+const isDevMode = import.meta.env.MODE === 'development'
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 

@@ -64,7 +64,10 @@ const ChangeProfileModal: React.FC<ChangeProfileModalProps> = ({
           '업데이트 실패',
           '올바른 값을 입력했는지 확인해주세요'
         )
+        return false
       })
+
+    if (!updatedProfile) return
 
     const formData = new FormData()
     const fileInput = document.getElementById('image') as HTMLInputElement
@@ -95,6 +98,13 @@ const ChangeProfileModal: React.FC<ChangeProfileModalProps> = ({
         .finally(() => {
           setImage(null)
         })
+    } else {
+      showNotification(
+        NotificationType.Success,
+        '업데이트 성공',
+        '프로필 정보가 업데이트 되었습니다'
+      )
+      closeModal()
     }
 
     setIsSubmitting(false)

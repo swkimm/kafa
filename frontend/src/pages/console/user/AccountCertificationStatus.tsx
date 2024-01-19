@@ -1,4 +1,8 @@
 import type { CertificationStatus } from '@/commons/interfaces/account/certification'
+import {
+  CheckCircleIcon,
+  ExclamationCircleIcon
+} from '@heroicons/react/24/outline'
 
 interface CertificationProps {
   status: CertificationStatus
@@ -30,12 +34,14 @@ const AccountCertificationStatus: React.FC<CertificationProps> = ({
             <dt className="text-sm font-normal text-gray-900">{item.name}</dt>
             <dd className="mt-1 flex items-baseline justify-between md:block lg:flex">
               {item.status ? (
-                <div className="flex items-baseline text-xl font-semibold text-green-600">
-                  완료
+                <div className="flex items-center text-base font-semibold text-green-500 lg:text-xl">
+                  <CheckCircleIcon className="mr-1.5 h-6 w-6" />
+                  <p>완료</p>
                 </div>
               ) : (
-                <div className="flex items-baseline text-xl font-semibold text-red-600">
-                  미완료
+                <div className="flex items-center text-base font-semibold text-red-500 lg:text-xl">
+                  <ExclamationCircleIcon className="mr-1.5 h-6 w-6" />
+                  <p>미완료</p>
                 </div>
               )}
             </dd>

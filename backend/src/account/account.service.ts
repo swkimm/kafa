@@ -5,11 +5,13 @@ import { PinAuthService } from '@/auth/pin-auth.service.interface'
 import { emailUpdateVerificationCacheKey } from '@/common/cache/cache-keys'
 import { EMAIL_VERIFICATION_PIN_EXPIRE_TIME } from '@/common/constant/time.constants'
 import {
+  BusinessException,
   CacheException,
   ConflictFoundException,
   EntityNotExistException,
   UnexpectedException,
   UnidentifiedException,
+  UnprocessableDataException,
   UnverifiedException
 } from '@/common/exception/business.exception'
 import { PrismaService } from '@/prisma/prisma.service'
@@ -91,6 +93,40 @@ export class AccountServiceImpl implements AccountService {
     return this.accountDTOSerializer(account)
   }
 
+  async requestCertificationMail(accountId: number): Promise<string> {
+    try {
+      const account = await this.prismaService.account.findUniqueOrThrow({
+        where: {
+          id: accountId
+        },
+        select: {
+          id: true,
+          email: true,
+          status: true
+        }
+      })
+
+      if (account.status === 'Enable') {
+        throw new ConflictFoundException('이미 인증이 완료된 계정입니다')
+      }
+
+      await this.emailAuthService.registerPin(account.id, account.email)
+
+      return 'success'
+    } catch (error) {
+      if (error instanceof BusinessException) {
+        throw error
+      }
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2025'
+      ) {
+        throw new EntityNotExistException(accountId)
+      }
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
   async mappingManagerAccount(
     accountId: number,
     teamId: number
@@ -130,7 +166,7 @@ export class AccountServiceImpl implements AccountService {
     const validPin = await this.emailAuthService.verifyPin(accountId, code)
 
     if (!validPin) {
-      throw new UnidentifiedException('email pin code')
+      throw new UnprocessableDataException('핀 번호가 일치하지 않습니다')
     }
 
     await this.prismaService.account.update({

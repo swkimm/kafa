@@ -29,8 +29,9 @@ import ManageRequestRoster from './pages/console/manager/team/ManageRequestRoste
 import ManageTeamInfo from './pages/console/manager/team/ManageTeamInfo.tsx'
 import ManageTeamLogo from './pages/console/manager/team/ManageTeamLogo.tsx'
 import ManageTeamRoster from './pages/console/manager/team/ManageTeamRoster.tsx'
+import Certification from './pages/console/user/certification/Certification.tsx'
+import CreateTeam from './pages/console/user/create-team/CreateTeam.tsx'
 import LoadRoster from './pages/console/user/roster/LoadRoster.tsx'
-import ApplyTeam from './pages/console/user/team/ApplyTeam.tsx'
 import Home from './pages/huddle/Home.tsx'
 import League from './pages/league/League.tsx'
 import LeagueDetail from './pages/league/[id]/LeagueDetail.tsx'
@@ -160,9 +161,12 @@ const App = () => {
 
           <Route element={<PrivateRoute allowedRoles={[Role.User]} />}>
             <Route element={<ConsoleLayout />}>
-              <Route path="/console/applyTeam" element={<ApplyTeam />} />
-              <Route path="/console/loadRoster" element={<LoadRoster />} />
-              <Route path="/console/createTeam" element={<ApplyTeam />} />
+              <Route path="/console/roster" element={<LoadRoster />} />
+              <Route path="/console/create-team" element={<CreateTeam />} />
+              <Route
+                path="/console/certification"
+                element={<Certification />}
+              />
             </Route>
           </Route>
 

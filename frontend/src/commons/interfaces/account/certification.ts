@@ -3,3 +3,9 @@ export interface CertificationStatus {
   certification: boolean
   credential: boolean
 }
+
+export interface CertificaionFile {
+  accountId: number
+  fileUrl: string
+  updatedAt: Date
+}

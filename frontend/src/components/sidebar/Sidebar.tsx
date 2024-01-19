@@ -17,7 +17,8 @@ import {
   ArrowLeftEndOnRectangleIcon,
   Bars3Icon,
   HomeIcon,
-  LockClosedIcon,
+  IdentificationIcon,
+  KeyIcon,
   UserCircleIcon,
   WalletIcon,
   XMarkIcon
@@ -53,16 +54,16 @@ const userNavigation: NavigationItem[] = [
   {
     name: '인증 관리',
     href: '/console/certification',
-    icon: LockClosedIcon
+    icon: KeyIcon
   },
   {
     name: '로스터 관리',
-    href: '/console/loadRoster',
-    icon: WalletIcon
+    href: '/console/roster',
+    icon: IdentificationIcon
   },
   {
     name: '팀 생성',
-    href: '/console/createTeam',
+    href: '/console/create-team',
     icon: WalletIcon
   }
 ]
@@ -315,14 +316,14 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                         </li>
                         <li className="mt-auto">
                           <button
-                            onClick={() => navigate('/')}
+                            onClick={handleLogout}
                             className="group -mx-2 flex w-full gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-800 hover:text-white"
                           >
                             <ArrowLeftEndOnRectangleIcon
                               className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white"
                               aria-hidden="true"
                             />
-                            메인으로 이동
+                            로그아웃
                           </button>
                         </li>
                       </ul>
@@ -424,14 +425,14 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                 </li>
                 <li className="-mx-6 mt-auto">
                   <button
-                    onClick={() => navigate('/')}
+                    onClick={handleLogout}
                     className="flex w-full items-center gap-x-4 px-6 py-3 text-sm font-medium leading-6 text-gray-200 hover:bg-indigo-900"
                   >
                     <ArrowLeftEndOnRectangleIcon
                       className="h-6 w-6 shrink-0 text-gray-200"
                       aria-hidden="true"
                     />
-                    <span aria-hidden="true">메인으로 이동</span>
+                    <span aria-hidden="true">로그아웃</span>
                   </button>
                 </li>
               </ul>
@@ -455,12 +456,12 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
             />
 
             <div className="flex flex-1 items-center justify-between gap-x-4 self-stretch">
-              <p className="text-sm font-bold lg:text-lg">관리 콘솔</p>
+              <p className="text-xs font-bold lg:text-sm">관리 콘솔</p>
               <button
-                className="text-xs font-medium lg:text-base"
-                onClick={handleLogout}
+                className="text-xs font-medium lg:text-sm"
+                onClick={() => navigate('/')}
               >
-                로그아웃
+                메인으로 이동
               </button>
             </div>
           </div>

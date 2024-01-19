@@ -24,7 +24,7 @@ const RecentLeagueSection: React.FC = () => {
     <MainCard
       title={'최근 리그 목록'}
       transparent={false}
-      more={() => navigate('leagues')}
+      more={() => navigate('/leagues')}
     >
       <div className="flex gap-2 overflow-x-auto py-5">
         {leagues.length > 0 &&
@@ -32,7 +32,8 @@ const RecentLeagueSection: React.FC = () => {
             return (
               <div
                 key={league.id}
-                className="flex min-w-[320px] items-center justify-center rounded-lg bg-indigo-950 p-5 shadow-lg"
+                className="flex min-w-[200px] items-center justify-center rounded-lg bg-indigo-950 p-5 shadow-lg hover:bg-indigo-900 lg:min-w-[320px]"
+                onClick={() => navigate(`/leagues/${league.id}`)}
               >
                 <img
                   src="/logo/KAFA_OG.png"

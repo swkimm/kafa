@@ -17,7 +17,11 @@ import { AuthenticatedRequest } from '@/common/class/authenticated-request.inter
 import { Public } from '@/common/decorator/guard.decorator'
 import { businessExceptionBinder } from '@/common/exception/business-exception.binder'
 import { FILE_OPTIONS } from '@/storage/option/file-option'
-import { type AccountCertification, Role } from '@prisma/client'
+import {
+  type AccountCertification,
+  Role,
+  type AccountCredential
+} from '@prisma/client'
 import { AccountService } from './account.service.interface'
 import type { AccountDTO } from './dto/account.dto'
 import type { AccountCertificateStatus } from './dto/accountStatus.dto'
@@ -26,13 +30,16 @@ import { UpdateAccountProfileDTO } from './dto/updateAccount.dto'
 import { UpdateEmailDTO } from './dto/updateEmail.dto'
 import { UpdatePasswordDTO } from './dto/updatePassword.dto'
 import { AccountCertificationService } from './interface/account-certification.service.interface'
+import { AccountCredentialService } from './interface/account-credential.service.interface'
 
 @Controller('account')
 export class AccountController {
   constructor(
     @Inject('AccountService') private readonly accountService: AccountService,
     @Inject('AccountCertificationService')
-    private readonly accountCertificationService: AccountCertificationService<AccountCertification>
+    private readonly accountCertificationService: AccountCertificationService<AccountCertification>,
+    @Inject('AccountCredentialService')
+    private readonly accountCredentialService: AccountCredentialService<AccountCredential>
   ) {}
 
   @Get('role')
@@ -81,6 +88,17 @@ export class AccountController {
         Role.User
       )
       return result
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Post('email/verify/resend')
+  async requestCertificationMail(
+    @Req() req: AuthenticatedRequest
+  ): Promise<string> {
+    try {
+      return await this.accountService.requestCertificationMail(req.user.id)
     } catch (error) {
       businessExceptionBinder(error)
     }
@@ -161,6 +179,15 @@ export class AccountController {
   /**
    * Certification and Credential
    */
+
+  @Get('credential')
+  async getAccountCredential(@Req() req: AuthenticatedRequest) {
+    try {
+      return await this.accountCredentialService.getCredential(req.user.id)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
 
   @Get('certification')
   async getAccountCertificaion(@Req() req: AuthenticatedRequest) {

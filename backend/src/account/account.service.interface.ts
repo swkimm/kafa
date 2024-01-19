@@ -59,6 +59,7 @@ export interface AccountService {
    * @param {string} code - 인증번호
    * @returns {Promise<{result: string}>} 인증결과
    * @throws {EntityNotExistException} 존재하지 않는 계정의 Id 나 팀의 Id 값을 전달한 경우 발생
+   * @throws {UnprocessableDataException} 핀 번호가 일치하지 않을 경우 발생
    */
   verifyEmail(
     accountId: string | number,
@@ -179,4 +180,14 @@ export interface AccountService {
    * @throws {EntityNotExistException} 존재하지 않는 계정 또는 팀 Id를 전달할 경우 발생
    */
   checkTeamAccount(accountId: number, teamId: number): Promise<boolean>
+
+  /**
+   * 이메일 주소 인증용 메일 전송을 요청합니다
+   *
+   * @param accountId - 인증 메일을 요청할 계정의 Id
+   * @returns {string} 'success'를 반환합니다
+   * @throws {EntityNotExistException} 존재하지 않는 계정의 Id를 전달할 경우 발생
+   * @throws {ConflictFoundException} 이미 이메일 인증이 완료된 계정의 Id를 전달할 경우 발생
+   */
+  requestCertificationMail(accountId: number): Promise<string>
 }

@@ -43,7 +43,7 @@ const GameTable: React.FC<GameTableProps> = ({ games }) => {
             <tbody className="divide-y divide-gray-200 bg-white">
               {games.length > 1 ? (
                 games.map((game) => (
-                  <tr key={game.id}>
+                  <tr key={game.id} className="hover:bg-gray-100">
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-xs font-medium text-gray-900 sm:pl-6 lg:pl-8">
                       {game.League.name}
                     </td>

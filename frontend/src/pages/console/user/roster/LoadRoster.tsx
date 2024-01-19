@@ -4,6 +4,7 @@ import ConsoleCard from '@/components/cards/ConsoleCard'
 import RosterCard from '@/components/cards/RosterCard'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { useCallback, useEffect, useState } from 'react'
 
 const LoadRoster = () => {
@@ -91,10 +92,11 @@ const LoadRoster = () => {
               </div>
             ))
           ) : (
-            <div className="col-span-10 w-full text-center">
-              <span className="text-sm text-gray-800 sm:text-base">
-                불러올 수 있는 로스터가 없습니다
-              </span>
+            <div className="col-span-10 flex w-full flex-row items-center justify-center">
+              <ExclamationTriangleIcon className="mr-1.5 h-6 w-6 text-red-500" />
+              <p className="text-xs font-medium text-gray-900 sm:text-sm">
+                계정에 연결할 수 있는 로스터가 없습니다
+              </p>
             </div>
           )}
         </div>
@@ -114,10 +116,11 @@ const LoadRoster = () => {
               </div>
             ))
           ) : (
-            <div className="col-span-10 w-full text-center">
-              <span className="text-sm text-gray-800 sm:text-base">
+            <div className="col-span-10 flex w-full flex-row items-center justify-center">
+              <ExclamationTriangleIcon className="mr-1.5 h-6 w-6 text-red-500" />
+              <p className="text-xs font-medium text-gray-900 sm:text-sm">
                 계정에 연결된 로스터가 없습니다
-              </span>
+              </p>
             </div>
           )}
         </div>
