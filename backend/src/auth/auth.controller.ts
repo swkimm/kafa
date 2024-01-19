@@ -103,7 +103,7 @@ export class AuthController {
   ) {
     try {
       const cookies = this.cloudFrontAuthService.issueCookies(
-        `https://cdn.kafa.one/secret/${req.user.id}/certificaiton-file/*`
+        `https://cdn.kafa.one/secret/account/${req.user.id}/certificaiton-file/*`
       )
 
       for (const cookieKey in cookies) {
