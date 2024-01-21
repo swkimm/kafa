@@ -172,7 +172,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
             as="div"
-            className="relative z-10 lg:hidden"
+            className="relative z-20 lg:hidden"
             onClose={setSidebarOpen}
           >
             <Transition.Child
@@ -336,7 +336,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         </Transition.Root>
 
         {/* Desktop Version */}
-        <div className="hidden lg:fixed lg:inset-y-0 lg:z-10 lg:flex lg:w-72 lg:flex-col">
+        <div className="hidden lg:fixed lg:inset-y-0 lg:z-20 lg:flex lg:w-72 lg:flex-col">
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-950 px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
               <img
@@ -440,7 +440,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
           </div>
         </div>
         <div className="lg:pl-72">
-          <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-5 opacity-95 shadow-lg">
+          <div className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-5 opacity-95 shadow-lg">
             <button
               type="button"
               className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
