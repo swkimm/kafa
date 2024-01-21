@@ -2,15 +2,18 @@ import axiosInstance from '@/commons/axios'
 import type { Roster } from '@/commons/interfaces/roster/roster'
 import ConsoleCard from '@/components/cards/ConsoleCard'
 import RosterCard from '@/components/cards/RosterCard'
+import ModalConatiner from '@/components/modal/ModalConatiner'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { useCallback, useEffect, useState } from 'react'
+import CreateRosterModal from './CreateRosterModal'
 
 const LoadRoster = () => {
   const [rosters, setRosters] = useState<Roster[]>([])
   const [connectable, setConnectable] = useState<Roster[]>([])
   const { showNotification } = useNotification()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const getConnectableRosters = useCallback(async () => {
     try {
@@ -60,12 +63,18 @@ const LoadRoster = () => {
 
   return (
     <div className="flex flex-col gap-y-3 sm:px-4">
+      <ModalConatiner isOpen={isModalOpen}>
+        <CreateRosterModal closeModal={() => setIsModalOpen(false)} />
+      </ModalConatiner>
       <div className="flex items-center justify-between px-4 pt-3 sm:px-0">
         <h2 className="text-base font-bold text-gray-800 sm:px-0">
           로스터 관리
         </h2>
         <div>
-          <button className="rounded-md bg-indigo-950 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-900">
+          <button
+            className="rounded-md bg-indigo-950 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-900"
+            onClick={() => setIsModalOpen(true)}
+          >
             로스터 생성
           </button>
         </div>

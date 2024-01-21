@@ -9,12 +9,12 @@ const NotFound: React.FC = () => {
       <main className="grid h-screen place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div className="text-center">
           <p className="text-xl font-semibold text-yellow-400">ERROR</p>
-          <h1 className="mt-3 flex items-center justify-center">
+          <div className="mt-3 flex items-center justify-center">
             <ExclamationTriangleIcon className="-ml-0.5 mr-1.5 mt-0.5 h-6 w-6 text-yellow-400 sm:mt-1 sm:h-8 sm:w-8" />
             <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Not Found
             </h1>
-          </h1>
+          </div>
           <p className="mt-6 text-sm text-gray-600 sm:text-base">
             존재하지 않는 페이지입니다
           </p>

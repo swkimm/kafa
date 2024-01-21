@@ -78,7 +78,7 @@ const Footer: React.FC = () => {
   const navigate = useNavigate()
   return (
     <footer
-      className={`inset-x-0 bottom-0 z-50 bg-gray-950 px-4 py-10 text-center text-white`}
+      className={`inset-x-0 bottom-0 bg-gray-950 px-4 py-10 text-center text-white`}
     >
       <nav
         className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12"

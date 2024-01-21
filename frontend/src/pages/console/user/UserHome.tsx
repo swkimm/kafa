@@ -60,7 +60,7 @@ const UserHome: React.FC<UserHomeProps> = () => {
       <div className="grid grid-cols-3 gap-4">
         <div className="col-span-3 lg:col-span-1">
           <ConsoleCard
-            title="Profile"
+            title="프로필"
             subtitle="계정 프로필"
             more={() => navigate('/console/profile')}
           >
@@ -69,8 +69,8 @@ const UserHome: React.FC<UserHomeProps> = () => {
         </div>
         <div className="col-span-3 lg:col-span-2">
           <ConsoleCard
-            title="Authentication"
-            subtitle="계정인증 정보 요약"
+            title="인증"
+            subtitle="계정인증 정보"
             more={() => navigate('/console/certification')}
           >
             {certificationStatus ? (
@@ -80,7 +80,7 @@ const UserHome: React.FC<UserHomeProps> = () => {
         </div>
         <div className="col-span-3">
           <ConsoleCard
-            title="Roster"
+            title="로스터"
             subtitle="현재 계정에 연결된 로스터 목록"
             more={() => navigate('/console/roster')}
           >

@@ -1,4 +1,5 @@
 import type { RegisterTeamRequest, Team } from '@prisma/client'
+import type { TeamManyDTO } from '../dto/team-many.dto'
 
 /**
  * 팀 조회와 관련된 서비스 인터페이스
@@ -26,6 +27,14 @@ export interface GetTeamService<T extends Team, U extends RegisterTeamRequest> {
    * @throws {ParameterValidationException} 잘못된 팀 상태를 전달한 경우 발생
    */
   getTeams(page: number, limit?: number, option?: string): Promise<T[]>
+
+  /**
+   * 이름 또는 영문이름을 포함하는 팀들을 반홥합니다
+   *
+   * @param {string} searchTerm - 팀 이름 (국문 또는 영문)
+   * @param {number} [limit=5] - 최대로 불러올 검색 수 (최대 10)
+   */
+  getTeamsBySearch(searchTerm: string, limit?: number): Promise<TeamManyDTO[]>
 
   /**
    * 특정 협회에 속한 팀 목록을 반환합니다.

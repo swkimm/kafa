@@ -150,6 +150,19 @@ export abstract class TeamService<
   }
 
   /**
+   * 이름 또는 영문이름을 포함하는 팀들을 반홥합니다
+   *
+   * @param {string} searchTerm - 팀 이름 (국문 또는 영문)
+   * @param {number} [limit=5] - 최대로 불러올 검색 수 (최대 10)
+   */
+  async getTeamsBySearch(
+    searchTerm: string,
+    limit?: number
+  ): Promise<TeamManyDTO[]> {
+    return await this.getTeamService.getTeamsBySearch(searchTerm, limit)
+  }
+
+  /**
    * 특정 협회에 속한 팀 목록을 반환합니다.
    *
    * @param {number} associationId - 소속 팀 목록을 조회할 협회의 Id

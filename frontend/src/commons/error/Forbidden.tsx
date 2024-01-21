@@ -9,12 +9,12 @@ const Forbidden: React.FC = () => {
       <main className="grid h-screen place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div className="text-center">
           <p className="text-xl font-semibold text-red-500">ERROR</p>
-          <h1 className="mt-5 flex items-center justify-center">
+          <div className="mt-5 flex items-center justify-center">
             <ExclamationTriangleIcon className="-ml-0.5 mr-1.5 mt-0.5 h-6 w-6 text-red-500 sm:mt-1 sm:h-8 sm:w-8" />
             <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               페이지 접근 권한 없음
             </h1>
-          </h1>
+          </div>
           <p className="mt-6 text-sm text-gray-600 sm:text-base">
             현재 로그인한 계정으로 접근 불가능한 페이지 이거나
           </p>

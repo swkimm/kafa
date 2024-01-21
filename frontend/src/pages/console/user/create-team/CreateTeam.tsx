@@ -8,6 +8,11 @@ import { CreatTeamList } from './CreateTeamList'
 const CreateTeam: React.FC = () => {
   const [requests, setRequests] = useState<RegisterTeamRequest[]>([])
 
+  const onTeamRequestCreated = (newRequest: RegisterTeamRequest) => {
+    newRequest.createdAt = new Date(newRequest.createdAt)
+    setRequests([...requests, newRequest])
+  }
+
   useEffect(() => {
     const getTeamRequests = async () => {
       await axiosInstance.get('/teams/requests').then((result) => {
@@ -28,12 +33,12 @@ const CreateTeam: React.FC = () => {
       </div>
       <div className="grid grid-cols-4 gap-4">
         <div className="col-span-4 lg:col-span-2">
-          <ConsoleCard title="팀 만들기" subtitle="새로운 팀을 생성합니다">
-            <CreateTeamForm />
+          <ConsoleCard title="팀 생성" subtitle="새로운 팀을 생성합니다">
+            <CreateTeamForm onCreate={onTeamRequestCreated} />
           </ConsoleCard>
         </div>
         <div className="col-span-4 lg:col-span-2">
-          <ConsoleCard title="팀 생성 요청 목록" subtitle="팀 생성 요청 목록">
+          <ConsoleCard title="생성 요청 목록" subtitle="팀 생성 요청 목록">
             <CreatTeamList requests={requests} />
           </ConsoleCard>
         </div>

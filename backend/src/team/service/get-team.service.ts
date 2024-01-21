@@ -17,6 +17,7 @@ import {
   TeamEnrollStatus,
   TeamStatus
 } from '@prisma/client'
+import type { TeamManyDTO } from '../dto/team-many.dto'
 import type { GetTeamService } from '../interface/get-team.service.interface'
 
 /**
@@ -75,6 +76,45 @@ export class GetTeamServiceImpl
         throw error
       }
       throw new UnexpectedException(error)
+    }
+  }
+
+  async getTeamsBySearch(
+    searchTerm: string,
+    limit = 10
+  ): Promise<TeamManyDTO[]> {
+    try {
+      return await this.prismaService.team.findMany({
+        where: {
+          OR: [
+            {
+              name: {
+                contains: searchTerm
+              }
+            },
+            {
+              globalName: {
+                contains: searchTerm
+              }
+            }
+          ],
+          status: 'Enabled'
+        },
+        take: limit,
+        select: {
+          id: true,
+          name: true,
+          globalName: true,
+          initial: true,
+          color: true,
+          profileImgUrl: true
+        },
+        orderBy: {
+          name: 'asc'
+        }
+      })
+    } catch (error) {
+      throw new UnexpectedException(error, error.stack)
     }
   }
 

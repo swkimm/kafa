@@ -8,5 +8,6 @@ module.exports = {
         custom: ['Spoqa Han Sans Neo', 'sans-serif']
       }
     }
-  }
+  },
+  plugins: [require('@tailwindcss/forms')]
 }

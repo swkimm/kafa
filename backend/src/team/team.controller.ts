@@ -43,16 +43,6 @@ export class TeamController {
   }
 
   @Public()
-  @Get(':id')
-  async getTeam(@Param('id', ParseIntPipe) id: number): Promise<Team> {
-    try {
-      return await this.teamService.getTeam(id)
-    } catch (error) {
-      businessExceptionBinder(error)
-    }
-  }
-
-  @Public()
   @Get()
   async getTeams(
     @Query('page', ParseIntPipe) page: number,
@@ -61,6 +51,28 @@ export class TeamController {
   ): Promise<TeamManyDTO[]> {
     try {
       return await this.teamService.getTeams(page, limit, option)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Get('search')
+  async getTeamsBySearch(
+    @Query('term') searchTerm: string,
+    @Query('limit', new ParseIntPipe({ optional: true })) limit?: number
+  ): Promise<TeamManyDTO[]> {
+    try {
+      return await this.teamService.getTeamsBySearch(searchTerm, limit)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Public()
+  @Get(':id')
+  async getTeam(@Param('id', ParseIntPipe) id: number): Promise<Team> {
+    try {
+      return await this.teamService.getTeam(id)
     } catch (error) {
       businessExceptionBinder(error)
     }
