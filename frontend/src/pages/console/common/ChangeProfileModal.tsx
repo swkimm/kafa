@@ -1,6 +1,6 @@
 import axiosInstance from '@/commons/axios'
 import type { Profile } from '@/commons/interfaces/account/profile'
-import ModalConatiner from '@/components/modal/ModalConatiner'
+import ModalContainer from '@/components/modal/ModalContainer'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
 import { PhotoIcon } from '@heroicons/react/24/outline'
@@ -111,7 +111,7 @@ const ChangeProfileModal: React.FC<ChangeProfileModalProps> = ({
   }
 
   return (
-    <ModalConatiner isOpen={isModalOpen}>
+    <ModalContainer isOpen={isModalOpen}>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-5">
           <h2 className="text-base font-semibold leading-7 text-gray-900">
@@ -225,7 +225,7 @@ const ChangeProfileModal: React.FC<ChangeProfileModalProps> = ({
           돌아가기
         </button>
       </div>
-    </ModalConatiner>
+    </ModalContainer>
   )
 }
 

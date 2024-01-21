@@ -20,7 +20,7 @@ const useNotification = () => {
     title: string,
     message: string,
     age?: number
-  ) => {
+  ): void => {
     setNotification({
       title,
       message,
@@ -30,7 +30,7 @@ const useNotification = () => {
     })
   }
 
-  const closeNotification = () => {
+  const closeNotification = (): void => {
     setNotification({
       ...notification,
       isShow: false

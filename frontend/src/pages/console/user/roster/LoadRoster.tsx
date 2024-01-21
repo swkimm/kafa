@@ -2,7 +2,7 @@ import axiosInstance from '@/commons/axios'
 import type { Roster } from '@/commons/interfaces/roster/roster'
 import ConsoleCard from '@/components/cards/ConsoleCard'
 import RosterCard from '@/components/cards/RosterCard'
-import ModalConatiner from '@/components/modal/ModalConatiner'
+import ModalContainer from '@/components/modal/ModalContainer'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
@@ -63,9 +63,9 @@ const LoadRoster = () => {
 
   return (
     <div className="flex flex-col gap-y-3 sm:px-4">
-      <ModalConatiner isOpen={isModalOpen}>
+      <ModalContainer isOpen={isModalOpen}>
         <CreateRosterModal closeModal={() => setIsModalOpen(false)} />
-      </ModalConatiner>
+      </ModalContainer>
       <div className="flex items-center justify-between px-4 pt-3 sm:px-0">
         <h2 className="text-base font-bold text-gray-800 sm:px-0">
           로스터 관리

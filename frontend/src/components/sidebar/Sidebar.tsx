@@ -172,7 +172,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
             as="div"
-            className="relative z-50 lg:hidden"
+            className="relative z-10 lg:hidden"
             onClose={setSidebarOpen}
           >
             <Transition.Child
@@ -336,7 +336,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         </Transition.Root>
 
         {/* Desktop Version */}
-        <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+        <div className="hidden lg:fixed lg:inset-y-0 lg:z-10 lg:flex lg:w-72 lg:flex-col">
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-950 px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
               <img

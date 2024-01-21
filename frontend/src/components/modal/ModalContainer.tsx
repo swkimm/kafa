@@ -1,13 +1,13 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 
-interface ModalConatinerProps {
+interface ModalContainerProps {
   children: React.ReactNode
   isOpen: boolean
   onClose?: () => void
 }
 
-const ModalConatiner: React.FC<ModalConatinerProps> = ({
+const ModalContainer: React.FC<ModalContainerProps> = ({
   children,
   isOpen,
   onClose
@@ -16,7 +16,7 @@ const ModalConatiner: React.FC<ModalConatinerProps> = ({
     <Transition.Root show={isOpen} as={Fragment}>
       <Dialog
         as="div"
-        className="relative z-10"
+        className="relative z-50"
         onClose={onClose ? onClose : () => []}
       >
         <Transition.Child
@@ -53,4 +53,4 @@ const ModalConatiner: React.FC<ModalConatinerProps> = ({
   )
 }
 
-export default ModalConatiner
+export default ModalContainer
