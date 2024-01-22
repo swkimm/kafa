@@ -327,6 +327,8 @@ model Game {
   League     League     @relation(fields: [leagueId], references: [id])
   score      Score?
   Records    Record[]
+
+  @@index([startedAt])
 }
 
 model Score {

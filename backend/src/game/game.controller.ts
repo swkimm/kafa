@@ -11,6 +11,7 @@ import { businessExceptionBinder } from '@/common/exception/business-exception.b
 import { ScoreService } from '@/score/abstract/score.service'
 import type { Game, Score } from '@prisma/client'
 import { GameService } from './abstract/game.service'
+import type { GameManyDTO } from './dto/game-many.dto'
 import type { GameWithLeagueDTO } from './dto/game-with-league.dto'
 
 @Public()
@@ -81,6 +82,21 @@ export class GameController {
   ): Promise<Game[]> {
     try {
       return await this.gameService.getGamesByLeagueId(leagueId, cursor, limit)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Get('leagues/:leagueId/teams/:teamId')
+  async getGamesByLeagueIdAndTeamId(
+    @Param('leagueId', ParseIntPipe) leagueId: number,
+    @Param('teamId', ParseIntPipe) teamId: number
+  ): Promise<GameManyDTO[]> {
+    try {
+      return await this.gameService.getGamesByLeagueIdAndTeamId(
+        leagueId,
+        teamId
+      )
     } catch (error) {
       businessExceptionBinder(error)
     }

@@ -59,7 +59,8 @@ export class GetRecordServiceImpl implements GetRecordService {
                 select: {
                   id: true,
                   name: true,
-                  profileImgUrl: true
+                  profileImgUrl: true,
+                  teamId: true
                 }
               }
             }
@@ -120,7 +121,8 @@ export class GetRecordServiceImpl implements GetRecordService {
                 select: {
                   id: true,
                   name: true,
-                  profileImgUrl: true
+                  profileImgUrl: true,
+                  teamId: true
                 }
               }
             }
@@ -183,7 +185,8 @@ export class GetRecordServiceImpl implements GetRecordService {
                 select: {
                   id: true,
                   name: true,
-                  profileImgUrl: true
+                  profileImgUrl: true,
+                  teamId: true
                 }
               }
             }

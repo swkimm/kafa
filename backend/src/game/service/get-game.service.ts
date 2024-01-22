@@ -17,6 +17,7 @@ import {
   type Team,
   type RegisterTeamRequest
 } from '@prisma/client'
+import type { GameManyDTO } from '../dto/game-many.dto'
 import type { GameWithLeagueDTO } from '../dto/game-with-league.dto'
 import type { GetGameService } from '../interface/get-game.service.interface'
 
@@ -140,6 +141,39 @@ export class GetGameServiceImpl implements GetGameService<Game> {
               awayTeamScore: true
             }
           }
+        }
+      })
+    } catch (error) {
+      if (error instanceof BusinessException) {
+        throw error
+      }
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
+  async getGamesByLeagueIdAndTeamId(
+    leagueId: number,
+    teamId: number
+  ): Promise<GameManyDTO[]> {
+    try {
+      await this.teamService.getTeam(teamId)
+      await this.leagueService.getLeague(leagueId)
+
+      return await this.prismaService.game.findMany({
+        where: {
+          leagueId,
+          OR: [
+            {
+              awayTeamId: teamId
+            },
+            {
+              homeTeamId: teamId
+            }
+          ]
+        },
+        select: {
+          id: true,
+          name: true
         }
       })
     } catch (error) {

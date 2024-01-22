@@ -24,6 +24,7 @@ export interface RecordDTO {
       id: number
       name: string
       profileImgUrl: string
+      teamId: number
     }
   }
 }

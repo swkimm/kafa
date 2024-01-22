@@ -1,5 +1,6 @@
 import type { Game } from '@prisma/client'
 import type { CreateGameDTO } from '../dto/create-game.dto'
+import type { GameManyDTO } from '../dto/game-many.dto'
 import type { GameWithLeagueDTO } from '../dto/game-with-league.dto'
 import type { UpdateGameDTO } from '../dto/update-game.dto'
 import type { CreateGameService } from '../interface/create-game.service.interface'
@@ -59,6 +60,23 @@ export abstract class GameService<T extends Game> {
     limit?: number
   ): Promise<T[]> {
     return await this.getGameService.getGamesByLeagueId(leagueId, cursor, limit)
+  }
+
+  /**
+   * 특정 팀의 특정 리그에서의 경기 목록을 반환합니다
+   *
+   * @param {number} leagueId - 경기 목록을 불러올 리그의 Id
+   * @param {number} teamId - 경기 목록을 불러올 팀의 Id
+   * @returns {Promise<GameManyDTO[]>} 경기 목록
+   */
+  async getGamesByLeagueIdAndTeamId(
+    leagueId: number,
+    teamId: number
+  ): Promise<GameManyDTO[]> {
+    return await this.getGameService.getGamesByLeagueIdAndTeamId(
+      leagueId,
+      teamId
+    )
   }
 
   /**

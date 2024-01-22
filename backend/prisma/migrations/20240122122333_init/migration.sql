@@ -302,6 +302,9 @@ CREATE UNIQUE INDEX "TeamLeague_team_id_league_id_key" ON "TeamLeague"("team_id"
 -- CreateIndex
 CREATE UNIQUE INDEX "LeagueRoster_league_id_roster_id_key" ON "LeagueRoster"("league_id", "roster_id");
 
+-- CreateIndex
+CREATE INDEX "Game_started_at_idx" ON "Game"("started_at");
+
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "Team"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
