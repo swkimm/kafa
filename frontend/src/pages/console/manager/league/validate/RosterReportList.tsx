@@ -82,7 +82,7 @@ const RosterReportList: React.FC<RosterReportListProps> = ({ reports }) => {
             </thead>
             <tbody className="divide-y divide-gray-200">
               {reports.map((report, index) => (
-                <tr key={report.name}>
+                <tr key={index}>
                   <td className="whitespace-nowrap py-3 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                     {index + 1}
                   </td>

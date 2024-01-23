@@ -8,11 +8,13 @@ import type {
   RosterWithAthleteManyDTO,
   RosterWithAthleteSimpleDTO
 } from '../dto/roster-with-athlete.dto'
+import type { RosterWithCredentialDTO } from '../dto/roster-with-credential.dto'
 import type { UpdateRosterDTO } from '../dto/update-roster.dto'
 import type { ConnectRosterService } from '../interface/connect-roster.service.interface'
 import type { CreateRosterService } from '../interface/create-roster.service.interface'
 import type { DeleteRosterService } from '../interface/delete-roster.service.interface'
 import type { GetRosterService } from '../interface/get-roster.service.interface'
+import type { RosterCredentialDTO } from '../interface/roster-credential.dto'
 import type { UpdateRosterService } from '../interface/update-roster.interface'
 
 /**
@@ -23,7 +25,7 @@ import type { UpdateRosterService } from '../interface/update-roster.interface'
 export abstract class RosterService<T extends Roster> {
   constructor(
     private readonly getRosterService: GetRosterService,
-    private readonly createRosterService: CreateRosterService<T>,
+    private readonly createRosterService: CreateRosterService,
     private readonly deleteRosterService: DeleteRosterService<T>,
     private readonly updateRosterService: UpdateRosterService,
     private readonly connectRosterService: ConnectRosterService
@@ -115,11 +117,32 @@ export abstract class RosterService<T extends Roster> {
   }
 
   /**
+   * 팀 로스터중 계정에 연결되지 않은 로스터 목록을 반환합니다
+   * Offset Based Pagination이 적용되어 있습니다
+   *
+   * @param {number} managerId - 팀 계정 식별자
+   * @param {number} page - 조회할 페이지
+   * @param {number} [limit=10] -
+   * @return {Promise<RosterWithCredentialDTO[]>}
+   */
+  async getUnconnectedRosters(
+    managerId: number,
+    page: number,
+    limit?: number
+  ): Promise<RosterWithCredentialDTO[]> {
+    return await this.connectRosterService.getUnconnectedRosters(
+      managerId,
+      page,
+      limit
+    )
+  }
+
+  /**
    * 로스터 및 선수 정보를 생성하고 생성된 로스터 정보를 반환합니다
    *
    * @param {CreateRosterDTO} rosterDTO - 생성할 로스터 정보가 담긴 객체
    * @param {number} accountId - 로스터 생성을 요청하는 계정의 Id
-   * @returns {Promise<T>} 생성된 로스터 정보
+   * @returns {Promise<RosterWithCredentialDTO>} 생성된 로스터 정보
    * @throws {ParameterValidationException} 로스터 정보 객체에 유효하지 않은 값이 있을 경우 발생
    * @throws {EntityNotExistException} 존재하지 않는 팀의 Id를 전달할 경우 발생
    * @throws {ForbiddenAccessException} 매니저 계정으로 요청시 현재 계정과 일치하지 않는 팀의 로스터를 생성하려는 경우 발생
@@ -127,7 +150,7 @@ export abstract class RosterService<T extends Roster> {
   async createRoster(
     rosterDTO: CreateRosterDTO,
     accountId: number
-  ): Promise<T> {
+  ): Promise<RosterWithCredentialDTO> {
     return await this.createRosterService.createRoster(rosterDTO, accountId)
   }
 
@@ -163,6 +186,29 @@ export abstract class RosterService<T extends Roster> {
       rosterDTO,
       rosterId,
       accountId
+    )
+  }
+
+  /**
+   * 아직 계정이 연결되지 않은 로스터의 개인 정보를 변경합니다
+   *
+   * @param {number} managerId - 팀 계정 Id
+   * @param {number} rosterId - 로스터 Id
+   * @param {RosterCredentialDTO} credential - 개인 정보
+   * @returns {Promise<RosterCredentialDTO>} - 변경된 개인 정보
+   * @throws {EntityNotExistException} - 존재하지 않는 로스터의 Id를 전달할 경우 발생
+   * @throws {ForbiddenAccessException} - 다른팀의 로스터 Id를 전달할 경우 발생
+   * @throws {UnprocessableDataException} - 이미 계정이 연결된 로스터에 해당 요청을 보낼 경우 발생
+   */
+  async updateRosterCredential(
+    managerId: number,
+    rosterId: number,
+    credential: RosterCredentialDTO
+  ): Promise<RosterCredentialDTO> {
+    return await this.updateRosterService.updateRosterCredential(
+      managerId,
+      rosterId,
+      credential
     )
   }
 

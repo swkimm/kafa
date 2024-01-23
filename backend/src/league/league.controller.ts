@@ -19,6 +19,7 @@ import {
   type TeamLeague
 } from '@prisma/client'
 import { LeagueService } from './abstract/league.service'
+import type { LeagueApplyStatusDTO } from './dto/league-apply-status.dto'
 import type { LeagueWithAssociationDTO } from './dto/league-with-association.dto'
 import type { RegisterLeagueAvaliabilityDTO } from './dto/register-league-availability.dto'
 
@@ -104,7 +105,7 @@ export class LeagueController {
   @Get('requests')
   async getTeamJoinLeagueRequests(
     @Req() req: AuthenticatedRequest
-  ): Promise<TeamLeague[]> {
+  ): Promise<LeagueApplyStatusDTO[]> {
     try {
       return await this.leagueService.getTeamJoinLeagueRequests(req.user.id)
     } catch (error) {

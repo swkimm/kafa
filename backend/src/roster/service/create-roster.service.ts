@@ -8,12 +8,13 @@ import {
   UnexpectedException
 } from '@/common/exception/business.exception'
 import { PrismaService } from '@/prisma/prisma.service'
-import { RosterType, type Roster, Prisma, RosterStatus } from '@prisma/client'
+import { RosterType, Prisma, RosterStatus } from '@prisma/client'
 import type { CreateRosterDTO } from '../dto/create-roster.dto'
+import type { RosterWithCredentialDTO } from '../dto/roster-with-credential.dto'
 import type { CreateRosterService } from '../interface/create-roster.service.interface'
 
 @Injectable()
-export class CreateRosterServiceImpl implements CreateRosterService<Roster> {
+export class CreateRosterServiceImpl implements CreateRosterService {
   constructor(
     private readonly prismaService: PrismaService,
     @Inject('AccountService')
@@ -23,7 +24,7 @@ export class CreateRosterServiceImpl implements CreateRosterService<Roster> {
   async createRoster(
     rosterDTO: CreateRosterDTO,
     accountId: number
-  ): Promise<Roster> {
+  ): Promise<RosterWithCredentialDTO> {
     try {
       this.checkAtheleteInfo(rosterDTO)
 
@@ -59,6 +60,20 @@ export class CreateRosterServiceImpl implements CreateRosterService<Roster> {
               birthday,
               gender,
               name
+            }
+          }
+        },
+        select: {
+          id: true,
+          name: true,
+          profileImgUrl: true,
+          rosterType: true,
+          status: true,
+          RosterCredentials: {
+            select: {
+              name: true,
+              birthday: true,
+              gender: true
             }
           }
         }

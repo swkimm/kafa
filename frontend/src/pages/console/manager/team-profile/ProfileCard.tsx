@@ -160,7 +160,7 @@ const TeamProfileCard: React.FC = () => {
   return (
     <div>
       {formData && team && (
-        <div className="mt-5 grid grid-cols-6 gap-y-3">
+        <div className="mt-5 grid grid-cols-6 gap-y-3.5">
           <div className="col-span-6 grid grid-cols-6">
             <label
               htmlFor="cover-photo col-span-6 sm:col-span-1"
@@ -217,9 +217,9 @@ const TeamProfileCard: React.FC = () => {
                 <div className="mt-4 flex text-sm leading-6 text-gray-600">
                   <label
                     htmlFor="file-upload"
-                    className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-950 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-900"
+                    className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-950 focus-within:outline-none focus-within:ring-0 hover:text-indigo-900"
                   >
-                    <span>파일 선택</span>
+                    <span>사진 선택</span>
                     <input
                       id="file-upload"
                       name="file-upload"
@@ -244,7 +244,7 @@ const TeamProfileCard: React.FC = () => {
           <div className="col-span-6 flex items-center sm:col-span-5">
             <input
               value={formData.name}
-              className="block w-full rounded-md border-0 px-2 py-1.5 text-sm leading-6 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950"
+              className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
               onChange={(event) =>
                 setFormData({ ...formData, name: event.target.value })
               }
@@ -258,7 +258,7 @@ const TeamProfileCard: React.FC = () => {
           <div className="col-span-6 flex items-center sm:col-span-5">
             <input
               value={formData.globalName}
-              className="block w-full rounded-md border-0 px-2 py-1.5 text-sm leading-6 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950"
+              className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
               onChange={(event) =>
                 setFormData({ ...formData, globalName: event.target.value })
               }
@@ -272,7 +272,7 @@ const TeamProfileCard: React.FC = () => {
           <div className="col-span-6 flex items-center sm:col-span-5">
             <input
               value={formData.hometown}
-              className="block w-full rounded-md border-0 px-2 py-1.5 text-sm leading-6 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950"
+              className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
               onChange={(event) =>
                 setFormData({ ...formData, hometown: event.target.value })
               }
@@ -286,7 +286,7 @@ const TeamProfileCard: React.FC = () => {
           <div className="col-span-6 flex items-center sm:col-span-5">
             <input
               value={formData.initial}
-              className="block w-full rounded-md border-0 px-2 py-1.5 text-sm leading-6 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950"
+              className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
               onChange={(event) =>
                 setFormData({ ...formData, initial: event.target.value })
               }
@@ -299,7 +299,7 @@ const TeamProfileCard: React.FC = () => {
           </div>
           <div className="col-span-6 flex items-center sm:col-span-5">
             <input
-              className="block w-full rounded-md border-0 px-2 py-1.5 text-sm leading-6 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950"
+              className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
               type="number"
               value={formData.establishedAt}
               onChange={(event) =>
@@ -319,7 +319,7 @@ const TeamProfileCard: React.FC = () => {
             <input
               type="color"
               value={formData.color}
-              className="block w-full rounded-md border-0 bg-transparent px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 bg-transparent px-2 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950"
               onChange={(event) =>
                 setFormData({ ...formData, color: event.target.value })
               }
@@ -334,7 +334,7 @@ const TeamProfileCard: React.FC = () => {
             <input
               type="color"
               value={formData.subColor}
-              className="block w-full rounded-md border-0 bg-transparent px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 bg-transparent px-2 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950"
               onChange={(event) =>
                 setFormData({ ...formData, subColor: event.target.value })
               }

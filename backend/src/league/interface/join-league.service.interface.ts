@@ -1,4 +1,5 @@
 import type { LeagueApplyStatus, TeamLeague } from '@prisma/client'
+import type { LeagueApplyStatusDTO } from '../dto/league-apply-status.dto'
 import type { LeagueWithAssociationDTO } from '../dto/league-with-association.dto'
 import type {
   RegisterLeagueAvaliabilityDTO,
@@ -83,9 +84,9 @@ export interface JoinLeagueService<T extends TeamLeague> {
    * 팀에서 신청한 리그 참여 요청 목록을 반환합니다
    *
    * @param {number} managerId - 리그 참여 요청 목록을 조회할 팀 매니저 계정의 Id
-   * @returns {Promise<T[]>} 리그 참여 요청 목록
+   * @returns {Promise<LeagueApplyStatusDTO[]>} 리그 참여 요청 목록
    */
-  getTeamJoinLeagueRequests(managerId: number): Promise<T[]>
+  getTeamJoinLeagueRequests(managerId: number): Promise<LeagueApplyStatusDTO[]>
 
   /**
    * 리그 참여를 신청한 팀의 로스터와 개인 증명서 목록을 반환합니다

@@ -2,15 +2,18 @@ import { Inject, Injectable } from '@nestjs/common'
 import { AccountService } from '@/account/account.service.interface'
 import {
   BusinessException,
+  EntityNotExistException,
   ForbiddenAccessException,
   ParameterValidationException,
-  UnexpectedException
+  UnexpectedException,
+  UnprocessableDataException
 } from '@/common/exception/business.exception'
 import { PrismaService } from '@/prisma/prisma.service'
-import { RosterType } from '@prisma/client'
+import { Prisma, RosterType } from '@prisma/client'
 import type { RosterWithAthleteSimpleDTO } from '../dto/roster-with-athlete.dto'
 import type { UpdateRosterDTO } from '../dto/update-roster.dto'
 import { GetRosterService } from '../interface/get-roster.service.interface'
+import type { RosterCredentialDTO } from '../interface/roster-credential.dto'
 import type { UpdateRosterService } from '../interface/update-roster.interface'
 
 @Injectable()
@@ -123,6 +126,59 @@ export class UpdateRosterServiceImpl implements UpdateRosterService {
     } catch (error) {
       if (error instanceof BusinessException) {
         throw error
+      }
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
+  async updateRosterCredential(
+    managerId: number,
+    rosterId: number,
+    credential: RosterCredentialDTO
+  ): Promise<RosterCredentialDTO> {
+    try {
+      const roster = await this.prismaService.roster.findUniqueOrThrow({
+        where: {
+          id: rosterId
+        }
+      })
+
+      const validAccess = await this.accountService.checkTeamAccount(
+        managerId,
+        roster.teamId
+      )
+
+      if (!validAccess) {
+        throw new ForbiddenAccessException(
+          '다른팀의 로스터는 수정할 수 없습니다'
+        )
+      }
+
+      if (roster.accountId)
+        throw new UnprocessableDataException('이미 계정에 연결된 로스터입니다')
+
+      return await this.prismaService.rosterCredentials.update({
+        where: {
+          rosterId
+        },
+        data: {
+          ...credential
+        },
+        select: {
+          name: true,
+          birthday: true,
+          gender: true
+        }
+      })
+    } catch (error) {
+      if (error instanceof BusinessException) {
+        throw error
+      }
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2025'
+      ) {
+        throw new EntityNotExistException('로스터가 존재하지 않습니다')
       }
       throw new UnexpectedException(error, error.stack)
     }

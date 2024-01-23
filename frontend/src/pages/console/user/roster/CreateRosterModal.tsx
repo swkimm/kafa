@@ -1,7 +1,5 @@
 import axiosInstance from '@/commons/axios'
 import type { TeamSimple } from '@/commons/interfaces/team/teamSimple'
-import useNotification from '@/hooks/useNotification'
-import { NotificationType } from '@/state/notificationState'
 import { useEffect, useState } from 'react'
 import CreateRosterForm from './CreateRosterForm'
 import TeamSearchResultList from './TeamSearchResultList'
@@ -18,8 +16,6 @@ const CreateRosterModal: React.FC<CreateRosterModalProps> = ({
   const [isSearching, setIsSearching] = useState(false)
   const [selectedTeam, setSelectedTeam] = useState<TeamSimple>()
 
-  const { showNotification } = useNotification()
-
   const onTeamSelected = (team: TeamSimple) => {
     setSelectedTeam(team)
   }
@@ -35,14 +31,6 @@ const CreateRosterModal: React.FC<CreateRosterModalProps> = ({
     setIsSearching(false)
   }
 
-  const onSubmitRoster = () => {
-    showNotification(
-      NotificationType.Warning,
-      '미구현',
-      '아직 구현되지 않았습니다'
-    )
-  }
-
   useEffect(() => {
     const getTeams = async () => {
       await axiosInstance
@@ -56,16 +44,20 @@ const CreateRosterModal: React.FC<CreateRosterModalProps> = ({
   return (
     <div className="space-y-6">
       <div>
-        <div className="border-b border-gray-900/10">
+        <div className="">
           {selectedTeam ? (
-            <div className="flex flex-col gap-y-2 pb-3">
+            <div className="flex flex-col gap-y-2">
               <h2 className="pb-1 text-base font-semibold leading-7 text-gray-900">
                 로스터 정보 입력
               </h2>
-              <CreateRosterForm selectedTeam={selectedTeam} />
+              <CreateRosterForm
+                closeModal={closeModal}
+                back={() => setSelectedTeam(undefined)}
+                selectedTeam={selectedTeam}
+              />
             </div>
           ) : (
-            <>
+            <div className="border-b border-gray-900/30">
               <div className="flex flex-col gap-y-2 pb-3">
                 <h2 className="pb-1 text-base font-semibold leading-7 text-gray-900">
                   로스터를 생성할 팀 선택
@@ -100,27 +92,12 @@ const CreateRosterModal: React.FC<CreateRosterModalProps> = ({
                   />
                 )}
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>
       <div className="flex flex-row justify-end gap-x-1.5">
-        {selectedTeam ? (
-          <>
-            <button
-              onClick={onSubmitRoster}
-              className="items-center whitespace-nowrap rounded-md bg-indigo-950 px-3.5 py-2.5 text-xs font-semibold text-white shadow-md hover:bg-indigo-900 sm:text-sm"
-            >
-              요청하기
-            </button>
-            <button
-              onClick={() => setSelectedTeam(undefined)}
-              className="items-center whitespace-nowrap rounded-md bg-indigo-950 px-3.5 py-2.5 text-xs font-semibold text-white shadow-md hover:bg-indigo-900 sm:text-sm"
-            >
-              뒤로가기
-            </button>
-          </>
-        ) : (
+        {!selectedTeam && (
           <button
             className="items-center whitespace-nowrap rounded-md bg-indigo-950 px-3.5 py-2.5 text-xs font-semibold text-white shadow-md hover:bg-indigo-900 sm:text-sm"
             onClick={closeModal}

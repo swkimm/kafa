@@ -75,7 +75,7 @@ const JoinableLeagues: React.FC = () => {
   return (
     <div className="m-0 h-full w-full sm:p-5">
       <div className="text-md mb-5 px-4 pt-5 font-bold sm:px-0 sm:pt-0">
-        로스터 관리
+        리그 신청
       </div>
       <div className="grid grid-cols-3 gap-4">
         <div className="col-span-3">

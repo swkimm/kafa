@@ -4,7 +4,6 @@ import {
   IsDate,
   IsEnum,
   IsNotEmpty,
-  IsNotEmptyObject,
   IsNumber,
   IsOptional,
   IsString,
@@ -35,7 +34,6 @@ export class RequestRosterDTO {
   @IsNotEmpty()
   rosterType: RosterType
 
-  @IsNotEmptyObject()
   @IsOptional()
   @Type(() => Object)
   position?: Position

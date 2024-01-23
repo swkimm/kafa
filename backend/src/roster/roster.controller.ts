@@ -23,7 +23,9 @@ import type {
   RosterWithAthleteManyDTO,
   RosterWithAthleteSimpleDTO
 } from './dto/roster-with-athlete.dto'
+import type { RosterWithCredentialDTO } from './dto/roster-with-credential.dto'
 import { UpdateRosterDTO } from './dto/update-roster.dto'
+import { RosterCredentialDTO } from './interface/roster-credential.dto'
 
 @Controller('rosters')
 export class RosterController {
@@ -37,7 +39,7 @@ export class RosterController {
   async createRoster(
     @Body() rosterDTO: CreateRosterDTO,
     @Req() req: AuthenticatedRequest
-  ): Promise<Roster> {
+  ): Promise<RosterWithCredentialDTO> {
     try {
       return await this.rosterService.createRoster(rosterDTO, req.user.id)
     } catch (error) {
@@ -62,6 +64,24 @@ export class RosterController {
   ): Promise<RosterWithAthleteDTO[]> {
     try {
       return await this.rosterService.getConnectableRosters(req.user.id)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Roles(Role.Manager)
+  @Get('unconnected')
+  async getUnconnectedRosters(
+    @Req() req: AuthenticatedRequest,
+    @Query('page', ParseIntPipe) page: number,
+    @Query('limit', new ParseIntPipe({ optional: true })) limit?: number
+  ): Promise<RosterWithCredentialDTO[]> {
+    try {
+      return await this.rosterService.getUnconnectedRosters(
+        req.user.id,
+        page,
+        limit
+      )
     } catch (error) {
       businessExceptionBinder(error)
     }
@@ -103,6 +123,24 @@ export class RosterController {
         rosterDTO,
         rosterId,
         req.user.id
+      )
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Roles(Role.Manager)
+  @Put(':rosterId/credential')
+  async updateRosterCredential(
+    @Req() req: AuthenticatedRequest,
+    @Param('rosterId', ParseIntPipe) rosterId: number,
+    @Body() credential: RosterCredentialDTO
+  ): Promise<RosterCredentialDTO> {
+    try {
+      return await this.rosterService.updateRosterCredential(
+        req.user.id,
+        rosterId,
+        credential
       )
     } catch (error) {
       businessExceptionBinder(error)

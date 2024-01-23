@@ -12,7 +12,7 @@ export class RosterServiceImpl extends RosterService<Roster> {
   constructor(
     @Inject('GetRosterService') getRosterService: GetRosterService,
     @Inject('CreateRosterService')
-    createRosterService: CreateRosterService<Roster>,
+    createRosterService: CreateRosterService,
     @Inject('UpdateRosterService')
     updateRosterService: UpdateRosterService,
     @Inject('DeleteRosterService')

@@ -5,6 +5,7 @@ import type {
   TeamLeague
 } from '@prisma/client'
 import type { CreateLeagueDTO } from '../dto/create-league.dto'
+import type { LeagueApplyStatusDTO } from '../dto/league-apply-status.dto'
 import type { LeagueWithAssociationDTO } from '../dto/league-with-association.dto'
 import type {
   RegisterLeagueAvaliabilityDTO,
@@ -296,9 +297,11 @@ export abstract class LeagueService<
    * 팀에서 신청한 리그 참여 요청 목록을 반환합니다
    *
    * @param {number} managerId - 리그 참여 요청 목록을 조회할 팀 매니저 계정의 Id
-   * @returns {Promise<T[]>} 리그 참여 요청 목록
+   * @returns {Promise<LeagueApplyStatusDTO[]>} 리그 참여 요청 목록
    */
-  async getTeamJoinLeagueRequests(managerId: number): Promise<U[]> {
+  async getTeamJoinLeagueRequests(
+    managerId: number
+  ): Promise<LeagueApplyStatusDTO[]> {
     return await this.joinLeagueService.getTeamJoinLeagueRequests(managerId)
   }
 

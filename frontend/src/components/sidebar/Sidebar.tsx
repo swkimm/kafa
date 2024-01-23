@@ -81,7 +81,8 @@ const managerNavigation: NavigationItem[] = [
     icon: UserGroupIcon,
     children: [
       { name: '로스터 관리', href: '/console/manage-roster' },
-      { name: '로스터 연결 요청', href: '/console/manage-request' }
+      { name: '로스터 연결 요청', href: '/console/manage-request' },
+      { name: '로스터 생성', href: '/console/create-roster' }
     ]
   },
   {

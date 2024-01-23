@@ -22,6 +22,7 @@ import {
   type Roster,
   type Prisma
 } from '@prisma/client'
+import type { LeagueApplyStatusDTO } from '../dto/league-apply-status.dto'
 import type { LeagueWithAssociationDTO } from '../dto/league-with-association.dto'
 import {
   RegisterLeagueAvaliabilityDTO,
@@ -280,21 +281,38 @@ export class JoinLeagueServiceImpl implements JoinLeagueService<TeamLeague> {
     }
   }
 
-  async getTeamJoinLeagueRequests(managerId: number): Promise<TeamLeague[]> {
+  async getTeamJoinLeagueRequests(
+    managerId: number
+  ): Promise<LeagueApplyStatusDTO[]> {
     try {
       const { teamId } = await this.accountService.getAccountProfile(managerId)
 
-      const holded = await this.teamLeagueService.getTeamLeaguesByTeamId(
-        teamId,
-        'Hold'
-      )
-
-      const received = await this.teamLeagueService.getTeamLeaguesByTeamId(
-        teamId,
-        'Received'
-      )
-
-      return holded.concat(received)
+      return await this.prismaService.teamLeague.findMany({
+        where: {
+          teamId,
+          applyStatus: {
+            not: 'Approved'
+          }
+        },
+        take: 20,
+        select: {
+          Team: {
+            select: {
+              id: true,
+              name: true,
+              profileImgUrl: true
+            }
+          },
+          League: {
+            select: {
+              id: true,
+              name: true
+            }
+          },
+          applyStatus: true,
+          rejectReason: true
+        }
+      })
     } catch (error) {
       if (error instanceof BusinessException) {
         throw error

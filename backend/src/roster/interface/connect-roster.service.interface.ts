@@ -1,5 +1,6 @@
 import type { RequestRosterDTO } from '../dto/create-roster.dto'
 import type { RosterWithAthleteDTO } from '../dto/roster-with-athlete.dto'
+import type { RosterWithCredentialDTO } from '../dto/roster-with-credential.dto'
 
 export interface ConnectRosterService {
   /**
@@ -47,6 +48,21 @@ export interface ConnectRosterService {
    * @throws {EntityNotExistException} 존재하지 않는 계정의 Id를 보낼 경우 발생
    */
   getCreateRosterRequests(managerId: number): Promise<RosterWithAthleteDTO[]>
+
+  /**
+   * 팀 로스터중 계정에 연결되지 않은 로스터 목록을 반환합니다
+   * Offset Based Pagination이 적용되어 있습니다
+   *
+   * @param {number} managerId - 팀 계정 식별자
+   * @param {number} page - 조회할 페이지
+   * @param {number} [limit=10] -
+   * @return {Promise<RosterWithCredentialDTO[]>}
+   */
+  getUnconnectedRosters(
+    managerId: number,
+    page: number,
+    limit?: number
+  ): Promise<RosterWithCredentialDTO[]>
 
   /**
    * 로스터 생성 요청을 승인합니다

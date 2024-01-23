@@ -24,16 +24,16 @@ const ManageRoster: React.FC = () => {
   const [page, setPage] = useState(1)
 
   const getPreviousPage = async () => {
-    if (rosters.length === limit) {
-      await getRosters(page + 1, option)
-      setPage(page + 1)
+    if (page > 1) {
+      await getRosters(page - 1, option)
+      setPage(page - 1)
     }
   }
 
   const getNextPage = async () => {
-    if (page > 1) {
-      await getRosters(page - 1, option)
-      setPage(page - 1)
+    if (rosters && rosters.length >= limit) {
+      await getRosters(page + 1, option)
+      setPage(page + 1)
     }
   }
 

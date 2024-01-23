@@ -26,9 +26,10 @@ import LeagueGame from './pages/console/admin/recode/league/[id]/LeagueGame.tsx'
 import ManageScore from './pages/console/admin/recode/league/[id]/[id]/ManageScore.tsx'
 import ManageTeams from './pages/console/admin/team/ManageTeams.tsx'
 import MyProfile from './pages/console/common/MyProfile.tsx'
-import ApplyLeagueList from './pages/console/manager/league/ApplyLeagueList.tsx'
+import ApplyLeague from './pages/console/manager/league/apply/ApplyLeague.tsx'
 import JoinableLeagues from './pages/console/manager/league/joinable/JoinableLeagues.tsx'
 import ValidateRoster from './pages/console/manager/league/validate/ValidateRoster.tsx'
+import { CreateRoster } from './pages/console/manager/roster/create/CreateRoster.tsx'
 import ManageRoster from './pages/console/manager/roster/list/ManageRoster.tsx'
 import ManageRequestRoster from './pages/console/manager/roster/request/ManageRequestRoster.tsx'
 import ManageTeamProfile from './pages/console/manager/team-profile/TeamProfile.tsx'
@@ -156,14 +157,12 @@ const App = () => {
                 path="/console/validate-roster"
                 element={<ValidateRoster />}
               />
+              <Route path="/console/create-roster" element={<CreateRoster />} />
               <Route
                 path="/console/joinable-leagues"
                 element={<JoinableLeagues />}
               />
-              <Route
-                path="/console/apply-league"
-                element={<ApplyLeagueList />}
-              />
+              <Route path="/console/apply-league" element={<ApplyLeague />} />
             </Route>
           </Route>
 

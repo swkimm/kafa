@@ -9,6 +9,7 @@ import {
   ParameterValidationException,
   UnexpectedException
 } from '@/common/exception/business.exception'
+import { calculateOffset } from '@/common/pagination/calculate-offset'
 import { PrismaService } from '@/prisma/prisma.service'
 import {
   RosterStatus,
@@ -16,10 +17,12 @@ import {
   Prisma,
   type RosterCredentials,
   RosterType,
-  type Roster
+  type Roster,
+  Role
 } from '@prisma/client'
 import type { RequestRosterDTO } from '../dto/create-roster.dto'
 import type { RosterWithAthleteDTO } from '../dto/roster-with-athlete.dto'
+import type { RosterWithCredentialDTO } from '../dto/roster-with-credential.dto'
 import type { ConnectRosterService } from '../interface/connect-roster.service.interface'
 import { DeleteRosterService } from '../interface/delete-roster.service.interface'
 import { GetRosterService } from '../interface/get-roster.service.interface'
@@ -255,6 +258,51 @@ export class ConnectRosterServiceImpl implements ConnectRosterService {
               id: true,
               name: true,
               profileImgUrl: true
+            }
+          }
+        }
+      })
+    } catch (error) {
+      if (error instanceof BusinessException) {
+        throw error
+      }
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
+  async getUnconnectedRosters(
+    managerId: number,
+    page: number,
+    limit = 10
+  ): Promise<RosterWithCredentialDTO[]> {
+    try {
+      const account = await this.accountService.getAccountProfile(managerId)
+
+      if (account.role !== Role.Manager) {
+        throw new ForbiddenAccessException('매니저 계정이 아닙니다')
+      }
+
+      return await this.prismaService.roster.findMany({
+        where: {
+          Account: null,
+          teamId: account.teamId
+        },
+        skip: calculateOffset(page, limit),
+        take: limit,
+        orderBy: {
+          name: 'asc'
+        },
+        select: {
+          id: true,
+          name: true,
+          profileImgUrl: true,
+          rosterType: true,
+          status: true,
+          RosterCredentials: {
+            select: {
+              name: true,
+              birthday: true,
+              gender: true
             }
           }
         }
