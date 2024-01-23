@@ -12040,11 +12040,11 @@
             "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
             "containerId": "402c855f-3608-4f9d-bead-2ac71131bb17",
             "name": "Success",
-            "url": "/records/leagues/1",
+            "url": "/records/games/1",
             "method": "GET",
             "sortNum": 2610000,
             "created": "2024-01-04T10:09:47.940Z",
-            "modified": "2024-01-22T12:20:43.638Z",
+            "modified": "2024-01-22T11:35:27.754Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -12055,7 +12055,7 @@
                     "value": "200"
                 }
             ],
-            "docs": "## [Public] GetLeagueRecords\n\n### URI\nGET /records/leagues/[:leagueId]\n\n### Description\n리그에 속한 경기 기록을 조회합니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|기록 식별자|\n|type|*RecordType|기록 종류|\n|score|number|기록|\n|unit|string|단위|\n|Game|*Game|경기 정보|\n|Athlete|*Athlete|선수 로스터 정보|\n\n**Enum RecordType**\n- Passer\n- Rusher\n- Receiver\n- Kicker\n- Safety\n\n**Type Game**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기 식별자|\n|homeTeam|*Team|홈 팀 정보|\n|awayTeam|*Team|어웨이 팀 정보|\n\n**Type Team**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 명|\n|profileImgUrl|string?|팀 프로필 사진 주소|\n\n**Type Athlete**\n|Name|Type|Description|\n|---|----|-------|\n|position|*Position|포지션 정보|\n|Roster|*Roster|로스터 정보|\n\n**Type Position**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스|\n|defense?|string|디펜스|\n|special?|string|스페셜|\n\n**Type Roster**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n|teamId|number|팀 식별자|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|404|Not Found|존재하지 않는 리그의 식별자를 전달할 경우 발생|",
+            "docs": "## [Public] GetGameRecords\n\n### URI\nGET /records/games/[:gameId]\n\n### Description\n경기 기록을 조회합니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|gameId|number|게임 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|기록 식별자|\n|type|*RecordType|기록 종류|\n|score|number|기록|\n|unit|string|단위|\n|Game|*Game|경기 정보|\n|Athlete|*Athlete|선수 로스터 정보|\n\n**Enum RecordType**\n- Passer\n- Rusher\n- Receiver\n- Kicker\n- Safety\n\n**Type Game**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기 식별자|\n|homeTeam|*Team|홈 팀 정보|\n|awayTeam|*Team|어웨이 팀 정보|\n\n**Type Team**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 명|\n|profileImgUrl|string?|팀 프로필 사진 주소|\n\n**Type Athlete**\n|Name|Type|Description|\n|---|----|-------|\n|position|*Position|포지션 정보|\n|Roster|*Roster|로스터 정보|\n\n**Type Position**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스|\n|defense?|string|디펜스|\n|special?|string|스페셜|\n\n**Type Roster**\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|404|Not Found|존재하지 않는 리그의 식별자를 전달할 경우 발생|",
             "preReq": {
                 "runRequests": [
                     {

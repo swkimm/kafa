@@ -1,7 +1,10 @@
 import axiosInstance from '@/commons/axios'
 import type { TeamComplication } from '@/commons/interfaces/team/teamComplication'
 import Button from '@/components/buttons/Button'
+import RejectModalWithInputTag from '@/components/modal/RejectModalWithInputTag'
 import DefaultTable from '@/components/tables/DefaultTable'
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
 import { useCallback, useEffect, useState } from 'react'
 
 interface RegisterTeamRequest {
@@ -20,6 +23,9 @@ interface ExtendedTeam extends TeamComplication {
 
 const ManageTeams = () => {
   const [registerTeam, setRegisterTeam] = useState<RegisterTeamRequest[]>([])
+  const { showNotification } = useNotification()
+  const [isRejectModalOpen, setIsRejectModalOpen] = useState(false)
+  const [selectedTeamId, setSelectedTeamId] = useState<number | null>(null)
 
   const fetchAssociationId = async (associationId: number) => {
     const response = await axiosInstance.get(`/associations/${associationId}`)
@@ -29,9 +35,10 @@ const ManageTeams = () => {
   const getRegisterTeamRequest = useCallback(async () => {
     const limit = 100
     const cursor = 0
+    const option = 'Received'
     try {
       const response = await axiosInstance.get<RegisterTeamRequest[]>(
-        `/admin/teams/requests?limit=${limit}&cursor=${cursor}`
+        `/admin/teams/requests?limit=${limit}&cursor=${cursor}&option=${option}`
       )
       const getRegisterTeamRequestWithAssociationName = await Promise.all(
         response.data.map(async (get) => {
@@ -50,55 +57,63 @@ const ManageTeams = () => {
       setRegisterTeam(
         getRegisterTeamRequestWithAssociationName as unknown as RegisterTeamRequest[]
       )
-      console.log(response.data)
     } catch (error) {
-      console.log(error)
+      showNotification(
+        NotificationType.Error,
+        '팀생성 요청 불러오기 실패',
+        '팀생성 요청 불러오기에 실패했습니다.',
+        2500
+      )
     }
-  }, [])
+  }, [showNotification])
 
   useEffect(() => {
     getRegisterTeamRequest()
   }, [getRegisterTeamRequest])
 
-  const deleteRequest = async (teamId: number) => {
-    const result = window.confirm('삭제하시겠습니까?')
-    if (result) {
-      try {
-        const response = await axiosInstance.delete(`/admin/teams/${teamId}`)
-        console.log(response.data)
-      } catch (error) {
-        console.log(error)
-      }
-      getRegisterTeamRequest()
-    }
-  }
-
   const approveRequest = async (teamId: number) => {
     try {
-      const response = await axiosInstance.put(
-        `/admin/teams/requests/${teamId}/approve`
-      )
-      console.log(response)
+      await axiosInstance.put(`/admin/teams/requests/${teamId}/approve`)
     } catch (error) {
-      console.log(error)
+      showNotification(
+        NotificationType.Error,
+        '팀생성 요청 승인 실패',
+        '팀생성 요청 승인에 실패했습니다.',
+        2500
+      )
     }
   }
 
-  const rejectRequest = async (teamId: number) => {
-    const reason = window.prompt('거절 사유를 입력해주세요')
-    if (reason !== null && reason.trim() !== '') {
+  const openRejectModal = (teamId: number) => {
+    setSelectedTeamId(teamId)
+    setIsRejectModalOpen(true)
+  }
+
+  const closeRejectModal = () => {
+    setIsRejectModalOpen(false)
+  }
+
+  const rejectRequest = async (rejectReason: string) => {
+    if (selectedTeamId && rejectReason) {
+      console.log(selectedTeamId, rejectReason)
+
       try {
-        const response = await axiosInstance.put(
-          `/admin/teams/requests/${teamId}/reject`,
-          { reason }
+        await axiosInstance.put(
+          `/admin/teams/requests/${selectedTeamId}/reject`,
+          {
+            rejectReason
+          }
         )
-        console.log(reason)
-        console.log(response.data)
+        closeRejectModal()
+        getRegisterTeamRequest()
       } catch (error) {
-        console.log(error)
+        showNotification(
+          NotificationType.Error,
+          '팀생성 요청 반려 실패',
+          '팀생성 요청 반려 실패했습니다.',
+          2500
+        )
       }
-    } else {
-      console.log('No reason provided, request not sent')
     }
   }
 
@@ -152,13 +167,7 @@ const ManageTeams = () => {
           <Button
             label="거절"
             variant="roundLg"
-            onClick={() => rejectRequest(request.id)}
-          />
-
-          <Button
-            label="삭제"
-            variant="roundLg"
-            onClick={() => deleteRequest(request.id)}
+            onClick={() => openRejectModal(request.id)}
           />
         </div>
       )
@@ -167,10 +176,20 @@ const ManageTeams = () => {
 
   return (
     <div className="m-5">
-      <DefaultTable
-        title={'팀 등록 요청 목록'}
-        data={registerTeam}
-        columns={registerTeamRequestColumns}
+      {registerTeam.length > 0 ? (
+        <DefaultTable
+          title={'팀 등록 요청 목록'}
+          data={registerTeam}
+          columns={registerTeamRequestColumns}
+        />
+      ) : (
+        <p>팀 등록 요청이 없습니다.</p>
+      )}
+
+      <RejectModalWithInputTag
+        isOpen={isRejectModalOpen}
+        onClose={closeRejectModal}
+        onSubmit={rejectRequest}
       />
     </div>
   )

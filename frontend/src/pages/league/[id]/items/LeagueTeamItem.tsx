@@ -1,6 +1,7 @@
 import axiosInstance from '@/commons/axios'
 import type { TeamComplication } from '@/commons/interfaces/team/teamComplication'
-import Alert from '@/components/notifications/Alert'
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
@@ -8,10 +9,8 @@ import TeamCard from '../../../../components/cards/TeamCard'
 
 const TeamItem = () => {
   const [teams, setTeams] = useState<TeamComplication[] | null>(null)
-  const [alert, setAlert] = useState<{
-    title: string
-    content?: string
-  } | null>(null)
+  const { showNotification } = useNotification()
+
   const { leagueId } = useParams()
   const navigate = useNavigate()
 
@@ -21,16 +20,16 @@ const TeamItem = () => {
         const response = await axiosInstance.get(`/teams/leagues/${leagueId}`)
         setTeams(response.data)
       } catch (error: unknown) {
-        if (error instanceof Error) {
-          setAlert({ title: 'Error', content: error.message })
-        } else {
-          // Handle cases where error is not an instance of Error
-          setAlert({ title: 'Error', content: 'An unknown error occurred' })
-        }
+        showNotification(
+          NotificationType.Error,
+          '팀 불러오기 실패',
+          '팀 목록을 불러오는 실패하였습니다.',
+          2500
+        )
       }
     }
     getTeams()
-  }, [leagueId])
+  }, [leagueId, showNotification])
 
   return (
     <div className="container mx-auto max-w-screen-2xl px-5">
@@ -56,7 +55,6 @@ const TeamItem = () => {
               </div>
             )
           )}
-        {alert && <Alert title={alert.title} content={alert.content} />}
       </div>
     </div>
   )

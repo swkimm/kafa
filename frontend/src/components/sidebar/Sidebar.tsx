@@ -107,11 +107,8 @@ const adminNavigation: NavigationItem[] = [
   },
   {
     name: '기록실',
-    icon: PencilSquareIcon,
-    children: [
-      { name: '기록 입력', href: '/console/createRecode' },
-      { name: '기록 관리', href: '/console/manageRecode' }
-    ]
+    href: '/console/createRecode',
+    icon: PencilSquareIcon
   },
   // {
   //   name: 'HUDDLE',

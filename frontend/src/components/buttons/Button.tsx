@@ -11,6 +11,7 @@ interface ButtonProps {
     | 'reverse'
     | 'prevNext'
     | 'icon'
+    | 'wfull'
   label?: string
   icon?: React.ReactNode
   onClick?: () => void
@@ -77,6 +78,10 @@ const Button: React.FC<ButtonProps> = ({
       case 'icon':
         baseClasses +=
           ' flex rounded-lg items-center font-medium space-x-2 bg-gray-200 hover:bg-gray-300'
+        break
+      case 'wfull':
+        baseClasses +=
+          ' w-full rounded-md bg-indigo-600 px-3 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
         break
       default:
         baseClasses += ' text-white bg-gray-600 hover:bg-gray-700'

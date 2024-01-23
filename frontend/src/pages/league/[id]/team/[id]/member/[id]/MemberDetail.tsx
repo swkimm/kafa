@@ -1,19 +1,14 @@
 // MemberDetail.tsx
+import axiosInstance from '@/commons/axios'
+import type { Roster } from '@/commons/interfaces/roster/roster'
 import MemberBanner from '@/components/cards/MemberBanner'
-import DropdownSimple from '@/components/dropdown/DropdownLeft'
+import DropdownLeft from '@/components/dropdown/DropdownLeft'
+import DefaultTable from '@/components/tables/DefaultTable'
 import WithSubtitleTable from '@/components/tables/WithSubtitleTable'
-
-const member = {
-  teamLogo: '/logo/KAFA_OG.png',
-  teamName: 'TBD',
-  name: '홍길동',
-  profile: '/logo/KAFA_OG.png',
-  age: 30,
-  height: 180,
-  weight: 90,
-  backNumber: 90,
-  position: 'OL/DL'
-}
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
+import { useCallback, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 const people = [
   {
@@ -47,18 +42,79 @@ const options = [
 ]
 
 const MemberDetail = () => {
+  const { memberId } = useParams()
+  const [member, setMember] = useState<Roster | undefined>(undefined)
+  const { showNotification } = useNotification()
+
+  const getMember = useCallback(async () => {
+    if (memberId) {
+      try {
+        const response = await axiosInstance.get(`/rosters/${memberId}`)
+        setMember(response.data)
+      } catch (error) {
+        showNotification(
+          NotificationType.Error,
+          '멤버 불러오기 실패',
+          '멤버를 불러올 수 없습니다.',
+          2500
+        )
+      }
+    }
+  }, [memberId, setMember, showNotification])
+
+  useEffect(() => {
+    getMember()
+  }, [getMember])
+
+  const positionString = [
+    member?.Athlete?.position?.defense,
+    member?.Athlete?.position?.offence,
+    member?.Athlete?.position?.special
+  ]
+    .filter(Boolean)
+    .join('/')
+
+  const getPersonalRecords = useCallback(async () => {
+    try {
+      await axiosInstance.get(`/records/rosters/${memberId}`)
+    } catch (error) {
+      showNotification(
+        NotificationType.Error,
+        '기록 불러오기 실패',
+        '기록을 불러올 수 없습니다.',
+        2500
+      )
+    }
+  }, [memberId, showNotification])
+
+  useEffect(() => {
+    getPersonalRecords()
+  }, [getPersonalRecords])
+
   const handleSelect = (selected: string) => {
     console.log('Selected option:', selected)
   }
   return (
     <div className="">
-      <MemberBanner {...member} />
+      <MemberBanner
+        teamLogo={member?.Team?.profileImgUrl || '/logo/KAFA_OG.png'}
+        teamName={member?.Team?.name || '팀 이름'}
+        name={member?.name || '이름'}
+        profile={member?.profileImgUrl || '/logo/KAFA_OG.png'}
+        height={member?.Athlete?.height || 0}
+        weight={member?.Athlete?.weight || 0}
+        backNumber={member?.Athlete?.backNumber || 0}
+        position={positionString}
+      />
+
       <div className="bg-indigo-800 p-6 text-xl text-white">
-        {member.name} PERSONAL STATS
+        {member?.name} PERSONAL STATS
       </div>
       <div className="container mx-auto my-5 grid grid-cols-1 sm:grid-cols-3">
         <div className="order-2 col-span-1 mx-5 sm:order-1 sm:col-span-2">
           <div className="mb-5">
+            <DefaultTable title={''} data={[]} columns={[]} />
+
             <WithSubtitleTable
               title={'게임별 기록'}
               subtitle="TBD"
@@ -75,7 +131,7 @@ const MemberDetail = () => {
         </div>
         <div className="order-1 col-span-1 sm:order-2">
           <div className="mb-5 ml-5">
-            <DropdownSimple
+            <DropdownLeft
               optionName="My Options"
               optionList={options}
               onSelect={handleSelect}

@@ -4,33 +4,45 @@ import Button from '@/components/buttons/Button'
 import CreateModal from '@/components/modal/CreateModal'
 import ModifyModal from '@/components/modal/ModifyModal'
 import DefaultWithButtonTable from '@/components/tables/DefaultWithButtonTable'
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
 import { Dialog } from '@headlessui/react'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 const ManageAssociation = () => {
   const [associations, setAssociation] = useState<Association[]>([])
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   const [isModifyModalOpen, setIsModifyModalOpen] = useState(false)
-
   const [associationId, setAssociationId] = useState<number | null>(null)
+  const { showNotification } = useNotification()
 
   const [name, setName] = useState('')
   const [globalName, setGlobalName] = useState('')
   const [initial, setInitial] = useState('')
 
-  const getAssociations = async () => {
+  const getAssociations = useCallback(async () => {
     const page = 1
     const limit = 100
     try {
       const response = await axiosInstance.get(
         `/associations?page=${page}&limit=${limit}`
       )
-      console.log(response.data)
       setAssociation(response.data)
     } catch (error) {
-      console.log(error)
+      showNotification(
+        NotificationType.Error,
+        '협회 불러오기 실패',
+        '협회 목록을 불러오는 실패하였습니다.',
+        2500
+      )
     }
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    getAssociations()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const openCreateModal = () => setIsCreateModalOpen(true)
   const openModifyModal = () => setIsModifyModalOpen(true)
@@ -49,7 +61,12 @@ const ManageAssociation = () => {
       closeCreateModal()
       getAssociations()
     } catch (error) {
-      console.log(error)
+      showNotification(
+        NotificationType.Error,
+        '협회 생성 실패',
+        '협회 생성에 실패하였습니다.',
+        2500
+      )
     }
   }
 
@@ -67,30 +84,34 @@ const ManageAssociation = () => {
       globalName: globalName,
       initial: initial
     }
-    console.log(modifyData)
     try {
-      const response = await axiosInstance.put(
+      await axiosInstance.put(
         `/admin/associations/${associationId}`,
         modifyData
       )
-      console.log(response.data)
-
       closeModifyModal()
       getAssociations()
     } catch (error) {
-      console.log(error)
+      showNotification(
+        NotificationType.Error,
+        '협회 수정 실패',
+        '협회 수정에 실패하였습니다.',
+        2500
+      )
     }
   }
 
   const deleteAssociation = async (associationId: number) => {
     try {
-      const response = await axiosInstance.delete(
-        `/admin/associations/${associationId}`
-      )
-      console.log(response.data)
+      await axiosInstance.delete(`/admin/associations/${associationId}`)
       getAssociations()
     } catch (error) {
-      console.log(error)
+      showNotification(
+        NotificationType.Error,
+        '협회 삭제 실패',
+        '협회 삭제에 실패했습니다.',
+        2500
+      )
     }
   }
 
@@ -147,7 +168,7 @@ const ManageAssociation = () => {
 
   useEffect(() => {
     getAssociations()
-  }, [])
+  }, [getAssociations])
 
   return (
     <div className="m-5">

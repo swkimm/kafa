@@ -31,7 +31,7 @@ const RosterItem = () => {
   }
   return (
     <div className="container mx-auto mb-10 grid max-w-screen-2xl grid-cols-2 sm:grid-cols-4">
-      {roster &&
+      {roster && roster.length > 0 ? (
         roster.map((member) => (
           <div
             key={member.id}
@@ -44,7 +44,14 @@ const RosterItem = () => {
               onClick={goToMemberInfo}
             />
           </div>
-        ))}
+        ))
+      ) : (
+        <div className="col-span-2 my-5 h-full w-full">
+          <p className="text-center text-xl font-light">
+            팀에 등록된 로스터가 없습니다.
+          </p>
+        </div>
+      )}
     </div>
   )
 }

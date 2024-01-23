@@ -22,7 +22,8 @@ import CreateGame from './pages/console/admin/game/CreateGame.tsx'
 import CreateLeague from './pages/console/admin/league/CreateLeague.tsx'
 import ManageLeague from './pages/console/admin/league/ManageLeague.tsx'
 import CreateRecode from './pages/console/admin/recode/CreateRecode.tsx'
-import ManageRecode from './pages/console/admin/recode/ManageRecode.tsx'
+import LeagueGame from './pages/console/admin/recode/league/[id]/LeagueGame.tsx'
+import ManageScore from './pages/console/admin/recode/league/[id]/[id]/ManageScore.tsx'
 import ManageTeams from './pages/console/admin/team/ManageTeams.tsx'
 import MyProfile from './pages/console/common/MyProfile.tsx'
 import ApplyLeagueList from './pages/console/manager/league/ApplyLeagueList.tsx'
@@ -41,6 +42,7 @@ import ScheduleDetail from './pages/league/[id]/schedule/[id]/ScheduleDetail.tsx
 import TeamDetail from './pages/league/[id]/team/[id]/TeamDetail.tsx'
 import MemberDetail from './pages/league/[id]/team/[id]/member/[id]/MemberDetail.tsx'
 import National from './pages/national/National.tsx'
+import Teams from './pages/team/Teams.tsx'
 
 const App = () => {
   const { reloadCredential } = useAuth()
@@ -72,6 +74,7 @@ const App = () => {
             <Route path="/appeal" element={<AppealItem />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/leagues" element={<League />} />
+            <Route path="/teams" element={<Teams />} />
             <Route path="/leagues/:leagueId" element={<LeagueDetail />} />
             <Route
               path="/league/:leagueId/team/:teamId"
@@ -111,8 +114,14 @@ const App = () => {
                 element={<CreateGame />}
               />
               <Route path="/console/createRecode" element={<CreateRecode />} />
-              <Route path="/console/manageRecode" element={<ManageRecode />} />
-
+              <Route
+                path="/console/createRecode/leagues/:leagueId"
+                element={<LeagueGame />}
+              />
+              <Route
+                path="/console/createRecode/leagues/:leagueId/games/:gameId"
+                element={<ManageScore />}
+              />
               <Route
                 path="/console/manageAssociation"
                 element={<ManageAssociation />}

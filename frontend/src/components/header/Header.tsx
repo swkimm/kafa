@@ -88,6 +88,13 @@ const Header = () => {
                   </Disclosure.Button>
                   <Disclosure.Button
                     as="button"
+                    onClick={() => navigate('/teams')}
+                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-100 hover:border-gray-300 hover:text-gray-700"
+                  >
+                    팀 정보
+                  </Disclosure.Button>
+                  <Disclosure.Button
+                    as="button"
                     onClick={() => navigate('/association')}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-100 hover:border-gray-300 hover:text-gray-700"
                   >

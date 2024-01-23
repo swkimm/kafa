@@ -1,11 +1,8 @@
-import PropTypes from 'prop-types'
-
 interface MemberBannerProps {
   teamLogo: string
   teamName: string
   name: string
   profile: string
-  age: number
   height: number
   weight: number
   backNumber: number
@@ -17,7 +14,6 @@ const MemberBanner: React.FC<MemberBannerProps> = ({
   teamName,
   name,
   profile,
-  age,
   height,
   weight,
   backNumber,
@@ -37,10 +33,6 @@ const MemberBanner: React.FC<MemberBannerProps> = ({
             </div>
           </div>
           <div className="mb-5 flex items-center justify-start">
-            <div className="mr-12 hidden sm:block">
-              <div className="text-sm text-gray-400">나이</div>
-              <div>{age}</div>
-            </div>
             <div className="mr-12 hidden sm:block">
               <div className="text-sm text-gray-400">키(cm)</div>
               <div>{height}</div>
@@ -73,18 +65,6 @@ const MemberBanner: React.FC<MemberBannerProps> = ({
       </div>
     </div>
   )
-}
-
-MemberBanner.propTypes = {
-  teamLogo: PropTypes.string.isRequired,
-  teamName: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  profile: PropTypes.string.isRequired,
-  age: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  weight: PropTypes.number.isRequired,
-  backNumber: PropTypes.number.isRequired,
-  position: PropTypes.string.isRequired
 }
 
 export default MemberBanner
