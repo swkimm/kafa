@@ -6,7 +6,7 @@ enum RosterType {
   HeadCoach = 'HeadCoach'
 }
 
-enum RosterAvailability {
+export enum RosterAvailability {
   Verified = 'Verified',
   Unverified = 'Unverified',
   Exemption = 'Exemption'
@@ -34,3 +34,5 @@ export interface ApiResponse {
   reasons: string[]
   rosters: RosterWithAvailability[]
 }
+
+export interface RosterValidationReport extends ApiResponse {}

@@ -294,6 +294,9 @@ CREATE UNIQUE INDEX "OAuth_provider_id_provider_type_key" ON "OAuth"("provider_i
 CREATE INDEX "parent_id_idx" ON "Association"("parent_id");
 
 -- CreateIndex
+CREATE INDEX "League_started_at_ended_at_idx" ON "League"("started_at", "ended_at");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "LeagueSponser_league_id_sponser_id_key" ON "LeagueSponser"("league_id", "sponser_id");
 
 -- CreateIndex

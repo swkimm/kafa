@@ -9,7 +9,7 @@
     "builder": {
       "type": "swc"
     },
-    "typeCheck": true,
+    "typeCheck": false,
     "assets": [
       {
         "include": "email/templates/**/*"

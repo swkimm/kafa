@@ -70,29 +70,27 @@ const userNavigation: NavigationItem[] = [
 
 const managerNavigation: NavigationItem[] = [
   { name: 'HOME', href: '/console', icon: HomeIcon },
+  { name: '계정 관리', href: '/console/profile', icon: UserCircleIcon },
   {
     name: '팀 정보 관리',
     icon: WrenchScrewdriverIcon,
-    children: [
-      { name: '로고 관리', href: '/console/manageLogo' },
-      { name: '팀 정보 수정', href: '/console/manageTeam' }
-    ]
+    href: '/console/manage-team-profile'
   },
   {
     name: '로스터 관리',
     icon: UserGroupIcon,
     children: [
-      { name: '로스터 관리', href: '/console/manageRoster' },
-      { name: '연결 요청', href: '/console/manageRequest' }
+      { name: '로스터 관리', href: '/console/manage-roster' },
+      { name: '로스터 연결 요청', href: '/console/manage-request' }
     ]
   },
   {
-    name: '리그 참가 신청',
+    name: '리그 관리',
     icon: ClipboardDocumentListIcon,
     children: [
-      { name: '로스터 인증서 검증', href: '/console/validateCerti' },
-      { name: '리그 목록', href: '/console/leagueList' },
-      { name: '참가 신청 목록', href: '/console/applyLeagueList' }
+      { name: '로스터 인증서 검증', href: '/console/validate-roster' },
+      { name: '참여 가능한 리그', href: '/console/joinable-leagues' },
+      { name: '참가 신청 목록', href: '/console/apply-league' }
     ]
   }
 ]
@@ -285,7 +283,10 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                                           className="mt-1 px-2"
                                         >
                                           {item.children?.map((subItem) => (
-                                            <li key={subItem.name}>
+                                            <li
+                                              key={subItem.name}
+                                              className="my-0.5"
+                                            >
                                               <NavLink
                                                 to={subItem.href ?? '#'}
                                                 onClick={() =>
@@ -397,7 +398,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
                                 </Disclosure.Button>
                                 <Disclosure.Panel as="ul" className="mt-1 px-2">
                                   {item.children?.map((subItem) => (
-                                    <li key={subItem.name}>
+                                    <li key={subItem.name} className="my-0.5">
                                       <NavLink
                                         to={subItem.href ?? '#'}
                                         end

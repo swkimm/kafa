@@ -1,5 +1,6 @@
 // PlayerCard.stories.ts
 import { RosterType } from '@/commons/interfaces/roster/roster'
+import { RosterStatus } from '@/commons/interfaces/roster/rosterStatus'
 import type { Meta, StoryObj } from '@storybook/react'
 import PlayerCard from './PlayerCard'
 
@@ -39,7 +40,9 @@ export const Default: Story = {
       name: '홍길동',
       globalName: 'Hong Gildong',
       profileImgUrl: '/people_alt.webp',
-      rosterType: RosterType.Athlete, // Use enum value here
+      rosterType: RosterType.Athlete,
+      registerYear: new Date('2023-01-01'),
+      status: RosterStatus.Enable,
       Athlete: {
         backNumber: 10,
         position: {

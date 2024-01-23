@@ -3,7 +3,6 @@ import { Type } from 'class-transformer'
 import {
   IsEnum,
   IsNotEmpty,
-  IsNotEmptyObject,
   IsNumber,
   IsOptional,
   IsString,
@@ -34,7 +33,6 @@ export class UpdateRosterDTO {
   @IsNotEmpty()
   rosterType: RosterType
 
-  @IsNotEmptyObject()
   @IsOptional()
   @Type(() => Object)
   position?: Position
@@ -56,6 +54,6 @@ export class UpdateRosterDTO {
   backNumber?: number
 
   @IsEnum(RosterStatus)
-  @IsOptional()
-  status?: RosterStatus
+  @IsNotEmpty()
+  status: RosterStatus
 }

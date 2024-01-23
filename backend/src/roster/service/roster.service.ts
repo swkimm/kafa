@@ -14,7 +14,7 @@ export class RosterServiceImpl extends RosterService<Roster> {
     @Inject('CreateRosterService')
     createRosterService: CreateRosterService<Roster>,
     @Inject('UpdateRosterService')
-    updateRosterService: UpdateRosterService<Roster>,
+    updateRosterService: UpdateRosterService,
     @Inject('DeleteRosterService')
     deleteRosterService: DeleteRosterService<Roster>,
     @Inject('ConnectRosterService')

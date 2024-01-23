@@ -49,6 +49,7 @@ export class GetRosterServiceImpl implements GetRosterService {
           profileImgUrl: true,
           rosterType: true,
           registerYear: true,
+          status: true,
           Athlete: {
             select: {
               position: true,
@@ -99,12 +100,17 @@ export class GetRosterServiceImpl implements GetRosterService {
           globalName: true,
           profileImgUrl: true,
           rosterType: true,
+          registerYear: true,
+          status: true,
           Athlete: {
             select: {
               position: true,
               backNumber: true
             }
           }
+        },
+        orderBy: {
+          name: 'asc'
         }
       })
     } catch (error) {
@@ -138,12 +144,63 @@ export class GetRosterServiceImpl implements GetRosterService {
           globalName: true,
           profileImgUrl: true,
           rosterType: true,
+          registerYear: true,
+          status: true,
           Athlete: {
             select: {
               position: true,
               backNumber: true
             }
           }
+        },
+        orderBy: {
+          name: 'asc'
+        }
+      })
+    } catch (error) {
+      if (error instanceof BusinessException) {
+        throw error
+      }
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
+  async getTeamRostersBySearch(
+    searchTerm: string,
+    teamId: number,
+    limit = 10
+  ): Promise<RosterWithAthleteManyDTO[]> {
+    try {
+      await this.teamService.getTeam(teamId)
+
+      return await this.prismaService.roster.findMany({
+        take: limit,
+        where: {
+          teamId,
+          name: {
+            contains: searchTerm
+          },
+          status: {
+            not: 'Verifying'
+          }
+        },
+        select: {
+          id: true,
+          name: true,
+          globalName: true,
+          profileImgUrl: true,
+          rosterType: true,
+          registerYear: true,
+          status: true,
+          Athlete: {
+            select: {
+              position: true,
+              backNumber: true
+            }
+          }
+        },
+        orderBy: {
+          name: 'asc'
         }
       })
     } catch (error) {
@@ -158,7 +215,10 @@ export class GetRosterServiceImpl implements GetRosterService {
     try {
       return await this.prismaService.roster.findMany({
         where: {
-          accountId
+          accountId,
+          status: {
+            not: 'Verifying'
+          }
         },
         select: {
           id: true,
@@ -167,6 +227,7 @@ export class GetRosterServiceImpl implements GetRosterService {
           profileImgUrl: true,
           rosterType: true,
           registerYear: true,
+          status: true,
           Athlete: {
             select: {
               position: true,

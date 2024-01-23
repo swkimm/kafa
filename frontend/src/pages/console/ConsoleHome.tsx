@@ -5,15 +5,15 @@ import { UserCircleIcon } from '@heroicons/react/20/solid'
 import { ArrowTrendingUpIcon } from '@heroicons/react/20/solid'
 import { CalendarIcon } from '@heroicons/react/20/solid'
 import { DocumentCheckIcon } from '@heroicons/react/20/solid'
-import { UserGroupIcon } from '@heroicons/react/24/solid'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
+import ManagerHome from './manager/ManagerHome'
 import UserHome from './user/UserHome'
 
 const ConsoleHome = () => {
   const user = useRecoilValue(userState)
-  const [profile, setProfile] = useState<Profile | null>(null)
+  const [profile, setProfile] = useState<Profile>()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -38,14 +38,6 @@ const ConsoleHome = () => {
 
   const goToAdminCalendar = () => {
     navigate('')
-  }
-
-  const goToManagerEnroll = () => {
-    navigate('/console/leagueList')
-  }
-
-  const goToManageRoster = () => {
-    navigate('/console/manageRoster')
   }
 
   const goToProfile = () => {
@@ -131,68 +123,9 @@ const ConsoleHome = () => {
         <UserHome profile={profile} />
       ) : null}
       {/* Manager Console */}
-      {user.role === Role.Manager && (
-        <div className="m-5">
-          <div className="text-md mb-5 font-bold">HOME</div>
-          <div className="grid grid-cols-3 gap-4">
-            <div
-              className="col-span-1 cursor-pointer bg-white shadow-md"
-              onClick={goToProfile}
-            >
-              <div className="m-3">My Profile</div>
-              <div className="flex items-center justify-center">
-                {!profile?.profileImgUrl ? (
-                  <UserCircleIcon className="h-auto w-44 text-gray-500" />
-                ) : (
-                  <img src={profile.profileImgUrl} alt={profile.name} />
-                )}
-              </div>
-              <div className="mb-3 flex items-center justify-center">
-                <div>{profile?.name}</div>
-              </div>
-              <div className="mb-5 flex items-center justify-center">
-                <div className="text-xs">프로필 페이지로 이동합니다.</div>
-              </div>
-            </div>
-            <div
-              className="col-span-1 cursor-pointer bg-white shadow-md"
-              onClick={goToManageRoster}
-            >
-              <div className="mt-12 flex items-center justify-center">
-                <UserGroupIcon className="h-auto w-44 text-blue-950" />
-              </div>
-              <div className="mb-3 flex items-center justify-center">
-                <div>로스터 관리</div>
-              </div>
-              <div className="mb-5 flex items-center justify-center">
-                <div className="text-xs">로스터 관리 페이지로 이동합니다.</div>
-              </div>
-            </div>
-            <div
-              className="col-span-1 cursor-pointer bg-white shadow-md"
-              onClick={goToManagerEnroll}
-            >
-              <div className="mt-12 flex items-center justify-center">
-                <DocumentCheckIcon className="h-auto w-44 text-red-700" />
-              </div>
-              <div className="mb-3 flex items-center justify-center">
-                <div>참가 신청</div>
-              </div>
-              <div className="mb-5 flex items-center justify-center">
-                <div className="text-xs">참가 신청 페이지로 이동합니다.</div>
-              </div>
-            </div>
-            <div className="col-span-3 bg-white shadow-md">
-              <div className="m-3 ml-5 flex items-center justify-start">
-                <div>Notice</div>
-              </div>
-              <div className="mb-5 ml-5 flex items-center justify-start">
-                <div className="pb-44 text-xs">협회 알림 내용</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {user.role === Role.Manager && profile ? (
+        <ManagerHome profile={profile} />
+      ) : null}
     </div>
   )
 }

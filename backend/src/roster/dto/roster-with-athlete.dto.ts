@@ -1,4 +1,4 @@
-import type { RosterType } from '@prisma/client'
+import type { RosterStatus, RosterType } from '@prisma/client'
 import type { JsonValue } from '@prisma/client/runtime/library'
 
 export interface RosterDTO {
@@ -7,10 +7,11 @@ export interface RosterDTO {
   globalName: string
   profileImgUrl: string
   rosterType: RosterType
+  registerYear: Date
+  status: RosterStatus
 }
 
 export interface RosterWithAthleteDTO extends RosterDTO {
-  registerYear: Date
   Athlete: {
     position: JsonValue
     backNumber: number
@@ -30,3 +31,5 @@ export interface RosterWithAthleteManyDTO extends RosterDTO {
     backNumber: number
   }
 }
+
+export interface RosterWithAthleteSimpleDTO extends RosterWithAthleteManyDTO {}

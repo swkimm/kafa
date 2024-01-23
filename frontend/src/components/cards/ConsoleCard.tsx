@@ -2,6 +2,7 @@ interface ConsoleCardProps {
   title: string
   subtitle: string
   children: React.ReactNode
+  detailedMore?: React.ReactNode
   more?: () => void
 }
 
@@ -9,7 +10,8 @@ const ConsoleCard: React.FC<ConsoleCardProps> = ({
   title,
   subtitle,
   children,
-  more
+  more,
+  detailedMore
 }) => {
   return (
     <div className="overflow-hidden border-b-2 border-t-2 border-gray-200/60 bg-white sm:rounded-lg sm:border-2">
@@ -21,7 +23,7 @@ const ConsoleCard: React.FC<ConsoleCardProps> = ({
             </h1>
             <p className="mt-2 text-sm text-gray-500">{subtitle}</p>
           </div>
-          {more ? (
+          {more && (
             <div className="ml-16 mt-0 flex-none">
               <button
                 type="button"
@@ -31,7 +33,8 @@ const ConsoleCard: React.FC<ConsoleCardProps> = ({
                 더 보기
               </button>
             </div>
-          ) : null}
+          )}
+          {detailedMore && <>{detailedMore}</>}
         </div>
         <div className="mt-8 flow-root">{children}</div>
       </div>

@@ -73,6 +73,7 @@ export class ConnectRosterServiceImpl implements ConnectRosterService {
           profileImgUrl: true,
           rosterType: true,
           registerYear: true,
+          status: true,
           Athlete: {
             select: {
               position: true,
@@ -130,6 +131,7 @@ export class ConnectRosterServiceImpl implements ConnectRosterService {
           profileImgUrl: true,
           rosterType: true,
           registerYear: true,
+          status: true,
           Athlete: {
             select: {
               position: true,
@@ -239,6 +241,7 @@ export class ConnectRosterServiceImpl implements ConnectRosterService {
           profileImgUrl: true,
           rosterType: true,
           registerYear: true,
+          status: true,
           Athlete: {
             select: {
               position: true,

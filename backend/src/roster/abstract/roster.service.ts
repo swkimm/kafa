@@ -5,7 +5,8 @@ import type {
 } from '../dto/create-roster.dto'
 import type {
   RosterWithAthleteDTO,
-  RosterWithAthleteManyDTO
+  RosterWithAthleteManyDTO,
+  RosterWithAthleteSimpleDTO
 } from '../dto/roster-with-athlete.dto'
 import type { UpdateRosterDTO } from '../dto/update-roster.dto'
 import type { ConnectRosterService } from '../interface/connect-roster.service.interface'
@@ -24,7 +25,7 @@ export abstract class RosterService<T extends Roster> {
     private readonly getRosterService: GetRosterService,
     private readonly createRosterService: CreateRosterService<T>,
     private readonly deleteRosterService: DeleteRosterService<T>,
-    private readonly updateRosterService: UpdateRosterService<T>,
+    private readonly updateRosterService: UpdateRosterService,
     private readonly connectRosterService: ConnectRosterService
   ) {}
 
@@ -83,6 +84,27 @@ export abstract class RosterService<T extends Roster> {
   }
 
   /**
+   * 특정 팀의 로스터 검색 목록을 반환합니다.
+   *
+   * @param {string} searchTerm - 검색어
+   * @param {number} teamId - 로스터 목록을 불러올 팀의 Id
+   * @param {number} [limit=10] - 한 번에 불러올 로스터 수
+   * @returns {Promise<RosterWithAthleteManyDTO[]>}
+   * @throws {EntityNotExistException} 존재하지 않는 팀의 Id를 전달할 경우 발생
+   */
+  async getTeamRostersBySearch(
+    searchTerm: string,
+    teamId: number,
+    limit?: number
+  ): Promise<RosterWithAthleteManyDTO[]> {
+    return await this.getRosterService.getTeamRostersBySearch(
+      searchTerm,
+      teamId,
+      limit
+    )
+  }
+
+  /**
    * 계정에 연결된 로스터 목록을 반환합니다.
    *
    * @param {number} accountId - 로스터 목록을 조회할 계정의 Id
@@ -127,7 +149,7 @@ export abstract class RosterService<T extends Roster> {
    * @param {number} rosterDTO - 변경할 로스터 정보가 담긴 객체
    * @param {number} rosterId - 변경할 로스터의 Id
    * @param {number} accountId - 변경을 요청하는 계정의 Id
-   * @returns {Promise<T>} 변경된 로스터
+   * @returns {Promise<RosterWithAthleteSimpleDTO>} 변경된 로스터
    * @throws {EntityNotExistException} 존재하지 않는 로스터의 Id를 전달할 경우 발생
    * @throws {ForbiddenAccessException} 매니저 계정으로 요청시 다른 로스터에 해당 요청을 보낼 경우 발생
    * @throws {ParameterValidationException} 변경할 로스터 정보 객체에 유효하지 않은 값 또는 누락된 값이 있을 경우 발생
@@ -136,7 +158,7 @@ export abstract class RosterService<T extends Roster> {
     rosterDTO: UpdateRosterDTO,
     rosterId: number,
     accountId: number
-  ): Promise<T> {
+  ): Promise<RosterWithAthleteSimpleDTO> {
     return await this.updateRosterService.updateRoster(
       rosterDTO,
       rosterId,

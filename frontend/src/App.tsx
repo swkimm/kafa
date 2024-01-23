@@ -26,12 +26,11 @@ import ManageRecode from './pages/console/admin/recode/ManageRecode.tsx'
 import ManageTeams from './pages/console/admin/team/ManageTeams.tsx'
 import MyProfile from './pages/console/common/MyProfile.tsx'
 import ApplyLeagueList from './pages/console/manager/league/ApplyLeagueList.tsx'
-import LeagueList from './pages/console/manager/league/LeagueList.tsx'
-import ValidateCerti from './pages/console/manager/league/ValidateCerti.tsx'
-import ManageRequestRoster from './pages/console/manager/team/ManageRequestRoster.tsx'
-import ManageTeamInfo from './pages/console/manager/team/ManageTeamInfo.tsx'
-import ManageTeamLogo from './pages/console/manager/team/ManageTeamLogo.tsx'
-import ManageTeamRoster from './pages/console/manager/team/ManageTeamRoster.tsx'
+import JoinableLeagues from './pages/console/manager/league/joinable/JoinableLeagues.tsx'
+import ValidateRoster from './pages/console/manager/league/validate/ValidateRoster.tsx'
+import ManageRoster from './pages/console/manager/roster/list/ManageRoster.tsx'
+import ManageRequestRoster from './pages/console/manager/roster/request/ManageRequestRoster.tsx'
+import ManageTeamProfile from './pages/console/manager/team-profile/TeamProfile.tsx'
 import Certification from './pages/console/user/certification/Certification.tsx'
 import CreateTeam from './pages/console/user/create-team/CreateTeam.tsx'
 import LoadRoster from './pages/console/user/roster/LoadRoster.tsx'
@@ -135,23 +134,25 @@ const App = () => {
 
           <Route element={<PrivateRoute allowedRoles={[Role.Manager]} />}>
             <Route element={<ConsoleLayout />}>
-              <Route path="/console/manageTeam" element={<ManageTeamInfo />} />
-              <Route path="/console/manageLogo" element={<ManageTeamLogo />} />
               <Route
-                path="/console/manageRequest"
+                path="/console/manage-team-profile"
+                element={<ManageTeamProfile />}
+              />
+              <Route
+                path="/console/manage-request"
                 element={<ManageRequestRoster />}
               />
+              <Route path="/console/manage-roster" element={<ManageRoster />} />
               <Route
-                path="/console/manageRoster"
-                element={<ManageTeamRoster />}
+                path="/console/validate-roster"
+                element={<ValidateRoster />}
               />
               <Route
-                path="/console/validateCerti"
-                element={<ValidateCerti />}
+                path="/console/joinable-leagues"
+                element={<JoinableLeagues />}
               />
-              <Route path="/console/leagueList" element={<LeagueList />} />
               <Route
-                path="/console/applyLeagueList"
+                path="/console/apply-league"
                 element={<ApplyLeagueList />}
               />
             </Route>

@@ -4,6 +4,7 @@ export interface Profile {
   email: string
   profileImgUrl: string
   role: Role
+  teamId?: number
 }
 
 export enum Role {

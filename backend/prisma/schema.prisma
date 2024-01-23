@@ -201,6 +201,8 @@ model League {
   Games          Game[]
   Association    Association?    @relation(fields: [associationId], references: [id])
   LeagueRoster   LeagueRoster[]
+
+  @@index([startedAt, endedAt])
 }
 
 model LeagueSponser {

@@ -5,6 +5,7 @@ import { StorageModule } from '@/storage/storage.module'
 import { TeamModule } from '@/team/team.module'
 import { ProfileController } from './profile.controller'
 import { AccountProfileServiceImpl } from './service/account-profile.service'
+import { RosterProfileServiceImpl } from './service/roster-profile.service'
 import { SponserProfileServiceImpl } from './service/sponser-profile.service'
 import { TeamProfileServiceImpl } from './service/team-profile.service'
 
@@ -23,6 +24,10 @@ import { TeamProfileServiceImpl } from './service/team-profile.service'
     {
       provide: 'SponserProfileService',
       useClass: SponserProfileServiceImpl
+    },
+    {
+      provide: 'RosterProfileService',
+      useClass: RosterProfileServiceImpl
     }
   ]
 })

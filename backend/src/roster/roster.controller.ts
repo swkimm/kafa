@@ -20,7 +20,8 @@ import { RosterService } from './abstract/roster.service'
 import { CreateRosterDTO, RequestRosterDTO } from './dto/create-roster.dto'
 import type {
   RosterWithAthleteDTO,
-  RosterWithAthleteManyDTO
+  RosterWithAthleteManyDTO,
+  RosterWithAthleteSimpleDTO
 } from './dto/roster-with-athlete.dto'
 import { UpdateRosterDTO } from './dto/update-roster.dto'
 
@@ -96,7 +97,7 @@ export class RosterController {
     @Body() rosterDTO: UpdateRosterDTO,
     @Param('rosterId', ParseIntPipe) rosterId: number,
     @Req() req: AuthenticatedRequest
-  ): Promise<Roster> {
+  ): Promise<RosterWithAthleteSimpleDTO> {
     try {
       return await this.rosterService.updateRoster(
         rosterDTO,
@@ -135,6 +136,24 @@ export class RosterController {
         page,
         limit,
         option
+      )
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Public()
+  @Get('teams/:teamId/search')
+  async getTeamRostersBySearch(
+    @Param('teamId', ParseIntPipe) teamId: number,
+    @Query('term') searchTerm: string,
+    @Query('limit', new ParseIntPipe({ optional: true })) limit?: number
+  ): Promise<RosterWithAthleteManyDTO[]> {
+    try {
+      return await this.rosterService.getTeamRostersBySearch(
+        searchTerm,
+        teamId,
+        limit
       )
     } catch (error) {
       businessExceptionBinder(error)

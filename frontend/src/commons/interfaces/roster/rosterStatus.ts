@@ -1,6 +1,6 @@
 export enum RosterStatus {
-  Enable,
-  Graduate,
-  Disabled,
-  Verifying
+  Enable = 'Enable',
+  Graduate = 'Graduate',
+  Disable = 'Disable',
+  Verifying = 'Verifying'
 }

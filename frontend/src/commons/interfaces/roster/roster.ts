@@ -1,3 +1,5 @@
+import type { RosterStatus } from './rosterStatus'
+
 export enum RosterType {
   Athlete = 'Athlete',
   Staff = 'Staff',
@@ -31,6 +33,7 @@ export interface Roster {
   profileImgUrl?: string
   rosterType: RosterType
   Athlete?: AthleteInfo
-  registerYear?: number
+  registerYear: Date
   Team?: TeamInfo
+  status: RosterStatus
 }

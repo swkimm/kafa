@@ -17,6 +17,7 @@ import { IMAGE_OPTIONS } from '@/storage/option/image-option'
 import { Role } from '@prisma/client'
 import { TeamProfileService } from './interface/\bteam-profile.service.interface'
 import { AccountProfileService } from './interface/account-profile.service.interface'
+import { RosterProfileService } from './interface/roster-profile.service.interface'
 import { SponserProfileService } from './interface/sponser-profile.service.interface'
 
 @Controller('profile')
@@ -27,7 +28,9 @@ export class ProfileController {
     @Inject('TeamProfileService')
     private readonly teamProfileService: TeamProfileService,
     @Inject('SponserProfileService')
-    private readonly sponserProfileService: SponserProfileService
+    private readonly sponserProfileService: SponserProfileService,
+    @Inject('RosterProfileService')
+    private readonly rosterProfileService: RosterProfileService
   ) {}
 
   @Post('account')
@@ -60,6 +63,31 @@ export class ProfileController {
 
     try {
       return await this.accountProfileService.upsertProfile(image, accountId)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Roles(Role.Manager)
+  @Post('roster/:rosterId')
+  @UseInterceptors(FileInterceptor('image', IMAGE_OPTIONS))
+  async upsertRosterProfile(
+    @UploadedFile() image: Express.Multer.File,
+    @Param('rosterId', ParseIntPipe) rosterId: number,
+    @Req() req: AuthenticatedRequest
+  ): Promise<string> {
+    if (!image) {
+      throw new BadRequestException(
+        '잘못된 이미지 형식 또는 이미지 크기 제한 초과'
+      )
+    }
+
+    try {
+      return await this.rosterProfileService.upsertRosterProfile(
+        image,
+        rosterId,
+        req.user.id
+      )
     } catch (error) {
       businessExceptionBinder(error)
     }

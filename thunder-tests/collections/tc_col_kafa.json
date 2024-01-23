@@ -927,6 +927,13 @@
             "containerId": "be01d03e-f606-447d-88fc-ef5ff2f1d8e8",
             "created": "2024-01-22T12:14:51.175Z",
             "sortNum": 727500
+        },
+        {
+            "_id": "b1a27909-721b-4404-b645-5e7031a42d5b",
+            "name": "getTeamRostersBySearch",
+            "containerId": "c7e22dd6-b5a1-48e0-b35e-c99c1438732f",
+            "created": "2024-01-22T21:56:35.055Z",
+            "sortNum": 1350000
         }
     ],
     "requests": [
@@ -8338,12 +8345,12 @@
             "method": "PUT",
             "sortNum": 1810000,
             "created": "2023-12-27T12:18:01.794Z",
-            "modified": "2024-01-02T12:39:31.841Z",
+            "modified": "2024-01-22T18:28:09.645Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"로스터01\",\n  \"globalName\": \"roster\",\n  \"registerYear\": 2018,\n  \"rosterType\": \"Athlete\",\n  \"position\": {\n    \"offence\": \"QB\",\n    \"defense\": \"DB\"\n  },\n  \"backNumber\": 1,\n  \"weight\": 92,\n  \"height\": 183\n}",
+                "raw": "{\n  \"name\": \"로스터01\",\n  \"globalName\": \"roster\",\n  \"registerYear\": 2018,\n  \"rosterType\": \"Athlete\",\n  \"position\": {\n    \"offence\": \"QB\",\n    \"defense\": \"DB\"\n  },\n  \"backNumber\": 1,\n  \"weight\": 92,\n  \"height\": 183,\n  \"status\": \"Enable\"\n}",
                 "form": []
             },
             "tests": [
@@ -8366,7 +8373,7 @@
                     "value": "roster"
                 }
             ],
-            "docs": "## [Manager] UpdateRoster\n\n### URI\nPUT /rosters/[:rosterId]\n\n### Description\n로스터 정보를 업데이트하고 업데이트된 로스터 정보를 불러옵니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|rosterId|number|업데이트할 로스터의 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name|string|이름|\n|globalName|string|영문 이름|\n|registerYear|number|입부년도|\n|rosterType|*RosterType|로스터 종류|\n|position?|*Position|포지션 정보|\n|height?|number|키(cm)|\n|weight?|number|몸무게(kg)|\n|backNumber?|number|등 번호|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문이름|\n|rosterType|*RosterType|로스터 종류|\n|teamId|number|팀 식별자|\n|accountId|number|연결된 개인 계정 식별자|\n|registerYear|Date|입부년도|\n|profileImgUrl|string?|프로필 이미지 주소|\n|status|*RosterStatus|로스터 상태|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface Position**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 또는 요청 Body에 유효하지 않은 값이 포함된 경우 발생|\n|401|Unauthorized|로그인하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정으로 해당 요청을 보낼 경우 또는 다른팀의 로스터의 식별자를 보낼 경우 발생|\n|404|Not Found|존재하지 않는 로스터의 식별자를 전달할 경우 발생|",
+            "docs": "## [Manager] UpdateRoster\n\n### URI\nPUT /rosters/[:rosterId]\n\n### Description\n로스터 정보를 업데이트하고 업데이트된 로스터 정보를 불러옵니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|rosterId|number|업데이트할 로스터의 식별자|\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name|string|이름|\n|globalName|string|영문 이름|\n|registerYear|number|입부년도|\n|rosterType|*RosterType|로스터 종류|\n|status|*RosterStatus|로스터 상태|\n|position?|*Position|포지션 정보|\n|height?|number|키(cm)|\n|weight?|number|몸무게(kg)|\n|backNumber?|number|등 번호|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문이름|\n|rosterType|*RosterType|로스터 종류|\n|teamId|number|팀 식별자|\n|accountId|number|연결된 개인 계정 식별자|\n|registerYear|Date|입부년도|\n|profileImgUrl|string?|프로필 이미지 주소|\n|status|*RosterStatus|로스터 상태|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Enum RosterStatus**\n- Enable\n- Disable\n- Graduate\n- Verifying\n\n**Interface Position**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터 또는 요청 Body에 유효하지 않은 값이 포함된 경우 발생|\n|401|Unauthorized|로그인하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정으로 해당 요청을 보낼 경우 또는 다른팀의 로스터의 식별자를 보낼 경우 발생|\n|404|Not Found|존재하지 않는 로스터의 식별자를 전달할 경우 발생|",
             "preReq": {
                 "runRequests": [
                     {
@@ -13064,6 +13071,37 @@
             "params": [],
             "tests": [],
             "docs": "## [Public] GetGamesByLeagueIdAndTeamId\n\n### URI\nGET /games/leagues/[:leagueId]/teams/[:teamId]\n\n### Description\n팀이 리그에서 배정된 경기 목록을 불러옵니다.\n\n### \bQuery Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|경기 목록을 조회할 리그의 식별자|\n|teamId|number|경기 목록을 조회할 팀의 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|경기의 식별자|\n|name|string|경기명|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|BadRequest|쿼리 스트링 또는 쿼리 파라미터에 잘못된 값이 있을 경우 발생|\n|404|Not Found|존재하지 않는 리그 또는 팀의 식별자를 전달할 경우 발생|",
+            "preReq": {
+                "runRequests": [
+                    {
+                        "reqId": "67a499f8-ff28-4c3f-b253-ddbe8fbe3e33",
+                        "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+                        "triggerCondition": "run-always",
+                        "triggerValue": ""
+                    }
+                ]
+            }
+        },
+        {
+            "_id": "2f84f7da-97eb-4467-94f0-644e6bc8f5fc",
+            "colId": "8853b3fa-2b06-49d5-bbe2-622d46ef24c6",
+            "containerId": "b1a27909-721b-4404-b645-5e7031a42d5b",
+            "name": "Success",
+            "url": "/rosters/teams/1/search?term=로스터",
+            "method": "GET",
+            "sortNum": 2910000,
+            "created": "2024-01-22T21:56:40.016Z",
+            "modified": "2024-01-22T22:01:59.507Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "term",
+                    "value": "로스터",
+                    "isPath": false
+                }
+            ],
+            "tests": [],
+            "docs": "## [Public] getTeamRostersBySearch\n\n### URI\nGET /rosters/teams/[:teamId]\n\n### Description\n특정 팀의\b 로스터 명단을 검색합니다\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|term|string|검색어|\n|limit?|number|한 번에 불러올 로스터 수 (default 10, >= 1)|\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|teamId|number|조회할 팀의 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문 이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n|rosterType|*RosterType|로스터 종류|\n|Athlete|*AthleteInfo?|선수 정보|\n|status|*RosterStatus|로스터 상태|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Enum RosterStatus**\n- Enabled (활성화)\n- Graduate (졸업생)\n- Disabled (비활성화)\n- Verifying (등록 심사 중)\n\n**Interface AthteleInfo**\n|Name|Type|Description|\n|---|----|-------|\n|position|*PositionType|포지션 정보|\n|backNumber|number|등번호|\n\n**Interface PositionType**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|400|Bad Request|쿼리 파라미터 또는 쿼리 스트링에 유효하지 않은 값이 포함될 경우 발생|\n|404|Not Found|존재하지 않는 팀의 식별자를 전달할 경우 발생|",
             "preReq": {
                 "runRequests": [
                     {

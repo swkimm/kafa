@@ -7,13 +7,14 @@ import {
   UnexpectedException
 } from '@/common/exception/business.exception'
 import { PrismaService } from '@/prisma/prisma.service'
-import { RosterType, type Roster } from '@prisma/client'
+import { RosterType } from '@prisma/client'
+import type { RosterWithAthleteSimpleDTO } from '../dto/roster-with-athlete.dto'
 import type { UpdateRosterDTO } from '../dto/update-roster.dto'
 import { GetRosterService } from '../interface/get-roster.service.interface'
 import type { UpdateRosterService } from '../interface/update-roster.interface'
 
 @Injectable()
-export class UpdateRosterServiceImpl implements UpdateRosterService<Roster> {
+export class UpdateRosterServiceImpl implements UpdateRosterService {
   constructor(
     private readonly prismaService: PrismaService,
     @Inject('GetRosterService')
@@ -26,7 +27,7 @@ export class UpdateRosterServiceImpl implements UpdateRosterService<Roster> {
     rosterDTO: UpdateRosterDTO,
     rosterId: number,
     accountId: number
-  ): Promise<Roster> {
+  ): Promise<RosterWithAthleteSimpleDTO> {
     try {
       this.checkRosterDTO(rosterDTO)
 
@@ -51,6 +52,7 @@ export class UpdateRosterServiceImpl implements UpdateRosterService<Roster> {
             globalName: rosterDTO.globalName,
             registerYear: new Date(`${rosterDTO.registerYear}-01-01`),
             rosterType: rosterDTO.rosterType,
+            status: rosterDTO.status,
             Athlete: {
               connectOrCreate: {
                 where: {
@@ -62,6 +64,21 @@ export class UpdateRosterServiceImpl implements UpdateRosterService<Roster> {
                   height: rosterDTO.height,
                   weight: rosterDTO.weight
                 }
+              }
+            }
+          },
+          select: {
+            id: true,
+            name: true,
+            globalName: true,
+            profileImgUrl: true,
+            rosterType: true,
+            registerYear: true,
+            status: true,
+            Athlete: {
+              select: {
+                position: true,
+                backNumber: true
               }
             }
           }
@@ -83,7 +100,23 @@ export class UpdateRosterServiceImpl implements UpdateRosterService<Roster> {
             name: rosterDTO.name,
             globalName: rosterDTO.globalName,
             registerYear: new Date(`${rosterDTO.registerYear}-01-01`),
-            rosterType: rosterDTO.rosterType
+            rosterType: rosterDTO.rosterType,
+            status: rosterDTO.status
+          },
+          select: {
+            id: true,
+            name: true,
+            globalName: true,
+            profileImgUrl: true,
+            rosterType: true,
+            registerYear: true,
+            status: true,
+            Athlete: {
+              select: {
+                position: true,
+                backNumber: true
+              }
+            }
           }
         })
       }

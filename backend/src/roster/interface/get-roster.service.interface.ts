@@ -48,6 +48,21 @@ export interface GetRosterService {
   ): Promise<RosterWithAthleteManyDTO[]>
 
   /**
+   * 특정 팀의 로스터 검색 목록을 반환합니다.
+   *
+   * @param {string} searchTerm - 검색어
+   * @param {number} teamId - 로스터 목록을 불러올 팀의 Id
+   * @param {number} [limit=10] - 한 번에 불러올 로스터 수
+   * @returns {Promise<RosterWithAthleteManyDTO[]>}
+   * @throws {EntityNotExistException} 존재하지 않는 팀의 Id를 전달할 경우 발생
+   */
+  getTeamRostersBySearch(
+    searchTerm: string,
+    teamId: number,
+    limit?: number
+  ): Promise<RosterWithAthleteManyDTO[]>
+
+  /**
    * 계정에 연결된 로스터 목록을 반환합니다.
    *
    * @param {number} accountId - 로스터 목록을 조회할 계정의 Id
