@@ -3,6 +3,8 @@ import type { GetLeaguesWithYear } from '@/commons/interfaces/league/getLeaguesW
 import type { TeamComplication } from '@/commons/interfaces/team/teamComplication'
 import TeamCard from '@/components/cards/TeamCard'
 import DropdownRight from '@/components/dropdown/DropdownRight'
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,6 +16,7 @@ const Teams = () => {
   )
   const thisYear = new Date().getFullYear()
   const navigate = useNavigate()
+  const { showNotification } = useNotification()
 
   useEffect(() => {
     const getThisYearLeagues = async () => {
@@ -35,6 +38,7 @@ const Teams = () => {
     }
 
     getThisYearLeagues()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -42,6 +46,7 @@ const Teams = () => {
     if (selectedLeagueId !== undefined) {
       getTeamsByLeagueId(selectedLeagueId) // 선택된 리그의 팀 목록 가져오기
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLeagueId])
 
   const handleSelect = (selectedName: string) => {
@@ -60,7 +65,11 @@ const Teams = () => {
       console.log(response.data)
       setTeams(response.data)
     } catch (error) {
-      console.log(error)
+      showNotification(
+        NotificationType.Error,
+        '팀 목록 불러오기 실패',
+        '팀 목록 불러오기에 실패했습니다.'
+      )
     }
   }
 

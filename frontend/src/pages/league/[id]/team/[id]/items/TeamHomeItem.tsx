@@ -9,7 +9,7 @@ import NoticeList from '@/components/stackedList/NoticeList'
 import DefaultTable from '@/components/tables/DefaultTable'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 
 interface Notice {
@@ -88,54 +88,57 @@ const TeamHomeItem = () => {
     return response.data
   }
 
-  const getGamesByTeamId = useCallback(async () => {
-    const page = 1
-    const limit = 5
-    try {
-      const response = await axiosInstance.get(
-        `/games/teams/${teamId}?page=${page}&limit=${limit}`
-      )
-      let games = response.data
-
-      // URL 쿼리 파라미터에 따라 연도 필터링
-      if (year) {
-        games = games.filter(
-          (game: { startedAt: string }) =>
-            new Date(game.startedAt).getFullYear() === year
-        )
-      }
-
-      // 특정 리그와 팀에 해당하는 경기만 필터링
-      if (leagueId && teamId) {
-        games = games.filter(
-          (game: { League: { id: number } }) =>
-            game.League.id === parseInt(leagueId, 10)
-        )
-      }
-
-      // 각 게임에 대한 추가 정보(스타디움 등)를 가져옴
-      const gamesWithStadium = await Promise.all(
-        games.map(async (game: { id: number }) => {
-          const gameDetails = await fetchGameWithStadium(game.id)
-          return {
-            ...game,
-            ...gameDetails
-          }
-        })
-      )
-      setGames(gamesWithStadium)
-    } catch (error) {
-      showNotification(
-        NotificationType.Error,
-        '게임 목록 불러오기 실패',
-        '게임 목록 불러오기에 실패했습니다.'
-      )
-    }
-  }, [teamId, year, leagueId, showNotification])
-
   useEffect(() => {
+    const getGamesByTeamId = async () => {
+      const page = 1
+      const limit = 5
+      try {
+        const response = await axiosInstance.get(
+          `/games/teams/${teamId}?page=${page}&limit=${limit}`
+        )
+        let games = response.data
+
+        // URL 쿼리 파라미터에 따라 연도 필터링
+        if (year) {
+          games = games.filter(
+            (game: { startedAt: string }) =>
+              new Date(game.startedAt).getFullYear() === year
+          )
+        }
+
+        // 특정 리그와 팀에 해당하는 경기만 필터링
+        if (leagueId && teamId) {
+          games = games.filter(
+            (game: { League: { id: number } }) =>
+              game.League.id === parseInt(leagueId, 10)
+          )
+        }
+
+        // 각 게임에 대한 추가 정보(스타디움 등)를 가져옴
+        const gamesWithStadium = await Promise.all(
+          games.map(async (game: { id: number }) => {
+            const gameDetails = await fetchGameWithStadium(game.id)
+            return {
+              ...game,
+              ...gameDetails
+            }
+          })
+        )
+        setGames(gamesWithStadium)
+      } catch (error) {
+        showNotification(
+          NotificationType.Error,
+          '게임 목록 불러오기 실패',
+          '게임 목록 불러오기에 실패했습니다.'
+        )
+        setGames([])
+      }
+    }
+
     getGamesByTeamId()
-  }, [getGamesByTeamId])
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const gamesColumns = [
     {

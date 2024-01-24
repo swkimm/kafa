@@ -35,7 +35,8 @@ const TeamDetail = () => {
       }
     }
     getTeam()
-  }, [showNotification, teamId])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const renderComponent = () => {
     if (currentComponent === 'HOME') {
