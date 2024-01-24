@@ -266,11 +266,17 @@ const LeagueHomeItem = () => {
     <div className="container mx-auto my-5 grid max-w-screen-2xl grid-cols-1 px-5 sm:grid-cols-3">
       <div className="col-span-2">
         <div className="mb-5">
-          <DefaultTable
-            title="다가오는 경기 일정"
-            data={games}
-            columns={GamesColumns}
-          />
+          {games.length > 0 ? (
+            <DefaultTable
+              title="다가오는 경기 일정"
+              data={games}
+              columns={GamesColumns}
+            />
+          ) : (
+            <div>
+              <div>다가오는 경기 일정이 없습니다.</div>
+            </div>
+          )}
         </div>
         <div className="mb-5">
           <DefaultTable

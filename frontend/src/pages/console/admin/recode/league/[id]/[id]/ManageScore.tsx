@@ -1,6 +1,6 @@
 import axiosInstance from '@/commons/axios'
 import type { Game } from '@/commons/interfaces/game/game'
-import type { RecordType } from '@/commons/interfaces/recode/recode'
+import type { RecordType } from '@/commons/interfaces/record/record'
 import type { Score } from '@/commons/interfaces/score/score'
 import Button from '@/components/buttons/Button'
 import useNotification from '@/hooks/useNotification'

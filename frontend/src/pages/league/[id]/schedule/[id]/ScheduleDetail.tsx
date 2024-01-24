@@ -608,15 +608,16 @@ const league = {
 }
 
 const ScheduleDetail = () => {
-  const [activeTeam, setActiveTeam] = useState('HOME')
+  const [activeTeam, setActiveTeam] = useState(true)
 
-  const handleHomeClick = () => {
-    setActiveTeam('HOME')
+  const handleClick = () => {
+    if (activeTeam === true) {
+      setActiveTeam(true)
+    } else {
+      setActiveTeam(false)
+    }
   }
 
-  const handleAwayClick = () => {
-    setActiveTeam('AWAY')
-  }
   const homeTeam = {
     id: 1,
     logo: '/logo/KAFA_OG.png',
@@ -634,7 +635,7 @@ const ScheduleDetail = () => {
   }
 
   return (
-    <div className="mb-5 mt-16">
+    <div className="mb-5">
       <div className="max-w-screen">
         <div
           key={league.id}
@@ -668,22 +669,22 @@ const ScheduleDetail = () => {
           <Button
             variant="reverse"
             label="HOME"
-            onClick={handleHomeClick}
-            isActive={activeTeam === 'HOME'}
+            onClick={handleClick}
+            isActive={activeTeam === true}
           />
         </div>
         <div className="ml-2">
           <Button
             variant="reverse"
             label="AWAY"
-            onClick={handleAwayClick}
-            isActive={activeTeam === 'AWAY'}
+            onClick={handleClick}
+            isActive={activeTeam === false}
           />
         </div>
       </div>
       <div className="container mx-auto mt-5">
         <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {activeTeam === 'HOME' && (
+          {activeTeam === true && (
             <>
               <div>
                 <div className="mb-10">
@@ -719,7 +720,7 @@ const ScheduleDetail = () => {
               </div>
             </>
           )}
-          {activeTeam === 'AWAY' && (
+          {activeTeam === false && (
             <>
               <div>
                 <div className="mb-10">

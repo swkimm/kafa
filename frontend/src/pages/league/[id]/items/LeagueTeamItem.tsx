@@ -3,11 +3,13 @@ import type { TeamComplication } from '@/commons/interfaces/team/teamComplicatio
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import TeamCard from '../../../../components/cards/TeamCard'
 
 const TeamItem = () => {
+  const [searchParams] = useSearchParams()
+  const year = searchParams.get('year')
   const [teams, setTeams] = useState<TeamComplication[] | null>(null)
   const { showNotification } = useNotification()
 
@@ -49,7 +51,9 @@ const TeamItem = () => {
                   profileImgUrl={team.profileImgUrl || '/logo/KAFA_OG.png'}
                   isWhite={(color: string) => color === '#ffffff'}
                   onClick={() => {
-                    navigate(`/league/${leagueId}/team/${team.id}`)
+                    navigate(
+                      `/leagues/${leagueId}/teams/${team.id}?year=${year}`
+                    )
                   }}
                 />
               </div>

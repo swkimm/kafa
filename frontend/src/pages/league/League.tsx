@@ -70,7 +70,7 @@ const League = () => {
   }, [year])
 
   const goToLeagueDetail = (id: number) => {
-    navigate(`/leagues/${id}`)
+    navigate(`/leagues/${id}?year=${year}`)
   }
 
   return (

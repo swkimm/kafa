@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import LeagueHomeItem from './items/LeagueHomeItem'
 import TeamItem from './items/LeagueTeamItem'
-// import MediaItem from './items/MediaItem'
 import ScheduleItem from './items/ScheduleItem'
 import StatsItem from './items/StatsItem'
 
@@ -42,9 +41,6 @@ const LeagueDetail = () => {
     } else if (currentComponent === 'STATS') {
       return <StatsItem />
     }
-    // else if (currentComponent === 'MEDIA') {
-    //   return <MediaItem />
-    // }
   }
 
   const isDatePast = (dateString: Date) => {
@@ -53,7 +49,6 @@ const LeagueDetail = () => {
     return eventDate < currentDate
   }
 
-  // 데이터를 불러오는 함수
   useEffect(() => {
     const fetchLeagueData = async () => {
       try {
@@ -66,7 +61,7 @@ const LeagueDetail = () => {
     }
 
     fetchLeagueData()
-  }, [leagueId]) // 의존성 배열에 param.id를 추가
+  }, [leagueId])
 
   const fetchAssociationData = async (associationId: number) => {
     try {
@@ -174,21 +169,9 @@ const LeagueDetail = () => {
                     >
                       STATS
                     </Disclosure.Button>
-                    {/* <Disclosure.Button
-                      as="button"
-                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
-                        currentComponent === 'MEDIA'
-                          ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white '
-                      }`}
-                      onClick={() => setCurrentComponent('MEDIA')}
-                    >
-                      MEDIA
-                    </Disclosure.Button> */}
                   </div>
                 </div>
                 <div className="-mr-2 flex items-center sm:hidden">
-                  {/* Mobile menu button */}
                   <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                     <span className="absolute -inset-0.5" />
                     <span className="sr-only">Open main menu</span>
@@ -203,7 +186,6 @@ const LeagueDetail = () => {
             </div>
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 pb-3 pt-2">
-                {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 " */}
                 <Disclosure.Button
                   as="button"
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 "
@@ -232,13 +214,6 @@ const LeagueDetail = () => {
                 >
                   STATS
                 </Disclosure.Button>
-                {/* <Disclosure.Button
-                  as="button"
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 "
-                  onClick={() => setCurrentComponent('MEDIA')}
-                >
-                  MEDIA
-                </Disclosure.Button> */}
               </div>
             </Disclosure.Panel>
           </>

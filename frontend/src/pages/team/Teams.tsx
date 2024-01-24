@@ -12,6 +12,7 @@ const Teams = () => {
   const [selectedLeagueId, setSelectedLeagueId] = useState<number | undefined>(
     undefined
   )
+  const thisYear = new Date().getFullYear()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -63,6 +64,10 @@ const Teams = () => {
     }
   }
 
+  const goToTeamDetailPage = (teamId: number) => {
+    navigate(`/leagues/${selectedLeagueId}/teams/${teamId}?year=${thisYear}`)
+  }
+
   return (
     <div>
       <div className="bg-purple-950 py-6 text-xl font-bold text-gray-50">
@@ -95,9 +100,7 @@ const Teams = () => {
                 color={team.color}
                 profileImgUrl={team.profileImgUrl || '/logo/KAFA_OG.png'}
                 isWhite={(color: string) => color === '#ffffff'}
-                onClick={() => {
-                  navigate(`/league/${selectedLeagueId}/team/${team.id}`)
-                }}
+                onClick={() => goToTeamDetailPage(team.id)}
               />
             </div>
           ))

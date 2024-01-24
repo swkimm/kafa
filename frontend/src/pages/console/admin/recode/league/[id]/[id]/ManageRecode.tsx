@@ -1,5 +1,5 @@
 import axiosInstance from '@/commons/axios'
-import { RecordType, UnitType } from '@/commons/interfaces/recode/recode'
+import { RecordType, UnitType } from '@/commons/interfaces/record/record'
 import { RosterType, type Roster } from '@/commons/interfaces/roster/roster'
 import Button from '@/components/buttons/Button'
 import DropdownLeft from '@/components/dropdown/DropdownLeft'

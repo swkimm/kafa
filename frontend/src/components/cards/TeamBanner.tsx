@@ -5,7 +5,7 @@ import type React from 'react'
 const TeamBanner: React.FC<TeamComplication> = ({
   name,
   globalName,
-  initial,
+  hometown,
   establishedAt,
   color,
   profileImgUrl,
@@ -39,13 +39,15 @@ const TeamBanner: React.FC<TeamComplication> = ({
         <div className="mb-3 flex flex-row pt-8">
           <div className={`basis-1/3 ${isWhiteText ? 'text-black' : ''}`}>
             <h1 className="px-4 text-xs sm:px-0 sm:text-xs">{name}</h1>
-            <h1 className="px-4 text-xs sm:px-0 sm:text-xs">{globalName}</h1>
+            <h1 className="px-4 text-sm font-bold sm:px-0 sm:text-lg">
+              {globalName}
+            </h1>
           </div>
           <div className="basis-1/3 px-4">
             <img
               src={profileImgUrl || '/logo/KAFA_OG.png'}
               alt={name}
-              className="m-auto hidden items-center text-center text-black sm:hidden lg:block lg:h-64 lg:w-64"
+              className="m-auto hidden items-center text-center text-black sm:hidden lg:block lg:h-56 lg:w-56"
               onError={(e) => (e.currentTarget.src = '/logo/KAFA_OG.png')}
             />
           </div>
@@ -53,7 +55,7 @@ const TeamBanner: React.FC<TeamComplication> = ({
             <img
               src={profileImgUrl || '/logo/KAFA_OG.png'}
               alt={globalName}
-              className="block items-center sm:block sm:h-24 sm:w-24 md:block md:h-32 md:w-32 lg:hidden"
+              className="block items-center sm:block sm:h-24 sm:w-24 md:block md:h-28 md:w-28 lg:hidden"
             />
           </div>
         </div>
@@ -63,8 +65,8 @@ const TeamBanner: React.FC<TeamComplication> = ({
               isWhiteText ? 'text-black' : ''
             }`}
           >
-            <div className="mb-2 text-xs">globalName</div>
-            <div className="font-bold sm:text-lg lg:text-2xl">{globalName}</div>
+            <div className="mb-2 text-xs">Hometown</div>
+            <div className="font-bold sm:text-lg lg:text-2xl">{hometown}</div>
           </div>
           <hr className="my-3 border-b-0" />
           <div
@@ -72,8 +74,8 @@ const TeamBanner: React.FC<TeamComplication> = ({
               isWhiteText ? 'text-black' : ''
             }`}
           >
-            <div className="mb-2 text-xs">Initial</div>
-            <div className="font-bold sm:text-lg lg:text-2xl">{initial}</div>
+            <div className="mb-2 text-xs">Name</div>
+            <div className="font-bold sm:text-lg lg:text-2xl">{globalName}</div>
           </div>
           <hr className="my-3 border-b-0" />
           <div

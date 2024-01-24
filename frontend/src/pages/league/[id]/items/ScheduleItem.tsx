@@ -4,7 +4,7 @@ import type { Game } from '@/commons/interfaces/game/game'
 import DropdownSimple from '@/components/dropdown/DropdownLeft'
 import DefaultTable from '@/components/tables/DefaultTable'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 interface GameScore {
   homeScore: number
@@ -33,10 +33,8 @@ const findEarliestDate = (games: ExtendedGame[]): Date => {
 
 // Modified getWeekNumber function
 const getWeekNumber = (d: Date, startDate: Date): number => {
-  // Calculate difference in days from the start date
   const differenceInTime = d.getTime() - startDate.getTime()
   const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24))
-  // Calculate week number
   return Math.floor(differenceInDays / 7) + 1
 }
 
@@ -62,14 +60,15 @@ const groupByWeek = (
 }
 
 const ScheduleItem = () => {
+  const [searchParams] = useSearchParams()
+  const year = searchParams.get('year')
   const { leagueId } = useParams()
-  const [games, setGames] = useState<ExtendedGame[]>([])
+  const navigate = useNavigate()
+  const [, setGames] = useState<ExtendedGame[]>([])
   const [selectedWeek, setSelectedWeek] = useState<number>()
   const [groupedGames, setGroupedGames] = useState<Map<number, ExtendedGame[]>>(
     new Map()
   )
-
-  console.log(games)
 
   const fetchScoreInfo = async (gameId: number) => {
     try {
@@ -162,11 +161,26 @@ const ScheduleItem = () => {
     getGames(Number(leagueId))
   }, [leagueId, getGames, selectedWeek])
 
+  const handleGameClick = (
+    gameId: number,
+    homeTeamId: number,
+    awayTeamId: number
+  ) => {
+    navigate(
+      `/leagues/${leagueId}/game-detail/${gameId}?year=${year}&home=${homeTeamId}&away${awayTeamId}`
+    )
+  }
+
   const gameColumns = [
     {
       title: 'HOME',
       render: (game: ExtendedGame) => (
-        <div className="flex items-center">
+        <div
+          className="flex cursor-pointer items-center"
+          onClick={() =>
+            handleGameClick(game.id, game.homeTeamId, game.awayTeamId)
+          }
+        >
           {game.homeTeamInfo?.profileImgUrl ? (
             <img
               src={game.homeTeamInfo.profileImgUrl}
@@ -176,18 +190,32 @@ const ScheduleItem = () => {
           ) : (
             <img src="/logo/KAFA_OG.png" alt="" className="mr-2 w-8" />
           )}
-          <span>{game.homeTeamInfo?.name}</span>
+          <div>{game.homeTeamInfo?.name}</div>
         </div>
       )
     },
     {
       title: '',
-      render: (game: ExtendedGame) => <span>{game.score?.homeScore}</span>
+      render: (game: ExtendedGame) => (
+        <div
+          className="cursor-pointer"
+          onClick={() =>
+            handleGameClick(game.id, game.homeTeamId, game.awayTeamId)
+          }
+        >
+          {game.score?.homeScore}
+        </div>
+      )
     },
     {
       title: 'AWAY',
       render: (game: ExtendedGame) => (
-        <div className="flex items-center">
+        <div
+          className="flex cursor-pointer items-center"
+          onClick={() =>
+            handleGameClick(game.id, game.homeTeamId, game.awayTeamId)
+          }
+        >
           {game.awayTeamInfo?.profileImgUrl ? (
             <img
               src={game.awayTeamInfo.profileImgUrl}
@@ -197,13 +225,22 @@ const ScheduleItem = () => {
           ) : (
             <img src="/logo/KAFA_OG.png" alt="" className="mr-2 w-8" />
           )}
-          <span>{game.awayTeamInfo?.name}</span>
+          <div>{game.awayTeamInfo?.name}</div>
         </div>
       )
     },
     {
       title: '',
-      render: (game: ExtendedGame) => <span>{game.score?.awayScore}</span>
+      render: (game: ExtendedGame) => (
+        <div
+          className="cursor-pointer"
+          onClick={() =>
+            handleGameClick(game.id, game.homeTeamId, game.awayTeamId)
+          }
+        >
+          {game.score?.awayScore}
+        </div>
+      )
     },
     {
       title: 'DATE',
@@ -219,7 +256,12 @@ const ScheduleItem = () => {
           : 'N/A'
 
         return (
-          <div>
+          <div
+            className="cursor-pointer"
+            onClick={() =>
+              handleGameClick(game.id, game.homeTeamId, game.awayTeamId)
+            }
+          >
             <span>{formattedDate}</span>
           </div>
         )
@@ -228,7 +270,12 @@ const ScheduleItem = () => {
     {
       title: 'LOCATION',
       render: (game: ExtendedGame) => (
-        <div>
+        <div
+          className="cursor-pointer"
+          onClick={() =>
+            handleGameClick(game.id, game.homeTeamId, game.awayTeamId)
+          }
+        >
           <span>{game.stadium}</span>
         </div>
       )

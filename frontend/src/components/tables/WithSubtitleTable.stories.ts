@@ -8,7 +8,7 @@ const meta = {
   parameters: {},
   argTypes: {
     title: { control: 'text' },
-    subtitle: { control: 'text' },
+    subTitle: { control: 'text' },
     data: {
       description:
         'Array of person objects to be displayed in the table With subtitle',
@@ -24,7 +24,7 @@ type Story = StoryObj<typeof WithSubtitleTable>
 export const Default: Story = {
   args: {
     title: '테이블',
-    subtitle: '부제목',
+    subTitle: '부제목',
     data: [
       {
         name: 'Jane Cooper',

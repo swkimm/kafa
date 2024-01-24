@@ -78,15 +78,15 @@ const App = () => {
             <Route path="/teams" element={<Teams />} />
             <Route path="/leagues/:leagueId" element={<LeagueDetail />} />
             <Route
-              path="/league/:leagueId/team/:teamId"
+              path="/leagues/:leagueId/teams/:teamId"
               element={<TeamDetail />}
             />
             <Route
-              path="/league/:leagueId/team/:teamId/member/:memberId"
+              path="/leagues/:leagueId/teams/:teamId/members/:memberId"
               element={<MemberDetail />}
             />
             <Route
-              path="/league/:leagueId/schedule/:gameid"
+              path="/leagues/:leagueId/game-detail/:gameid"
               element={<ScheduleDetail />}
             />
             <Route path="/association" element={<AssociationHome />} />

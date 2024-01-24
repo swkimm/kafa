@@ -27,10 +27,10 @@ const RosterItem = () => {
   }, [getRoster])
 
   const goToMemberInfo = (memberId: number) => {
-    navigate(`/league/${leagueId}/team/${teamId}/member/${memberId}`)
+    navigate(`/leagues/${leagueId}/teams/${teamId}/members/${memberId}`)
   }
   return (
-    <div className="container mx-auto mb-10 grid max-w-screen-2xl grid-cols-2 sm:grid-cols-4">
+    <div className="container mx-auto my-5 grid max-w-screen-2xl grid-cols-2 sm:grid-cols-4">
       {roster && roster.length > 0 ? (
         roster.map((member) => (
           <div

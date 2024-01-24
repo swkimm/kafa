@@ -2,7 +2,8 @@
 import axiosInstance from '@/commons/axios'
 import type { TeamComplication } from '@/commons/interfaces/team/teamComplication'
 import TeamBanner from '@/components/cards/TeamBanner'
-import Alert from '@/components/notifications/Alert'
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
@@ -18,27 +19,23 @@ const TeamDetail = () => {
     'HOME'
   )
   const [team, setTeam] = useState<TeamComplication | null>(null)
-  const [alert, setAlert] = useState<{
-    title: string
-    content?: string
-  } | null>(null)
+  const { showNotification } = useNotification()
 
   useEffect(() => {
     const getTeam = async () => {
       try {
         const response = await axiosInstance.get(`/teams/${teamId}`)
         setTeam(response.data)
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          setAlert({ title: 'Error', content: error.message })
-        } else {
-          // Handle cases where error is not an instance of Error
-          setAlert({ title: 'Error', content: 'An unknown error occurred' })
-        }
+      } catch (error) {
+        showNotification(
+          NotificationType.Error,
+          '팀 정보 불러오기 실패',
+          '팀 정보 불러오기에 실패했습니다.'
+        )
       }
     }
     getTeam()
-  }, [teamId])
+  }, [showNotification, teamId])
 
   const renderComponent = () => {
     if (currentComponent === 'HOME') {
@@ -81,7 +78,7 @@ const TeamDetail = () => {
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
                         currentComponent === 'HOME'
                           ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white hover:text-gray-700'
+                          : 'border-b-2 border-transparent hover:border-white'
                       }`}
                       onClick={() => setCurrentComponent('HOME')}
                     >
@@ -172,8 +169,6 @@ const TeamDetail = () => {
           </>
         )}
       </Disclosure>
-      {alert && <Alert title={alert.title} content={alert.content} />}
-
       {renderComponent()}
     </div>
   )

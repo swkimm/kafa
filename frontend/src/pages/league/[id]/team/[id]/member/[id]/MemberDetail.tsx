@@ -117,15 +117,17 @@ const MemberDetail = () => {
 
             <WithSubtitleTable
               title={'게임별 기록'}
-              subtitle="TBD"
+              subTitle="TBD"
               data={people}
+              columns={[]}
             />
           </div>
           <div>
             <WithSubtitleTable
               title={'리그 통산'}
-              subtitle="TBD"
+              subTitle="TBD"
               data={people}
+              columns={[]}
             />
           </div>
         </div>

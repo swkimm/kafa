@@ -39,6 +39,7 @@ interface Roster {
   id: number
   name: string
   profileImgUrl?: string
+  teamId: number
 }
 
 // Record 인터페이스 정의

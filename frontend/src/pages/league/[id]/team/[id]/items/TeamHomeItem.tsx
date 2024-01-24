@@ -1,33 +1,16 @@
 // TeamHomeItem.tsx
 // import { useParams } from 'react-router-dom'
 import axiosInstance from '@/commons/axios'
-import type { Game } from '@/commons/interfaces/game/game'
+import type { GameMany } from '@/commons/interfaces/game/game'
 import type { NewsCardProps } from '@/components/cards/NewsCard'
 import NoticeNarrowCard from '@/components/cards/NoticeNarrowCard'
 import NoticeWideCard from '@/components/cards/NoticeWideCard'
 import NoticeList from '@/components/stackedList/NoticeList'
 import DefaultTable from '@/components/tables/DefaultTable'
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
 import { useCallback, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-
-interface GameScore {
-  homeTeamScore: number
-  awayTeamScore: number
-}
-
-interface ExtendedGame extends Game {
-  homeTeamInfo?: {
-    name: string
-    initial: string
-    profileImgUrl: string
-  }
-  awayTeamInfo?: {
-    name: string
-    initial: string
-    profileImgUrl: string
-  }
-  score?: GameScore
-}
+import { useParams, useSearchParams } from 'react-router-dom'
 
 interface Notice {
   id: number
@@ -87,115 +70,119 @@ const galleryData: NewsCardProps[] = [
   }
 ]
 
+interface GameWithStadium extends GameMany {
+  stadium: string
+}
+
 const TeamHomeItem = () => {
-  const [games, setGames] = useState<ExtendedGame[]>([])
+  const [games, setGames] = useState<GameWithStadium[]>([])
   const { leagueId, teamId: teamIdString } = useParams()
   const teamId = Number(teamIdString) // teamId를 숫자로 변환
+  const [searchParams] = useSearchParams()
+  const yearParam = searchParams.get('year')
+  const year = Number(yearParam)
+  const { showNotification } = useNotification()
 
-  const fetchTeamInfo = async (teamId: number) => {
-    try {
-      const response = await axiosInstance.get(`/teams/${teamId}`)
-      return response.data
-    } catch (error) {
-      console.error('Error fetching team info:', error)
-      return null // 오류 발생시 null 반환
-    }
+  const fetchGameWithStadium = async (gameId: number) => {
+    const response = await axiosInstance.get(`/games/${gameId}`)
+    return response.data
   }
 
-  const getGameScores = async (gameId: number): Promise<GameScore | null> => {
+  const getGamesByTeamId = useCallback(async () => {
+    const page = 1
+    const limit = 5
     try {
-      const response = await axiosInstance.get(`/games/${gameId}/score`)
-      return response.data // { homeScore, awayScore } 포함 가정
-    } catch (error) {
-      console.error('Error fetching game scores:', error)
-      return null // 오류 발생 시 null 반환
-    }
-  }
-
-  const getGamesWithTeamInfo = useCallback(async () => {
-    try {
-      const response = await axiosInstance.get(`/games/leagues/${leagueId}`)
+      const response = await axiosInstance.get(
+        `/games/teams/${teamId}?page=${page}&limit=${limit}`
+      )
       let games = response.data
 
-      if (teamId) {
+      // URL 쿼리 파라미터에 따라 연도 필터링
+      if (year) {
         games = games.filter(
-          (game: { homeTeamId: number; awayTeamId: number }) =>
-            game.homeTeamId === teamId || game.awayTeamId === teamId
+          (game: { startedAt: string }) =>
+            new Date(game.startedAt).getFullYear() === year
         )
       }
 
-      // 각 게임에 대한 홈팀과 어웨이팀 정보를 추가
-      const gamesWithTeamInfo = await Promise.all(
-        games.map(async (game: ExtendedGame) => {
-          const homeTeamInfo = await fetchTeamInfo(game.homeTeamId)
-          const awayTeamInfo = await fetchTeamInfo(game.awayTeamId)
-          const score = await getGameScores(game.id) // 게임 점수 정보 가져오기
+      // 특정 리그와 팀에 해당하는 경기만 필터링
+      if (leagueId && teamId) {
+        games = games.filter(
+          (game: { League: { id: number } }) =>
+            game.League.id === parseInt(leagueId, 10)
+        )
+      }
 
+      // 각 게임에 대한 추가 정보(스타디움 등)를 가져옴
+      const gamesWithStadium = await Promise.all(
+        games.map(async (game: { id: number }) => {
+          const gameDetails = await fetchGameWithStadium(game.id)
           return {
             ...game,
-            homeTeamInfo,
-            awayTeamInfo,
-            score
+            ...gameDetails
           }
         })
       )
-
-      setGames(gamesWithTeamInfo)
+      setGames(gamesWithStadium)
     } catch (error) {
-      alert(error)
+      showNotification(
+        NotificationType.Error,
+        '게임 목록 불러오기 실패',
+        '게임 목록 불러오기에 실패했습니다.'
+      )
     }
-  }, [leagueId, teamId])
+  }, [teamId, year, leagueId, showNotification])
 
   useEffect(() => {
-    getGamesWithTeamInfo()
-  }, [getGamesWithTeamInfo])
+    getGamesByTeamId()
+  }, [getGamesByTeamId])
 
   const gamesColumns = [
     {
       title: 'HOME',
-      render: (game: ExtendedGame) => (
+      render: (game: GameMany) => (
         <div className="flex items-center">
-          {game.homeTeamInfo?.profileImgUrl ? (
+          {game.homeTeam?.profileImgUrl ? (
             <img
-              src={game.homeTeamInfo.profileImgUrl}
-              alt={game.homeTeamInfo.initial}
+              src={game.homeTeam.profileImgUrl}
+              alt={game.homeTeam.name}
               className="mr-2 w-8"
             />
           ) : (
             <img src="/logo/KAFA_OG.png" alt="" className="mr-2 w-8" />
           )}
-          <span>{game.homeTeamInfo?.name}</span>
+          <span>{game.homeTeam?.name}</span>
         </div>
       )
     },
     {
       title: '',
-      render: (game: ExtendedGame) => <span>{game.score?.homeTeamScore}</span>
+      render: (game: GameMany) => <span>{game.score.homeTeamScore}</span>
     },
     {
       title: 'AWAY',
-      render: (game: ExtendedGame) => (
+      render: (game: GameMany) => (
         <div className="flex items-center">
-          {game.awayTeamInfo?.profileImgUrl ? (
+          {game.awayTeam?.profileImgUrl ? (
             <img
-              src={game.awayTeamInfo.profileImgUrl}
-              alt={game.awayTeamInfo.initial}
+              src={game.awayTeam.profileImgUrl}
+              alt={game.awayTeam.name}
               className="mr-2 w-8"
             />
           ) : (
             <img src="/logo/KAFA_OG.png" alt="" className="mr-2 w-8" />
           )}
-          <span>{game.awayTeamInfo?.name}</span>
+          <span>{game.awayTeam?.name}</span>
         </div>
       )
     },
     {
       title: '',
-      render: (game: ExtendedGame) => <span>{game.score?.awayTeamScore}</span>
+      render: (game: GameMany) => <span>{game.score?.awayTeamScore}</span>
     },
     {
       title: 'DATE',
-      render: (game: ExtendedGame) => {
+      render: (game: GameMany) => {
         const date = game.startedAt ? new Date(game.startedAt) : null
         const formattedDate = date
           ? `${date.getMonth() + 1}/${date.getDate()} ${
@@ -215,7 +202,7 @@ const TeamHomeItem = () => {
     },
     {
       title: 'LOCATION',
-      render: (game: ExtendedGame) => (
+      render: (game: GameWithStadium) => (
         <div>
           <span>{game.stadium}</span>
         </div>
