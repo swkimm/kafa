@@ -3,9 +3,12 @@ import type { BasicPost } from '@/commons/interfaces/board/board.type'
 import MainCard from '@/components/cards/MainCard'
 import { PostTable } from '@/components/tables/PostTable'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const RecentPostSection: React.FC = () => {
   const [posts, setPosts] = useState<BasicPost[]>([])
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getRecentNotice = async () => {
@@ -19,7 +22,12 @@ const RecentPostSection: React.FC = () => {
   }, [])
 
   return (
-    <MainCard title={'자유 게시판'} subtitle={''} transparent={false}>
+    <MainCard
+      title={'자유 게시판'}
+      subtitle={''}
+      transparent={false}
+      more={() => navigate('/board/public')}
+    >
       <PostTable posts={posts} />
     </MainCard>
   )

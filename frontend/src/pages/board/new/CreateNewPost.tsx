@@ -71,7 +71,7 @@ const CreateNewPost: React.FC<CreateNewPostProps> = () => {
       )
     } finally {
       setIsSubmitting(false)
-      navigate('/board')
+      isNotice ? navigate('/board/notice') : navigate('/board/public')
     }
   }
 
@@ -180,7 +180,7 @@ const CreateNewPost: React.FC<CreateNewPostProps> = () => {
         </button>
         <button
           className="ml-1.5 inline-flex items-center rounded-md bg-indigo-950 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xl hover:bg-indigo-900"
-          onClick={() => navigate('/board')}
+          onClick={() => navigate(-1)}
           disabled={isSubmitting}
         >
           <ArrowUturnLeftIcon

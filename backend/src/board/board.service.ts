@@ -100,9 +100,13 @@ export class BoardService {
     }
   }
 
-  async getTotalPostCounts(): Promise<{ counts: number }> {
+  async getTotalPostCounts(option?: string): Promise<{ counts: number }> {
     try {
-      const counts = await this.prismaService.post.count()
+      const counts = await this.prismaService.post.count({
+        where: {
+          type: this.transfromPostType(option)
+        }
+      })
       return { counts }
     } catch (error) {
       throw new UnexpectedException(error, error.stack)
@@ -206,6 +210,15 @@ export class BoardService {
         throw error
       }
       throw new UnexpectedException(error, error.stack)
+    }
+  }
+
+  private transfromPostType(option?: string): PostType {
+    if (!option) return PostType.Normal
+    try {
+      return PostType[option]
+    } catch (error) {
+      return PostType.Normal
     }
   }
 

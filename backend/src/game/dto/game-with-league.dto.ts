@@ -2,6 +2,7 @@ export interface GameWithLeagueDTO {
   id: number
   name: string
   startedAt: Date
+  stadium: string
   homeTeam: {
     id: number
     name: string

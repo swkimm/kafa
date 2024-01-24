@@ -104,13 +104,14 @@ export class AccountController {
     }
   }
 
+  @Public()
   @Post('email/verify')
   async verifyEmail(
-    @Req() req: AuthenticatedRequest,
-    @Query('pin') pin: string
+    @Query('pin') pin: string,
+    @Query('accountId') accountId: number
   ): Promise<{ result: string }> {
     try {
-      return await this.accountService.verifyEmail(req.user.id, pin)
+      return await this.accountService.verifyEmail(accountId, pin)
     } catch (error) {
       businessExceptionBinder(error)
     }

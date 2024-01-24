@@ -12,7 +12,9 @@ import { ScoreService } from '@/score/abstract/score.service'
 import type { Game, Score } from '@prisma/client'
 import { GameService } from './abstract/game.service'
 import type { GameManyDTO } from './dto/game-many.dto'
+import type { GameWithLeagueAndAssociationDTO } from './dto/game-with-league-association.dto'
 import type { GameWithLeagueDTO } from './dto/game-with-league.dto'
+import { GetGameQuery } from './dto/get-game-query.dto'
 
 @Public()
 @Controller('games')
@@ -82,6 +84,22 @@ export class GameController {
   ): Promise<Game[]> {
     try {
       return await this.gameService.getGamesByLeagueId(leagueId, cursor, limit)
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Get('leagues/:leagueId/date-range')
+  async getGamesByLeagueIdAndDate(
+    @Param('leagueId', ParseIntPipe) leagueId: number,
+    @Query() dateDTO: GetGameQuery
+  ): Promise<GameWithLeagueAndAssociationDTO[]> {
+    try {
+      return await this.gameService.getGamesByLeagueIdAndDate(
+        leagueId,
+        dateDTO.startDate,
+        dateDTO.endDate
+      )
     } catch (error) {
       businessExceptionBinder(error)
     }

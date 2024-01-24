@@ -1,13 +1,11 @@
 import axiosInstance from '@/commons/axios'
 import type { BasicPost } from '@/commons/interfaces/board/board.type'
 import PostList from '@/components/boards/PostList'
-import { PencilIcon } from '@heroicons/react/20/solid'
+import { PencilIcon } from '@heroicons/react/24/outline'
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-interface BoardHomeProps {}
-
-export const BoardHome: React.FC<BoardHomeProps> = () => {
+export const NoticeBoard: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [posts, setPosts] = useState<BasicPost[]>()
   const [totalPosts, setTotalPosts] = useState(0)
@@ -27,7 +25,7 @@ export const BoardHome: React.FC<BoardHomeProps> = () => {
 
   const getPosts = async (page: number): Promise<BasicPost[]> => {
     const posts: BasicPost[] = await axiosInstance
-      .get(`/boards/posts?page=${page}&limit=10`)
+      .get(`/boards/posts?page=${page}&limit=10&option=Notice`)
       .then((result) => result.data)
 
     posts.forEach((post) => (post.createdAt = new Date(post.createdAt)))
@@ -36,7 +34,7 @@ export const BoardHome: React.FC<BoardHomeProps> = () => {
 
   const getTotalPostCounts = async (): Promise<number> => {
     const data: { counts: number } = await axiosInstance
-      .get('/boards/posts/counts')
+      .get('/boards/posts/counts?option=Notice')
       .then((result) => result.data)
 
     return data.counts
@@ -68,7 +66,7 @@ export const BoardHome: React.FC<BoardHomeProps> = () => {
     <>
       <div className="mx-auto flex max-w-screen-sm flex-col px-4 py-8 sm:max-w-screen-xl lg:px-20">
         <div className="flex items-center justify-between pb-8">
-          <h1 className="text-xl font-bold sm:text-2xl">전체 게시판</h1>
+          <h1 className="text-xl font-bold sm:text-2xl">공지사항</h1>
           <button
             onClick={handleCreatePostClick}
             className="inline-flex items-center rounded-md bg-indigo-950 px-3.5 py-2.5 text-xs font-semibold text-white shadow-xl hover:bg-indigo-900 sm:text-sm"
@@ -94,5 +92,3 @@ export const BoardHome: React.FC<BoardHomeProps> = () => {
     </>
   )
 }
-
-export default BoardHome

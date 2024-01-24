@@ -4,9 +4,10 @@ import type React from 'react'
 
 interface GameTableProps {
   games: GameMany[]
+  detail?: boolean
 }
 
-const GameTable: React.FC<GameTableProps> = ({ games }) => {
+const GameTable: React.FC<GameTableProps> = ({ games, detail }) => {
   return (
     <div className="py-2.5">
       <div className="custom-scroll-bar -mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -38,10 +39,26 @@ const GameTable: React.FC<GameTableProps> = ({ games }) => {
                 >
                   AWAY
                 </th>
+                {detail && (
+                  <>
+                    <th
+                      scope="col"
+                      className="px-3 py-3.5 text-left text-xs text-gray-900"
+                    >
+                      KICKOFF
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-3 py-3.5 text-left text-xs text-gray-900 sm:pr-8"
+                    >
+                      STADIUM
+                    </th>
+                  </>
+                )}
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white">
-              {games.length > 1 ? (
+              {games.length > 0 ? (
                 games.map((game) => (
                   <tr key={game.id} className="hover:bg-gray-100">
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-xs font-medium text-gray-900 sm:pl-6 lg:pl-8">
@@ -100,13 +117,23 @@ const GameTable: React.FC<GameTableProps> = ({ games }) => {
                         )}
                       </div>
                     </td>
+                    {detail && (
+                      <>
+                        <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500">
+                          {game.startedAt.toLocaleString('ko')}
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500">
+                          {game.stadium}
+                        </td>
+                      </>
+                    )}
                   </tr>
                 ))
               ) : (
                 <tr className="w-full">
                   <td
                     className="pt-3 text-sm font-medium text-gray-900"
-                    colSpan={5}
+                    colSpan={detail ? 7 : 5}
                   >
                     <div className="mx-auto flex w-full items-center justify-center">
                       <ExclamationTriangleIcon className="h-6 w-6 pr-1.5 text-yellow-500" />

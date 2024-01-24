@@ -35,14 +35,23 @@ const RecentLeagueSection: React.FC = () => {
                 className="flex min-w-[200px] items-center justify-center rounded-lg bg-indigo-950 p-5 shadow-lg hover:bg-indigo-900 lg:min-w-[320px]"
                 onClick={() => navigate(`/leagues/${league.id}`)}
               >
-                <img
-                  src="/logo/KAFA_OG.png"
-                  alt=""
-                  className="w-10 justify-center object-contain lg:w-12"
-                />
+                {league.Association.profileImgUrl ? (
+                  <img
+                    src={league.Association.profileImgUrl}
+                    alt=""
+                    className="w-10 justify-center object-contain lg:w-12"
+                  />
+                ) : (
+                  <img
+                    src="/logo/KAFA_OG.png"
+                    alt=""
+                    className="w-10 justify-center object-contain lg:w-12"
+                  />
+                )}
+
                 <div className="ml-5 items-center text-gray-50">
                   <div className="text-xs font-normal text-gray-400 lg:text-sm">
-                    대한미식축구협회
+                    {league.Association.name}
                   </div>
                   <div className="text-sm font-bold sm:text-base">
                     {league.name}

@@ -48,9 +48,11 @@ export class BoardController {
 
   @Public()
   @Get('posts/counts')
-  async getTotalPostCounts(): Promise<{ counts: number }> {
+  async getTotalPostCounts(
+    @Query('option') option?: string
+  ): Promise<{ counts: number }> {
     try {
-      return await this.boardService.getTotalPostCounts()
+      return await this.boardService.getTotalPostCounts(option)
     } catch (error) {
       businessExceptionBinder(error)
     }

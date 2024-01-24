@@ -49,11 +49,15 @@ const navigation = {
     { name: '협회정보', to: '/association' },
     { name: 'HUDDLE', to: '/' },
     { name: '자료실', to: '#' },
-    { name: '게시판', to: '/board' }
+    { name: '게시판', to: '/board/public' },
+    { name: '공지사항', to: '/board/notice' },
+    { name: '신문고', to: '/appeal' },
+    { name: '캘린더', to: '/calendar' }
   ],
   sub: [
     { name: '이용약관', to: '#' },
-    { name: '개인정보 처리방침', to: '#' }
+    { name: '개인정보처리방침', to: '#' },
+    { name: '이메일무단수집거부', to: '#' }
   ],
   social: [
     {

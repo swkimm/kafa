@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common'
 import {
   BusinessException,
   EntityNotExistException,
+  ParameterValidationException,
   UnexpectedException
 } from '@/common/exception/business.exception'
 import { calculateOffset } from '@/common/pagination/calculate-offset'
@@ -18,6 +19,7 @@ import {
   type RegisterTeamRequest
 } from '@prisma/client'
 import type { GameManyDTO } from '../dto/game-many.dto'
+import type { GameWithLeagueAndAssociationDTO } from '../dto/game-with-league-association.dto'
 import type { GameWithLeagueDTO } from '../dto/game-with-league.dto'
 import type { GetGameService } from '../interface/get-game.service.interface'
 
@@ -115,6 +117,7 @@ export class GetGameServiceImpl implements GetGameService<Game> {
           id: true,
           name: true,
           startedAt: true,
+          stadium: true,
           homeTeam: {
             select: {
               id: true,
@@ -141,6 +144,86 @@ export class GetGameServiceImpl implements GetGameService<Game> {
               awayTeamScore: true
             }
           }
+        }
+      })
+    } catch (error) {
+      if (error instanceof BusinessException) {
+        throw error
+      }
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
+  async getGamesByLeagueIdAndDate(
+    leagueId: number,
+    startDate: Date,
+    endDate: Date
+  ): Promise<GameWithLeagueAndAssociationDTO[]> {
+    try {
+      await this.leagueService.getLeague(leagueId)
+
+      if (startDate >= endDate) {
+        throw new ParameterValidationException(
+          '시작날짜는 종료날짜보다 빨라야 합니다'
+        )
+      }
+
+      return await this.prismaService.game.findMany({
+        where: {
+          AND: [
+            {
+              startedAt: {
+                gte: startDate
+              }
+            },
+            {
+              startedAt: {
+                lte: endDate
+              }
+            }
+          ]
+        },
+        select: {
+          id: true,
+          name: true,
+          startedAt: true,
+          stadium: true,
+          homeTeam: {
+            select: {
+              id: true,
+              name: true,
+              profileImgUrl: true
+            }
+          },
+          awayTeam: {
+            select: {
+              id: true,
+              name: true,
+              profileImgUrl: true
+            }
+          },
+          League: {
+            select: {
+              id: true,
+              name: true,
+              Association: {
+                select: {
+                  id: true,
+                  name: true,
+                  profileImgUrl: true
+                }
+              }
+            }
+          },
+          score: {
+            select: {
+              homeTeamScore: true,
+              awayTeamScore: true
+            }
+          }
+        },
+        orderBy: {
+          startedAt: 'asc'
         }
       })
     } catch (error) {
@@ -200,6 +283,7 @@ export class GetGameServiceImpl implements GetGameService<Game> {
           id: true,
           name: true,
           startedAt: true,
+          stadium: true,
           homeTeam: {
             select: {
               id: true,
@@ -249,6 +333,7 @@ export class GetGameServiceImpl implements GetGameService<Game> {
           id: true,
           name: true,
           startedAt: true,
+          stadium: true,
           homeTeam: {
             select: {
               id: true,

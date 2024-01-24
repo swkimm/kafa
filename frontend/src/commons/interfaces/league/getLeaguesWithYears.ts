@@ -9,3 +9,5 @@ export interface GetLeaguesWithYear {
     profileImgUrl: string
   }
 }
+
+export interface LeagueWithAssociation extends GetLeaguesWithYear {}

@@ -64,12 +64,13 @@ const Header = () => {
             <div className="flex h-16 justify-between px-2 lg:h-20">
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    onClick={() => navigate('/')}
-                    src={logo}
-                    alt="KAFA Logo"
-                    className="h-auto w-20 lg:w-24"
-                  />
+                  <button onClick={() => navigate('/')}>
+                    <img
+                      src={logo}
+                      alt="KAFA Logo"
+                      className="h-auto w-20 lg:w-24"
+                    />
+                  </button>
                 </div>
                 <div className="hidden lg:ml-2 lg:flex lg:space-x-4">
                   <Disclosure.Button
@@ -108,7 +109,7 @@ const Header = () => {
                   </a>
                   <Disclosure.Button
                     as="button"
-                    onClick={() => navigate('/board')}
+                    onClick={() => navigate('/board/public')}
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-100 hover:border-gray-300 hover:text-gray-700"
                   >
                     게시판
@@ -117,6 +118,13 @@ const Header = () => {
               </div>
               <div className="hidden lg:ml-6 lg:flex lg:items-center">
                 <div className="flex space-x-4">
+                  <Disclosure.Button
+                    as="button"
+                    onClick={() => navigate('/board/notice')}
+                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-100 hover:border-gray-300 hover:text-gray-700"
+                  >
+                    공지사항
+                  </Disclosure.Button>
                   <Disclosure.Button
                     as="button"
                     onClick={() => navigate('/appeal')}
@@ -207,8 +215,8 @@ const Header = () => {
                 대회정보
               </Disclosure.Button>
               <Disclosure.Button
-                as="a"
-                href="#"
+                as="button"
+                onClick={() => navigate('/association')}
                 className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
               >
                 협회정보
@@ -221,8 +229,8 @@ const Header = () => {
                 자료실
               </Disclosure.Button>
               <Disclosure.Button
-                as="a"
-                onClick={() => navigate('/board')}
+                as="button"
+                onClick={() => navigate('/board/public')}
                 className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
               >
                 게시판
@@ -231,15 +239,22 @@ const Header = () => {
             <div className="border-t border-gray-200 px-2 pb-3 pt-4">
               <div className="mt-1 space-y-1">
                 <Disclosure.Button
-                  as="a"
-                  href="#"
+                  as="button"
+                  onClick={() => navigate('/board/notice')}
+                  className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
+                >
+                  공지사항
+                </Disclosure.Button>
+                <Disclosure.Button
+                  as="button"
+                  onClick={() => navigate('/appeal')}
                   className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
                 >
                   신문고
                 </Disclosure.Button>
                 <Disclosure.Button
-                  as="a"
-                  href="#"
+                  as="button"
+                  onClick={() => navigate('/calendar')}
                   className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
                 >
                   캘린더

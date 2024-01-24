@@ -2,12 +2,12 @@ interface GameBase {
   id: number
   name: string
   startedAt: Date
+  stadium: string
 }
 
 export interface Game extends GameBase {
   homeTeamId: number
   awayTeamId: number
-  stadium: string
   result?: string | null
 }
 
@@ -29,5 +29,17 @@ export interface GameMany extends GameBase {
   score: {
     homeTeamScore: number
     awayTeamScore: number
+  }
+}
+
+export interface GameWithLeagueAndAssociation extends GameMany {
+  League: {
+    id: number
+    name: string
+    Association: {
+      id: number
+      name: string
+      profileImgUrl: string
+    }
   }
 }

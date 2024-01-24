@@ -22,7 +22,7 @@ const UpcommingGameSection: React.FC = () => {
 
   return (
     <MainCard title={'다가오는 경기'} transparent={false}>
-      <GameTable games={upcommingGames} />
+      <GameTable detail={true} games={upcommingGames} />
     </MainCard>
   )
 }

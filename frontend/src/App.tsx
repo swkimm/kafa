@@ -11,7 +11,8 @@ import AssociationHome from './pages/association/AssociationHome.tsx'
 import AppealItem from './pages/association/items/AppealItem.tsx'
 import Login from './pages/auth/Login.tsx'
 import SignUp from './pages/auth/SignUp.tsx'
-import BoardHome from './pages/board/BoardHome.tsx'
+import { NoticeBoard } from './pages/board/NoticeBoard.tsx'
+import PublicBoard from './pages/board/PublicBoard.tsx'
 import Post from './pages/board/[id]/Post.tsx'
 import EditPost from './pages/board/[id]/edit/EditPost.tsx'
 import CreateNewPost from './pages/board/new/CreateNewPost.tsx'
@@ -68,7 +69,8 @@ const App = () => {
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/national" element={<National />} />
-            <Route path="/board" element={<BoardHome />} />
+            <Route path="/board/notice" element={<NoticeBoard />} />
+            <Route path="/board/public" element={<PublicBoard />} />
             <Route path="/board/posts/new" element={<CreateNewPost />} />
             <Route path="/board/posts/:id" element={<Post />} />
             <Route path="/board/posts/:id/edit" element={<EditPost />} />
