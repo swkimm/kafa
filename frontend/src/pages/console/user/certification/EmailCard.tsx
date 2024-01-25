@@ -37,7 +37,7 @@ const EmailCard: React.FC<CertificaionCardProps> = ({
 
     setIsSubmitting(true)
     await axiosInstance
-      .post(`/account/email/verify?pin=${pin}`)
+      .post(`/account/email/verify?pin=${pin}&accountId=${profile?.id}`)
       .then(() => {
         showNotification(
           NotificationType.Success,
