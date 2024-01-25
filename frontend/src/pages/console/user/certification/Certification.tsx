@@ -46,7 +46,10 @@ const Certification: React.FC = () => {
         </div>
         <div className="col-span-3 lg:col-span-1">
           <ConsoleCard title="개인정보" subtitle="본인 인증 정보 관리">
-            <CredentialCard status={certificationStatus} />
+            <CredentialCard
+              onStatusChange={onStatusChange}
+              status={certificationStatus}
+            />
           </ConsoleCard>
         </div>
         <div className="col-span-3 lg:col-span-1">

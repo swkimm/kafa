@@ -93,10 +93,11 @@ export class LeagueController {
   @Roles(Role.Manager)
   @Get('joinable')
   async getJoinableLeagues(
+    @Req() req: AuthenticatedRequest,
     @Query('limit', new ParseIntPipe({ optional: true })) limit?: number
   ): Promise<LeagueWithAssociationDTO[]> {
     try {
-      return await this.leagueService.getJoinableLeagues(limit)
+      return await this.leagueService.getJoinableLeagues(req.user.id, limit)
     } catch (error) {
       businessExceptionBinder(error)
     }

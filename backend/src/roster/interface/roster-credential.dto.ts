@@ -1,16 +1,17 @@
 import { GenderType } from '@prisma/client'
-import { Type } from 'class-transformer'
-import { IsDate, IsEnum, IsNotEmpty, IsString } from 'class-validator'
+import { IsEnum, IsNotEmpty, IsString, Matches } from 'class-validator'
 
 export class RosterCredentialDTO {
   @IsString()
   @IsNotEmpty()
   name: string
 
-  @IsDate()
-  @Type(() => Date)
+  @IsString()
+  @Matches(/^\d{4}-\d{2}-\d{2}$/, {
+    message: '생년월일은 yyyy-mm-dd 형식을 따라야 합니다'
+  })
   @IsNotEmpty()
-  birthday: Date
+  birthday: string
 
   @IsEnum(GenderType)
   @IsNotEmpty()

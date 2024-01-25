@@ -26,6 +26,7 @@ import {
 import { AccountService } from './account.service.interface'
 import type { AccountDTO } from './dto/account.dto'
 import type { AccountCertificateStatus } from './dto/accountStatus.dto'
+import { CreateAccountCredentialDTO } from './dto/createAccountCredential.dto'
 import { RegisterAccountDTO } from './dto/registerAccount.dto'
 import { UpdateAccountProfileDTO } from './dto/updateAccount.dto'
 import { UpdateEmailDTO } from './dto/updateEmail.dto'
@@ -181,7 +182,6 @@ export class AccountController {
   /**
    * Certification and Credential
    */
-
   @Get('credential')
   async getAccountCredential(@Req() req: AuthenticatedRequest) {
     try {
@@ -202,9 +202,24 @@ export class AccountController {
     }
   }
 
+  @Post('credential')
+  async creteAccountCredential(
+    @Body() accountDTO: CreateAccountCredentialDTO,
+    @Req() req: AuthenticatedRequest
+  ): Promise<AccountCredential> {
+    try {
+      return await this.accountCredentialService.createCredential(
+        req.user.id,
+        accountDTO
+      )
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
   @Post('certification')
   @UseInterceptors(FileInterceptor('file', FILE_OPTIONS))
-  async upsertAccountCertification0(
+  async upsertAccountCertification(
     @UploadedFile() file: Express.Multer.File,
     @Req() req: AuthenticatedRequest
   ): Promise<AccountCertification> {

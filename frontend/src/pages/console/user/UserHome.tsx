@@ -26,8 +26,6 @@ const UserHome: React.FC<UserHomeProps> = () => {
         .get('/account/profile')
         .then((result) => result.data)
 
-      console.log(profile)
-
       setProfile(profile)
     }
 

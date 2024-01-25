@@ -8123,7 +8123,7 @@
             "method": "POST",
             "sortNum": 1730000,
             "created": "2023-12-26T08:02:11.748Z",
-            "modified": "2024-01-02T12:14:42.606Z",
+            "modified": "2024-01-25T18:57:32.433Z",
             "headers": [],
             "params": [],
             "body": {
@@ -8139,7 +8139,7 @@
                     "value": "201"
                 }
             ],
-            "docs": "## [Manager] CreateRoster\n\n### URI\nPOST /rosters\n\n### Description\n팀에 로스터를 생성하고 생성된 로스터를 반환합니다\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name|string|이름|\n|globalName|string|영문 이름|\n|teamId|number|팀 식별자|\n|registerYear|number|입부년도|\n|rosterType|*RosterType|로스터 종류|\n|birthday|DateTime|생년월일|\n|gender|*GenderType|성별|\n|position?|*Position|포지션 정보|\n|height?|number|키(cm)|\n|weight?|number|몸무게(kg)|\n|backNumber?|number|등 번호|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문이름|\n|rosterType|*RosterType|로스터 종류|\n|teamId|number|팀 식별자|\n|accountId|number|연결된 개인 계정 식별자|\n|registerYear|Date|입부년도|\n|profileImgUrl|string?|프로필 이미지 주소|\n|status|*RosterStatus|로스터 상태|\n\n**Enum GenderType**\n- Male (남성)\n- Female (여성)\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface Position**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|요청 Body에 유효하지 않은 값이 포함된 경우 발생|\n|401|Unauthorized|로그인하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정이나 다른팀의 식별자로 해당 요청을 보낼 경우 발생|\n\n### Others\n해당 API로 생성된 로스터는 **connectRoster** API 호출을 통해 개인 계정과 연결할 수 있습니다",
+            "docs": "## [Manager] CreateRoster\n\n### URI\nPOST /rosters\n\n### Description\n팀에 로스터를 생성하고 생성된 로스터를 반환합니다\n\n### Body\n|Name|Type|Description|\n|---|----|-------|\n|name|string|이름|\n|globalName|string|영문 이름|\n|teamId|number|팀 식별자|\n|registerYear|number|입부년도|\n|rosterType|*RosterType|로스터 종류|\n|birthday|string|생년월일|\n|gender|*GenderType|성별|\n|position?|*Position|포지션 정보|\n|height?|number|키(cm)|\n|weight?|number|몸무게(kg)|\n|backNumber?|number|등 번호|\n\n### Return Type\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문이름|\n|rosterType|*RosterType|로스터 종류|\n|teamId|number|팀 식별자|\n|accountId|number|연결된 개인 계정 식별자|\n|registerYear|Date|입부년도|\n|profileImgUrl|string?|프로필 이미지 주소|\n|status|*RosterStatus|로스터 상태|\n\n**Enum GenderType**\n- Male (남성)\n- Female (여성)\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface Position**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|요청 Body에 유효하지 않은 값이 포함된 경우 발생|\n|401|Unauthorized|로그인하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|매니저 계정이 아닌 계정이나 다른팀의 식별자로 해당 요청을 보낼 경우 발생|\n\n### Others\n해당 API로 생성된 로스터는 **connectRoster** API 호출을 통해 개인 계정과 연결할 수 있습니다",
             "preReq": {
                 "runRequests": [
                     {
@@ -11151,7 +11151,7 @@
             "method": "GET",
             "sortNum": 2330000,
             "created": "2024-01-03T06:25:04.730Z",
-            "modified": "2024-01-03T08:33:19.102Z",
+            "modified": "2024-01-25T18:56:39.877Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -11162,7 +11162,7 @@
                     "value": "200"
                 }
             ],
-            "docs": "## [Admin] GetJoinLeagueRequestInfo\n\n### URI\nGET /admin/leagues/[:leagueId]/teams/[:teamId]/request\n\n### Description\n특정 팀의 리그 참여 요청 정보를 불러옵니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n|teamId|number|팀 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|rejectReason|string?|반려 또는 보류 사유|\n|rosters|*Roster[]|로스터 명단|\n\n**Type Roster**\n|Name|Type|Description|\n|---|----|-------|\n|name|string|이름|\n|profileImgUrl|string?|프로필 이미지 주소|\n|rosterType|*RosterType|로스터 종류|\n|position|*Postion?|포지션|\n|backNumber|number?|등 번호|\n|birthday|Date?|생일|\n|gender|*GenderType|성별|\n|certificationUrl|string?|증명서 링크|\n\n**Enum ApplyStatus**\n- Approved (승인)\n- Rejected (반려)\n- Hold (보류)\n- Received (접수)\n\n**Enum RosterType**\n- Athlete\n- Staff\n- Coach\n- HeadCoach\n\n**Type Position**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스|\n|defense?|string|디펜스|\n|special?|string|스페셜|\n\n**Enum GenderType**\n- Male\n- Female\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 있을경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 리그 또는 팀의 식별자를 보낼 경우 발생|",
+            "docs": "## [Admin] GetJoinLeagueRequestInfo\n\n### URI\nGET /admin/leagues/[:leagueId]/teams/[:teamId]/request\n\n### Description\n특정 팀의 리그 참여 요청 정보를 불러옵니다\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|leagueId|number|리그 식별자|\n|teamId|number|팀 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|rejectReason|string?|반려 또는 보류 사유|\n|rosters|*Roster[]|로스터 명단|\n\n**Type Roster**\n|Name|Type|Description|\n|---|----|-------|\n|name|string|이름|\n|profileImgUrl|string?|프로필 이미지 주소|\n|rosterType|*RosterType|로스터 종류|\n|position|*Postion?|포지션|\n|backNumber|number?|등 번호|\n|birthday|string?|생일|\n|gender|*GenderType|성별|\n|certificationUrl|string?|증명서 링크|\n\n**Enum ApplyStatus**\n- Approved (승인)\n- Rejected (반려)\n- Hold (보류)\n- Received (접수)\n\n**Enum RosterType**\n- Athlete\n- Staff\n- Coach\n- HeadCoach\n\n**Type Position**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스|\n|defense?|string|디펜스|\n|special?|string|스페셜|\n\n**Enum GenderType**\n- Male\n- Female\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|쿼리 파라미터에 유효하지 않은 값이 있을경우 발생|\n|401|Unauthorized|로그인 하지 않은 상태로 해당 요청을 보낼 경우 발생|\n|403|Forbidden|관리자 계정이 아닌 계정으로 해당 요청을 보낼 경우 발생|\n|404|Not Found|존재하지 않는 리그 또는 팀의 식별자를 보낼 경우 발생|",
             "preReq": {
                 "runRequests": [
                     {

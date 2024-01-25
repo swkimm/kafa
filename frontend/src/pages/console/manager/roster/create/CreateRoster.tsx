@@ -25,7 +25,7 @@ export const CreateRoster: React.FC = () => {
   const onRosterUpdate = async (updatedRoster: {
     rosterId: number
     name: string
-    birthday: Date
+    birthday: string
     gender: Gender
   }) => {
     if (!rosters) return
@@ -69,12 +69,6 @@ export const CreateRoster: React.FC = () => {
     await axiosInstance
       .get(`/rosters/unconnected?page=${page}&limit=${limit}`)
       .then((result: { data: RosterWithCredential[] }) => {
-        result.data.forEach(
-          (roster) =>
-            (roster.RosterCredentials.birthday = new Date(
-              roster.RosterCredentials.birthday
-            ))
-        )
         setRosters(result.data)
       })
   }

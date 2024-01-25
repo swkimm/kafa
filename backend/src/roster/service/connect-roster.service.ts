@@ -478,8 +478,7 @@ export class ConnectRosterServiceImpl implements ConnectRosterService {
   ): void {
     if (
       accountCredential.name !== rosterCredential.name ||
-      accountCredential.birthday.getTime() !==
-        rosterCredential.birthday.getTime() ||
+      accountCredential.birthday !== rosterCredential.birthday ||
       accountCredential.gender !== rosterCredential.gender
     ) {
       throw new ForbiddenAccessException('cannot connect other people roster')

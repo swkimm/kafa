@@ -14,7 +14,7 @@ interface UpdateCredentialModalProps {
   onRosterUpdate: (updatedRoster: {
     rosterId: number
     name: string
-    birthday: Date
+    birthday: string
     gender: Gender
   }) => void
 }
@@ -52,9 +52,7 @@ const UpdateCredentialModal: React.FC<UpdateCredentialModalProps> = ({
   useEffect(() => {
     setForm({
       name: roster.RosterCredentials.name,
-      birthday: roster.RosterCredentials.birthday
-        .toISOString()
-        .substring(0, 10),
+      birthday: roster.RosterCredentials.birthday,
       gender: roster.RosterCredentials.gender
     })
   }, [roster])
@@ -64,9 +62,8 @@ const UpdateCredentialModal: React.FC<UpdateCredentialModalProps> = ({
       .put(`/rosters/${roster.id}/credential`, { ...form })
       .then(
         (result: {
-          data: { name: string; birthday: Date; gender: Gender }
+          data: { name: string; birthday: string; gender: Gender }
         }) => {
-          result.data.birthday = new Date(result.data.birthday)
           onRosterUpdate({ ...result.data, rosterId: roster.id })
           showNotification(
             NotificationType.Success,

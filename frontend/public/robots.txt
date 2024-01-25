@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /console
+Allow : /
+Sitemap: https://kafa.one/sitemap.xml

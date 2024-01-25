@@ -334,7 +334,7 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
                         onChange={(event) =>
                           setForm({ ...form, name: event.target.value })
                         }
-                        className="block w-full rounded-md border-0 py-1.5 text-xs text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
@@ -356,7 +356,7 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
                         onChange={(event) =>
                           setForm({ ...form, globalName: event.target.value })
                         }
-                        className="block w-full rounded-md border-0 py-1.5 text-xs text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
@@ -383,7 +383,7 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
                             registerYear: parseInt(event.target.value, 10)
                           })
                         }
-                        className="block w-full rounded-md border-0 py-1.5 text-xs text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
@@ -402,7 +402,7 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
                       >
                         {({ open }) => (
                           <div className="relative w-full">
-                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-xs text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-950 sm:text-sm sm:leading-6">
+                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-950 sm:text-sm sm:leading-6">
                               <span className="block truncate">
                                 {printRosterType(form.rosterType)}
                               </span>
@@ -421,7 +421,7 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
                               leaveFrom="opacity-100"
                               leaveTo="opacity-0"
                             >
-                              <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                              <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                 {rosterTypeItems.map((item) => (
                                   <Listbox.Option
                                     key={item.name}
@@ -493,7 +493,7 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
                             value={offence}
                             onChange={(event) => setOffence(event.target.value)}
                             id="position-offence"
-                            className="block w-full rounded-md border-0 py-1.5 text-xs text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
@@ -513,7 +513,7 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
                             value={defense}
                             onChange={(event) => setDefense(event.target.value)}
                             id="position-defense"
-                            className="block w-full rounded-md border-0 py-1.5 text-xs text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
@@ -533,7 +533,7 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
                             value={special}
                             onChange={(event) => setSpecial(event.target.value)}
                             id="position-special"
-                            className="block w-full rounded-md border-0 py-1.5 text-xs text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
@@ -560,7 +560,7 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
                                 height: parseInt(event.target.value, 10)
                               })
                             }
-                            className="block w-full rounded-md border-0 py-1.5 text-xs text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
@@ -585,7 +585,7 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
                                 weight: parseInt(event.target.value, 10)
                               })
                             }
-                            className="block w-full rounded-md border-0 py-1.5 text-xs text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
@@ -610,7 +610,7 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
                                 backNumber: parseInt(event.target.value, 10)
                               })
                             }
-                            className="block w-full rounded-md border-0 py-1.5 text-xs text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-950 sm:text-sm sm:leading-6"
                           />
                         </div>
                       </div>
@@ -634,7 +634,7 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
                       >
                         {({ open }) => (
                           <div className="relative w-full">
-                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-xs text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-950 sm:text-sm sm:leading-6">
+                            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-950 sm:text-sm sm:leading-6">
                               <span className="block truncate">
                                 {printRosterStatus(form.status)}
                               </span>
@@ -653,7 +653,7 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
                               leaveFrom="opacity-100"
                               leaveTo="opacity-0"
                             >
-                              <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                              <Listbox.Options className="absolute z-10 mt-1 max-h-[102px] w-full overflow-y-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:max-h-32 sm:text-sm">
                                 {rosterStatusItems.map((item) => (
                                   <Listbox.Option
                                     key={item.name}

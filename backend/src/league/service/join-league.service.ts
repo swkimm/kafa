@@ -236,12 +236,22 @@ export class JoinLeagueServiceImpl implements JoinLeagueService<TeamLeague> {
     }
   }
 
-  async getJoinableLeagues(limit = 10): Promise<LeagueWithAssociationDTO[]> {
+  async getJoinableLeagues(
+    maangerId: number,
+    limit = 10
+  ): Promise<LeagueWithAssociationDTO[]> {
     try {
+      const profile = await this.accountService.getAccountProfile(maangerId)
+
       return await this.prismaService.league.findMany({
         where: {
           startedAt: {
             gt: new Date()
+          },
+          TeamLeagues: {
+            none: {
+              teamId: profile.teamId
+            }
           }
         },
         orderBy: {
@@ -263,6 +273,9 @@ export class JoinLeagueServiceImpl implements JoinLeagueService<TeamLeague> {
         }
       })
     } catch (error) {
+      if (error instanceof BusinessException) {
+        throw error
+      }
       throw new UnexpectedException(error, error.stack)
     }
   }

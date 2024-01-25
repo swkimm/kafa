@@ -6,22 +6,35 @@ import ModalContainer from '@/components/modal/ModalContainer'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import { AxiosError } from 'axios'
 import { useCallback, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import CreateRosterModal from './CreateRosterModal'
 
 const LoadRoster = () => {
   const [rosters, setRosters] = useState<Roster[]>([])
   const [connectable, setConnectable] = useState<Roster[]>([])
-  const { showNotification } = useNotification()
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const navigate = useNavigate()
+  const { showNotification } = useNotification()
 
   const getConnectableRosters = useCallback(async () => {
     try {
       const response = await axiosInstance.get<Roster[]>(`/rosters/connectable`)
       setConnectable(response.data)
     } catch (error) {
-      console.log(error)
+      if (error instanceof AxiosError && error.response?.status === 403) {
+        showNotification(
+          NotificationType.Error,
+          '개인정보 없음',
+          '로스터 관련 기능은 본인인증 후 이용 가능합니다',
+          5000
+        )
+        navigate('/console')
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const getRosters = useCallback(async () => {
@@ -35,7 +48,8 @@ const LoadRoster = () => {
   useEffect(() => {
     getConnectableRosters()
     getRosters()
-  }, [getConnectableRosters, getRosters])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const connectRoster = async (id: number) => {
     try {

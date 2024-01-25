@@ -10,7 +10,7 @@ export interface RosterWithCredential {
   profileImgUrl?: string
   RosterCredentials: {
     name: string
-    birthday: Date
+    birthday: string
     gender: Gender
   }
 }

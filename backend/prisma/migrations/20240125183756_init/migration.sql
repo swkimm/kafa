@@ -67,7 +67,7 @@ CREATE TABLE "AccountCredential" (
     "account_id" INTEGER NOT NULL,
     "name" VARCHAR(128) NOT NULL,
     "gender" "GenderType" NOT NULL,
-    "birthday" TIMESTAMP(3) NOT NULL,
+    "birthday" VARCHAR(16) NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -227,7 +227,7 @@ CREATE TABLE "RosterCredentials" (
     "roster_id" INTEGER NOT NULL,
     "name" VARCHAR(128) NOT NULL,
     "gender" "GenderType" NOT NULL,
-    "birthday" TIMESTAMP(3) NOT NULL,
+    "birthday" VARCHAR(16) NOT NULL,
 
     CONSTRAINT "RosterCredentials_pkey" PRIMARY KEY ("roster_id")
 );
@@ -304,6 +304,9 @@ CREATE UNIQUE INDEX "TeamLeague_team_id_league_id_key" ON "TeamLeague"("team_id"
 
 -- CreateIndex
 CREATE UNIQUE INDEX "LeagueRoster_league_id_roster_id_key" ON "LeagueRoster"("league_id", "roster_id");
+
+-- CreateIndex
+CREATE INDEX "RosterCredentials_name_gender_birthday_idx" ON "RosterCredentials"("name", "gender", "birthday");
 
 -- CreateIndex
 CREATE INDEX "Game_started_at_idx" ON "Game"("started_at");

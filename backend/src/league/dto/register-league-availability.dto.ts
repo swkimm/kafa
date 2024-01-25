@@ -36,7 +36,7 @@ export interface RosterWithAvaliability extends BasicRoster {
  * 로스터의 기본 정보와 증명서 정보를 담는 인터페이스
  */
 export interface RosterWithCredentialsAndCertifications extends BasicRoster {
-  birthday?: Date
+  birthday?: string
   gender?: GenderType
   certificationUrl?: string
 }

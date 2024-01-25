@@ -1,6 +1,6 @@
 export interface Credential {
   name: string
-  birthday: Date
+  birthday: string
   gender: Gender
   createdAt: Date
   updatedAt: Date

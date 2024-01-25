@@ -138,10 +138,6 @@ const CreateRosterForm: React.FC<CreateRosterFormProps> = ({
       return
     }
 
-    roster.RosterCredentials.birthday = new Date(
-      roster.RosterCredentials.birthday
-    )
-
     await uploadRosterImage(roster.id)
       .then(() => {
         showNotification(

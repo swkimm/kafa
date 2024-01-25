@@ -64,12 +64,16 @@ export interface JoinLeagueService<T extends TeamLeague> {
   ): Promise<T>
 
   /**
-   * 참여 신청이 가능한 리그 목록을 반환합니다
+   * 팀이 참여 신청이 가능한 리그 목록을 반환합니다
    *
-   * @param {number} [limit=10] 불러올 리그의 수
+   * @param {number} managerId - 팀 계정의 Id
+   * @param {number} [limit=10] -  불러올 리그의 수
    * @returns {Promise<LeagueWithAssociationDTO[]>} 시작 날짜가 늦은 순은로 정렬된 리그 목록
    */
-  getJoinableLeagues(limit?: number): Promise<LeagueWithAssociationDTO[]>
+  getJoinableLeagues(
+    managerId: number,
+    limit?: number
+  ): Promise<LeagueWithAssociationDTO[]>
 
   /**
    * 특정 리그의 참여 신청 목록을 반환합니다

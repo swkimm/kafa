@@ -8,7 +8,7 @@ export interface RosterWithCredentialDTO {
   profileImgUrl?: string
   RosterCredentials: {
     name: string
-    birthday: Date
+    birthday: string
     gender: GenderType
   }
 }

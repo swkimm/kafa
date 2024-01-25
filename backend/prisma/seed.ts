@@ -166,43 +166,43 @@ const main = async function () {
     {
       name: 'USER_ONE',
       accountId: 1,
-      birthday: new Date('2000-01-01'),
+      birthday: '2000-01-01',
       gender: GenderType.Male
     },
     {
       name: 'USER_TWO',
       accountId: 2,
-      birthday: new Date('2000-01-02'),
+      birthday: '2000-01-02',
       gender: GenderType.Female
     },
     {
       name: 'USER_THREE',
       accountId: 3,
-      birthday: new Date('2000-01-03'),
+      birthday: '2000-01-03',
       gender: GenderType.Male
     },
     {
       name: 'USER_FOUR',
       accountId: 4,
-      birthday: new Date('2000-01-04'),
+      birthday: '2000-01-04',
       gender: GenderType.Male
     },
     {
       name: 'USER_FIVE',
       accountId: 5,
-      birthday: new Date('2000-01-05'),
+      birthday: '2000-01-05',
       gender: GenderType.Male
     },
     {
       name: 'USER_SIX',
       accountId: 6,
-      birthday: new Date('2000-01-06'),
+      birthday: '2000-01-06',
       gender: GenderType.Male
     },
     {
       name: 'USER_SEVEN',
       accountId: 7,
-      birthday: new Date('2000-01-07'),
+      birthday: '2000-01-07',
       gender: GenderType.Male
     }
   ]
@@ -1095,61 +1095,61 @@ const main = async function () {
     {
       name: 'USER_ONE',
       rosterId: 1,
-      birthday: new Date('2000-01-01'),
+      birthday: '2000-01-01',
       gender: GenderType.Male
     },
     {
       name: 'USER_TWO',
       rosterId: 2,
-      birthday: new Date('2000-01-02'),
+      birthday: '2000-01-02',
       gender: GenderType.Male
     },
     {
       name: 'USER_THREE',
       rosterId: 3,
-      birthday: new Date('2000-01-03'),
+      birthday: '2000-01-03',
       gender: GenderType.Male
     },
     {
       name: 'USER_FOUR',
       rosterId: 4,
-      birthday: new Date('2000-01-04'),
+      birthday: '2000-01-04',
       gender: GenderType.Male
     },
     {
       name: 'USER_ONE',
       rosterId: 5,
-      birthday: new Date('2000-01-01'),
+      birthday: '2000-01-01',
       gender: GenderType.Male
     },
     {
       name: 'USER_TWO',
       rosterId: 6,
-      birthday: new Date('2000-01-02'),
+      birthday: '2000-01-02',
       gender: GenderType.Male
     },
     {
       name: 'USER_THREE',
       rosterId: 7,
-      birthday: new Date('2000-01-03'),
+      birthday: '2000-01-03',
       gender: GenderType.Male
     },
     {
       name: 'USER_THREE',
       rosterId: 8,
-      birthday: new Date('2000-01-03'),
+      birthday: '2000-01-03',
       gender: GenderType.Male
     },
     {
       name: 'USER_TWO',
       rosterId: 9,
-      birthday: new Date('2000-01-02'),
+      birthday: '2000-01-02',
       gender: GenderType.Male
     },
     {
       name: 'USER_FOUR',
       rosterId: 10,
-      birthday: new Date('2000-01-04'),
+      birthday: '2000-01-04',
       gender: GenderType.Male
     }
   ]

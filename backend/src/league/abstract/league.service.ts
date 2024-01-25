@@ -281,13 +281,15 @@ export abstract class LeagueService<
   /**
    * 참여 신청이 가능한 리그 목록을 반환합니다
    *
+   * @param {number} managerId - 팀 계정의 Id
    * @param {number} [limit=10] 불러올 리그의 수
    * @returns {Promise<LeagueWithAssociationDTO[]>} 시작 날짜가 늦은 순은로 정렬된 리그 목록
    */
   async getJoinableLeagues(
+    maangerId: number,
     limit?: number
   ): Promise<LeagueWithAssociationDTO[]> {
-    return await this.joinLeagueService.getJoinableLeagues(limit)
+    return await this.joinLeagueService.getJoinableLeagues(maangerId, limit)
   }
 
   /**
