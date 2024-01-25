@@ -10,6 +10,7 @@ import { AssociationModule } from './association/association.module'
 import { AuthModule } from './auth/auth.module'
 import { JwtAuthGuard } from './auth/guard/jwt-auth.guard'
 import { BoardModule } from './board/board.module'
+import { CalendarModule } from './calendar/calendar.module'
 import { CacheConfigService } from './common/cache/cache-config.service'
 import { ExceptionsFilter } from './common/exception/exception.filter'
 import { RolesGuard } from './common/guard/roles.guard'
@@ -61,7 +62,8 @@ import { TeamModule } from './team/team.module'
     ProfileModule,
     RosterModule,
     RecordModule,
-    BoardModule
+    BoardModule,
+    CalendarModule
   ]
 })
 export class AppModule {}
