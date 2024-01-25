@@ -23,16 +23,20 @@
     "@ckeditor/vite-plugin-ckeditor5": "^0.1.3",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
+    "@hookform/resolvers": "^3.3.4",
     "@tailwindcss/forms": "^0.5.7",
     "axios": "^1.6.5",
     "draft-js": "^0.11.7",
+    "moment": "^2.30.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-datepicker": "^4.25.0",
     "react-dom": "^18.2.0",
     "react-draft-wysiwyg": "^1.15.0",
+    "react-hook-form": "^7.49.3",
     "react-router-dom": "^6.21.2",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "yup": "^1.3.3"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.8",

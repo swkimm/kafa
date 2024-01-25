@@ -30,7 +30,7 @@ const ListboxComponent: React.FC<LisxboxComponentProps> = ({
           onChange={(event) => handleSelectionChange(event)}
         >
           <div className="relative">
-            <Listbox.Button className="relative w-full cursor-default rounded-lg bg-transparent py-2 pl-3 pr-10 text-left text-xs text-white shadow-sm ring-1 ring-inset ring-gray-300 sm:text-sm">
+            <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left text-xs text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 sm:text-sm">
               <span className="block truncate">{value.name}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronUpDownIcon
@@ -51,9 +51,7 @@ const ListboxComponent: React.FC<LisxboxComponentProps> = ({
                     key={optionIdx}
                     className={({ active }) =>
                       `relative cursor-default select-none py-2 pl-3 pr-4 ${
-                        active
-                          ? 'bg-indigo-100 text-indigo-600'
-                          : 'text-gray-900'
+                        active ? 'bg-indigo-950 text-white' : 'text-gray-900'
                       }`
                     }
                     value={option}

@@ -5,6 +5,7 @@ import TeamCard from '@/components/cards/TeamCard'
 import DropdownRight from '@/components/dropdown/DropdownRight'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -97,29 +98,32 @@ const Teams = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 text-center sm:grid-cols-2">
-        {teams && teams.length > 0 ? (
-          teams.map((team) => (
-            <div className="my-5 flex justify-center" key={team.id}>
-              <TeamCard
-                id={team.id}
-                name={team.name}
-                globalName={team.globalName}
-                initial={team.initial}
-                color={team.color}
-                profileImgUrl={team.profileImgUrl || '/logo/KAFA_OG.png'}
-                isWhite={(color: string) => color === '#ffffff'}
-                onClick={() => goToTeamDetailPage(team.id)}
-              />
+      <div className="mx-auto mt-3 max-w-screen-xl px-4 lg:px-20">
+        <div className="my-5 grid grid-cols-1 gap-x-5 gap-y-3 text-center sm:grid-cols-2">
+          {teams && teams.length > 0 ? (
+            teams.map((team) => (
+              <div key={team.id}>
+                <TeamCard
+                  id={team.id}
+                  name={team.name}
+                  globalName={team.globalName}
+                  initial={team.initial}
+                  color={team.color}
+                  profileImgUrl={team.profileImgUrl || '/logo/KAFA_OG.png'}
+                  isWhite={(color: string) => color === '#ffffff'}
+                  onClick={() => goToTeamDetailPage(team.id)}
+                />
+              </div>
+            ))
+          ) : (
+            <div className="col-span-2 my-5 h-full w-full">
+              <div className="mx-auto flex w-full items-center justify-center">
+                <ExclamationTriangleIcon className="h-6 w-6 pr-1.5 text-yellow-500" />
+                <p>팀 정보가 없습니다</p>
+              </div>
             </div>
-          ))
-        ) : (
-          <div className="col-span-2 my-5 h-full w-full">
-            <p className="text-center text-xl font-light">
-              이 리그에는 등록된 팀이 없습니다.
-            </p>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   )

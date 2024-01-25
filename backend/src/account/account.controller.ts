@@ -5,6 +5,7 @@ import {
   Delete,
   Get,
   Inject,
+  ParseIntPipe,
   Post,
   Put,
   Query,
@@ -108,7 +109,7 @@ export class AccountController {
   @Post('email/verify')
   async verifyEmail(
     @Query('pin') pin: string,
-    @Query('accountId') accountId: number
+    @Query('accountId', ParseIntPipe) accountId: number
   ): Promise<{ result: string }> {
     try {
       return await this.accountService.verifyEmail(accountId, pin)

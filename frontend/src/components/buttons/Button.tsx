@@ -69,7 +69,7 @@ const Button: React.FC<ButtonProps> = ({
         break
       case 'outlineWithLightHover':
         baseClasses +=
-          ' border rounded-lg text-black border-gray-400 hover:bg-gray-100'
+          ' border rounded-lg text-black border-gray-300 hover:bg-gray-200 hover:text-gray-900'
         break
       case 'reverse':
         baseClasses +=

@@ -9,6 +9,7 @@ import NotificationToast from './components/toast/notification/notification.tsx'
 import useAuth from './hooks/useAuth.ts'
 import AssociationHome from './pages/association/AssociationHome.tsx'
 import AppealItem from './pages/association/items/AppealItem.tsx'
+import EmailVerification from './pages/auth/EmailVerification.tsx'
 import Login from './pages/auth/Login.tsx'
 import SignUp from './pages/auth/SignUp.tsx'
 import { NoticeBoard } from './pages/board/NoticeBoard.tsx'
@@ -40,7 +41,6 @@ import LoadRoster from './pages/console/user/roster/LoadRoster.tsx'
 import Home from './pages/huddle/Home.tsx'
 import League from './pages/league/League.tsx'
 import LeagueDetail from './pages/league/[id]/LeagueDetail.tsx'
-import ScheduleDetail from './pages/league/[id]/schedule/[id]/ScheduleDetail.tsx'
 import TeamDetail from './pages/league/[id]/team/[id]/TeamDetail.tsx'
 import MemberDetail from './pages/league/[id]/team/[id]/member/[id]/MemberDetail.tsx'
 import National from './pages/national/National.tsx'
@@ -87,12 +87,7 @@ const App = () => {
               path="/leagues/:leagueId/teams/:teamId/members/:memberId"
               element={<MemberDetail />}
             />
-            <Route
-              path="/leagues/:leagueId/game-detail/:gameid"
-              element={<ScheduleDetail />}
-            />
             <Route path="/association" element={<AssociationHome />} />
-            <Route path="/signup" element={<SignUp />} />
           </Route>
 
           <Route
@@ -170,6 +165,13 @@ const App = () => {
 
           {/* Sign in Page */}
           <Route path="/login" element={<Login />} />
+
+          {/* Sign up Page */}
+          <Route path="/signup" element={<SignUp />} />
+          <Route
+            path="/signup/email-verification"
+            element={<EmailVerification />}
+          />
 
           {/* 404 Page */}
           <Route path="*" element={<NotFound />} />

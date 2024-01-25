@@ -63,7 +63,7 @@ const CurrentProfileCard: React.FC = () => {
               </div>
             </div>
             <div className="mb-1 flex justify-between">
-              <p className="text-sm text-gray-900">이름</p>
+              <p className="text-sm text-gray-900">닉네임</p>
               <p className="text-sm font-medium">{profile.name}</p>
             </div>
             <div className="mb-1 flex justify-between">

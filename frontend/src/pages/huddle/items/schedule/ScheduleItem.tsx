@@ -103,7 +103,7 @@ const ScheduleItem = () => {
 
   return (
     <div className="w-full">
-      <div className="bg-blue-950 py-5">
+      <div className="bg-indigo-950 py-5">
         <div className="mx-auto flex max-w-screen-xl flex-col gap-1.5 px-4 md:flex-row lg:px-20">
           <div className="md:w-56">
             <ListboxComponent

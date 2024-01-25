@@ -265,7 +265,7 @@ const scoringDefenseColumns = [
 
 const StatsItem = () => {
   return (
-    <div className="container mx-auto mb-5 mt-5 w-full">
+    <div className="mx-auto my-5 w-full max-w-screen-xl px-4 lg:px-20">
       <div className="mx-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <DefaultTable<Rank>

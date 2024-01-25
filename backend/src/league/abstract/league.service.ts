@@ -11,6 +11,7 @@ import type {
   RegisterLeagueAvaliabilityDTO,
   TeamRosterWithSensitiveInfoDTO
 } from '../dto/register-league-availability.dto'
+import type { TeamLeagueRank } from '../dto/team-league-rank.dto'
 import type { UpdateLeagueDTO } from '../dto/update-league.dto'
 import type { CreateLeagueService } from '../interface/create-league.service.interface'
 import type { DeleteLeagueService } from '../interface/delete-league.service.interface'
@@ -143,6 +144,13 @@ export abstract class LeagueService<
       page,
       limit
     )
+  }
+
+  /**
+   * 리그 랭킹 정보를 반환합니다
+   */
+  async getLeagueRanking(leagueId: number): Promise<TeamLeagueRank[]> {
+    return await this.getLeagueService.getLeagueRanking(leagueId)
   }
 
   /**

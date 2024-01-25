@@ -1,7 +1,18 @@
-// TeamCard.tsx
 import type { TeamSimple } from '@/commons/interfaces/team/teamSimple'
-import PropTypes from 'prop-types'
 import Button from '../buttons/Button'
+
+const isColorLight = (hexColor: string): boolean => {
+  hexColor = hexColor.replace('#', '').toUpperCase()
+
+  const r = parseInt(hexColor.substring(0, 2), 16)
+  const g = parseInt(hexColor.substring(2, 4), 16)
+  const b = parseInt(hexColor.substring(4, 6), 16)
+
+  const brightness = 0.299 * r + 0.587 * g + 0.114 * b
+  const lightColorThreshold = 180
+
+  return brightness > lightColorThreshold
+}
 
 const TeamCard: React.FC<TeamSimple> = ({
   id,
@@ -10,51 +21,54 @@ const TeamCard: React.FC<TeamSimple> = ({
   initial,
   color,
   profileImgUrl,
-  isWhite = () => true,
   onClick
 }) => {
   return (
     <div
-      className={`flex rounded-lg font-sans text-white drop-shadow-xl sm:flex-row ${color}`}
-      style={{ backgroundColor: color, width: '500px', height: '200px' }} // 너비 설정
-      onClick={() => onClick?.(id)}
+      className="flex h-full flex-row overflow-hidden rounded-lg bg-white text-white shadow-lg"
+      style={{ backgroundColor: color }}
     >
-      <div className="relative flex flex-col items-center justify-center px-10">
+      <div className="relative isolate flex h-full flex-col items-center justify-center px-10 sm:px-16 sm:py-5">
         <img
-          className="mx-5 my-5 h-20"
+          className="mt-0 max-h-28 max-w-[160px] object-contain sm:max-h-40"
           src={profileImgUrl}
           alt={`${globalName} Logo`}
         />
       </div>
-      <div className="flex flex-auto flex-col items-center justify-center p-5 text-white">
-        <div className={`mt-1 text-lg ${isWhite(color) ? 'text-black' : ''}`}>
-          {name}
+      <div className="flex-auto flex-col p-5 text-black">
+        <div className="flex flex-wrap">
+          <div
+            className={
+              'flex-1 text-base font-bold sm:text-lg ' +
+              (isColorLight(color) ? 'text-black' : 'text-white')
+            }
+          >
+            {name}
+          </div>
+          <div className="mt-0.5 w-full flex-none text-sm font-bold text-gray-400 sm:mt-2">
+            {initial}
+          </div>
         </div>
-        <div className={`mb-3 text-lg ${isWhite(color) ? 'text-black' : ''}`}>
-          {initial}
+        <div className="my-2.5 flex text-sm font-bold sm:my-6">
+          <div className="mx-auto">
+            <Button
+              variant="outlineWithLightHover"
+              label="팀 페이지"
+              onClick={() => onClick?.(id)}
+            />
+          </div>
         </div>
-        <Button
-          variant="outlineWithLightHover"
-          label="팀 페이지"
-          onClick={() => onClick?.(id)}
-        />
-        {/* <p className={`mt-3 text-sm ${isWhite(color) ? 'text-black' : ''}`}>
-          since {new Date(createdAt).getFullYear()}
-        </p> */}
+        <div
+          className={
+            'text-xs font-light ' +
+            (isColorLight(color) ? 'text-black' : 'text-white')
+          }
+        >
+          <p>Since 2023</p>
+        </div>
       </div>
     </div>
   )
-}
-
-TeamCard.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  globalName: PropTypes.string.isRequired,
-  initial: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  profileImgUrl: PropTypes.string.isRequired,
-  isWhite: PropTypes.func,
-  onClick: PropTypes.func
 }
 
 export default TeamCard

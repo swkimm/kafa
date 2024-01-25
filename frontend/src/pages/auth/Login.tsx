@@ -75,6 +75,9 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   disabled={isSubmitting}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') handleLogin()
+                  }}
                 />
               </div>
             </div>

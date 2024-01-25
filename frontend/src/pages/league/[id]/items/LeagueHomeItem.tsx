@@ -1,289 +1,128 @@
 import axiosInstance from '@/commons/axios'
-import type { Game } from '@/commons/interfaces/game/game'
-import DefaultTable from '@/components/tables/DefaultTable'
-import { useCallback, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { getStartAndEndDates } from '@/commons/functions/calculate-week/get-week-start-end.util'
+import { getWeeksBetween } from '@/commons/functions/calculate-week/get-weeks.between.util'
+import type { GameWithLeagueAndAssociation } from '@/commons/interfaces/game/game'
+import type { League } from '@/commons/interfaces/league/league'
+import type { LeagueRank } from '@/commons/interfaces/league/rank'
+import MainCard from '@/components/cards/MainCard'
+import type { ListboxOption } from '@/components/dropdown/Listbox'
+import ListboxComponent from '@/components/dropdown/Listbox'
+import GameTable from '@/components/tables/GameTable'
+import RankTable from '@/components/tables/RankTable'
+import { useEffect, useState } from 'react'
 
-interface GameScore {
-  homeScore: number
-  awayScore: number
+interface LeagueHomeItemProps {
+  league: League
 }
 
-interface ExtendedGame extends Game {
-  homeTeamInfo?: {
-    name: string
-    initial: string
-    profileImgUrl: string
-  }
-  awayTeamInfo?: {
-    name: string
-    initial: string
-    profileImgUrl: string
-  }
-  score?: GameScore
-}
-
-interface Standing {
-  id: number
-  rank: number
-  teamId: number
-  teamLogo: string
-  teamName: string
-  win: number
-  lose: number
-  draw: number
-}
-
-const finalStanding: Standing[] = [
-  {
-    id: 1,
-    rank: 1,
-    teamId: 1,
-    teamLogo: '/logo/KAFA_OG.png',
-    teamName: 'TBD',
-    win: 0,
-    lose: 0,
-    draw: 0
-  },
-  {
-    id: 2,
-    rank: 2,
-    teamId: 2,
-    teamLogo: '/logo/KAFA_OG.png',
-    teamName: 'TBD',
-    win: 0,
-    lose: 0,
-    draw: 0
-  },
-  {
-    id: 3,
-    rank: 3,
-    teamId: 3,
-    teamLogo: '/logo/KAFA_OG.png',
-    teamName: 'TBD',
-    win: 0,
-    lose: 0,
-    draw: 0
-  },
-  {
-    id: 4,
-    rank: 4,
-    teamId: 4,
-    teamLogo: '/logo/KAFA_OG.png',
-    teamName: 'TBD',
-    win: 0,
-    lose: 0,
-    draw: 0
-  },
-  {
-    id: 5,
-    rank: 5,
-    teamId: 5,
-    teamLogo: '/logo/KAFA_OG.png',
-    teamName: 'TBD',
-    win: 0,
-    lose: 0,
-    draw: 0
-  },
-  {
-    id: 6,
-    rank: 6,
-    teamId: 6,
-    teamLogo: '/logo/KAFA_OG.png',
-    teamName: 'TBD',
-    win: 0,
-    lose: 0,
-    draw: 0
-  }
-]
-
-const LeagueHomeItem = () => {
-  const [games, setGames] = useState<ExtendedGame[]>([])
-  const { leagueId } = useParams()
-
-  const fetchTeamInfo = async (teamId: number) => {
-    try {
-      const response = await axiosInstance.get(`/teams/${teamId}`)
-      return response.data // { name, initial, profileImgUrl } 포함 응답 가정
-    } catch (error) {
-      console.error('Error fetching team info:', error)
-      return null // 오류 발생시 null 반환
-    }
-  }
-
-  const getGameScores = async (gameId: number): Promise<GameScore | null> => {
-    try {
-      const response = await axiosInstance.get(`/games/${gameId}`)
-      return response.data // { name, initial, profileImgUrl }
-    } catch (error) {
-      console.error('Error fetching game scores:', error)
-      return null // 오류 발생 시 null 반환
-    }
-  }
-
-  const getGamesWithTeamInfo = useCallback(async () => {
-    try {
-      const response = await axiosInstance.get(`/games/leagues/${leagueId}`)
-      const allGames = response.data
-
-      const unfinishedGames = allGames.filter(
-        (game: ExtendedGame) => game.result === 'NotFinished'
-      )
-
-      const gamesWithTeamInfo = await Promise.all(
-        unfinishedGames.map(async (game: ExtendedGame) => {
-          const homeTeamInfo = await fetchTeamInfo(game.homeTeamId)
-          const awayTeamInfo = await fetchTeamInfo(game.awayTeamId)
-          const score = await getGameScores(game.id) // 게임 점수 정보 가져오기
-
-          return {
-            ...game,
-            homeTeamInfo, // { name, initial, profileImgUrl }
-            awayTeamInfo, // { name, initial, profileImgUrl }
-            score
-          }
-        })
-      )
-
-      setGames(gamesWithTeamInfo)
-    } catch (error) {
-      alert(error)
-    }
-  }, [leagueId])
+const LeagueHomeItem: React.FC<LeagueHomeItemProps> = ({ league }) => {
+  const [games, setGames] = useState<GameWithLeagueAndAssociation[]>([])
+  const [weeks, setWeeks] = useState<ListboxOption[]>([])
+  const [ranks, setRanks] = useState<LeagueRank[]>([])
+  const [selectedWeek, setSelectedWeek] = useState<number>()
 
   useEffect(() => {
-    getGamesWithTeamInfo()
-  }, [getGamesWithTeamInfo])
+    const weekLength = getWeeksBetween(league.startedAt, league.endedAt)
+    const weekOptions = Array.from({ length: weekLength }, (_, i) => ({
+      id: i + 1,
+      name: 'Week ' + (i + 1)
+    }))
 
-  const finalStandingColumns = [
-    {
-      title: 'RANK',
-      render: (finalStanding: Standing) => <span>{finalStanding.rank}</span>
-    },
-    {
-      title: 'TEAM',
-      render: (finalStanding: Standing) => (
-        <div className="flex items-center">
-          <img src={finalStanding.teamLogo} alt="" className="mr-2 w-8" />
-          {finalStanding.teamName}
-        </div>
-      )
-    },
-    {
-      title: 'WIN',
-      render: (finalStanding: Standing) => (
-        <div className="">{finalStanding.win}</div>
-      )
-    },
-    {
-      title: 'LOSE',
-      render: (finalStanding: Standing) => (
-        <div className="">{finalStanding.lose}</div>
-      )
-    },
-    {
-      title: 'DRAW',
-      render: (finalStanding: Standing) => (
-        <div className="">{finalStanding.draw}</div>
-      )
-    }
-  ]
+    setWeeks(weekOptions)
+    setSelectedWeek(weekOptions.length > 0 ? weekOptions[0].id : undefined)
+  }, [league])
 
-  const GamesColumns = [
-    {
-      title: 'HOME',
-      render: (game: ExtendedGame) => (
-        <div className="flex items-center">
-          {game.homeTeamInfo?.profileImgUrl ? (
-            <img
-              src={game.homeTeamInfo.profileImgUrl}
-              alt={game.homeTeamInfo.initial}
-              className="mr-2 w-8"
-            />
-          ) : (
-            <img src="/logo/KAFA_OG.png" alt="" className="mr-2 w-8" />
-          )}
-          <span>{game.homeTeamInfo?.name}</span>
-        </div>
-      )
-    },
-    {
-      title: '',
-      render: (game: ExtendedGame) => <span>{game.score?.homeScore}</span>
-    },
-    {
-      title: 'AWAY',
-      render: (game: ExtendedGame) => (
-        <div className="flex items-center">
-          {game.awayTeamInfo?.profileImgUrl ? (
-            <img
-              src={game.awayTeamInfo.profileImgUrl}
-              alt={game.awayTeamInfo.initial}
-              className="mr-2 w-8"
-            />
-          ) : (
-            <img src="/logo/KAFA_OG.png" alt="" className="mr-2 w-8" />
-          )}
-          <span>{game.awayTeamInfo?.name}</span>
-        </div>
-      )
-    },
-    {
-      title: '',
-      render: (game: ExtendedGame) => <span>{game.score?.awayScore}</span>
-    },
-    {
-      title: 'DATE',
-      render: (game: ExtendedGame) => {
-        const date = game.startedAt ? new Date(game.startedAt) : null
-        const formattedDate = date
-          ? `${date.getMonth() + 1}/${date.getDate()} ${
-              date.getHours() >= 12 ? 'PM' : 'AM'
-            } ${date.getHours() % 12 === 0 ? 12 : date.getHours() % 12}:${date
-              .getMinutes()
-              .toString()
-              .padStart(2, '0')}`
-          : 'N/A'
-
-        return (
-          <div>
-            <span>{formattedDate}</span>
-          </div>
-        )
+  useEffect(() => {
+    const getGames = async () => {
+      if (selectedWeek === undefined) {
+        setGames([])
+        return
       }
-    },
-    {
-      title: 'LOCATION',
-      render: (game: ExtendedGame) => (
-        <div>
-          <span>{game.stadium}</span>
-        </div>
-      )
+
+      const { start, end } = getStartAndEndDates(league.startedAt, selectedWeek)
+
+      try {
+        const response: { data: GameWithLeagueAndAssociation[] } =
+          await axiosInstance.get(
+            `/games/leagues/${league.id}/date-range?startDate=${start}&endDate=${end}`
+          )
+
+        response.data.forEach(
+          (game) => (game.startedAt = new Date(game.startedAt))
+        )
+        setGames(response.data)
+      } catch (error) {
+        setGames([])
+      }
     }
-  ]
+
+    getGames()
+  }, [selectedWeek, league])
+
+  useEffect(() => {
+    const getRanking = async () => {
+      const response = await axiosInstance.get<LeagueRank[]>(
+        `/leagues/${league.id}/rank`
+      )
+
+      response.data.sort((a, b) => {
+        if (a.rank === b.rank) {
+          if (a.win === b.win) {
+            if (a.draw === b.draw) {
+              if (a.lose === b.lose) {
+                return 0
+              }
+              return a.lose - b.lose
+            }
+            return a.draw - b.draw
+          }
+          return a.win - b.win
+        }
+        return a.rank - b.rank
+      })
+
+      console.log(response.data)
+
+      setRanks(response.data)
+    }
+
+    getRanking()
+  }, [league])
+
+  const handleWeekChange = (week: ListboxOption) => {
+    setSelectedWeek(week.id)
+  }
 
   return (
-    <div className="container mx-auto my-5 grid max-w-screen-2xl grid-cols-1 px-5 sm:grid-cols-3">
-      <div className="col-span-2">
-        <div className="mb-5">
-          {games.length > 0 ? (
-            <DefaultTable
-              title="다가오는 경기 일정"
-              data={games}
-              columns={GamesColumns}
-            />
-          ) : (
-            <div>
-              <div>다가오는 경기 일정이 없습니다.</div>
-            </div>
-          )}
+    <div className="mx-auto mt-3 max-w-screen-xl lg:px-20">
+      <div className="grid grid-cols-6 gap-5">
+        <div className="col-span-6 lg:col-span-4">
+          <MainCard
+            title="경기 일정"
+            transparent={false}
+            detailedMore={
+              <div>
+                <ListboxComponent
+                  options={weeks}
+                  onChange={handleWeekChange}
+                  value={
+                    selectedWeek !== undefined
+                      ? { id: selectedWeek, name: 'Week ' + selectedWeek }
+                      : { id: -1, name: '옵션 없음' }
+                  }
+                />
+              </div>
+            }
+          >
+            <GameTable games={games} detail={true} />
+          </MainCard>
         </div>
-        <div className="mb-5">
-          <DefaultTable
-            title="최종 순위"
-            data={finalStanding}
-            columns={finalStandingColumns}
-          />
+        <div className="col-span-6 lg:col-span-2">
+          <div className="mb-5">
+            <MainCard title="리그 순위" transparent={false}>
+              <RankTable ranks={ranks} />
+            </MainCard>
+          </div>
         </div>
       </div>
     </div>

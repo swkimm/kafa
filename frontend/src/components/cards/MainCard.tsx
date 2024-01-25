@@ -4,6 +4,7 @@ interface MainCardProps {
   children: React.ReactNode
   transparent: boolean
   more?: () => void
+  detailedMore?: React.ReactNode
 }
 
 const MainCard: React.FC<MainCardProps> = ({
@@ -11,7 +12,8 @@ const MainCard: React.FC<MainCardProps> = ({
   subtitle,
   children,
   more,
-  transparent
+  transparent,
+  detailedMore
 }) => {
   const getClassNames = (condition: boolean) => {
     let classNames =
@@ -26,7 +28,7 @@ const MainCard: React.FC<MainCardProps> = ({
 
   return (
     <>
-      <div className="flex px-4 py-2">
+      <div className="flex items-center justify-between px-4 py-2">
         <div className="flex-auto">
           <h1 className="text-lg font-semibold leading-6 text-gray-900">
             {title}
@@ -44,6 +46,7 @@ const MainCard: React.FC<MainCardProps> = ({
             </button>
           </div>
         ) : null}
+        {detailedMore && <>{detailedMore}</>}
       </div>
       <div className={getClassNames(transparent)}>
         <div className="px-4">

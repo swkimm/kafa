@@ -20,7 +20,20 @@ import {
   type RegisterTeamRequest
 } from '@prisma/client'
 import type { LeagueWithAssociationDTO } from '../dto/league-with-association.dto'
+import type { TeamLeagueRank } from '../dto/team-league-rank.dto'
 import type { GetLeagueService } from '../interface/get-league.service.interface'
+
+interface TeamGameResult {
+  win: number
+  lose: number
+  draw: number
+  team: Team
+  rank: number
+}
+
+type TeamResults = {
+  [teamId: number]: TeamGameResult
+}
 
 /**
  * 리그 조회와 관련된 서비스 인터페이스 [GetLeagueService] 구현체
@@ -208,6 +221,67 @@ export class GetLeagueServiceImpl implements GetLeagueService<League, Sponser> {
       if (error instanceof BusinessException) {
         throw error
       }
+      throw new UnexpectedException(error, error.stack)
+    }
+  }
+
+  async getLeagueRanking(leagueId: number): Promise<TeamLeagueRank[]> {
+    try {
+      const teamsInLeague = await this.prismaService.teamLeague.findMany({
+        where: {
+          leagueId: leagueId,
+          applyStatus: 'Approved'
+        },
+        include: {
+          Team: true
+        }
+      })
+
+      if (teamsInLeague.length === 0) return []
+
+      const teamResults: TeamResults = teamsInLeague.reduce(
+        (acc, teamLeague) => {
+          acc[teamLeague.teamId] = {
+            win: 0,
+            lose: 0,
+            draw: 0,
+            team: teamLeague.Team,
+            rank: teamLeague.rank ?? 10000
+          }
+          return acc
+        },
+        {}
+      )
+
+      const gamesInLeague = await this.prismaService.game.findMany({
+        where: {
+          leagueId: leagueId
+        }
+      })
+
+      gamesInLeague.forEach((game) => {
+        if (game.result === 'HomeWin') {
+          teamResults[game.homeTeamId].win++
+          teamResults[game.awayTeamId].lose++
+        } else if (game.result === 'AwayWin') {
+          teamResults[game.homeTeamId].lose++
+          teamResults[game.awayTeamId].win++
+        } else if (game.result === 'Draw') {
+          teamResults[game.homeTeamId].draw++
+          teamResults[game.awayTeamId].draw++
+        }
+      })
+
+      return Object.values(teamResults).map((result) => ({
+        id: result.team.id,
+        name: result.team.name,
+        profileImgUrl: result.team.profileImgUrl,
+        rank: result.rank,
+        win: result.win,
+        lose: result.lose,
+        draw: result.draw
+      }))
+    } catch (error) {
       throw new UnexpectedException(error, error.stack)
     }
   }

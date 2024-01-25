@@ -1,5 +1,6 @@
 import type { League, Sponser } from '@prisma/client'
 import type { LeagueWithAssociationDTO } from '../dto/league-with-association.dto'
+import type { TeamLeagueRank } from '../dto/team-league-rank.dto'
 
 /**
  * 리그 정보 조회와 관련된 서비스 모음
@@ -84,4 +85,6 @@ export interface GetLeagueService<T extends League, V extends Sponser> {
     page: number,
     limit?: number
   ): Promise<V[]>
+
+  getLeagueRanking(leagueId: number): Promise<TeamLeagueRank[]>
 }

@@ -99,28 +99,36 @@ const Home = () => {
               </div>
             </div>
             <Disclosure.Panel className="sm:hidden">
-              <div className="flex flex-col gap-y-2 pb-3">
+              <div className="flex flex-col gap-y-4 pb-4">
                 <Disclosure.Button
                   as="button"
                   onClick={() => setCurrentComponent('HOME')}
-                  className={`w-full pr-4 text-right text-sm font-normal text-gray-50 ${
-                    currentComponent === 'HOME'
-                      ? 'font-bold text-purple-500'
-                      : 'hover:text-gray-500'
-                  }`}
+                  className={`w-full text-right text-sm font-normal text-gray-50`}
                 >
-                  HOME
+                  <span
+                    className={
+                      currentComponent === 'HOME'
+                        ? 'border-l-8 border-purple-700 bg-purple-500 py-1.5 pl-1 pr-4 font-bold'
+                        : 'pr-4 hover:text-gray-500'
+                    }
+                  >
+                    HOME
+                  </span>
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="button"
                   onClick={() => setCurrentComponent('SCHEDULE')}
-                  className={`w-full pr-4 text-right text-sm font-normal text-gray-50 ${
-                    currentComponent === 'SCHEDULE'
-                      ? 'font-bold text-purple-500'
-                      : 'hover:text-gray-500'
-                  }`}
+                  className={`w-full text-right text-sm font-normal text-gray-50`}
                 >
-                  SCHEDULE
+                  <span
+                    className={
+                      currentComponent === 'SCHEDULE'
+                        ? 'border-l-8 border-purple-700 bg-purple-500 py-1.5 pl-1 pr-4 font-bold'
+                        : 'pr-4 hover:text-gray-500'
+                    }
+                  >
+                    SCHEDULE
+                  </span>
                 </Disclosure.Button>
               </div>
             </Disclosure.Panel>

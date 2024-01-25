@@ -3,6 +3,7 @@ import axiosInstance from '@/commons/axios'
 import type { LeagueWithAssociation } from '@/commons/interfaces/league/league'
 import Button from '@/components/buttons/Button'
 import DropdownRight from '@/components/dropdown/DropdownRight'
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -70,7 +71,7 @@ const League = () => {
   }, [year])
 
   const goToLeagueDetail = (id: number) => {
-    navigate(`/leagues/${id}?year=${year}`)
+    navigate(`/leagues/${id}`)
   }
 
   return (
@@ -148,10 +149,9 @@ const League = () => {
               </div>
             ))
           ) : (
-            <div className="col-span-2 h-full w-full">
-              <p className="text-center text-xl font-light">
-                {year}년의 리그 정보가 존재하지 않습니다
-              </p>
+            <div className="col-span-2 mx-auto mt-5 flex min-h-96 w-full items-center justify-center">
+              <ExclamationTriangleIcon className="h-6 w-6 pr-1.5 text-yellow-500" />
+              <p>{year}년의 리그 목록이 존재하지 않습니다</p>
             </div>
           )}
         </div>

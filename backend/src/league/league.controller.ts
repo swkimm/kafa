@@ -22,6 +22,7 @@ import { LeagueService } from './abstract/league.service'
 import type { LeagueApplyStatusDTO } from './dto/league-apply-status.dto'
 import type { LeagueWithAssociationDTO } from './dto/league-with-association.dto'
 import type { RegisterLeagueAvaliabilityDTO } from './dto/register-league-availability.dto'
+import type { TeamLeagueRank } from './dto/team-league-rank.dto'
 
 @Controller('leagues')
 export class LeagueController {
@@ -157,6 +158,18 @@ export class LeagueController {
         page,
         limit
       )
+    } catch (error) {
+      businessExceptionBinder(error)
+    }
+  }
+
+  @Public()
+  @Get(':leagueId/rank')
+  async getLeagueRanking(
+    @Param('leagueId', ParseIntPipe) leagueId: number
+  ): Promise<TeamLeagueRank[]> {
+    try {
+      return await this.leagueService.getLeagueRanking(leagueId)
     } catch (error) {
       businessExceptionBinder(error)
     }
