@@ -39,7 +39,7 @@ const EmailVerification: React.FC<EmailVerificationProps> = () => {
   }, [location.search])
 
   return (
-    <div className="flex h-screen w-full items-center justify-center bg-white">
+    <div className="flex min-h-screen w-full items-center justify-center bg-white py-20">
       <div className="mx-auto w-full max-w-[320px]">{renderComponent()}</div>
     </div>
   )
