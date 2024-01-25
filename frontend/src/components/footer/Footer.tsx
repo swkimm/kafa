@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
           <div className="space-y-8">
             <img className="h-10" src="/logo/logo.png" alt="KAFA" />
             <div className="text-xs font-light leading-5 text-gray-300">
-              <p className="mb-3 text-base font-bold leading-6">
+              <p className="mb-3 text-base font-bold leading-6 text-gray-100">
                 사단법인 대한미식축구협회
               </p>
               <p>
@@ -97,7 +97,7 @@ const Footer: React.FC = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-500 hover:text-gray-400"
+                  className="text-gray-100 hover:text-gray-400"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -186,10 +186,23 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
+        <div className="mt-16 flex flex-row items-center justify-between border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
           <p className="text-xs leading-5 text-gray-400">
-            © {new Date().getFullYear()} KAFA CO.,LTD ALL Rights Reserved
+            © {new Date().getFullYear()} KAFA CO.,LTD
           </p>
+          <div className="h-auto w-24 sm:w-32">
+            <a
+              href="http://aws.amazon.com/what-is-cloud-computing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-gray-400"
+            >
+              <img
+                src="https://d0.awsstatic.com/logos/powered-by-aws-white.png"
+                alt="Powered by AWS Cloud Computing"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
