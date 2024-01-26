@@ -7,8 +7,8 @@ import MainLayout from './commons/layout/MainLayout.tsx'
 import PrivateRoute from './commons/layout/PrivateRoute.tsx'
 import NotificationToast from './components/toast/notification/notification.tsx'
 import useAuth from './hooks/useAuth.ts'
+import Appeal from './pages/appeal/Appeal.tsx'
 import AssociationHome from './pages/association/AssociationHome.tsx'
-import AppealItem from './pages/association/items/AppealItem.tsx'
 import EmailVerification from './pages/auth/EmailVerification.tsx'
 import Login from './pages/auth/Login.tsx'
 import SignUp from './pages/auth/SignUp.tsx'
@@ -46,6 +46,7 @@ import TeamDetail from './pages/league/[id]/team/[id]/TeamDetail.tsx'
 import MemberDetail from './pages/league/[id]/team/[id]/member/[id]/MemberDetail.tsx'
 import National from './pages/national/National.tsx'
 import Teams from './pages/team/Teams.tsx'
+import TermHome from './pages/term/TermHome.tsx'
 
 const App = () => {
   const { reloadCredential } = useAuth()
@@ -75,7 +76,7 @@ const App = () => {
             <Route path="/board/posts/new" element={<CreateNewPost />} />
             <Route path="/board/posts/:id" element={<Post />} />
             <Route path="/board/posts/:id/edit" element={<EditPost />} />
-            <Route path="/appeal" element={<AppealItem />} />
+            <Route path="/appeal" element={<Appeal />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/leagues" element={<League />} />
             <Route path="/teams" element={<Teams />} />
@@ -90,6 +91,7 @@ const App = () => {
             />
             <Route path="/games/:gameId" element={<GamePage />} />
             <Route path="/association" element={<AssociationHome />} />
+            <Route path="/term" element={<TermHome />} />
           </Route>
 
           <Route

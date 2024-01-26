@@ -3,14 +3,14 @@ import { useState } from 'react'
 import { Editor } from 'react-draft-wysiwyg'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
-const AppealItem = () => {
+const Appeal = () => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty())
 
   const onEditorStateChange = (newState: EditorState) => {
     setEditorState(newState)
   }
   return (
-    <div className="container mx-auto mt-5">
+    <div className="mx-auto max-w-screen-xl px-4 py-10 lg:px-20">
       <div className="text-2xl font-bold">신문고</div>
       <p className="my-5">
         대한미식축구협회는 각종 비윤리 및 불법, 부조리행위 등을 근절하기 위해
@@ -135,4 +135,4 @@ const AppealItem = () => {
   )
 }
 
-export default AppealItem
+export default Appeal

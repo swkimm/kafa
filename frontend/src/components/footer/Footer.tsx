@@ -21,9 +21,9 @@ const navigation = {
     { name: '월간용광로', href: 'https://monthlydragons.tistory.com' }
   ],
   legal: [
-    { name: '개인정보처리방침', href: '#' },
-    { name: '이용약관', href: '#' },
-    { name: '이메일무단수집거부', href: '#' }
+    { name: '개인정보처리방침', href: '/term?type=개인정보처리방침' },
+    { name: '이용약관', href: '/term?type=이용약관' },
+    { name: '이메일무단수집거부', href: '/term?type=이메일무단수집거부' }
   ],
   social: [
     {

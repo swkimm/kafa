@@ -101,6 +101,13 @@ const Header = () => {
                   >
                     협회정보
                   </Disclosure.Button>
+                  <Disclosure.Button
+                    as="button"
+                    onClick={() => navigate('/term')}
+                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-100 hover:border-gray-300 hover:text-gray-700"
+                  >
+                    약관
+                  </Disclosure.Button>
                   <a
                     href="#"
                     className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-100 hover:border-gray-300 hover:text-gray-700"
@@ -220,6 +227,13 @@ const Header = () => {
                 className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
               >
                 협회정보
+              </Disclosure.Button>
+              <Disclosure.Button
+                as="button"
+                onClick={() => navigate('/term')}
+                className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
+              >
+                약관
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
