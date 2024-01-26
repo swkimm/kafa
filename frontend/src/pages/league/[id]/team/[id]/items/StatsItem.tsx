@@ -7,7 +7,7 @@ import WithSubtitleTable from '@/components/tables/WithSubtitleTable'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
 import { useEffect, useState } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 interface DropdownOption {
   id: number
@@ -15,20 +15,14 @@ interface DropdownOption {
 }
 
 const StatsItem: React.FC = () => {
-  const [searchParams] = useSearchParams()
-  const yearParam = searchParams.get('year')
-  let year = Number(yearParam)
   const thisYear = new Date().getFullYear()
-  const { teamId } = useParams()
+  const { teamId, leagueId } = useParams()
   const [games, setGames] = useState<GameMany[]>([])
   const [filteredGames, setFilteredGames] = useState<GameMany[]>([])
   const [selectedGame, setSelectedGame] = useState<GameMany>() // 선택된 게임 상태
   const [records, setRecords] = useState<Record[]>([])
   const { showNotification } = useNotification()
-
-  if (isNaN(year) || year <= 0) {
-    year = new Date().getFullYear() // 유효하지 않은 경우 현재 연도를 사용
-  }
+  const [startedYear, setStartedYear] = useState()
 
   const [options] = useState<DropdownOption[]>([
     {
@@ -53,13 +47,16 @@ const StatsItem: React.FC = () => {
     }
   ])
 
-  // 연도 선택 시 실행되는 함수
+  const getLeague = async () => {
+    const response = await axiosInstance.get(`/leagues/${leagueId}`)
+    setStartedYear(response.data.startedYear)
+  }
+
   const handleYearSelect = (selected: string) => {
     const selectedYear = parseInt(selected, 10)
     filterGamesByYear(selectedYear)
   }
 
-  // 특정 연도에 해당하는 게임 필터링
   const filterGamesByYear = (selectedYear: number) => {
     const filtered = games.filter((game) => {
       const gameYear = new Date(game.startedAt).getFullYear()
@@ -67,52 +64,54 @@ const StatsItem: React.FC = () => {
     })
     setFilteredGames(filtered)
 
-    // 첫 번째 게임 선택 및 해당 게임의 데이터 불러오기
     if (filtered.length > 0) {
       setSelectedGame(filtered[0])
-      getRecodeByGameId(filtered[0].id) // 첫 번째 게임의 데이터 불러오기
+      getRecodeByGameId(filtered[0].id)
     } else {
       setSelectedGame(undefined)
     }
   }
 
-  useEffect(() => {
-    // 쿼리 파라미터로부터 연도를 읽어오거나 현재 연도를 사용
-    const initialYear = yearParam ? parseInt(yearParam, 10) : thisYear
+  const initialYear = startedYear ? startedYear : thisYear
 
-    const getGamesByTeamId = async () => {
-      try {
-        const response = await axiosInstance.get(
-          `/games/teams/${teamId}?page=1&limit=100`
-        )
-        setGames(response.data)
+  const getGamesByTeamId = async () => {
+    try {
+      const response = await axiosInstance.get(
+        `/games/teams/${teamId}?page=1&limit=100`
+      )
+      setGames(response.data)
 
-        // 연도에 따라 게임 필터링 및 첫 번째 게임 선택
-        const filtered = response.data.filter(
-          (game: GameMany) =>
-            new Date(game.startedAt).getFullYear() === initialYear
-        )
-        setFilteredGames(filtered)
+      const filtered = response.data.filter(
+        (game: GameMany) =>
+          new Date(game.startedAt).getFullYear() === initialYear
+      )
+      setFilteredGames(filtered)
 
-        if (filtered.length > 0) {
-          setSelectedGame(filtered[0])
-          getRecodeByGameId(filtered[0].id)
-        } else {
-          setSelectedGame(undefined)
-          setRecords([])
-        }
-      } catch (error) {
-        showNotification(
-          NotificationType.Error,
-          '게임 목록 불러오기 실패',
-          '게임 목록 불러오기에 실패했습니다.'
-        )
+      if (filtered.length > 0) {
+        setSelectedGame(filtered[0])
+        getRecodeByGameId(filtered[0].id)
+      } else {
+        setSelectedGame(undefined)
+        setRecords([])
       }
+    } catch (error) {
+      showNotification(
+        NotificationType.Error,
+        '게임 목록 불러오기 실패',
+        '게임 목록 불러오기에 실패했습니다.'
+      )
+    }
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await getLeague()
+      await getGamesByTeamId()
     }
 
-    getGamesByTeamId()
+    fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [teamId, yearParam, thisYear])
+  }, [teamId, startedYear, thisYear])
 
   const handleGameSelect = (selectedName: string) => {
     // 게임 이름으로 ID 찾기
@@ -126,7 +125,7 @@ const StatsItem: React.FC = () => {
       const foundGame = games.find((game) => game.id === selectedGameId)
       if (foundGame) {
         setSelectedGame(foundGame)
-        getRecodeByGameId(foundGame.id) // 여기에서 getRecodeByGameId 호출
+        getRecodeByGameId(foundGame.id)
       } else {
         setSelectedGame(undefined)
       }
@@ -143,7 +142,6 @@ const StatsItem: React.FC = () => {
       )
       const numericTeamId = teamId ? parseInt(teamId, 10) : undefined
 
-      // response.data에서 특정 teamId와 일치하는 데이터만 필터링
       const filteredRecords = response.data.filter(
         (record) => record.Athlete.Roster?.teamId === numericTeamId
       )
@@ -194,6 +192,7 @@ const StatsItem: React.FC = () => {
     id: game.id,
     name: game.name
   }))
+
   return (
     <div className="container mx-auto my-5 grid max-w-screen-2xl grid-cols-1 px-5 sm:grid-cols-3">
       <div className="order-2 col-span-1 sm:order-1 sm:col-span-2">
@@ -226,7 +225,7 @@ const StatsItem: React.FC = () => {
       <div className="order-1 col-span-1 sm:order-2">
         <div className="mb-5 sm:ml-5">
           <DropdownSimple
-            optionName={year.toString()}
+            optionName={startedYear}
             optionList={options}
             onSelect={handleYearSelect}
           />

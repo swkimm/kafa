@@ -2,15 +2,16 @@
 import axiosInstance from '@/commons/axios'
 import type { Roster } from '@/commons/interfaces/roster/roster'
 import PlayerCard from '@/components/cards/PlayerCard'
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
 import { useCallback, useEffect, useState } from 'react'
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const RosterItem = () => {
   const { leagueId, teamId } = useParams()
-  const [searchParams] = useSearchParams()
-  const year = searchParams.get('year')
   const navigate = useNavigate()
   const [roster, setRoster] = useState<Roster[]>([])
+  const { showNotification } = useNotification()
 
   const getRoster = useCallback(async () => {
     try {
@@ -19,18 +20,21 @@ const RosterItem = () => {
       )
       setRoster(response.data)
     } catch (error) {
-      console.log(error)
+      showNotification(
+        NotificationType.Error,
+        '로스터 불러오기 실패',
+        '로스터 불러오기에 실패했습니다.'
+      )
     }
-  }, [leagueId, teamId])
+  }, [leagueId, showNotification, teamId])
 
   useEffect(() => {
     getRoster()
-  }, [getRoster])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const goToMemberInfo = (memberId: number) => {
-    navigate(
-      `/leagues/${leagueId}/teams/${teamId}/members/${memberId}?year=${year}`
-    )
+    navigate(`/leagues/${leagueId}/teams/${teamId}/members/${memberId}`)
   }
   return (
     <div className="container mx-auto my-5 grid max-w-screen-2xl grid-cols-2 sm:grid-cols-4">

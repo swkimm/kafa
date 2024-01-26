@@ -2,23 +2,40 @@
 import axiosInstance from '@/commons/axios'
 import type { Record } from '@/commons/interfaces/record/record'
 import DefaultTable from '@/components/tables/DefaultTable'
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const StatsItem = () => {
-  const [searchParams] = useSearchParams()
-  const year = searchParams.get('year')
   const { leagueId } = useParams()
   const [leagueRecords, setLeagueRecords] = useState<Record[]>([])
   const navigate = useNavigate()
+  const { showNotification } = useNotification()
 
   const getLeagueRecordsByLeagueId = async () => {
     try {
       const response = await axiosInstance.get(`/records/games/${leagueId}`)
       setLeagueRecords(response.data)
-      console.log(response.data)
     } catch (error) {
-      console.log(error)
+      if (error instanceof AxiosError) {
+        // 오류가 404가 아닐 경우에만 알림을 표시합니다.
+        if (error.response && error.response.status !== 404) {
+          showNotification(
+            NotificationType.Error,
+            '리그 기록 불러오기 실패',
+            '리그 기록 불러오기에 실패했습니다.'
+          )
+        }
+      } else {
+        showNotification(
+          NotificationType.Error,
+          '리그 기록 불러오기 실패',
+          '리그 기록 불러오기에 실패했습니다.'
+        )
+      }
     }
   }
 
@@ -28,13 +45,11 @@ const StatsItem = () => {
   }, [])
 
   const goToTeamDetail = (teamId: number) => {
-    navigate(`/leagues/${leagueId}/teams/${teamId}?year=${year}`)
+    navigate(`/leagues/${leagueId}/teams/${teamId}`)
   }
 
   const goToMemberDetail = (teamId: number, memberId: number) => {
-    navigate(
-      `/leagues/${leagueId}/teams/${teamId}/members/${memberId}?year=${year}`
-    )
+    navigate(`/leagues/${leagueId}/teams/${teamId}/members/${memberId}`)
   }
 
   const leagueRecordsColumns = [
@@ -112,11 +127,18 @@ const StatsItem = () => {
   return (
     <div className="container mx-auto mb-5 mt-5 w-full">
       <div>
-        <DefaultTable
-          title={'리그 득점 기록'}
-          data={leagueRecords}
-          columns={leagueRecordsColumns}
-        />
+        {leagueRecords.length > 0 ? (
+          <DefaultTable
+            title={'리그 득점 기록'}
+            data={leagueRecords}
+            columns={leagueRecordsColumns}
+          />
+        ) : (
+          <div className="col-span-2 mx-auto mt-5 flex w-full items-center justify-center">
+            <ExclamationTriangleIcon className="h-6 w-6 pr-1.5 text-yellow-500" />
+            <p>리그에 대한 기록 목록이 없습니다</p>
+          </div>
+        )}
       </div>
     </div>
   )

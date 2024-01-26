@@ -40,7 +40,22 @@ const MemberDetail = () => {
   }, [memberId, setMember, showNotification])
 
   useEffect(() => {
-    getMember()
+    if (!memberId || !leagueId || !teamId) {
+      showNotification(
+        NotificationType.Error,
+        '데이터 로딩 실패',
+        '유효하지 않은 파라미터입니다.'
+      )
+      return
+    }
+
+    const loadData = async () => {
+      await getMember()
+      await getGameName()
+    }
+
+    loadData()
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -68,12 +83,6 @@ const MemberDetail = () => {
     }
   }
 
-  useEffect(() => {
-    getGameName()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [leagueId, teamId])
-
-  // TODO : memberId 필터링
   const getPersonalRecords = async (gameId: number) => {
     try {
       const response = await axiosInstance.get(`/records/rosters/${memberId}`)
@@ -95,18 +104,18 @@ const MemberDetail = () => {
   }
 
   useEffect(() => {
-    if (selectedGameId !== undefined) {
-      getPersonalRecords(selectedGameId)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedGameId])
-
-  useEffect(() => {
     if (gameName.length > 0) {
       const firstGameId = gameName[0].id
       setSelectedGameId(firstGameId)
     }
   }, [gameName])
+
+  useEffect(() => {
+    if (selectedGameId !== undefined) {
+      getPersonalRecords(selectedGameId)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedGameId])
 
   const personalRecordColumns = [
     {
@@ -124,7 +133,7 @@ const MemberDetail = () => {
     {
       title: 'Athlete',
       render: (stats: Record) => (
-        <div className="flex cursor-pointer items-center">
+        <div className="flex items-center">
           <div>
             {stats.Athlete.Roster.profileImgUrl ? (
               <img

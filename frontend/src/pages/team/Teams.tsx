@@ -15,7 +15,6 @@ const Teams = () => {
   const [selectedLeagueId, setSelectedLeagueId] = useState<number | undefined>(
     undefined
   )
-  const thisYear = new Date().getFullYear()
   const navigate = useNavigate()
   const { showNotification } = useNotification()
 
@@ -63,7 +62,6 @@ const Teams = () => {
   const getTeamsByLeagueId = async (leagueId: number) => {
     try {
       const response = await axiosInstance.get(`/teams/leagues/${leagueId}`)
-      console.log(response.data)
       setTeams(response.data)
     } catch (error) {
       showNotification(
@@ -75,7 +73,7 @@ const Teams = () => {
   }
 
   const goToTeamDetailPage = (teamId: number) => {
-    navigate(`/leagues/${selectedLeagueId}/teams/${teamId}?year=${thisYear}`)
+    navigate(`/leagues/${selectedLeagueId}/teams/${teamId}`)
   }
 
   return (

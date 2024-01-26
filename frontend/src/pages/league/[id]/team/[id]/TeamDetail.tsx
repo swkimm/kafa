@@ -8,7 +8,6 @@ import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import BoardItem from './items/BoardItem'
 import RosterItem from './items/RosterItem'
 import StatsItem from './items/StatsItem'
 import TeamHomeItem from './items/TeamHomeItem'
@@ -45,8 +44,6 @@ const TeamDetail = () => {
       return <RosterItem />
     } else if (currentComponent === 'STATS') {
       return <StatsItem />
-    } else if (currentComponent === 'BOARD') {
-      return <BoardItem />
     }
   }
 
@@ -107,17 +104,6 @@ const TeamDetail = () => {
                     >
                       STATS
                     </Disclosure.Button>
-                    <Disclosure.Button
-                      as="button"
-                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
-                        currentComponent === 'BOARD'
-                          ? 'border-b-2 border-white'
-                          : 'border-b-2 border-transparent hover:border-white'
-                      }`}
-                      onClick={() => setCurrentComponent('BOARD')}
-                    >
-                      BOARD
-                    </Disclosure.Button>
                   </div>
                 </div>
                 <div className="-mr-2 flex items-center sm:hidden">
@@ -157,13 +143,6 @@ const TeamDetail = () => {
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-300 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
                   STATS
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="button"
-                  onClick={() => setCurrentComponent('BOARD')}
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-300 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  BOARD
                 </Disclosure.Button>
               </div>
             </Disclosure.Panel>

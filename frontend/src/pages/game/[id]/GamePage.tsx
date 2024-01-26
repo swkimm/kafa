@@ -12,25 +12,18 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const GamePage = () => {
-  const search = window.location.search
-  const params = new URLSearchParams(search)
-  const home = params.get('home')
-  const away = params.get('away')
-  const year = params.get('year')
-  const homeTeamId = parseInt(params.get('home') || '0', 10)
-  const awayTeamId = parseInt(params.get('away') || '0', 10)
+  const [homeTeamId, setHomeTeamId] = useState<number>()
+  const [awayTeamId, setAwayTeamId] = useState<number>()
   const navigate = useNavigate()
   const [switchTeam, setSwitchTeam] = useState(true)
   const { leagueId, gameId } = useParams()
   const [game, setGame] = useState<GameWithLeagueAndAssociation | undefined>(
     undefined
   )
-  // Record 타입을 사용하여 상태를 초기화합니다.
   const [homeTeamData, setHomeTeamData] = useState<Record[]>([])
   const [awayTeamData, setAwayTeamData] = useState<Record[]>([])
   const { showNotification } = useNotification()
-
-  const [records, setRecords] = useState<Record[]>([]) // 여기서 `any` 대신 더 구체적인 타입을 사용하는 것이 좋습니다.
+  const [records, setRecords] = useState<Record[]>([])
 
   const getRecordByGameId = async (gameId: string) => {
     try {
@@ -49,25 +42,26 @@ const GamePage = () => {
   }
 
   useEffect(() => {
-    if (gameId !== undefined) {
-      getRecordByGameId(gameId) // 컴포넌트 마운트 시 getRecordByGameId 호출
+    if (gameId) {
+      getGameById()
+      getRecordByGameId(gameId)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameId])
 
   useEffect(() => {
-    if (records) {
+    if (records && homeTeamId && awayTeamId) {
       const filteredHomeTeamData = records.filter(
-        (item) => item.Athlete.Roster.teamId === homeTeamId
+        (record) => record.Athlete.Roster.teamId === homeTeamId
       )
       const filteredAwayTeamData = records.filter(
-        (item) => item.Athlete.Roster.teamId === awayTeamId
+        (record) => record.Athlete.Roster.teamId === awayTeamId
       )
 
       setHomeTeamData(filteredHomeTeamData)
       setAwayTeamData(filteredAwayTeamData)
     }
-  }, [homeTeamId, awayTeamId, records])
+  }, [records, homeTeamId, awayTeamId])
 
   const fetchGetAssociationInfo = async (associationId: number) => {
     const response = await axiosInstance.get<Association>(
@@ -95,11 +89,7 @@ const GamePage = () => {
       const response = await axiosInstance.get(`/games/${gameId}`)
       const gameData = response.data
 
-      const homeTeamId = Number(home)
-      const awayTeamId = Number(away)
-      const gameIdNumber = Number(gameId) || 0
       const leagueIdNumber = Number(leagueId)
-
       const leagueInfo = await fetchGetLeagueName(leagueIdNumber)
 
       let associationInfo = {}
@@ -108,9 +98,9 @@ const GamePage = () => {
         associationInfo = await fetchGetAssociationInfo(associationId)
       }
 
-      const homeTeamInfo = await fetchGetTeamInfo(homeTeamId)
-      const awayTeamInfo = await fetchGetTeamInfo(awayTeamId)
-      const scoreResponse = await fetchGetScoreInfo(gameIdNumber)
+      const homeTeamInfo = await fetchGetTeamInfo(gameData.homeTeamId)
+      const awayTeamInfo = await fetchGetTeamInfo(gameData.awayTeamId)
+      const scoreResponse = await fetchGetScoreInfo(Number(gameId))
 
       const completeGameData = {
         ...gameData,
@@ -124,6 +114,8 @@ const GamePage = () => {
       }
 
       setGame(completeGameData)
+      setHomeTeamId(gameData.homeTeamId)
+      setAwayTeamId(gameData.awayTeamId)
     } catch (error) {
       showNotification(
         NotificationType.Error,
@@ -133,19 +125,12 @@ const GamePage = () => {
     }
   }
 
-  useEffect(() => {
-    getGameById()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   const handleClick = () => {
     setSwitchTeam(!switchTeam)
   }
 
   const goToMemberDetail = (teamId: number, memberId: number) => {
-    navigate(
-      `/leagues/${leagueId}/teams/${teamId}/members/${memberId}?year=${year}`
-    )
+    navigate(`/leagues/${leagueId}/teams/${teamId}/members/${memberId}`)
   }
 
   const convertDateTime = (dateTimeStr: Date) => {
