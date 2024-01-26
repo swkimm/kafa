@@ -3,10 +3,12 @@ import axiosInstance from '@/commons/axios'
 import type { Roster } from '@/commons/interfaces/roster/roster'
 import PlayerCard from '@/components/cards/PlayerCard'
 import { useCallback, useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 const RosterItem = () => {
   const { leagueId, teamId } = useParams()
+  const [searchParams] = useSearchParams()
+  const year = searchParams.get('year')
   const navigate = useNavigate()
   const [roster, setRoster] = useState<Roster[]>([])
 
@@ -16,7 +18,6 @@ const RosterItem = () => {
         `/rosters/leagues/${leagueId}/teams/${teamId}`
       )
       setRoster(response.data)
-      console.log(response.data)
     } catch (error) {
       console.log(error)
     }
@@ -27,7 +28,9 @@ const RosterItem = () => {
   }, [getRoster])
 
   const goToMemberInfo = (memberId: number) => {
-    navigate(`/leagues/${leagueId}/teams/${teamId}/members/${memberId}`)
+    navigate(
+      `/leagues/${leagueId}/teams/${teamId}/members/${memberId}?year=${year}`
+    )
   }
   return (
     <div className="container mx-auto my-5 grid max-w-screen-2xl grid-cols-2 sm:grid-cols-4">

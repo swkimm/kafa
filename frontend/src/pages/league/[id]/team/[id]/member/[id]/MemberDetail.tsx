@@ -1,50 +1,27 @@
 // MemberDetail.tsx
 import axiosInstance from '@/commons/axios'
+import type { Record } from '@/commons/interfaces/record/record'
 import type { Roster } from '@/commons/interfaces/roster/roster'
 import MemberBanner from '@/components/cards/MemberBanner'
 import DropdownLeft from '@/components/dropdown/DropdownLeft'
 import DefaultTable from '@/components/tables/DefaultTable'
-import WithSubtitleTable from '@/components/tables/WithSubtitleTable'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
 import { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-const people = [
-  {
-    id: 1,
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
-    role: 'Member'
-  },
-  {
-    id: 2,
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
-    role: 'Member'
-  },
-  {
-    id: 3,
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
-    role: 'Member'
-  }
-]
-
-const options = [
-  { id: '1', name: 'Account settings' },
-  { id: '2', name: 'Support' },
-  { id: '3', name: 'License' },
-  { id: '4', name: 'Sign out' }
-]
+interface GameName {
+  id: number
+  name: string
+}
 
 const MemberDetail = () => {
-  const { memberId } = useParams()
-  const [member, setMember] = useState<Roster | undefined>(undefined)
+  const { memberId, leagueId, teamId } = useParams()
+  const [member, setMember] = useState<Roster>()
   const { showNotification } = useNotification()
+  const [records, setRecords] = useState<Record[]>([])
+  const [gameName, setGameName] = useState<GameName[]>([])
+  const [selectedGameId, setSelectedGameId] = useState<number>()
 
   const getMember = useCallback(async () => {
     if (memberId) {
@@ -64,7 +41,8 @@ const MemberDetail = () => {
 
   useEffect(() => {
     getMember()
-  }, [getMember])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const positionString = [
     member?.Athlete?.position?.defense,
@@ -74,9 +52,38 @@ const MemberDetail = () => {
     .filter(Boolean)
     .join('/')
 
-  const getPersonalRecords = useCallback(async () => {
+  const getGameName = async () => {
     try {
-      await axiosInstance.get(`/records/rosters/${memberId}`)
+      const response = await axiosInstance.get(
+        `/games/leagues/${leagueId}/teams/${teamId}`
+      )
+      setGameName(response.data)
+    } catch (error) {
+      showNotification(
+        NotificationType.Error,
+        '게임 목록 불러오기 실패',
+        '게임 목록 불러오는데 실패했습니다.',
+        2500
+      )
+    }
+  }
+
+  useEffect(() => {
+    getGameName()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [leagueId, teamId])
+
+  // TODO : memberId 필터링
+  const getPersonalRecords = async (gameId: number) => {
+    try {
+      const response = await axiosInstance.get(`/records/rosters/${memberId}`)
+      const filteredRecords = response.data.filter(
+        (record: Record) => gameId === null || record.Game.id === gameId
+      )
+      const filteredByMemberIdRecords = filteredRecords.filter(
+        (record: Record) => record.Athlete.Roster.id === member?.id
+      )
+      setRecords(filteredByMemberIdRecords)
     } catch (error) {
       showNotification(
         NotificationType.Error,
@@ -85,15 +92,74 @@ const MemberDetail = () => {
         2500
       )
     }
-  }, [memberId, showNotification])
+  }
 
   useEffect(() => {
-    getPersonalRecords()
-  }, [getPersonalRecords])
+    if (selectedGameId !== undefined) {
+      getPersonalRecords(selectedGameId)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedGameId])
 
-  const handleSelect = (selected: string) => {
-    console.log('Selected option:', selected)
+  useEffect(() => {
+    if (gameName.length > 0) {
+      const firstGameId = gameName[0].id
+      setSelectedGameId(firstGameId)
+    }
+  }, [gameName])
+
+  const personalRecordColumns = [
+    {
+      title: 'Unit',
+      render: (stats: Record) => <div>{stats.unit}</div>
+    },
+    {
+      title: 'Score',
+      render: (stats: Record) => <div>{stats.score}</div>
+    },
+    {
+      title: 'Type',
+      render: (stats: Record) => <div>{stats.type}</div>
+    },
+    {
+      title: 'Athlete',
+      render: (stats: Record) => (
+        <div className="flex cursor-pointer items-center">
+          <div>
+            {stats.Athlete.Roster.profileImgUrl ? (
+              <img
+                src={stats.Athlete.Roster.profileImgUrl}
+                alt={stats.Athlete.Roster.name}
+              />
+            ) : (
+              <img src="/logo/KAFA_OG.png" alt="" className="w-8" />
+            )}
+          </div>
+          <div>{stats.Athlete.Roster.name}</div>
+        </div>
+      )
+    }
+  ]
+
+  const handleSelect = (selectedName: string) => {
+    const selectedGame = gameName.find((game) => game.name === selectedName)
+
+    if (selectedGame && selectedGame.id !== undefined) {
+      const gameId = selectedGame.id
+
+      setSelectedGameId(gameId)
+      getPersonalRecords(gameId)
+    } else {
+      // 에러 처리
+      showNotification(
+        NotificationType.Error,
+        '잘못된 선택',
+        '유효하지 않은 게임 ID입니다.',
+        2500
+      )
+    }
   }
+
   return (
     <div className="">
       <MemberBanner
@@ -108,36 +174,28 @@ const MemberDetail = () => {
       />
 
       <div className="bg-indigo-800 p-6 text-xl text-white">
-        {member?.name} PERSONAL STATS
+        {`${member?.name}'s PERSONAL STATS`}
       </div>
+
       <div className="container mx-auto my-5 grid grid-cols-1 sm:grid-cols-3">
         <div className="order-2 col-span-1 mx-5 sm:order-1 sm:col-span-2">
           <div className="mb-5">
-            <DefaultTable title={''} data={[]} columns={[]} />
-
-            <WithSubtitleTable
-              title={'게임별 기록'}
-              subTitle="TBD"
-              data={people}
-              columns={[]}
-            />
-          </div>
-          <div>
-            <WithSubtitleTable
-              title={'리그 통산'}
-              subTitle="TBD"
-              data={people}
-              columns={[]}
+            <DefaultTable
+              title={'개인 기록'}
+              data={records}
+              columns={personalRecordColumns}
             />
           </div>
         </div>
         <div className="order-1 col-span-1 sm:order-2">
           <div className="mb-5 ml-5">
-            <DropdownLeft
-              optionName="My Options"
-              optionList={options}
-              onSelect={handleSelect}
-            />
+            {gameName.length > 0 && selectedGameId && (
+              <DropdownLeft
+                optionName={gameName[0].name}
+                optionList={gameName}
+                onSelect={(selectedGameId) => handleSelect(selectedGameId)}
+              />
+            )}
           </div>
         </div>
       </div>

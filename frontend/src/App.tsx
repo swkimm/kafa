@@ -38,6 +38,7 @@ import ManageTeamProfile from './pages/console/manager/team-profile/TeamProfile.
 import Certification from './pages/console/user/certification/Certification.tsx'
 import CreateTeam from './pages/console/user/create-team/CreateTeam.tsx'
 import LoadRoster from './pages/console/user/roster/LoadRoster.tsx'
+import GamePage from './pages/game/[id]/GamePage.tsx'
 import Home from './pages/huddle/Home.tsx'
 import League from './pages/league/League.tsx'
 import LeagueDetail from './pages/league/[id]/LeagueDetail.tsx'
@@ -87,6 +88,7 @@ const App = () => {
               path="/leagues/:leagueId/teams/:teamId/members/:memberId"
               element={<MemberDetail />}
             />
+            <Route path="/games/:gameId" element={<GamePage />} />
             <Route path="/association" element={<AssociationHome />} />
           </Route>
 

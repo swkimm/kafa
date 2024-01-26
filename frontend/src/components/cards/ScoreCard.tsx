@@ -3,45 +3,56 @@ import type React from 'react'
 
 interface TeamInfo {
   id: number
-  logo: string
+  profileImgUrl: string
   name: string
-  score: number
-  isWin?: () => boolean
   onClick?: (id: number) => void
 }
 
+interface ScoreInfo {
+  homeTeamScore: number
+  awayTeamScore: number
+}
+
 interface ScoreCardProps {
-  gameId: number
-  matchDay: string
+  startedAt: string
   stadium: string
   homeTeam: TeamInfo
   awayTeam: TeamInfo
+  score: ScoreInfo
 }
 
 const ScoreCard: React.FC<ScoreCardProps> = ({
-  gameId,
-  matchDay,
+  startedAt,
   stadium,
   homeTeam,
-  awayTeam
+  awayTeam,
+  score
 }) => {
   return (
     <div className="grid grid-cols-10 items-center justify-between p-2 sm:p-8">
-      <img
-        className="sm:w-18 col-span-1 w-10 md:w-24"
-        src={homeTeam.logo}
-        alt={`${homeTeam.name} Logo`}
-      />
+      {homeTeam.profileImgUrl ? (
+        <img
+          className="sm:w-18 col-span-1 w-10 md:w-24"
+          src={homeTeam.profileImgUrl}
+          alt={`${homeTeam.name} Logo`}
+        />
+      ) : (
+        <img
+          src="/logo/KAFA_OG.png"
+          alt=""
+          className="sm:w-18 col-span-1 w-10 md:w-24"
+        />
+      )}
       <div className="col-span-1">
         <p className="hidden sm:block">HOME</p>
         <p className="hidden font-bold sm:block">{homeTeam.name}</p>
       </div>
 
       <div className="col-span-1 text-xl font-extrabold sm:text-3xl">
-        {homeTeam.score}
+        {score.homeTeamScore}
       </div>
       <div className="col-span-1 flex justify-end">
-        {homeTeam.score > awayTeam.score && (
+        {score.homeTeamScore > score.awayTeamScore && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -57,12 +68,11 @@ const ScoreCard: React.FC<ScoreCardProps> = ({
         )}
       </div>
       <div className="col-span-2 flex flex-col items-center">
-        <p>{gameId}경기</p>
-        <p>{matchDay}</p>
+        <p>{startedAt}</p>
         <p className="hidden sm:block">{stadium}</p>
       </div>
       <div className="col-span-1 flex justify-start">
-        {awayTeam.score > homeTeam.score && (
+        {score.awayTeamScore > score.homeTeamScore && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -78,18 +88,26 @@ const ScoreCard: React.FC<ScoreCardProps> = ({
         )}
       </div>
       <div className="col-span-1 text-xl font-extrabold sm:text-3xl">
-        {awayTeam.score}
+        {score.awayTeamScore}
       </div>
 
       <div className="col-span-1 flex flex-col">
         <p className="hidden sm:block">AWAY</p>
         <p className="hidden font-bold sm:block">{awayTeam.name}</p>
       </div>
-      <img
-        className="sm:w-18 col-span-1 w-10 md:w-24"
-        src={awayTeam.logo}
-        alt={`${awayTeam.name} Logo`}
-      />
+      {awayTeam.profileImgUrl ? (
+        <img
+          className="sm:w-18 col-span-1 w-10 md:w-24"
+          src={awayTeam.profileImgUrl}
+          alt={`${awayTeam.name} Logo`}
+        />
+      ) : (
+        <img
+          src="/logo/KAFA_OG.png"
+          alt=""
+          className="sm:w-18 col-span-1 w-10 md:w-24"
+        />
+      )}
     </div>
   )
 }

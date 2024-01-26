@@ -175,7 +175,14 @@ const StatsItem: React.FC = () => {
       render: (stats: Record) => (
         <div className="flex items-center ">
           <div>
-            <img src="/logo/KAFA_OG.png" alt="" className="w-8" />
+            {stats.Athlete.Roster.profileImgUrl ? (
+              <img
+                src={stats.Athlete.Roster.profileImgUrl}
+                alt={stats.Athlete.Roster.name}
+              />
+            ) : (
+              <img src="/logo/KAFA_OG.png" alt="" className="w-8" />
+            )}
           </div>
           <div>{stats.Athlete.Roster.name}</div>
         </div>
