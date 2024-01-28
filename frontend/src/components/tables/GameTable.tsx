@@ -120,7 +120,7 @@ const GameTable: React.FC<GameTableProps> = ({ games, detail }) => {
                     {detail && (
                       <>
                         <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500">
-                          {game.startedAt.toLocaleString('ko')}
+                          {game.startedAt}
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500">
                           {game.stadium}

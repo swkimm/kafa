@@ -5,12 +5,11 @@ import TeamBanner from '@/components/cards/TeamBanner'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
 import { Disclosure } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import RosterItem from './items/RosterItem'
-import StatsItem from './items/StatsItem'
-import TeamHomeItem from './items/TeamHomeItem'
+import { useNavigate, useParams } from 'react-router-dom'
+import AlumniItem from './item/AlumniItem'
+import RosterItem from './item/RosterItem'
+import TeamHomeItem from './item/TeamHomeItem'
 
 const TeamDetail = () => {
   const { teamId } = useParams()
@@ -19,6 +18,7 @@ const TeamDetail = () => {
   )
   const [team, setTeam] = useState<TeamComplication | null>(null)
   const { showNotification } = useNotification()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getTeam = async () => {
@@ -31,6 +31,7 @@ const TeamDetail = () => {
           '팀 정보 불러오기 실패',
           '팀 정보 불러오기에 실패했습니다.'
         )
+        navigate('/teams')
       }
     }
     getTeam()
@@ -42,8 +43,8 @@ const TeamDetail = () => {
       return <TeamHomeItem />
     } else if (currentComponent === 'ROSTER') {
       return <RosterItem />
-    } else if (currentComponent === 'STATS') {
-      return <StatsItem />
+    } else if (currentComponent === 'ALUMNI') {
+      return <AlumniItem />
     }
   }
 
@@ -63,14 +64,13 @@ const TeamDetail = () => {
           createdAt={team.createdAt}
         />
       )}
-
-      <Disclosure as="nav" className="w-full bg-indigo-800 shadow">
-        {({ open }) => (
+      <div className="bg-purple-950">
+        <Disclosure as="nav" className="mx-auto max-w-screen-xl px-4 lg:px-20">
           <>
-            <div className=" px-4 sm:px-6 lg:px-8">
+            <div className="">
               <div className="flex h-20 justify-between">
                 <div className="flex">
-                  <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                  <div className="flex space-x-2 sm:space-x-8">
                     <Disclosure.Button
                       as="button"
                       className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white ${
@@ -100,56 +100,18 @@ const TeamDetail = () => {
                           ? 'border-b-2 border-white'
                           : 'border-b-2 border-transparent hover:border-white'
                       }`}
-                      onClick={() => setCurrentComponent('STATS')}
+                      onClick={() => setCurrentComponent('ALUMNI')}
                     >
-                      STATS
+                      ALUMNI
                     </Disclosure.Button>
                   </div>
                 </div>
-                <div className="-mr-2 flex items-center sm:hidden">
-                  {/* Mobile menu button */}
-                  <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                    <span className="absolute -inset-0.5" />
-                    <span className="sr-only">Open main menu</span>
-                    {open ? (
-                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                    ) : (
-                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                    )}
-                  </Disclosure.Button>
-                </div>
               </div>
             </div>
-            <Disclosure.Panel className="sm:hidden">
-              <div className="space-y-1 pb-3 pt-2">
-                {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
-                <Disclosure.Button
-                  as="button"
-                  onClick={() => setCurrentComponent('HOME')}
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-300 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  HOME
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="button"
-                  onClick={() => setCurrentComponent('ROSTER')}
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-300 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  ROSTER
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="button"
-                  onClick={() => setCurrentComponent('STATS')}
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-300 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
-                >
-                  STATS
-                </Disclosure.Button>
-              </div>
-            </Disclosure.Panel>
           </>
-        )}
-      </Disclosure>
-      {renderComponent()}
+        </Disclosure>
+      </div>
+      <div className="min-h-96">{renderComponent()}</div>
     </div>
   )
 }

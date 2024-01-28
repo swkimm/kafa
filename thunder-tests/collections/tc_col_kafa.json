@@ -3104,7 +3104,7 @@
             "method": "GET",
             "sortNum": 670000,
             "created": "2023-12-12T14:49:45.112Z",
-            "modified": "2023-12-29T08:50:01.644Z",
+            "modified": "2024-01-27T02:12:33.824Z",
             "headers": [],
             "params": [],
             "tests": [
@@ -3121,7 +3121,7 @@
                     "value": "6"
                 }
             ],
-            "docs": "## [Public] GetTeamsByAssociationId\n\n### URI\nGET /teams/leagues/[:associationId]\n\n### Description\n해당 협회에 소속된 팀 목록을 불러옵니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|associationId|number|리그 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|globalName|string|팀 영문 이름|\n|hometown|string|팀 연고지|\n|initial|string|팀 이니셜|\n|establisehdAt|Date|팀 설립연도|\n|color|string|팀 메인컬리|\n|subColor|string?|팀 서브컬러|\n|profileImgUrl|팀 프로필 이미지 주소|string?|\n|backgroundImgUrl|팀 배경 이미지 주소|string?|\n|deletedAt|Date?|팀 삭제 날짜|\n|status|string|팀 상태|\n|createdAt|Date|팀 객체 등록 날짜|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|associationId 쿼리 파라미터로 유효하지 않은 값을 전달할 경우 발생|\n|404|Not Found|존재하지 않는 협회의 식별자를 전달할 경우 발생|\n\n### Others\nstatus -  팀 활성화 상태를 나타냅니다\n- Enabled\n- Disabled",
+            "docs": "## [Public] GetTeamsByAssociationId\n\n### URI\nGET /teams/leagues/[:associationId]\n\n### Description\n해당 협회에 소속된 팀 목록을 불러옵니다.\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|associationId|number|협회 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|팀 식별자|\n|name|string|팀 이름|\n|globalName|string|팀 영문 이름|\n|hometown|string|팀 연고지|\n|initial|string|팀 이니셜|\n|establisehdAt|Date|팀 설립연도|\n|color|string|팀 메인컬리|\n|subColor|string?|팀 서브컬러|\n|profileImgUrl|팀 프로필 이미지 주소|string?|\n|backgroundImgUrl|팀 배경 이미지 주소|string?|\n|deletedAt|Date?|팀 삭제 날짜|\n|status|string|팀 상태|\n|createdAt|Date|팀 객체 등록 날짜|\n\n### Errors\n|Status|Name|Description|\n|---|----|------|\n|400|Bad Request|associationId 쿼리 파라미터로 유효하지 않은 값을 전달할 경우 발생|\n|404|Not Found|존재하지 않는 협회의 식별자를 전달할 경우 발생|\n\n### Others\nstatus -  팀 활성화 상태를 나타냅니다\n- Enabled\n- Disabled",
             "preReq": {
                 "runRequests": [
                     {
@@ -8196,7 +8196,7 @@
             "method": "GET",
             "sortNum": 1770000,
             "created": "2023-12-27T12:17:40.451Z",
-            "modified": "2024-01-02T09:37:57.641Z",
+            "modified": "2024-01-28T15:29:29.547Z",
             "headers": [],
             "params": [
                 {
@@ -8224,7 +8224,7 @@
                     "value": "3"
                 }
             ],
-            "docs": "## [Public] getTeamRosters\n\n### URI\nGET /rosters/teams/[:teamId]\n\n### Description\n특정 팀의\b 로스터 명단을 조회합니다\n**offset based pagination**이 적용되어 있습니다\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page|number|조회할 페이지 ( >= 1)|\n|limit?|number|한 번에 불러올 로스터 수 (default 10, >= 1)|\n|option?|*RosterStatus|조회할 로스터 상태 (default Enabled)|\n\n**Enum RosterStatus**\n- Enabled (활성화)\n- Graduate (졸업생)\n- Disabled (비활성화)\n- Verifying (등록 심사 중)\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|teamId|number|조회할 팀의 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문 이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n|rosterType|*RosterType|로스터 종류|\n|Athlete|*AthleteInfo?|선수 정보|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface AthteleInfo**\n|Name|Type|Description|\n|---|----|-------|\n|position|*PositionType|포지션 정보|\n|backNumber|number|등번호|\n\n**Interface PositionType**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|400|Bad Request|쿼리 파라미터 또는 쿼리 스트링에 유효하지 않은 값이 포함될 경우 발생|\n|404|Not Found|존재하지 않는 팀의 식별자를 전달할 경우 발생|",
+            "docs": "## [Public] getTeamRosters\n\n### URI\nGET /rosters/teams/[:teamId]\n\n### Description\n특정 팀의 로스터 명단을 조회합니다\n**offset based pagination**이 적용되어 있습니다\n\n### Query String\n|Name|Type|Description|\n|---|----|-------|\n|page|number|조회할 페이지 ( >= 1)|\n|limit?|number|한 번에 불러올 로스터 수 (default 10, >= 1)|\n|option?|*RosterStatus|조회할 로스터 상태 (default Enabled)|\n\n**Enum RosterStatus**\n- Enabled (활성화)\n- Graduate (졸업생)\n- Disabled (비활성화)\n- Verifying (등록 심사 중)\n\n### Query Parameter\n|Name|Type|Description|\n|---|----|-------|\n|teamId|number|조회할 팀의 식별자|\n\n### Return Type (Array)\n|Name|Type|Description|\n|---|----|-------|\n|id|number|로스터 식별자|\n|name|string|이름|\n|globalName|string|영문 이름|\n|profileImgUrl|string?|로스터 프로필 주소|\n|rosterType|*RosterType|로스터 종류|\n|Athlete|*AthleteInfo?|선수 정보|\n\n**Enum RosterType**\n- Athlete (선수)\n- Staff (매니저)\n- Coach (코치)\n- HeadCoach (감독)\n\n**Interface AthteleInfo**\n|Name|Type|Description|\n|---|----|-------|\n|position|*PositionType|포지션 정보|\n|backNumber|number|등번호|\n\n**Interface PositionType**\n|Name|Type|Description|\n|---|----|-------|\n|offence?|string|오펜스 포지션|\n|defense?|string|디펜스 포지션|\n|special?|string|스페셜 포지션|\n\n### Errors\n|Status|Name|Description|\n|---|----|-------|\n|400|Bad Request|쿼리 파라미터 또는 쿼리 스트링에 유효하지 않은 값이 포함될 경우 발생|\n|404|Not Found|존재하지 않는 팀의 식별자를 전달할 경우 발생|",
             "preReq": {
                 "runRequests": [
                     {

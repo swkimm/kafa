@@ -19,7 +19,7 @@ const MainCard: React.FC<MainCardProps> = ({
     let classNames =
       'overflow-hidden border-b border-t border-gray-200/60 sm:rounded-lg sm:border'
     if (condition) {
-      classNames += ' bg-transparent'
+      classNames += ' bg-transparent border-none'
     } else {
       classNames += ' bg-white shadow-lg'
     }

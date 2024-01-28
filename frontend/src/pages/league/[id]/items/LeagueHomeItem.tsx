@@ -9,6 +9,7 @@ import type { ListboxOption } from '@/components/dropdown/Listbox'
 import ListboxComponent from '@/components/dropdown/Listbox'
 import GameTable from '@/components/tables/GameTable'
 import RankTable from '@/components/tables/RankTable'
+import { useDate } from '@/hooks/useDate'
 import { useEffect, useState } from 'react'
 
 interface LeagueHomeItemProps {
@@ -20,6 +21,8 @@ const LeagueHomeItem: React.FC<LeagueHomeItemProps> = ({ league }) => {
   const [weeks, setWeeks] = useState<ListboxOption[]>([])
   const [ranks, setRanks] = useState<LeagueRank[]>([])
   const [selectedWeek, setSelectedWeek] = useState<number>()
+
+  const { parseUTCDate, formatDate } = useDate()
 
   useEffect(() => {
     const weekLength = getWeeksBetween(league.startedAt, league.endedAt)
@@ -47,9 +50,13 @@ const LeagueHomeItem: React.FC<LeagueHomeItemProps> = ({ league }) => {
             `/games/leagues/${league.id}/date-range?startDate=${start}&endDate=${end}`
           )
 
-        response.data.forEach(
-          (game) => (game.startedAt = new Date(game.startedAt))
-        )
+        response.data.forEach((game) => {
+          game.startedAt = formatDate(
+            parseUTCDate(game.startedAt),
+            'YYYY-MM-DD A hh:mm'
+          )
+        })
+
         setGames(response.data)
       } catch (error) {
         setGames([])
@@ -57,6 +64,7 @@ const LeagueHomeItem: React.FC<LeagueHomeItemProps> = ({ league }) => {
     }
 
     getGames()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedWeek, league])
 
   useEffect(() => {

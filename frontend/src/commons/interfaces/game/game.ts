@@ -1,7 +1,7 @@
 interface GameBase {
   id: number
   name: string
-  startedAt: Date
+  startedAt: string
   stadium: string
 }
 

@@ -5,11 +5,15 @@ import { UserIcon } from '@heroicons/react/24/outline'
 
 interface RosterCardProps {
   roster: Roster
+  onClick?: (id: number) => void
 }
 
-const RosterCard: React.FC<RosterCardProps> = ({ roster }) => {
+const RosterCard: React.FC<RosterCardProps> = ({ roster, onClick }) => {
   return (
-    <div className="relative isolate flex h-64 w-full flex-col justify-end overflow-hidden rounded-lg bg-gray-900 px-3 pb-3 shadow-xl md:h-72 lg:h-80 lg:px-4 lg:pb-5">
+    <div
+      onClick={onClick && (() => onClick(roster.id))}
+      className="relative isolate flex h-64 w-full flex-col justify-end overflow-hidden rounded-lg bg-gray-900 px-3 pb-3 shadow-xl md:h-72 lg:h-80 lg:px-4 lg:pb-5"
+    >
       {roster.profileImgUrl ? (
         <img
           src={roster.profileImgUrl}

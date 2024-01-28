@@ -7,6 +7,7 @@ import MainCard from '@/components/cards/MainCard'
 import type { ListboxOption } from '@/components/dropdown/Listbox'
 import ListboxComponent from '@/components/dropdown/Listbox'
 import GameTable from '@/components/tables/GameTable'
+import { useDate } from '@/hooks/useDate'
 import { useEffect, useState } from 'react'
 
 const ScheduleItem = () => {
@@ -20,6 +21,8 @@ const ScheduleItem = () => {
   const [selectedYear, setSelectedYear] = useState(currentYear)
   const [selectedLeague, setSelectedLeague] = useState<LeagueWithAssociation>()
   const [selectedWeek, setSelectedWeek] = useState<number>()
+
+  const { parseUTCDate, formatDate } = useDate()
 
   useEffect(() => {
     const fetchLeagues = async () => {
@@ -71,14 +74,18 @@ const ScheduleItem = () => {
       )
 
       try {
-        const response: { data: GameWithLeagueAndAssociation[] } =
-          await axiosInstance.get(
-            `/games/leagues/${selectedLeague.id}/date-range?startDate=${start}&endDate=${end}`
-          )
-
-        response.data.forEach(
-          (game) => (game.startedAt = new Date(game.startedAt))
+        const response = await axiosInstance.get<
+          GameWithLeagueAndAssociation[]
+        >(
+          `/games/leagues/${selectedLeague.id}/date-range?startDate=${start}&endDate=${end}`
         )
+
+        response.data.forEach((game) => {
+          game.startedAt = formatDate(
+            parseUTCDate(game.startedAt),
+            'YYYY-MM-DD A hh:mm'
+          )
+        })
         setGames(response.data)
       } catch (error) {
         setGames([])
@@ -86,6 +93,7 @@ const ScheduleItem = () => {
     }
 
     fetchGames()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLeague, selectedWeek])
 
   const handleYearChange = (year: ListboxOption) => {

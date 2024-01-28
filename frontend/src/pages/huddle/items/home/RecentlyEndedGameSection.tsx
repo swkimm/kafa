@@ -2,27 +2,36 @@ import axiosInstance from '@/commons/axios'
 import type { GameMany } from '@/commons/interfaces/game/game'
 import MainCard from '@/components/cards/MainCard'
 import GameTable from '@/components/tables/GameTable'
+import { useDate } from '@/hooks/useDate'
 import { useEffect, useState } from 'react'
 
 const RecentlyEndedGameSection: React.FC = () => {
   const [recentlyEndedGames, setRecentlyEndedGames] = useState<GameMany[]>([])
 
+  const { formatDate, parseUTCDate } = useDate()
+
   useEffect(() => {
     const getRecentlyEndedGames = async () => {
       try {
-        const games: GameMany[] = await axiosInstance
-          .get('/games/currently-ended')
-          .then((result) => {
-            return result.data
-          })
-        games.forEach((game) => (game.startedAt = new Date(game.startedAt)))
-        setRecentlyEndedGames(games)
+        const response = await axiosInstance.get<GameMany[]>(
+          '/games/currently-ended'
+        )
+
+        response.data.forEach((game) => {
+          game.startedAt = formatDate(
+            parseUTCDate(game.startedAt),
+            'YYYY-MM-DD A hh:mm'
+          )
+        })
+
+        setRecentlyEndedGames(response.data)
       } catch (error) {
         setRecentlyEndedGames([])
       }
     }
 
     getRecentlyEndedGames()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <MainCard title={'최근 경기 결과'} transparent={false}>

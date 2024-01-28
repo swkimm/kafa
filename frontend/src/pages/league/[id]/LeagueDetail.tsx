@@ -128,7 +128,7 @@ const LeagueDetail = () => {
           </>
         )}
       </Disclosure>
-      {renderComponent()}
+      <div className="min-h-96">{renderComponent()}</div>
     </div>
   )
 }

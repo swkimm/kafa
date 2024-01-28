@@ -33,7 +33,7 @@ export interface Roster {
   profileImgUrl?: string
   rosterType: RosterType
   Athlete?: AthleteInfo
-  registerYear: Date
+  registerYear: string
   Team?: TeamInfo
   status: RosterStatus
 }

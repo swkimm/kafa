@@ -42,10 +42,10 @@ import GamePage from './pages/game/[id]/GamePage.tsx'
 import Home from './pages/huddle/Home.tsx'
 import League from './pages/league/League.tsx'
 import LeagueDetail from './pages/league/[id]/LeagueDetail.tsx'
-import TeamDetail from './pages/league/[id]/team/[id]/TeamDetail.tsx'
-import MemberDetail from './pages/league/[id]/team/[id]/member/[id]/MemberDetail.tsx'
 import National from './pages/national/National.tsx'
+import RosterDetail from './pages/rostser/[id]/RosterDetail.tsx'
 import Teams from './pages/team/Teams.tsx'
+import TeamDetail from './pages/team/[id]/TeamDetail.tsx'
 import TermHome from './pages/term/TermHome.tsx'
 
 const App = () => {
@@ -81,14 +81,8 @@ const App = () => {
             <Route path="/leagues" element={<League />} />
             <Route path="/teams" element={<Teams />} />
             <Route path="/leagues/:leagueId" element={<LeagueDetail />} />
-            <Route
-              path="/leagues/:leagueId/teams/:teamId"
-              element={<TeamDetail />}
-            />
-            <Route
-              path="/leagues/:leagueId/teams/:teamId/members/:memberId"
-              element={<MemberDetail />}
-            />
+            <Route path="/teams/:teamId" element={<TeamDetail />} />
+            <Route path="/rosters/:rosterId" element={<RosterDetail />} />
             <Route
               path="/leagues/:leagueId/games/:gameId"
               element={<GamePage />}

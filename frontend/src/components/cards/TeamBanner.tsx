@@ -14,28 +14,9 @@ const TeamBanner: React.FC<TeamComplication> = ({
   const getYear = (date: Date) => new Date(date).getFullYear().toString()
   const isWhiteText = isWhite(color)
 
-  const darkenColor = (hex: string | undefined, percent: number) => {
-    if (!hex) return ''
-
-    hex = hex.replace(/^#/, '')
-    const r = parseInt(hex.slice(0, 2), 16)
-    const g = parseInt(hex.slice(2, 4), 16)
-    const b = parseInt(hex.slice(4, 6), 16)
-
-    const darkerR = Math.round((r * (100 - percent)) / 100)
-    const darkerG = Math.round((g * (100 - percent)) / 100)
-    const darkerB = Math.round((b * (100 - percent)) / 100)
-
-    const darkerHex = `#${darkerR.toString(16).padStart(2, '0')}${darkerG
-      .toString(16)
-      .padStart(2, '0')}${darkerB.toString(16).padStart(2, '0')}`
-
-    return darkerHex
-  }
-
   return (
     <div style={{ backgroundColor: color || '#173921' }}>
-      <div className="mx-auto max-w-screen-xl px-4 text-white sm:px-20">
+      <div className="mx-auto max-w-screen-xl px-4 text-white lg:px-20">
         <div className="mb-3 flex flex-row pt-8">
           <div className={`basis-1/3 ${isWhiteText ? 'text-black' : ''}`}>
             <h1 className="px-4 text-xs sm:px-0 sm:text-xs">{name}</h1>
@@ -47,7 +28,7 @@ const TeamBanner: React.FC<TeamComplication> = ({
             <img
               src={profileImgUrl || '/logo/KAFA_OG.png'}
               alt={name}
-              className="m-auto hidden items-center text-center text-black sm:hidden lg:block lg:h-56 lg:w-56"
+              className="mx-auto hidden h-auto object-contain text-black sm:hidden lg:block lg:w-56"
               onError={(e) => (e.currentTarget.src = '/logo/KAFA_OG.png')}
             />
           </div>
@@ -55,7 +36,7 @@ const TeamBanner: React.FC<TeamComplication> = ({
             <img
               src={profileImgUrl || '/logo/KAFA_OG.png'}
               alt={globalName}
-              className="block items-center sm:block sm:h-24 sm:w-24 md:block md:h-28 md:w-28 lg:hidden"
+              className="mx-auto h-auto w-28 items-center object-contain lg:hidden"
             />
           </div>
         </div>
@@ -65,7 +46,7 @@ const TeamBanner: React.FC<TeamComplication> = ({
               isWhiteText ? 'text-black' : ''
             }`}
           >
-            <div className="mb-2 text-xs">Hometown</div>
+            <div className="mb-2 text-xs">연고지(소속)</div>
             <div className="font-bold sm:text-lg lg:text-2xl">{hometown}</div>
           </div>
           <hr className="my-3 border-b-0" />
@@ -74,7 +55,7 @@ const TeamBanner: React.FC<TeamComplication> = ({
               isWhiteText ? 'text-black' : ''
             }`}
           >
-            <div className="mb-2 text-xs">Name</div>
+            <div className="mb-2 text-xs">이름</div>
             <div className="font-bold sm:text-lg lg:text-2xl">{globalName}</div>
           </div>
           <hr className="my-3 border-b-0" />
@@ -83,17 +64,14 @@ const TeamBanner: React.FC<TeamComplication> = ({
               isWhiteText ? 'text-black' : ''
             }`}
           >
-            <div className="mb-2 text-xs">Established</div>
+            <div className="mb-2 text-xs">설립연도</div>
             <div className="font-bold sm:text-lg lg:text-2xl">
               {getYear(establishedAt)}
             </div>
           </div>
         </div>
       </div>
-      <div
-        className="flex flex-row justify-center py-3"
-        style={{ backgroundColor: darkenColor(color, 20) }} // `darkenColor` 함수 구현 필요
-      >
+      <div className="flex flex-row justify-center bg-gray-900 py-3">
         <div className="flex flex-row">
           <a href="#" className="">
             <i
@@ -101,7 +79,7 @@ const TeamBanner: React.FC<TeamComplication> = ({
               style={{ color: '#ffffff' }}
             ></i>
           </a>
-          <div className="align-middle text-sm text-white">@insta</div>
+          <div className="align-middle text-sm text-white">@instagram</div>
         </div>
       </div>
     </div>
