@@ -53,7 +53,7 @@ export class UpdateRosterServiceImpl implements UpdateRosterService {
           data: {
             name: rosterDTO.name,
             globalName: rosterDTO.globalName,
-            registerYear: new Date(`${rosterDTO.registerYear}-01-01`),
+            registerYear: new Date(`${rosterDTO.registerYear}-01-03`),
             rosterType: rosterDTO.rosterType,
             status: rosterDTO.status,
             Athlete: {
@@ -102,7 +102,7 @@ export class UpdateRosterServiceImpl implements UpdateRosterService {
           data: {
             name: rosterDTO.name,
             globalName: rosterDTO.globalName,
-            registerYear: new Date(`${rosterDTO.registerYear}-01-01`),
+            registerYear: new Date(`${rosterDTO.registerYear}-01-03`),
             rosterType: rosterDTO.rosterType,
             status: rosterDTO.status
           },

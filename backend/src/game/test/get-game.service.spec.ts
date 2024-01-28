@@ -99,6 +99,45 @@ describe('GetGameService', () => {
         db.game.findUniqueOrThrow.calledOnceWith({
           where: {
             id: gameId
+          },
+          select: {
+            id: true,
+            name: true,
+            startedAt: true,
+            stadium: true,
+            homeTeam: {
+              select: {
+                id: true,
+                name: true,
+                profileImgUrl: true
+              }
+            },
+            awayTeam: {
+              select: {
+                id: true,
+                name: true,
+                profileImgUrl: true
+              }
+            },
+            League: {
+              select: {
+                id: true,
+                name: true,
+                Association: {
+                  select: {
+                    id: true,
+                    name: true,
+                    profileImgUrl: true
+                  }
+                }
+              }
+            },
+            score: {
+              select: {
+                homeTeamScore: true,
+                awayTeamScore: true
+              }
+            }
           }
         })
       ).to.be.true

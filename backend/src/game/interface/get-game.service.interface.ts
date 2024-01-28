@@ -12,10 +12,10 @@ export interface GetGameService<T extends Game> {
    * 경기 정보를 반환합니다.
    *
    * @param {number} gameId - 조회할 경기의 Id
-   * @returns {Promise<T>} 경기정보
+   * @returns {Promise<GameWithLeagueAndAssociationDTO>} 경기정보
    * @throws {EntityNotExistException} 존재하지 않는 경기의 Id를 전달할 경우 발생
    */
-  getGame(gameId: number): Promise<T>
+  getGame(gameId: number): Promise<GameWithLeagueAndAssociationDTO>
 
   /**
    * 경기 목록을 조회합니다.

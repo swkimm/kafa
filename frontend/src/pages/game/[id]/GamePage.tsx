@@ -1,11 +1,10 @@
 import axiosInstance from '@/commons/axios'
-import type { Association } from '@/commons/interfaces/association/association'
 import type { GameWithLeagueAndAssociation } from '@/commons/interfaces/game/game'
 import type { Record } from '@/commons/interfaces/record/record'
-import type { Score } from '@/commons/interfaces/score/score'
 import Button from '@/components/buttons/Button'
 import ScoreCard from '@/components/cards/ScoreCard'
 import DefaultTable from '@/components/tables/DefaultTable'
+import { useDate } from '@/hooks/useDate'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
 import { useEffect, useState } from 'react'
@@ -14,16 +13,17 @@ import { useNavigate, useParams } from 'react-router-dom'
 const GamePage = () => {
   const [homeTeamId, setHomeTeamId] = useState<number>()
   const [awayTeamId, setAwayTeamId] = useState<number>()
-  const navigate = useNavigate()
   const [switchTeam, setSwitchTeam] = useState(true)
-  const { leagueId, gameId } = useParams()
-  const [game, setGame] = useState<GameWithLeagueAndAssociation | undefined>(
-    undefined
-  )
+  const { gameId } = useParams()
+  const [game, setGame] = useState<GameWithLeagueAndAssociation>()
   const [homeTeamData, setHomeTeamData] = useState<Record[]>([])
   const [awayTeamData, setAwayTeamData] = useState<Record[]>([])
   const { showNotification } = useNotification()
   const [records, setRecords] = useState<Record[]>([])
+
+  const navigate = useNavigate()
+
+  const { parseUTCDate, formatDate } = useDate()
 
   const getRecordByGameId = async (gameId: string) => {
     try {
@@ -63,59 +63,20 @@ const GamePage = () => {
     }
   }, [records, homeTeamId, awayTeamId])
 
-  const fetchGetAssociationInfo = async (associationId: number) => {
-    const response = await axiosInstance.get<Association>(
-      `/associations/${associationId}`
-    )
-    return response.data
-  }
-  const fetchGetLeagueName = async (leagueId: number) => {
-    const response = await axiosInstance.get(`/leagues/${leagueId}`)
-    return response.data
-  }
-
-  const fetchGetScoreInfo = async (gameId: number) => {
-    const response = await axiosInstance.get<Score>(`/games/${gameId}/score`)
-    return response.data
-  }
-
-  const fetchGetTeamInfo = async (teamId: number) => {
-    const response = await axiosInstance.get(`/teams/${teamId}`)
-    return response.data
-  }
-
   const getGameById = async () => {
     try {
-      const response = await axiosInstance.get(`/games/${gameId}`)
-      const gameData = response.data
+      const response = await axiosInstance.get<GameWithLeagueAndAssociation>(
+        `/games/${gameId}`
+      )
 
-      const leagueIdNumber = Number(leagueId)
-      const leagueInfo = await fetchGetLeagueName(leagueIdNumber)
+      response.data.startedAt = formatDate(
+        parseUTCDate(response.data.startedAt),
+        'YYYY-MM-DD A hh:mm'
+      )
 
-      let associationInfo = {}
-      if (leagueInfo.associationId) {
-        const associationId = leagueInfo.associationId
-        associationInfo = await fetchGetAssociationInfo(associationId)
-      }
-
-      const homeTeamInfo = await fetchGetTeamInfo(gameData.homeTeamId)
-      const awayTeamInfo = await fetchGetTeamInfo(gameData.awayTeamId)
-      const scoreResponse = await fetchGetScoreInfo(Number(gameId))
-
-      const completeGameData = {
-        ...gameData,
-        League: {
-          ...leagueInfo,
-          Association: associationInfo
-        },
-        homeTeam: homeTeamInfo,
-        awayTeam: awayTeamInfo,
-        score: scoreResponse
-      }
-
-      setGame(completeGameData)
-      setHomeTeamId(gameData.homeTeamId)
-      setAwayTeamId(gameData.awayTeamId)
+      setGame(response.data)
+      setHomeTeamId(response.data.homeTeam.id)
+      setAwayTeamId(response.data.awayTeam.id)
     } catch (error) {
       showNotification(
         NotificationType.Error,
@@ -128,27 +89,6 @@ const GamePage = () => {
   const handleClick = () => {
     setSwitchTeam(!switchTeam)
   }
-
-  const goToMemberDetail = (teamId: number, memberId: number) => {
-    navigate(`/leagues/${leagueId}/teams/${teamId}/members/${memberId}`)
-  }
-
-  const convertDateTime = (dateTimeStr: Date) => {
-    const date = new Date(dateTimeStr)
-
-    // 시간대 변환을 위해 'en-US' 로케일 사용, 필요에 따라 로케일을 변경할 수 있음
-    const formattedDate = date.toLocaleString('en-US', {
-      hour12: true,
-      month: 'numeric',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric'
-    })
-
-    return formattedDate
-  }
-
-  const newDateTime = game?.startedAt ? convertDateTime(game.startedAt) : ''
 
   const homeTeamRecordColumns = [
     {
@@ -166,15 +106,7 @@ const GamePage = () => {
     {
       title: 'Athlete',
       render: (stats: Record) => (
-        <div
-          className="flex cursor-pointer items-center"
-          onClick={() =>
-            goToMemberDetail(
-              stats.Athlete.Roster.teamId,
-              stats.Athlete.Roster.id
-            )
-          }
-        >
+        <div className="flex cursor-pointer items-center" onClick={() => []}>
           <div>
             {stats.Athlete.Roster.profileImgUrl ? (
               <img
@@ -223,15 +155,7 @@ const GamePage = () => {
     {
       title: 'Athlete',
       render: (stats: Record) => (
-        <div
-          className="flex cursor-pointer items-center"
-          onClick={() =>
-            goToMemberDetail(
-              stats.Athlete.Roster.teamId,
-              stats.Athlete.Roster.id
-            )
-          }
-        >
+        <div className="flex cursor-pointer items-center" onClick={() => []}>
           <div>
             {stats.Athlete.Roster.profileImgUrl ? (
               <img
@@ -265,108 +189,125 @@ const GamePage = () => {
   ]
 
   return (
-    <div className="mb-5">
-      <div className="max-w-screen">
-        <div className="flex justify-between bg-gray-800 lg:p-3">
-          <div className="flex text-white">
-            {game?.League?.Association?.profileImgUrl ? (
-              <img
-                src={game.League.Association.profileImgUrl}
-                alt={game.League.Association.name}
-                className="h-auto w-12"
-              />
-            ) : (
-              <img src="/logo/KAFA_OG.png" alt="" className="h-auto w-12" />
-            )}
-            <div className="ml-3 flex flex-col justify-center lg:ml-5">
-              <div className="text-gray-250 text-sm font-semibold">
-                {game?.League.name}
-              </div>
-              <div className="text-white-900 text-md font-bold lg:text-lg">
-                {game?.name}
+    <>
+      {game && (
+        <div className="">
+          <div className="bg-gray-900 py-5">
+            <div className="mx-auto max-w-screen-xl px-4 lg:px-20">
+              <div className="flex justify-between">
+                <div className="flex text-white">
+                  {game?.League?.Association?.profileImgUrl ? (
+                    <img
+                      src={game.League.Association.profileImgUrl}
+                      alt={game.League.Association.name}
+                      className="h-auto w-8 object-contain"
+                    />
+                  ) : (
+                    <img
+                      src="/logo/KAFA_OG.png"
+                      alt=""
+                      className="h-auto w-8 object-contain"
+                    />
+                  )}
+                  <div className="ml-3 flex flex-col justify-center lg:ml-5">
+                    <div className="text-xs text-gray-400">
+                      {game?.League.name}
+                    </div>
+                    <div className="text-sm font-medium text-white lg:text-base">
+                      {game?.name}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div>
-        {game && (
-          <ScoreCard
-            startedAt={newDateTime}
-            stadium={game.stadium || '경기장'}
-            homeTeam={game.homeTeam}
-            awayTeam={game.awayTeam}
-            score={game.score}
-          />
-        )}
-      </div>
 
-      <div className="flex items-center bg-indigo-800 p-6 text-xl text-white">
-        <div className="justify-center">STATS</div>
-        <div className="ml-5">
-          <Button
-            variant="reverse"
-            label="HOME"
-            onClick={handleClick}
-            isActive={switchTeam === true}
-          />
-        </div>
-        <div className="ml-2">
-          <Button
-            variant="reverse"
-            label="AWAY"
-            onClick={handleClick}
-            isActive={switchTeam === false}
-          />
-        </div>
-      </div>
-      <div className="container mx-auto mt-5">
-        <div className="mb-10">
-          {switchTeam === true && (
-            <>
-              <div>
-                <div>
-                  {homeTeamData.length > 0 ? (
-                    <DefaultTable
-                      title={'홈팀 득점 정보'}
-                      data={homeTeamData}
-                      columns={homeTeamRecordColumns}
-                    />
-                  ) : (
-                    <div className="col-span-2 my-5 h-full w-full">
-                      <p className="text-center text-xl font-light">
-                        해당 팀에 득점 기록이 없습니다.
-                      </p>
-                    </div>
-                  )}
+          <div className="mx-auto max-w-screen-xl px-4 lg:px-20">
+            {game && (
+              <ScoreCard
+                startedAt={game.startedAt}
+                stadium={game.stadium || '경기장'}
+                homeTeam={game.homeTeam}
+                awayTeam={game.awayTeam}
+                score={game.score}
+                onClick={(teamId: number) => navigate(`/teams/${teamId}`)}
+              />
+            )}
+          </div>
+
+          <div className="bg-purple-950 py-5 text-white">
+            <div className="mx-auto max-w-screen-xl px-4 lg:px-20">
+              <div className="flex flex-row items-center">
+                <div className="justify-center">STATS</div>
+                <div className="ml-5">
+                  <Button
+                    variant="reverse"
+                    label="HOME"
+                    onClick={handleClick}
+                    isActive={switchTeam === true}
+                  />
+                </div>
+                <div className="ml-2">
+                  <Button
+                    variant="reverse"
+                    label="AWAY"
+                    onClick={handleClick}
+                    isActive={switchTeam === false}
+                  />
                 </div>
               </div>
-            </>
-          )}
-          {switchTeam === false && (
-            <>
-              <div>
-                <div>
-                  {awayTeamData.length > 0 ? (
-                    <DefaultTable
-                      title={'어웨이팀 득점 정보'}
-                      data={awayTeamData}
-                      columns={awayTeamRecordColumns}
-                    />
-                  ) : (
-                    <div className="col-span-2 my-5 h-full w-full">
-                      <p className="text-center text-xl font-light">
-                        해당 팀에 득점 기록이 없습니다.
-                      </p>
+            </div>
+          </div>
+
+          <div className="minh-96 mx-auto max-w-screen-xl px-4 lg:px-20">
+            <div className="my-5">
+              {switchTeam === true && (
+                <>
+                  <div>
+                    <div>
+                      {homeTeamData.length > 0 ? (
+                        <DefaultTable
+                          title={'홈팀 득점 정보'}
+                          data={homeTeamData}
+                          columns={homeTeamRecordColumns}
+                        />
+                      ) : (
+                        <div className="col-span-2 my-5 h-full w-full">
+                          <p className="text-center text-xl font-light">
+                            기록 정보가 없습니다
+                          </p>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              </div>
-            </>
-          )}
+                  </div>
+                </>
+              )}
+              {switchTeam === false && (
+                <>
+                  <div>
+                    <div>
+                      {awayTeamData.length > 0 ? (
+                        <DefaultTable
+                          title={'어웨이팀 득점 정보'}
+                          data={awayTeamData}
+                          columns={awayTeamRecordColumns}
+                        />
+                      ) : (
+                        <div className="col-span-2 my-5 h-full w-full">
+                          <p className="text-center text-xl font-light">
+                            기록 정보가 없습니다
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   )
 }
 

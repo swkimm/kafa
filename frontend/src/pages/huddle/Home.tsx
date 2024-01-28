@@ -1,6 +1,5 @@
 // Home.tsx
 import { Disclosure } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
 import HomeItem from './items/home/HomeItem'
 import ScheduleItem from './items/schedule/ScheduleItem'
@@ -51,89 +50,41 @@ const Home = () => {
         </div>
       </div>
       <Disclosure as="nav" className="w-full bg-purple-950">
-        {({ open }) => (
-          <>
-            <div className="mx-auto max-w-screen-xl px-4 lg:px-20">
-              <div className="flex h-20 justify-between">
-                <div className="flex">
-                  <div className="font-lg flex flex-shrink-0 items-center font-bold text-gray-50">
-                    HUDDLE
-                  </div>
-                  <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <Disclosure.Button
-                      as="button"
-                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-50 ${
-                        currentComponent === 'HOME'
-                          ? 'border-b-2 border-white'
-                          : 'hover:gray-200 border-b-2 border-transparent hover:border-white'
-                      }`}
-                      onClick={() => setCurrentComponent('HOME')}
-                    >
-                      HOME
-                    </Disclosure.Button>
-                    <Disclosure.Button
-                      as="button"
-                      className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
-                        currentComponent === 'SCHEDULE'
-                          ? 'border-b-2 border-white text-gray-50'
-                          : 'hover:gray-200 border-b-2 border-transparent text-gray-50 hover:border-white'
-                      }`}
-                      onClick={() => setCurrentComponent('SCHEDULE')}
-                    >
-                      SCHEDULE
-                    </Disclosure.Button>
-                  </div>
+        <>
+          <div className="mx-auto max-w-screen-xl px-4 lg:px-20">
+            <div className="flex h-20 justify-between">
+              <div className="flex">
+                <div className="font-lg flex items-center font-bold text-gray-50">
+                  HUDDLE
                 </div>
-                <div className="-mr-2 flex items-center sm:hidden">
-                  {/* Mobile menu button */}
-                  <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                    <span className="absolute -inset-0.5" />
-                    <span className="sr-only">Open main menu</span>
-                    {open ? (
-                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                    ) : (
-                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                    )}
+                <div className="ml-4 flex space-x-2 sm:ml-6 sm:space-x-8">
+                  <Disclosure.Button
+                    as="button"
+                    className={`inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-50 ${
+                      currentComponent === 'HOME'
+                        ? 'border-b-2 border-white'
+                        : 'hover:gray-200 border-b-2 border-transparent hover:border-white'
+                    }`}
+                    onClick={() => setCurrentComponent('HOME')}
+                  >
+                    HOME
+                  </Disclosure.Button>
+                  <Disclosure.Button
+                    as="button"
+                    className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
+                      currentComponent === 'SCHEDULE'
+                        ? 'border-b-2 border-white text-gray-50'
+                        : 'hover:gray-200 border-b-2 border-transparent text-gray-50 hover:border-white'
+                    }`}
+                    onClick={() => setCurrentComponent('SCHEDULE')}
+                  >
+                    SCHEDULE
                   </Disclosure.Button>
                 </div>
               </div>
             </div>
-            <Disclosure.Panel className="sm:hidden">
-              <div className="flex flex-col gap-y-4 pb-4">
-                <Disclosure.Button
-                  as="button"
-                  onClick={() => setCurrentComponent('HOME')}
-                  className={`w-full text-right text-sm font-normal text-gray-50`}
-                >
-                  <span
-                    className={
-                      currentComponent === 'HOME'
-                        ? 'border-l-8 border-purple-700 bg-purple-500 py-1.5 pl-1 pr-4 font-bold'
-                        : 'pr-4 hover:text-gray-500'
-                    }
-                  >
-                    HOME
-                  </span>
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as="button"
-                  onClick={() => setCurrentComponent('SCHEDULE')}
-                  className={`w-full text-right text-sm font-normal text-gray-50`}
-                >
-                  <span
-                    className={
-                      currentComponent === 'SCHEDULE'
-                        ? 'border-l-8 border-purple-700 bg-purple-500 py-1.5 pl-1 pr-4 font-bold'
-                        : 'pr-4 hover:text-gray-500'
-                    }
-                  >
-                    SCHEDULE
-                  </span>
-                </Disclosure.Button>
-              </div>
-            </Disclosure.Panel>
-          </>
-        )}
+          </div>
+        </>
       </Disclosure>
       {renderComponent()}
     </div>

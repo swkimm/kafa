@@ -41,7 +41,7 @@ export const Default: Story = {
       globalName: 'Hong Gildong',
       profileImgUrl: '/people_alt.webp',
       rosterType: RosterType.Athlete,
-      registerYear: new Date('2023-01-01'),
+      registerYear: '2023-01-01',
       status: RosterStatus.Enable,
       Athlete: {
         backNumber: 10,

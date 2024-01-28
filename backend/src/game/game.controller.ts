@@ -68,7 +68,9 @@ export class GameController {
   }
 
   @Get(':gameId')
-  async getGame(@Param('gameId', ParseIntPipe) gameId: number): Promise<Game> {
+  async getGame(
+    @Param('gameId', ParseIntPipe) gameId: number
+  ): Promise<GameWithLeagueAndAssociationDTO> {
     try {
       return await this.gameService.getGame(gameId)
     } catch (error) {

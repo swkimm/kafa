@@ -51,8 +51,8 @@ export class CreateRecordServiceImpl implements CreateRecordService<Record> {
     }
 
     if (
-      roster.Team.id !== game.homeTeamId &&
-      roster.Team.id !== game.awayTeamId
+      roster.Team.id !== game.homeTeam.id &&
+      roster.Team.id !== game.awayTeam.id
     ) {
       throw new UnprocessableDataException(
         '해당 경기에 참여한 로스터가 아닙니다'
@@ -63,7 +63,7 @@ export class CreateRecordServiceImpl implements CreateRecordService<Record> {
       where: {
         // eslint-disable-next-line @typescript-eslint/naming-convention
         leagueId_rosterId: {
-          leagueId: game.leagueId,
+          leagueId: game.League.id,
           rosterId
         }
       }

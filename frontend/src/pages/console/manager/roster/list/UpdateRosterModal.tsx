@@ -4,6 +4,7 @@ import { printRosterType } from '@/commons/functions/roster-type/roster-type.pri
 import { type Roster, RosterType } from '@/commons/interfaces/roster/roster'
 import { RosterStatus } from '@/commons/interfaces/roster/rosterStatus'
 import ModalContainer from '@/components/modal/ModalContainer'
+import { useDate } from '@/hooks/useDate'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
 import { Listbox, Transition } from '@headlessui/react'
@@ -88,6 +89,8 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
 
   const { showNotification } = useNotification()
 
+  const { formatDate, parseUTCDate } = useDate()
+
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0]
     if (file) {
@@ -146,7 +149,10 @@ const UpdateRosterModal: React.FC<UpdateRosterMoalProps> = ({
         position
       })
       .then((result: { data: Roster }) => {
-        result.data.registerYear = new Date(result.data.registerYear)
+        result.data.registerYear = formatDate(
+          parseUTCDate(result.data.registerYear),
+          'YYYY'
+        )
         onRosterUpdate(result.data)
         showNotification(
           NotificationType.Success,

@@ -33,11 +33,50 @@ export class GetGameServiceImpl implements GetGameService<Game> {
     private readonly teamService: GetTeamService<Team, RegisterTeamRequest>
   ) {}
 
-  async getGame(gameId: number): Promise<Game> {
+  async getGame(gameId: number): Promise<GameWithLeagueAndAssociationDTO> {
     try {
       return await this.prismaService.game.findUniqueOrThrow({
         where: {
           id: gameId
+        },
+        select: {
+          id: true,
+          name: true,
+          startedAt: true,
+          stadium: true,
+          homeTeam: {
+            select: {
+              id: true,
+              name: true,
+              profileImgUrl: true
+            }
+          },
+          awayTeam: {
+            select: {
+              id: true,
+              name: true,
+              profileImgUrl: true
+            }
+          },
+          League: {
+            select: {
+              id: true,
+              name: true,
+              Association: {
+                select: {
+                  id: true,
+                  name: true,
+                  profileImgUrl: true
+                }
+              }
+            }
+          },
+          score: {
+            select: {
+              homeTeamScore: true,
+              awayTeamScore: true
+            }
+          }
         }
       })
     } catch (error) {

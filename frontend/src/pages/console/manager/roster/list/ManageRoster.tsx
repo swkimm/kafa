@@ -3,6 +3,7 @@ import type { Profile } from '@/commons/interfaces/account/profile'
 import type { Roster } from '@/commons/interfaces/roster/roster'
 import { RosterStatus } from '@/commons/interfaces/roster/rosterStatus'
 import ConsoleCard from '@/components/cards/ConsoleCard'
+import { useDate } from '@/hooks/useDate'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
 import { useEffect, useState } from 'react'
@@ -20,6 +21,8 @@ const ManageRoster: React.FC = () => {
   const [option, setOption] = useState<RosterStatus>(RosterStatus.Enable)
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
   const [targetId, setTargetId] = useState<number>()
+
+  const { parseUTCDate, formatDate } = useDate()
 
   const [page, setPage] = useState(1)
 
@@ -60,7 +63,11 @@ const ManageRoster: React.FC = () => {
       )
       .then((result: { data: Roster[] }) => {
         result.data.forEach(
-          (roster) => (roster.registerYear = new Date(roster.registerYear))
+          (roster) =>
+            (roster.registerYear = formatDate(
+              parseUTCDate(roster.registerYear),
+              'YYYY'
+            ))
         )
         setSearchedRosters(result.data)
       })
@@ -77,7 +84,11 @@ const ManageRoster: React.FC = () => {
       )
       .then((result: { data: Roster[] }) => {
         result.data.forEach(
-          (roster) => (roster.registerYear = new Date(roster.registerYear))
+          (roster) =>
+            (roster.registerYear = formatDate(
+              parseUTCDate(roster.registerYear),
+              'YYYY'
+            ))
         )
         setRosters(result.data)
       })
@@ -130,7 +141,11 @@ const ManageRoster: React.FC = () => {
         .get(`/rosters/teams/${profile.teamId}?page=${page}&limit=${limit}`)
         .then((result: { data: Roster[] }) => {
           result.data.forEach(
-            (roster) => (roster.registerYear = new Date(roster.registerYear))
+            (roster) =>
+              (roster.registerYear = formatDate(
+                parseUTCDate(roster.registerYear),
+                'YYYY'
+              ))
           )
           setRosters(result.data)
         })

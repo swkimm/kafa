@@ -11,6 +11,7 @@ import GameTable from '@/components/tables/GameTable'
 import RankTable from '@/components/tables/RankTable'
 import { useDate } from '@/hooks/useDate'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 interface LeagueHomeItemProps {
   league: League
@@ -23,6 +24,8 @@ const LeagueHomeItem: React.FC<LeagueHomeItemProps> = ({ league }) => {
   const [selectedWeek, setSelectedWeek] = useState<number>()
 
   const { parseUTCDate, formatDate } = useDate()
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const weekLength = getWeeksBetween(league.startedAt, league.endedAt)
@@ -122,7 +125,11 @@ const LeagueHomeItem: React.FC<LeagueHomeItemProps> = ({ league }) => {
               </div>
             }
           >
-            <GameTable games={games} detail={true} />
+            <GameTable
+              games={games}
+              detail={true}
+              onClick={(gameId) => navigate(`/games/${gameId}`)}
+            />
           </MainCard>
         </div>
         <div className="col-span-6 lg:col-span-2">

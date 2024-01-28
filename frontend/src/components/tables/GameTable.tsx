@@ -5,9 +5,14 @@ import type React from 'react'
 interface GameTableProps {
   games: GameMany[]
   detail?: boolean
+  onClick?: (id: number) => void
 }
 
-const GameTable: React.FC<GameTableProps> = ({ games, detail }) => {
+const GameTable: React.FC<GameTableProps> = ({
+  games,
+  detail,
+  onClick = () => []
+}) => {
   return (
     <div className="py-2.5">
       <div className="custom-scroll-bar -mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -60,7 +65,11 @@ const GameTable: React.FC<GameTableProps> = ({ games, detail }) => {
             <tbody className="divide-y divide-gray-200 bg-white">
               {games.length > 0 ? (
                 games.map((game) => (
-                  <tr key={game.id} className="hover:bg-gray-100">
+                  <tr
+                    key={game.id}
+                    className="hover:bg-gray-100"
+                    onClick={() => onClick(game.id)}
+                  >
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-xs font-medium text-gray-900 sm:pl-6 lg:pl-8">
                       {game.League.name}
                     </td>

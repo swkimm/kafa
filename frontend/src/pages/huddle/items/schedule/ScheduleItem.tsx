@@ -9,6 +9,7 @@ import ListboxComponent from '@/components/dropdown/Listbox'
 import GameTable from '@/components/tables/GameTable'
 import { useDate } from '@/hooks/useDate'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const ScheduleItem = () => {
   const currentYear = new Date().getFullYear()
@@ -23,6 +24,8 @@ const ScheduleItem = () => {
   const [selectedWeek, setSelectedWeek] = useState<number>()
 
   const { parseUTCDate, formatDate } = useDate()
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchLeagues = async () => {
@@ -156,7 +159,11 @@ const ScheduleItem = () => {
       </div>
       <div className="mx-auto mb-10 mt-5 min-h-[480px] max-w-screen-xl lg:px-20">
         <MainCard title={'경기 목록'} transparent={false}>
-          <GameTable games={games} detail={true} />
+          <GameTable
+            games={games}
+            detail={true}
+            onClick={(gameId: number) => navigate(`/games/${gameId}`)}
+          />
         </MainCard>
       </div>
     </div>

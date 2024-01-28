@@ -26,10 +26,10 @@ export abstract class GameService<T extends Game> {
    * 경기 정보를 반환합니다.
    *
    * @param {number} gameId - 조회할 경기의 Id
-   * @returns {Promise<T>} 경기정보
+   * @returns {Promise<GameWithLeagueAndAssociationDTO>} 경기정보
    * @throws {EntityNotExistException} 존재하지 않는 경기의 Id를 전달할 경우 발생
    */
-  async getGame(gameId: number): Promise<T> {
+  async getGame(gameId: number): Promise<GameWithLeagueAndAssociationDTO> {
     return await this.getGameService.getGame(gameId)
   }
 

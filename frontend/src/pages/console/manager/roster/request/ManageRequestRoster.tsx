@@ -2,6 +2,7 @@ import axiosInstance from '@/commons/axios'
 import type { Profile } from '@/commons/interfaces/account/profile'
 import type { Roster } from '@/commons/interfaces/roster/roster'
 import ConsoleCard from '@/components/cards/ConsoleCard'
+import { useDate } from '@/hooks/useDate'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
 import { useEffect, useState } from 'react'
@@ -13,6 +14,8 @@ const ManageRequestRoster: React.FC = () => {
   const [isFetching, setIsFetching] = useState(false)
 
   const { showNotification } = useNotification()
+
+  const { parseUTCDate, formatDate } = useDate()
 
   const onApprove = async (rosterId: number) => {
     if (!profile) return
@@ -83,13 +86,18 @@ const ManageRequestRoster: React.FC = () => {
         )
         .then((result: { data: Roster[] }) => {
           result.data.forEach(
-            (roster) => (roster.registerYear = new Date(roster.registerYear))
+            (roster) =>
+              (roster.registerYear = formatDate(
+                parseUTCDate(roster.registerYear),
+                'YYYY'
+              ))
           )
           setRosters(result.data)
         })
     }
 
     init()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

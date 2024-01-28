@@ -4,9 +4,12 @@ import MainCard from '@/components/cards/MainCard'
 import GameTable from '@/components/tables/GameTable'
 import { useDate } from '@/hooks/useDate'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const RecentlyEndedGameSection: React.FC = () => {
   const [recentlyEndedGames, setRecentlyEndedGames] = useState<GameMany[]>([])
+
+  const navigate = useNavigate()
 
   const { formatDate, parseUTCDate } = useDate()
 
@@ -35,7 +38,10 @@ const RecentlyEndedGameSection: React.FC = () => {
   }, [])
   return (
     <MainCard title={'최근 경기 결과'} transparent={false}>
-      <GameTable games={recentlyEndedGames} />
+      <GameTable
+        games={recentlyEndedGames}
+        onClick={(gameId: number) => navigate(`/games/${gameId}`)}
+      />
     </MainCard>
   )
 }

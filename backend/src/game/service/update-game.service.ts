@@ -59,7 +59,7 @@ export class UpdateGameServiceImpl implements UpdateGameService<Game> {
     }
 
     if (gameDTO.homeTeamId && !gameDTO.awayTeamId) {
-      if (gameDTO.homeTeamId === game.awayTeamId) {
+      if (gameDTO.homeTeamId === game.awayTeam.id) {
         throw new ParameterValidationException(
           'homeTeamId and awayTeamId must not to be equal'
         )
@@ -67,7 +67,7 @@ export class UpdateGameServiceImpl implements UpdateGameService<Game> {
     }
 
     if (!gameDTO.homeTeamId && gameDTO.awayTeamId) {
-      if (gameDTO.awayTeamId === game.homeTeamId) {
+      if (gameDTO.awayTeamId === game.homeTeam.id) {
         throw new ParameterValidationException(
           'homeTeamId and awayTeamId must not to be equal'
         )

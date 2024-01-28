@@ -4,7 +4,7 @@ import MainCard from '@/components/cards/MainCard'
 import GameTable from '@/components/tables/GameTable'
 import { useDate } from '@/hooks/useDate'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const TeamHomeItem = () => {
   const [games, setGames] = useState<GameMany[]>([])
@@ -12,6 +12,7 @@ const TeamHomeItem = () => {
 
   const { parseUTCDate, formatDate } = useDate()
   const params = useParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const { teamId: selectedTeamId } = params
@@ -46,7 +47,13 @@ const TeamHomeItem = () => {
       <div className="col-span-2">
         <div>
           <MainCard title="참여 경기 목록" transparent={false}>
-            {games && <GameTable games={games} detail={true} />}
+            {games && (
+              <GameTable
+                games={games}
+                detail={true}
+                onClick={(gameId) => navigate(`/games/${gameId}`)}
+              />
+            )}
           </MainCard>
         </div>
       </div>

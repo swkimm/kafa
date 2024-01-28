@@ -2,6 +2,7 @@ import { printPosition } from '@/commons/functions/position/position.print'
 import { printRosterType } from '@/commons/functions/roster-type/roster-type.print'
 import { type Roster, RosterType } from '@/commons/interfaces/roster/roster'
 import { RosterStatus } from '@/commons/interfaces/roster/rosterStatus'
+import { useDate } from '@/hooks/useDate'
 import {
   CheckIcon,
   ExclamationTriangleIcon,
@@ -21,6 +22,8 @@ const RosterRequestList: React.FC<RosterRequestListProps> = ({
   onReject,
   disabled
 }) => {
+  const { parseUTCDate, formatDate } = useDate()
+
   const renderStatus = (option: RosterStatus) => {
     switch (option) {
       case RosterStatus.Disable:
@@ -138,7 +141,7 @@ const RosterRequestList: React.FC<RosterRequestListProps> = ({
                       </span>
                     </td>
                     <td className="whitespace-nowrap px-3 py-3 text-sm text-gray-500">
-                      {roster.registerYear.getFullYear()}
+                      {formatDate(parseUTCDate(roster.registerYear), 'YYYY')}
                     </td>
                     <td className="whitespace-nowrap px-3 py-3 text-sm text-gray-500">
                       {roster.rosterType === RosterType.Athlete ? (

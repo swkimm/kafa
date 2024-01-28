@@ -50,7 +50,7 @@ export class CreateRosterServiceImpl implements CreateRosterService {
       const roster = await this.prismaService.roster.create({
         data: {
           name,
-          registerYear: new Date(`${registerYear}-01-01`),
+          registerYear: new Date(`${registerYear}-01-03`),
           rosterType,
           globalName,
           teamId,
