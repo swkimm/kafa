@@ -5,7 +5,7 @@ variable "region" {
 
 variable "s3_bucket" {
   type    = string
-  default = "dev.kafa.one"
+  default = "kafa.one"
 }
 
 variable "availability_zones" {

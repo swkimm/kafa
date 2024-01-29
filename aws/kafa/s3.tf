@@ -2,7 +2,7 @@ resource "aws_s3_bucket" "frontend" {
   bucket = var.s3_bucket
 
   tags = {
-    Name = "dev.kafa.one"
+    Name = "kafa.one"
   }
 }
 

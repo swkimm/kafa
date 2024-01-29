@@ -36,7 +36,7 @@ resource "aws_cloudfront_distribution" "main" {
   comment             = "KAFA Staging CloudFront"
   default_root_object = "index.html"
 
-  aliases = ["dev.kafa.one"]
+  aliases = ["kafa.one"]
 
   default_cache_behavior {
     allowed_methods        = ["GET", "HEAD", "OPTIONS"]

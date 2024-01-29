@@ -4,7 +4,7 @@ data "aws_route53_zone" "main" {
 }
 
 resource "aws_acm_certificate" "main" {
-  domain_name       = "dev.kafa.one"
+  domain_name       = "kafa.one"
   validation_method = "DNS"
   provider          = aws.east
 }
@@ -28,7 +28,7 @@ resource "aws_route53_record" "cert" {
 }
 
 resource "aws_route53_record" "main" {
-  name    = "dev.kafa.one"
+  name    = "kafa.one"
   type    = "A"
   zone_id = data.aws_route53_zone.main.zone_id
 
