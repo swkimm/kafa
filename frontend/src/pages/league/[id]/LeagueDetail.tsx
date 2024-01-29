@@ -60,16 +60,18 @@ const LeagueDetail = () => {
         <div className="mx-auto w-full max-w-screen-xl px-4 lg:px-20">
           {association && league && (
             <div className="flex text-white">
-              <img
-                src={association.profileImgUrl || '/logo/KAFA_OG.png'}
-                alt={association.name}
-                className="h-auto w-16 sm:w-32"
-              />
+              <div>
+                <img
+                  src={association.profileImgUrl || '/logo/KAFA_OG.png'}
+                  alt={association.name}
+                  className="h-auto w-16 sm:w-32"
+                />
+              </div>
               <div className="ml-3 flex flex-col justify-center gap-y-0.5 lg:ml-10">
                 <div className="text-sm text-gray-400 sm:text-base">
                   {association.name}
                 </div>
-                <div className="-mt-1 text-xl font-bold text-white sm:text-2xl">
+                <div className="text-base font-bold text-white sm:text-2xl lg:-mt-1 lg:text-xl">
                   {league.name}
                 </div>
                 <div className="mt-0.5 text-xs font-normal text-gray-400 lg:mt-2.5">

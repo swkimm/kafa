@@ -29,9 +29,9 @@ const TeamCard: React.FC<TeamSimple> = ({
       className="flex h-full flex-row overflow-hidden rounded-lg bg-white text-white shadow-lg"
       style={{ backgroundColor: color }}
     >
-      <div className="relative isolate flex h-full flex-col items-center justify-center px-10 sm:px-16 sm:py-5">
+      <div className="relative isolate flex h-full flex-shrink-0 flex-col items-center justify-center px-10 sm:px-16 sm:py-5">
         <img
-          className="mt-0 h-auto max-h-36 w-[160px] object-contain"
+          className="mt-0 h-auto max-h-36 w-[100px] object-contain sm:w-[160px]"
           src={profileImgUrl}
           alt={`${globalName} Logo`}
         />

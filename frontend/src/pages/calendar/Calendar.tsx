@@ -6,7 +6,7 @@ import type {
 } from '@/commons/interfaces/calendar/calendar'
 import { useDate } from '@/hooks/useDate'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
-import { ClockIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import moment, { type Moment } from 'moment'
 import { useEffect, useState } from 'react'
 
@@ -197,7 +197,7 @@ export const Calendar = () => {
                             )}
                             className="ml-3 hidden flex-none text-gray-500 group-hover:text-indigo-600 xl:block"
                           >
-                            {parseUTCDate(event.date).local().format('A hh:mm')}
+                            {parseUTCDate(event.date).format('A hh:mm')}
                           </time>
                         </div>
                       </li>
@@ -293,11 +293,7 @@ export const Calendar = () => {
                       dateTime={parseUTCDate(event.date).format('A hh:mm')}
                       className="mt-2 flex items-center text-gray-700"
                     >
-                      <ClockIcon
-                        className="mr-2 h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
-                      {parseUTCDate(event.date).local().format('A hh:mm')}
+                      {parseUTCDate(event.date).format('A hh:mm')}
                       <p className="ml-3 text-gray-400">
                         {event.item?.stadium}
                       </p>

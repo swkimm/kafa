@@ -89,6 +89,7 @@ const ScheduleItem = () => {
             'YYYY-MM-DD A hh:mm'
           )
         })
+
         setGames(response.data)
       } catch (error) {
         setGames([])

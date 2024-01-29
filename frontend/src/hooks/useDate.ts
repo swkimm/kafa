@@ -9,7 +9,7 @@ export const useDate = () => {
    * @returns {Moment} Moment 객체
    */
   const parseUTCDate = (dateString: UTCDateString): Moment => {
-    return moment.utc(dateString)
+    return moment.utc(dateString).local()
   }
 
   /**

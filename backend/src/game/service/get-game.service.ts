@@ -48,14 +48,16 @@ export class GetGameServiceImpl implements GetGameService<Game> {
             select: {
               id: true,
               name: true,
-              profileImgUrl: true
+              profileImgUrl: true,
+              initial: true
             }
           },
           awayTeam: {
             select: {
               id: true,
               name: true,
-              profileImgUrl: true
+              profileImgUrl: true,
+              initial: true
             }
           },
           League: {
@@ -161,14 +163,16 @@ export class GetGameServiceImpl implements GetGameService<Game> {
             select: {
               id: true,
               name: true,
-              profileImgUrl: true
+              profileImgUrl: true,
+              initial: true
             }
           },
           awayTeam: {
             select: {
               id: true,
               name: true,
-              profileImgUrl: true
+              profileImgUrl: true,
+              initial: true
             }
           },
           League: {
@@ -234,14 +238,16 @@ export class GetGameServiceImpl implements GetGameService<Game> {
             select: {
               id: true,
               name: true,
-              profileImgUrl: true
+              profileImgUrl: true,
+              initial: true
             }
           },
           awayTeam: {
             select: {
               id: true,
               name: true,
-              profileImgUrl: true
+              profileImgUrl: true,
+              initial: true
             }
           },
           League: {
@@ -330,14 +336,16 @@ export class GetGameServiceImpl implements GetGameService<Game> {
             select: {
               id: true,
               name: true,
-              profileImgUrl: true
+              profileImgUrl: true,
+              initial: true
             }
           },
           awayTeam: {
             select: {
               id: true,
               name: true,
-              profileImgUrl: true
+              profileImgUrl: true,
+              initial: true
             }
           },
           League: {
@@ -380,14 +388,16 @@ export class GetGameServiceImpl implements GetGameService<Game> {
             select: {
               id: true,
               name: true,
-              profileImgUrl: true
+              profileImgUrl: true,
+              initial: true
             }
           },
           awayTeam: {
             select: {
               id: true,
               name: true,
-              profileImgUrl: true
+              profileImgUrl: true,
+              initial: true
             }
           },
           League: {

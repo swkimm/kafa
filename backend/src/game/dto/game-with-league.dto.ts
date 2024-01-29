@@ -7,11 +7,13 @@ export interface GameWithLeagueDTO {
     id: number
     name: string
     profileImgUrl: string
+    initial: string
   }
   awayTeam: {
     id: number
     name: string
     profileImgUrl: string
+    initial: string
   }
   League: {
     id: number
