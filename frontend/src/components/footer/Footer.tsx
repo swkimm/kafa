@@ -18,6 +18,8 @@ const navigation = {
     { name: '대한체육회', href: 'https://www.sports.or.kr/index.do' },
     { name: '문화체육관광부', href: 'https://www.mcst.go.kr/kor/main.jsp' },
     { name: '국민권익위원회', href: 'https://www.acrc.go.kr' },
+    { name: '금지약물도핑안내', href: 'https://kada-ad.or.kr' },
+    { name: 'IFAF', href: 'https://www.americanfootball.sport' },
     { name: '월간용광로', href: 'https://monthlydragons.tistory.com' }
   ],
   legal: [

@@ -223,6 +223,13 @@ const Header = () => {
               </Disclosure.Button>
               <Disclosure.Button
                 as="button"
+                onClick={() => navigate('/teams')}
+                className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
+              >
+                팀 정보
+              </Disclosure.Button>
+              <Disclosure.Button
+                as="button"
                 onClick={() => navigate('/association')}
                 className="block w-full py-2 pl-3 pr-4 text-start text-base font-medium text-gray-100 hover:text-gray-700"
               >

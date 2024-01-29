@@ -153,9 +153,16 @@ export class GetRosterServiceImpl implements GetRosterService {
             }
           }
         },
-        orderBy: {
-          name: 'asc'
-        }
+        orderBy: [
+          {
+            Athlete: {
+              backNumber: 'asc'
+            }
+          },
+          {
+            name: 'asc'
+          }
+        ]
       })
     } catch (error) {
       if (error instanceof BusinessException) {
