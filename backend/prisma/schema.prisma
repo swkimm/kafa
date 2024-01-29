@@ -236,6 +236,7 @@ model Team {
   profileImgUrl    String?      @map("profile_img_url") @db.Text
   backgroundImgUrl String?      @map("background_img_url") @db.Text
   deletedAt        DateTime?    @map("deleted_at")
+  message          String?      @db.Text
   status           TeamStatus   @default(Enabled)
   createdAt        DateTime     @default(now()) @map("created_at")
   Association      Association  @relation(fields: [associationId], references: [id])

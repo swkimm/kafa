@@ -101,8 +101,10 @@ const Teams = () => {
                   id={team.id}
                   name={team.name}
                   globalName={team.globalName}
+                  hometown={team.hometown ?? ''}
                   initial={team.initial}
                   color={team.color}
+                  establishedAt={team.establishedAt.toString() ?? '0000'}
                   profileImgUrl={team.profileImgUrl || '/logo/KAFA_OG.png'}
                   isWhite={(color: string) => color === '#ffffff'}
                   onClick={(teamId: number) => navigate(`/teams/${teamId}`)}

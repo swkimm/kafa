@@ -210,7 +210,7 @@ describe('GetLeagueService', () => {
           take: limit,
           skip: calculateOffset(page, limit),
           orderBy: {
-            startedAt: 'desc'
+            endedAt: 'desc'
           },
           include: {
             Association: {

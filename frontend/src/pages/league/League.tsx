@@ -115,7 +115,7 @@ const League = () => {
                     />
                   )}
                   <div className="ml-5 flex flex-col justify-center lg:ml-10">
-                    <div className="text-gray-250 text-xs font-semibold sm:text-base">
+                    <div className="text-gray-250 text-xs font-normal text-gray-200 sm:text-base">
                       {league.Association.name}
                     </div>
                     <div
@@ -130,13 +130,13 @@ const League = () => {
                         league.endedAt <= new Date() &&
                         ' (종료됨)'}
                     </div>
-                    <div className="text-xs font-light sm:text-sm">
+                    <div className="text-xs font-normal sm:text-sm">
                       {printDate(league)}
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col justify-center gap-4">
-                  <div>
+                <div className="flex flex-col justify-center">
+                  <div className="whitespace-nowrap">
                     <Button
                       variant="outlineWhiteText"
                       label="바로가기"

@@ -18,10 +18,11 @@ const TeamCard: React.FC<TeamSimple> = ({
   id,
   name,
   globalName,
-  initial,
   color,
+  hometown,
   profileImgUrl,
-  onClick
+  onClick,
+  establishedAt
 }) => {
   return (
     <div
@@ -30,7 +31,7 @@ const TeamCard: React.FC<TeamSimple> = ({
     >
       <div className="relative isolate flex h-full flex-col items-center justify-center px-10 sm:px-16 sm:py-5">
         <img
-          className="mt-0 max-h-28 max-w-[160px] object-contain sm:max-h-40"
+          className="mt-0 h-auto max-h-36 w-[160px] object-contain"
           src={profileImgUrl}
           alt={`${globalName} Logo`}
         />
@@ -45,8 +46,13 @@ const TeamCard: React.FC<TeamSimple> = ({
           >
             {name}
           </div>
-          <div className="mt-0.5 w-full flex-none text-sm font-bold text-gray-400 sm:mt-2">
-            {initial}
+          <div
+            className={
+              'mt-0.5 w-full flex-none text-sm font-bold sm:mt-2 ' +
+              (isColorLight(color) ? 'text-gray-500' : 'text-gray-300')
+            }
+          >
+            {hometown}
           </div>
         </div>
         <div className="my-2.5 flex text-sm font-bold sm:my-6">
@@ -64,7 +70,7 @@ const TeamCard: React.FC<TeamSimple> = ({
             (isColorLight(color) ? 'text-black' : 'text-white')
           }
         >
-          <p>Since 2023</p>
+          <p>Since {establishedAt?.substring(0, 4)}</p>
         </div>
       </div>
     </div>

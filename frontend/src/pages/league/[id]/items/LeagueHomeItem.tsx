@@ -85,9 +85,9 @@ const LeagueHomeItem: React.FC<LeagueHomeItemProps> = ({ league }) => {
               }
               return a.lose - b.lose
             }
-            return a.draw - b.draw
+            return b.draw - a.draw
           }
-          return a.win - b.win
+          return b.win - a.win
         }
         return a.rank - b.rank
       })

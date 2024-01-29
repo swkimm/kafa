@@ -32,7 +32,7 @@ const RecentLeagueSection: React.FC = () => {
             return (
               <div
                 key={league.id}
-                className="flex min-w-[200px] items-center justify-center rounded-lg bg-indigo-950 p-5 shadow-lg hover:bg-indigo-900 lg:min-w-[320px]"
+                className="flex min-w-[230px] items-center justify-center rounded-lg bg-indigo-950 p-5 shadow-lg hover:bg-indigo-900 lg:min-w-[320px]"
                 onClick={() => navigate(`/leagues/${league.id}`)}
               >
                 {league.Association.profileImgUrl ? (

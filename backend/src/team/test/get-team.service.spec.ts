@@ -49,6 +49,7 @@ describe('GetTeamService', () => {
       globalName: 'team01',
       hometown: 'hometown',
       initial: 'team01',
+      message: '',
       name: 'team01',
       profileImgUrl: '',
       subColor: '',
@@ -62,6 +63,7 @@ describe('GetTeamService', () => {
       color: '#123456',
       status: TeamStatus.Enabled,
       establishedAt: new Date('2023-01-01'),
+      message: '',
       globalName: 'team02',
       hometown: 'hometown',
       initial: 'team02',
@@ -78,6 +80,7 @@ describe('GetTeamService', () => {
       color: '#123456',
       status: TeamStatus.Enabled,
       establishedAt: new Date('2023-01-01'),
+      message: '',
       globalName: 'team03',
       hometown: 'hometown',
       initial: 'team03',
@@ -274,6 +277,9 @@ describe('GetTeamService', () => {
           where: {
             associationId,
             status: 'Enabled'
+          },
+          orderBy: {
+            name: 'asc'
           }
         })
       ).to.be.true

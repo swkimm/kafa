@@ -40,7 +40,7 @@ const GameTable: React.FC<GameTableProps> = ({
                 </th>
                 <th
                   scope="col"
-                  className="px-3 py-3.5 text-left text-xs text-gray-900"
+                  className="px-3 py-3.5 text-left text-xs text-gray-900 sm:pr-16"
                 >
                   AWAY
                 </th>
@@ -54,7 +54,7 @@ const GameTable: React.FC<GameTableProps> = ({
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-xs text-gray-900 sm:pr-8"
+                      className="px-3 py-3.5 text-left text-xs text-gray-900 sm:pr-16"
                     >
                       STADIUM
                     </th>
@@ -76,8 +76,8 @@ const GameTable: React.FC<GameTableProps> = ({
                     <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500">
                       {game.name}
                     </td>
-                    <td className="min-w-[125px] whitespace-nowrap px-3 py-4 text-xs text-gray-500">
-                      <div className="flex flex-nowrap items-center gap-x-2">
+                    <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500">
+                      <div className="flex min-w-[125px] items-center gap-x-2">
                         {game.homeTeam.profileImgUrl ? (
                           <img
                             src={game.homeTeam.profileImgUrl}
@@ -101,7 +101,13 @@ const GameTable: React.FC<GameTableProps> = ({
                         )}
                       </div>
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500">
+                    <td
+                      className={
+                        detail
+                          ? 'whitespace-nowrap px-3 py-4 text-xs text-gray-500'
+                          : 'whitespace-nowrap px-3 py-4 pr-16 text-xs text-gray-500'
+                      }
+                    >
                       <div className="flex min-w-[125px] items-center gap-x-2">
                         {game.awayTeam.profileImgUrl ? (
                           <img
@@ -131,7 +137,7 @@ const GameTable: React.FC<GameTableProps> = ({
                         <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500">
                           {game.startedAt}
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500">
+                        <td className="whitespace-nowrap px-3 py-4 pr-16 text-xs text-gray-500">
                           {game.stadium}
                         </td>
                       </>

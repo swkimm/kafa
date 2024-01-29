@@ -126,6 +126,9 @@ export class GetTeamServiceImpl
         where: {
           associationId,
           status: 'Enabled'
+        },
+        orderBy: {
+          name: 'asc'
         }
       })
     } catch (error) {

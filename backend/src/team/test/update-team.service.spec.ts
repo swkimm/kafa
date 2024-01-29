@@ -57,6 +57,7 @@ describe('UpdateTeamService', () => {
     color: '#123456',
     establishedAt: new Date('2023-01-01'),
     globalName: 'team01',
+    message: '',
     hometown: 'abc',
     initial: 'team01',
     name: 'team01',

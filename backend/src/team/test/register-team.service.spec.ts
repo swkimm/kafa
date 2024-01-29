@@ -39,6 +39,7 @@ describe('RegisterTeamService', () => {
     establishedAt: new Date('2023-01-01'),
     globalName: 'team',
     hometown: 'abc',
+    message: '',
     initial: 'team',
     name: 'team01',
     profileImgUrl: '',

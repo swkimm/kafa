@@ -219,6 +219,9 @@ export class GetGameServiceImpl implements GetGameService<Game> {
               startedAt: {
                 lte: endDate
               }
+            },
+            {
+              leagueId
             }
           ]
         },

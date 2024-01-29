@@ -83,7 +83,7 @@ export class GetLeagueServiceImpl implements GetLeagueService<League, Sponser> {
         take: limit,
         skip: calculateOffset(page, limit),
         orderBy: {
-          startedAt: 'desc'
+          endedAt: 'desc'
         },
         include: {
           Association: {
@@ -113,7 +113,7 @@ export class GetLeagueServiceImpl implements GetLeagueService<League, Sponser> {
         take: limit,
         skip: calculateOffset(page, limit),
         orderBy: {
-          startedAt: 'desc'
+          endedAt: 'desc'
         },
         include: {
           Association: {

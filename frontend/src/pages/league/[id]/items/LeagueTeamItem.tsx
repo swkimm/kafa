@@ -34,7 +34,7 @@ const TeamItem = () => {
 
   return (
     <div className="mx-auto mt-3 max-w-screen-xl px-4 lg:px-20">
-      <div className="my-5 grid grid-cols-1 gap-x-5 gap-y-3 text-center sm:grid-cols-2">
+      <div className="my-5 grid grid-cols-1 gap-4 text-center sm:grid-cols-2">
         {teams &&
           teams.length > 0 &&
           teams.map((team) => (
@@ -47,8 +47,10 @@ const TeamItem = () => {
                 color={team.color}
                 profileImgUrl={team.profileImgUrl || '/logo/KAFA_OG.png'}
                 isWhite={(color: string) => color === '#ffffff'}
+                hometown={team.hometown}
+                establishedAt={team.establishedAt.toString().substring(0, 4)}
                 onClick={() => {
-                  navigate(`/leagues/${leagueId}/teams/${team.id}`)
+                  navigate(`/teams/${team.id}`)
                 }}
               />
             </div>

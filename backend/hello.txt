@@ -1,0 +1,578 @@
+Environment variables loaded from .env
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "kafa", schema "public" at "127.0.0.1:5441"
+
+Applying migration `20240125183756_init`
+Applying migration `20240128194459_add_message_column_on_team_table`
+
+Database reset successful
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 20240125183756_init/
+    └─ migration.sql
+  └─ 20240128194459_add_message_column_on_team_table/
+    └─ migration.sql
+
+Running generate... (Use --skip-generate to skip the generators)
+[2K[1A[2K[GRunning generate... - Prisma Client
+[2K[1A[2K[G✔ Generated Prisma Client (v5.8.0) to ./../node_modules/.pnpm/@prisma+client@5.8
+.0_prisma@5.8.0/node_modules/@prisma/client in 258ms
+
+Running seed command `swc-node prisma/seed.ts` ...
+[
+  {
+    id: 2,
+    homeTeamId: 6,
+    awayTeamId: 11,
+    startedAt: '2023-09-02T04:00:00.000Z',
+    leagueId: 1,
+    name: '서울 1부 1조 2경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 3,
+    homeTeamId: 10,
+    awayTeamId: 7,
+    startedAt: '2023-09-03T01:00:00.000Z',
+    leagueId: 1,
+    name: '서울 1부 2조 1경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 4,
+    homeTeamId: 2,
+    awayTeamId: 4,
+    startedAt: '2023-09-03T04:00:00.000Z',
+    leagueId: 1,
+    name: '서울 1부 2조 2경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 5,
+    homeTeamId: 1,
+    awayTeamId: 5,
+    startedAt: '2023-09-03T07:00:00.000Z',
+    leagueId: 1,
+    name: '서울 2부 II조 1경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 6,
+    homeTeamId: 4,
+    awayTeamId: 10,
+    startedAt: '2023-09-09T01:00:00.000Z',
+    leagueId: 1,
+    name: '서울 1부 2조 3경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 8,
+    homeTeamId: 7,
+    awayTeamId: 2,
+    startedAt: '2023-09-09T07:00:00.000Z',
+    leagueId: 1,
+    name: '서울 1부 2조 4경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 9,
+    homeTeamId: 8,
+    awayTeamId: 6,
+    startedAt: '2023-09-10T01:00:00.000Z',
+    leagueId: 1,
+    name: '서울 1부 1조 3경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 10,
+    homeTeamId: 5,
+    awayTeamId: 3,
+    startedAt: '2023-09-10T04:00:00.000Z',
+    leagueId: 1,
+    name: '서울 2부 II조 2경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 13,
+    homeTeamId: 10,
+    awayTeamId: 2,
+    startedAt: '2023-09-16T04:00:00.000Z',
+    leagueId: 1,
+    name: '서울 1부 2조 5경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 15,
+    homeTeamId: 3,
+    awayTeamId: 1,
+    startedAt: '2023-09-17T01:00:00.000Z',
+    leagueId: 1,
+    name: '서울 2부 II조 3경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 18,
+    homeTeamId: 12,
+    awayTeamId: 9,
+    startedAt: '2023-09-23T01:00:00.000Z',
+    leagueId: 1,
+    name: '서울 2부 I조 2경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 19,
+    homeTeamId: 11,
+    awayTeamId: 8,
+    startedAt: '2023-09-23T04:00:00.000Z',
+    leagueId: 1,
+    name: '서울 1부 1조 5경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 21,
+    homeTeamId: 4,
+    awayTeamId: 7,
+    startedAt: '2023-09-24T01:00:00.000Z',
+    leagueId: 1,
+    name: '서울 1부 2조 6경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 40,
+    homeTeamId: 8,
+    awayTeamId: 2,
+    startedAt: '2023-10-01T00:00:00.000Z',
+    leagueId: 1,
+    name: '서울 1부 7/8위',
+    stadium: '서울대학교 대운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 41,
+    homeTeamId: 6,
+    awayTeamId: 7,
+    startedAt: '2023-10-01T03:00:00.000Z',
+    leagueId: 1,
+    name: '서울 1부 4강 1경기',
+    stadium: '서울대학교 대운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 43,
+    homeTeamId: 12,
+    awayTeamId: 1,
+    startedAt: '2023-10-03T00:00:00.000Z',
+    leagueId: 1,
+    name: '서울 2부 4강 1경기',
+    stadium: '서울대학교 대운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 44,
+    homeTeamId: 3,
+    awayTeamId: 9,
+    startedAt: '2023-10-03T03:00:00.000Z',
+    leagueId: 1,
+    name: '서울 2부 4강 2경기',
+    stadium: '서울대학교 대운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 46,
+    homeTeamId: 1,
+    awayTeamId: 3,
+    startedAt: '2023-10-07T00:00:00.000Z',
+    leagueId: 1,
+    name: '서울 2부 결승',
+    stadium: '서울대학교 대운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 47,
+    homeTeamId: 11,
+    awayTeamId: 4,
+    startedAt: '2023-10-07T06:00:00.000Z',
+    leagueId: 1,
+    name: '서울 1부 5/6위',
+    stadium: '서울대학교 대운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 49,
+    homeTeamId: 7,
+    awayTeamId: 10,
+    startedAt: '2023-10-08T00:00:00.000Z',
+    leagueId: 1,
+    name: '서울 1부 3/4위',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 84,
+    homeTeamId: 8,
+    awayTeamId: 1,
+    startedAt: '2023-10-14T00:00:00.000Z',
+    leagueId: 1,
+    name: '서울 승강전',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 4,
+    homeTeamId: 2,
+    awayTeamId: 4,
+    startedAt: '2023-09-03T04:00:00.000Z',
+    leagueId: 2,
+    name: '서울 1부 2조 2경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 5,
+    homeTeamId: 1,
+    awayTeamId: 5,
+    startedAt: '2023-09-03T07:00:00.000Z',
+    leagueId: 2,
+    name: '서울 2부 II조 1경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 10,
+    homeTeamId: 5,
+    awayTeamId: 3,
+    startedAt: '2023-09-10T04:00:00.000Z',
+    leagueId: 2,
+    name: '서울 2부 II조 2경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 15,
+    homeTeamId: 3,
+    awayTeamId: 1,
+    startedAt: '2023-09-17T01:00:00.000Z',
+    leagueId: 2,
+    name: '서울 2부 II조 3경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 46,
+    homeTeamId: 1,
+    awayTeamId: 3,
+    startedAt: '2023-10-07T00:00:00.000Z',
+    leagueId: 2,
+    name: '서울 2부 결승',
+    stadium: '서울대학교 대운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 4,
+    homeTeamId: 2,
+    awayTeamId: 4,
+    startedAt: '2023-09-03T04:00:00.000Z',
+    leagueId: 3,
+    name: '서울 1부 2조 2경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 5,
+    homeTeamId: 1,
+    awayTeamId: 5,
+    startedAt: '2023-09-03T07:00:00.000Z',
+    leagueId: 3,
+    name: '서울 2부 II조 1경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 8,
+    homeTeamId: 7,
+    awayTeamId: 2,
+    startedAt: '2023-09-09T07:00:00.000Z',
+    leagueId: 3,
+    name: '서울 1부 2조 4경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 9,
+    homeTeamId: 8,
+    awayTeamId: 6,
+    startedAt: '2023-09-10T01:00:00.000Z',
+    leagueId: 3,
+    name: '서울 1부 1조 3경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 10,
+    homeTeamId: 5,
+    awayTeamId: 3,
+    startedAt: '2023-09-10T04:00:00.000Z',
+    leagueId: 3,
+    name: '서울 2부 II조 2경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 15,
+    homeTeamId: 3,
+    awayTeamId: 1,
+    startedAt: '2023-09-17T01:00:00.000Z',
+    leagueId: 3,
+    name: '서울 2부 II조 3경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 21,
+    homeTeamId: 4,
+    awayTeamId: 7,
+    startedAt: '2023-09-24T01:00:00.000Z',
+    leagueId: 3,
+    name: '서울 1부 2조 6경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 40,
+    homeTeamId: 8,
+    awayTeamId: 2,
+    startedAt: '2023-10-01T00:00:00.000Z',
+    leagueId: 3,
+    name: '서울 1부 7/8위',
+    stadium: '서울대학교 대운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 41,
+    homeTeamId: 6,
+    awayTeamId: 7,
+    startedAt: '2023-10-01T03:00:00.000Z',
+    leagueId: 3,
+    name: '서울 1부 4강 1경기',
+    stadium: '서울대학교 대운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 44,
+    homeTeamId: 3,
+    awayTeamId: 9,
+    startedAt: '2023-10-03T03:00:00.000Z',
+    leagueId: 3,
+    name: '서울 2부 4강 2경기',
+    stadium: '서울대학교 대운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 46,
+    homeTeamId: 1,
+    awayTeamId: 3,
+    startedAt: '2023-10-07T00:00:00.000Z',
+    leagueId: 3,
+    name: '서울 2부 결승',
+    stadium: '서울대학교 대운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 84,
+    homeTeamId: 8,
+    awayTeamId: 1,
+    startedAt: '2023-10-14T00:00:00.000Z',
+    leagueId: 3,
+    name: '서울 승강전',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 4,
+    homeTeamId: 2,
+    awayTeamId: 4,
+    startedAt: '2023-09-03T04:00:00.000Z',
+    leagueId: 4,
+    name: '서울 1부 2조 2경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 5,
+    homeTeamId: 1,
+    awayTeamId: 5,
+    startedAt: '2023-09-03T07:00:00.000Z',
+    leagueId: 4,
+    name: '서울 2부 II조 1경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 8,
+    homeTeamId: 7,
+    awayTeamId: 2,
+    startedAt: '2023-09-09T07:00:00.000Z',
+    leagueId: 4,
+    name: '서울 1부 2조 4경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 9,
+    homeTeamId: 8,
+    awayTeamId: 6,
+    startedAt: '2023-09-10T01:00:00.000Z',
+    leagueId: 4,
+    name: '서울 1부 1조 3경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 10,
+    homeTeamId: 5,
+    awayTeamId: 3,
+    startedAt: '2023-09-10T04:00:00.000Z',
+    leagueId: 4,
+    name: '서울 2부 II조 2경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 15,
+    homeTeamId: 3,
+    awayTeamId: 1,
+    startedAt: '2023-09-17T01:00:00.000Z',
+    leagueId: 4,
+    name: '서울 2부 II조 3경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 21,
+    homeTeamId: 4,
+    awayTeamId: 7,
+    startedAt: '2023-09-24T01:00:00.000Z',
+    leagueId: 4,
+    name: '서울 1부 2조 6경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 40,
+    homeTeamId: 8,
+    awayTeamId: 2,
+    startedAt: '2023-10-01T00:00:00.000Z',
+    leagueId: 4,
+    name: '서울 1부 7/8위',
+    stadium: '서울대학교 대운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 41,
+    homeTeamId: 6,
+    awayTeamId: 7,
+    startedAt: '2023-10-01T03:00:00.000Z',
+    leagueId: 4,
+    name: '서울 1부 4강 1경기',
+    stadium: '서울대학교 대운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 44,
+    homeTeamId: 3,
+    awayTeamId: 9,
+    startedAt: '2023-10-03T03:00:00.000Z',
+    leagueId: 4,
+    name: '서울 2부 4강 2경기',
+    stadium: '서울대학교 대운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 46,
+    homeTeamId: 1,
+    awayTeamId: 3,
+    startedAt: '2023-10-07T00:00:00.000Z',
+    leagueId: 4,
+    name: '서울 2부 결승',
+    stadium: '서울대학교 대운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 84,
+    homeTeamId: 8,
+    awayTeamId: 1,
+    startedAt: '2023-10-14T00:00:00.000Z',
+    leagueId: 4,
+    name: '서울 승강전',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 4,
+    homeTeamId: 2,
+    awayTeamId: 4,
+    startedAt: '2023-09-03T04:00:00.000Z',
+    leagueId: 5,
+    name: '서울 1부 2조 2경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 5,
+    homeTeamId: 1,
+    awayTeamId: 5,
+    startedAt: '2023-09-03T07:00:00.000Z',
+    leagueId: 5,
+    name: '서울 2부 II조 1경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 10,
+    homeTeamId: 5,
+    awayTeamId: 3,
+    startedAt: '2023-09-10T04:00:00.000Z',
+    leagueId: 5,
+    name: '서울 2부 II조 2경기',
+    stadium: '홍천 종합운동장',
+    result: 'AwayWin'
+  },
+  {
+    id: 15,
+    homeTeamId: 3,
+    awayTeamId: 1,
+    startedAt: '2023-09-17T01:00:00.000Z',
+    leagueId: 5,
+    name: '서울 2부 II조 3경기',
+    stadium: '홍천 종합운동장',
+    result: 'HomeWin'
+  },
+  {
+    id: 46,
+    homeTeamId: 1,
+    awayTeamId: 3,
+    startedAt: '2023-10-07T00:00:00.000Z',
+    leagueId: 5,
+    name: '서울 2부 결승',
+    stadium: '서울대학교 대운동장',
+    result: 'AwayWin'
+  }
+]
+
+🌱  The seed command has been executed.
+
