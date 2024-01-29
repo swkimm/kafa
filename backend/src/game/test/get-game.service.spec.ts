@@ -109,14 +109,16 @@ describe('GetGameService', () => {
               select: {
                 id: true,
                 name: true,
-                profileImgUrl: true
+                profileImgUrl: true,
+                initial: true
               }
             },
             awayTeam: {
               select: {
                 id: true,
                 name: true,
-                profileImgUrl: true
+                profileImgUrl: true,
+                initial: true
               }
             },
             League: {
