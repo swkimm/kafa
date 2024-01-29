@@ -1,23 +1,21 @@
 // Home.tsx
 import { Disclosure } from '@headlessui/react'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import HomeItem from './items/home/HomeItem'
 import ScheduleItem from './items/schedule/ScheduleItem'
 
 const Home = () => {
   const [currentComponent, setCurrentComponent] = useState<string>('HOME')
 
-  const [videoSource, setVideoSource] = useState(
-    'https://cdn.playprove.one/landing/desktop.mp4'
-  )
+  const [imageSource, setImageSource] = useState('/temp_main.png')
 
   useEffect(() => {
     const updateVideoSource = () => {
       const isMobile = window.innerWidth < 768
       if (isMobile) {
-        setVideoSource('https://cdn.playprove.one/landing/mobile.mp4')
+        setImageSource('/temp_main_mo.png')
       } else {
-        setVideoSource('https://cdn.playprove.one/landing/desktop.mp4')
+        setImageSource('/temp_main.png')
       }
     }
     updateVideoSource()
@@ -39,14 +37,7 @@ const Home = () => {
     <div className="flex h-full w-full flex-col bg-gray-100">
       <div className="flex h-full justify-center">
         <div className="relative h-screen w-full">
-          <video
-            src={videoSource}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="h-full w-full object-cover"
-          />
+          <img className="h-full w-full object-cover" src={imageSource} />
         </div>
       </div>
       <Disclosure as="nav" className="w-full bg-purple-950">
