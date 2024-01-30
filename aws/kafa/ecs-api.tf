@@ -75,7 +75,7 @@ resource "aws_ecs_task_definition" "api" {
 
   container_definitions = templatefile("${path.module}/task-definition.tftpl", {
     task_name                  = "kafa-staging-api",
-    database_url               = "postgresql://${var.postgres_username}:${var.postgres_password}@${aws_rds_cluster.cluster.endpoint}:${var.postgres_port}/kafa-staging?schema=public",
+    database_url               = "postgresql://${var.postgres_username}:${var.postgres_password}@${aws_rds_cluster.cluster.endpoint}:${var.postgres_port}/kafa?schema=public",
     ecr_uri                    = aws_ecr_repository.main.repository_url,
     container_port             = 4000,
     cloudwatch_region          = var.region,
