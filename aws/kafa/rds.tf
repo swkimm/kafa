@@ -1,7 +1,7 @@
 ########## AWS RDS Aurora ##########
 resource "aws_rds_cluster" "cluster" {
   engine             = "aurora-postgresql"
-  engine_version     = "15.2"
+  engine_version     = "15.4"
   cluster_identifier = "kafa-staging-db"
   master_username    = var.postgres_username
   master_password    = var.postgres_password
