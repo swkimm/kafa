@@ -9,6 +9,7 @@ import {
   type GameResult,
   type LeagueApplyStatus
 } from '@prisma/client'
+import { hash } from 'argon2'
 import { randomBytes } from 'crypto'
 import * as fs from 'node:fs'
 
@@ -118,6 +119,16 @@ const seedProd = async function () {
 
   await prisma.account.createMany({
     data: accounts
+  })
+
+  await prisma.account.create({
+    data: {
+      name: '관리자',
+      username: 'kafa',
+      password: await hash('kafa@1945'),
+      email: 'kafa@kafa.org',
+      role: Role.Admin
+    }
   })
 
   /**
