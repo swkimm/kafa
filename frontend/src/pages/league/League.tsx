@@ -13,7 +13,7 @@ interface DropdownOption {
 }
 
 const League = () => {
-  const thisYear = new Date().getFullYear()
+  const thisYear = new Date().getFullYear() - 1
   const navigate = useNavigate()
   const [year, setYear] = useState(thisYear.toString())
   const [leagues, setLeagues] = useState<LeagueWithAssociation[]>([])
