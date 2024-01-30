@@ -8,5 +8,17 @@
   "[terraform]": {
     "editor.defaultFormatter": "hashicorp.terraform"
   },
-  "thunder-client.saveToWorkspace": true
+  "thunder-client.saveToWorkspace": true,
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "127.0.0.1",
+      "port": 5441,
+      "askForPassword": true,
+      "driver": "PostgreSQL",
+      "name": "kafa-postgres",
+      "database": "kafa",
+      "username": "postgres"
+    }
+  ]
 }

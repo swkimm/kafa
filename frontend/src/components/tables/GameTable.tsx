@@ -22,7 +22,7 @@ const GameTable: React.FC<GameTableProps> = ({
               <tr>
                 <th
                   scope="col"
-                  className="hidden py-3.5 pl-4 pr-3 text-left text-xs text-gray-900 sm:block sm:pl-6 lg:pl-8"
+                  className="py-3.5 pl-4 pr-3 text-left text-xs text-gray-900 sm:pl-6 lg:pl-8"
                 >
                   LEAGUE
                 </th>
@@ -76,7 +76,7 @@ const GameTable: React.FC<GameTableProps> = ({
                     className="hover:bg-gray-100"
                     onClick={() => onClick(game.id)}
                   >
-                    <td className="hidden whitespace-nowrap py-4 pl-4 pr-3 text-xs font-medium text-gray-900 sm:table-cell sm:pl-6 lg:pl-8">
+                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-xs font-medium text-gray-900 sm:pl-6 lg:pl-8">
                       {game.League.name}
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500">
@@ -112,7 +112,7 @@ const GameTable: React.FC<GameTableProps> = ({
                     <td className="whitespace-nowrap py-4 pl-0.5 pr-2 text-xs text-gray-500">
                       {game.score ? (
                         <p className="font-medium text-gray-900">
-                          {game.score.awayTeamScore}
+                          {game.score.homeTeamScore}
                         </p>
                       ) : (
                         <p className="font-medium text-gray-900">-</p>

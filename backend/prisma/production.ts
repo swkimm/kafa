@@ -6,8 +6,8 @@ import {
   type RosterType,
   RosterStatus,
   GenderType,
-  LeagueApplyStatus,
-  GameResult
+  type GameResult,
+  type LeagueApplyStatus
 } from '@prisma/client'
 import { randomBytes } from 'crypto'
 import * as fs from 'node:fs'
@@ -50,7 +50,7 @@ const seedProd = async function () {
       parentId: 1
     },
     {
-      name: '충청 미식칙구협회',
+      name: '충청 미식축구협회',
       globalName: 'Chung-Cheong American Football Association',
       initial: 'CAFA',
       parentId: 1
@@ -112,7 +112,8 @@ const seedProd = async function () {
     email: `${randomBytes(5).toString('hex')}@example.com`,
     status: AccountStatus.Enable,
     role: Role.Manager,
-    name: item.team?.name ?? 'team manager'
+    name: item.team?.name ?? 'team manager',
+    teamId: item.teamId
   }))
 
   await prisma.account.createMany({
@@ -251,7 +252,7 @@ const seedProd = async function () {
     },
     {
       name: '제 63회 챌린지볼',
-      startedAt: new Date('2023-11-03T15:00:00.000Z'),
+      startedAt: new Date('2023-11-13T15:00:00.000Z'),
       endedAt: new Date('2023-12-01T14:59:59.999Z'),
       startedYear: 2023,
       associationId: 1
@@ -286,123 +287,16 @@ const seedProd = async function () {
   /**
    * 팀의 리그 참여 정보 마이그레이션
    */
-  let teamLeagues: Prisma.TeamLeagueCreateManyInput[] = [
-    /** 타이거볼 */
-    {
-      leagueId: 6,
-      teamId: 6,
-      applyStatus: LeagueApplyStatus.Approved
-    },
-    {
-      leagueId: 6,
-      teamId: 10,
-      applyStatus: LeagueApplyStatus.Approved
-    },
-    {
-      leagueId: 6,
-      teamId: 14,
-      applyStatus: LeagueApplyStatus.Approved
-    },
-    {
-      leagueId: 6,
-      teamId: 30,
-      applyStatus: LeagueApplyStatus.Approved
-    },
-    {
-      leagueId: 6,
-      teamId: 45,
-      applyStatus: LeagueApplyStatus.Approved
-    },
-    {
-      leagueId: 6,
-      teamId: 29,
-      applyStatus: LeagueApplyStatus.Approved
-    },
-    {
-      leagueId: 6,
-      teamId: 19,
-      applyStatus: LeagueApplyStatus.Approved
-    },
-    {
-      leagueId: 6,
-      teamId: 37,
-      applyStatus: LeagueApplyStatus.Approved
-    },
-    /** 챌린지볼 */
-    {
-      leagueId: 7,
-      teamId: 3,
-      applyStatus: LeagueApplyStatus.Approved
-    },
-    {
-      leagueId: 7,
-      teamId: 13,
-      applyStatus: LeagueApplyStatus.Approved
-    },
-    {
-      leagueId: 7,
-      teamId: 32,
-      applyStatus: LeagueApplyStatus.Approved
-    },
-    {
-      leagueId: 7,
-      teamId: 41,
-      applyStatus: LeagueApplyStatus.Approved
-    }
-  ]
-
-  const leagueOne = teams
-    .filter((team) => team.associationId === 2)
-    .map((item) => ({
-      leagueId: 1,
-      teamId: item.id,
-      applyStatus: LeagueApplyStatus.Approved,
-      rank: null
-    }))
-
-  const leagueTwo = teams
-    .filter((team) => team.associationId === 3)
-    .map((item) => ({
-      leagueId: 2,
-      teamId: item.id,
-      applyStatus: LeagueApplyStatus.Approved,
-      rank: null
-    }))
-
-  const leagueThree = teams
-    .filter((team) => team.associationId === 4)
-    .map((item) => ({
-      leagueId: 3,
-      teamId: item.id,
-      applyStatus: LeagueApplyStatus.Approved,
-      rank: null
-    }))
-
-  const leagueFour = teams
-    .filter((team) => team.associationId === 5)
-    .map((item) => ({
-      leagueId: 4,
-      teamId: item.id,
-      applyStatus: LeagueApplyStatus.Approved,
-      rank: null
-    }))
-
-  const leagueFive = teams
-    .filter((team) => team.associationId === 8)
-    .map((item) => ({
-      leagueId: 5,
-      teamId: item.id,
-      applyStatus: LeagueApplyStatus.Approved,
-      rank: null
-    }))
-
-  teamLeagues = teamLeagues.concat(
-    leagueOne,
-    leagueTwo,
-    leagueThree,
-    leagueFour,
-    leagueFive
+  const teamLeagueData = fs.readFileSync(
+    'prisma/migration-data/team-league.txt',
+    'utf-8'
   )
+
+  const teamLeagues = JSON.parse(teamLeagueData) as {
+    teamId: number
+    leagueId: number
+    applyStatus: LeagueApplyStatus
+  }[]
 
   await prisma.teamLeague.createMany({
     data: teamLeagues
@@ -422,158 +316,34 @@ const seedProd = async function () {
     awayTeamScore: number
     leagueId: number
     name: string
-    gameday: string
-    location: string
+    startedAt: string
+    stadium: string
     result: GameResult
   }[]
 
-  const leagueOneGames: Prisma.GameCreateManyInput[] = gameDataArray
-    .filter((game) => {
-      const targetTeams = leagueOne.map((item) => item.teamId)
-
-      return (
-        targetTeams.includes(game.homeTeamId) &&
-        targetTeams.includes(game.awayTeamId)
-      )
-    })
-    .map((game) => ({
-      id: game.id,
-      homeTeamId: game.homeTeamId,
-      awayTeamId: game.awayTeamId,
-      startedAt: new Date(
-        new Date(game.gameday).getTime() + 9 * 60 * 60 * 1000
-      ).toISOString(),
-      leagueId: 1,
-      name: game.name,
-      stadium: game.location,
-      result: game.result
-    }))
-
-  const leagueTwoGames: Prisma.GameCreateManyInput[] = gameDataArray
-    .filter((game) => {
-      const targetTeams = leagueTwo.map((item) => item.teamId)
-
-      return (
-        targetTeams.includes(game.homeTeamId) &&
-        targetTeams.includes(game.awayTeamId)
-      )
-    })
-    .map((game) => ({
-      id: game.id,
-      homeTeamId: game.homeTeamId,
-      awayTeamId: game.awayTeamId,
-      startedAt: new Date(
-        new Date(game.gameday).getTime() + 9 * 60 * 60 * 1000
-      ).toISOString(),
-      leagueId: 2,
-      name: game.name,
-      stadium: game.location,
-      result: game.result
-    }))
-
-  const leagueThreeGames: Prisma.GameCreateManyInput[] = gameDataArray
-    .filter((game) => {
-      const targetTeams = leagueThree.map((item) => item.teamId)
-
-      return (
-        targetTeams.includes(game.homeTeamId) &&
-        targetTeams.includes(game.awayTeamId)
-      )
-    })
-    .map((game) => ({
-      id: game.id,
-      homeTeamId: game.homeTeamId,
-      awayTeamId: game.awayTeamId,
-      startedAt: new Date(
-        new Date(game.gameday).getTime() + 9 * 60 * 60 * 1000
-      ).toISOString(),
-      leagueId: 3,
-      name: game.name,
-      stadium: game.location,
-      result: game.result
-    }))
-
-  const leagueFourGames: Prisma.GameCreateManyInput[] = gameDataArray
-    .filter((game) => {
-      const targetTeams = leagueFour.map((item) => item.teamId)
-
-      return (
-        targetTeams.includes(game.homeTeamId) &&
-        targetTeams.includes(game.awayTeamId)
-      )
-    })
-    .map((game) => ({
-      id: game.id,
-      homeTeamId: game.homeTeamId,
-      awayTeamId: game.awayTeamId,
-      startedAt: new Date(
-        new Date(game.gameday).getTime() + 9 * 60 * 60 * 1000
-      ).toISOString(),
-      leagueId: 4,
-      name: game.name,
-      stadium: game.location,
-      result: game.result
-    }))
-
-  const leagueFiveGames: Prisma.GameCreateManyInput[] = gameDataArray
-    .filter((game) => {
-      const targetTeams = leagueFive.map((item) => item.teamId)
-
-      return (
-        targetTeams.includes(game.homeTeamId) &&
-        targetTeams.includes(game.awayTeamId)
-      )
-    })
-    .map((game) => ({
-      id: game.id,
-      homeTeamId: game.homeTeamId,
-      awayTeamId: game.awayTeamId,
-      startedAt: new Date(
-        new Date(game.gameday).getTime() + 9 * 60 * 60 * 1000
-      ).toISOString(),
-      leagueId: 5,
-      name: game.name,
-      stadium: game.location,
-      result: game.result
-    }))
+  const games = gameDataArray.map((game) => ({
+    id: game.id,
+    homeTeamId: game.homeTeamId,
+    awayTeamId: game.awayTeamId,
+    startedAt: new Date(
+      new Date(game.startedAt).getTime() - 9 * 60 * 60 * 1000
+    ),
+    leagueId: game.leagueId,
+    name: game.name,
+    stadium: game.stadium,
+    result: game.result
+  }))
 
   await prisma.game.createMany({
-    data: leagueOneGames
-      .concat(
-        leagueTwoGames,
-        leagueThreeGames,
-        leagueFourGames,
-        leagueFiveGames
-      )
-      .sort((a, b) => a.id - b.id)
+    data: games
   })
 
-  const targetGames = await prisma.game
-    .findMany({
-      select: {
-        id: true
-      }
-    })
-    .then((result) => result.map((item) => item.id))
-
-  const scoresData = gameDataArray.filter((gameData) =>
-    targetGames.includes(gameData.id)
+  const scoresData = fs.readFileSync(
+    'prisma/migration-data/scores.txt',
+    'utf-8'
   )
 
-  const scores: Prisma.ScoreCreateManyInput[] = scoresData.map((score) => ({
-    gameId: score.id,
-    homeTeamScore: score.homeTeamScore,
-    homeTeamQuarterScores:
-      score.result !== GameResult.NotFinished
-        ? [score.homeTeamScore, 0, 0, 0]
-        : [0, 0, 0, 0],
-    awayTeamScore: score.awayTeamScore,
-    awayTeamQuarterScores:
-      score.result !== GameResult.NotFinished
-        ? [score.awayTeamScore, 0, 0, 0]
-        : [0, 0, 0, 0],
-    overtime: false
-  }))
+  const scores = JSON.parse(scoresData)
 
   await prisma.score.createMany({
     data: scores

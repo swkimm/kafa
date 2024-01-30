@@ -20,7 +20,8 @@
         "ms-azuretools.vscode-docker",
         "prisma.prisma",
         "dsznajder.es7-react-js-snippets",
-        "rangav.vscode-thunder-client"
+        "rangav.vscode-thunder-client",
+        "mtxr.sqltools-driver-pg"
       ]
     }
   },
