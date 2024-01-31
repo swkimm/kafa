@@ -1,56 +1,37 @@
 import axiosInstance from '@/commons/axios'
 import type { Game } from '@/commons/interfaces/game/game'
-import CreateGameModal from '@/components/modal/CreateGameModal'
-import ModifyGameModal from '@/components/modal/ModifyGameModal'
-import Alert from '@/components/notifications/Alert'
-import MyNotification from '@/components/notifications/Notification'
+import SimpleAlert from '@/components/notifications/SimpleAlert'
 import DefaultWithButton from '@/components/tables/DefaultWithButtonTable'
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
 import { useCallback, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export interface GamesWithTeamsName extends Game {
-  homeTeamInfo?: { name: string } | null
-  awayTeamInfo?: { name: string } | null
+  homeTeamInfo?: { name: string } | undefined
+  awayTeamInfo?: { name: string } | undefined
 }
 
-const CreateGame = () => {
+const ManageGameDetail = () => {
   const { leagueId: leagueIdString } = useParams()
   const leagueId = Number(leagueIdString)
   const [games, setGames] = useState<GamesWithTeamsName[]>([])
-  const [currentGame, setCurrentGame] = useState<GamesWithTeamsName | null>(
-    null
-  )
-  const [showModifyModal, setShowModifyModal] = useState(false)
-  const [showCreateModal, setShowCreateModal] = useState(false)
-  const [notification, setNotification] = useState({
-    title: '',
-    content: '',
-    show: false
-  })
-  const [alert, setAlert] = useState({ title: '', content: '', show: false })
+  const navigate = useNavigate()
+  const { showNotification } = useNotification()
+  const [isAlertOpen, setIsAlertOpen] = useState(false)
+  const [gameToDelete, setGameToDelete] = useState<number | null>(null)
 
-  const modifyGame = (game: GamesWithTeamsName) => {
-    setCurrentGame(game)
-    setShowModifyModal(true)
+  const handleDeleteClick = (gameId: number) => {
+    setGameToDelete(gameId)
+    setIsAlertOpen(true)
+  }
+
+  const goToModifyGame = (game: GamesWithTeamsName) => {
+    navigate(`/console/leagues/${leagueId}/modify-game`, { state: { game } })
   }
 
   const handleAddButtonClick = () => {
-    setShowCreateModal(true)
-  }
-
-  const showAlert = (
-    type: 'notification' | 'alert',
-    title: string,
-    content: string
-  ) => {
-    const newState = { title, content, show: true }
-    if (type === 'notification') {
-      setNotification(newState)
-      setTimeout(() => setNotification({ ...newState, show: false }), 3000)
-    } else if (type === 'alert') {
-      setAlert(newState)
-      setTimeout(() => setAlert({ ...newState, show: false }), 3000)
-    }
+    navigate(`/console/leagues/${leagueId}/create-game`)
   }
 
   const fetchHomeTeamInfo = async (homeTeamId: number) => {
@@ -89,19 +70,19 @@ const CreateGame = () => {
         })
       )
       setGames(gamesWithTeamsName)
-      // console.log('games', games)
     } catch (error) {
-      console.log(error)
+      showNotification(
+        NotificationType.Error,
+        '게임 불러오기 실패',
+        '게임 불러오기에 실패했습니다.'
+      )
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [leagueId])
 
   useEffect(() => {
     const getTeamsByLeagueId = async () => {
-      try {
-        await axiosInstance.get(`/teams/leagues/${leagueId}`)
-      } catch (error) {
-        console.log(error)
-      }
+      await axiosInstance.get(`/teams/leagues/${leagueId}`)
     }
 
     const fetchData = async () => {
@@ -112,56 +93,23 @@ const CreateGame = () => {
     fetchData()
   }, [leagueId, getGamesByLeagueId]) // leagueId가 변경될 때만 함수 실행
 
-  const deleteGame = async (gameId: number) => {
-    console.log(gameId)
+  const confirmDeleteGame = async (gameId: number) => {
     try {
       await axiosInstance.delete(`/admin/games/${gameId}`)
+      showNotification(
+        NotificationType.Success,
+        '게임 삭제 성공',
+        '게임 삭제에 성공했습니다.'
+      )
+      setIsAlertOpen(false)
       getGamesByLeagueId()
     } catch (error) {
-      console.log(error)
+      showNotification(
+        NotificationType.Error,
+        '게임 삭제 실패',
+        '게임 삭제에 실패했습니다.'
+      )
     }
-  }
-
-  const handleGameUpdate = (
-    _updatedGame: GamesWithTeamsName | null,
-    notificationInfo?: {
-      type: 'notification' | 'alert'
-      title: string
-      content: string
-    }
-  ) => {
-    setShowModifyModal(false) // 모달 닫기
-
-    const alertType =
-      notificationInfo?.type === 'notification' ||
-      notificationInfo?.type === 'alert'
-        ? notificationInfo.type
-        : 'notification'
-
-    if (notificationInfo) {
-      showAlert(alertType, notificationInfo.title, notificationInfo.content)
-    }
-
-    getGamesByLeagueId()
-  }
-
-  const handleGameCreate = (notificationInfo?: {
-    type: 'notification' | 'alert'
-    title: string
-    content: string
-  }) => {
-    setShowCreateModal(false) // 모달 닫기
-    const alertType =
-      notificationInfo?.type === 'notification' ||
-      notificationInfo?.type === 'alert'
-        ? notificationInfo.type
-        : 'notification'
-
-    if (notificationInfo) {
-      showAlert(alertType, notificationInfo.title, notificationInfo.content)
-    }
-
-    getGamesByLeagueId()
   }
 
   const gamesInfoColumns = [
@@ -206,7 +154,7 @@ const CreateGame = () => {
       render: (info: GamesWithTeamsName) => (
         <button
           type="button"
-          onClick={() => modifyGame(info)}
+          onClick={() => goToModifyGame(info)}
           className="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           수정
@@ -218,7 +166,7 @@ const CreateGame = () => {
       render: (info: GamesWithTeamsName) => (
         <button
           type="button"
-          onClick={() => deleteGame(info.id)}
+          onClick={() => handleDeleteClick(info.id)}
           className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           삭제
@@ -237,26 +185,18 @@ const CreateGame = () => {
         addButtonTitle="추가 등록"
         onAddButtonClick={handleAddButtonClick}
       />
-      {notification.show && (
-        <MyNotification
-          title={notification.title}
-          content={notification.content}
-        />
-      )}
-      {alert.show && <Alert title={alert.title} content={alert.content} />}
-      {showModifyModal && currentGame && (
-        <ModifyGameModal
-          game={currentGame}
-          leagueId={leagueId}
-          onClose={handleGameUpdate}
-        />
-      )}
 
-      {showCreateModal && (
-        <CreateGameModal leagueId={leagueId} onClose={handleGameCreate} />
+      {isAlertOpen && (
+        <SimpleAlert
+          open={isAlertOpen}
+          onCancel={() => setIsAlertOpen(false)}
+          onConfirm={() =>
+            gameToDelete !== null ? confirmDeleteGame(gameToDelete) : null
+          }
+        />
       )}
     </div>
   )
 }
 
-export default CreateGame
+export default ManageGameDetail

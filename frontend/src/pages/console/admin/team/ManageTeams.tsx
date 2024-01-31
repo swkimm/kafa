@@ -69,7 +69,8 @@ const ManageTeams = () => {
 
   useEffect(() => {
     getRegisterTeamRequest()
-  }, [getRegisterTeamRequest])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const approveRequest = async (teamId: number) => {
     try {

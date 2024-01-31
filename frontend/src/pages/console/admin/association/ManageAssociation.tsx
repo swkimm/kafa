@@ -1,24 +1,26 @@
 import axiosInstance from '@/commons/axios'
 import type { Association } from '@/commons/interfaces/association/association'
 import Button from '@/components/buttons/Button'
-import CreateModal from '@/components/modal/CreateModal'
-import ModifyModal from '@/components/modal/ModifyModal'
+import SimpleAlert from '@/components/notifications/SimpleAlert'
 import DefaultWithButtonTable from '@/components/tables/DefaultWithButtonTable'
 import useNotification from '@/hooks/useNotification'
 import { NotificationType } from '@/state/notificationState'
-import { Dialog } from '@headlessui/react'
 import { useCallback, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const ManageAssociation = () => {
   const [associations, setAssociation] = useState<Association[]>([])
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
-  const [isModifyModalOpen, setIsModifyModalOpen] = useState(false)
-  const [associationId, setAssociationId] = useState<number | null>(null)
   const { showNotification } = useNotification()
+  const navigate = useNavigate()
+  const [isAlertOpen, setIsAlertOpen] = useState(false)
+  const [associationToDelete, setAssociationToDelete] = useState<number | null>(
+    null
+  )
 
-  const [name, setName] = useState('')
-  const [globalName, setGlobalName] = useState('')
-  const [initial, setInitial] = useState('')
+  const handleDeleteClick = (associationId: number) => {
+    setAssociationToDelete(associationId)
+    setIsAlertOpen(true)
+  }
 
   const getAssociations = useCallback(async () => {
     const page = 1
@@ -41,69 +43,18 @@ const ManageAssociation = () => {
 
   useEffect(() => {
     getAssociations()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [getAssociations])
 
-  const openCreateModal = () => setIsCreateModalOpen(true)
-  const openModifyModal = () => setIsModifyModalOpen(true)
-
-  const closeCreateModal = () => setIsCreateModalOpen(false)
-  const closeModifyModal = () => setIsModifyModalOpen(false)
-
-  const createAssociation = async () => {
-    const createData = {
-      name: name,
-      globalName: globalName,
-      initial: initial
-    }
-    try {
-      await axiosInstance.post(`/admin/associations`, createData)
-      closeCreateModal()
-      getAssociations()
-    } catch (error) {
-      showNotification(
-        NotificationType.Error,
-        '협회 생성 실패',
-        '협회 생성에 실패하였습니다.',
-        2500
-      )
-    }
-  }
-
-  const modifyAssociation = (association: Association) => {
-    setAssociationId(association.id)
-    setName(association.name)
-    setGlobalName(association.globalName)
-    setInitial(association.initial)
-    openModifyModal()
-  }
-
-  const modifySubmit = async () => {
-    const modifyData = {
-      name: name,
-      globalName: globalName,
-      initial: initial
-    }
-    try {
-      await axiosInstance.put(
-        `/admin/associations/${associationId}`,
-        modifyData
-      )
-      closeModifyModal()
-      getAssociations()
-    } catch (error) {
-      showNotification(
-        NotificationType.Error,
-        '협회 수정 실패',
-        '협회 수정에 실패하였습니다.',
-        2500
-      )
-    }
-  }
-
-  const deleteAssociation = async (associationId: number) => {
+  const confirmDeleteAssociation = async (associationId: number) => {
     try {
       await axiosInstance.delete(`/admin/associations/${associationId}`)
+      showNotification(
+        NotificationType.Error,
+        '협회 삭제 성공',
+        '협회 삭제에 성공했습니다.',
+        2500
+      )
+      setIsAlertOpen(false)
       getAssociations()
     } catch (error) {
       showNotification(
@@ -150,7 +101,7 @@ const ManageAssociation = () => {
         <Button
           label="수정"
           variant="roundLg"
-          onClick={() => modifyAssociation(association)}
+          onClick={() => goToModifyAssociation(association)}
         />
       )
     },
@@ -160,7 +111,7 @@ const ManageAssociation = () => {
         <Button
           label="삭제"
           variant="roundLg"
-          onClick={() => deleteAssociation(association.id)}
+          onClick={() => handleDeleteClick(association.id)}
         />
       )
     }
@@ -170,98 +121,33 @@ const ManageAssociation = () => {
     getAssociations()
   }, [getAssociations])
 
+  const goToModifyAssociation = (association: Association) => {
+    navigate(`/console/modify-association`, { state: { association } })
+  }
+
+  const goToCreateAssociation = () => {
+    navigate(`/console/create-association`)
+  }
+
   return (
     <div className="m-5">
       <DefaultWithButtonTable
         addButtonTitle="협회 추가"
-        onAddButtonClick={openCreateModal}
+        onAddButtonClick={goToCreateAssociation}
         title={'협회 관리'}
         data={associations}
         columns={manageAssociationColumns}
       />
-
-      {isModifyModalOpen && (
-        <ModifyModal onClose={closeModifyModal} onSubmit={modifySubmit}>
-          <div className="mt-3 p-5 text-center sm:mt-5">
-            <Dialog.Title
-              as="h3"
-              className="mb-5 text-base font-semibold leading-6 text-gray-900"
-            >
-              협회 생성
-            </Dialog.Title>
-            <div className="overflow-y-auto text-left">
-              <div className="relative mb-5 grid grid-cols-6 items-center">
-                <div className="col-span-2">협회명</div>
-                <div className="col-span-4 mb-2">
-                  <input
-                    value={name}
-                    className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
-                <div className="col-span-2">협회명(영문)</div>
-                <div className="col-span-4 mb-2">
-                  <input
-                    value={globalName}
-                    className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    onChange={(e) => setGlobalName(e.target.value)}
-                  />
-                </div>
-                <div className="col-span-2">이니셜</div>
-                <div className="col-span-4 mb-2">
-                  <input
-                    value={initial}
-                    placeholder="영문 대문자로만 입력해주세요"
-                    className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    onChange={(e) => setInitial(e.target.value)}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </ModifyModal>
-      )}
-
-      {isCreateModalOpen && (
-        <CreateModal onClose={closeCreateModal} onSubmit={createAssociation}>
-          <div className="mt-3 p-5 text-center sm:mt-5">
-            <Dialog.Title
-              as="h3"
-              className="mb-5 text-base font-semibold leading-6 text-gray-900"
-            >
-              협회 생성
-            </Dialog.Title>
-            <div className="overflow-y-auto text-left">
-              <div className="relative mb-5 grid grid-cols-6 items-center">
-                <div className="col-span-2">협회명</div>
-                <div className="col-span-4 mb-2">
-                  <input
-                    value={name}
-                    className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
-                <div className="col-span-2">협회명(영문)</div>
-                <div className="col-span-4 mb-2">
-                  <input
-                    value={globalName}
-                    className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    onChange={(e) => setGlobalName(e.target.value)}
-                  />
-                </div>
-                <div className="col-span-2">이니셜</div>
-                <div className="col-span-4 mb-2">
-                  <input
-                    value={initial}
-                    placeholder="영문 대문자로만 입력해주세요"
-                    className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    onChange={(e) => setInitial(e.target.value)}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </CreateModal>
+      {isAlertOpen && (
+        <SimpleAlert
+          open={isAlertOpen}
+          onCancel={() => setIsAlertOpen(false)}
+          onConfirm={() =>
+            associationToDelete !== null
+              ? confirmDeleteAssociation(associationToDelete)
+              : null
+          }
+        />
       )}
     </div>
   )

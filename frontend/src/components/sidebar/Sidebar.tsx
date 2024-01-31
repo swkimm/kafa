@@ -23,6 +23,7 @@ import {
   WalletIcon,
   XMarkIcon
 } from '@heroicons/react/24/outline'
+import { PlayIcon } from '@heroicons/react/24/outline'
 import { Fragment, useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
@@ -99,31 +100,27 @@ const managerNavigation: NavigationItem[] = [
 const adminNavigation: NavigationItem[] = [
   { name: 'HOME', href: '/console', icon: HomeIcon },
   {
-    name: '대회정보',
+    name: '리그 관리',
     icon: TrophyIcon,
     children: [
-      { name: '대회 등록', href: '/console/createLeague' },
-      { name: '대회 관리', href: '/console/manageLeague' }
+      { name: '리그 관리', href: '/console/manage-league' },
+      { name: '리그 참가팀 관리', href: '/console/manage-apply' }
     ]
   },
   {
-    name: '기록실',
-    href: '/console/createRecode',
+    name: '경기 관리',
+    icon: PlayIcon,
+    children: [{ name: '경기 관리', href: '/console/manage-game' }]
+  },
+  {
+    name: '기록 관리',
+    href: '/console/create-recode',
     icon: PencilSquareIcon
   },
-  // {
-  //   name: 'HUDDLE',
-  //   icon: HomeIcon,
-  //   children: [
-  //     { name: 'Schedule', href: '#' },
-  //     { name: '기록 관리', href: '#' }
-  //   ]
-  // },
-  { name: '협회 정보', href: '/console/manageAssociation', icon: FlagIcon },
-  { name: '자료실', href: '#', icon: HomeIcon },
-  { name: '신문고', href: '#', icon: HomeIcon },
-  { name: 'Calendar', href: '#', icon: HomeIcon },
-  { name: '팀 관리', href: '/console/manageTeams', icon: FunnelIcon }
+  // { name: '자료실', href: '#', icon: HomeIcon },
+  // { name: '신문고', href: '#', icon: HomeIcon },
+  { name: '팀 관리', href: '/console/manage-teams', icon: FunnelIcon },
+  { name: '협회 관리', href: '/console/manage-association', icon: FlagIcon }
 ]
 
 const Sidebar: React.FC<SidebarProps> = ({ children }) => {

@@ -20,9 +20,17 @@ import CreateNewPost from './pages/board/new/CreateNewPost.tsx'
 import Calendar from './pages/calendar/Calendar.tsx'
 import ConsoleHome from './pages/console/ConsoleHome.tsx'
 import ManageAssociation from './pages/console/admin/association/ManageAssociation.tsx'
-import CreateGame from './pages/console/admin/game/CreateGame.tsx'
-import CreateLeague from './pages/console/admin/league/CreateLeague.tsx'
+import CreateAssociation from './pages/console/admin/association/items/CreateAssociation.tsx'
+import ModifyAssociation from './pages/console/admin/association/items/ModifyAssociation.tsx'
+import ManageGame from './pages/console/admin/game/ManageGame.tsx'
+import ManageGameDetail from './pages/console/admin/game/ManageGameDetail.tsx'
+import CreateGame from './pages/console/admin/game/items/CreateGame.tsx'
+import ModifyGame from './pages/console/admin/game/items/ModifyGame.tsx'
+import ManageApply from './pages/console/admin/league/ManageApply.tsx'
 import ManageLeague from './pages/console/admin/league/ManageLeague.tsx'
+import ApplyDetail from './pages/console/admin/league/items/ApplyDetail.tsx'
+import CreateLeague from './pages/console/admin/league/items/CreateLeague.tsx'
+import ModifyLeague from './pages/console/admin/league/items/ModifyLeague.tsx'
 import CreateRecode from './pages/console/admin/recode/CreateRecode.tsx'
 import LeagueGame from './pages/console/admin/recode/league/[id]/LeagueGame.tsx'
 import ManageScore from './pages/console/admin/recode/league/[id]/[id]/ManageScore.tsx'
@@ -103,26 +111,48 @@ const App = () => {
 
           <Route element={<PrivateRoute allowedRoles={[Role.Admin]} />}>
             <Route element={<ConsoleLayout />}>
-              <Route path="/console/createLeague" element={<CreateLeague />} />
-              <Route path="/console/manageLeague" element={<ManageLeague />} />
+              <Route path="/console/manage-league" element={<ManageLeague />} />
+              <Route path="/console/create-league" element={<CreateLeague />} />
+              <Route path="/console/modify-league" element={<ModifyLeague />} />
+
+              <Route path="/console/manage-apply" element={<ManageApply />} />
+              <Route path="console/apply-detail" element={<ApplyDetail />} />
+
+              <Route path="/console/manage-game" element={<ManageGame />} />
               <Route
-                path="/console/league/:leagueId/createGame"
+                path="/console/leagues/:leagueId/game-detail"
+                element={<ManageGameDetail />}
+              />
+              <Route
+                path="/console/leagues/:leagueId/create-game"
                 element={<CreateGame />}
               />
-              <Route path="/console/createRecode" element={<CreateRecode />} />
               <Route
-                path="/console/createRecode/leagues/:leagueId"
+                path="/console/leagues/:leagueId/modify-game"
+                element={<ModifyGame />}
+              />
+              <Route path="/console/create-recode" element={<CreateRecode />} />
+              <Route
+                path="/console/create-recode/leagues/:leagueId"
                 element={<LeagueGame />}
               />
               <Route
-                path="/console/createRecode/leagues/:leagueId/games/:gameId"
+                path="/console/create-recode/leagues/:leagueId/games/:gameId"
                 element={<ManageScore />}
               />
               <Route
-                path="/console/manageAssociation"
+                path="/console/manage-association"
                 element={<ManageAssociation />}
               />
-              <Route path="/console/manageTeams" element={<ManageTeams />} />
+              <Route
+                path="/console/create-association"
+                element={<CreateAssociation />}
+              />
+              <Route
+                path="/console/modify-association"
+                element={<ModifyAssociation />}
+              />
+              <Route path="/console/manage-teams" element={<ManageTeams />} />
             </Route>
           </Route>
 

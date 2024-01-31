@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types'
-
 type PaginationProps = {
   currentPage: number
   totalPages: number
@@ -11,15 +9,21 @@ const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   onPageChange
 }) => {
-  // 컴포넌트 로직...
+  const pageNumbers = []
+
+  const startPage = Math.max(1, currentPage - 2)
+  const endPage = Math.min(totalPages, currentPage + 2)
+
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(i)
+  }
+
   return (
     <div className="flex items-center justify-center">
-      {/* 이전 버튼: 첫 페이지가 아닐 때만 표시 */}
       {currentPage > 1 && (
         <button onClick={() => onPageChange(currentPage - 1)}>Previous</button>
       )}
 
-      {/* Page Numbers */}
       {Array.from({ length: totalPages }, (_, index) => (
         <button
           key={index + 1}
@@ -32,18 +36,11 @@ const Pagination: React.FC<PaginationProps> = ({
         </button>
       ))}
 
-      {/* 다음 버튼: 마지막 페이지가 아닐 때만 표시 */}
       {currentPage < totalPages && (
         <button onClick={() => onPageChange(currentPage + 1)}>Next</button>
       )}
     </div>
   )
-}
-
-Pagination.propTypes = {
-  currentPage: PropTypes.number.isRequired,
-  totalPages: PropTypes.number.isRequired,
-  onPageChange: PropTypes.func.isRequired
 }
 
 export default Pagination

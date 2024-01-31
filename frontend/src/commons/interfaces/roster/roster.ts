@@ -26,6 +26,11 @@ export interface TeamInfo {
   profileImgUrl?: string
 }
 
+enum GenderType {
+  Male,
+  Female
+}
+
 export interface Roster {
   id: number
   name: string
@@ -34,6 +39,9 @@ export interface Roster {
   rosterType: RosterType
   Athlete?: AthleteInfo
   registerYear: string
+  birthday?: string
+  gender?: GenderType
+  certification?: string
   Team?: TeamInfo
   status: RosterStatus
 }

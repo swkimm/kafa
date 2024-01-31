@@ -1,8 +1,9 @@
 import axiosInstance from '@/commons/axios'
 import type { Association } from '@/commons/interfaces/association/association'
+import Button from '@/components/buttons/Button'
 import DropdownLeft from '@/components/dropdown/DropdownLeft'
-import Alert from '@/components/notifications/Alert'
-import MyNotification from '@/components/notifications/Notification'
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
 import { useEffect, useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -16,7 +17,6 @@ interface RegisterLeague {
 }
 
 const RegisterLeague = () => {
-  const navigate = useNavigate()
   const [associations, setAssociations] = useState<Association[]>([])
   const [selectedAssociationId, setSelectedAssociationId] = useState<
     number | null
@@ -24,12 +24,8 @@ const RegisterLeague = () => {
   const [leagueName, setLeagueName] = useState('')
   const [startedAt, setStartedAt] = useState<Date | null>(null)
   const [endedAt, setEndedAt] = useState<Date | null>(null)
-  const [notification, setNotification] = useState({
-    title: '',
-    content: '',
-    show: false
-  })
-  const [alert, setAlert] = useState({ title: '', content: '', show: false })
+  const { showNotification } = useNotification()
+  const navigate = useNavigate()
 
   const getAssociations = async () => {
     try {
@@ -38,12 +34,17 @@ const RegisterLeague = () => {
       )
       setAssociations(response.data)
     } catch (error) {
-      console.error('협회 데이터 가져오기 오류:', error)
+      showNotification(
+        NotificationType.Error,
+        '협회 불러오기 실패',
+        '협회 불러오기에 실패했습니다.'
+      )
     }
   }
 
   useEffect(() => {
     getAssociations()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const associationSelect = (selected: string) => {
@@ -56,24 +57,12 @@ const RegisterLeague = () => {
       return date ? date.toISOString().split('T')[0] : ''
     }
 
-    // 알림 상태를 설정하고 일정 시간 후에 숨기는 함수
-    const showAlert = (
-      type: 'notification' | 'alert',
-      title: string,
-      content: string
-    ) => {
-      const newState = { title, content, show: true }
-      if (type === 'notification') {
-        setNotification(newState)
-        setTimeout(() => setNotification({ ...newState, show: false }), 3000)
-      } else if (type === 'alert') {
-        setAlert(newState)
-        setTimeout(() => setAlert({ ...newState, show: false }), 3000)
-      }
-    }
-
     if (selectedAssociationId === null) {
-      showAlert('alert', '등록 실패', '협회를 선택하세요')
+      showNotification(
+        NotificationType.Error,
+        '대회 생성 실패',
+        '협회를 선택하세요.'
+      )
       return
     }
     try {
@@ -83,27 +72,27 @@ const RegisterLeague = () => {
         endedAt: formatDate(endedAt),
         associationId: selectedAssociationId
       }
-      const response = await axiosInstance.post('/admin/leagues', postData)
-      console.log('대회 등록 성공')
-      showAlert(
-        'notification',
-        '등록 성공',
-        '대회가 성공적으로 등록되었습니다.'
+      await axiosInstance.post('/admin/leagues', postData)
+      showNotification(
+        NotificationType.Success,
+        '대회 생성 성공',
+        '대회 생성에 성공했습니다.'
       )
-      console.log(response.data.id)
-
-      navigate(`/console/league/${response.data.id}/createGame`)
+      navigate('/console/manage-league')
     } catch (error) {
-      showAlert('alert', '등록 실패', '대회 등록 실패')
+      showNotification(
+        NotificationType.Error,
+        '대회 생성 실패',
+        '대회 생성에 실패했습니다.'
+      )
     }
   }
 
   return (
     <div className="m-5">
-      <div className="text-md mb-5 font-bold">대회등록</div>
       <div className="bg-white p-5">
         <div className="border-b border-l-8 border-l-black p-3 sm:flex-auto">
-          <div>대회 등록</div>
+          <div>리그 생성</div>
         </div>
         <div className="mt-5 grid grid-cols-8 gap-y-3">
           <div className="col-span-1 flex items-center">
@@ -171,22 +160,9 @@ const RegisterLeague = () => {
           </div>
         </div>
       </div>
-      <div className="mt-3 flex justify-center">
-        <button
-          type="button"
-          onClick={handleSubmit}
-          className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          다음
-        </button>
+      <div className="mt-5 flex justify-center">
+        <Button label="생성" variant="roundLg" onClick={handleSubmit} />
       </div>
-      {notification.show && (
-        <MyNotification
-          title={notification.title}
-          content={notification.content}
-        />
-      )}
-      {alert.show && <Alert title={alert.title} content={alert.content} />}
     </div>
   )
 }

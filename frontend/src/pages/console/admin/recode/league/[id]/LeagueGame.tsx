@@ -31,7 +31,7 @@ const LeagueGame = () => {
   const { leagueId } = useParams()
   const [games, setGames] = useState<ExtendedGame[]>([])
   const goToRecodeInputById = (gameId: number) => {
-    navigate(`/console/createRecode/leagues/${leagueId}/games/${gameId}`)
+    navigate(`/console/create-recode/leagues/${leagueId}/games/${gameId}`)
   }
 
   const fetchGetScoreById = async (gameId: number) => {

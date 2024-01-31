@@ -1,50 +1,34 @@
 import axiosInstance from '@/commons/axios'
 import type { Association } from '@/commons/interfaces/association/association'
 import type { League } from '@/commons/interfaces/league/league'
-import ModifyModal from '@/components/modal/ModifyLeagueModal'
-import Alert from '@/components/notifications/Alert'
-import MyNotification from '@/components/notifications/Notification'
+import SimpleAlert from '@/components/notifications/SimpleAlert'
 import Pagination from '@/components/pagination/Pagination'
-import DefaultTable from '@/components/tables/DefaultTable'
+import DefaultWithButtonTable from '@/components/tables/DefaultWithButtonTable'
+import useNotification from '@/hooks/useNotification'
+import { NotificationType } from '@/state/notificationState'
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 interface LeagueWithAssociationName extends League {
-  associationName?: string // 협회 이름을 추가
+  associationName?: string
 }
 
 const ManageLeague = () => {
-  const [leagues, setLeagues] = useState<League[] | null>(null)
-  const [totalPages, setTotalPages] = useState<number | undefined>(undefined)
+  const [leagues, setLeagues] = useState<League[]>()
+  const [totalPages, setTotalPages] = useState<number>()
   const [currentPage, setCurrentPage] = useState<number>(1)
   const limit = 10 // 한 페이지당 항목 수
-  const [notification, setNotification] = useState({
-    title: '',
-    content: '',
-    show: false
-  })
-  const [alert, setAlert] = useState({ title: '', content: '', show: false })
-  const [showModifyModal, setShowModifyModal] = useState(false)
-  const [selectedLeague, setSelectedLeague] = useState<League | null>(null)
   const [associations, setAssociations] = useState<Association[]>([])
   const navigate = useNavigate()
+  const { showNotification } = useNotification()
+  const [isAlertOpen, setIsAlertOpen] = useState(false)
+  const [leagueToDelete, setLeagueToDelete] = useState<number | null>(null)
 
-  const showAlert = (
-    type: 'notification' | 'alert',
-    title: string,
-    content: string
-  ) => {
-    const newState = { title, content, show: true }
-    if (type === 'notification') {
-      setNotification(newState)
-      setTimeout(() => setNotification({ ...newState, show: false }), 3000)
-    } else if (type === 'alert') {
-      setAlert(newState)
-      setTimeout(() => setAlert({ ...newState, show: false }), 3000)
-    }
+  const handleDeleteClick = (leagueId: number) => {
+    setLeagueToDelete(leagueId)
+    setIsAlertOpen(true)
   }
 
-  // 협회 목록을 가져오는 함수
   const getAssociations = useCallback(async () => {
     try {
       const response = await axiosInstance.get<Association[]>(
@@ -52,8 +36,13 @@ const ManageLeague = () => {
       )
       setAssociations(response.data)
     } catch (error) {
-      console.error('협회 데이터 가져오기 오류:', error)
+      showNotification(
+        NotificationType.Error,
+        '협회 목록 불러오기 실패',
+        '협회 목록 불러오기에 실패했습니다.'
+      )
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // 리그 목록을 가져오는 함수 (협회 이름을 포함하여 업데이트)
@@ -72,14 +61,26 @@ const ManageLeague = () => {
             associationName: association?.name || '협회 없음'
           }
         })
+
       setLeagues(leaguesWithAssociationName)
-      const loadedItems = response.data.length
-      const isLastPage = loadedItems < limit
-      setTotalPages(currentPage + (isLastPage ? 0 : 1))
+      const loadedItems = leaguesWithAssociationName.length
+      let calculatedTotalPages = currentPage
+
+      if (loadedItems === limit) {
+        calculatedTotalPages = currentPage + 1
+      } else if (loadedItems < limit) {
+        calculatedTotalPages = currentPage
+      }
+
+      setTotalPages(calculatedTotalPages)
     } catch (error) {
-      showAlert('alert', '오류', '대회 리스트 가져오기 오류')
+      showNotification(
+        NotificationType.Error,
+        '리그 목록 불러오기 실패',
+        '리그 목록 불러오기에 실패했습니다.'
+      )
     }
-  }, [currentPage, associations])
+  }, [currentPage, associations, showNotification])
 
   useEffect(() => {
     getAssociations()
@@ -89,52 +90,30 @@ const ManageLeague = () => {
     if (associations.length > 0) {
       getLeagues()
     }
-  }, [associations, getLeagues])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [associations.length, currentPage])
 
-  const deleteLeague = async (leagueId: number) => {
+  const confirmDeleteLeague = async (leagueId: number) => {
     try {
       await axiosInstance.delete(`/admin/leagues/${leagueId}`)
+      showNotification(
+        NotificationType.Success,
+        '대회 삭제 성공',
+        '대회 삭제에 성공했습니다.'
+      )
+      setIsAlertOpen(false)
       getLeagues()
-      showAlert('notification', '성공', '대회가 정상적으로 삭제되었습니다.')
     } catch (error) {
-      showAlert('alert', '실패', '대회 삭제 실패')
+      showNotification(
+        NotificationType.Error,
+        '대회 삭제 실패',
+        '대회 삭제에 실패했습니다.'
+      )
     }
   }
 
-  const modifyLeague = async (league: League) => {
-    try {
-      const updatedLeague = {
-        ...league,
-        startedAt: new Date(league.startedAt),
-        endedAt: new Date(league.endedAt)
-      }
-      setSelectedLeague(updatedLeague)
-      setShowModifyModal(true)
-    } catch (error) {
-      showAlert('alert', '실패', '대회 수정 준비 실패')
-    }
-  }
-
-  const handleLeagueUpdate = (
-    _updatedLeague: League | null,
-    notificationInfo?: {
-      type: 'notification' | 'alert'
-      title: string
-      content: string
-    }
-  ) => {
-    setShowModifyModal(false) // 모달 닫기
-    getLeagues() // League 리스트 업데이트
-
-    const alertType =
-      notificationInfo?.type === 'notification' ||
-      notificationInfo?.type === 'alert'
-        ? notificationInfo.type
-        : 'notification'
-
-    if (notificationInfo) {
-      showAlert(alertType, notificationInfo.title, notificationInfo.content)
-    }
+  const goToModifyLeague = (league: League) => {
+    navigate('/console/modify-league', { state: { league } })
   }
 
   const parseDate = (dateString: Date) => {
@@ -149,8 +128,8 @@ const ManageLeague = () => {
     setCurrentPage(page)
   }
 
-  const goToCreateGames = (leagueId: number) => {
-    navigate(`/console/league/${leagueId}/createGame`)
+  const goToCreateGames = () => {
+    navigate(`/console/create-league`)
   }
 
   const leaguesColumns = [
@@ -162,14 +141,7 @@ const ManageLeague = () => {
     },
     {
       title: '대회명',
-      render: (league: League) => (
-        <div
-          className="cursor-pointer text-blue-500 underline"
-          onClick={() => goToCreateGames(league.id)}
-        >
-          {league.name}
-        </div>
-      )
+      render: (league: League) => <div>{league.name}</div>
     },
     {
       title: '시작일자',
@@ -184,7 +156,7 @@ const ManageLeague = () => {
       render: (league: League) => (
         <button
           type="button"
-          onClick={() => modifyLeague(league)}
+          onClick={() => goToModifyLeague(league)}
           className="rounded-md bg-gray-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           수정
@@ -196,7 +168,7 @@ const ManageLeague = () => {
       render: (league: League) => (
         <button
           type="button"
-          onClick={() => deleteLeague(league.id)}
+          onClick={() => handleDeleteClick(league.id)}
           className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           삭제
@@ -207,18 +179,17 @@ const ManageLeague = () => {
 
   return (
     <div className="m-5">
-      <div className="text-md mb-5 font-bold">대회관리</div>
-      <div className="bg-white">
-        {leagues && leagues.length > 0 ? (
-          <DefaultTable
-            title={'대회관리'}
-            data={leagues}
-            columns={leaguesColumns}
-          />
-        ) : (
-          <p>No leagues available</p>
-        )}
-      </div>
+      {leagues && leagues.length > 0 ? (
+        <DefaultWithButtonTable
+          title={'리그 관리'}
+          data={leagues}
+          columns={leaguesColumns}
+          addButtonTitle="리그 생성"
+          onAddButtonClick={goToCreateGames}
+        />
+      ) : (
+        <p></p>
+      )}
       <div className="mt-5">
         {totalPages !== undefined && (
           <Pagination
@@ -228,17 +199,14 @@ const ManageLeague = () => {
           />
         )}
       </div>
-      {notification.show && (
-        <MyNotification
-          title={notification.title}
-          content={notification.content}
-        />
-      )}
-      {alert.show && <Alert title={alert.title} content={alert.content} />}
-      {showModifyModal && selectedLeague && (
-        <ModifyModal
-          league={selectedLeague}
-          onClose={handleLeagueUpdate} // onClose prop에 handleLeagueUpdate 함수 전달
+
+      {isAlertOpen && (
+        <SimpleAlert
+          open={isAlertOpen}
+          onCancel={() => setIsAlertOpen(false)}
+          onConfirm={() =>
+            leagueToDelete !== null ? confirmDeleteLeague(leagueToDelete) : null
+          }
         />
       )}
     </div>

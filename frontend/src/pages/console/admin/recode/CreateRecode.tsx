@@ -64,7 +64,7 @@ const CreateRecode = () => {
   }, [getLeagues])
 
   const goToLeague = (leagueId: number) => {
-    navigate(`/console/createRecode/leagues/${leagueId}`)
+    navigate(`/console/create-recode/leagues/${leagueId}`)
   }
 
   const leaguesColumns = [

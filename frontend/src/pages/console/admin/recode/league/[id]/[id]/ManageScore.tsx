@@ -104,6 +104,8 @@ const ManageScore = () => {
       }
       setGame(gameWithAdditionalInfo as ExtendedGame)
 
+      console.log(gameWithAdditionalInfo)
+
       if (
         scoreResponse &&
         scoreResponse.homeTeamQuarterScores &&
@@ -304,7 +306,7 @@ const ManageScore = () => {
                 <div>
                   <img src="/logo/KAFA_OG.png" alt="" className="w-10" />
                 </div>
-                <div className="ml-2">{game?.homeTeamInfo.name}</div>
+                <div className="ml-2">{game?.homeTeamInfo?.name}</div>
               </div>
             </div>
             <div className="col-span-3">
@@ -313,7 +315,7 @@ const ManageScore = () => {
                 <div>
                   <img src="/logo/KAFA_OG.png" alt="" className="w-10" />
                 </div>
-                <div className="ml-2">{game?.awayTeamInfo.name}</div>
+                <div className="ml-2">{game?.awayTeamInfo?.name}</div>
               </div>
             </div>
           </div>
@@ -403,10 +405,10 @@ const ManageScore = () => {
         )}
         <ManageRecode
           gameId={game?.id}
-          homeTeamId={game?.homeTeamInfo.id}
-          homeTeamName={game?.homeTeamInfo.name}
-          awayTeamId={game?.awayTeamInfo.id}
-          awayTeamName={game?.awayTeamInfo.name}
+          homeTeamId={game?.homeTeamInfo?.id}
+          homeTeamName={game?.homeTeamInfo?.name}
+          awayTeamId={game?.awayTeamInfo?.id}
+          awayTeamName={game?.awayTeamInfo?.name}
           onScoreDataChange={handleScoreDataChange}
         />
         <div className="mt-5">

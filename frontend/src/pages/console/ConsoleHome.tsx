@@ -2,9 +2,11 @@ import axiosInstance from '@/commons/axios'
 import { Role, type Profile } from '@/commons/interfaces/account/profile'
 import { userState } from '@/state/userState'
 import { UserCircleIcon } from '@heroicons/react/20/solid'
-import { ArrowTrendingUpIcon } from '@heroicons/react/20/solid'
-import { CalendarIcon } from '@heroicons/react/20/solid'
-import { DocumentCheckIcon } from '@heroicons/react/20/solid'
+import {
+  TrophyIcon,
+  PlayIcon,
+  PencilSquareIcon
+} from '@heroicons/react/20/solid'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
@@ -28,16 +30,16 @@ const ConsoleHome = () => {
     getProfile()
   }, [])
 
-  const goToAdminNotice = () => {
-    navigate('')
+  const goToAdminRecode = () => {
+    navigate('/console/create-recode')
   }
 
-  const goToAdminHuddle = () => {
-    navigate('')
+  const goToAdminLeague = () => {
+    navigate('/console/manage-league')
   }
 
-  const goToAdminCalendar = () => {
-    navigate('')
+  const goToAdminGame = () => {
+    navigate('/console/manage-game')
   }
 
   const goToProfile = () => {
@@ -75,44 +77,44 @@ const ConsoleHome = () => {
             </div>
             <div
               className="col-span-1 cursor-pointer bg-white p-5 shadow-md"
-              onClick={goToAdminHuddle}
+              onClick={goToAdminLeague}
             >
               <div className="flex items-center justify-center">
-                <ArrowTrendingUpIcon className="h-auto w-28 text-blue-900" />
+                <TrophyIcon className="h-auto w-28 text-blue-900" />
               </div>
               <div className="mb-3 flex items-center justify-center">
-                <div>Huddle</div>
+                <div>리그 관리</div>
               </div>
               <div className="mb-5 flex items-center justify-center">
-                <div className="text-xs">Huddle 페이지로 이동합니다.</div>
+                <div className="text-xs">리그 관리 페이지로 이동합니다.</div>
               </div>
             </div>
             <div
               className="col-span-1 cursor-pointer bg-white p-5 shadow-md"
-              onClick={goToAdminCalendar}
+              onClick={goToAdminGame}
             >
               <div className="flex items-center justify-center">
-                <CalendarIcon className="h-auto w-28 text-teal-600" />
+                <PlayIcon className="h-auto w-28 text-teal-600" />
               </div>
               <div className="mb-3 flex items-center justify-center">
-                <div>캘린더</div>
+                <div>경기 관리</div>
               </div>
               <div className="mb-5 flex items-center justify-center">
-                <div className="text-xs">캘린더 관리 페이지로 이동합니다.</div>
+                <div className="text-xs">경기 관리 페이지로 이동합니다.</div>
               </div>
             </div>
             <div
               className="col-span-1 cursor-pointer bg-white p-5 shadow-md"
-              onClick={goToAdminNotice}
+              onClick={goToAdminRecode}
             >
               <div className="flex items-center justify-center">
-                <DocumentCheckIcon className="h-auto w-28 text-red-700" />
+                <PencilSquareIcon className="h-auto w-28 text-red-700" />
               </div>
               <div className="mb-3 flex items-center justify-center">
-                <div>Notice</div>
+                <div>기록 관리</div>
               </div>
               <div className="mb-5 flex items-center justify-center">
-                <div className="text-xs">Notice 관리 페이지로 이동합니다.</div>
+                <div className="text-xs">기록 관리 페이지로 이동합니다.</div>
               </div>
             </div>
           </div>
